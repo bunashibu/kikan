@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class Logout : MonoBehaviour {
-  public void toLogin() {
+  public void ToLogin() {
     Application.LoadLevel("login");
   }
 }

@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class BattleApplication : MonoBehaviour {
-  public void toBattle() {
+  public void ToBattle() {
     Application.LoadLevel("battle");
   }
 }

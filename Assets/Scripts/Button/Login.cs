@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class Login : MonoBehaviour {
-  public void toLobby() {
+  public void ToLobby() {
     Application.LoadLevel("lobby");
   }
 }

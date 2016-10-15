@@ -391,7 +391,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1544477945}
-        m_MethodName: toLogin
+        m_MethodName: ToLogin
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -610,7 +610,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1817048253}
-        m_MethodName: toBattle
+        m_MethodName: ToBattle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
