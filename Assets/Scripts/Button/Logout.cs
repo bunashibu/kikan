@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class Logout : MonoBehaviour {
   public void ToLogin() {
-    Application.LoadLevel("login");
+    SceneManager.LoadScene("login");
   }
 }

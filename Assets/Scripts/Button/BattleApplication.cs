@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class BattleApplication : MonoBehaviour {
   public void ToBattle() {
-    Application.LoadLevel("battle");
+    SceneManager.LoadScene("battle");
   }
 }
