@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Character : LivingThing {
+public class Character : MonoBehaviour {
   // Use this for initialization
   void Start () {
 
