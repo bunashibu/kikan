@@ -24,6 +24,5 @@ public class JobChanger : MonoBehaviour {
     gameObject.SetActive(false);
   }
 
-  [SerializeField]
-  Button[] _buttons;
+  [SerializeField] Button[] _buttons;
 }
