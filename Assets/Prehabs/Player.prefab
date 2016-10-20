@@ -21,6 +21,7 @@ GameObject:
   - 224: {fileID: 224000010966695226}
   - 212: {fileID: 212000013636046964}
   - 114: {fileID: 114000011792037864}
+  - 114: {fileID: 114000011924668548}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -110,6 +111,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 223000013010656170}
+--- !u!114 &114000011924668548
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011996982660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cdc806f0fd453e4f92d2532f7a26edb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000012949416784
 MonoBehaviour:
   m_ObjectHideFlags: 1

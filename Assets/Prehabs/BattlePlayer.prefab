@@ -21,6 +21,7 @@ GameObject:
   - 224: {fileID: 224000011802074842}
   - 212: {fileID: 212000011493978750}
   - 114: {fileID: 114000012926086246}
+  - 114: {fileID: 114000013302548324}
   m_Layer: 0
   m_Name: BattlePlayer
   m_TagString: Untagged
@@ -122,6 +123,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 223000011709142086}
+--- !u!114 &114000013302548324
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012930170184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cdc806f0fd453e4f92d2532f7a26edb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000014039194656
 MonoBehaviour:
   m_ObjectHideFlags: 1

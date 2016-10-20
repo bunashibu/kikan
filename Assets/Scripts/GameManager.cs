@@ -12,6 +12,5 @@ public class GameManager : MonoBehaviour {
   }
 
   public static string playerName = "";
-  public static Job playerJob = null;
   public static GameManager instance = null;
 }

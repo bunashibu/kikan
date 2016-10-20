@@ -7,7 +7,6 @@ public class PlayerMove : MonoBehaviour {
     if (Input.GetKey(KeyCode.RightArrow)) {
       gameObject.transform.position += Vector3.right * 0.02f;
       canvas.transform.position += Vector3.right * 0.02f * 0.01f;
-      GetComponent<SpriteRenderer>().flipX = true;
     }
   }
 
@@ -15,7 +14,6 @@ public class PlayerMove : MonoBehaviour {
     if (Input.GetKey(KeyCode.LeftArrow)) {
       gameObject.transform.position += Vector3.left * 0.02f;
       canvas.transform.position += Vector3.left * 0.02f * 0.01f;
-      GetComponent<SpriteRenderer>().flipX = false;
     }
   }
 
