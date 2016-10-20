@@ -2,8 +2,9 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class JobChanger : MonoBehaviour {
+public class JobPicker : MonoBehaviour {
   public void PickManji() {
+    _battlePlayer = Instantiate(_battlePlayer);
     Instantiate(_jobs[0]).transform.parent = _battlePlayer.transform;
     DisableAllButtons();
   }
