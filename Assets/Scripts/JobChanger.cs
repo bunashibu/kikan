@@ -4,6 +4,7 @@ using System.Collections;
 
 public class JobChanger : MonoBehaviour {
   public void PickManji() {
+    Instantiate(_jobs[0]).transform.parent = _battlePlayer.transform;
     DisableAllButtons();
   }
 
@@ -24,5 +25,7 @@ public class JobChanger : MonoBehaviour {
     gameObject.SetActive(false);
   }
 
+  [SerializeField] GameObject _battlePlayer;
   [SerializeField] Button[] _buttons;
+  [SerializeField] GameObject[] _jobs;
 }

@@ -2,8 +2,7 @@
 using System.Collections;
 
 public class Job : MonoBehaviour {
-  [SerializeField] Sprite _actionNormal;
-  [SerializeField] Sprite _actionX;
-  [SerializeField] Sprite _actionShift;
-  [SerializeField] int _life;
+  [SerializeField] protected Sprite _actionNormal;
+  [SerializeField] protected Sprite _actionX;
+  [SerializeField] protected Sprite _actionShift;
 }
