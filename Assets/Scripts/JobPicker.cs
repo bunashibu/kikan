@@ -10,6 +10,8 @@ public class JobPicker : MonoBehaviour {
   }
 
   public void PickMagician() {
+    _battlePlayer = Instantiate(_battlePlayer);
+    Instantiate(_jobs[1]).transform.parent = _battlePlayer.transform;
     DisableAllButtons();
   }
 
