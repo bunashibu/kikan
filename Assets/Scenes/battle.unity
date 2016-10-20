@@ -858,8 +858,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3483310954c64ef4cb5124ffbe823566, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _battlePlayer: {fileID: 1000012930170184, guid: e0f1a7e746de9d84a82b3f92aeb0b30e,
-    type: 2}
+  _player: {fileID: 1000011996982660, guid: 9872b9617ee746f4a8ec6167f194cf4f, type: 2}
   _buttons:
   - {fileID: 502785835}
   - {fileID: 1628920479}

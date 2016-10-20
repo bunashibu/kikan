@@ -4,14 +4,14 @@ using System.Collections;
 
 public class JobPicker : MonoBehaviour {
   public void PickManji() {
-    _battlePlayer = Instantiate(_battlePlayer);
-    Instantiate(_jobs[0]).transform.parent = _battlePlayer.transform;
+    _player = Instantiate(_player);
+    Instantiate(_jobs[0]).transform.parent = _player.transform;
     DisableAllButtons();
   }
 
   public void PickMagician() {
-    _battlePlayer = Instantiate(_battlePlayer);
-    Instantiate(_jobs[1]).transform.parent = _battlePlayer.transform;
+    _player = Instantiate(_player);
+    Instantiate(_jobs[1]).transform.parent = _player.transform;
     DisableAllButtons();
   }
 
@@ -24,11 +24,11 @@ public class JobPicker : MonoBehaviour {
       button.interactable = false;
   }
 
-  public void HideAllButtons() {
-    gameObject.SetActive(false);
+  void Start() {
+    Destroy(gameObject, 30.0f);
   }
 
-  [SerializeField] GameObject _battlePlayer;
+  [SerializeField] GameObject _player;
   [SerializeField] Button[] _buttons;
   [SerializeField] GameObject[] _jobs;
 }
