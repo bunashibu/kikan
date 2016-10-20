@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class PlayerMove : MonoBehaviour {
   public void MoveRight() {
     if (Input.GetKey(KeyCode.RightArrow)) {
       gameObject.transform.position += Vector3.right * 0.02f;
+      canvas.transform.position += Vector3.right * 0.02f * 0.01f;
       GetComponent<SpriteRenderer>().flipX = true;
     }
   }
@@ -12,6 +14,7 @@ public class PlayerMove : MonoBehaviour {
   public void MoveLeft() {
     if (Input.GetKey(KeyCode.LeftArrow)) {
       gameObject.transform.position += Vector3.left * 0.02f;
+      canvas.transform.position += Vector3.left * 0.02f * 0.01f;
       GetComponent<SpriteRenderer>().flipX = false;
     }
   }
@@ -24,4 +27,6 @@ public class PlayerMove : MonoBehaviour {
   void Update() {
     Move();
   }
+
+  public Canvas canvas;
 }
