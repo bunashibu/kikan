@@ -10,9 +10,10 @@ public class TimeLimit : MonoBehaviour {
   void Update() {
     time -= Time.deltaTime;
     if (time < 0)
-      time = 0;
+      _sceneChanger.ChangeScene("final_battle");
     GetComponent<Text>().text = ((int)time).ToString();
   }
 
-  private float time = 60;
+  private float time = 10;
+  [SerializeField] SceneChanger _sceneChanger;
 }

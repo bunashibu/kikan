@@ -101,6 +101,7 @@ GameObject:
   - 222: {fileID: 42171833}
   - 114: {fileID: 42171832}
   - 114: {fileID: 42171834}
+  - 114: {fileID: 42171835}
   m_Layer: 5
   m_Name: TimeLimit
   m_TagString: Untagged
@@ -174,6 +175,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5afb92595ad966c4fb71e79e6e8cdf8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sceneChanger: {fileID: 42171835}
+--- !u!114 &42171835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 42171830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2813ea23643df04697b196db9bcde49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &92540854
