@@ -7,16 +7,19 @@ public class JobPicker : MonoBehaviour {
     _player = Instantiate(_player);
     Instantiate(_jobs[0]).transform.parent = _player.transform;
     DisableAllButtons();
+    DeleteCamera();
   }
 
   public void PickMagician() {
     _player = Instantiate(_player);
     Instantiate(_jobs[1]).transform.parent = _player.transform;
     DisableAllButtons();
+    DeleteCamera();
   }
 
   public void PickWarrior() {
     DisableAllButtons();
+    DeleteCamera();
   }
 
   public void DisableAllButtons() {
@@ -24,11 +27,16 @@ public class JobPicker : MonoBehaviour {
       button.interactable = false;
   }
 
+  public void DeleteCamera() {
+    Destroy(_camera);
+  }
+
   void Start() {
     Destroy(gameObject, 30.0f);
   }
 
   [SerializeField] GameObject _player;
+  [SerializeField] GameObject _camera;
   [SerializeField] Button[] _buttons;
   [SerializeField] GameObject[] _jobs;
 }
