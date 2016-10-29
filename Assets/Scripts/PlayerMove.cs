@@ -5,15 +5,15 @@ using System.Collections;
 public class PlayerMove : MonoBehaviour {
   public void MoveRight() {
     if (Input.GetKey(KeyCode.RightArrow)) {
-      gameObject.transform.position += Vector3.right * 0.02f;
-      canvas.transform.position += Vector3.right * 0.02f * 0.01f;
+      GetComponent<Rigidbody2D>().velocity = new Vector2(4, 0);
+      GetComponent<Rigidbody2D>().AddForce(new Vector2(1, 0));
     }
   }
 
   public void MoveLeft() {
     if (Input.GetKey(KeyCode.LeftArrow)) {
-      gameObject.transform.position += Vector3.left * 0.02f;
-      canvas.transform.position += Vector3.left * 0.02f * 0.01f;
+      GetComponent<Rigidbody2D>().velocity = new Vector2(-4, 0);
+      GetComponent<Rigidbody2D>().AddForce(new Vector2(-1, 0));
     }
   }
 
@@ -22,8 +22,15 @@ public class PlayerMove : MonoBehaviour {
     MoveLeft();
   }
 
+  public void Jump() {
+    if (Input.GetButtonDown("Jump")) {
+      GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 200));
+    }
+  }
+
   void Update() {
     Move();
+    Jump();
   }
 
   public Canvas canvas;
