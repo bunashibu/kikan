@@ -67,6 +67,7 @@ MonoBehaviour:
   _actionNormal: {fileID: 21300000, guid: c3fce68f677b1ce48adb1a28849855fb, type: 3}
   _actionX: {fileID: 21300000, guid: ccc99846e92412848a3d4970ed42dd27, type: 3}
   _actionShift: {fileID: 21300000, guid: 193cadfb334dc1c4bad2e45981ed0959, type: 3}
+  _life: 150
 --- !u!212 &212000012751427524
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -32,7 +32,7 @@ public class JobPicker : MonoBehaviour {
   }
 
   void Start() {
-    Destroy(gameObject, 30.0f);
+    Destroy(gameObject, 10.0f);
   }
 
   [SerializeField] GameObject _player;

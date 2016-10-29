@@ -8,7 +8,14 @@ public class Job : MonoBehaviour {
     action();
   }
 
+  public void DecreaseLife(int damage) {
+    _life -= damage;
+    if (_life < 0)
+      _life = 0;
+  }
+
   [SerializeField] protected Sprite _actionNormal;
   [SerializeField] protected Sprite _actionX;
   [SerializeField] protected Sprite _actionShift;
+  [SerializeField] protected int _life;
 }
