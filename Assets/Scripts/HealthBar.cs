@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class HealthBar : MonoBehaviour {
-  public void Decrease(int damage) {
-    GetComponentInChildren<RectTransform>().sizeDelta = new Vector2(200-damage, 30);
+  void Start() {
+    _text.text = "[" + life.ToString() + "/" + maxLife.ToString() + "]  ";
   }
 
-  private int _life;
-  [SerializeField] public int _maxLife;
+  [SerializeField] public int life;
+  [SerializeField] public int maxLife;
+  [SerializeField] Text _text;
 }

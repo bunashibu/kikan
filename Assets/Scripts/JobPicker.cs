@@ -6,10 +6,13 @@ public class JobPicker : MonoBehaviour {
   public void PickManji() {
     _player = Instantiate(_player);
 
-    GameObject job = Instantiate(_jobs[0]);
+    Job job = Instantiate(_jobs[0]).GetComponent<Job>();
     job.transform.parent = _player.transform;
 
-    Instantiate(hpBar).transform.SetParent(manager.hud.transform, false);
+    hpBar = Instantiate(hpBar);
+    hpBar.transform.SetParent(manager.hud.transform, false);
+    hpBar.life = job.GetLife();
+    hpBar.maxLife = job.GetMaxLife();
 
     DisableAllButtons();
     DeleteCamera();
@@ -45,5 +48,5 @@ public class JobPicker : MonoBehaviour {
   [SerializeField] Button[] _buttons;
   [SerializeField] GameObject[] _jobs;
   [SerializeField] public BattleSceneManager manager;
-  [SerializeField] public GameObject hpBar;
+  [SerializeField] public HealthBar hpBar;
 }
