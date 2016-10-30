@@ -5,7 +5,12 @@ using System.Collections;
 public class JobPicker : MonoBehaviour {
   public void PickManji() {
     _player = Instantiate(_player);
-    Instantiate(_jobs[0]).transform.parent = _player.transform;
+
+    GameObject job = Instantiate(_jobs[0]);
+    job.transform.parent = _player.transform;
+
+    Instantiate(hpBar).transform.SetParent(manager.hud.transform, false);
+
     DisableAllButtons();
     DeleteCamera();
   }
@@ -39,4 +44,6 @@ public class JobPicker : MonoBehaviour {
   [SerializeField] GameObject _camera;
   [SerializeField] Button[] _buttons;
   [SerializeField] GameObject[] _jobs;
+  [SerializeField] public BattleSceneManager manager;
+  [SerializeField] public GameObject hpBar;
 }
