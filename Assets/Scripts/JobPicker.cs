@@ -9,10 +9,12 @@ public class JobPicker : MonoBehaviour {
     Job job = Instantiate(_jobs[0]).GetComponent<Job>();
     job.transform.parent = _player.transform;
 
+    HealthSystem hs = _player.GetComponentInChildren<HealthSystem>();
+    hs.Set(150, 150);
     hpBar = Instantiate(hpBar);
     hpBar.transform.SetParent(manager.hud.transform, false);
-    hpBar.life = job.GetLife();
-    hpBar.maxLife = job.GetMaxLife();
+    hs.bar = hpBar;
+    hs.Show();
 
     DisableAllButtons();
     DeleteCamera();

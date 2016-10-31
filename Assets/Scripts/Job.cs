@@ -22,20 +22,6 @@ public class Job : MonoBehaviour {
     }));
   }
 
-  public void DecreaseLife(int damage) {
-    _life -= damage;
-    if (_life < 0)
-      _life = 0;
-  }
-
-  public int GetLife() {
-    return _life;
-  }
-
-  public int GetMaxLife() {
-    return _maxLife;
-  }
-
   void Start() {
     GetComponent<SpriteRenderer>().sprite = _actionNormal;
   }
@@ -51,6 +37,4 @@ public class Job : MonoBehaviour {
   [SerializeField] private Sprite _actionNormal;
   [SerializeField] private Sprite _actionX;
   [SerializeField] private Sprite _actionShift;
-  [SerializeField] private int _life;
-  [SerializeField] private int _maxLife;
 }

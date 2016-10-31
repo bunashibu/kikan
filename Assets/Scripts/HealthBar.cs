@@ -3,11 +3,19 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class HealthBar : MonoBehaviour {
-  void Start() {
+  public void Show(int life, int maxLife) {
     _text.text = "[" + life.ToString() + "/" + maxLife.ToString() + "]  ";
+
+    Animate();
+
+    _life = life;
+    _maxLife = maxLife;
   }
 
-  [SerializeField] public int life;
-  [SerializeField] public int maxLife;
-  [SerializeField] Text _text;
+  private void Animate() {
+  }
+
+  private int _life;
+  private int _maxLife;
+  [SerializeField] private Text _text;
 }
