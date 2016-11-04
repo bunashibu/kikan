@@ -5,17 +5,18 @@ using System.Collections;
 public class HealthBar : MonoBehaviour {
   public void Show(int life, int maxLife) {
     _text.text = "[" + life.ToString() + "/" + maxLife.ToString() + "]  ";
-
-    Animate();
-
-    _life = life;
-    _maxLife = maxLife;
+    Animate(life, maxLife);
   }
 
-  private void Animate() {
+  private void Animate(int life, int maxLife) {
+    if (life == 0) {
+      GetComponent<Slider>().value = 0;
+      return;
+    }
+
+    float ratio = 1.0f * life / maxLife;
+    GetComponent<Slider>().value = ratio;
   }
 
-  private int _life;
-  private int _maxLife;
   [SerializeField] private Text _text;
 }

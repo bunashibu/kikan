@@ -33,5 +33,5 @@ public class PlayerMove : MonoBehaviour {
     Jump();
   }
 
-  public Canvas canvas;
+  private bool isJumping;
 }
