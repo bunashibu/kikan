@@ -4,13 +4,25 @@ using System.Collections;
 
 public class JobPicker : MonoBehaviour {
   public void PickManji() {
+    PickImpl(0, 3000);
+  }
+
+  public void PickMagician() {
+    PickImpl(1, 2200);
+  }
+
+  public void PickWarrior() {
+    //PickImpl();
+  }
+
+  void PickImpl(int n, int life) {
     _player = Instantiate(_player);
 
-    Job job = Instantiate(_jobs[0]).GetComponent<Job>();
+    Job job = Instantiate(_jobs[n]).GetComponent<Job>();
     job.transform.parent = _player.transform;
 
     HealthSystem hs = _player.GetComponentInChildren<HealthSystem>();
-    hs.Set(150, 150);
+    hs.Set(life, life);
     hpBar = Instantiate(hpBar);
     hpBar.transform.SetParent(manager.hud.transform, false);
     hs.bar = hpBar;
@@ -20,24 +32,12 @@ public class JobPicker : MonoBehaviour {
     DeleteCamera();
   }
 
-  public void PickMagician() {
-    _player = Instantiate(_player);
-    Instantiate(_jobs[1]).transform.parent = _player.transform;
-    DisableAllButtons();
-    DeleteCamera();
-  }
-
-  public void PickWarrior() {
-    DisableAllButtons();
-    DeleteCamera();
-  }
-
-  public void DisableAllButtons() {
+  void DisableAllButtons() {
     foreach (Button button in _buttons)
       button.interactable = false;
   }
 
-  public void DeleteCamera() {
+  void DeleteCamera() {
     Destroy(_camera);
   }
 

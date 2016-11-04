@@ -8,7 +8,7 @@ public class HealthBar : MonoBehaviour {
     Animate(life, maxLife);
   }
 
-  private void Animate(int life, int maxLife) {
+  void Animate(int life, int maxLife) {
     if (life == 0) {
       GetComponent<Slider>().value = 0;
       return;
