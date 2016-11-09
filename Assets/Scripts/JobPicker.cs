@@ -4,7 +4,7 @@ using System.Collections;
 
 public class JobPicker : MonoBehaviour {
   public void PickManji() {
-    PickImpl(0, 3000);
+    PickImpl(0, 30);
   }
 
   public void PickMagician() {

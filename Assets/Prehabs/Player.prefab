@@ -44,6 +44,7 @@ GameObject:
   - 50: {fileID: 50000013460582292}
   - 61: {fileID: 61000011156448030}
   - 114: {fileID: 114000012855921744}
+  - 95: {fileID: 95000010494430044}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -164,6 +165,23 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010049149186}
   m_Enabled: 1
+--- !u!95 &95000010494430044
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011996982660}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ebb3149461121bd45be612eee82dd7a0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114000010406804390
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -247,6 +265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: {fileID: 114000011067695140, guid: 0a1449abd9649de42a95cad6aa3f823c, type: 2}
+  _anim: {fileID: 95000010494430044}
   bar: {fileID: 114000010934990086, guid: 39b62fe9619e9e44b99229f851890bf7, type: 2}
 --- !u!114 &114000012949416784
 MonoBehaviour:
