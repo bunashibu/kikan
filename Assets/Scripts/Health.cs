@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class Health : MonoBehaviour {
-  public void Set(int life, int maxLife) {
+  public void Init(int life, int maxLife) {
     _life = life;
     _maxLife = maxLife;
   }
@@ -15,6 +15,10 @@ public class Health : MonoBehaviour {
     return _maxLife;
   }
 
+  public bool IsDead() {
+    return _isDead;
+  }
+
   public void Plus(int quantity) {
     _life += quantity;
 
@@ -22,6 +26,8 @@ public class Health : MonoBehaviour {
       _life = 0;
     if (_life > _maxLife)
       _life = _maxLife;
+
+    _isDead = (_life == 0) ? true : false;
   }
 
   public void Minus(int quantity) {
@@ -30,5 +36,6 @@ public class Health : MonoBehaviour {
 
   [SerializeField] private int _life;
   [SerializeField] private int _maxLife;
+  private bool _isDead = false;
 }
 
