@@ -531,7 +531,7 @@ GameObject:
   - 4: {fileID: 343440258}
   - 212: {fileID: 343440257}
   - 61: {fileID: 343440256}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -593,7 +593,7 @@ Transform:
   m_GameObject: {fileID: 343440255}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -3.2, z: 0}
-  m_LocalScale: {x: 3.5500948, y: 1, z: 1}
+  m_LocalScale: {x: 4, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}

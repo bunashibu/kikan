@@ -14,6 +14,6 @@ public class TimeLimit : MonoBehaviour {
     GetComponent<Text>().text = ((int)time).ToString();
   }
 
-  private float time = 60;
+  private float time = 6000;
   [SerializeField] SceneChanger _sceneChanger;
 }
