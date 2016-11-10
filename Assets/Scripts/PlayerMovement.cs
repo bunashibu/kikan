@@ -5,6 +5,7 @@ using System;
 
 public class PlayerMovement : MonoBehaviour {
   void Update() {
+    UpdateState();
     InputMove();
     InputJump();
     InputClimb();
@@ -14,7 +15,13 @@ public class PlayerMovement : MonoBehaviour {
     Move();
     Jump();
     Climb();
-    Debug.Log(_isAir);
+    //Debug.Log(_isAir);
+  }
+
+  private void UpdateState() {
+    _isAir = !Physics2D.Linecast(_trans.position - Vector3.up * 0.48f,
+                                 _trans.position - Vector3.up * 0.54f, layerGround);
+    //Debug.DrawLine(_trans.position - Vector3.up * 0.48f, _trans.position - Vector3.up * 0.54f);
   }
 
   private void InputMove() {
@@ -24,7 +31,7 @@ public class PlayerMovement : MonoBehaviour {
   }
 
   private void InputJump() {
-    if (!_jumpFlag)
+    if (!_jumpFlag && !_isAir)
       _jumpFlag = Input.GetButtonDown("Jump");
   }
 
@@ -38,29 +45,25 @@ public class PlayerMovement : MonoBehaviour {
 
   private void Move() {
     if (_inputVec.x != 0) {
-      if (_isAir) {
-
-      } else {
-        if (Math.Abs(_rigid.velocity.x) > _speedLimit)
-          _rigid.velocity = _inputVec * _speedLimit + new Vector2(0, _rigid.velocity.y);
+      if (_isAir)
+          _rigid.AddForce(_inputVec * _forceMove * 0.02f);
+      else {
+        if (Math.Abs(_rigid.velocity.x) > _speedLimitMove)
+          _rigid.velocity = _inputVec * _speedLimitMove + new Vector2(0, _rigid.velocity.y);
         else
           _rigid.AddForce(_inputVec * _forceMove);
       }
     }
+
+    if (Math.Abs(_rigid.velocity.y) > _speedLimitFall)
+      _rigid.velocity = -1.0f * Vector2.up * _speedLimitFall + new Vector2(_rigid.velocity.x, 0);
   }
 
   private void Jump() {
     if (_jumpFlag) {
       _rigid.AddForce(Vector2.up * _forceJump);
-      _isAir = true;
       _jumpFlag = false;
     }
-
-    if (_isAir) {
-      _isAir = !Physics2D.Linecast(_trans.position - Vector3.up * 0.3f,
-                                   _trans.position - Vector3.up * 0.5f, layerGround);
-    }
-    // Debug.DrawLine(_trans.position - Vector3.up * 0.3f, _trans.position - Vector3.up * 0.5f);
   }
 
   private void Climb() {
@@ -73,7 +76,8 @@ public class PlayerMovement : MonoBehaviour {
 
   [SerializeField] private float _forceMove;
   [SerializeField] private float _forceJump;
-  [SerializeField] private float _speedLimit;
+  [SerializeField] private float _speedLimitMove;
+  [SerializeField] private float _speedLimitFall;
   [SerializeField] private Rigidbody2D _rigid;
   [SerializeField] private Transform _trans;
   [SerializeField] private LayerMask layerGround;

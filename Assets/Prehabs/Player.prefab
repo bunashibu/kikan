@@ -244,7 +244,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _forceMove: 80
   _forceJump: 420
-  _speedLimit: 2
+  _speedLimitMove: 2
+  _speedLimitFall: 12
   _rigid: {fileID: 50000013460582292}
   _trans: {fileID: 224000010966695226}
   layerGround:
