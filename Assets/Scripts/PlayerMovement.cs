@@ -9,18 +9,20 @@ public class PlayerMovement : MonoBehaviour {
     InputMove();
     InputJump();
     InputClimb();
+    InputLieDown();
   }
 
   void FixedUpdate() {
     Move();
     Jump();
     Climb();
+    LieDown();
     //Debug.Log(_isAir);
   }
 
   private void UpdateState() {
     _isAir = !Physics2D.Linecast(_trans.position - Vector3.up * 0.48f,
-                                 _trans.position - Vector3.up * 0.54f, layerGround);
+                                 _trans.position - Vector3.up * 0.54f, _layerGround);
     //Debug.DrawLine(_trans.position - Vector3.up * 0.48f, _trans.position - Vector3.up * 0.54f);
   }
 
@@ -31,7 +33,7 @@ public class PlayerMovement : MonoBehaviour {
   }
 
   private void InputJump() {
-    if (!_jumpFlag && !_isAir)
+    if (!_jumpFlag && !_isAir && !_isLying)
       _jumpFlag = Input.GetButtonDown("Jump");
   }
 
@@ -40,11 +42,14 @@ public class PlayerMovement : MonoBehaviour {
   }
 
   private void InputLieDown() {
-
+    _isLying = _isAir                          ? false :
+               Input.GetKey(KeyCode.DownArrow) ? true  :
+                                                 false;
+    _anim.SetBool("LieDown", _isLying);
   }
 
   private void Move() {
-    if (_inputVec.x != 0) {
+    if (_inputVec.x != 0 && !_isLadder && !_isLying) {
       if (_isAir)
           _rigid.AddForce(_inputVec * _forceMove * 0.02f);
       else {
@@ -80,9 +85,11 @@ public class PlayerMovement : MonoBehaviour {
   [SerializeField] private float _speedLimitFall;
   [SerializeField] private Rigidbody2D _rigid;
   [SerializeField] private Transform _trans;
-  [SerializeField] private LayerMask layerGround;
+  [SerializeField] private LayerMask _layerGround;
+  [SerializeField] private Animator _anim;
   private bool _jumpFlag;
   private bool _isAir;
   private bool _isLadder;
+  private bool _isLying;
   private Vector2 _inputVec;
 }

@@ -248,9 +248,10 @@ MonoBehaviour:
   _speedLimitFall: 12
   _rigid: {fileID: 50000013460582292}
   _trans: {fileID: 224000010966695226}
-  layerGround:
+  _layerGround:
     serializedVersion: 2
     m_Bits: 256
+  _anim: {fileID: 95000010494430044}
 --- !u!114 &114000011924668548
 MonoBehaviour:
   m_ObjectHideFlags: 1
