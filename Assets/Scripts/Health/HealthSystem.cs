@@ -26,7 +26,7 @@ public class HealthSystem : MonoBehaviour {
   }
 
   void Die() {
-    _anim.SetTrigger("Die");
+    _anim.SetBool("Die", true);
   }
 
   [SerializeField] private Health _health;

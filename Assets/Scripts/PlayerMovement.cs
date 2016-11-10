@@ -45,6 +45,16 @@ public class PlayerMovement : MonoBehaviour {
     _isLying = _isAir                          ? false :
                Input.GetKey(KeyCode.DownArrow) ? true  :
                                                  false;
+    if (_isLying) {
+      //_trans.pivot = new Vector2(0.5f, 0.3f);
+      _collider.size = new Vector2(0.9f, 0.6f);
+      _collider.offset = new Vector2(0.0f, -0.2f);
+    } else {
+      _trans.pivot = new Vector2(0.5f, 0.5f);
+      _collider.size = new Vector2(0.8f, 1.0f);
+      _collider.offset = new Vector2(0.0f, 0.0f);
+    }
+
     _anim.SetBool("LieDown", _isLying);
   }
 
@@ -84,7 +94,8 @@ public class PlayerMovement : MonoBehaviour {
   [SerializeField] private float _speedLimitMove;
   [SerializeField] private float _speedLimitFall;
   [SerializeField] private Rigidbody2D _rigid;
-  [SerializeField] private Transform _trans;
+  [SerializeField] private BoxCollider2D _collider;
+  [SerializeField] private RectTransform _trans;
   [SerializeField] private LayerMask _layerGround;
   [SerializeField] private Animator _anim;
   private bool _jumpFlag;

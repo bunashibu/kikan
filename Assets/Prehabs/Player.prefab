@@ -247,6 +247,7 @@ MonoBehaviour:
   _speedLimitMove: 2
   _speedLimitFall: 12
   _rigid: {fileID: 50000013460582292}
+  _collider: {fileID: 61000011156448030}
   _trans: {fileID: 224000010966695226}
   _layerGround:
     serializedVersion: 2
@@ -392,8 +393,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0.8, y: 1}
+  m_AnchoredPosition: {x: 0, y: -2.5}
+  m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000014116680974
 RectTransform:
@@ -410,6 +411,6 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.4, y: -0.119}
+  m_AnchoredPosition: {x: 0.5, y: -0.15}
   m_SizeDelta: {x: 92.6, y: 23.8}
   m_Pivot: {x: 0.5, y: 0.5}
