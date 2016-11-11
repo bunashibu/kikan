@@ -46,11 +46,9 @@ public class PlayerMovement : MonoBehaviour {
                Input.GetKey(KeyCode.DownArrow) ? true  :
                                                  false;
     if (_isLying) {
-      //_trans.pivot = new Vector2(0.5f, 0.3f);
       _collider.size = new Vector2(0.9f, 0.6f);
       _collider.offset = new Vector2(0.0f, -0.2f);
     } else {
-      _trans.pivot = new Vector2(0.5f, 0.5f);
       _collider.size = new Vector2(0.8f, 1.0f);
       _collider.offset = new Vector2(0.0f, 0.0f);
     }
