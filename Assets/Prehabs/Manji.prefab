@@ -22,6 +22,7 @@ GameObject:
   - 114: {fileID: 114000011120522106}
   - 212: {fileID: 212000012751427524}
   - 114: {fileID: 114000011212847446}
+  - 95: {fileID: 95000012374712802}
   m_Layer: 0
   m_Name: Manji
   m_TagString: Untagged
@@ -42,6 +43,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!95 &95000012374712802
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013435092384}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6720cd06dc8ed514a9056abc6d532c89, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114000011120522106
 MonoBehaviour:
   m_ObjectHideFlags: 1
