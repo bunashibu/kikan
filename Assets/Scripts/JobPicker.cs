@@ -18,8 +18,7 @@ public class JobPicker : MonoBehaviour {
   void PickImpl(int n, int life) {
     _player = Instantiate(_player) as GameObject;
 
-    Job job = Instantiate(_jobs[n]).GetComponent<Job>();
-    job.transform.parent = _player.transform;
+    Instantiate(_jobs[n]).transform.parent = _player.transform;
 
     HealthSystem hs = _player.GetComponentInChildren<HealthSystem>();
     hs.Init(life, life, manager);
@@ -42,9 +41,9 @@ public class JobPicker : MonoBehaviour {
     Destroy(gameObject, 10.0f);
   }
 
-  [SerializeField] GameObject _player;
-  [SerializeField] GameObject _camera;
-  [SerializeField] Button[] _buttons;
-  [SerializeField] GameObject[] _jobs;
-  [SerializeField] public BattleSceneManager manager;
+  [SerializeField] private GameObject _player;
+  [SerializeField] private GameObject _camera;
+  [SerializeField] private Button[] _buttons;
+  [SerializeField] private GameObject[] _jobs;
+  [SerializeField] private BattleSceneManager manager;
 }
