@@ -5,19 +5,16 @@ using System;
 
 public class PlayerMovement : MonoBehaviour {
   void Update() {
-    UpdateState();
     InputMove();
     InputJump();
-    InputClimb();
     InputLieDown();
+    UpdateState();
   }
 
   void FixedUpdate() {
     Move();
     Jump();
-    Climb();
-    LieDown();
-    //Debug.Log(_isAir);
+    CheckSpeedLimit();
   }
 
   private void UpdateState() {
@@ -30,15 +27,22 @@ public class PlayerMovement : MonoBehaviour {
     _inputVec.x = Input.GetKey(KeyCode.RightArrow) ? 1 :
                   Input.GetKey(KeyCode.LeftArrow) ? -1 :
                                                      0;
+    canMove = !_isLadder &&
+              !_isLying;
+
+    if (canMove) {
+      _moveFlag = (_inputVec.x != 0) ? true :
+                                       false;
+    }
   }
 
   private void InputJump() {
-    if (!_jumpFlag && !_isAir && !_isLying)
+    canJump = !_jumpFlag &&
+              !_isAir    &&
+              !_isLying;
+
+    if (canJump)
       _jumpFlag = Input.GetButtonDown("Jump");
-  }
-
-  private void InputClimb() {
-
   }
 
   private void InputLieDown() {
@@ -57,45 +61,47 @@ public class PlayerMovement : MonoBehaviour {
   }
 
   private void Move() {
-    if (_inputVec.x != 0 && !_isLadder && !_isLying) {
-      if (_isAir)
-          _rigid.AddForce(_inputVec * _forceMove * 0.02f);
-      else {
-        if (Math.Abs(_rigid.velocity.x) > _speedLimitMove)
-          _rigid.velocity = _inputVec * _speedLimitMove + new Vector2(0, _rigid.velocity.y);
-        else
-          _rigid.AddForce(_inputVec * _forceMove);
-      }
-    }
+    if (!_moveFlag) return;
 
-    if (Math.Abs(_rigid.velocity.y) > _speedLimitFall)
-      _rigid.velocity = -1.0f * Vector2.up * _speedLimitFall + new Vector2(_rigid.velocity.x, 0);
+    if (Math.Abs(_rigid.velocity.x) <= _speedLimitMove) {
+      if (_isAir)
+        _rigid.AddForce(_inputVec * _forceMove * 0.02f);
+      else
+        _rigid.AddForce(_inputVec * _forceMove);
+    }
   }
 
   private void Jump() {
-    if (_jumpFlag) {
-      _rigid.AddForce(Vector2.up * _forceJump);
-      _jumpFlag = false;
-    }
+    if (!_jumpFlag) return;
+
+    _rigid.AddForce(Vector2.up * _forceJump);
+    _jumpFlag = false;
   }
 
-  private void Climb() {
+  private void CheckSpeedLimit() {
+    /*
+    if (Math.Abs(_rigid.velocity.x) > _speedLimitHorizontal)
+      _rigid.velocity = Vector2.right * _speedLimitHorizontal + new Vector2(0, _rigid.velocity.y);
+    */
 
-  }
-
-  private void LieDown() {
-
+    // Down
+    if (Math.Abs(_rigid.velocity.y) > _speedLimitVertical)
+      _rigid.velocity = Vector2.down * _speedLimitVertical + new Vector2(_rigid.velocity.x, 0);
   }
 
   [SerializeField] private float _forceMove;
   [SerializeField] private float _forceJump;
   [SerializeField] private float _speedLimitMove;
-  [SerializeField] private float _speedLimitFall;
+  [SerializeField] private float _speedLimitHorizontal;
+  [SerializeField] private float _speedLimitVertical;
   [SerializeField] private Rigidbody2D _rigid;
   [SerializeField] private BoxCollider2D _collider;
   [SerializeField] private RectTransform _trans;
   [SerializeField] private LayerMask _layerGround;
   [SerializeField] private Animator _anim;
+  [NonSerialized] public bool canMove;
+  [NonSerialized] public bool canJump;
+  private bool _moveFlag;
   private bool _jumpFlag;
   private bool _isAir;
   private bool _isLadder;

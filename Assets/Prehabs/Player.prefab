@@ -245,7 +245,7 @@ MonoBehaviour:
   _forceMove: 80
   _forceJump: 420
   _speedLimitMove: 2
-  _speedLimitFall: 12
+  _speedLimitVertical: 12
   _rigid: {fileID: 50000013460582292}
   _collider: {fileID: 61000011156448030}
   _trans: {fileID: 224000010966695226}
