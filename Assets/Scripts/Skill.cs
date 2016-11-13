@@ -15,11 +15,11 @@ public class Skill : MonoBehaviour {
       _anim.SetBool(_name, false);
     }));
 
-    /*
-    StartCoroutine(DelaySec(0.5f, () => {
+    StartCoroutine(DelaySec(_ct, () => {
+      canUse = true;
     }));
-    */
 
+    canUse = false;
     _flag = false;
   }
 
@@ -41,6 +41,7 @@ public class Skill : MonoBehaviour {
   [SerializeField] private KeyCode _key;
   [SerializeField] private Animator _anim;
   [SerializeField] private string _name;
+  [SerializeField] private float _ct;
   [NonSerialized] public bool canUse = true;
   private bool _flag;
 }

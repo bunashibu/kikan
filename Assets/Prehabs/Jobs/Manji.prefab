@@ -159,6 +159,7 @@ MonoBehaviour:
   _key: 304
   _anim: {fileID: 95000012704518522}
   _name: Shift
+  _ct: 1
 --- !u!114 &114000013696440532
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -173,6 +174,7 @@ MonoBehaviour:
   _key: 120
   _anim: {fileID: 95000012704518522}
   _name: X
+  _ct: 0.5
 --- !u!212 &212000013249048076
 SpriteRenderer:
   m_ObjectHideFlags: 1
