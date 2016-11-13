@@ -3,35 +3,45 @@ using System;
 using System.Collections;
 
 public class Skill : MonoBehaviour {
-  protected IEnumerator DelayMethod(float waitTime, Action action) {
-    yield return new WaitForSeconds(waitTime);
+  void Update() {
+    UpdateFlag();
+  }
+
+  public void Activate() {
+    if (!_flag) return;
+
+    _anim.SetBool(_name, true);
+    StartCoroutine(DelayOneFrame(() => {
+      _anim.SetBool(_name, false);
+    }));
+
+    /*
+    StartCoroutine(DelaySec(0.5f, () => {
+    }));
+    */
+
+    _flag = false;
+  }
+
+  private void UpdateFlag() {
+    if (canUse && Input.GetKey(_key))
+      _flag = true;
+  }
+
+  private IEnumerator DelayOneFrame(Action action) {
+    yield return new WaitForEndOfFrame();
     action();
   }
 
-  public void SkillX() {
-    if (Input.GetKey(KeyCode.X))
-      _anim.SetBool("SkillX", true);
-    else
-      _anim.SetBool("SkillX", false);
+  private IEnumerator DelaySec(float sec, Action action) {
+    yield return new WaitForSeconds(sec);
+    action();
   }
 
-  public void SkillShift() {
-    if (Input.GetKey(KeyCode.LeftShift))
-      _anim.SetBool("SkillShift", true);
-    else
-      _anim.SetBool("SkillShift", false);
-    /*
-    GetComponent<SpriteRenderer>().sprite = _actionShift;
-    StartCoroutine(DelayMethod(0.5f, () => {
-      GetComponent<SpriteRenderer>().sprite = _actionNormal;
-    }));
-    */
-  }
-
-  void Update() {
-    SkillX();
-    SkillShift();
-  }
-
+  [SerializeField] private KeyCode _key;
   [SerializeField] private Animator _anim;
+  [SerializeField] private string _name;
+  [NonSerialized] public bool canUse = true;
+  private bool _flag;
 }
+
