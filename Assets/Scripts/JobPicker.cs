@@ -18,9 +18,9 @@ public class JobPicker : MonoBehaviour {
   void PickImpl(int n, int life) {
     _player = Instantiate(_player) as GameObject;
 
-    Instantiate(_jobs[n]).transform.parent = _player.transform;
+    Instantiate(_jobs[n]).transform.SetParent(_player.transform, false);
 
-    HealthSystem hs = _player.GetComponentInChildren<HealthSystem>();
+    HealthSystem hs = _player.GetComponent<HealthSystem>();
     hs.Init(life, life, manager);
     hs.Show();
 
