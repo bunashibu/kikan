@@ -245,6 +245,7 @@ MonoBehaviour:
   _forceMove: 80
   _forceJump: 420
   _speedLimitMove: 2
+  _speedLimitHorizontal: 12
   _speedLimitVertical: 12
   _rigid: {fileID: 50000013460582292}
   _collider: {fileID: 61000011156448030}
@@ -277,7 +278,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: {fileID: 114000011067695140, guid: 0a1449abd9649de42a95cad6aa3f823c, type: 2}
   _anim: {fileID: 95000010494430044}
-  bar: {fileID: 114000010934990086, guid: 39b62fe9619e9e44b99229f851890bf7, type: 2}
+  _bar: {fileID: 114000010934990086, guid: 39b62fe9619e9e44b99229f851890bf7, type: 2}
 --- !u!114 &114000012949416784
 MonoBehaviour:
   m_ObjectHideFlags: 1

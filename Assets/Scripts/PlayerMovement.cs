@@ -5,10 +5,10 @@ using System;
 
 public class PlayerMovement : MonoBehaviour {
   void Update() {
+    UpdateState();
     InputMove();
     InputJump();
-    InputLieDown();
-    UpdateState();
+    LieDown();
   }
 
   void FixedUpdate() {
@@ -20,35 +20,35 @@ public class PlayerMovement : MonoBehaviour {
   private void UpdateState() {
     _isAir = !Physics2D.Linecast(_trans.position - Vector3.up * 0.48f,
                                  _trans.position - Vector3.up * 0.54f, _layerGround);
-    //Debug.DrawLine(_trans.position - Vector3.up * 0.48f, _trans.position - Vector3.up * 0.54f);
+
+    _isLying = _isAir                          ? false :
+               Input.GetKey(KeyCode.DownArrow) ? true  :
+                                                 false;
+
+    _canMove = !_isLadder &&
+               !_isLying;
+
+    _canJump = !_jumpFlag &&
+               !_isAir    &&
+               !_isLying;
   }
 
   private void InputMove() {
     _inputVec.x = Input.GetKey(KeyCode.RightArrow) ? 1 :
                   Input.GetKey(KeyCode.LeftArrow) ? -1 :
                                                      0;
-    canMove = !_isLadder &&
-              !_isLying;
-
-    if (canMove) {
+    if (_canMove) {
       _moveFlag = (_inputVec.x != 0) ? true :
                                        false;
     }
   }
 
   private void InputJump() {
-    canJump = !_jumpFlag &&
-              !_isAir    &&
-              !_isLying;
-
-    if (canJump)
+    if (_canJump)
       _jumpFlag = Input.GetButtonDown("Jump");
   }
 
-  private void InputLieDown() {
-    _isLying = _isAir                          ? false :
-               Input.GetKey(KeyCode.DownArrow) ? true  :
-                                                 false;
+  private void LieDown() {
     if (_isLying) {
       _collider.size = new Vector2(0.9f, 0.6f);
       _collider.offset = new Vector2(0.0f, -0.2f);
@@ -99,8 +99,10 @@ public class PlayerMovement : MonoBehaviour {
   [SerializeField] private RectTransform _trans;
   [SerializeField] private LayerMask _layerGround;
   [SerializeField] private Animator _anim;
-  [NonSerialized] public bool canMove;
-  [NonSerialized] public bool canJump;
+  private bool _canMove;
+  private bool _canJump;
+  public bool CanMove { get; private set; }
+  public bool canJump { get; private set; }
   private bool _moveFlag;
   private bool _jumpFlag;
   private bool _isAir;

@@ -10,21 +10,21 @@ public class Skill : MonoBehaviour {
   public void Activate() {
     if (!_flag) return;
 
+    _canUse = false;
+    _flag = false;
     _anim.SetBool(_name, true);
+
     StartCoroutine(DelayOneFrame(() => {
       _anim.SetBool(_name, false);
     }));
 
     StartCoroutine(DelaySec(_ct, () => {
-      canUse = true;
+      _canUse = true;
     }));
-
-    canUse = false;
-    _flag = false;
   }
 
   private void UpdateFlag() {
-    if (canUse && Input.GetKey(_key))
+    if (_canUse && Input.GetKey(_key))
       _flag = true;
   }
 
@@ -42,7 +42,8 @@ public class Skill : MonoBehaviour {
   [SerializeField] private Animator _anim;
   [SerializeField] private string _name;
   [SerializeField] private float _ct;
-  [NonSerialized] public bool canUse = true;
+  private bool _canUse = true;
+  public bool CanUse { get; private set; }
   private bool _flag;
 }
 
