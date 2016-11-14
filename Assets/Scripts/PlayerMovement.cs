@@ -25,10 +25,10 @@ public class PlayerMovement : MonoBehaviour {
                Input.GetKey(KeyCode.DownArrow) ? true  :
                                                  false;
 
-    _canMove = !_isLadder &&
+    canMove = !_isLadder &&
                !_isLying;
 
-    _canJump = !_jumpFlag &&
+    canJump = !_jumpFlag &&
                !_isAir    &&
                !_isLying;
   }
@@ -37,14 +37,14 @@ public class PlayerMovement : MonoBehaviour {
     _inputVec.x = Input.GetKey(KeyCode.RightArrow) ? 1 :
                   Input.GetKey(KeyCode.LeftArrow) ? -1 :
                                                      0;
-    if (_canMove) {
+    if (canMove) {
       _moveFlag = (_inputVec.x != 0) ? true :
                                        false;
     }
   }
 
   private void InputJump() {
-    if (_canJump)
+    if (canJump)
       _jumpFlag = Input.GetButtonDown("Jump");
   }
 
@@ -99,9 +99,7 @@ public class PlayerMovement : MonoBehaviour {
   [SerializeField] private RectTransform _trans;
   [SerializeField] private LayerMask _layerGround;
   [SerializeField] private Animator _anim;
-  private bool _canMove;
-  private bool _canJump;
-  public bool CanMove { get; private set; }
+  public bool canMove { get; private set; }
   public bool canJump { get; private set; }
   private bool _moveFlag;
   private bool _jumpFlag;

@@ -3,6 +3,10 @@ using System;
 using System.Collections;
 
 public class Skill : MonoBehaviour {
+  void Awake() {
+    canUse = true; // Want to use C#6 initializer
+  }
+
   void Update() {
     UpdateFlag();
   }
@@ -10,7 +14,7 @@ public class Skill : MonoBehaviour {
   public void Activate() {
     if (!_flag) return;
 
-    _canUse = false;
+    canUse = false;
     _flag = false;
     _anim.SetBool(_name, true);
 
@@ -19,12 +23,12 @@ public class Skill : MonoBehaviour {
     }));
 
     StartCoroutine(DelaySec(_ct, () => {
-      _canUse = true;
+      canUse = true;
     }));
   }
 
   private void UpdateFlag() {
-    if (_canUse && Input.GetKey(_key))
+    if (canUse && Input.GetKey(_key))
       _flag = true;
   }
 
@@ -42,8 +46,7 @@ public class Skill : MonoBehaviour {
   [SerializeField] private Animator _anim;
   [SerializeField] private string _name;
   [SerializeField] private float _ct;
-  private bool _canUse = true;
-  public bool CanUse { get; private set; }
+  public bool canUse { get; private set; }
   private bool _flag;
 }
 
