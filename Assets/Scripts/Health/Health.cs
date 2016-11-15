@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Health : MonoBehaviour {
+public class Health : ScriptableObject {
   public void Init(int life, int maxLife) {
     _life = life;
     _maxLife = maxLife;

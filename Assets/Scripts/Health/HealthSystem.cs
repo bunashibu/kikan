@@ -2,6 +2,10 @@
 using System.Collections;
 
 public class HealthSystem : MonoBehaviour {
+  void Awake() {
+    _health = ScriptableObject.CreateInstance("Health") as Health;
+  }
+
   public void Init(int life, int maxLife, BattleSceneManager manager) {
     _health.Init(life, maxLife);
 
