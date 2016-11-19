@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Health : ScriptableObject {
-  public void Init(int life, int maxLife) {
+public class Health : MonoBehaviour {
+  public void Init(int life, int maxLife) { // Consider
     _life = life;
     _maxLife = maxLife;
   }
@@ -36,6 +36,6 @@ public class Health : ScriptableObject {
 
   [SerializeField] private int _life;
   [SerializeField] private int _maxLife;
-  private bool _isDead = false;
+  private bool _isDead;
 }
 

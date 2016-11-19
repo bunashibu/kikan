@@ -3,30 +3,29 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class JobPicker : MonoBehaviour {
+  void Start() {
+    Destroy(gameObject, 10.0f);
+  }
+
   public void Pick(int n) {
     _player = Instantiate(_player) as GameObject;
 
-    Instantiate(_jobs[n]).transform.SetParent(_player.transform, false);
+    var job = Instantiate(_jobs[n]) as GameObject;
+    job.transform.SetParent(_player.transform, false);
 
-    HealthSystem hs = _player.GetComponent<HealthSystem>();
-    //hs.Init(life, life, manager);
+    var health = job.GetComponent<Health>();
+
+    var hs = _player.GetComponent<HealthSystem>();
+    hs.Init(health, manager);
     hs.Show();
 
     DisableAllButtons();
-    DeleteCamera();
-  }
-
-  void DisableAllButtons() {
-    foreach (Button button in _buttons)
-      button.interactable = false;
-  }
-
-  void DeleteCamera() {
     Destroy(_camera);
   }
 
-  void Start() {
-    Destroy(gameObject, 10.0f);
+  private void DisableAllButtons() {
+    foreach (Button button in _buttons)
+      button.interactable = false;
   }
 
   [SerializeField] private GameObject _player;
