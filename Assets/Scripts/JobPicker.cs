@@ -3,25 +3,13 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class JobPicker : MonoBehaviour {
-  public void PickManji() {
-    PickImpl(0, 30);
-  }
-
-  public void PickMagician() {
-    PickImpl(1, 2200);
-  }
-
-  public void PickWarrior() {
-    //PickImpl();
-  }
-
-  void PickImpl(int n, int life) {
+  public void Pick(int n) {
     _player = Instantiate(_player) as GameObject;
 
     Instantiate(_jobs[n]).transform.SetParent(_player.transform, false);
 
     HealthSystem hs = _player.GetComponent<HealthSystem>();
-    hs.Init(life, life, manager);
+    //hs.Init(life, life, manager);
     hs.Show();
 
     DisableAllButtons();
