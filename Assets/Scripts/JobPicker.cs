@@ -34,3 +34,4 @@ public class JobPicker : MonoBehaviour {
   [SerializeField] private GameObject[] _jobs;
   [SerializeField] private BattleSceneManager manager;
 }
+
