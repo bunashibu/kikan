@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour {
     InputMove();
     InputJump();
     LieDown();
+
+    _anim.SetBool("Walk", _moveFlag);
   }
 
   void FixedUpdate() {
