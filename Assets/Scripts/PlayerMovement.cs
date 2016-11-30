@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour {
     LieDown();
 
     _anim.SetBool("Walk", _moveFlag);
+    _anim.SetBool("Jump", _isAir);
   }
 
   void FixedUpdate() {
