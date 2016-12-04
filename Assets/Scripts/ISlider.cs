@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public interface IGaugePoint<T> {
+public interface ISlider<T> {
   T Cur { get; }
   T Max { get; }
   void Plus(T quantity);
