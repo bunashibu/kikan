@@ -17,7 +17,7 @@ public class HealthSystem : MonoBehaviour {
   public void IsDamaged(int quantity) {
     IsHealed(-quantity);
 
-    if (_health.IsDead())
+    if (_health.Dead)
       Die();
   }
 

@@ -9,6 +9,7 @@ public class Health : MonoBehaviour, IGaugePoint<int> {
 
   public int Cur { get; private set; }
   public int Max { get; private set; }
+  public bool Dead { get; private set; }
 
   public void Plus(int quantity) {
     Cur += quantity;
@@ -18,17 +19,11 @@ public class Health : MonoBehaviour, IGaugePoint<int> {
     if (Cur > Max)
       Cur = Max;
 
-    _isDead = (Cur == 0) ? true : false;
+    Dead = (Cur == 0) ? true : false;
   }
 
   public void Minus(int quantity) {
     Plus(-quantity);
   }
-
-  public bool IsDead() {
-    return _isDead;
-  }
-
-  private bool _isDead;
 }
 
