@@ -47,7 +47,7 @@ GameObject:
   - 95: {fileID: 95000010494430044}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -276,9 +276,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acbecdd317770bc4bb7eb8e8b8ecf407, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: {fileID: 114000011067695140, guid: 0a1449abd9649de42a95cad6aa3f823c, type: 2}
-  _anim: {fileID: 95000010494430044}
   _bar: {fileID: 114000010934990086, guid: 39b62fe9619e9e44b99229f851890bf7, type: 2}
+  _anim: {fileID: 95000010494430044}
 --- !u!114 &114000012949416784
 MonoBehaviour:
   m_ObjectHideFlags: 1

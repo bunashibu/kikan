@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SkillBehaviour : MonoBehaviour {
-  public virtual void Behave() {}
+public abstract class SkillBehaviour : MonoBehaviour {
+  public abstract void Behave();
 }
 

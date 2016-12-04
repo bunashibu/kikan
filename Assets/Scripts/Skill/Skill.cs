@@ -14,6 +14,5 @@ public class Skill : MonoBehaviour {
   [SerializeField] private SkillBehaviour _behaviour;
   [SerializeField] private Animator _anim;
   [SerializeField] private string _animName;
-  [SerializeField] private float _existTime;
 }
 

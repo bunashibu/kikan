@@ -89,7 +89,6 @@ MonoBehaviour:
   _behaviour: {fileID: 114000012261134560}
   _anim: {fileID: 95000010503078980}
   _animName: X
-  _existTime: 1
 --- !u!114 &114000012261134560
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -102,6 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collider: {fileID: 61000012106027728}
+  _power: 100
 --- !u!212 &212000012323840186
 SpriteRenderer:
   m_ObjectHideFlags: 1
