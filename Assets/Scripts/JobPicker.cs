@@ -13,7 +13,8 @@ public class JobPicker : MonoBehaviour {
     var job = Instantiate(_jobs[n]) as GameObject;
     job.transform.SetParent(_player.transform, false);
 
-    var health = job.GetComponent<Health>();
+    var health = ScriptableObject.CreateInstance<Health>();
+    //health.init(life, max);
 
     var hs = _player.GetComponent<HealthSystem>();
     hs.Init(health, manager);

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Health : MonoBehaviour, ISlider<int> {
+public class Health : ScriptableObject, ISlider<int> {
   public void Init(int life, int maxLife) {
     Cur = life;
     Max = maxLife;
