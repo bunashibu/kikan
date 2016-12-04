@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour {
 
     _anim.SetBool("Walk", _moveFlag);
     _anim.SetBool("Jump", _isAir);
+    _isLadder = false;
   }
 
   void FixedUpdate() {
