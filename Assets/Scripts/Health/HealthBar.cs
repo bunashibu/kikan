@@ -2,8 +2,8 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class HealthBar : MonoBehaviour {
-  public void Show(int life, int maxLife) {
+public class HealthBar : Bar {
+  public override void Show(int life, int maxLife) {
     _text.text = "[" + life.ToString() + "/" + maxLife.ToString() + "]  ";
     Animate(life, maxLife);
   }
@@ -20,3 +20,4 @@ public class HealthBar : MonoBehaviour {
 
   [SerializeField] private Text _text;
 }
+

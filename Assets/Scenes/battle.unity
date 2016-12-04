@@ -1351,9 +1351,10 @@ GameObject:
   - 212: {fileID: 1494409891}
   - 61: {fileID: 1494409893}
   - 114: {fileID: 1494409894}
+  - 114: {fileID: 1494409895}
   m_Layer: 0
   m_Name: kinoko
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1429,6 +1430,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 297d14fa12f4b8e44a94f523eb5fa5ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1494409895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1494409890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1dec6d9a79b94145baf57c80ffc7ca0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _life: 100
+  _maxLife: 100
 --- !u!1 &1628920477
 GameObject:
   m_ObjectHideFlags: 0

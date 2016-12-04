@@ -1,41 +1,34 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Health : MonoBehaviour {
-  public void Init(int life, int maxLife) { // Consider
-    _life = life;
-    _maxLife = maxLife;
+public class Health : MonoBehaviour, IGaugePoint<int> {
+  public void Init(int life, int maxLife) {
+    Cur = life;
+    Max = maxLife;
   }
 
-  public int Get() {
-    return _life;
-  }
-
-  public int GetMax() {
-    return _maxLife;
-  }
-
-  public bool IsDead() {
-    return _isDead;
-  }
+  public int Cur { get; private set; }
+  public int Max { get; private set; }
 
   public void Plus(int quantity) {
-    _life += quantity;
+    Cur += quantity;
 
-    if (_life < 0)
-      _life = 0;
-    if (_life > _maxLife)
-      _life = _maxLife;
+    if (Cur < 0)
+      Cur = 0;
+    if (Cur > Max)
+      Cur = Max;
 
-    _isDead = (_life == 0) ? true : false;
+    _isDead = (Cur == 0) ? true : false;
   }
 
   public void Minus(int quantity) {
     Plus(-quantity);
   }
 
-  [SerializeField] private int _life;
-  [SerializeField] private int _maxLife;
+  public bool IsDead() {
+    return _isDead;
+  }
+
   private bool _isDead;
 }
 

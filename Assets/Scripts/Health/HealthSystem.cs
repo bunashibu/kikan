@@ -22,7 +22,7 @@ public class HealthSystem : MonoBehaviour {
   }
 
   public void Show() {
-    _bar.Show(_health.Get(), _health.GetMax());
+    _bar.Show(_health.Cur, _health.Max);
   }
 
   public void Die() {
@@ -33,3 +33,4 @@ public class HealthSystem : MonoBehaviour {
   [SerializeField] private Animator _anim;
   private Health _health;
 }
+
