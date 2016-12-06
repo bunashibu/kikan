@@ -11,6 +11,6 @@ public class GameManager : MonoBehaviour {
     DontDestroyOnLoad(gameObject);
   }
 
-  public static string playerName = "";
   public static GameManager instance = null;
 }
+
