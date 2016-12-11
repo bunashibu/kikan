@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GameObjectReferer : MonoBehaviour {
+public class ObjectReferer : MonoBehaviour {
 
 }
 
