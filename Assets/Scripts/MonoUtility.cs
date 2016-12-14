@@ -2,14 +2,7 @@
 using System;
 using System.Collections;
 
-public class Utility : MonoBehaviour {
-  void Awake() {
-    if (instance == null)
-      instance = this;
-    else if (instance != this)
-      Destroy(gameObject);
-  }
-
+public class MonoUtility : SingletonMonoBehaviour<MonoUtility> {
   public IEnumerator DelayOneFrame(Action action) {
     yield return new WaitForEndOfFrame();
     action();
@@ -19,6 +12,5 @@ public class Utility : MonoBehaviour {
     yield return new WaitForSeconds(sec);
     action();
   }
-
-  public static Utility instance = null;
 }
+

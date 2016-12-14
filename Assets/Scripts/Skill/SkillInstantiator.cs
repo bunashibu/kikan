@@ -16,12 +16,12 @@ public class SkillInstantiator : MonoBehaviour {
     Instantiate(_skills[i], this.transform.position + new Vector3(-0.4f, -0.1f, 0), this.transform.rotation);
 
     _canUse = false;
-    StartCoroutine(Utility.instance.DelaySec(_ct[i], () => {
+    StartCoroutine(MonoUtility.Instance.DelaySec(_ct[i], () => {
       _canUse = true;
     }));
 
     _anim.SetBool(_names[i], true);
-    StartCoroutine(Utility.instance.DelayOneFrame(() => {
+    StartCoroutine(MonoUtility.Instance.DelayOneFrame(() => {
       _anim.SetBool(_names[i], false);
     }));
   }
