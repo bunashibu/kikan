@@ -2,11 +2,15 @@
 using System.Collections;
 
 public class HealthSystem : MonoBehaviour {
-  public void Init(Health health, BattleSceneManager manager) {
-    _health = health;
-
+  void Awake() {
     _bar = Instantiate(_bar) as HealthBar;
-    _bar.transform.SetParent(manager.hud.transform, false);
+
+    var canvas = GameObject.Find("HUD");
+    _bar.transform.SetParent(canvas.transform, false);
+  }
+
+  public void Init(Health health) {
+    _health = health;
   }
 
   public void IsHealed(int quantity) {

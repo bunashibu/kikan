@@ -17,7 +17,7 @@ public class JobPicker : MonoBehaviour {
     //health.init(life, max);
 
     var hs = _player.GetComponent<HealthSystem>();
-    hs.Init(health, manager);
+    hs.Init(health);
     hs.Show();
 
     DisableAllButtons();
@@ -33,6 +33,5 @@ public class JobPicker : MonoBehaviour {
   [SerializeField] private GameObject _camera;
   [SerializeField] private Button[] _buttons;
   [SerializeField] private GameObject[] _jobs;
-  [SerializeField] private BattleSceneManager manager;
 }
 

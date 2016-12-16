@@ -14,6 +14,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/battle.unity
   - enabled: 1
-    path: Assets/Scenes/final_battle.unity
-  - enabled: 1
     path: Assets/Scenes/result.unity
+  - enabled: 1
+    path: Assets/Scenes/Main.unity
+  - enabled: 0
+    path: Assets/Scenes/final_battle.unity
