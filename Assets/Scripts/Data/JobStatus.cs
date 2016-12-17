@@ -2,10 +2,9 @@
 using System;
 using System.Collections;
 
-[Serializable]
-public class Job {
+[CreateAssetMenu]
+public class JobStatus : ScriptableObject {
   public int id;
-  public string name;
   public int life;
   public float atk;
   public float dfn;

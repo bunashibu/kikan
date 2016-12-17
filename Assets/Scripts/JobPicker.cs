@@ -14,7 +14,7 @@ public class JobPicker : MonoBehaviour {
     job.transform.SetParent(_player.transform, false);
 
     var health = ScriptableObject.CreateInstance<Health>();
-    //health.init(life, max);
+    health.Init(_data[n].life, _data[n].life);
 
     var hs = _player.GetComponent<HealthSystem>();
     hs.Init(health);
@@ -33,5 +33,6 @@ public class JobPicker : MonoBehaviour {
   [SerializeField] private GameObject _camera;
   [SerializeField] private Button[] _buttons;
   [SerializeField] private GameObject[] _jobs;
+  [SerializeField] private JobStatus[] _data;
 }
 
