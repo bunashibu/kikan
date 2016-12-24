@@ -2,15 +2,9 @@
 using System.Collections;
 
 public class HealthSystem : MonoBehaviour {
-  void Awake() {
-    _bar = Instantiate(_bar) as Bar;
-
-    var canvas = GameObject.Find(_canvasName);
-    _bar.transform.SetParent(canvas.transform, false);
-  }
-
-  public void Init(Health health) {
+  public void Init(Health health, Bar bar) {
     _health = health;
+    _bar = bar;
   }
 
   public void IsHealed(int quantity) {
@@ -35,7 +29,6 @@ public class HealthSystem : MonoBehaviour {
 
   [SerializeField] private Bar _bar;
   [SerializeField] private Animator _anim;
-  [SerializeField] private string _canvasName;
   private Health _health;
 }
 
