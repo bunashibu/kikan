@@ -13,6 +13,13 @@ public class JobPicker : MonoBehaviour {
     var job = Instantiate(_jobs[n]) as GameObject;
     job.transform.SetParent(_player.transform, false);
 
+    InitPlayerHealthSystem(n);
+
+    DisableAllButtons();
+    Destroy(_camera);
+  }
+
+  private void InitPlayerHealthSystem(int n) {
     var health = ScriptableObject.CreateInstance<Health>();
     health.Init(_data[n].life, _data[n].life);
 
@@ -22,9 +29,6 @@ public class JobPicker : MonoBehaviour {
     var hs = _player.GetComponent<HealthSystem>();
     hs.Init(health, _hBar);
     hs.Show();
-
-    DisableAllButtons();
-    Destroy(_camera);
   }
 
   private void DisableAllButtons() {
