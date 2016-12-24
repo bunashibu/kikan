@@ -3,9 +3,9 @@ using System.Collections;
 
 public class HealthSystem : MonoBehaviour {
   void Awake() {
-    _bar = Instantiate(_bar) as HealthBar;
+    _bar = Instantiate(_bar) as Bar;
 
-    var canvas = GameObject.Find("HUD");
+    var canvas = GameObject.Find(_canvasName);
     _bar.transform.SetParent(canvas.transform, false);
   }
 
@@ -33,8 +33,9 @@ public class HealthSystem : MonoBehaviour {
     _anim.SetBool("Die", true);
   }
 
-  [SerializeField] private HealthBar _bar;
+  [SerializeField] private Bar _bar;
   [SerializeField] private Animator _anim;
+  [SerializeField] private string _canvasName;
   private Health _health;
 }
 

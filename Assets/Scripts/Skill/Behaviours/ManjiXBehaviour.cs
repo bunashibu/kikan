@@ -6,9 +6,11 @@ public class ManjiXBehaviour : SkillBehaviour {
   }
 
   void OnTriggerEnter2D(Collider2D collider) {
-    if (collider.gameObject.tag == "Enemy") {
-      // damage to enemy
+    var target = collider.gameObject;
+
+    if (target.tag == "Enemy") {
       // damage = _atk * _power;
+      //target.GetComponent<HealthSystem>().IsDamaged(100);
     }
   }
 

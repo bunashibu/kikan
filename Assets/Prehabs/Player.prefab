@@ -278,6 +278,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bar: {fileID: 114000010934990086, guid: 39b62fe9619e9e44b99229f851890bf7, type: 2}
   _anim: {fileID: 95000010494430044}
+  _canvasName: HUD
 --- !u!114 &114000012949416784
 MonoBehaviour:
   m_ObjectHideFlags: 1

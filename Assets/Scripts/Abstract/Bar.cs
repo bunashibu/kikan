@@ -2,6 +2,6 @@
 using System.Collections;
 
 public abstract class Bar : MonoBehaviour {
-  public abstract void Show(int nowVal, int maxVal);
+  public abstract void Show(int cur, int max);
 }
 

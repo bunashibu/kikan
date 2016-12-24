@@ -8,7 +8,7 @@ public class Skill : MonoBehaviour {
   }
 
   void Update() {
-    _behaviour.Behave();
+    //_behaviour.Behave();
   }
 
   [SerializeField] private SkillBehaviour _behaviour;
