@@ -22,7 +22,7 @@ GameObject:
   - 114: {fileID: 114000011064403330}
   - 114: {fileID: 114000010934990086}
   m_Layer: 5
-  m_Name: HealthBar
+  m_Name: HUDHealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
