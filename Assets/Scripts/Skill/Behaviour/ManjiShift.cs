@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ManjiShiftBehaviour : SkillBehaviour {
+public class ManjiShift : Skill {
   void Awake() {
     _collider.enabled = false;
   }

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ManjiXBehaviour : SkillBehaviour {
+public class ManjiX : Skill {
   void Update() {
   }
 
