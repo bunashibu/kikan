@@ -72,8 +72,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _skills:
-  - {fileID: 114000010502947272, guid: c8f096e73f8178241b8dc8d269e4a378, type: 2}
-  - {fileID: 114000011031753366, guid: e97c35f372b354a4683cbe5a687c9e2a, type: 2}
+  - {fileID: 114000012261134560, guid: c8f096e73f8178241b8dc8d269e4a378, type: 2}
+  - {fileID: 114000010207159786, guid: e97c35f372b354a4683cbe5a687c9e2a, type: 2}
   _keys: 7800000030010000
   _names:
   - X
