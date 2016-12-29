@@ -16,3 +16,4 @@ public class ManjiShift : Skill {
 
   [SerializeField] private BoxCollider2D _collider;
 }
+
