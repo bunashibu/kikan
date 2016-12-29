@@ -11,6 +11,7 @@ public class ManjiXBehaviour : SkillBehaviour {
     if (target.tag == "Enemy") {
       // damage = _atk * _power;
       target.GetComponent<HealthSystem>().IsDamaged(10);
+      target.GetComponent<Enemy>().ShowHealthBar();
     }
   }
 

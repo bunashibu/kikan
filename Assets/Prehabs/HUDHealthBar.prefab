@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - 224: {fileID: 224000012194547662}
   - 114: {fileID: 114000011064403330}
-  - 114: {fileID: 114000010934990086}
+  - 114: {fileID: 114000012113145708}
   m_Layer: 5
   m_Name: HUDHealthBar
   m_TagString: Untagged
@@ -94,18 +94,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &114000010934990086
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010453162056}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3779d1a5c62431e488203cd32b539f78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _text: {fileID: 114000011392376546}
 --- !u!114 &114000011064403330
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -214,6 +202,18 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114000012113145708
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010453162056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4550976638acefb4bb60df91820be76d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _text: {fileID: 114000011392376546}
 --- !u!114 &114000014012399386
 MonoBehaviour:
   m_ObjectHideFlags: 1

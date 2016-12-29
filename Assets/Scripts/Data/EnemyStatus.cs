@@ -7,9 +7,9 @@ public class EnemyStatus : ScriptableObject {
   public int life;
   public int gold;
   public int exp;
-  public float atk;
-  public float dfn;
-  public float spd;
-  public float jmp;
+  public int atk;
+  public int dfn;
+  public int spd;
+  public int jmp;
 }
 

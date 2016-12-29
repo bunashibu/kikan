@@ -1,22 +1,30 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 
 public class Enemy : MonoBehaviour {
   void Start() {
     var health = ScriptableObject.CreateInstance<Health>();
-    health.Init(100, 100);
+    health.Init(_data.life, _data.life);
 
     var hs = GetComponent<HealthSystem>();
     hs.Init(health, _bar);
-    hs.Show();
   }
 
   void OnTriggerEnter2D(Collider2D collider) {
     if (collider.gameObject.tag == "Player") {
-      collider.gameObject.GetComponent<HealthSystem>().IsDamaged(10);
+      collider.gameObject.GetComponent<HealthSystem>().IsDamaged(_data.atk * 2);
     }
   }
 
+  public void ShowHealthBar() {
+    _bar.gameObject.SetActive(true);
+    StartCoroutine(MonoUtility.Instance.DelaySec(5.0f, () => {
+      _bar.gameObject.SetActive(false);
+    }));
+  }
+
   [SerializeField] private Bar _bar;
+  [SerializeField] private EnemyStatus _data;
 }
 

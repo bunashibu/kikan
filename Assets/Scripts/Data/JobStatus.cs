@@ -5,9 +5,9 @@ using System.Collections;
 public class JobStatus : ScriptableObject {
   public int id;
   public int life;
-  public float atk;
-  public float dfn;
-  public float spd;
-  public float jmp;
+  public int atk;
+  public int dfn;
+  public int spd;
+  public int jmp;
 }
 
