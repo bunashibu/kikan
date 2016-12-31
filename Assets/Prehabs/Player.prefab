@@ -95,7 +95,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -276,9 +276,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acbecdd317770bc4bb7eb8e8b8ecf407, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bar: {fileID: 114000010934990086, guid: 39b62fe9619e9e44b99229f851890bf7, type: 2}
   _anim: {fileID: 95000010494430044}
-  _canvasName: HUD
 --- !u!114 &114000012949416784
 MonoBehaviour:
   m_ObjectHideFlags: 1
