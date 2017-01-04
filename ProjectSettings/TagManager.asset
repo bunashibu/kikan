@@ -42,3 +42,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Stage
+    uniqueID: 1376593765
+    locked: 0
+  - name: Enemy
+    uniqueID: 3957793139
+    locked: 0
+  - name: Player
+    uniqueID: 4205633467
+    locked: 0
