@@ -43,6 +43,7 @@ GameObject:
   - 114: {fileID: 114000011924668548}
   - 50: {fileID: 50000013460582292}
   - 61: {fileID: 61000011156448030}
+  - 61: {fileID: 61000010270929332}
   - 114: {fileID: 114000012855921744}
   - 95: {fileID: 95000010494430044}
   m_Layer: 0
@@ -135,9 +136,9 @@ Rigidbody2D:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
---- !u!61 &61000011156448030
+--- !u!61 &61000010270929332
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -148,9 +149,23 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.45}
   serializedVersion: 2
-  m_Size: {x: 0.8, y: 1}
+  m_Size: {x: 0.1, y: 0.1}
+--- !u!61 &61000011156448030
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011996982660}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: -0.05}
+  serializedVersion: 2
+  m_Size: {x: 0.6, y: 0.9}
 --- !u!81 &81000013860983582
 AudioListener:
   m_ObjectHideFlags: 1

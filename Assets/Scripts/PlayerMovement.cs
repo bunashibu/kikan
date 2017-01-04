@@ -21,10 +21,16 @@ public class PlayerMovement : MonoBehaviour {
     CheckSpeedLimit();
   }
 
-  private void UpdateState() {
-    _isAir = !Physics2D.Linecast(_trans.position - Vector3.up * 0.48f,
-                                 _trans.position - Vector3.up * 0.54f, _layerGround);
+  void OnCollisionStay2D() {
+    if (_rigid.velocity.y <= 0)
+      _isAir = false;
+  }
 
+  void OnCollisionExit2D() {
+    _isAir = true;
+  }
+
+  private void UpdateState() {
     _isLying = _isAir                          ? false :
                Input.GetKey(KeyCode.DownArrow) ? true  :
                                                  false;
