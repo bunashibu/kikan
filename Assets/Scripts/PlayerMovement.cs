@@ -10,6 +10,9 @@ public class PlayerMovement : MonoBehaviour {
     InputJump();
     LieDown();
 
+    if (_isLying && _jumpFlag)
+      _colliderGround.isTrigger = true;
+
     _anim.SetBool("Walk", _moveFlag);
     _anim.SetBool("Jump", _isAir);
     _isLadder = false;
@@ -19,6 +22,10 @@ public class PlayerMovement : MonoBehaviour {
     Move();
     Jump();
     CheckSpeedLimit();
+  }
+
+  void OnTriggerExit2D() {
+    _colliderGround.isTrigger = false;
   }
 
   void OnCollisionStay2D() {
@@ -39,8 +46,7 @@ public class PlayerMovement : MonoBehaviour {
                !_isLying;
 
     canJump = !_jumpFlag &&
-               !_isAir    &&
-               !_isLying;
+               !_isAir;
   }
 
   private void InputMove() {
@@ -84,7 +90,11 @@ public class PlayerMovement : MonoBehaviour {
   private void Jump() {
     if (!_jumpFlag) return;
 
-    _rigid.AddForce(Vector2.up * _forceJump);
+    if (_isLying)
+      _rigid.AddForce(Vector2.up * _forceFall);
+    else
+      _rigid.AddForce(Vector2.up * _forceJump);
+
     _jumpFlag = false;
   }
 
@@ -101,11 +111,13 @@ public class PlayerMovement : MonoBehaviour {
 
   [SerializeField] private float _forceMove;
   [SerializeField] private float _forceJump;
+  [SerializeField] private float _forceFall;
   [SerializeField] private float _speedLimitMove;
   [SerializeField] private float _speedLimitHorizontal;
   [SerializeField] private float _speedLimitVertical;
   [SerializeField] private Rigidbody2D _rigid;
   [SerializeField] private BoxCollider2D _collider;
+  [SerializeField] private BoxCollider2D _colliderGround;
   [SerializeField] private RectTransform _trans;
   [SerializeField] private LayerMask _layerGround;
   [SerializeField] private Animator _anim;
@@ -118,3 +130,4 @@ public class PlayerMovement : MonoBehaviour {
   private bool _isLying;
   private Vector2 _inputVec;
 }
+
