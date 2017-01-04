@@ -42,7 +42,13 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Stage
+  - name: Background
+    uniqueID: 3164947839
+    locked: 0
+  - name: Ground1
+    uniqueID: 4195993177
+    locked: 0
+  - name: Ground0
     uniqueID: 1376593765
     locked: 0
   - name: Enemy
