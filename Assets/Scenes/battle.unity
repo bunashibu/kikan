@@ -2500,6 +2500,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1110220524}
   - 212: {fileID: 1110220525}
+  - 61: {fileID: 1110220526}
   m_Layer: 0
   m_Name: N12Ladder02
   m_TagString: Untagged
@@ -2547,12 +2548,26 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
+  m_SortingLayerID: -541174767
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9b87e5f06f06e3544b1050d47e69f2c0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!61 &1110220526
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1110220523}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: -0.068, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 1.05, y: 4}
 --- !u!1 &1154624226
 GameObject:
   m_ObjectHideFlags: 0
@@ -2629,6 +2644,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1179748092}
   - 212: {fileID: 1179748093}
+  - 61: {fileID: 1179748094}
   m_Layer: 0
   m_Name: N12Ladder01
   m_TagString: Untagged
@@ -2676,12 +2692,26 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
+  m_SortingLayerID: -541174767
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9b87e5f06f06e3544b1050d47e69f2c0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!61 &1179748094
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1179748091}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: -0.068, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 1.05, y: 4}
 --- !u!1 &1226916715
 GameObject:
   m_ObjectHideFlags: 0
