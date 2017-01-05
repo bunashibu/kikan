@@ -676,8 +676,7 @@ Transform:
   - {fileID: 499256440}
   - {fileID: 1980684285}
   - {fileID: 1764783108}
-  - {fileID: 1179748092}
-  - {fileID: 1110220524}
+  - {fileID: 254821681}
   m_Father: {fileID: 0}
   m_RootOrder: 5
 --- !u!1 &242522968
@@ -748,6 +747,36 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 242522968}
+--- !u!1 &254821680
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 254821681}
+  m_Layer: 0
+  m_Name: N12Ladder0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &254821681
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 254821680}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 1179748092}
+  - {fileID: 1110220524}
+  m_Father: {fileID: 208246731}
+  m_RootOrder: 4
 --- !u!1 &258065094
 GameObject:
   m_ObjectHideFlags: 0
@@ -2472,7 +2501,7 @@ GameObject:
   - 4: {fileID: 1110220524}
   - 212: {fileID: 1110220525}
   m_Layer: 0
-  m_Name: Ladder122
+  m_Name: N12Ladder02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2489,8 +2518,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
-  m_Father: {fileID: 208246731}
-  m_RootOrder: 5
+  m_Father: {fileID: 254821681}
+  m_RootOrder: 1
 --- !u!212 &1110220525
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2533,8 +2562,6 @@ GameObject:
   m_Component:
   - 224: {fileID: 1154624227}
   - 212: {fileID: 1154624228}
-  - 68: {fileID: 1154624230}
-  - 251: {fileID: 1154624229}
   m_Layer: 8
   m_Name: G11
   m_TagString: Untagged
@@ -2593,38 +2620,6 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
---- !u!251 &1154624229
-PlatformEffector2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1154624226}
-  m_Enabled: 1
-  m_UseColliderMask: 1
-  m_ColliderMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_UseOneWay: 1
-  m_UseOneWayGrouping: 0
-  m_SurfaceArc: 180
-  m_UseSideFriction: 0
-  m_UseSideBounce: 0
-  m_SideArc: 1
---- !u!68 &1154624230
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1154624226}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 1
-  m_Offset: {x: 0, y: 0.5}
-  m_Points:
-  - {x: -5.12, y: 0}
-  - {x: 5.12, y: 0}
 --- !u!1 &1179748091
 GameObject:
   m_ObjectHideFlags: 0
@@ -2635,7 +2630,7 @@ GameObject:
   - 4: {fileID: 1179748092}
   - 212: {fileID: 1179748093}
   m_Layer: 0
-  m_Name: Ladder121
+  m_Name: N12Ladder01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2652,8 +2647,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
-  m_Father: {fileID: 208246731}
-  m_RootOrder: 4
+  m_Father: {fileID: 254821681}
+  m_RootOrder: 0
 --- !u!212 &1179748093
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3307,6 +3302,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1764783108}
+  - 68: {fileID: 1764783109}
+  - 251: {fileID: 1764783110}
   m_Layer: 0
   m_Name: Slope0
   m_TagString: Untagged
@@ -3329,6 +3326,42 @@ Transform:
   - {fileID: 1469288782}
   m_Father: {fileID: 208246731}
   m_RootOrder: 3
+--- !u!68 &1764783109
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1764783107}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 1
+  m_Offset: {x: 0, y: 0}
+  m_Points:
+  - {x: -16.518, y: 5.369}
+  - {x: -11.81, y: 5.369}
+  - {x: -5.329, y: 0.302}
+  - {x: 5.329, y: 0.302}
+  - {x: 11.81, y: 5.369}
+  - {x: 16.518, y: 5.369}
+--- !u!251 &1764783110
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1764783107}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 256
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &1798065903
 GameObject:
   m_ObjectHideFlags: 0
