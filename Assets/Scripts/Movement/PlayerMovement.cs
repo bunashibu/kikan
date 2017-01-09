@@ -6,8 +6,6 @@ using System;
 public class PlayerMovement : MonoBehaviour {
   void Update() {
     UpdateState();
-    LieDown();
-
     /*
     if (_isLying && _jumpFlag)
       _colliderGround.isTrigger = true;
@@ -15,6 +13,7 @@ public class PlayerMovement : MonoBehaviour {
 
     //_anim.SetBool("Jump", _isAir);
     //_anim.SetBool("Walk", _moveFlag);
+    _anim.SetBool("LieDown", _isLying);
     _isLadder = false;
   }
 
@@ -39,18 +38,6 @@ public class PlayerMovement : MonoBehaviour {
     _isLying = _isAir                          ? false :
                Input.GetKey(KeyCode.DownArrow) ? true  :
                                                  false;
-  }
-
-  private void LieDown() {
-    if (_isLying) {
-      _collider.size = new Vector2(0.9f, 0.6f);
-      _collider.offset = new Vector2(0.0f, -0.2f);
-    } else {
-      _collider.size = new Vector2(0.8f, 1.0f);
-      _collider.offset = new Vector2(0.0f, 0.0f);
-    }
-
-    _anim.SetBool("LieDown", _isLying);
   }
 
   private void CheckSpeedLimit() {
