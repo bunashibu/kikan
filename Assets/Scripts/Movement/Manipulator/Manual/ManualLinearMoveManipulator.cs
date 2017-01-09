@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LinearMoveManipulator : MonoBehaviour {
+public class ManualLinearMoveManipulator : MonoBehaviour {
   void Update() {
     //canMove = !_isLadder;
 

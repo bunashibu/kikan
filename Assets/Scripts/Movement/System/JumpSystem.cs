@@ -6,8 +6,8 @@ public class JumpSystem : MovementSystem {
     _rigid.AddForce(_inputVec);
   }
 
-  public void Jump() {
-    _inputVec.y = 1;
+  public void Jump(float force) {
+    _inputVec.y = force;
   }
 
   public void Stay() {

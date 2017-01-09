@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class JumpManipulator : MonoBehaviour {
+public class ManualJumpManipulator : MonoBehaviour {
   void Update() {
     // canJump = !_isAir && !_isLying;
 
