@@ -1,21 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class JumpSystem : MonoBehaviour {
+public class JumpSystem : MovementSystem {
   void FixedUpdate() {
-    _rigid.AddForce(_inputVec * _force);
+    _rigid.AddForce(_inputVec);
   }
 
-  private void Jump() {
+  public void Jump() {
     _inputVec.y = 1;
   }
 
-  private void Stay() {
+  public void Stay() {
     _inputVec.y = 0;
   }
-
-  [SerializeField] private Rigidbody2D _rigid;
-  [SerializeField] private float _force;
-  private Vector2 _inputVec;
 }
 
