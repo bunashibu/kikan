@@ -3,21 +3,21 @@ using System.Collections;
 
 public class LinearMoveManipulator : MonoBehaviour {
   void Update() {
-    //canMove = !_isLadder && !_isLying;
+    //canMove = !_isLadder;
 
     if (canMove) {
       if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow))
-        _moveSys.Stay();
+        _system.Stay();
 
       if (Input.GetKey(KeyCode.LeftArrow))
-        _moveSys.MoveLeft();
+        _system.MoveLeft();
 
       if (Input.GetKey(KeyCode.RightArrow))
-        _moveSys.MoveRight();
+        _system.MoveRight();
     }
   }
 
-  [SerializeField] private LinearMoveSystem _moveSys;
+  [SerializeField] private LinearMoveSystem _system;
   public bool canMove { get; private set; }
 }
 

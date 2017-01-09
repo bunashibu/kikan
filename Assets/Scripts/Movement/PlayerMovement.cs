@@ -6,19 +6,19 @@ using System;
 public class PlayerMovement : MonoBehaviour {
   void Update() {
     UpdateState();
-    InputJump();
     LieDown();
 
+    /*
     if (_isLying && _jumpFlag)
       _colliderGround.isTrigger = true;
+    */
 
-    _anim.SetBool("Jump", _isAir);
+    //_anim.SetBool("Jump", _isAir);
     //_anim.SetBool("Walk", _moveFlag);
     _isLadder = false;
   }
 
   void FixedUpdate() {
-    Jump();
     CheckSpeedLimit();
   }
 
@@ -39,14 +39,6 @@ public class PlayerMovement : MonoBehaviour {
     _isLying = _isAir                          ? false :
                Input.GetKey(KeyCode.DownArrow) ? true  :
                                                  false;
-
-    canJump = !_jumpFlag &&
-               !_isAir;
-  }
-
-  private void InputJump() {
-    if (canJump)
-      _jumpFlag = Input.GetButtonDown("Jump");
   }
 
   private void LieDown() {
@@ -61,17 +53,6 @@ public class PlayerMovement : MonoBehaviour {
     _anim.SetBool("LieDown", _isLying);
   }
 
-  private void Jump() {
-    if (!_jumpFlag) return;
-
-    if (_isLying)
-      _rigid.AddForce(Vector2.up * _forceFall);
-    else
-      _rigid.AddForce(Vector2.up * _forceJump);
-
-    _jumpFlag = false;
-  }
-
   private void CheckSpeedLimit() {
     /*
     if (Math.Abs(_rigid.velocity.x) > _speedLimitHorizontal)
@@ -83,8 +64,6 @@ public class PlayerMovement : MonoBehaviour {
       _rigid.velocity = Vector2.down * _speedLimitVertical + new Vector2(_rigid.velocity.x, 0);
   }
 
-  [SerializeField] private float _forceJump;
-  [SerializeField] private float _forceFall;
   [SerializeField] private float _speedLimitHorizontal;
   [SerializeField] private float _speedLimitVertical;
   [SerializeField] private Rigidbody2D _rigid;
@@ -93,8 +72,6 @@ public class PlayerMovement : MonoBehaviour {
   [SerializeField] private RectTransform _trans;
   [SerializeField] private LayerMask _layerGround;
   [SerializeField] private Animator _anim;
-  public bool canJump { get; private set; }
-  private bool _jumpFlag;
   private bool _isAir;
   private bool _isLadder;
   private bool _isLying;
