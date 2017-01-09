@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ManualJumpManipulator : MonoBehaviour {
   void Update() {
-    // canJump = !_isAir && !_isLying;
+    canJump = true; //!_isAir && !_isLying;
 
     if (canJump) {
       if (Input.GetButtonUp("Jump"))

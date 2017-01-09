@@ -4,19 +4,18 @@ using System.Collections;
 public class LinearMoveSystem : MovementSystem {
   void FixedUpdate() {
     if (System.Math.Abs(_rigid.velocity.x) <= _limit)
-      _rigid.AddForce(_inputVec);
-
+      _rigid.AddForce(_inputVec * _force);
   }
 
-  public void MoveLeft(float force) {
-    _inputVec.x -= force;
+  public void MoveLeft() {
+    _inputVec.x -= 1;
 
     if (_inputVec.x < -1)
       _inputVec.x = -1;
   }
 
-  public void MoveRight(float force) {
-    _inputVec.x += force;
+  public void MoveRight() {
+    _inputVec.x += 1;
 
     if (_inputVec.x > 1)
       _inputVec.x = 1;
@@ -26,6 +25,7 @@ public class LinearMoveSystem : MovementSystem {
     _inputVec.x = 0;
   }
 
-  public float _limit;
+  [SerializeField] private float _force;
+  [SerializeField] private float _limit;
 }
 

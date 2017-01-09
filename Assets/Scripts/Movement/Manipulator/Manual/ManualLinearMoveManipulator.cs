@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ManualLinearMoveManipulator : MonoBehaviour {
   void Update() {
-    //canMove = !_isLadder;
+    canMove = true; //!_isLadder;
 
     if (canMove) {
       if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow))
