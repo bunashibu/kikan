@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LinearMoveSystem : MovementSystem {
+public class LinearMoveSystem : MonoBehaviour {
   void FixedUpdate() {
     if (System.Math.Abs(_rigid.velocity.x) <= _limit)
       _rigid.AddForce(_inputVec * _force);
@@ -25,7 +25,9 @@ public class LinearMoveSystem : MovementSystem {
     _inputVec.x = 0;
   }
 
+  [SerializeField] private Rigidbody2D _rigid;
   [SerializeField] private float _force;
   [SerializeField] private float _limit;
+  private Vector2 _inputVec;
 }
 

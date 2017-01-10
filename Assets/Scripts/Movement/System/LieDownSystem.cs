@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LieDownSystem : MovementSystem {
+public class LieDownSystem : MonoBehaviour {
   void FixedUpdate() {
   }
 
