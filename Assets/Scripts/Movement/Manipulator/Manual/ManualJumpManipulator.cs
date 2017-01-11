@@ -6,11 +6,11 @@ public class ManualJumpManipulator : MonoBehaviour {
     canJump = true; //!_isAir && !_isLying;
 
     if (canJump) {
-      if (Input.GetButtonUp("Jump"))
-        _system.Stay();
-
       if (Input.GetButton("Jump"))
         _system.Jump();
+
+      if (Input.GetButtonUp("Jump"))
+        _system.Stay();
     }
   }
 
