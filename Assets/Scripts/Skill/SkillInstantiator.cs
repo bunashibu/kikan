@@ -16,14 +16,14 @@ public class SkillInstantiator : MonoBehaviour {
     Instantiate(_skills[i], this.transform.position + new Vector3(-0.4f, -0.1f, 0), this.transform.rotation);
 
     _canUse = false;
-    StartCoroutine(MonoUtility.Instance.DelaySec(_ct[i], () => {
+    MonoUtility.Instance.DelaySec(_ct[i], () => {
       _canUse = true;
-    }));
+    });
 
     _anim.SetBool(_names[i], true);
-    StartCoroutine(MonoUtility.Instance.DelayOneFrame(() => {
+    MonoUtility.Instance.DelayOneFrame(() => {
       _anim.SetBool(_names[i], false);
-    }));
+    });
   }
 
   [SerializeField] private Skill[] _skills;

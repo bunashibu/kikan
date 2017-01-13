@@ -19,9 +19,9 @@ public class Enemy : MonoBehaviour {
 
   public void ShowHealthBar() {
     _bar.gameObject.SetActive(true);
-    StartCoroutine(MonoUtility.Instance.DelaySec(5.0f, () => {
+    MonoUtility.Instance.DelaySec(5.0f, () => {
       _bar.gameObject.SetActive(false);
-    }));
+    });
   }
 
   [SerializeField] private Bar _bar;
