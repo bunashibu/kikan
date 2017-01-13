@@ -3,15 +3,15 @@ using System.Collections;
 
 public class ManualStepDownManipulator : MonoBehaviour {
   void Update() {
-    canStepDown = true; // isLying && On CanDownGround
+    CanStepDown = true; // isLying && On CanDownGround
 
-    if (canStepDown) {
+    if (CanStepDown) {
       if (Input.GetButton("Jump"))
         _system.StepDown();
     }
   }
 
   [SerializeField] private StepDownSystem _system;
-  public bool canStepDown { get; private set; }
+  public bool CanStepDown { get; private set; }
 }
 

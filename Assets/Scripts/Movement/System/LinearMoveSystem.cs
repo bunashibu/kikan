@@ -25,9 +25,17 @@ public class LinearMoveSystem : MonoBehaviour {
     _inputVec.x = 0;
   }
 
+  public void SetForce(float force) {
+    _force = force;
+  }
+
+  public void SetLimit(float limit) {
+    _limit = limit;
+  }
+
   [SerializeField] private Rigidbody2D _rigid;
-  [SerializeField] private float _force;
-  [SerializeField] private float _limit;
+  private float _force;
+  private float _limit;
   private Vector2 _inputVec;
 }
 

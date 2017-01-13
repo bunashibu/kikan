@@ -3,9 +3,9 @@ using System.Collections;
 
 public class ManualLieDownManipulator : MonoBehaviour {
   void Update() {
-    canLieDown = true;
+    CanLieDown = true;
 
-    if (canLieDown) {
+    if (CanLieDown) {
       if (Input.GetKey(KeyCode.DownArrow))
         _system.LieDown();
 
@@ -15,6 +15,6 @@ public class ManualLieDownManipulator : MonoBehaviour {
   }
 
   [SerializeField] private LieDownSystem _system;
-  public bool canLieDown { get; private set; }
+  public bool CanLieDown { get; private set; }
 }
 

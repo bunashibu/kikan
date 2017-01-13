@@ -14,8 +14,12 @@ public class JumpSystem : MonoBehaviour {
     _inputVec.y = 0;
   }
 
+  public void SetForce(float force) {
+    _force = force;
+  }
+
   [SerializeField] private Rigidbody2D _rigid;
-  [SerializeField] private float _force;
+  private float _force;
   private Vector2 _inputVec;
 }
 

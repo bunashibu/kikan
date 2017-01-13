@@ -2,9 +2,9 @@
 using System.Collections;
 
 public class PlayerStatus : MonoBehaviour {
-  public int atk;
-  public int dfn;
-  public int spd;
-  public int jmp;
+  [System.NonSerialized] public int atk;
+  [System.NonSerialized] public int dfn;
+  [System.NonSerialized] public int spd;
+  [System.NonSerialized] public int jmp;
 }
 

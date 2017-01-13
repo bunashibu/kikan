@@ -14,6 +14,8 @@ public class JobPicker : MonoBehaviour {
     job.transform.SetParent(_player.transform, false);
 
     InitPlayerHealthSystem(n);
+    InitPlayerStatus(n);
+    InitPlayerMovementSystem(n);
 
     DisableAllButtons();
     Destroy(_camera);
@@ -29,6 +31,24 @@ public class JobPicker : MonoBehaviour {
     var hs = _player.GetComponent<HealthSystem>();
     hs.Init(health, _bar);
     hs.Show();
+  }
+
+  private void InitPlayerStatus(int n) {
+    var status = _player.GetComponent<PlayerStatus>();
+
+    status.atk = _data[n].atk;
+    status.dfn = _data[n].dfn;
+    status.spd = _data[n].spd;
+    status.jmp = _data[n].jmp;
+  }
+
+  private void InitPlayerMovementSystem(int n) {
+    var linearSystem = _player.GetComponent<LinearMoveSystem>();
+    var jumpSystem = _player.GetComponent<JumpSystem>();
+
+    linearSystem.SetForce(_data[n].spd);
+    linearSystem.SetLimit(12);
+    jumpSystem.SetForce(_data[n].jmp);
   }
 
   private void DisableAllButtons() {

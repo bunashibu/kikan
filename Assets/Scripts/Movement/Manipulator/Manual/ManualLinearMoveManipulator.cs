@@ -3,9 +3,9 @@ using System.Collections;
 
 public class ManualLinearMoveManipulator : MonoBehaviour {
   void Update() {
-    canMove = true; //!_isLadder;
+    CanMove = true; //!_isLadder;
 
-    if (canMove) {
+    if (CanMove) {
       if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow))
         _system.Stay();
 
@@ -18,6 +18,6 @@ public class ManualLinearMoveManipulator : MonoBehaviour {
   }
 
   [SerializeField] private LinearMoveSystem _system;
-  public bool canMove { get; private set; }
+  public bool CanMove { get; private set; }
 }
 

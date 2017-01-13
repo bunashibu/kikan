@@ -3,9 +3,9 @@ using System.Collections;
 
 public class ManualJumpManipulator : MonoBehaviour {
   void Update() {
-    canJump = true; //!_isAir && !_isLying;
+    CanJump = true; //!_isAir && !_isLying;
 
-    if (canJump) {
+    if (CanJump) {
       if (Input.GetButton("Jump"))
         _system.Jump();
 
@@ -15,6 +15,6 @@ public class ManualJumpManipulator : MonoBehaviour {
   }
 
   [SerializeField] private JumpSystem _system;
-  public bool canJump { get; private set; }
+  public bool CanJump { get; private set; }
 }
 

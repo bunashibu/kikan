@@ -15,5 +15,5 @@ MonoBehaviour:
   life: 30
   atk: 100
   dfn: 100
-  spd: 12
-  jmp: 420
+  spd: 80
+  jmp: 60
