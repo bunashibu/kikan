@@ -13,5 +13,6 @@ public class LieDownSystem : MonoBehaviour {
   }
 
   [SerializeField] private BoxCollider2D _collider;
+  public bool CanUse { get; private set; }
 }
 

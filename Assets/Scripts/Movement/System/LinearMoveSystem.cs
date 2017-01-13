@@ -34,6 +34,7 @@ public class LinearMoveSystem : MonoBehaviour {
   }
 
   [SerializeField] private Rigidbody2D _rigid;
+  public bool CanUse { get; private set; }
   private float _force;
   private float _limit;
   private Vector2 _inputVec;
