@@ -3,14 +3,14 @@ using System.Collections;
 
 public class JumpSystem : MonoBehaviour {
   void FixedUpdate() {
-    if (_flag) {
+    if (_actFlag) {
       _rigid.AddForce(Vector2.up * _force);
-      _flag = false;
+      _actFlag = false;
     }
   }
 
   public void Jump() {
-    _flag = true;
+    _actFlag = true;
   }
 
   public void SetForce(float force) {
@@ -20,6 +20,6 @@ public class JumpSystem : MonoBehaviour {
   [SerializeField] private Rigidbody2D _rigid;
   public bool CanUse { get; private set; }
   private float _force;
-  private bool _flag;
+  private bool _actFlag;
 }
 

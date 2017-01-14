@@ -215,7 +215,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigid: {fileID: 50000013460582292}
-  _force: 60
 --- !u!114 &114000010308903688
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -312,8 +311,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigid: {fileID: 50000013460582292}
-  _force: 80
-  _limit: 12
 --- !u!114 &114000011924668548
 MonoBehaviour:
   m_ObjectHideFlags: 1
