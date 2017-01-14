@@ -18,7 +18,9 @@ public class GroundJumpSystem : MonoBehaviour {
   }
 
   public bool CanUse {
-    get { return _state.Ground && _state.Stand; }
+    get {
+      return _state.Ground && _state.Stand;
+    }
   }
 
   [SerializeField] private Rigidbody2D _rigid;

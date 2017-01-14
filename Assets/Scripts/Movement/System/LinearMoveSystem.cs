@@ -3,8 +3,15 @@ using System.Collections;
 
 public class LinearMoveSystem : MonoBehaviour {
   void FixedUpdate() {
-    if (System.Math.Abs(_rigid.velocity.x) <= _limit)
-      _rigid.AddForce(_inputVec * _force);
+    if (_state.Ground) {
+      if (System.Math.Abs(_rigid.velocity.x) <= _limit)
+        _rigid.AddForce(_inputVec * _force);
+    }
+
+    if (_state.Air) {
+      if (System.Math.Abs(_rigid.velocity.x) <= 0.5f)
+        _rigid.AddForce(_inputVec * 2.0f);
+    }
   }
 
   public void MoveLeft() {
@@ -33,8 +40,14 @@ public class LinearMoveSystem : MonoBehaviour {
     _limit = limit;
   }
 
+  public bool CanUse {
+    get {
+      return _state.Ground || _state.Air;
+    }
+  }
+
   [SerializeField] private Rigidbody2D _rigid;
-  public bool CanUse { get; private set; }
+  [SerializeField] private RigidState _state;
   private float _force;
   private float _limit;
   private Vector2 _inputVec;
