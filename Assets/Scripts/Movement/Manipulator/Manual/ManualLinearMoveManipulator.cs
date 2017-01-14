@@ -4,9 +4,6 @@ using System.Collections;
 public class ManualLinearMoveManipulator : MonoBehaviour {
   void Update() {
     if (_system.CanUse) {
-      if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow))
-        _system.Stay();
-
       if (Input.GetKey(KeyCode.LeftArrow))
         _system.MoveLeft();
 
