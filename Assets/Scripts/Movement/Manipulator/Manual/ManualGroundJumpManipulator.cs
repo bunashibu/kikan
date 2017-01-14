@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ManualJumpManipulator : MonoBehaviour {
+public class ManualGroundJumpManipulator : MonoBehaviour {
   void Update() {
-    if (true) {
+    if (_system.CanUse) {
       if (Input.GetButton("Jump"))
         _system.Jump();
     }
   }
 
-  [SerializeField] private JumpSystem _system;
+  [SerializeField] private GroundJumpSystem _system;
 }
 

@@ -12,7 +12,7 @@ public class StepDownSystem : MonoBehaviour {
     _force = force;
   }
 
-  [SerializeField] private JumpSystem _system;
+  [SerializeField] private GroundJumpSystem _system;
   public bool CanUse { get; private set; }
   private float _force;
 }

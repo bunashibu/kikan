@@ -14,7 +14,6 @@ public class PlayerMovement : MonoBehaviour {
     //_anim.SetBool("Jump", _isAir);
     //_anim.SetBool("Walk", _moveFlag);
     _anim.SetBool("LieDown", _isLying);
-    _isLadder = false;
   }
 
   void FixedUpdate() {
@@ -60,7 +59,6 @@ public class PlayerMovement : MonoBehaviour {
   [SerializeField] private LayerMask _layerGround;
   [SerializeField] private Animator _anim;
   private bool _isAir;
-  private bool _isLadder;
   private bool _isLying;
 }
 
