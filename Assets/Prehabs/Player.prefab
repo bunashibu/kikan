@@ -48,9 +48,11 @@ GameObject:
   - 114: {fileID: 114000013053620612}
   - 114: {fileID: 114000011157580640}
   - 114: {fileID: 114000013238415394}
+  - 114: {fileID: 114000011077605328}
   - 114: {fileID: 114000011666858414}
   - 114: {fileID: 114000010170071058}
   - 114: {fileID: 114000010308903688}
+  - 114: {fileID: 114000012218521352}
   - 114: {fileID: 114000011648146592}
   - 114: {fileID: 114000010140605298}
   m_Layer: 9
@@ -223,7 +225,7 @@ MonoBehaviour:
     m_Bits: 256
   _ladderLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
 --- !u!114 &114000010170071058
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -282,6 +284,18 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114000011077605328
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011996982660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba29dfb9cea30bf4ca0c9735dcc5982a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _system: {fileID: 114000012218521352}
 --- !u!114 &114000011157580640
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -345,6 +359,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cdc806f0fd453e4f92d2532f7a26edb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114000012218521352
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011996982660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ecd6cd2bc7f29249a7f7866446161dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigid: {fileID: 50000013460582292}
+  _state: {fileID: 114000010140605298}
 --- !u!114 &114000012855921744
 MonoBehaviour:
   m_ObjectHideFlags: 1
