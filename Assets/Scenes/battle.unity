@@ -348,7 +348,7 @@ GameObject:
   - 4: {fileID: 39027566}
   - 212: {fileID: 39027568}
   - 61: {fileID: 39027567}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -765,7 +765,7 @@ GameObject:
   - 4: {fileID: 90207997}
   - 212: {fileID: 90207999}
   - 61: {fileID: 90207998}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -994,7 +994,7 @@ GameObject:
   - 4: {fileID: 179227695}
   - 212: {fileID: 179227697}
   - 61: {fileID: 179227696}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1489,7 +1489,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 254821681}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Ladder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1645,7 +1645,7 @@ GameObject:
   - 4: {fileID: 306282794}
   - 212: {fileID: 306282796}
   - 61: {fileID: 306282795}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2397,7 +2397,7 @@ GameObject:
   - 4: {fileID: 442032275}
   - 212: {fileID: 442032277}
   - 61: {fileID: 442032276}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2598,7 +2598,7 @@ GameObject:
   - 4: {fileID: 478674090}
   - 212: {fileID: 478674092}
   - 61: {fileID: 478674091}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3349,7 +3349,7 @@ GameObject:
   - 4: {fileID: 544555620}
   - 212: {fileID: 544555622}
   - 61: {fileID: 544555621}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4521,7 +4521,7 @@ GameObject:
   - 4: {fileID: 789657562}
   - 212: {fileID: 789657564}
   - 61: {fileID: 789657563}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4752,7 +4752,7 @@ GameObject:
   - 4: {fileID: 830761380}
   - 212: {fileID: 830761382}
   - 61: {fileID: 830761381}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4988,7 +4988,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 875900308}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Ladder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5908,7 +5908,7 @@ GameObject:
   - 4: {fileID: 1047271901}
   - 212: {fileID: 1047271903}
   - 61: {fileID: 1047271902}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Middle1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6179,7 +6179,7 @@ GameObject:
   - 4: {fileID: 1096783299}
   - 212: {fileID: 1096783301}
   - 61: {fileID: 1096783300}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6316,7 +6316,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1100504382}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Ladder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6728,7 +6728,7 @@ GameObject:
   - 4: {fileID: 1179748092}
   - 212: {fileID: 1179748093}
   - 61: {fileID: 1179748094}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6803,7 +6803,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1200544900}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Ladder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6991,7 +6991,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1258276026}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Ladder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7272,7 +7272,7 @@ GameObject:
   - 4: {fileID: 1398728163}
   - 212: {fileID: 1398728165}
   - 61: {fileID: 1398728164}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Middle2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7799,7 +7799,7 @@ GameObject:
   - 4: {fileID: 1497809792}
   - 212: {fileID: 1497809794}
   - 61: {fileID: 1497809793}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8036,7 +8036,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1559890269}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Ladder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8639,7 +8639,7 @@ GameObject:
   - 4: {fileID: 1662779707}
   - 212: {fileID: 1662779709}
   - 61: {fileID: 1662779708}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Middle1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10653,7 +10653,7 @@ GameObject:
   - 4: {fileID: 2032826335}
   - 212: {fileID: 2032826337}
   - 61: {fileID: 2032826336}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10822,7 +10822,7 @@ GameObject:
   - 4: {fileID: 2068532934}
   - 212: {fileID: 2068532936}
   - 61: {fileID: 2068532935}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Middle2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

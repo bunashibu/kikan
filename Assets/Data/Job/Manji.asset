@@ -16,4 +16,4 @@ MonoBehaviour:
   atk: 100
   dfn: 100
   spd: 80
-  jmp: 60
+  jmp: 200
