@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ManualLieDownManipulator : MonoBehaviour {
+public class LieDownManipulator : MonoBehaviour {
   void Update() {
     if (_system.CanUse) {
       if (Input.GetKey(KeyCode.DownArrow))

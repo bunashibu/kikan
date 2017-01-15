@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ManualGroundJumpManipulator : MonoBehaviour {
+public class GroundJumpManipulator : MonoBehaviour {
   void Update() {
     if (_system.CanUse) {
       if (Input.GetButton("Jump"))

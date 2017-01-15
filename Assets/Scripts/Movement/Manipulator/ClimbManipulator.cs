@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ManualClimbManipulator : MonoBehaviour {
+public class ClimbManipulator : MonoBehaviour {
   void Update() {
     if (_system.CanUse) {
       if (Input.GetKey(KeyCode.UpArrow))

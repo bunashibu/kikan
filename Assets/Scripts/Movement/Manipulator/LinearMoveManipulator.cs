@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ManualLinearMoveManipulator : MonoBehaviour {
+public class LinearMoveManipulator : MonoBehaviour {
   void Update() {
     if (_system.CanUse) {
       if (Input.GetKey(KeyCode.LeftArrow))
