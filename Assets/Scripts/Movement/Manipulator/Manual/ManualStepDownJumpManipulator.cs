@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ManualStepDownManipulator : MonoBehaviour {
+public class ManualStepDownJumpManipulator : MonoBehaviour {
   void Update() {
     if (_system.CanUse) {
       if (Input.GetButton("Jump"))
@@ -9,6 +9,6 @@ public class ManualStepDownManipulator : MonoBehaviour {
     }
   }
 
-  [SerializeField] private StepDownSystem _system;
+  [SerializeField] private StepDownJumpSystem _system;
 }
 
