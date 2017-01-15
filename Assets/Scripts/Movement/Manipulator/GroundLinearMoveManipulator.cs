@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LinearMoveManipulator : MonoBehaviour {
+public class GroundLinearMoveManipulator : MonoBehaviour {
   void Update() {
     if (_system.CanUse) {
       if (Input.GetKey(KeyCode.LeftArrow))
@@ -12,6 +12,6 @@ public class LinearMoveManipulator : MonoBehaviour {
     }
   }
 
-  [SerializeField] private LinearMoveSystem _system;
+  [SerializeField] private GroundLinearMoveSystem _system;
 }
 

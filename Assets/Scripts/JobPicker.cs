@@ -43,7 +43,7 @@ public class JobPicker : MonoBehaviour {
   }
 
   private void InitPlayerMovementSystem(int n) {
-    var linearSystem = _player.GetComponent<LinearMoveSystem>();
+    var linearSystem = _player.GetComponent<GroundLinearMoveSystem>();
     var jumpSystem = _player.GetComponent<GroundJumpSystem>();
 
     linearSystem.SetForce(_data[n].spd);
