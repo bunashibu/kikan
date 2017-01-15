@@ -45,18 +45,15 @@ GameObject:
   - 50: {fileID: 50000013460582292}
   - 114: {fileID: 114000011924668548}
   - 114: {fileID: 114000012855921744}
-  - 114: {fileID: 114000013053620612}
-  - 114: {fileID: 114000011157580640}
-  - 114: {fileID: 114000013238415394}
-  - 114: {fileID: 114000011077605328}
-  - 114: {fileID: 114000011557519808}
   - 114: {fileID: 114000011666858414}
   - 114: {fileID: 114000010170071058}
+  - 114: {fileID: 114000011477701934}
   - 114: {fileID: 114000010308903688}
   - 114: {fileID: 114000012218521352}
   - 114: {fileID: 114000012583842280}
   - 114: {fileID: 114000011648146592}
   - 114: {fileID: 114000010140605298}
+  - 114: {fileID: 114000011961942336}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -286,7 +283,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
---- !u!114 &114000011077605328
+--- !u!114 &114000011477701934
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -294,22 +291,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000011996982660}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba29dfb9cea30bf4ca0c9735dcc5982a, type: 3}
+  m_Script: {fileID: 11500000, guid: 336b959cf41600243afd81f5fe321602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _system: {fileID: 114000012218521352}
---- !u!114 &114000011157580640
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011996982660}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea0c5ebcde36b19439b9fdf3e68e6451, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _system: {fileID: 114000010170071058}
+  _rigid: {fileID: 50000013460582292}
+  _state: {fileID: 114000010140605298}
 --- !u!114 &114000011491567156
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -326,18 +312,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &114000011557519808
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011996982660}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 515827f916f997c4ab64437eea7feadf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _system: {fileID: 114000012583842280}
 --- !u!114 &114000011648146592
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -373,6 +347,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cdc806f0fd453e4f92d2532f7a26edb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114000011961942336
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011996982660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87dd30f2d824b9347a84e48a1654154f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _groundLinearSys: {fileID: 114000011666858414}
+  _groundJumpSys: {fileID: 114000010170071058}
+  _airLinearSys: {fileID: 114000011477701934}
+  _climbSys: {fileID: 114000012218521352}
+  _stepDownSys: {fileID: 114000012583842280}
+  _lieDownSys: {fileID: 114000010308903688}
 --- !u!114 &114000012218521352
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -445,30 +436,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Player Name
---- !u!114 &114000013053620612
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011996982660}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb5d5ddcff8ce694996a1f14e1162b50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _system: {fileID: 114000011666858414}
---- !u!114 &114000013238415394
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011996982660}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 777cbd1c26ad56d448a1181820954507, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _system: {fileID: 114000010308903688}
 --- !u!124 &124000013662909244
 Behaviour:
   m_ObjectHideFlags: 1
