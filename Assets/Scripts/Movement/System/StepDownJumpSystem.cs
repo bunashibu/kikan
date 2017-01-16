@@ -1,17 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class StepDownJumpSystem : MonoBehaviour {
-  void FixedUpdate() {
+public class StepDownJumpSystem : ScriptableObject {
+  public void CallFixedUpdate(Rigidbody2D rigid) {
     if (_actFlag) {
-      _rigid.AddForce(Vector2.up * _force);
+      rigid.AddForce(Vector2.up * _force);
       _actFlag = false;
     }
   }
 
-  public void StepDown() {
+  public void StepDown(BoxCollider2D collider) {
     _actFlag = true;
-    _collider.isTrigger = true;
+    collider.isTrigger = true;
     // ImplThroughGround
   }
 
@@ -19,15 +19,6 @@ public class StepDownJumpSystem : MonoBehaviour {
     _force = force;
   }
 
-  public bool CanUse {
-    get {
-      return _state.LieDown;
-    }
-  }
-
-  [SerializeField] private Rigidbody2D _rigid;
-  [SerializeField] private BoxCollider2D _collider;
-  [SerializeField] private RigidState _state;
   private float _force;
   private bool _actFlag;
 }

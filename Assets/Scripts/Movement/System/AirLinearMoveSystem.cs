@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class AirLinearMoveSystem : MonoBehaviour {
-  void FixedUpdate() {
+public class AirLinearMoveSystem : ScriptableObject {
+  public void CallFixedUpdate(Rigidbody2D rigid) {
     if (_actFlag) {
-      if (System.Math.Abs(_rigid.velocity.x) <= _limit)
-        _rigid.AddForce(_inputVec * _force);
+      if (System.Math.Abs(rigid.velocity.x) <= _limit)
+        rigid.AddForce(_inputVec * _force);
 
       _actFlag = false;
     }
@@ -35,14 +35,6 @@ public class AirLinearMoveSystem : MonoBehaviour {
     _limit = limit;
   }
 
-  public bool CanUse {
-    get {
-      return _state.Air;
-    }
-  }
-
-  [SerializeField] private Rigidbody2D _rigid;
-  [SerializeField] private RigidState _state;
   private float _force;
   private float _limit;
   private bool _actFlag;

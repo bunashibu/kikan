@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerMovementManipulator : MonoBehaviour {
+public class PlayerMovement : MonoBehaviour {
   void Update() {
     GroundLinearMoveUpdate();
     GroundJumpUpdate();
@@ -11,8 +11,16 @@ public class PlayerMovementManipulator : MonoBehaviour {
     LieDownUpdate();
   }
 
+  void FixedUpdate() {
+    _groundLinearSys.CallFixedUpdate(_rigid);
+    _groundJumpSys.CallFixedUpdate(_rigid);
+    _airLinearSys.CallFixedUpdate(_rigid);
+    _climbSys.CallFixedUpdate(_rigid);
+    _stepDownSys.CallFixedUpdate(_rigid);
+  }
+
   private void GroundLinearMoveUpdate() {
-    if (_groundLinearSys.CanUse) {
+    if (_state.Ground) {
       if (Input.GetKey(KeyCode.LeftArrow))
         _groundLinearSys.MoveLeft();
 
@@ -22,14 +30,14 @@ public class PlayerMovementManipulator : MonoBehaviour {
   }
 
   private void GroundJumpUpdate() {
-    if (_groundJumpSys.CanUse) {
+    if (_state.Ground && _state.Stand) {
       if (Input.GetButton("Jump"))
         _groundJumpSys.Jump();
     }
   }
 
   private void AirLinearMoveUpdate() {
-    if (_airLinearSys.CanUse) {
+    if (_state.Air) {
       if (Input.GetKey(KeyCode.LeftArrow))
         _airLinearSys.MoveLeft();
 
@@ -39,7 +47,7 @@ public class PlayerMovementManipulator : MonoBehaviour {
   }
 
   private void ClimbUpdate() {
-    if (_climbSys.CanUse) {
+    if (_state.Ladder) {
       if (Input.GetKey(KeyCode.UpArrow))
         _climbSys.MoveUp();
 
@@ -49,14 +57,14 @@ public class PlayerMovementManipulator : MonoBehaviour {
   }
 
   private void StepDownJumpUpdate() {
-    if (_stepDownSys.CanUse) {
+    if (_state.LieDown) {
       if (Input.GetButton("Jump"))
-        _stepDownSys.StepDown();
+        _stepDownSys.StepDown(_colliderFoot);
     }
   }
 
   private void LieDownUpdate() {
-    if (_lieDownSys.CanUse) {
+    if (_state.Stand || _state.LieDown) {
       if (Input.GetKey(KeyCode.DownArrow))
         _lieDownSys.LieDown();
 
@@ -71,5 +79,8 @@ public class PlayerMovementManipulator : MonoBehaviour {
   [SerializeField] private ClimbSystem _climbSys;
   [SerializeField] private StepDownJumpSystem _stepDownSys;
   [SerializeField] private LieDownSystem _lieDownSys;
+  [SerializeField] private Rigidbody2D _rigid;
+  [SerializeField] private BoxCollider2D _colliderFoot;
+  [SerializeField] private RigidState _state;
 }
 

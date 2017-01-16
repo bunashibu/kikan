@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ClimbSystem : MonoBehaviour {
-  void FixedUpdate() {
+public class ClimbSystem : ScriptableObject {
+  public void CallFixedUpdate(Rigidbody2D rigid) {
     if (_actFlag) {
-      _rigid.AddForce(_inputVec * 30.0f);
+      rigid.AddForce(_inputVec * 30.0f);
       _actFlag = false;
     }
   }
@@ -25,14 +25,6 @@ public class ClimbSystem : MonoBehaviour {
       _inputVec.y = -1;
   }
 
-  public bool CanUse {
-    get {
-      return _state.Ladder;
-    }
-  }
-
-  [SerializeField] private Rigidbody2D _rigid;
-  [SerializeField] private RigidState _state;
   private bool _actFlag;
   private Vector2 _inputVec;
 }
