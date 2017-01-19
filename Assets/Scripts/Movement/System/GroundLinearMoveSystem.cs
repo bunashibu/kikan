@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GroundLinearMoveSystem : ScriptableObject {
-  public void CallFixedUpdate(Rigidbody2D rigid) {
+public class GroundLinearMoveSystem : MonoBehaviour {
+  void FixedUpdate() {
     if (_actFlag) {
-      if (System.Math.Abs(rigid.velocity.x) <= _limit)
-        rigid.AddForce(_inputVec * _force);
+      if (System.Math.Abs(_rigid.velocity.x) <= _limit)
+        _rigid.AddForce(_inputVec * _force);
 
       _actFlag = false;
     }
@@ -35,6 +35,7 @@ public class GroundLinearMoveSystem : ScriptableObject {
     _limit = limit;
   }
 
+  [SerializeField] private Rigidbody2D _rigid;
   private float _force;
   private float _limit;
   private bool _actFlag;

@@ -48,6 +48,12 @@ GameObject:
   - 114: {fileID: 114000011961942336}
   - 114: {fileID: 114000011648146592}
   - 114: {fileID: 114000010140605298}
+  - 114: {fileID: 114000013160521412}
+  - 114: {fileID: 114000011930408750}
+  - 114: {fileID: 114000010758099314}
+  - 114: {fileID: 114000014284443414}
+  - 114: {fileID: 114000012090888726}
+  - 114: {fileID: 114000013413255202}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -231,6 +237,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 114000012949416784}
+--- !u!114 &114000010758099314
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011996982660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d7f8094b9f82e2448b3dac04aa94e5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigid: {fileID: 50000013460582292}
 --- !u!114 &114000010774355116
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -290,6 +308,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cdc806f0fd453e4f92d2532f7a26edb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114000011930408750
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011996982660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb0aa41457f2eb04a880818c173eadc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigid: {fileID: 50000013460582292}
 --- !u!114 &114000011961942336
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -301,15 +331,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87dd30f2d824b9347a84e48a1654154f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _groundLinearSys: {fileID: 0}
-  _groundJumpSys: {fileID: 0}
-  _airLinearSys: {fileID: 0}
-  _climbSys: {fileID: 0}
-  _stepDownSys: {fileID: 0}
-  _lieDownSys: {fileID: 0}
+  _groundLinearSys: {fileID: 114000014284443414}
+  _groundJumpSys: {fileID: 114000010758099314}
+  _airLinearSys: {fileID: 114000012090888726}
+  _climbSys: {fileID: 114000013160521412}
+  _stepDownSys: {fileID: 114000011930408750}
+  _lieDownSys: {fileID: 114000013413255202}
   _rigid: {fileID: 50000013460582292}
   _colliderFoot: {fileID: 61000010270929332}
   _state: {fileID: 114000010140605298}
+--- !u!114 &114000012090888726
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011996982660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 336b959cf41600243afd81f5fe321602, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigid: {fileID: 50000013460582292}
 --- !u!114 &114000012855921744
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -355,6 +397,42 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Player Name
+--- !u!114 &114000013160521412
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011996982660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ecd6cd2bc7f29249a7f7866446161dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigid: {fileID: 50000013460582292}
+--- !u!114 &114000013413255202
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011996982660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c78a7b037c5c294b945e8fcd55d5266, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collider: {fileID: 61000011156448030}
+--- !u!114 &114000014284443414
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011996982660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eec01e86a25bd5c4bb38fbe5d8180df9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigid: {fileID: 50000013460582292}
 --- !u!124 &124000013662909244
 Behaviour:
   m_ObjectHideFlags: 1

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerMovement : MonoBehaviour {
+public class PlayerMovementManipulator : MonoBehaviour {
   void Update() {
     GroundLinearMoveUpdate();
     GroundJumpUpdate();
@@ -9,14 +9,6 @@ public class PlayerMovement : MonoBehaviour {
     ClimbUpdate();
     StepDownJumpUpdate();
     LieDownUpdate();
-  }
-
-  void FixedUpdate() {
-    _groundLinearSys.CallFixedUpdate(_rigid);
-    _groundJumpSys.CallFixedUpdate(_rigid);
-    _airLinearSys.CallFixedUpdate(_rigid);
-    _climbSys.CallFixedUpdate(_rigid);
-    _stepDownSys.CallFixedUpdate(_rigid);
   }
 
   private void GroundLinearMoveUpdate() {

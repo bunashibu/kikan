@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GroundJumpSystem : ScriptableObject {
-  public void CallFixedUpdate(Rigidbody2D rigid) {
+public class GroundJumpSystem : MonoBehaviour {
+  void FixedUpdate() {
     if (_actFlag) {
-      rigid.AddForce(Vector2.up * _force);
+      _rigid.AddForce(Vector2.up * _force);
       _actFlag = false;
     }
   }
@@ -17,6 +17,7 @@ public class GroundJumpSystem : ScriptableObject {
     _force = force;
   }
 
+  [SerializeField] private Rigidbody2D _rigid;
   private float _force;
   private bool _actFlag;
 }
