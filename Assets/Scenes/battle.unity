@@ -9197,9 +9197,15 @@ GameObject:
   - 4: {fileID: 1798065907}
   - 212: {fileID: 1798065906}
   - 61: {fileID: 1798065905}
+  - 61: {fileID: 1798065912}
   - 114: {fileID: 1798065904}
   - 114: {fileID: 1798065908}
   - 95: {fileID: 1798065909}
+  - 114: {fileID: 1798065911}
+  - 50: {fileID: 1798065910}
+  - 114: {fileID: 1798065915}
+  - 114: {fileID: 1798065914}
+  - 114: {fileID: 1798065913}
   m_Layer: 0
   m_Name: Kinoko
   m_TagString: Enemy
@@ -9233,7 +9239,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 0.6, y: 0.6}
+  m_Size: {x: 0.5, y: 0.4}
 --- !u!212 &1798065906
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9310,6 +9316,96 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!50 &1798065910
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1798065903}
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &1798065911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1798065903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e343e3da8678874d997ea6bbd0d8f71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigid: {fileID: 1798065910}
+  _colliderBody: {fileID: 1798065905}
+  _colliderFoot: {fileID: 1798065912}
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  _ladderLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+--- !u!61 &1798065912
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1798065903}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: -0.15}
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 0.1}
+--- !u!114 &1798065913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1798065903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d7f8094b9f82e2448b3dac04aa94e5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigid: {fileID: 1798065910}
+--- !u!114 &1798065914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1798065903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eec01e86a25bd5c4bb38fbe5d8180df9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigid: {fileID: 1798065910}
+--- !u!114 &1798065915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1798065903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e2dd264760cd4a418e2289b7e37e299, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _groundLinear: {fileID: 1798065914}
+  _groundJump: {fileID: 1798065913}
+  _rigid: {fileID: 1798065910}
+  _state: {fileID: 1798065911}
 --- !u!1 &1798997866
 GameObject:
   m_ObjectHideFlags: 0
