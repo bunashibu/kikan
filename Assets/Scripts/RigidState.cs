@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(RigidState))]
 public class RigidState : MonoBehaviour {
   public bool Ground {
     get {

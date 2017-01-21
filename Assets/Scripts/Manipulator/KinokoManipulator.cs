@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(GroundLinearMove))]
+[RequireComponent(typeof(GroundJump))]
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(RigidState))]
 public class KinokoManipulator : MonoBehaviour {
   void Update() {
     GroundLinearMoveUpdate();
