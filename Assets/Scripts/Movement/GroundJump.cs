@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class StepDownJumpSystem : MonoBehaviour {
+public class GroundJump : MonoBehaviour {
   void FixedUpdate() {
     if (_actFlag) {
       _rigid.AddForce(Vector2.up * _force);
@@ -9,10 +9,8 @@ public class StepDownJumpSystem : MonoBehaviour {
     }
   }
 
-  public void StepDown(BoxCollider2D collider) {
+  public void Jump() {
     _actFlag = true;
-    collider.isTrigger = true;
-    // ImplThroughGround
   }
 
   public void SetForce(float force) {

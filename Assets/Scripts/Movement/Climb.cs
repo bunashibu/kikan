@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ClimbSystem : MonoBehaviour {
+public class Climb : MonoBehaviour {
   void FixedUpdate() {
     if (_actFlag) {
       _rigid.AddForce(_inputVec * 30.0f);

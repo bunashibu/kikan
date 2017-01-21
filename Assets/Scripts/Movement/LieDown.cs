@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LieDownSystem : MonoBehaviour {
-  public void LieDown() {
+public class LieDown : MonoBehaviour {
+  public void Lie() {
     _collider.offset = new Vector2(0.0f, -0.2f);
     _collider.size = new Vector2(0.9f, 0.6f);
   }

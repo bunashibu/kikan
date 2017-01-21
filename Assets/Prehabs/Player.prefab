@@ -331,12 +331,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87dd30f2d824b9347a84e48a1654154f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _groundLinearSys: {fileID: 114000014284443414}
-  _groundJumpSys: {fileID: 114000010758099314}
-  _airLinearSys: {fileID: 114000012090888726}
-  _climbSys: {fileID: 114000013160521412}
-  _stepDownSys: {fileID: 114000011930408750}
-  _lieDownSys: {fileID: 114000013413255202}
+  _groundLinear: {fileID: 114000014284443414}
+  _groundJump: {fileID: 114000010758099314}
+  _airLinear: {fileID: 114000012090888726}
+  _climb: {fileID: 114000013160521412}
+  _stepDown: {fileID: 114000011930408750}
+  _lieDown: {fileID: 114000013413255202}
   _rigid: {fileID: 50000013460582292}
   _colliderFoot: {fileID: 61000010270929332}
   _state: {fileID: 114000010140605298}

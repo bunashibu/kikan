@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerMovementManipulator : MonoBehaviour {
+public class PlayerManipulator : MonoBehaviour {
   void Update() {
     GroundLinearMoveUpdate();
     GroundJumpUpdate();
@@ -14,63 +14,63 @@ public class PlayerMovementManipulator : MonoBehaviour {
   private void GroundLinearMoveUpdate() {
     if (_state.Ground) {
       if (Input.GetKey(KeyCode.LeftArrow))
-        _groundLinearSys.MoveLeft();
+        _groundLinear.MoveLeft();
 
       if (Input.GetKey(KeyCode.RightArrow))
-        _groundLinearSys.MoveRight();
+        _groundLinear.MoveRight();
     }
   }
 
   private void GroundJumpUpdate() {
     if (_state.Ground && _state.Stand) {
       if (Input.GetButton("Jump"))
-        _groundJumpSys.Jump();
+        _groundJump.Jump();
     }
   }
 
   private void AirLinearMoveUpdate() {
     if (_state.Air) {
       if (Input.GetKey(KeyCode.LeftArrow))
-        _airLinearSys.MoveLeft();
+        _airLinear.MoveLeft();
 
       if (Input.GetKey(KeyCode.RightArrow))
-        _airLinearSys.MoveRight();
+        _airLinear.MoveRight();
     }
   }
 
   private void ClimbUpdate() {
     if (_state.Ladder) {
       if (Input.GetKey(KeyCode.UpArrow))
-        _climbSys.MoveUp();
+        _climb.MoveUp();
 
       if (Input.GetKey(KeyCode.DownArrow))
-        _climbSys.MoveDown();
+        _climb.MoveDown();
     }
   }
 
   private void StepDownJumpUpdate() {
     if (_state.LieDown) {
       if (Input.GetButton("Jump"))
-        _stepDownSys.StepDown(_colliderFoot);
+        _stepDown.StepDown(_colliderFoot);
     }
   }
 
   private void LieDownUpdate() {
     if (_state.Stand || _state.LieDown) {
       if (Input.GetKey(KeyCode.DownArrow))
-        _lieDownSys.LieDown();
+        _lieDown.Lie();
 
       if (Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKey(KeyCode.UpArrow))
-        _lieDownSys.Stay();
+        _lieDown.Stay();
     }
   }
 
-  [SerializeField] private GroundLinearMoveSystem _groundLinearSys;
-  [SerializeField] private GroundJumpSystem _groundJumpSys;
-  [SerializeField] private AirLinearMoveSystem _airLinearSys;
-  [SerializeField] private ClimbSystem _climbSys;
-  [SerializeField] private StepDownJumpSystem _stepDownSys;
-  [SerializeField] private LieDownSystem _lieDownSys;
+  [SerializeField] private GroundLinearMove _groundLinear;
+  [SerializeField] private GroundJump _groundJump;
+  [SerializeField] private AirLinearMove _airLinear;
+  [SerializeField] private Climb _climb;
+  [SerializeField] private StepDownJump _stepDown;
+  [SerializeField] private LieDown _lieDown;
   [SerializeField] private Rigidbody2D _rigid;
   [SerializeField] private BoxCollider2D _colliderFoot;
   [SerializeField] private RigidState _state;

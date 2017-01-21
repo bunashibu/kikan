@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GroundLinearMoveSystem : MonoBehaviour {
+public class AirLinearMove : MonoBehaviour {
   void FixedUpdate() {
     if (_actFlag) {
       if (System.Math.Abs(_rigid.velocity.x) <= _limit)
