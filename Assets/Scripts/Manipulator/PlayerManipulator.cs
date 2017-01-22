@@ -15,12 +15,18 @@ using System.Collections;
 [RequireComponent(typeof(Animator))]
 public class PlayerManipulator : MonoBehaviour {
   void Update() {
+    AnimStateUpdate();
+
     GroundLinearMoveUpdate();
     GroundJumpUpdate();
     AirLinearMoveUpdate();
     ClimbUpdate();
     StepDownJumpUpdate();
     LieDownUpdate();
+  }
+
+  private void AnimStateUpdate() {
+    _animState = _anim.GetCurrentAnimatorStateInfo(0);
   }
 
   private void GroundLinearMoveUpdate() {
@@ -38,7 +44,7 @@ public class PlayerManipulator : MonoBehaviour {
   }
 
   private void GroundJumpUpdate() {
-    if (_rigidState.Ground && !_playerState.LieDown && !_playerState.Skill) {
+    if (_rigidState.Ground && !_animState.IsName("LieDown") && !_animState.IsName("Jump")) {
       if (Input.GetButton("Jump"))
         _groundJump.Jump();
     }
@@ -69,23 +75,19 @@ public class PlayerManipulator : MonoBehaviour {
   }
 
   private void StepDownJumpUpdate() {
-    if (_playerState.LieDown) {
+    if (_animState.IsName("LieDown")) {
       if (Input.GetButton("Jump"))
         _stepDown.StepDown(_colliderFoot);
     }
   }
 
   private void LieDownUpdate() {
-    if (_playerState.Idle || _playerState.LieDown) {
-      if (Input.GetKey(KeyCode.DownArrow)) {
+    if (_animState.IsName("Idle") || _animState.IsName("LieDown")) {
+      if (Input.GetKey(KeyCode.DownArrow))
         _lieDown.Lie();
-        _playerState.LieDown = true;
-      }
 
-      if (Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKey(KeyCode.UpArrow)) {
+      if (Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKey(KeyCode.UpArrow))
         _lieDown.Stay();
-        _playerState.LieDown = false;
-      }
     }
   }
 
@@ -98,8 +100,8 @@ public class PlayerManipulator : MonoBehaviour {
   [SerializeField] private Rigidbody2D _rigid;
   [SerializeField] private BoxCollider2D _colliderFoot;
   [SerializeField] private RigidState _rigidState;
-  [SerializeField] private PlayerState _playerState;
   [SerializeField] private SpriteRenderer _renderer;
   [SerializeField] private Animator _anim;
+  private AnimatorStateInfo _animState;
 }
 
