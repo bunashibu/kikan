@@ -9,8 +9,7 @@ public class StepDownJump : MonoBehaviour {
     }
   }
 
-  public void StepDown(BoxCollider2D collider, Animator anim, string name) {
-    anim.SetTrigger(name);
+  public void StepDown(BoxCollider2D collider) {
     _actFlag = true;
     collider.isTrigger = true;
     // ImplThroughGround

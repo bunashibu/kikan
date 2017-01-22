@@ -11,8 +11,7 @@ public class GroundLinearMove : MonoBehaviour {
     }
   }
 
-  public void MoveLeft(Animator anim, string name) {
-    anim.SetTrigger(name);
+  public void MoveLeft() {
     _actFlag = true;
 
     _inputVec.x -= 1;
@@ -20,8 +19,7 @@ public class GroundLinearMove : MonoBehaviour {
       _inputVec.x = -1;
   }
 
-  public void MoveRight(Animator anim, string name) {
-    anim.SetTrigger(name);
+  public void MoveRight() {
     _actFlag = true;
 
     _inputVec.x += 1;

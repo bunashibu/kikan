@@ -32,12 +32,14 @@ public class PlayerManipulator : MonoBehaviour {
   private void GroundLinearMoveUpdate() {
     if (_rigidState.Ground) {
       if (Input.GetKey(KeyCode.LeftArrow)) {
-        _groundLinear.MoveLeft(_anim, "ToWalk");
+        _groundLinear.MoveLeft();
+        _anim.SetTrigger("ToWalk");
         _renderer.flipX = false;
       }
 
       if (Input.GetKey(KeyCode.RightArrow)) {
-        _groundLinear.MoveRight(_anim, "ToWalk");
+        _groundLinear.MoveRight();
+        _anim.SetTrigger("ToWalk");
         _renderer.flipX = true;
       }
     }
@@ -45,8 +47,10 @@ public class PlayerManipulator : MonoBehaviour {
 
   private void GroundJumpUpdate() {
     if (_rigidState.Ground && !_animState.IsName("LieDown") && !_animState.IsName("Jump")) {
-      if (Input.GetButton("Jump"))
-        _groundJump.Jump(_anim, "ToJump");
+      if (Input.GetButton("Jump")) {
+        _groundJump.Jump();
+        _anim.SetTrigger("ToJump");
+      }
     }
   }
 
@@ -76,18 +80,24 @@ public class PlayerManipulator : MonoBehaviour {
 
   private void StepDownJumpUpdate() {
     if (_animState.IsName("LieDown")) {
-      if (Input.GetButton("Jump"))
-        _stepDown.StepDown(_colliderFoot, _anim, "Jump");
+      if (Input.GetButton("Jump")) {
+        _stepDown.StepDown(_colliderFoot);
+        _anim.SetTrigger("Jump");
+      }
     }
   }
 
   private void LieDownUpdate() {
     if (_animState.IsName("Idle") || _animState.IsName("LieDown")) {
-      if (Input.GetKey(KeyCode.DownArrow))
-        _lieDown.Lie(_anim, "ToLieDown");
+      if (Input.GetKey(KeyCode.DownArrow)) {
+        _lieDown.Lie();
+        _anim.SetTrigger("LieDown");
+      }
 
-      if (Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKey(KeyCode.UpArrow))
-        _lieDown.Stay(_anim, "ToIdle");
+      if (Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKey(KeyCode.UpArrow)) {
+        _lieDown.Stay();
+        _anim.SetTrigger("Idle");
+      }
     }
   }
 
