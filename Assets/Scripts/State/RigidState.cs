@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(RigidState))]
+[RequireComponent(typeof(BoxCollider2D))]
 public class RigidState : MonoBehaviour {
   public bool Ground {
     get {
@@ -16,29 +15,16 @@ public class RigidState : MonoBehaviour {
     }
   }
 
-  public bool Stand {
-    get {
-      return !LieDown;
-    }
-  }
-
-  public bool LieDown {
-    get {
-      return false;
-    }
-  }
-
   public bool Ladder {
     get {
       return _colliderBody.IsTouchingLayers(_ladderLayer);
     }
   }
 
-  public bool Slow { get; private set; }
-  public bool Heavy { get; private set; }
-  public bool Immobile { get; private set; }
+  public bool Slow { get; set; }
+  public bool Heavy { get; set; }
+  public bool Immobile { get; set; }
 
-  [SerializeField] private Rigidbody2D _rigid;
   [SerializeField] private BoxCollider2D _colliderBody;
   [SerializeField] private BoxCollider2D _colliderFoot;
   [SerializeField] private LayerMask _groundLayer;

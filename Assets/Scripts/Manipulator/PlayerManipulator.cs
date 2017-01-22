@@ -10,7 +10,9 @@ using System.Collections;
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(BoxCollider2D))]
 [RequireComponent(typeof(RigidState))]
+[RequireComponent(typeof(PlayerState))]
 [RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(Animator))]
 public class PlayerManipulator : MonoBehaviour {
   void Update() {
     GroundLinearMoveUpdate();
@@ -22,7 +24,7 @@ public class PlayerManipulator : MonoBehaviour {
   }
 
   private void GroundLinearMoveUpdate() {
-    if (_state.Ground) {
+    if (_rigidState.Ground) {
       if (Input.GetKey(KeyCode.LeftArrow)) {
         _groundLinear.MoveLeft();
         _renderer.flipX = false;
@@ -36,14 +38,14 @@ public class PlayerManipulator : MonoBehaviour {
   }
 
   private void GroundJumpUpdate() {
-    if (_state.Ground && _state.Stand) {
+    if (_rigidState.Ground && !_playerState.LieDown && !_playerState.Skill) {
       if (Input.GetButton("Jump"))
         _groundJump.Jump();
     }
   }
 
   private void AirLinearMoveUpdate() {
-    if (_state.Air) {
+    if (_rigidState.Air) {
       if (Input.GetKey(KeyCode.LeftArrow)) {
         _airLinear.MoveLeft();
         _renderer.flipX = false;
@@ -57,7 +59,7 @@ public class PlayerManipulator : MonoBehaviour {
   }
 
   private void ClimbUpdate() {
-    if (_state.Ladder) {
+    if (_rigidState.Ladder) {
       if (Input.GetKey(KeyCode.UpArrow))
         _climb.MoveUp();
 
@@ -67,24 +69,24 @@ public class PlayerManipulator : MonoBehaviour {
   }
 
   private void StepDownJumpUpdate() {
-    if (_state.LieDown) {
+    if (_playerState.LieDown) {
       if (Input.GetButton("Jump"))
         _stepDown.StepDown(_colliderFoot);
     }
   }
 
   private void LieDownUpdate() {
-    if (_state.Stand || _state.LieDown) {
-      if (Input.GetKey(KeyCode.DownArrow))
+    if (_playerState.Idle || _playerState.LieDown) {
+      if (Input.GetKey(KeyCode.DownArrow)) {
         _lieDown.Lie();
+        _playerState.LieDown = true;
+      }
 
-      if (Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKey(KeyCode.UpArrow))
+      if (Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKey(KeyCode.UpArrow)) {
         _lieDown.Stay();
+        _playerState.LieDown = false;
+      }
     }
-  }
-
-  private void FlipSprite() {
-    _renderer.flipX = !_renderer.flipX;
   }
 
   [SerializeField] private GroundLinearMove _groundLinear;
@@ -95,7 +97,9 @@ public class PlayerManipulator : MonoBehaviour {
   [SerializeField] private LieDown _lieDown;
   [SerializeField] private Rigidbody2D _rigid;
   [SerializeField] private BoxCollider2D _colliderFoot;
-  [SerializeField] private RigidState _state;
+  [SerializeField] private RigidState _rigidState;
+  [SerializeField] private PlayerState _playerState;
   [SerializeField] private SpriteRenderer _renderer;
+  [SerializeField] private Animator _anim;
 }
 

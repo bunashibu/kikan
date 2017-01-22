@@ -43,7 +43,6 @@ GameObject:
   - 61: {fileID: 61000010270929332}
   - 95: {fileID: 95000010494430044}
   - 50: {fileID: 50000013460582292}
-  - 114: {fileID: 114000011924668548}
   - 114: {fileID: 114000012855921744}
   - 114: {fileID: 114000011961942336}
   - 114: {fileID: 114000011648146592}
@@ -54,6 +53,7 @@ GameObject:
   - 114: {fileID: 114000014284443414}
   - 114: {fileID: 114000012090888726}
   - 114: {fileID: 114000013413255202}
+  - 114: {fileID: 114000012861491266}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -216,15 +216,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e343e3da8678874d997ea6bbd0d8f71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rigid: {fileID: 50000013460582292}
-  _colliderBody: {fileID: 61000011156448030}
-  _colliderFoot: {fileID: 61000010270929332}
-  _groundLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  _ladderLayer:
-    serializedVersion: 2
-    m_Bits: 1024
 --- !u!114 &114000010406804390
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -297,17 +288,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc09d9ceceb3ec244a161bcb2c3bd07f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114000011924668548
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011996982660}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cdc806f0fd453e4f92d2532f7a26edb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114000011930408750
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -339,7 +319,10 @@ MonoBehaviour:
   _lieDown: {fileID: 114000013413255202}
   _rigid: {fileID: 50000013460582292}
   _colliderFoot: {fileID: 61000010270929332}
-  _state: {fileID: 114000010140605298}
+  _rigidState: {fileID: 114000012861491266}
+  _playerState: {fileID: 114000010140605298}
+  _renderer: {fileID: 212000013636046964}
+  _anim: {fileID: 95000010494430044}
 --- !u!114 &114000012090888726
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -364,6 +347,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _anim: {fileID: 95000010494430044}
+--- !u!114 &114000012861491266
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011996982660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6138b839369cac4c943c69b429fc1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _colliderBody: {fileID: 61000011156448030}
+  _colliderFoot: {fileID: 61000011156448030}
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  _ladderLayer:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!114 &114000012949416784
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -9201,11 +9201,12 @@ GameObject:
   - 114: {fileID: 1798065904}
   - 114: {fileID: 1798065908}
   - 95: {fileID: 1798065909}
-  - 114: {fileID: 1798065911}
   - 50: {fileID: 1798065910}
   - 114: {fileID: 1798065915}
   - 114: {fileID: 1798065914}
   - 114: {fileID: 1798065913}
+  - 114: {fileID: 1798065916}
+  - 114: {fileID: 1798065911}
   m_Layer: 0
   m_Name: Kinoko
   m_TagString: Enemy
@@ -9341,18 +9342,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1798065903}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e343e3da8678874d997ea6bbd0d8f71, type: 3}
+  m_Script: {fileID: 11500000, guid: a6138b839369cac4c943c69b429fc1bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rigid: {fileID: 1798065910}
-  _colliderBody: {fileID: 1798065905}
-  _colliderFoot: {fileID: 1798065912}
+  _colliderBody: {fileID: 0}
+  _colliderFoot: {fileID: 0}
   _groundLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
   _ladderLayer:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 0
 --- !u!61 &1798065912
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9405,7 +9405,18 @@ MonoBehaviour:
   _groundLinear: {fileID: 1798065914}
   _groundJump: {fileID: 1798065913}
   _rigid: {fileID: 1798065910}
-  _state: {fileID: 1798065911}
+  _state: {fileID: 0}
+--- !u!114 &1798065916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1798065903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3efb7e38628021a468862bc5f5001d88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1798997866
 GameObject:
   m_ObjectHideFlags: 0
