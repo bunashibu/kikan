@@ -16,9 +16,11 @@ public class KinokoAI : MonoBehaviour {
   }
 
   private void Behave() {
+    /*
     _groundLinear.MoveLeft();
     _groundLinear.MoveRight();
     _groundJump.Jump();
+    */
   }
 
   [SerializeField] private GroundLinearMove _groundLinear;

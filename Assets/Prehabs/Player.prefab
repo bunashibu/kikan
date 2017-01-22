@@ -104,7 +104,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_BackGroundColor: {r: 0.3137255, g: 0.3137255, b: 0.3137255, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -320,7 +320,6 @@ MonoBehaviour:
   _rigid: {fileID: 50000013460582292}
   _colliderFoot: {fileID: 61000010270929332}
   _rigidState: {fileID: 114000012861491266}
-  _playerState: {fileID: 114000010140605298}
   _renderer: {fileID: 212000013636046964}
   _anim: {fileID: 95000010494430044}
 --- !u!114 &114000012090888726

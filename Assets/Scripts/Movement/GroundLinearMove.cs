@@ -11,18 +11,20 @@ public class GroundLinearMove : MonoBehaviour {
     }
   }
 
-  public void MoveLeft() {
+  public void MoveLeft(Animator anim, string name) {
+    anim.SetTrigger(name);
     _actFlag = true;
-    _inputVec.x -= 1;
 
+    _inputVec.x -= 1;
     if (_inputVec.x < -1)
       _inputVec.x = -1;
   }
 
-  public void MoveRight() {
+  public void MoveRight(Animator anim, string name) {
+    anim.SetTrigger(name);
     _actFlag = true;
-    _inputVec.x += 1;
 
+    _inputVec.x += 1;
     if (_inputVec.x > 1)
       _inputVec.x = 1;
   }

@@ -9,7 +9,8 @@ public class GroundJump : MonoBehaviour {
     }
   }
 
-  public void Jump() {
+  public void Jump(Animator anim, string name) {
+    anim.SetTrigger(name);
     _actFlag = true;
   }
 

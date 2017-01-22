@@ -2,12 +2,14 @@
 using System.Collections;
 
 public class LieDown : MonoBehaviour {
-  public void Lie() {
+  public void Lie(Animator anim, string name) {
+    anim.SetTrigger(name);
     _collider.offset = new Vector2(0.0f, -0.2f);
     _collider.size = new Vector2(0.9f, 0.6f);
   }
 
-  public void Stay() {
+  public void Stay(Animator anim, string name) {
+    anim.SetTrigger(name);
     _collider.offset = new Vector2(0.0f, -0.05f);
     _collider.size = new Vector2(0.6f, 0.9f);
   }
