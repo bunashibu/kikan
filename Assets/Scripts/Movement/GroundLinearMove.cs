@@ -8,6 +8,7 @@ public class GroundLinearMove : MonoBehaviour {
         _rigid.AddForce(_inputVec * _force);
 
       _actFlag = false;
+      _inputVec.x = 0;
     }
   }
 
