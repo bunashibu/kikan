@@ -7,6 +7,8 @@ public class WalkLeftSMB : StateMachineBehaviour {
       _rigidState = animator.GetComponent<RigidState>();
       _linearMove = animator.GetComponent<GroundLinearMove>();
     }
+
+    Debug.Log("left");
   }
 
   override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
@@ -51,7 +53,7 @@ public class WalkLeftSMB : StateMachineBehaviour {
 
   private void AirUpdate(Animator animator) {
     animator.SetBool("Fall", true);
-    animator.SetBool("Idle", false);
+    animator.SetBool("WalkLeft", false);
   }
 
   private RigidState _rigidState;

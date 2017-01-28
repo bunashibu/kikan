@@ -8,12 +8,17 @@ public class GroundJumpSMB : StateMachineBehaviour {
       _jump = animator.GetComponent<GroundJump>();
     }
 
+    Debug.Log("jump");
+    _transitionFlag = false;
     _jump.Jump();
   }
 
   override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-    if (_rigidState.Ground)
+    if (_rigidState.Ground && _transitionFlag)
       GroundUpdate(animator);
+
+    if (_rigidState.Air)
+      _transitionFlag = true;
   }
 
   private void GroundUpdate(Animator animator) {
@@ -30,6 +35,7 @@ public class GroundJumpSMB : StateMachineBehaviour {
     }
 
     if (Input.GetButton("Jump")) {
+      _transitionFlag = false;
       _jump.Jump();
       return;
     } else {
@@ -41,5 +47,6 @@ public class GroundJumpSMB : StateMachineBehaviour {
 
   private RigidState _rigidState;
   private GroundJump _jump;
+  private bool _transitionFlag;
 }
 

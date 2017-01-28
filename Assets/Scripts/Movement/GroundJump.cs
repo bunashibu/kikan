@@ -4,6 +4,7 @@ using System.Collections;
 public class GroundJump : MonoBehaviour {
   void FixedUpdate() {
     if (_actFlag) {
+      _rigid.velocity = new Vector2(_rigid.velocity.x, 0);
       _rigid.AddForce(Vector2.up * _force);
       _actFlag = false;
     }

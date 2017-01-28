@@ -5,6 +5,8 @@ public class FallSMB : StateMachineBehaviour {
   override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
     if (_rigidState == null)
       _rigidState = animator.GetComponent<RigidState>();
+
+    Debug.Log("Fall");
   }
 
   override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
