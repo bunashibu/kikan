@@ -10,50 +10,46 @@ public class GroundJumpSMB : StateMachineBehaviour {
     }
 
     Debug.Log("jump");
-    _transitionFlag = false;
     _jump.Jump();
   }
 
   override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-    if (_rigidState.Ground && _transitionFlag)
+    if (_rigidState.Ground)
       GroundUpdate(animator);
-
-    if (_rigidState.Air || _rigidState.Ladder)
-      _transitionFlag = true;
   }
 
   private void GroundUpdate(Animator animator) {
-    if (Input.GetButton("Jump")) {
-      _transitionFlag = false;
+    bool OnlyLeftKeyDown  = Input.GetKey(KeyCode.LeftArrow)  && !Input.GetKey(KeyCode.RightArrow);
+    bool OnlyRightKeyDown = Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow);
+    bool JumpButtonDown   = Input.GetButton("Jump");
+
+    if (JumpButtonDown) {
       _jump.Jump();
 
-      if (Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow))
-        _linearMove.MoveLeft();
+      if (OnlyLeftKeyDown)  _linearMove.MoveLeft();
+      if (OnlyRightKeyDown) _linearMove.MoveRight();
 
-      if (Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow))
-        _linearMove.MoveRight();
-
-    } else {
-      if (Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow)) {
-        animator.SetBool("WalkLeft", true);
-        animator.SetBool("GroundJump", false);
-        return;
-      }
-
-      if (Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow)) {
-        animator.SetBool("WalkRight", true);
-        animator.SetBool("GroundJump", false);
-        return;
-      }
-
-      animator.SetBool("Idle", true);
-      animator.SetBool("GroundJump", false);
+      return;
     }
+
+    if (OnlyLeftKeyDown) {
+      animator.SetBool("WalkLeft", true);
+      animator.SetBool("GroundJump", false);
+      return;
+    }
+
+    if (OnlyRightKeyDown) {
+      animator.SetBool("WalkRight", true);
+      animator.SetBool("GroundJump", false);
+      return;
+    }
+
+    animator.SetTrigger("ToIdle");
+    animator.SetBool("GroundJump", false);
   }
 
   private RigidState _rigidState;
   private GroundJump _jump;
   private GroundLinearMove _linearMove;
-  private bool _transitionFlag;
 }
 

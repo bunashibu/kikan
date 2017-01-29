@@ -9282,6 +9282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6138b839369cac4c943c69b429fc1bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rigid: {fileID: 0}
   _colliderBody: {fileID: 0}
   _groundLayerName: 
   _ladderLayer:

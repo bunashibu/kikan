@@ -14,38 +14,33 @@ public class WalkRightSMB : StateMachineBehaviour {
   override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
     _linearMove.MoveRight();
 
-    if (_rigidState.Ground) {
+    if (_rigidState.Ground)
       GroundUpdate(animator);
-      return;
-    }
 
-    if (_rigidState.Air || _rigidState.Ladder) {
+    else if (_rigidState.Air || _rigidState.Ladder)
       AirUpdate(animator);
-      return;
-    }
   }
 
   private void GroundUpdate(Animator animator) {
-    if (Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow)) {
+    bool OnlyLeftKeyDown  = Input.GetKey(KeyCode.LeftArrow)  && !Input.GetKey(KeyCode.RightArrow);
+    bool JumpButtonDown   = Input.GetButton("Jump");
+    bool LeftKeyDown      = Input.GetKeyDown(KeyCode.LeftArrow);
+    bool RightKeyUp       = Input.GetKeyUp(KeyCode.RightArrow);
+
+    if (OnlyLeftKeyDown) {
       animator.SetBool("WalkLeft", true);
       animator.SetBool("WalkRight", false);
       return;
     }
 
-    if (Input.GetButton("Jump")) {
+    if (JumpButtonDown) {
       animator.SetBool("GroundJump", true);
       animator.SetBool("WalkRight", false);
       return;
     }
 
-    if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.RightArrow)) {
-      animator.SetBool("Idle", true);
-      animator.SetBool("WalkRight", false);
-      return;
-    }
-
-    if (Input.GetKeyUp(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow)) {
-      animator.SetBool("Idle", true);
+    if (RightKeyUp || LeftKeyDown) {
+      animator.SetTrigger("ToIdle");
       animator.SetBool("WalkRight", false);
       return;
     }
