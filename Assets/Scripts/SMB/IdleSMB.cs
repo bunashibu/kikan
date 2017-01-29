@@ -15,7 +15,7 @@ public class IdleSMB : StateMachineBehaviour {
       return;
     }
 
-    if (_rigidState.Air) {
+    if (_rigidState.Air || _rigidState.Ladder) {
       AirUpdate(animator);
       return;
     }

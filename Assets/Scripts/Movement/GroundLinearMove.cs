@@ -4,8 +4,8 @@ using System.Collections;
 public class GroundLinearMove : MonoBehaviour {
   void FixedUpdate() {
     if (_actFlag) {
-      if (System.Math.Abs(_rigid.velocity.x) <= _limit)
-        _rigid.AddForce(_inputVec * _force);
+      _rigid.velocity = new Vector2(0, _rigid.velocity.y);
+      _rigid.AddForce(_inputVec * _force);
 
       _actFlag = false;
       _inputVec.x = 0;
@@ -32,13 +32,8 @@ public class GroundLinearMove : MonoBehaviour {
     _force = force;
   }
 
-  public void SetLimit(float limit) {
-    _limit = limit;
-  }
-
   [SerializeField] private Rigidbody2D _rigid;
   private float _force;
-  private float _limit;
   private bool _actFlag;
   private Vector2 _inputVec;
 }

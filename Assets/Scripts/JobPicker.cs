@@ -47,7 +47,6 @@ public class JobPicker : MonoBehaviour {
     var jump = _player.GetComponent<GroundJump>();
 
     linearMove.SetForce(_data[n].spd);
-    linearMove.SetLimit(2);
     jump.SetForce(_data[n].jmp);
   }
 

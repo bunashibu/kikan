@@ -3,11 +3,17 @@ using System.Collections;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class RigidState : MonoBehaviour {
-  public bool Ground {
-    get {
-      return _colliderFoot.IsTouchingLayers(_groundLayer);
-    }
+  void OnCollisionEnter2D(Collision2D collision) {
+    if (collision.gameObject.layer == LayerMask.NameToLayer(_groundLayerName))
+      Ground = true;
   }
+
+  void OnCollisionExit2D(Collision2D collision) {
+    if (collision.gameObject.layer == LayerMask.NameToLayer(_groundLayerName))
+      Ground = false;
+  }
+
+  public bool Ground { get; private set; }
 
   public bool Air {
     get {
@@ -26,8 +32,7 @@ public class RigidState : MonoBehaviour {
   public bool Immobile { get; set; }
 
   [SerializeField] private BoxCollider2D _colliderBody;
-  [SerializeField] private BoxCollider2D _colliderFoot;
-  [SerializeField] private LayerMask _groundLayer;
+  [SerializeField] private string _groundLayerName;
   [SerializeField] private LayerMask _ladderLayer;
 }
 
