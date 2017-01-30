@@ -4,7 +4,6 @@ using System.Collections;
 [RequireComponent(typeof(GroundLinearMove))]
 [RequireComponent(typeof(GroundJump))]
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(KinokoState))]
 public class KinokoAI : MonoBehaviour {
   void Update() {
     StateUpdate();
@@ -26,6 +25,5 @@ public class KinokoAI : MonoBehaviour {
   [SerializeField] private GroundLinearMove _groundLinear;
   [SerializeField] private GroundJump _groundJump;
   [SerializeField] private Rigidbody2D _rigid;
-  [SerializeField] private KinokoState _state;
 }
 

@@ -4,23 +4,18 @@ using System.Collections;
 public class StepDownJump : MonoBehaviour {
   void FixedUpdate() {
     if (_actFlag) {
-      _rigid.AddForce(Vector2.up * _force);
+      _rigid.velocity = new Vector2(_rigid.velocity.x, 0);
+      _rigid.AddForce(Vector2.up * 200.0f);
       _actFlag = false;
     }
   }
 
-  public void StepDown(BoxCollider2D collider) {
+  public void StepDown(BoxCollider2D colliderFoot) {
     _actFlag = true;
-    collider.isTrigger = true;
-    // ImplThroughGround
-  }
-
-  public void SetForce(float force) {
-    _force = force;
+    colliderFoot.isTrigger = true;
   }
 
   [SerializeField] private Rigidbody2D _rigid;
-  private float _force;
   private bool _actFlag;
 }
 

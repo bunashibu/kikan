@@ -2,57 +2,47 @@
 using System.Collections;
 
 public class StepDownJumpSMB : StateMachineBehaviour {
-  /*
   override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
     if (_rigidState == null) {
       _rigidState = animator.GetComponent<RigidState>();
+      _colliderFoot = animator.GetComponent<BoxCollider2D>();
+      _airLinearMove = animator.GetComponent<AirLinearMove>();
       _jump = animator.GetComponent<StepDownJump>();
     }
 
-    _transitionFlag = false;
-    _jump.StepDown();
+    Debug.Log("StepDown");
+    _jump.StepDown(_colliderFoot);
   }
 
   override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-    if (_rigidState.Ground && _transitionFlag)
+    if (_rigidState.Ground)
       GroundUpdate(animator);
 
-    if (_rigidState.Air || _rigidState.Ladder)
-      _transitionFlag = true;
+    if (_rigidState.Air)
+      AirUpdate();
   }
 
   private void GroundUpdate(Animator animator) {
-    if (Input.GetButton("Jump")) {
-      _transitionFlag = false;
-      _jump.Jump();
+    _colliderFoot.isTrigger = false;
+    ActTransition("Fall", animator);
+  }
 
-      if (Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow))
-        _linearMove.MoveLeft();
+  private void AirUpdate() {
+    bool OnlyLeftKeyDown  = Input.GetKey(KeyCode.LeftArrow)  && !Input.GetKey(KeyCode.RightArrow);
+    bool OnlyRightKeyDown = Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow);
 
-      if (Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow))
-        _linearMove.MoveRight();
+    if (OnlyLeftKeyDown)  _airLinearMove.MoveLeft();
+    if (OnlyRightKeyDown) _airLinearMove.MoveRight();
+  }
 
-    } else {
-      if (Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow)) {
-        animator.SetBool("WalkLeft", true);
-        animator.SetBool("GroundJump", false);
-        return;
-      }
-
-      if (Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow)) {
-        animator.SetBool("WalkRight", true);
-        animator.SetBool("GroundJump", false);
-        return;
-      }
-
-      animator.SetBool("Idle", true);
-      animator.SetBool("GroundJump", false);
-    }
+  private void ActTransition(string stateName, Animator animator) {
+    animator.SetBool(stateName, true);
+    animator.SetBool("StepDownJump", false);
   }
 
   private RigidState _rigidState;
+  private BoxCollider2D _colliderFoot;
   private StepDownJump _jump;
-  private bool _transitionFlag;
-  */
+  private AirLinearMove _airLinearMove;
 }
 
