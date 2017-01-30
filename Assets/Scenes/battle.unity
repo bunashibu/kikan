@@ -9340,7 +9340,6 @@ MonoBehaviour:
   _groundLinear: {fileID: 1798065914}
   _groundJump: {fileID: 1798065913}
   _rigid: {fileID: 1798065910}
-  _state: {fileID: 0}
 --- !u!114 &1798065916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9352,6 +9351,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3efb7e38628021a468862bc5f5001d88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Idle>k__BackingField: 0
+  <MoveLeft>k__BackingField: 0
+  <MoveRight>k__BackingField: 0
+  <Jump>k__BackingField: 0
 --- !u!1 &1798997866
 GameObject:
   m_ObjectHideFlags: 0
