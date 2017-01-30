@@ -24,33 +24,19 @@ public class LieDownSMB : StateMachineBehaviour {
     bool DownKeyUp        = Input.GetKeyUp(KeyCode.DownArrow);
     bool UpKeyDown        = Input.GetKeyDown(KeyCode.UpArrow);
 
-    if (OnlyLeftKeyDown) {
-      animator.SetBool("WalkLeft", true);
-      animator.SetBool("LieDown", false);
-      return;
-    }
-
-    if (OnlyRightKeyDown) {
-      animator.SetBool("WalkRight", true);
-      animator.SetBool("LieDown", false);
-      return;
-    }
-
-    if (JumpButtonDown) {
-      animator.SetBool("ToStepDownJump", true);
-      animator.SetBool("LieDown", false);
-      return;
-    }
-
-    if (DownKeyUp || UpKeyDown) {
-      animator.SetTrigger("ToIdle");
-      animator.SetBool("LieDown", false);
-      return;
-    }
+    if (OnlyLeftKeyDown)        { ActTransition("WalkLeft", animator);     return; }
+    if (OnlyRightKeyDown)       { ActTransition("WalkRight", animator);    return; }
+    if (JumpButtonDown)         { ActTransition("StepDownJump", animator); return; }
+    if (DownKeyUp || UpKeyDown) { ActTransition("Idle", animator);         return; }
   }
 
   private void AirUpdate(Animator animator) {
     animator.SetBool("Fall", true);
+    animator.SetBool("LieDown", false);
+  }
+
+  private void ActTransition(string stateName, Animator animator) {
+    animator.SetBool(stateName, true);
     animator.SetBool("LieDown", false);
   }
 

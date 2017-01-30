@@ -27,27 +27,18 @@ public class WalkRightSMB : StateMachineBehaviour {
     bool LeftKeyDown      = Input.GetKeyDown(KeyCode.LeftArrow);
     bool RightKeyUp       = Input.GetKeyUp(KeyCode.RightArrow);
 
-    if (OnlyLeftKeyDown) {
-      animator.SetBool("WalkLeft", true);
-      animator.SetBool("WalkRight", false);
-      return;
-    }
-
-    if (JumpButtonDown) {
-      animator.SetBool("GroundJump", true);
-      animator.SetBool("WalkRight", false);
-      return;
-    }
-
-    if (RightKeyUp || LeftKeyDown) {
-      animator.SetTrigger("ToIdle");
-      animator.SetBool("WalkRight", false);
-      return;
-    }
+    if (OnlyLeftKeyDown)           { ActTransition("WalkLeft", animator);   return; }
+    if (JumpButtonDown)            { ActTransition("GroundJump", animator); return; }
+    if (RightKeyUp || LeftKeyDown) { ActTransition("Idle", animator);       return; }
   }
 
   private void AirUpdate(Animator animator) {
     animator.SetBool("Fall", true);
+    animator.SetBool("WalkRight", false);
+  }
+
+  private void ActTransition(string stateName, Animator animator) {
+    animator.SetBool(stateName, true);
     animator.SetBool("WalkRight", false);
   }
 

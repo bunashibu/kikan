@@ -4,7 +4,7 @@ using System.Collections;
 public class GroundLinearMove : MonoBehaviour {
   void FixedUpdate() {
     if (_actFlag) {
-      _rigid.velocity = new Vector2(0, _rigid.velocity.y);
+      _rigid.velocity = new Vector2(0, _rigid.velocity.y); // like Aizen
       _rigid.AddForce(_inputVec * _force);
 
       _actFlag = false;
@@ -14,16 +14,16 @@ public class GroundLinearMove : MonoBehaviour {
 
   public void MoveLeft() {
     _actFlag = true;
-
     _inputVec.x -= 1;
+
     if (_inputVec.x < -1)
       _inputVec.x = -1;
   }
 
   public void MoveRight() {
     _actFlag = true;
-
     _inputVec.x += 1;
+
     if (_inputVec.x > 1)
       _inputVec.x = 1;
   }

@@ -23,14 +23,20 @@ public class IdleSMB : StateMachineBehaviour {
     bool OnlyDownKeyDown  = Input.GetKey(KeyCode.DownArrow)  && !Input.GetKey(KeyCode.UpArrow);
     bool JumpButtonDown   = Input.GetButton("Jump");
 
-    if (OnlyLeftKeyDown ) { animator.SetBool("WalkLeft"  , true); return; }
-    if (OnlyRightKeyDown) { animator.SetBool("WalkRight" , true); return; }
-    if (OnlyDownKeyDown ) { animator.SetBool("LieDown"   , true); return; }
-    if (JumpButtonDown  ) { animator.SetBool("GroundJump", true); return; }
+    if (OnlyLeftKeyDown)  { ActTransition("WalkLeft", animator);   return; }
+    if (OnlyRightKeyDown) { ActTransition("WalkRight", animator);  return; }
+    if (OnlyDownKeyDown)  { ActTransition("LieDown", animator);    return; }
+    if (JumpButtonDown)   { ActTransition("GroundJump", animator); return; }
   }
 
   private void AirUpdate(Animator animator) {
     animator.SetBool("Fall", true);
+    animator.SetBool("Idle", false);
+  }
+
+  private void ActTransition(string stateName, Animator animator) {
+    animator.SetBool(stateName, true);
+    animator.SetBool("Idle", false);
   }
 
   private RigidState _rigidState;

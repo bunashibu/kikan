@@ -8,8 +8,8 @@ AnimatorController:
   m_Name: character
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: ToIdle
-    m_Type: 9
+  - m_Name: Idle
+    m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
@@ -172,6 +172,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: LieDown
     m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: Idle
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102000013445551592}
   m_Solo: 0
@@ -242,7 +245,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: ToIdle
+    m_ConditionEvent: Idle
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102000011574983272}
@@ -373,6 +376,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: GroundJump
     m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: Idle
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102000010456909338}
   m_Solo: 0
@@ -397,6 +403,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: WalkRight
     m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: Idle
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102000014245305778}
   m_Solo: 0
@@ -420,6 +429,9 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: WalkLeft
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: Idle
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102000013089852836}

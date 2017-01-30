@@ -15,7 +15,7 @@ public class FallSMB : StateMachineBehaviour {
   }
 
   private void GroundUpdate(Animator animator) {
-    animator.SetTrigger("ToIdle");
+    animator.SetBool("Idle", true);
     animator.SetBool("Fall", false);
   }
 

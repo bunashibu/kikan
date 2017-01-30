@@ -4,10 +4,10 @@ using System.Collections;
 public class AirLinearMove : MonoBehaviour {
   void FixedUpdate() {
     if (_actFlag) {
-      if (System.Math.Abs(_rigid.velocity.x) <= _limit)
-        _rigid.AddForce(_inputVec * _force);
+      _rigid.AddForce(_inputVec * 2.0f);
 
       _actFlag = false;
+      _inputVec.x = 0;
     }
   }
 
@@ -27,17 +27,7 @@ public class AirLinearMove : MonoBehaviour {
       _inputVec.x = 1;
   }
 
-  public void SetForce(float force) {
-    _force = force;
-  }
-
-  public void SetLimit(float limit) {
-    _limit = limit;
-  }
-
   [SerializeField] private Rigidbody2D _rigid;
-  private float _force;
-  private float _limit;
   private bool _actFlag;
   private Vector2 _inputVec;
 }
