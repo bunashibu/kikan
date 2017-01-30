@@ -36,8 +36,7 @@ public class GroundJumpSMB : StateMachineBehaviour {
       return;
     }
 
-    if (OnlyLeftKeyDown)  { ActTransition("WalkLeft", animator);  return; }
-    if (OnlyRightKeyDown) { ActTransition("WalkRight", animator); return; }
+    if (OnlyLeftKeyDown || OnlyRightKeyDown) { ActTransition("Walk", animator); return; }
     ActTransition("Idle", animator);
   }
 

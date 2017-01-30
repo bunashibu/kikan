@@ -24,8 +24,7 @@ public class LieDownSMB : StateMachineBehaviour {
     bool DownKeyUp        = Input.GetKeyUp(KeyCode.DownArrow);
     bool UpKeyDown        = Input.GetKeyDown(KeyCode.UpArrow);
 
-    if (OnlyLeftKeyDown)        { ActTransition("WalkLeft", animator);     return; }
-    if (OnlyRightKeyDown)       { ActTransition("WalkRight", animator);    return; }
+    if (OnlyLeftKeyDown || OnlyRightKeyDown) { ActTransition("Walk", animator); return; }
     if (JumpButtonDown)         { ActTransition("StepDownJump", animator); return; }
     if (DownKeyUp || UpKeyDown) { ActTransition("Idle", animator);         return; }
   }

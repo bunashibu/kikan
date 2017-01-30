@@ -20,8 +20,7 @@ public class FallSMB : StateMachineBehaviour {
     bool OnlyDownKeyDown  = Input.GetKey(KeyCode.DownArrow)  && !Input.GetKey(KeyCode.UpArrow);
     bool JumpButtonDown   = Input.GetButton("Jump");
 
-    if (OnlyLeftKeyDown)  { ActTransition("WalkLeft", animator);   return; }
-    if (OnlyRightKeyDown) { ActTransition("WalkRight", animator);  return; }
+    if (OnlyLeftKeyDown || OnlyRightKeyDown) { ActTransition("Walk", animator); return; }
     if (OnlyDownKeyDown)  { ActTransition("LieDown", animator);    return; }
     if (JumpButtonDown)   { ActTransition("GroundJump", animator); return; }
     ActTransition("Idle", animator);
