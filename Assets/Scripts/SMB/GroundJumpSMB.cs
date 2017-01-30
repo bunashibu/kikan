@@ -11,11 +11,11 @@ public class GroundJumpSMB : StateMachineBehaviour {
     }
 
     Debug.Log("jump");
-    _jump.Jump();
+    GroundJump();
   }
 
   override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-    if (_rigidState.Ground)
+    if (_rigidState.Ground && _transitionFlag)
       GroundUpdate(animator);
 
     if (_rigidState.Air)
@@ -23,12 +23,13 @@ public class GroundJumpSMB : StateMachineBehaviour {
   }
 
   private void GroundUpdate(Animator animator) {
+    Debug.Log("Ground");
     bool OnlyLeftKeyDown  = Input.GetKey(KeyCode.LeftArrow)  && !Input.GetKey(KeyCode.RightArrow);
     bool OnlyRightKeyDown = Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow);
     bool JumpButtonDown   = Input.GetButton("Jump");
 
     if (JumpButtonDown) {
-      _jump.Jump();
+      GroundJump();
 
       if (OnlyLeftKeyDown)  _groundLinearMove.MoveLeft();
       if (OnlyRightKeyDown) _groundLinearMove.MoveRight();
@@ -41,6 +42,8 @@ public class GroundJumpSMB : StateMachineBehaviour {
   }
 
   private void AirUpdate() {
+    _transitionFlag = true;
+
     bool OnlyLeftKeyDown  = Input.GetKey(KeyCode.LeftArrow)  && !Input.GetKey(KeyCode.RightArrow);
     bool OnlyRightKeyDown = Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow);
 
@@ -53,9 +56,15 @@ public class GroundJumpSMB : StateMachineBehaviour {
     animator.SetBool("GroundJump", false);
   }
 
+  private void GroundJump() {
+    _transitionFlag = false;
+    _jump.Jump();
+  }
+
   private RigidState _rigidState;
   private GroundJump _jump;
   private GroundLinearMove _groundLinearMove;
   private AirLinearMove _airLinearMove;
+  private bool _transitionFlag;
 }
 

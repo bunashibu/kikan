@@ -31,8 +31,7 @@ public class LieDownSMB : StateMachineBehaviour {
   }
 
   private void AirUpdate(Animator animator) {
-    animator.SetBool("Fall", true);
-    animator.SetBool("LieDown", false);
+    ActTransition("Fall", animator);
   }
 
   private void ActTransition(string stateName, Animator animator) {

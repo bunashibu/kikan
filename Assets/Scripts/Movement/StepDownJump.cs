@@ -10,9 +10,8 @@ public class StepDownJump : MonoBehaviour {
     }
   }
 
-  public void StepDown(BoxCollider2D colliderFoot) {
+  public void StepDown() {
     _actFlag = true;
-    colliderFoot.isTrigger = true;
   }
 
   [SerializeField] private Rigidbody2D _rigid;

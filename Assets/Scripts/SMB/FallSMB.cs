@@ -22,8 +22,8 @@ public class FallSMB : StateMachineBehaviour {
 
     if (OnlyLeftKeyDown)  { ActTransition("WalkLeft", animator);   return; }
     if (OnlyRightKeyDown) { ActTransition("WalkRight", animator);  return; }
-    if (JumpButtonDown)   { ActTransition("GroundJump", animator); return; }
     if (OnlyDownKeyDown)  { ActTransition("LieDown", animator);    return; }
+    if (JumpButtonDown)   { ActTransition("GroundJump", animator); return; }
     ActTransition("Idle", animator);
   }
 
