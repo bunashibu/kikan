@@ -15,7 +15,20 @@ public class FallSMB : StateMachineBehaviour {
   }
 
   private void GroundUpdate(Animator animator) {
-    animator.SetBool("Idle", true);
+    bool OnlyLeftKeyDown  = Input.GetKey(KeyCode.LeftArrow)  && !Input.GetKey(KeyCode.RightArrow);
+    bool OnlyRightKeyDown = Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow);
+    bool OnlyDownKeyDown  = Input.GetKey(KeyCode.DownArrow)  && !Input.GetKey(KeyCode.UpArrow);
+    bool JumpButtonDown   = Input.GetButton("Jump");
+
+    if (OnlyLeftKeyDown)  { ActTransition("WalkLeft", animator);   return; }
+    if (OnlyRightKeyDown) { ActTransition("WalkRight", animator);  return; }
+    if (JumpButtonDown)   { ActTransition("GroundJump", animator); return; }
+    if (OnlyDownKeyDown)  { ActTransition("LieDown", animator);    return; }
+    ActTransition("Idle", animator);
+  }
+
+  private void ActTransition(string stateName, Animator animator) {
+    animator.SetBool(stateName, true);
     animator.SetBool("Fall", false);
   }
 

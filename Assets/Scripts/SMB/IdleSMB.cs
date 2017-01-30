@@ -30,8 +30,7 @@ public class IdleSMB : StateMachineBehaviour {
   }
 
   private void AirUpdate(Animator animator) {
-    animator.SetBool("Fall", true);
-    animator.SetBool("Idle", false);
+    ActTransition("Fall", animator);
   }
 
   private void ActTransition(string stateName, Animator animator) {
