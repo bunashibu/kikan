@@ -12,31 +12,30 @@ public class WalkSMB : StateMachineBehaviour {
   }
 
   override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-    if (_rigidState.Ground)
-      GroundUpdate(animator);
-
-    else if (_rigidState.Air || _rigidState.Ladder)
-      AirUpdate(animator);
-  }
-
-  private void GroundUpdate(Animator animator) {
     bool OnlyLeftKeyDown  = Input.GetKey(KeyCode.LeftArrow)  && !Input.GetKey(KeyCode.RightArrow);
     bool OnlyRightKeyDown = Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow);
     bool OnlyDownKeyDown  = Input.GetKey(KeyCode.DownArrow)  && !Input.GetKey(KeyCode.UpArrow);
+    bool OnlyUpKeyDown    = Input.GetKey(KeyCode.UpArrow)    && !Input.GetKey(KeyCode.DownArrow);
     bool JumpButtonDown   = Input.GetButton("Jump");
-    bool LeftKeyUp        = Input.GetKeyUp(KeyCode.LeftArrow);
-    bool RightKeyDown     = Input.GetKeyDown(KeyCode.RightArrow);
+    bool BothKeyDown      = Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.RightArrow);
+    bool OneKeyUp         = Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow);
 
-    if (OnlyLeftKeyDown)  _linearMove.MoveLeft();
-    if (OnlyRightKeyDown) _linearMove.MoveRight();
+    if (_rigidState.Ladder) {
+      if (OnlyUpKeyDown || OnlyDownKeyDown) { ActTransition("Climb", animator); return; }
+    }
 
-    if (OnlyDownKeyDown && JumpButtonDown) { ActTransition("StepDownJump", animator); return; }
-    if (JumpButtonDown)            { ActTransition("GroundJump", animator); return; }
-    if (LeftKeyUp || RightKeyDown) { ActTransition("Idle", animator);       return; }
-  }
+    if (_rigidState.Ground) {
+      if (OnlyLeftKeyDown)  _linearMove.MoveLeft();
+      if (OnlyRightKeyDown) _linearMove.MoveRight();
 
-  private void AirUpdate(Animator animator) {
-    ActTransition("Fall", animator);
+      if (OnlyDownKeyDown && JumpButtonDown) { ActTransition("StepDownJump", animator); return; }
+      if (JumpButtonDown)          { ActTransition("GroundJump", animator); return; }
+      if (BothKeyDown || OneKeyUp) { ActTransition("Idle", animator);       return; }
+    }
+
+    if (_rigidState.Air) {
+      ActTransition("Fall", animator); return;
+    }
   }
 
   private void ActTransition(string stateName, Animator animator) {

@@ -15,29 +15,23 @@ public class StepDownJumpSMB : StateMachineBehaviour {
   }
 
   override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-    if (_rigidState.Ground && _transitionFlag)
-      GroundUpdate();
-
-    if (_rigidState.Air)
-      AirUpdate(animator);
-  }
-
-  private void GroundUpdate() {
-    _fallFlag = true;
-  }
-
-  private void AirUpdate(Animator animator) {
-    _transitionFlag = true;
-
     bool OnlyLeftKeyDown  = Input.GetKey(KeyCode.LeftArrow)  && !Input.GetKey(KeyCode.RightArrow);
     bool OnlyRightKeyDown = Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow);
 
-    if (OnlyLeftKeyDown)  _airLinearMove.MoveLeft();
-    if (OnlyRightKeyDown) _airLinearMove.MoveRight();
+    if (_rigidState.Ground && _isAlreadyJumped) {
+      _fallFlag = true;
+    }
 
-    if (_fallFlag) {
-      _colliderFoot.isTrigger = false;
-      ActTransition("Fall", animator);
+    if (_rigidState.Air) {
+      _isAlreadyJumped = true;
+
+      if (OnlyLeftKeyDown)  _airLinearMove.MoveLeft();
+      if (OnlyRightKeyDown) _airLinearMove.MoveRight();
+
+      if (_fallFlag) {
+        _colliderFoot.isTrigger = false;
+        ActTransition("Fall", animator); return;
+      }
     }
   }
 
@@ -47,7 +41,7 @@ public class StepDownJumpSMB : StateMachineBehaviour {
   }
 
   private void StepDown() {
-    _transitionFlag = false;
+    _isAlreadyJumped = false;
     _fallFlag = false;
     _colliderFoot.isTrigger = true;
     _jump.StepDown();
@@ -57,7 +51,7 @@ public class StepDownJumpSMB : StateMachineBehaviour {
   private StepDownJump _jump;
   private AirLinearMove _airLinearMove;
   private BoxCollider2D _colliderFoot;
-  private bool _transitionFlag;
+  private bool _isAlreadyJumped;
   private bool _fallFlag;
 }
 

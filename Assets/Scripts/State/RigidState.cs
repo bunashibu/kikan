@@ -11,7 +11,7 @@ public class RigidState : MonoBehaviour {
 
   public bool Air {
     get {
-      return !Ground && !Ladder;
+      return !Ground;
     }
   }
 
