@@ -11,28 +11,34 @@ public class StepDownJumpSMB : StateMachineBehaviour {
     }
 
     Debug.Log("StepDown");
-    StepDown();
+
+    InitFlag();
+    _colliderFoot.isTrigger = true;
+    _jump.StepDown();
   }
 
   override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
     bool OnlyLeftKeyDown  = Input.GetKey(KeyCode.LeftArrow)  && !Input.GetKey(KeyCode.RightArrow);
     bool OnlyRightKeyDown = Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow);
 
-    if (_rigidState.Ground && _isAlreadyJumped) {
-      _fallFlag = true;
-    }
-
     if (_rigidState.Air) {
       _isAlreadyJumped = true;
 
       if (OnlyLeftKeyDown)  _airLinearMove.MoveLeft();
       if (OnlyRightKeyDown) _airLinearMove.MoveRight();
-
-      if (_fallFlag) {
-        _colliderFoot.isTrigger = false;
-        ActTransition("Fall", animator); return;
-      }
     }
+
+    if (_rigidState.Ground && _isAlreadyJumped) {
+      _fallFlag = true;
+    }
+
+    if (_rigidState.Air && _fallFlag) {
+      ActTransition("Fall", animator); return;
+    }
+  }
+
+  override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
+    _colliderFoot.isTrigger = false;
   }
 
   private void ActTransition(string stateName, Animator animator) {
@@ -40,11 +46,9 @@ public class StepDownJumpSMB : StateMachineBehaviour {
     animator.SetBool("StepDownJump", false);
   }
 
-  private void StepDown() {
+  private void InitFlag() {
     _isAlreadyJumped = false;
     _fallFlag = false;
-    _colliderFoot.isTrigger = true;
-    _jump.StepDown();
   }
 
   private RigidState _rigidState;
