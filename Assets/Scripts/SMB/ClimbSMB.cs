@@ -11,6 +11,7 @@ public class ClimbSMB : StateMachineBehaviour {
     }
 
     Debug.Log("climb");
+
     _rigid.isKinematic = true;
     _colliderFoot.isTrigger = true;
     _isTransferable = false;

@@ -4,7 +4,7 @@ using System.Collections;
 public class Climb : MonoBehaviour {
   void FixedUpdate() {
     if (_actFlag) {
-      _trans.Translate(_inputVec * 0.05f);
+      _trans.Translate(_inputVec * 0.04f);
       _actFlag = false;
     }
   }
