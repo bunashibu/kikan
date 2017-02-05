@@ -17,7 +17,19 @@ public class RigidState : MonoBehaviour {
 
   public bool Ladder {
     get {
-      return _colliderBody.IsTouchingLayers(_ladderLayer);
+      return _colliderCenter.IsTouchingLayers(_ladderLayer);
+    }
+  }
+
+  public bool LadderTopEdge {
+    get {
+      return _colliderFoot.IsTouchingLayers(_ladderTopEdgeLayer);
+    }
+  }
+
+  public bool LadderBottomEdge {
+    get {
+      return _colliderCenter.IsTouchingLayers(_ladderBottomEdgeLayer);
     }
   }
 
@@ -25,9 +37,11 @@ public class RigidState : MonoBehaviour {
   public bool Heavy { get; set; }
   public bool Immobile { get; set; }
 
-  [SerializeField] private BoxCollider2D _colliderBody;
+  [SerializeField] private BoxCollider2D _colliderCenter;
   [SerializeField] private BoxCollider2D _colliderFoot;
   [SerializeField] private LayerMask _groundLayer;
   [SerializeField] private LayerMask _ladderLayer;
+  [SerializeField] private LayerMask _ladderTopEdgeLayer;
+  [SerializeField] private LayerMask _ladderBottomEdgeLayer;
 }
 

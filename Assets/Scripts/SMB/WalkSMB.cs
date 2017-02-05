@@ -19,15 +19,17 @@ public class WalkSMB : StateMachineBehaviour {
     bool JumpButtonDown   = Input.GetButton("Jump");
     bool BothKeyDown      = Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.RightArrow);
     bool OneKeyUp         = Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow);
+    bool ClimbFlag = (OnlyUpKeyDown && !_rigidState.LadderTopEdge) ||
+                     (OnlyDownKeyDown && !_rigidState.LadderBottomEdge);
+
+    if (OnlyLeftKeyDown)  _linearMove.MoveLeft();
+    if (OnlyRightKeyDown) _linearMove.MoveRight();
 
     if (_rigidState.Ladder) {
-      if (OnlyUpKeyDown || OnlyDownKeyDown) { ActTransition("Climb", animator); return; }
+      if (ClimbFlag) { ActTransition("Climb", animator); return; }
     }
 
     if (_rigidState.Ground) {
-      if (OnlyLeftKeyDown)  _linearMove.MoveLeft();
-      if (OnlyRightKeyDown) _linearMove.MoveRight();
-
       if (OnlyDownKeyDown && JumpButtonDown) { ActTransition("StepDownJump", animator); return; }
       if (JumpButtonDown)          { ActTransition("GroundJump", animator); return; }
       if (BothKeyDown || OneKeyUp) { ActTransition("Idle", animator);       return; }

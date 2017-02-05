@@ -4,7 +4,7 @@ using System.Collections;
 public class Climb : MonoBehaviour {
   void FixedUpdate() {
     if (_actFlag) {
-      _rigid.AddForce(_inputVec * 30.0f);
+      _trans.Translate(_inputVec * 0.05f);
       _actFlag = false;
     }
   }
@@ -25,8 +25,8 @@ public class Climb : MonoBehaviour {
       _inputVec.y = -1;
   }
 
-  [SerializeField] private Rigidbody2D _rigid;
+  [SerializeField] private Transform _trans;
   private bool _actFlag;
-  private Vector2 _inputVec;
+  private Vector3 _inputVec;
 }
 

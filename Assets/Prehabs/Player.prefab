@@ -41,6 +41,7 @@ GameObject:
   - 212: {fileID: 212000013636046964}
   - 61: {fileID: 61000011156448030}
   - 61: {fileID: 61000010270929332}
+  - 61: {fileID: 61000013377866254}
   - 95: {fileID: 95000010494430044}
   - 50: {fileID: 50000013460582292}
   - 114: {fileID: 114000012855921744}
@@ -172,6 +173,20 @@ BoxCollider2D:
   m_Offset: {x: 0, y: -0.05}
   serializedVersion: 2
   m_Size: {x: 0.6, y: 0.9}
+--- !u!61 &61000013377866254
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011996982660}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: -0.275}
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 0.45}
 --- !u!81 &81000013860983582
 AudioListener:
   m_ObjectHideFlags: 1
@@ -322,7 +337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6138b839369cac4c943c69b429fc1bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _colliderBody: {fileID: 61000011156448030}
+  _colliderCenter: {fileID: 61000013377866254}
   _colliderFoot: {fileID: 61000010270929332}
   _groundLayer:
     serializedVersion: 2
@@ -330,6 +345,12 @@ MonoBehaviour:
   _ladderLayer:
     serializedVersion: 2
     m_Bits: 1024
+  _ladderTopEdgeLayer:
+    serializedVersion: 2
+    m_Bits: 2048
+  _ladderBottomEdgeLayer:
+    serializedVersion: 2
+    m_Bits: 4096
 --- !u!114 &114000012949416784
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -374,7 +395,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ecd6cd2bc7f29249a7f7866446161dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rigid: {fileID: 50000013460582292}
+  _trans: {fileID: 224000010966695226}
 --- !u!114 &114000013413255202
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -481,7 +502,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.60701084, y: -0.4175197}
+  m_AnchoredPosition: {x: -15.344, y: 6.264}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000014116680974

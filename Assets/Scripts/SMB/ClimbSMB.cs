@@ -11,7 +11,9 @@ public class ClimbSMB : StateMachineBehaviour {
     }
 
     Debug.Log("climb");
+    _rigid.isKinematic = true;
     _colliderFoot.isTrigger = true;
+    _isTransferable = false;
   }
 
   override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
@@ -20,22 +22,26 @@ public class ClimbSMB : StateMachineBehaviour {
     bool OnlyUpKeyDown    = Input.GetKey(KeyCode.UpArrow)    && !Input.GetKey(KeyCode.DownArrow);
     bool OnlyDownKeyDown  = Input.GetKey(KeyCode.DownArrow)  && !Input.GetKey(KeyCode.UpArrow);
 
-    if (_rigidState.Ladder) {
-      if (OnlyUpKeyDown)   _climb.MoveUp();
-      if (OnlyDownKeyDown) _climb.MoveDown();
-    }
+    if (OnlyUpKeyDown)   _climb.MoveUp();
+    if (OnlyDownKeyDown) _climb.MoveDown();
 
-    if (_rigidState.Ground) {
-      if (OnlyLeftKeyDown || OnlyRightKeyDown) { ActTransition("Walk", animator); return; }
-      ActTransition("Idle", animator); return;
-    }
+    if (_rigidState.Ladder)
+      _isTransferable = true;
 
-    if (_rigidState.Air) {
-      ActTransition("Fall", animator); return;
+    if (_isTransferable) {
+      // XXX : If rigid velocity is too fast, passing through ground will occur.
+      if (_rigidState.LadderBottomEdge && _rigidState.Ground) {
+        ActTransition("Idle", animator); return;
+      }
+
+      if (_rigidState.Air && !_rigidState.Ladder) {
+        ActTransition("Fall", animator); return;
+      }
     }
   }
 
   override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
+    _rigid.isKinematic = false;
     _colliderFoot.isTrigger = false;
   }
 
@@ -48,5 +54,6 @@ public class ClimbSMB : StateMachineBehaviour {
   private BoxCollider2D _colliderFoot;
   private RigidState _rigidState;
   private Climb _climb;
+  private bool _isTransferable;
 }
 
