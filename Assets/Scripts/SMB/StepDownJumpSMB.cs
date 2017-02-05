@@ -5,7 +5,6 @@ public class StepDownJumpSMB : StateMachineBehaviour {
   override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
     if (_rigidState == null) {
       _rigidState = animator.GetComponent<RigidState>();
-      _airLinearMove = animator.GetComponent<AirLinearMove>();
       _colliderFoot = animator.GetComponents<BoxCollider2D>()[1];
       _jump = animator.GetComponent<StepDownJump>();
     }
@@ -23,9 +22,6 @@ public class StepDownJumpSMB : StateMachineBehaviour {
 
     if (_rigidState.Air) {
       _isAlreadyJumped = true;
-
-      if (OnlyLeftKeyDown)  _airLinearMove.MoveLeft();
-      if (OnlyRightKeyDown) _airLinearMove.MoveRight();
     }
 
     if (_rigidState.Ground && _isAlreadyJumped) {
@@ -53,7 +49,6 @@ public class StepDownJumpSMB : StateMachineBehaviour {
 
   private RigidState _rigidState;
   private StepDownJump _jump;
-  private AirLinearMove _airLinearMove;
   private BoxCollider2D _colliderFoot;
   private bool _isAlreadyJumped;
   private bool _fallFlag;

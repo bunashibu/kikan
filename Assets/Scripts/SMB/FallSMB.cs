@@ -5,6 +5,7 @@ public class FallSMB : StateMachineBehaviour {
   override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
     if (_rigidState == null) {
       _rigidState = animator.GetComponent<RigidState>();
+      _renderer = animator.GetComponent<SpriteRenderer>();
       _airLinearMove = animator.GetComponent<AirLinearMove>();
     }
 
@@ -21,8 +22,8 @@ public class FallSMB : StateMachineBehaviour {
     bool ClimbFlag = (OnlyUpKeyDown && !_rigidState.LadderTopEdge) ||
                      (OnlyDownKeyDown && !_rigidState.LadderBottomEdge);
 
-    if (OnlyLeftKeyDown)  _airLinearMove.MoveLeft();
-    if (OnlyRightKeyDown) _airLinearMove.MoveRight();
+    if (OnlyLeftKeyDown)  { _airLinearMove.MoveLeft();  _renderer.flipX = false; }
+    if (OnlyRightKeyDown) { _airLinearMove.MoveRight(); _renderer.flipX = true;  }
 
     if (_rigidState.Ladder) {
       if (ClimbFlag) { ActTransition("Climb", animator); return; }
@@ -42,6 +43,7 @@ public class FallSMB : StateMachineBehaviour {
   }
 
   private RigidState _rigidState;
+  private SpriteRenderer _renderer;
   private AirLinearMove _airLinearMove;
 }
 

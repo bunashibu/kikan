@@ -5,6 +5,7 @@ public class WalkSMB : StateMachineBehaviour {
   override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
     if (_rigidState == null) {
       _rigidState = animator.GetComponent<RigidState>();
+      _renderer = animator.GetComponent<SpriteRenderer>();
       _linearMove = animator.GetComponent<GroundLinearMove>();
     }
 
@@ -22,8 +23,8 @@ public class WalkSMB : StateMachineBehaviour {
     bool ClimbFlag = (OnlyUpKeyDown && !_rigidState.LadderTopEdge) ||
                      (OnlyDownKeyDown && !_rigidState.LadderBottomEdge);
 
-    if (OnlyLeftKeyDown)  _linearMove.MoveLeft();
-    if (OnlyRightKeyDown) _linearMove.MoveRight();
+    if (OnlyLeftKeyDown)  { _linearMove.MoveLeft();  _renderer.flipX = false; }
+    if (OnlyRightKeyDown) { _linearMove.MoveRight(); _renderer.flipX = true;  }
 
     if (_rigidState.Ladder) {
       if (ClimbFlag) { ActTransition("Climb", animator); return; }
@@ -46,6 +47,7 @@ public class WalkSMB : StateMachineBehaviour {
   }
 
   private RigidState _rigidState;
+  private SpriteRenderer _renderer;
   private GroundLinearMove _linearMove;
 }
 
