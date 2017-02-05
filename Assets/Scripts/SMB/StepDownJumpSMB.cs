@@ -17,9 +17,6 @@ public class StepDownJumpSMB : StateMachineBehaviour {
   }
 
   override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-    bool OnlyLeftKeyDown  = Input.GetKey(KeyCode.LeftArrow)  && !Input.GetKey(KeyCode.RightArrow);
-    bool OnlyRightKeyDown = Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow);
-
     if (_rigidState.Air) {
       _isAlreadyJumped = true;
     }
