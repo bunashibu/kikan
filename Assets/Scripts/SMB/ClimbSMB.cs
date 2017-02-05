@@ -21,6 +21,7 @@ public class ClimbSMB : StateMachineBehaviour {
     bool OnlyRightKeyDown = Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow);
     bool OnlyUpKeyDown    = Input.GetKey(KeyCode.UpArrow)    && !Input.GetKey(KeyCode.DownArrow);
     bool OnlyDownKeyDown  = Input.GetKey(KeyCode.DownArrow)  && !Input.GetKey(KeyCode.UpArrow);
+    bool JumpButtonDown   = Input.GetButton("Jump");
 
     if (OnlyUpKeyDown)   _climb.MoveUp();
     if (OnlyDownKeyDown) _climb.MoveDown();
@@ -29,6 +30,10 @@ public class ClimbSMB : StateMachineBehaviour {
       _isTransferable = true;
 
     if (_isTransferable) {
+      if ((OnlyLeftKeyDown || OnlyRightKeyDown) && JumpButtonDown) {
+        ActTransition("ClimbJump", animator); return;
+      }
+
       // XXX : If rigid velocity is too fast, passing through ground will occur.
       if (_rigidState.LadderBottomEdge && _rigidState.Ground) {
         ActTransition("Idle", animator); return;
