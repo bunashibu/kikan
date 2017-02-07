@@ -11,6 +11,10 @@ public class MonoUtility : SingletonMonoBehaviour<MonoUtility> {
     StartCoroutine(ImplDelaySec(sec, action));
   }
 
+  public void DelayUntil(Func<bool> condition, Action action) {
+    StartCoroutine(ImplDelayUntil(condition, action));
+  }
+
   private IEnumerator ImplDelayOneFrame(Action action) {
     yield return new WaitForEndOfFrame();
     action();
@@ -18,6 +22,11 @@ public class MonoUtility : SingletonMonoBehaviour<MonoUtility> {
 
   private IEnumerator ImplDelaySec(float sec, Action action) {
     yield return new WaitForSeconds(sec);
+    action();
+  }
+
+  private IEnumerator ImplDelayUntil(Func<bool> condition, Action action) {
+    yield return new WaitUntil(condition);
     action();
   }
 }
