@@ -5,7 +5,8 @@ using System.Collections;
 
 public class LoadFirstScene : SingletonMonoBehaviour<LoadFirstScene> {
   void Start() {
-    SceneManager.LoadSceneAsync(_firstSceneName, LoadSceneMode.Additive);
+    if (SceneManager.sceneCount == 1)
+      SceneManager.LoadSceneAsync(_firstSceneName, LoadSceneMode.Additive);
 
     Scene firstScene = SceneManager.GetSceneByName(_firstSceneName);
     MonoUtility.Instance.DelayUntil(() => firstScene.isLoaded, () => {
