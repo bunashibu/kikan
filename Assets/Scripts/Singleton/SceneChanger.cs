@@ -4,12 +4,15 @@ using System.Collections;
 
 public class SceneChanger : MonoBehaviour {
   public void ChangeScene(string nextSceneName) {
+    PhotonNetwork.isMessageQueueRunning = false;
+
     SceneManager.LoadSceneAsync(nextSceneName, LoadSceneMode.Additive);
     SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().name);
 
     Scene nextScene = SceneManager.GetSceneByName(nextSceneName);
     MonoUtility.Instance.DelayUntil(() => nextScene.isLoaded, () => {
       SceneManager.SetActiveScene(nextScene);
+      PhotonNetwork.isMessageQueueRunning = true;
     });
   }
 }

@@ -30,3 +30,9 @@ sysinfo.txt
 *.apk
 *.unitypackage
 
+# Photon Assets
+Assets/Photon Unity Networking*
+Assets/PhotonChatApi*
+Assets/Plugins*
+
+

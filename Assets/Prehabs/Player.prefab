@@ -54,6 +54,7 @@ GameObject:
   - 114: {fileID: 114000013413255202}
   - 114: {fileID: 114000010220231682}
   - 114: {fileID: 114000012861491266}
+  - 114: {fileID: 114000014111728798}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -421,6 +422,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collider: {fileID: 61000011156448030}
+--- !u!114 &114000014111728798
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011996982660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 152
+    i1: 114
+    i2: 185
+    i3: 97
+    i4: 126
+    i5: 231
+    i6: 70
+    i7: 244
+    i8: 168
+    i9: 236
+    i10: 97
+    i11: 103
+    i12: 241
+    i13: 148
+    i14: 207
+    i15: 79
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 1
 --- !u!114 &114000014284443414
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -515,7 +548,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -15.344, y: 6.264}
+  m_AnchoredPosition: {x: -2.718698, y: -2.3315105}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000014116680974

@@ -9097,7 +9097,6 @@ GameObject:
   - 114: {fileID: 1798065915}
   - 114: {fileID: 1798065914}
   - 114: {fileID: 1798065913}
-  - 114: {fileID: 1798065911}
   m_Layer: 0
   m_Name: Kinoko
   m_TagString: Enemy
@@ -9225,31 +9224,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1798065911
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1798065903}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6138b839369cac4c943c69b429fc1bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _colliderCenter: {fileID: 0}
-  _colliderFoot: {fileID: 0}
-  _groundLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  _ladderLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  _ladderTopEdgeLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  _ladderBottomEdgeLayer:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!61 &1798065912
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9640,7 +9614,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 950836439
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!1 &1857252213
