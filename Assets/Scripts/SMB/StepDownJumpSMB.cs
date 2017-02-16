@@ -3,7 +3,8 @@ using System.Collections;
 
 public class StepDownJumpSMB : StateMachineBehaviour {
   override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-    if (_rigidState == null) {
+    if (_photonView == null) {
+      _photonView = animator.GetComponent<PhotonView>();
       _rigidState = animator.GetComponent<RigidState>();
       _colliderFoot = animator.GetComponents<BoxCollider2D>()[1];
       _jump = animator.GetComponent<StepDownJump>();
@@ -17,16 +18,18 @@ public class StepDownJumpSMB : StateMachineBehaviour {
   }
 
   override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-    if (_rigidState.Air) {
-      _isAlreadyJumped = true;
-    }
+    if (_photonView.isMine) {
+      if (_rigidState.Air) {
+        _isAlreadyJumped = true;
+      }
 
-    if (_rigidState.Ground && _isAlreadyJumped) {
-      _fallFlag = true;
-    }
+      if (_rigidState.Ground && _isAlreadyJumped) {
+        _fallFlag = true;
+      }
 
-    if (_rigidState.Air && _fallFlag) {
-      ActTransition("Fall", animator); return;
+      if (_rigidState.Air && _fallFlag) {
+        ActTransition("Fall", animator); return;
+      }
     }
   }
 
@@ -44,6 +47,7 @@ public class StepDownJumpSMB : StateMachineBehaviour {
     _fallFlag = false;
   }
 
+  private PhotonView _photonView;
   private RigidState _rigidState;
   private StepDownJump _jump;
   private BoxCollider2D _colliderFoot;

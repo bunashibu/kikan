@@ -3,7 +3,8 @@ using System.Collections;
 
 public class GroundJumpSMB : StateMachineBehaviour {
   override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-    if (_rigidState == null) {
+    if (_photonView == null) {
+      _photonView = animator.GetComponent<PhotonView>();
       _rigidState = animator.GetComponent<RigidState>();
       _jump = animator.GetComponent<GroundJump>();
     }
@@ -13,8 +14,10 @@ public class GroundJumpSMB : StateMachineBehaviour {
   }
 
   override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-    if (_rigidState.Air) {
-      ActTransition("Fall", animator); return;
+    if (_photonView.isMine) {
+      if (_rigidState.Air) {
+        ActTransition("Fall", animator); return;
+      }
     }
   }
 
@@ -23,6 +26,7 @@ public class GroundJumpSMB : StateMachineBehaviour {
     animator.SetBool("GroundJump", false);
   }
 
+  private PhotonView _photonView;
   private RigidState _rigidState;
   private GroundJump _jump;
 }

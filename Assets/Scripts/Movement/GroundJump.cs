@@ -19,7 +19,7 @@ public class GroundJump : MonoBehaviour {
   }
 
   [SerializeField] private Rigidbody2D _rigid;
-  private float _force;
+  private float _force = 300.0f;
   private bool _actFlag;
 }
 

@@ -3,7 +3,8 @@ using System.Collections;
 
 public class ClimbJumpSMB : StateMachineBehaviour {
   override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-    if (_rigidState == null) {
+    if (_photonView == null) {
+      _photonView = animator.GetComponent<PhotonView>();
       _rigidState = animator.GetComponent<RigidState>();
       _renderer = animator.GetComponent<SpriteRenderer>();
       _jump = animator.GetComponent<ClimbJump>();
@@ -21,8 +22,10 @@ public class ClimbJumpSMB : StateMachineBehaviour {
   }
 
   override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-    if (_rigidState.Air) {
-      ActTransition("Fall", animator); return;
+    if (_photonView.isMine) {
+      if (_rigidState.Air) {
+        ActTransition("Fall", animator); return;
+      }
     }
   }
 
@@ -31,6 +34,7 @@ public class ClimbJumpSMB : StateMachineBehaviour {
     animator.SetBool("ClimbJump", false);
   }
 
+  private PhotonView _photonView;
   private RigidState _rigidState;
   private SpriteRenderer _renderer;
   private ClimbJump _jump;

@@ -33,7 +33,7 @@ public class GroundLinearMove : MonoBehaviour {
   }
 
   [SerializeField] private Rigidbody2D _rigid;
-  private float _force;
+  private float _force = 60.0f;
   private bool _actFlag;
   private Vector2 _inputVec;
 }
