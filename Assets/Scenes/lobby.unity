@@ -100,7 +100,7 @@ GameObject:
   m_Component:
   - component: {fileID: 126963134}
   - component: {fileID: 126963133}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -164,7 +164,7 @@ GameObject:
   m_Component:
   - component: {fileID: 339148618}
   - component: {fileID: 339148617}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -237,7 +237,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &447346507
 AudioListener:
   m_ObjectHideFlags: 0
@@ -316,7 +316,7 @@ GameObject:
   - component: {fileID: 616672595}
   - component: {fileID: 616672596}
   - component: {fileID: 616672597}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
