@@ -5,7 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class LobbyPhotonManager : Photon.PunBehaviour {
   void Start() {
-    PhotonNetwork.Instantiate("Prehabs/Player", new Vector3(0, 0, 0), Quaternion.identity, 0);
+    var currentScene = SceneManager.GetSceneByName("Lobby");
+    MonoUtility.Instance.DelayUntil(() => currentScene == SceneManager.GetActiveScene(), () => {
+      PhotonNetwork.Instantiate("Prehabs/Player", new Vector3(0, 0, 0), Quaternion.identity, 0);
+    });
   }
 
   public override void OnPhotonPlayerConnected(PhotonPlayer other) {

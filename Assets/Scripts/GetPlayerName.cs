@@ -5,9 +5,10 @@ using UnityEngine.UI;
 
 public class GetPlayerName : MonoBehaviour {
   void Start() {
-    _text.text = PhotonNetwork.playerName;
+    _text.text = _photonView.owner.NickName;
   }
 
+  [SerializeField] private PhotonView _photonView;
   [SerializeField] private Text _text;
 }
 
