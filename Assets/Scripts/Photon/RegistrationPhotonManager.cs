@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class RegistrationPhotonManager : Photon.PunBehaviour {
   void Awake() {
@@ -21,7 +22,7 @@ public class RegistrationPhotonManager : Photon.PunBehaviour {
     _progressLabel.SetActive(true);
 
     if (PhotonNetwork.connected)
-      PhotonNetwork.JoinRandomRoom();
+      PhotonNetwork.JoinRoom("Lobby");
     else
       PhotonNetwork.ConnectUsingSettings(_gameVersion);
   }
@@ -30,16 +31,21 @@ public class RegistrationPhotonManager : Photon.PunBehaviour {
     Debug.Log("OnConnectedToMaster() was called");
 
     if (_isConnecting)
-      PhotonNetwork.JoinRandomRoom();
+      PhotonNetwork.JoinRoom("Lobby");
   }
 
   public override void OnDisconnectedFromPhoton() {
     Debug.Log("OnDisconnectedFromPhoton() was called");
   }
 
-  public override void OnPhotonRandomJoinFailed(object[] codeAndMsg) {
-    Debug.Log("OnPhotonRandomJoinFailed() was called");
-    PhotonNetwork.CreateRoom(null, new RoomOptions() { MaxPlayers = _maxPlayers }, null);
+  public override void OnPhotonJoinRoomFailed(object[] codeAndMsg) {
+    Debug.Log("OnPhotonJoinRoomFailed() was called");
+
+    RoomOptions roomOptions = new RoomOptions();
+    roomOptions.MaxPlayers = _maxPlayers;
+    //roomOptions.CustomRoomProperties = new Hashtable() {{"Matching", new List<PhotonPlayer>()}};
+
+    PhotonNetwork.CreateRoom("Lobby", roomOptions, null);
   }
 
   public override void OnJoinedRoom() {

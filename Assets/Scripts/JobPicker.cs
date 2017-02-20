@@ -8,9 +8,9 @@ public class JobPicker : MonoBehaviour {
   }
 
   public void Pick(int n) {
-    _player = Instantiate(_player) as GameObject;
+    _player = PhotonNetwork.Instantiate("Prehabs/Player", new Vector3(0, 0, 0), Quaternion.identity, 0);
+    var job = PhotonNetwork.Instantiate("Prehabs/Job/" + _jobs[n].name, new Vector3(0, 0, 0), Quaternion.identity, 0);
 
-    var job = Instantiate(_jobs[n]) as GameObject;
     job.transform.SetParent(_player.transform, false);
 
     InitPlayerHealthSystem(n);

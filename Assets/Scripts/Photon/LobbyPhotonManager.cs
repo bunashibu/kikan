@@ -28,7 +28,6 @@ public class LobbyPhotonManager : Photon.PunBehaviour {
   public void Apply() {
     Debug.Log("Apply() was called");
     _nextSceneName = "Battle";
-    PhotonNetwork.LeaveRoom();
   }
 
   public void Logout() {
