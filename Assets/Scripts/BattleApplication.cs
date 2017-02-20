@@ -4,50 +4,63 @@ using UnityEngine;
 using UnityEngine.UI;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 
-public class BattleApplication : MonoBehaviour {
+public class BattleApplication : Photon.PunBehaviour {
   void Start() {
+    if (PhotonNetwork.player.IsMasterClient)
+      _isMaster = true;
+
+    _playerList = new List<PhotonPlayer>();
     _apply.SetActive(true);
     _nameBoard.SetActive(false);
   }
 
-  void Update() {
-    /*
-    PhotonNetwork.CreateRoom("Battle", new RoomOptions() { MaxPlayers = 6 }, null);
-    PhotonNetwork.LeaveRoom();
-    */
+  [PunRPC]
+  public void AddPlayerToWaitingList(PhotonPlayer player, string option) {
+    if (option == "Add")
+      _playerList.Add(player);
+    else if (option == "Remove")
+      _playerList.Add(player);
+
+    UpdateNameBoard();
+  }
+
+  public override void OnPhotonPlayerPropertiesChanged(object[] args) {
+    if (_isMaster) {
+      var player = args[0] as PhotonPlayer;
+      var props = args[1] as Hashtable;
+      string option;
+
+      if ((bool)props["Applying"]) {
+        _playerList.Add(player);
+        option = "Add";
+      } else {
+        _playerList.Remove(player);
+        option = "Remove";
+      }
+
+      photonView.RPC("AddPlayerToWaitingList", PhotonTargets.Others, player, option);
+      UpdateNameBoard();
+    }
   }
 
   public void Apply() {
     _apply.SetActive(false);
     _nameBoard.SetActive(true);
 
-    var players = PhotonNetwork.room.CustomProperties["Matching"] as PhotonPlayer[];
+    var props = new Hashtable() {{"Applying", true}};
+    PhotonNetwork.player.SetCustomProperties(props, null, false);
+  }
 
-    var list = new List<PhotonPlayer>();
-    if (players != null) {
-      Debug.Log("Get exisiting matching players");
-      foreach (var player in players)
-        list.Add(player);
-    }
-    list.Add(PhotonNetwork.player);
-    int lastIndex = list.Count - 1;
-
-    var properties = new Hashtable() {{"Matching", list.ToArray()}};
-
-    PhotonNetwork.room.SetCustomProperties(properties, null, false);
-
-    _textList[lastIndex].text = PhotonNetwork.player.NickName;
-
-    Debug.Log(PhotonNetwork.room.CustomProperties);
-    var matching = (PhotonPlayer[])PhotonNetwork.room.CustomProperties["Matching"];
-    Debug.Log(matching);
-    Debug.Log(matching[0]);
-    Debug.Log(matching.Length);
+  public void UpdateNameBoard() {
+    for (int i=0; i<_playerList.Count; ++i)
+      _textList[i].text = _playerList[i].NickName;
   }
 
   [SerializeField] private GameObject _apply;
   [SerializeField] private GameObject _nameBoard;
-  [SerializeField] private Text[] _textList;
+  [SerializeField] private List<Text> _textList;
+  private bool _isMaster;
+  private List<PhotonPlayer> _playerList;
 }
 
 /*
