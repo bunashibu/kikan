@@ -15,12 +15,17 @@ public class BattleApplication : Photon.PunBehaviour {
   }
 
   [PunRPC]
-  public void AddPlayerToWaitingList(PhotonPlayer player, string option) {
+  public void UpdateWaitingList(PhotonPlayer player, string option) {
     if (option == "Add")
       _playerList.Add(player);
     else if (option == "Remove")
-      _playerList.Add(player);
+      _playerList.Remove(player);
 
+    UpdateNameBoard();
+  }
+
+  public override void OnPhotonPlayerDisconnected(PhotonPlayer player) {
+    _playerList.Remove(player);
     UpdateNameBoard();
   }
 
@@ -38,7 +43,7 @@ public class BattleApplication : Photon.PunBehaviour {
         option = "Remove";
       }
 
-      photonView.RPC("AddPlayerToWaitingList", PhotonTargets.Others, player, option);
+      photonView.RPC("UpdateWaitingList", PhotonTargets.Others, player, option);
       UpdateNameBoard();
     }
   }
@@ -52,8 +57,13 @@ public class BattleApplication : Photon.PunBehaviour {
   }
 
   public void UpdateNameBoard() {
-    for (int i=0; i<_playerList.Count; ++i)
+    int length = _playerList.Count;
+
+    for (int i=0; i<length; ++i)
       _textList[i].text = _playerList[i].NickName;
+
+    for (int i=length; i<6; ++i)
+      _textList[i].text = "";
   }
 
   [SerializeField] private GameObject _apply;
