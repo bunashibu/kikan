@@ -14,6 +14,36 @@ public class BattleApplication : Photon.PunBehaviour {
     _nameBoard.SetActive(false);
   }
 
+  public override void OnPhotonPlayerDisconnected(PhotonPlayer player) {
+    _playerList.Remove(player);
+    UpdateNameBoard();
+  }
+
+  public void Apply() {
+    _apply.SetActive(false);
+    _nameBoard.SetActive(true);
+
+    var player = PhotonNetwork.player;
+    photonView.RPC("Approve", PhotonTargets.MasterClient, player);
+  }
+
+  [PunRPC]
+  public void Approve(PhotonPlayer player) {
+    if (_isMaster) {
+      var playerNames = PhotonNetwork.room.CustomProperties["Applying"] as string[];
+
+      var list = new List<string>();
+      if (playerNames != null)
+        list.AddRange(playerNames);
+      list.Add(player.NickName);
+
+      var props = new Hashtable() {{"Applying", list.ToArray()}};
+      PhotonNetwork.room.SetCustomProperties(props);
+
+      photonView.RPC("UpdateWaitingList", PhotonTargets.All, player, "Add");
+    }
+  }
+
   [PunRPC]
   public void UpdateWaitingList(PhotonPlayer player, string option) {
     if (option == "Add")
@@ -22,38 +52,6 @@ public class BattleApplication : Photon.PunBehaviour {
       _playerList.Remove(player);
 
     UpdateNameBoard();
-  }
-
-  public override void OnPhotonPlayerDisconnected(PhotonPlayer player) {
-    _playerList.Remove(player);
-    UpdateNameBoard();
-  }
-
-  public override void OnPhotonPlayerPropertiesChanged(object[] args) {
-    if (_isMaster) {
-      var player = args[0] as PhotonPlayer;
-      var props = args[1] as Hashtable;
-      string option;
-
-      if ((bool)props["Applying"]) {
-        _playerList.Add(player);
-        option = "Add";
-      } else {
-        _playerList.Remove(player);
-        option = "Remove";
-      }
-
-      photonView.RPC("UpdateWaitingList", PhotonTargets.Others, player, option);
-      UpdateNameBoard();
-    }
-  }
-
-  public void Apply() {
-    _apply.SetActive(false);
-    _nameBoard.SetActive(true);
-
-    var props = new Hashtable() {{"Applying", true}};
-    PhotonNetwork.player.SetCustomProperties(props, null, false);
   }
 
   public void UpdateNameBoard() {
