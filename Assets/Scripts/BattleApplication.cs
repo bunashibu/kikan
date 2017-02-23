@@ -9,14 +9,24 @@ public class BattleApplication : Photon.PunBehaviour {
     if (PhotonNetwork.player.IsMasterClient)
       _isMaster = true;
 
-    _playerList = new List<PhotonPlayer>();
     _apply.SetActive(true);
     _nameBoard.SetActive(false);
   }
 
   public override void OnPhotonPlayerDisconnected(PhotonPlayer player) {
-    _playerList.Remove(player);
-    UpdateNameBoard();
+    if (_isMaster) {
+      var playerNames = PhotonNetwork.room.CustomProperties["Applying"] as string[];
+
+      var list = new List<string>();
+      if (playerNames != null)
+        list.AddRange(playerNames);
+      list.Remove(player.NickName);
+
+      var props = new Hashtable() {{"Applying", list.ToArray()}};
+      PhotonNetwork.room.SetCustomProperties(props);
+
+      photonView.RPC("UpdateNameBoard", PhotonTargets.All);
+    }
   }
 
   public void Apply() {
@@ -40,35 +50,31 @@ public class BattleApplication : Photon.PunBehaviour {
       var props = new Hashtable() {{"Applying", list.ToArray()}};
       PhotonNetwork.room.SetCustomProperties(props);
 
-      photonView.RPC("UpdateWaitingList", PhotonTargets.All, player, "Add");
+      photonView.RPC("UpdateNameBoard", PhotonTargets.All);
     }
   }
 
   [PunRPC]
-  public void UpdateWaitingList(PhotonPlayer player, string option) {
-    if (option == "Add")
-      _playerList.Add(player);
-    else if (option == "Remove")
-      _playerList.Remove(player);
-
-    UpdateNameBoard();
-  }
-
   public void UpdateNameBoard() {
-    int length = _playerList.Count;
+    var playerNames = PhotonNetwork.room.CustomProperties["Applying"] as string[];
+
+    var list = new List<string>();
+    if (playerNames != null)
+      list.AddRange(playerNames);
+    int length = list.Count;
+    Debug.Log(length);
 
     for (int i=0; i<length; ++i)
-      _textList[i].text = _playerList[i].NickName;
+      _nameList[i].text = list[i];
 
     for (int i=length; i<6; ++i)
-      _textList[i].text = "";
+      _nameList[i].text = "";
   }
 
   [SerializeField] private GameObject _apply;
   [SerializeField] private GameObject _nameBoard;
-  [SerializeField] private List<Text> _textList;
+  [SerializeField] private List<Text> _nameList;
   private bool _isMaster;
-  private List<PhotonPlayer> _playerList;
 }
 
 /*

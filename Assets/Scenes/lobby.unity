@@ -1080,7 +1080,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _apply: {fileID: 1817048251}
   _nameBoard: {fileID: 118429741}
-  _textList:
+  _nameList:
   - {fileID: 60029218}
   - {fileID: 10141555}
   - {fileID: 533053869}
