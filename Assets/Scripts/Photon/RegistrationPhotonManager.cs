@@ -50,6 +50,7 @@ public class RegistrationPhotonManager : Photon.PunBehaviour {
 
   public override void OnJoinedRoom() {
     Debug.Log("OnJoinedRoom() was called");
+    Debug.Log(_nextSceneName);
     _sceneChanger.ChangeScene(_nextSceneName);
   }
 
