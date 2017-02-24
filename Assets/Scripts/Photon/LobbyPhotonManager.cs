@@ -20,10 +20,12 @@ public class LobbyPhotonManager : Photon.PunBehaviour {
     Debug.Log("OnPhotonPlayerDisconnected() was called" + other.NickName);
   }
 
+  /*
   public override void OnLeftRoom() {
     Debug.Log("OnLeftRoom() was called");
     _sceneChanger.ChangeScene(_nextSceneName);
   }
+  */
 
   public void Apply() {
     Debug.Log("Apply() was called");

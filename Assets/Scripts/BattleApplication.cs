@@ -9,6 +9,7 @@ public class BattleApplication : Photon.PunBehaviour {
     if (PhotonNetwork.player.IsMasterClient)
       _isMaster = true;
 
+    _isApplying = false;
     _apply.SetActive(true);
     _nameBoard.SetActive(false);
     _progressLabel.SetActive(false);
@@ -31,7 +32,33 @@ public class BattleApplication : Photon.PunBehaviour {
     }
   }
 
+  public override void OnConnectedToMaster() {
+    Debug.Log("OnConnectedToMaster() was called");
+
+    if (_isMaster) {
+      RoomOptions roomOptions = new RoomOptions();
+      roomOptions.MaxPlayers = (byte)_matchNum;
+
+      PhotonNetwork.CreateRoom(_roomName, roomOptions, null);
+    } else
+      PhotonNetwork.JoinRoom(_roomName);
+  }
+
+  public override void OnPhotonJoinRoomFailed(object[] codeAndMsg) {
+    Debug.Log("OnPhotonJoinRoomFailed() was called");
+
+    MonoUtility.Instance.DelaySec(1.0f, () => {
+      PhotonNetwork.JoinRoom(_roomName);
+    });
+  }
+
+  public override void OnJoinedRoom() {
+    Debug.Log("OnJoinedRoom() was called");
+    _sceneChanger.ChangeScene("Battle");
+  }
+
   public void Apply() {
+    _isApplying = true;
     _apply.SetActive(false);
     _nameBoard.SetActive(true);
     _progressLabel.SetActive(true);
@@ -57,7 +84,17 @@ public class BattleApplication : Photon.PunBehaviour {
 
       if (list.Count == _matchNum) {
         Debug.Log("Matching is done. Prepareing to start game...");
-        photonView.RPC("StartBattle", PhotonTargets.AllViaServer);
+
+        var tmp = PhotonNetwork.room.CustomProperties["Playing"];
+        int roomNum = 0;
+        if (tmp != null)
+          roomNum = (int)tmp;
+
+        props = new Hashtable() {{"Playing", roomNum + 1}};
+        PhotonNetwork.room.SetCustomProperties(props);
+
+        var roomName = "Battle" + roomNum.ToString();
+        photonView.RPC("StartBattle", PhotonTargets.AllViaServer, roomName);
       }
     }
   }
@@ -70,7 +107,6 @@ public class BattleApplication : Photon.PunBehaviour {
     if (playerNames != null)
       list.AddRange(playerNames);
     int length = list.Count;
-    Debug.Log(length);
 
     for (int i=0; i<length; ++i)
       _nameList[i].text = list[i];
@@ -80,12 +116,16 @@ public class BattleApplication : Photon.PunBehaviour {
   }
 
   [PunRPC]
-  public void StartBattle() {
-    _nameBoard.SetActive(false);
-    _progressLabel.SetActive(false);
-    _startPanel.SetActive(true);
+  public void StartBattle(string roomName) {
+    if (_isApplying) {
+      _nameBoard.SetActive(false);
+      _progressLabel.SetActive(false);
+      _startPanel.SetActive(true);
 
-    CountDown(5);
+      _roomName = roomName;
+
+      CountDown(5);
+    }
   }
 
   public void CountDown(int cnt) {
@@ -95,7 +135,7 @@ public class BattleApplication : Photon.PunBehaviour {
       cnt -= 1;
 
       if (cnt == 0)
-        _sceneChanger.ChangeScene("Battle");
+        PhotonNetwork.LeaveRoom();
       else
         CountDown(cnt);
     });
@@ -110,50 +150,7 @@ public class BattleApplication : Photon.PunBehaviour {
   [SerializeField] private int _matchNum;
   [SerializeField] private SceneChanger _sceneChanger;
   private bool _isMaster;
+  private bool _isApplying;
+  private string _roomName;
 }
 
-/*
-public void CreateRoom (Hashtable properties) {
-  RoomOptions roomOptions = new RoomOptions ();
-  roomOptions.isVisible = true;
-  roomOptions.isOpen = true;
-  roomOptions.maxPlayers = 4;
-  roomOptions.customRoomProperties = new Hashtable (){{"Rank", (string)properties["Rank"]} };
-  roomOptions.customRoomPropertiesForLobby = new string[] {"Rank"};
-
-  if (PhotonNetwork.GetRoomList ().Length == 0) {
-    PhotonNetwork.CreateRoom ((string)properties ["RoomName"], roomOptions, null);
-    return;
-  }
-
-  foreach (RoomInfo roomInfo in PhotonNetwork.GetRoomList()) {
-    if (roomInfo.name != (string)properties ["RoomName"])
-      PhotonNetwork.CreateRoom ((string)properties ["RoomName"], roomOptions, null);
-    else
-      isRoomEnabled = true;
-  }
-}
-
-public void JoinRoom (Hashtable properties) {
-  if (PhotonNetwork.GetRoomList ().Length == 0) {
-    isRoomNothing = true;
-    return;
-  }
-
-  foreach (RoomInfo roomInfo in PhotonNetwork.GetRoomList ()) {
-    Hashtable cp = roomInfo.customProperties;
-
-    if (roomInfo.name == (string)properties ["RoomName"]) {
-      if ((string)properties ["Rank"] == (string)cp ["Rank"])
-        PhotonNetwork.JoinRoom ((string)properties ["RoomName"]);
-      else
-        isLevelUnmatch = true;
-
-      return;
-    }
-  }
-
-  isRoomNothing = true;
-}
-
-*/

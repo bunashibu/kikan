@@ -34,23 +34,17 @@ public class RegistrationPhotonManager : Photon.PunBehaviour {
       PhotonNetwork.JoinRoom("Lobby");
   }
 
-  public override void OnDisconnectedFromPhoton() {
-    Debug.Log("OnDisconnectedFromPhoton() was called");
-  }
-
   public override void OnPhotonJoinRoomFailed(object[] codeAndMsg) {
     Debug.Log("OnPhotonJoinRoomFailed() was called");
 
     RoomOptions roomOptions = new RoomOptions();
     roomOptions.MaxPlayers = _maxPlayers;
-    //roomOptions.CustomRoomProperties = new Hashtable() {{"Matching", new List<PhotonPlayer>()}};
 
     PhotonNetwork.CreateRoom("Lobby", roomOptions, null);
   }
 
   public override void OnJoinedRoom() {
     Debug.Log("OnJoinedRoom() was called");
-    Debug.Log(_nextSceneName);
     _sceneChanger.ChangeScene(_nextSceneName);
   }
 

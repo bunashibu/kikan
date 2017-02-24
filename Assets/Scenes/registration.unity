@@ -469,6 +469,7 @@ MonoBehaviour:
   _sceneChanger: {fileID: 1840587643}
   _maxPlayers: 20
   _nextSceneName: Lobby
+  _roomName: Kikan
 --- !u!1 &657363901
 GameObject:
   m_ObjectHideFlags: 0
