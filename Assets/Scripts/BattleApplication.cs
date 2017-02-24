@@ -11,6 +11,8 @@ public class BattleApplication : Photon.PunBehaviour {
 
     _apply.SetActive(true);
     _nameBoard.SetActive(false);
+    _progressLabel.SetActive(false);
+    _startPanel.SetActive(false);
   }
 
   public override void OnPhotonPlayerDisconnected(PhotonPlayer player) {
@@ -32,6 +34,7 @@ public class BattleApplication : Photon.PunBehaviour {
   public void Apply() {
     _apply.SetActive(false);
     _nameBoard.SetActive(true);
+    _progressLabel.SetActive(true);
 
     var player = PhotonNetwork.player;
     photonView.RPC("Approve", PhotonTargets.MasterClient, player);
@@ -51,6 +54,11 @@ public class BattleApplication : Photon.PunBehaviour {
       PhotonNetwork.room.SetCustomProperties(props);
 
       photonView.RPC("UpdateNameBoard", PhotonTargets.All);
+
+      if (list.Count == _matchNum) {
+        Debug.Log("Matching is done. Prepareing to start game...");
+        photonView.RPC("StartBattle", PhotonTargets.AllViaServer);
+      }
     }
   }
 
@@ -67,13 +75,40 @@ public class BattleApplication : Photon.PunBehaviour {
     for (int i=0; i<length; ++i)
       _nameList[i].text = list[i];
 
-    for (int i=length; i<6; ++i)
+    for (int i=length; i<_matchNum; ++i)
       _nameList[i].text = "";
+  }
+
+  [PunRPC]
+  public void StartBattle() {
+    _nameBoard.SetActive(false);
+    _progressLabel.SetActive(false);
+    _startPanel.SetActive(true);
+
+    CountDown(5);
+  }
+
+  public void CountDown(int cnt) {
+    _CountDown.text = cnt.ToString();
+
+    MonoUtility.Instance.DelaySec(1.0f, () => {
+      cnt -= 1;
+
+      if (cnt == 0)
+        _sceneChanger.ChangeScene("Battle");
+      else
+        CountDown(cnt);
+    });
   }
 
   [SerializeField] private GameObject _apply;
   [SerializeField] private GameObject _nameBoard;
+  [SerializeField] private GameObject _progressLabel;
+  [SerializeField] private GameObject _startPanel;
+  [SerializeField] private Text _CountDown;
   [SerializeField] private List<Text> _nameList;
+  [SerializeField] private int _matchNum;
+  [SerializeField] private SceneChanger _sceneChanger;
   private bool _isMaster;
 }
 
