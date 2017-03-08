@@ -100,6 +100,7 @@ public class BattleApplication : Photon.PunBehaviour {
         PhotonNetwork.room.SetCustomProperties(props);
 
         var roomName = "Battle" + roomNum.ToString();
+        // Divide Team
         photonView.RPC("StartBattle", PhotonTargets.AllViaServer, roomName);
       }
     }
@@ -131,7 +132,7 @@ public class BattleApplication : Photon.PunBehaviour {
 
       _roomName = roomName;
 
-      CountDown(5);
+      CountDown(_countDown);
     }
   }
 
@@ -141,7 +142,7 @@ public class BattleApplication : Photon.PunBehaviour {
     MonoUtility.Instance.DelaySec(1.0f, () => {
       cnt -= 1;
 
-      if (cnt == 0)
+      if (cnt <= 0)
         PhotonNetwork.LeaveRoom();
       else
         CountDown(cnt);
@@ -157,6 +158,7 @@ public class BattleApplication : Photon.PunBehaviour {
   [SerializeField] private List<Text> _nameList;
   [SerializeField] private int _matchNum;
   [SerializeField] private SceneChanger _sceneChanger;
+  [SerializeField] private int _countDown; // Debug
   private bool _isMaster;
   private bool _isApplying;
   private string _roomName;
