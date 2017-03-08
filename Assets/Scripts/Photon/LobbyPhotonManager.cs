@@ -20,25 +20,23 @@ public class LobbyPhotonManager : Photon.PunBehaviour {
     Debug.Log("OnPhotonPlayerDisconnected() was called" + other.NickName);
   }
 
-  /*
   public override void OnLeftRoom() {
-    Debug.Log("OnLeftRoom() was called");
-    _sceneChanger.ChangeScene(_nextSceneName);
-  }
-  */
-
-  public void Apply() {
-    Debug.Log("Apply() was called");
-    _nextSceneName = "Battle";
+    if (_logoutFlag) {
+      Debug.Log("OnLeftRoom() was called");
+      _logoutFlag = false;
+      _sceneChanger.ChangeScene(_nextSceneName);
+    }
   }
 
   public void Logout() {
     Debug.Log("Logout() was called");
+    _logoutFlag = true;
     _nextSceneName = "Registration";
     PhotonNetwork.LeaveRoom();
   }
 
   [SerializeField] private SceneChanger _sceneChanger;
   private string _nextSceneName;
+  private bool _logoutFlag;
 }
 

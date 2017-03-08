@@ -1164,6 +1164,7 @@ MonoBehaviour:
   _nameBoard: {fileID: 118429741}
   _progressLabel: {fileID: 1068346827}
   _startPanel: {fileID: 1971941290}
+  _logout: {fileID: 1544477940}
   _CountDown: {fileID: 1172300855}
   _nameList:
   - {fileID: 60029218}
@@ -1172,7 +1173,7 @@ MonoBehaviour:
   - {fileID: 132433919}
   - {fileID: 1391082512}
   - {fileID: 1500038433}
-  _matchNum: 1
+  _matchNum: 2
   _sceneChanger: {fileID: 437751001}
 --- !u!114 &1096165165
 MonoBehaviour:
@@ -1801,17 +1802,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1996572554}
-        m_MethodName: Apply
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Battle
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1096165164}
         m_MethodName: Apply
         m_Mode: 1

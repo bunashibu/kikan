@@ -33,28 +33,34 @@ public class BattleApplication : Photon.PunBehaviour {
   }
 
   public override void OnConnectedToMaster() {
-    Debug.Log("OnConnectedToMaster() was called");
+    if (_isApplying) {
+      Debug.Log("OnConnectedToMaster() BA was called");
 
-    if (_isMaster) {
-      RoomOptions roomOptions = new RoomOptions();
-      roomOptions.MaxPlayers = (byte)_matchNum;
+      if (_isMaster) {
+        RoomOptions roomOptions = new RoomOptions();
+        roomOptions.MaxPlayers = (byte)_matchNum;
 
-      PhotonNetwork.CreateRoom(_roomName, roomOptions, null);
-    } else
-      PhotonNetwork.JoinRoom(_roomName);
+        PhotonNetwork.CreateRoom(_roomName, roomOptions, null);
+      } else
+        PhotonNetwork.JoinRoom(_roomName);
+    }
   }
 
   public override void OnPhotonJoinRoomFailed(object[] codeAndMsg) {
-    Debug.Log("OnPhotonJoinRoomFailed() was called");
+    if (_isApplying) {
+      Debug.Log("OnPhotonJoinRoomFailed() BA was called");
 
-    MonoUtility.Instance.DelaySec(1.0f, () => {
-      PhotonNetwork.JoinRoom(_roomName);
-    });
+      MonoUtility.Instance.DelaySec(1.0f, () => {
+        PhotonNetwork.JoinRoom(_roomName);
+      });
+    }
   }
 
   public override void OnJoinedRoom() {
-    Debug.Log("OnJoinedRoom() was called");
-    _sceneChanger.ChangeScene("Battle");
+    if (_isApplying) {
+      Debug.Log("OnJoinedRoom() BA was called");
+      _sceneChanger.ChangeScene("Battle");
+    }
   }
 
   public void Apply() {
@@ -120,6 +126,7 @@ public class BattleApplication : Photon.PunBehaviour {
     if (_isApplying) {
       _nameBoard.SetActive(false);
       _progressLabel.SetActive(false);
+      _logout.SetActive(false);
       _startPanel.SetActive(true);
 
       _roomName = roomName;
@@ -145,6 +152,7 @@ public class BattleApplication : Photon.PunBehaviour {
   [SerializeField] private GameObject _nameBoard;
   [SerializeField] private GameObject _progressLabel;
   [SerializeField] private GameObject _startPanel;
+  [SerializeField] private GameObject _logout;
   [SerializeField] private Text _CountDown;
   [SerializeField] private List<Text> _nameList;
   [SerializeField] private int _matchNum;
