@@ -14,6 +14,7 @@ public class ClimbSMB : StateMachineBehaviour {
     Debug.Log("climb");
 
     _rigid.isKinematic = true;
+    _rigid.velocity = new Vector2(0.0f, 0.0f);
     _colliderFoot.isTrigger = true;
     _isTransferable = false;
   }
@@ -37,7 +38,6 @@ public class ClimbSMB : StateMachineBehaviour {
           ActTransition("ClimbJump", animator); return;
         }
 
-        // XXX : If rigid velocity is too fast, passing through ground will occur.
         if (_rigidState.LadderBottomEdge && _rigidState.Ground) {
           ActTransition("Idle", animator); return;
         }

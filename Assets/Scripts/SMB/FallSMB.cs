@@ -21,8 +21,7 @@ public class FallSMB : StateMachineBehaviour {
       bool OnlyUpKeyDown    = Input.GetKey(KeyCode.UpArrow)    && !Input.GetKey(KeyCode.DownArrow);
       bool JumpButtonDown   = Input.GetButton("Jump");
       bool LieDownFlag = OnlyDownKeyDown && !_rigidState.LadderTopEdge;
-      bool ClimbFlag = (OnlyUpKeyDown && !_rigidState.LadderTopEdge) ||
-                       (OnlyDownKeyDown && !_rigidState.LadderBottomEdge);
+      bool ClimbFlag = OnlyUpKeyDown && !_rigidState.LadderTopEdge;
 
       if (OnlyLeftKeyDown)  { _airLinearMove.MoveLeft();  _renderer.flipX = false; }
       if (OnlyRightKeyDown) { _airLinearMove.MoveRight(); _renderer.flipX = true;  }
