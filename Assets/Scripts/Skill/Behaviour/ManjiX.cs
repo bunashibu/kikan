@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ManjiX : Skill {
+public class ManjiX : MonoBehaviour {
   void OnTriggerEnter2D(Collider2D collider) {
     var target = collider.gameObject;
 
     if (target.tag == "Enemy") {
       // damage = _atk * _power;
-      target.GetComponent<HealthSystem>().IsDamaged(10);
+      target.GetComponent<HealthSystem>().IsDamaged(1);
       target.GetComponent<Enemy>().ShowHealthBar();
     }
   }

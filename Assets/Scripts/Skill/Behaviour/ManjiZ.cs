@@ -1,7 +1,8 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class ManjiShift : MonoBehaviour {
+public class ManjiZ : MonoBehaviour {
   void OnTriggerEnter2D(Collider2D collider) {
     var target = collider.gameObject;
 

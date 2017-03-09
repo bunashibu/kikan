@@ -73,15 +73,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _skills:
-  - {fileID: 114000012261134560, guid: c8f096e73f8178241b8dc8d269e4a378, type: 2}
-  - {fileID: 114000010207159786, guid: e97c35f372b354a4683cbe5a687c9e2a, type: 2}
-  _keys: 7800000030010000
+  - {fileID: 1000010592744632, guid: c8f096e73f8178241b8dc8d269e4a378, type: 2}
+  - {fileID: 1000011631667192, guid: e97c35f372b354a4683cbe5a687c9e2a, type: 2}
+  - {fileID: 1573858680812588, guid: 3cbc913d99c9c054da6ec27f8f264fcf, type: 2}
+  _keys: 78000000300100007a000000
   _names:
   - X
   - Shift
+  - Z
   _ct:
   - 0.5
   - 1
+  - 0.3
   _anim: {fileID: 95000012704518522}
 --- !u!114 &114600969907349526
 MonoBehaviour:

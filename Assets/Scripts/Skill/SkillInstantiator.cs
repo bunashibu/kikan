@@ -26,7 +26,7 @@ public class SkillInstantiator : MonoBehaviour {
     });
   }
 
-  [SerializeField] private Skill[] _skills;
+  [SerializeField] private GameObject[] _skills;
   [SerializeField] private KeyCode[] _keys;
   [SerializeField] private string[] _names;
   [SerializeField] private float[] _ct;
