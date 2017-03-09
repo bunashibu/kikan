@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
@@ -19,10 +20,8 @@ public class BattleApplication : Photon.PunBehaviour {
   public override void OnPhotonPlayerDisconnected(PhotonPlayer player) {
     if (_isMaster) {
       var playerNames = PhotonNetwork.room.CustomProperties["Applying"] as string[];
+      var list = MonoUtility.ToList<string>(playerNames);
 
-      var list = new List<string>();
-      if (playerNames != null)
-        list.AddRange(playerNames);
       list.Remove(player.NickName);
 
       var props = new Hashtable() {{"Applying", list.ToArray()}};
@@ -77,10 +76,8 @@ public class BattleApplication : Photon.PunBehaviour {
   public void Approve(PhotonPlayer player) {
     if (_isMaster) {
       var playerNames = PhotonNetwork.room.CustomProperties["Applying"] as string[];
+      var list = MonoUtility.ToList<string>(playerNames);
 
-      var list = new List<string>();
-      if (playerNames != null)
-        list.AddRange(playerNames);
       list.Add(player.NickName);
 
       var props = new Hashtable() {{"Applying", list.ToArray()}};
@@ -100,8 +97,9 @@ public class BattleApplication : Photon.PunBehaviour {
         PhotonNetwork.room.SetCustomProperties(props);
 
         var roomName = "Battle" + roomNum.ToString();
-        // Divide Team
-        photonView.RPC("StartBattle", PhotonTargets.AllViaServer, roomName);
+
+        int[] team = TeamMaker();
+        photonView.RPC("StartBattle", PhotonTargets.AllViaServer, roomName, team);
       }
     }
   }
@@ -109,10 +107,8 @@ public class BattleApplication : Photon.PunBehaviour {
   [PunRPC]
   public void UpdateNameBoard() {
     var playerNames = PhotonNetwork.room.CustomProperties["Applying"] as string[];
+    var list = MonoUtility.ToList<string>(playerNames);
 
-    var list = new List<string>();
-    if (playerNames != null)
-      list.AddRange(playerNames);
     int length = list.Count;
 
     for (int i=0; i<length; ++i)
@@ -123,7 +119,7 @@ public class BattleApplication : Photon.PunBehaviour {
   }
 
   [PunRPC]
-  public void StartBattle(string roomName) {
+  public void StartBattle(string roomName, int[] team) {
     if (_isApplying) {
       _nameBoard.SetActive(false);
       _progressLabel.SetActive(false);
@@ -131,6 +127,20 @@ public class BattleApplication : Photon.PunBehaviour {
       _startPanel.SetActive(true);
 
       _roomName = roomName;
+
+      foreach (var x in team)
+        Debug.Log(x);
+
+      var playerNames = PhotonNetwork.room.CustomProperties["Applying"] as string[];
+      var list = MonoUtility.ToList<string>(playerNames);
+
+      for (int i=0; i<list.Count; ++i) {
+        if (list[i] == PhotonNetwork.player.NickName) {
+          var props = new Hashtable() {{"Team", team[i]}};
+          PhotonNetwork.player.SetCustomProperties(props);
+          break;
+        }
+      }
 
       CountDown(_countDown);
     }
@@ -147,6 +157,27 @@ public class BattleApplication : Photon.PunBehaviour {
       else
         CountDown(cnt);
     });
+  }
+
+  private int[] TeamMaker() {
+    var list = new List<int>();
+    int half = _matchNum / 2;
+    if (_matchNum % 2 != 0)
+      half += 1;
+
+    for (int i=0; i<_matchNum; ++i) {
+      var t = list.Where(x => x == 0).Count();
+
+      if (Random.value < 0.5)
+        if (t < half)
+          list.Add(0);
+        else
+          list.Add(1);
+      else
+        list.Add(1);
+    }
+
+    return list.ToArray();
   }
 
   [SerializeField] private GameObject _apply;
