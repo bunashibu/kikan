@@ -8,7 +8,12 @@ public class JobPicker : MonoBehaviour {
   }
 
   public void Pick(int n) {
-    _player = PhotonNetwork.Instantiate("Prehabs/Player", new Vector3(0, 0, 0), Quaternion.identity, 0);
+    float x = 37.0f;
+    float y = -2.5f;
+    if ((int)PhotonNetwork.player.CustomProperties["Team"] == 1)
+      x *= -1;
+
+    _player = PhotonNetwork.Instantiate("Prehabs/Player", new Vector3(x, y, 0), Quaternion.identity, 0);
     var job = PhotonNetwork.Instantiate("Prehabs/Job/" + _jobs[n].name, new Vector3(0, 0, 0), Quaternion.identity, 0);
 
     job.transform.SetParent(_player.transform, false);

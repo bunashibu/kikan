@@ -33,6 +33,12 @@ public class RigidState : MonoBehaviour {
     }
   }
 
+  public bool Portal {
+    get {
+      return _colliderCenter.IsTouchingLayers(_portalLayer);
+    }
+  }
+
   public bool Slow { get; set; }
   public bool Heavy { get; set; }
   public bool Immobile { get; set; }
@@ -43,5 +49,6 @@ public class RigidState : MonoBehaviour {
   [SerializeField] private LayerMask _ladderLayer;
   [SerializeField] private LayerMask _ladderTopEdgeLayer;
   [SerializeField] private LayerMask _ladderBottomEdgeLayer;
+  [SerializeField] private LayerMask _portalLayer;
 }
 
