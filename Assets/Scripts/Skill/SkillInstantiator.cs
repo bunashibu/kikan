@@ -13,7 +13,10 @@ public class SkillInstantiator : MonoBehaviour {
   }
 
   private void InstantiateSkill(int i) {
-    Instantiate(_skills[i], this.transform.position + new Vector3(-0.4f, -0.1f, 0), this.transform.rotation);
+    string path = "Prehabs/Skill/" + _jobName + "/" + _names[i];
+    var pos = this.transform.position + new Vector3(-0.4f, 0.1f, 0);
+
+    PhotonNetwork.Instantiate(path, pos, Quaternion.identity, 0);
 
     _canUse = false;
     MonoUtility.Instance.DelaySec(_ct[i], () => {
@@ -26,7 +29,7 @@ public class SkillInstantiator : MonoBehaviour {
     });
   }
 
-  [SerializeField] private GameObject[] _skills;
+  [SerializeField] private string _jobName;
   [SerializeField] private KeyCode[] _keys;
   [SerializeField] private string[] _names;
   [SerializeField] private float[] _ct;

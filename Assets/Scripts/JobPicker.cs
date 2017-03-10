@@ -16,6 +16,7 @@ public class JobPicker : MonoBehaviour {
     _player = PhotonNetwork.Instantiate("Prehabs/Player", new Vector3(x, y, 0), Quaternion.identity, 0);
     var job = PhotonNetwork.Instantiate("Prehabs/Job/" + _jobs[n].name, new Vector3(0, 0, 0), Quaternion.identity, 0);
 
+    //photonView.RPC("SetWeaponAsChild", PhotonTargets.AllViaServer, _player.transform.position);
     job.transform.SetParent(_player.transform, false);
 
     InitPlayerHealthSystem(n);
@@ -25,6 +26,13 @@ public class JobPicker : MonoBehaviour {
     DisableAllButtons();
     Destroy(_camera);
   }
+
+  /*
+  [PunRPC]
+  public void SetWeaponAsChild(Vector3 vec3) {
+    job.transform.SetParent(_player.transform, false);
+  }
+  */
 
   private void InitPlayerHealthSystem(int n) {
     var health = ScriptableObject.CreateInstance<Health>();
