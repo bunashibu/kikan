@@ -60,7 +60,7 @@ TagManager:
   - name: Player
     uniqueID: 4205633467
     locked: 0
-  - name: Job
+  - name: Weapon
     uniqueID: 354386915
     locked: 0
   - name: Skill

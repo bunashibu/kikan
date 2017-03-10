@@ -10143,6 +10143,7 @@ GameObject:
   - component: {fileID: 1857252216}
   - component: {fileID: 1857252215}
   - component: {fileID: 1857252214}
+  - component: {fileID: 1857252220}
   m_Layer: 5
   m_Name: JobPicker
   m_TagString: Untagged
@@ -10161,15 +10162,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3483310954c64ef4cb5124ffbe823566, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 1000011996982660, guid: 9872b9617ee746f4a8ec6167f194cf4f, type: 2}
+  _jobs:
+  - {fileID: 1222958424102090, guid: 86add1277fe664846b3404c1ba3d1a1d, type: 2}
+  - {fileID: 1459901079173184, guid: bcfba8b479c481c4f95e19e4005fa1ba, type: 2}
   _camera: {fileID: 855000694}
   _buttons:
   - {fileID: 502785835}
   - {fileID: 1628920479}
   - {fileID: 92540856}
-  _jobs:
-  - {fileID: 1000013435092384, guid: d272f1fc44d9d984a92bfb1c8146b12f, type: 2}
-  - {fileID: 1000013486860876, guid: 45170fada9315dc4194af5f8775708d9, type: 2}
   _data:
   - {fileID: 11400000, guid: d4901d621e93d784fb9bb619c9dff702, type: 2}
   - {fileID: 11400000, guid: 04fff0473b3c2ca40b8cc82fcc70ad36, type: 2}
@@ -10293,6 +10293,32 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1857252220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1857252213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  OwnerShipWasTransfered: 0
+  prefixBackup: -1
+  synchronization: 0
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 0}
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 2
+  instantiationId: 2
+  currentMasterID: -1
+  isRuntimeInstantiated: 0
 --- !u!1 &1866915697
 GameObject:
   m_ObjectHideFlags: 0
