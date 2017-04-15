@@ -161,18 +161,25 @@ public class BattleApplication : Photon.PunBehaviour {
 
   private int[] TeamMaker() {
     var list = new List<int>();
-    int half = _matchNum / 2;
-    if (_matchNum % 2 != 0)
-      half += 1;
+    int half = 1;
+
+    if (_matchNum > 2) {
+      half = _matchNum / 2;
+
+      if (_matchNum % 2 != 0)
+        half += 1;
+    }
 
     for (int i=0; i<_matchNum; ++i) {
-      var t = list.Where(x => x == 0).Count();
+      var num0 = list.Where(x => x == 0).Count();
+      var num1 = list.Where(x => x == 1).Count();
 
-      if (Random.value < 0.5)
-        if (t < half)
+      if (num0 < half) {
+        if (Random.value < 0.5 || num1 >= half)
           list.Add(0);
         else
           list.Add(1);
+      }
       else
         list.Add(1);
     }

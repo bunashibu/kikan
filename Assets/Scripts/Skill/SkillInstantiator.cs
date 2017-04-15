@@ -2,12 +2,14 @@
 using System;
 using System.Collections;
 
-public class SkillInstantiator : MonoBehaviour {
+public class SkillInstantiator : Photon.MonoBehaviour {
   void Update() {
-    for (int i=0; i<_keys.Length; ++i) {
-      if (_canUse && Input.GetKey(_keys[i])) {
-        InstantiateSkill(i);
-        break;
+    if (photonView.isMine) {
+      for (int i=0; i<_keys.Length; ++i) {
+        if (_canUse && Input.GetKey(_keys[i])) {
+          InstantiateSkill(i);
+          break;
+        }
       }
     }
   }

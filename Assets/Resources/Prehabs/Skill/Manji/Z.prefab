@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 61513241601632456}
   - component: {fileID: 95766012013135520}
   - component: {fileID: 212014017042670366}
-  - component: {fileID: 114404251052638032}
+  - component: {fileID: 114467778468847226}
   m_Layer: 0
   m_Name: Z
   m_TagString: Untagged
@@ -75,7 +75,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114404251052638032
+--- !u!114 &114467778468847226
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

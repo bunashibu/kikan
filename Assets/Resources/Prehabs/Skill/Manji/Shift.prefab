@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 61000012832900290}
   - component: {fileID: 95000012625614196}
   - component: {fileID: 212000013285222208}
-  - component: {fileID: 114176275402482778}
+  - component: {fileID: 114603389603180056}
   m_Layer: 0
   m_Name: Shift
   m_TagString: Untagged
@@ -87,7 +87,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collider: {fileID: 61000012832900290}
---- !u!114 &114176275402482778
+--- !u!114 &114603389603180056
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

@@ -16,7 +16,10 @@ public class ManjiX : MonoBehaviour {
     }
 
     if (target.tag == "Player") {
-
+      /*
+      var hs = target.GetComponent<HealthSystem>();
+      hs.IsDamaged(1);
+      */
     }
   }
 
