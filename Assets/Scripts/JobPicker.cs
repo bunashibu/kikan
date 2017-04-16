@@ -8,6 +8,7 @@ public class JobPicker : MonoBehaviour {
   }
 
   public void Pick(int n) {
+    // Team 0 is Red(Right), Team 1 is Blue(Left)
     float x = 37.0f;
     float y = -2.5f;
     if ((int)PhotonNetwork.player.CustomProperties["Team"] == 1)
