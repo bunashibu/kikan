@@ -24,6 +24,11 @@ public class WalkSMB : StateMachineBehaviour {
       bool OneKeyUp         = Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow);
       bool ClimbFlag = (OnlyUpKeyDown && !_rigidState.LadderTopEdge) ||
                        (OnlyDownKeyDown && !_rigidState.LadderBottomEdge);
+      bool SkillFlag = Input.GetKey(KeyCode.X) ||
+                       Input.GetKey(KeyCode.LeftShift) ||
+                       Input.GetKey(KeyCode.Z);
+
+      if (SkillFlag) { ActTransition("Skill", animator); return; }
 
       if (OnlyLeftKeyDown)  { _linearMove.MoveLeft(); foreach (var sprite in _renderers) sprite.flipX = false; }
       if (OnlyRightKeyDown) { _linearMove.MoveRight(); foreach (var sprite in _renderers) sprite.flipX = true; }

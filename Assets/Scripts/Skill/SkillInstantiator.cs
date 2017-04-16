@@ -21,21 +21,28 @@ public class SkillInstantiator : Photon.MonoBehaviour {
     PhotonNetwork.Instantiate(path, pos, Quaternion.identity, 0);
 
     _canUse = false;
-    MonoUtility.Instance.DelaySec(_ct[i], () => {
+    MonoUtility.Instance.DelaySec(_skillCT[i], () => {
       _canUse = true;
     });
 
-    _anim.SetBool(_names[i], true);
+    _rigidState.UsingSkill = true;
+    MonoUtility.Instance.DelaySec(_immobileCT[i], () => {
+      _rigidState.UsingSkill = false;
+    });
+
+    _weaponAnim.SetBool(_names[i], true);
     MonoUtility.Instance.DelayOneFrame(() => {
-      _anim.SetBool(_names[i], false);
+      _weaponAnim.SetBool(_names[i], false);
     });
   }
 
   [SerializeField] private string _jobName;
   [SerializeField] private KeyCode[] _keys;
   [SerializeField] private string[] _names;
-  [SerializeField] private float[] _ct;
-  [SerializeField] private Animator _anim;
+  [SerializeField] private float[] _skillCT;
+  [SerializeField] private float[] _immobileCT;
+  [SerializeField] private Animator _weaponAnim;
+  [SerializeField] private RigidState _rigidState;
   private bool _canUse = true;
 }
 

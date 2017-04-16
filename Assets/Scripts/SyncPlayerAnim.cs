@@ -13,6 +13,7 @@ public class SyncPlayerAnim : MonoBehaviour {
       stream.SendNext(_anim.GetBool("LieDown"));
       stream.SendNext(_anim.GetBool("GroundJump"));
       stream.SendNext(_anim.GetBool("ClimbJump"));
+      stream.SendNext(_anim.GetBool("Skill"));
       stream.SendNext(_anim.GetBool("Die"));
     } else {
       _renderer.flipX = (bool)stream.ReceiveNext();
@@ -23,6 +24,7 @@ public class SyncPlayerAnim : MonoBehaviour {
       _anim.SetBool("LieDown", (bool)stream.ReceiveNext());
       _anim.SetBool("GroundJump", (bool)stream.ReceiveNext());
       _anim.SetBool("ClimbJump", (bool)stream.ReceiveNext());
+      _anim.SetBool("Skill", (bool)stream.ReceiveNext());
       _anim.SetBool("Die", (bool)stream.ReceiveNext());
     }
   }

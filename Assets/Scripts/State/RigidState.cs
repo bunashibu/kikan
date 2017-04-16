@@ -42,6 +42,7 @@ public class RigidState : MonoBehaviour {
   public bool Slow { get; set; }
   public bool Heavy { get; set; }
   public bool Immobile { get; set; }
+  public bool UsingSkill { get; set; }
 
   [SerializeField] private BoxCollider2D _colliderCenter;
   [SerializeField] private BoxCollider2D _colliderFoot;

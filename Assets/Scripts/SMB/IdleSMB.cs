@@ -21,6 +21,11 @@ public class IdleSMB : StateMachineBehaviour {
       bool LieDownFlag = OnlyDownKeyDown && !_rigidState.LadderTopEdge;
       bool ClimbFlag = (OnlyUpKeyDown && !_rigidState.LadderTopEdge) ||
                        (OnlyDownKeyDown && !_rigidState.LadderBottomEdge);
+      bool SkillFlag = Input.GetKey(KeyCode.X) ||
+                       Input.GetKey(KeyCode.LeftShift) ||
+                       Input.GetKey(KeyCode.Z);
+
+      if (SkillFlag) { ActTransition("Skill", animator); return; }
 
       if (_rigidState.Ladder) {
         if (ClimbFlag) { ActTransition("Climb", animator); return; }

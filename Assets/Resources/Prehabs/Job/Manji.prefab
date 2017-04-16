@@ -339,11 +339,16 @@ MonoBehaviour:
   - X
   - Shift
   - Z
-  _ct:
+  _skillCT:
   - 0.5
   - 1
   - 0.3
-  _anim: {fileID: 95722833264577094}
+  _immobileCT:
+  - 0.3
+  - 0.3
+  - 0.3
+  _weaponAnim: {fileID: 95722833264577094}
+  _rigidState: {fileID: 114096718221911472}
 --- !u!114 &114071637982662584
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -15,6 +15,12 @@ public class GroundJumpSMB : StateMachineBehaviour {
 
   override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
     if (_photonView.isMine) {
+      bool SkillFlag = Input.GetKey(KeyCode.X) ||
+                       Input.GetKey(KeyCode.LeftShift) ||
+                       Input.GetKey(KeyCode.Z);
+
+      if (SkillFlag) { ActTransition("Skill", animator); return; }
+
       if (_rigidState.Air) {
         ActTransition("Fall", animator); return;
       }
