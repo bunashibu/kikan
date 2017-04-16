@@ -58,6 +58,7 @@ GameObject:
   - component: {fileID: 114727906036904796}
   - component: {fileID: 114051009394257224}
   - component: {fileID: 114860953095351948}
+  - component: {fileID: 114187229581984502}
   m_Layer: 9
   m_Name: Magician
   m_TagString: Player
@@ -410,6 +411,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigid: {fileID: 50117284412226396}
+--- !u!114 &114187229581984502
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1459901079173184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19f37d758dd82c141be2bc803656e814, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 212826294567237146}
+  _anim: {fileID: 95108125892297200}
 --- !u!114 &114225891835059456
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -715,6 +729,7 @@ MonoBehaviour:
   ownershipTransfer: 0
   ObservedComponents:
   - {fileID: 114051009394257224}
+  - {fileID: 114187229581984502}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
@@ -753,7 +768,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigid: {fileID: 50117284412226396}
-  _photonTransView: {fileID: 0}
 --- !u!114 &114860953095351948
 MonoBehaviour:
   m_ObjectHideFlags: 1

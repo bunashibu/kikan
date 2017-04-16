@@ -16,6 +16,10 @@ public class JobPicker : MonoBehaviour {
 
     _player = PhotonNetwork.Instantiate("Prehabs/Job/" + _jobs[n].name, new Vector3(x, y, 0), Quaternion.identity, 0);
 
+    var sprite = _player.GetComponent<SpriteRenderer>();
+    if ((int)PhotonNetwork.player.CustomProperties["Team"] == 1)
+      sprite.flipX = true;
+
     InitPlayerHealthSystem(n);
     InitPlayerStatus(n);
     InitPlayerMovement(n);

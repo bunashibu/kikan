@@ -58,6 +58,7 @@ GameObject:
   - component: {fileID: 114710117432744930}
   - component: {fileID: 114311064836627604}
   - component: {fileID: 114311353132877880}
+  - component: {fileID: 114031372312786196}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -283,7 +284,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigid: {fileID: 50000013460582292}
-  _photonTransView: {fileID: 114311064836627604}
 --- !u!114 &114000010774355116
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -432,6 +432,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigid: {fileID: 50000013460582292}
+--- !u!114 &114031372312786196
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011996982660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19f37d758dd82c141be2bc803656e814, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 212000013636046964}
+  _anim: {fileID: 95000010494430044}
 --- !u!114 &114082414490035818
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -590,6 +603,7 @@ MonoBehaviour:
   ownershipTransfer: 0
   ObservedComponents:
   - {fileID: 114311064836627604}
+  - {fileID: 114031372312786196}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
