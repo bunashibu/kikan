@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 95115099118908558}
   - component: {fileID: 114723845006906642}
   - component: {fileID: 114430097152750932}
+  - component: {fileID: 114101673062311348}
   m_Layer: 0
   m_Name: Cane
   m_TagString: Untagged
@@ -411,6 +412,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigid: {fileID: 50117284412226396}
+--- !u!114 &114101673062311348
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1850914978229974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 410ae5ae3620ac84197219183e91e777, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 212899608026556102}
+  _anim: {fileID: 95115099118908558}
 --- !u!114 &114187229581984502
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -543,7 +557,7 @@ MonoBehaviour:
   m_PositionModel:
     SynchronizeEnabled: 1
     TeleportEnabled: 1
-    TeleportIfDistanceGreaterThan: 3
+    TeleportIfDistanceGreaterThan: 2
     InterpolateOption: 2
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 1
@@ -703,6 +717,7 @@ MonoBehaviour:
   ownershipTransfer: 0
   ObservedComponents:
   - {fileID: 114430097152750932}
+  - {fileID: 114101673062311348}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1

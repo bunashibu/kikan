@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 95722833264577094}
   - component: {fileID: 114572845960354168}
   - component: {fileID: 114103916784843228}
+  - component: {fileID: 114365085813304948}
   m_Layer: 0
   m_Name: Sword
   m_TagString: Untagged
@@ -401,7 +402,7 @@ MonoBehaviour:
   m_PositionModel:
     SynchronizeEnabled: 1
     TeleportEnabled: 1
-    TeleportIfDistanceGreaterThan: 3
+    TeleportIfDistanceGreaterThan: 2
     InterpolateOption: 2
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 1
@@ -488,6 +489,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _photonView: {fileID: 114800105221254742}
+--- !u!114 &114365085813304948
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1078551180647806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 410ae5ae3620ac84197219183e91e777, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 212620572494064958}
+  _anim: {fileID: 95722833264577094}
 --- !u!114 &114381345544009090
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -647,6 +661,7 @@ MonoBehaviour:
   ownershipTransfer: 0
   ObservedComponents:
   - {fileID: 114103916784843228}
+  - {fileID: 114365085813304948}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1

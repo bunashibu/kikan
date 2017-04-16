@@ -6,7 +6,7 @@ public class WalkSMB : StateMachineBehaviour {
     if (_photonView == null) {
       _photonView = animator.GetComponent<PhotonView>();
       _rigidState = animator.GetComponent<RigidState>();
-      _renderer = animator.GetComponent<SpriteRenderer>();
+      _renderers = animator.GetComponentsInChildren<SpriteRenderer>();
       _linearMove = animator.GetComponent<GroundLinearMove>();
     }
 
@@ -25,8 +25,8 @@ public class WalkSMB : StateMachineBehaviour {
       bool ClimbFlag = (OnlyUpKeyDown && !_rigidState.LadderTopEdge) ||
                        (OnlyDownKeyDown && !_rigidState.LadderBottomEdge);
 
-      if (OnlyLeftKeyDown)  { _linearMove.MoveLeft();  _renderer.flipX = false; }
-      if (OnlyRightKeyDown) { _linearMove.MoveRight(); _renderer.flipX = true;  }
+      if (OnlyLeftKeyDown)  { _linearMove.MoveLeft(); foreach (var sprite in _renderers) sprite.flipX = false; }
+      if (OnlyRightKeyDown) { _linearMove.MoveRight(); foreach (var sprite in _renderers) sprite.flipX = true; }
 
       if (_rigidState.Ladder) {
         if (ClimbFlag) { ActTransition("Climb", animator); return; }
@@ -51,7 +51,7 @@ public class WalkSMB : StateMachineBehaviour {
 
   private PhotonView _photonView;
   private RigidState _rigidState;
-  private SpriteRenderer _renderer;
+  private SpriteRenderer[] _renderers;
   private GroundLinearMove _linearMove;
 }
 

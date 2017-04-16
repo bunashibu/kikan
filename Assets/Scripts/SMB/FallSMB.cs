@@ -6,7 +6,7 @@ public class FallSMB : StateMachineBehaviour {
     if (_photonView == null) {
       _photonView = animator.GetComponent<PhotonView>();
       _rigidState = animator.GetComponent<RigidState>();
-      _renderer = animator.GetComponent<SpriteRenderer>();
+      _renderers = animator.GetComponentsInChildren<SpriteRenderer>();
       _airLinearMove = animator.GetComponent<AirLinearMove>();
     }
 
@@ -23,8 +23,8 @@ public class FallSMB : StateMachineBehaviour {
       bool LieDownFlag = OnlyDownKeyDown && !_rigidState.LadderTopEdge;
       bool ClimbFlag = OnlyUpKeyDown && !_rigidState.LadderTopEdge;
 
-      if (OnlyLeftKeyDown)  { _airLinearMove.MoveLeft();  _renderer.flipX = false; }
-      if (OnlyRightKeyDown) { _airLinearMove.MoveRight(); _renderer.flipX = true;  }
+      if (OnlyLeftKeyDown)  { _airLinearMove.MoveLeft(); foreach (var sprite in _renderers) sprite.flipX = false; }
+      if (OnlyRightKeyDown) { _airLinearMove.MoveRight(); foreach (var sprite in _renderers) sprite.flipX = true; }
 
       if (_rigidState.Ladder) {
         if (ClimbFlag) { ActTransition("Climb", animator); return; }
@@ -46,7 +46,7 @@ public class FallSMB : StateMachineBehaviour {
 
   private PhotonView _photonView;
   private RigidState _rigidState;
-  private SpriteRenderer _renderer;
+  private SpriteRenderer[] _renderers;
   private AirLinearMove _airLinearMove;
 }
 

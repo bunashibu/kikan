@@ -6,7 +6,7 @@ public class ClimbJumpSMB : StateMachineBehaviour {
     if (_photonView == null) {
       _photonView = animator.GetComponent<PhotonView>();
       _rigidState = animator.GetComponent<RigidState>();
-      _renderer = animator.GetComponent<SpriteRenderer>();
+      _renderers = animator.GetComponentsInChildren<SpriteRenderer>();
       _jump = animator.GetComponent<ClimbJump>();
       _linearMove = animator.GetComponent<GroundLinearMove>();
     }
@@ -16,8 +16,9 @@ public class ClimbJumpSMB : StateMachineBehaviour {
     bool OnlyLeftKeyDown  = Input.GetKey(KeyCode.LeftArrow)  && !Input.GetKey(KeyCode.RightArrow);
     bool OnlyRightKeyDown = Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow);
 
-    if (OnlyLeftKeyDown)  { _linearMove.MoveLeft();  _renderer.flipX = false; }
-    if (OnlyRightKeyDown) { _linearMove.MoveRight(); _renderer.flipX = true;  }
+    if (OnlyLeftKeyDown)  { _linearMove.MoveLeft(); foreach (var sprite in _renderers) sprite.flipX = false; }
+    if (OnlyRightKeyDown) { _linearMove.MoveRight(); foreach (var sprite in _renderers) sprite.flipX = true; }
+
     _jump.JumpOff();
   }
 
@@ -36,7 +37,7 @@ public class ClimbJumpSMB : StateMachineBehaviour {
 
   private PhotonView _photonView;
   private RigidState _rigidState;
-  private SpriteRenderer _renderer;
+  private SpriteRenderer[] _renderers;
   private ClimbJump _jump;
   private GroundLinearMove _linearMove;
 }
