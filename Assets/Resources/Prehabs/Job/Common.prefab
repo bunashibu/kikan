@@ -303,7 +303,7 @@ Animator:
   m_GameObject: {fileID: 1102636445822790}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6720cd06dc8ed514a9056abc6d532c89, type: 2}
+  m_Controller: {fileID: 9100000, guid: b76170e6486c1aa418ab287b7a5552bc, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -599,13 +599,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bccb8b5e185356d4a8e7ab60c9cefd77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _jobName: Manji
-  _keys: 78000000
-  _names: 00000000
-  _skillCT:
-  - 1
-  _rigorCT:
-  - 0.3
+  _jobName: Common
+  _keys: 
+  _names: 
+  _skillCT: []
+  _rigorCT: []
   _weaponAnim: {fileID: 95669708981810512}
   _rigidState: {fileID: 114000012861491266}
   _skillInfo: {fileID: 114911368492550572}
@@ -881,7 +879,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 354386915
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 2b070a743dc50e04195f4568593543d4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -27,13 +27,6 @@ public class SkillInstantiator : Photon.MonoBehaviour {
       _canUse = true;
     });
 
-    /*
-    _weaponAnim.SetBool(_names[i], true);
-    MonoUtility.Instance.DelayOneFrame(() => {
-      _weaponAnim.SetBool(_names[i], false);
-    });
-    */
-
     _skillInfo.SetState(_names[i], SkillState.Using);
     MonoUtility.Instance.DelaySec(_skillCT[i], () => {
       _skillInfo.SetState(_names[i], SkillState.Ready);

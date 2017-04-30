@@ -53,7 +53,7 @@ Animator:
   m_GameObject: {fileID: 1253558689239472}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6720cd06dc8ed514a9056abc6d532c89, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -170,7 +170,7 @@ MonoBehaviour:
   - 1
   _rigorCT:
   - 0.3
-  _weaponAnim: {fileID: 95448860144954346}
+  _weaponAnim: {fileID: 0}
   _rigidState: {fileID: 0}
   _skillInfo: {fileID: 0}
 --- !u!212 &212876937434024350
