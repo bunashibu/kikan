@@ -607,6 +607,7 @@ MonoBehaviour:
   _weaponAnim: {fileID: 95669708981810512}
   _rigidState: {fileID: 114000012861491266}
   _skillInfo: {fileID: 114911368492550572}
+  _renderer: {fileID: 212642414779630898}
 --- !u!114 &114311064836627604
 MonoBehaviour:
   m_ObjectHideFlags: 1

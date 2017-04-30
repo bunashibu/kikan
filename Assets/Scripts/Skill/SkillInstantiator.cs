@@ -16,11 +16,17 @@ public class SkillInstantiator : Photon.MonoBehaviour {
 
   private void InstantiateSkill(int i) {
     string path = "Prehabs/Skill/" + _jobName + "/" + _names[i];
-    var pos = this.transform.position + new Vector3(-0.4f, 0.1f, 0);
 
-    Debug.Log(_names[i]);
+    var skill = PhotonNetwork.Instantiate(path, this.transform.position, Quaternion.identity, 0);
 
-    PhotonNetwork.Instantiate(path, pos, Quaternion.identity, 0);
+    var skillSprite = skill.GetComponent<SpriteRenderer>();
+    skillSprite.flipX = _renderer.flipX;
+
+    var offset = _appearOffset[i];
+    if (skillSprite.flipX)
+      offset.x *= -1;
+
+    skill.transform.Translate(offset);
 
     _canUse = false;
     MonoUtility.Instance.DelaySec(_skillCT[i], () => {
@@ -44,9 +50,11 @@ public class SkillInstantiator : Photon.MonoBehaviour {
   [SerializeField] private SkillName[] _names;
   [SerializeField] private float[] _skillCT;
   [SerializeField] private float[] _rigorCT;
+  [SerializeField] private Vector3[] _appearOffset;
   [SerializeField] private Animator _weaponAnim;
   [SerializeField] private RigidState _rigidState;
   [SerializeField] private SkillInfo _skillInfo;
+  [SerializeField] private SpriteRenderer _renderer;
   private bool _canUse = true;
 }
 

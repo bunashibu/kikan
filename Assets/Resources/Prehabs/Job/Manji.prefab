@@ -345,9 +345,14 @@ MonoBehaviour:
   - 0.3
   - 0.3
   - 0.3
+  _appearOffset:
+  - {x: -0.4, y: 0.1, z: 0}
+  - {x: -0.4, y: 0.1, z: 0}
+  - {x: -0.2, y: -0.1, z: 0}
   _weaponAnim: {fileID: 95722833264577094}
   _rigidState: {fileID: 114096718221911472}
   _skillInfo: {fileID: 114133107298816194}
+  _renderer: {fileID: 212620572494064958}
 --- !u!114 &114071637982662584
 MonoBehaviour:
   m_ObjectHideFlags: 1
