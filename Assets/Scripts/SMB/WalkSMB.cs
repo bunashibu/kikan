@@ -6,6 +6,7 @@ public class WalkSMB : StateMachineBehaviour {
     if (_photonView == null) {
       _photonView = animator.GetComponent<PhotonView>();
       _rigidState = animator.GetComponent<RigidState>();
+      _skillInfo = animator.GetComponentInChildren<SkillInfo>();
       _renderers = animator.GetComponentsInChildren<SpriteRenderer>();
       _linearMove = animator.GetComponent<GroundLinearMove>();
     }
@@ -24,9 +25,14 @@ public class WalkSMB : StateMachineBehaviour {
       bool OneKeyUp         = Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow);
       bool ClimbFlag = (OnlyUpKeyDown && !_rigidState.LadderTopEdge) ||
                        (OnlyDownKeyDown && !_rigidState.LadderBottomEdge);
-      bool SkillFlag = Input.GetKey(KeyCode.X) ||
-                       Input.GetKey(KeyCode.LeftShift) ||
-                       Input.GetKey(KeyCode.Z);
+
+      SkillState stateX = _skillInfo.GetState(SkillName.X);
+      SkillState stateShift = _skillInfo.GetState(SkillName.Shift);
+      SkillState stateZ = _skillInfo.GetState(SkillName.Z);
+
+      bool SkillFlag = (stateX == SkillState.Using) ||
+                       (stateShift == SkillState.Using) ||
+                       (stateZ == SkillState.Using);
 
       if (SkillFlag) { ActTransition("Skill", animator); return; }
 
@@ -56,6 +62,7 @@ public class WalkSMB : StateMachineBehaviour {
 
   private PhotonView _photonView;
   private RigidState _rigidState;
+  private SkillInfo _skillInfo;
   private SpriteRenderer[] _renderers;
   private GroundLinearMove _linearMove;
 }

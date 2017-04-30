@@ -6,6 +6,7 @@ public class FallSMB : StateMachineBehaviour {
     if (_photonView == null) {
       _photonView = animator.GetComponent<PhotonView>();
       _rigidState = animator.GetComponent<RigidState>();
+      _skillInfo = animator.GetComponentInChildren<SkillInfo>();
       _renderers = animator.GetComponentsInChildren<SpriteRenderer>();
       _airLinearMove = animator.GetComponent<AirLinearMove>();
     }
@@ -22,9 +23,14 @@ public class FallSMB : StateMachineBehaviour {
       bool JumpButtonDown   = Input.GetButton("Jump");
       bool LieDownFlag = OnlyDownKeyDown && !_rigidState.LadderTopEdge;
       bool ClimbFlag = OnlyUpKeyDown && !_rigidState.LadderTopEdge;
-      bool SkillFlag = Input.GetKey(KeyCode.X) ||
-                       Input.GetKey(KeyCode.LeftShift) ||
-                       Input.GetKey(KeyCode.Z);
+
+      SkillState stateX = _skillInfo.GetState(SkillName.X);
+      SkillState stateShift = _skillInfo.GetState(SkillName.Shift);
+      SkillState stateZ = _skillInfo.GetState(SkillName.Z);
+
+      bool SkillFlag = (stateX == SkillState.Using) ||
+                       (stateShift == SkillState.Using) ||
+                       (stateZ == SkillState.Using);
 
       if (SkillFlag) { ActTransition("Skill", animator); return; }
 
@@ -51,6 +57,7 @@ public class FallSMB : StateMachineBehaviour {
 
   private PhotonView _photonView;
   private RigidState _rigidState;
+  private SkillInfo _skillInfo;
   private SpriteRenderer[] _renderers;
   private AirLinearMove _airLinearMove;
 }

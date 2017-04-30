@@ -6,6 +6,7 @@ public class IdleSMB : StateMachineBehaviour {
     if (_photonView == null) {
       _photonView = animator.GetComponent<PhotonView>();
       _rigidState = animator.GetComponent<RigidState>();
+      _skillInfo = animator.GetComponentInChildren<SkillInfo>();
     }
 
     Debug.Log("idle");
@@ -18,12 +19,18 @@ public class IdleSMB : StateMachineBehaviour {
       bool OnlyDownKeyDown  = Input.GetKey(KeyCode.DownArrow)  && !Input.GetKey(KeyCode.UpArrow);
       bool OnlyUpKeyDown    = Input.GetKey(KeyCode.UpArrow)    && !Input.GetKey(KeyCode.DownArrow);
       bool JumpButtonDown   = Input.GetButton("Jump");
+
       bool LieDownFlag = OnlyDownKeyDown && !_rigidState.LadderTopEdge;
       bool ClimbFlag = (OnlyUpKeyDown && !_rigidState.LadderTopEdge) ||
                        (OnlyDownKeyDown && !_rigidState.LadderBottomEdge);
-      bool SkillFlag = Input.GetKey(KeyCode.X) ||
-                       Input.GetKey(KeyCode.LeftShift) ||
-                       Input.GetKey(KeyCode.Z);
+
+      SkillState stateX = _skillInfo.GetState(SkillName.X);
+      SkillState stateShift = _skillInfo.GetState(SkillName.Shift);
+      SkillState stateZ = _skillInfo.GetState(SkillName.Z);
+
+      bool SkillFlag = (stateX == SkillState.Using) ||
+                       (stateShift == SkillState.Using) ||
+                       (stateZ == SkillState.Using);
 
       if (SkillFlag) { ActTransition("Skill", animator); return; }
 
@@ -50,5 +57,6 @@ public class IdleSMB : StateMachineBehaviour {
 
   private PhotonView _photonView;
   private RigidState _rigidState;
+  private SkillInfo _skillInfo;
 }
 

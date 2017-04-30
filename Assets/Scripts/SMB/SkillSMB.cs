@@ -15,10 +15,10 @@ public class SkillSMB : StateMachineBehaviour {
 
   override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
     if (_photonView.isMine) {
-      if (_rigidState.UsingSkill)
+      if (_rigidState.Rigor)
         _transitionFlag = true;
 
-      if (_transitionFlag && !_rigidState.UsingSkill) {
+      if (_transitionFlag && !_rigidState.Rigor) {
         bool OnlyLeftKeyDown  = Input.GetKey(KeyCode.LeftArrow)  && !Input.GetKey(KeyCode.RightArrow);
         bool OnlyRightKeyDown = Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow);
 
