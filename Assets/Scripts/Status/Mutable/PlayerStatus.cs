@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class PlayerStatus : MonoBehaviour {
+  [System.NonSerialized] public int lv;
   [System.NonSerialized] public int atk;
   [System.NonSerialized] public int dfn;
   [System.NonSerialized] public int spd;

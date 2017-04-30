@@ -353,6 +353,7 @@ MonoBehaviour:
   _rigidState: {fileID: 114096718221911472}
   _skillInfo: {fileID: 114133107298816194}
   _renderer: {fileID: 212620572494064958}
+  _status: {fileID: 114037318656622916}
 --- !u!114 &114071637982662584
 MonoBehaviour:
   m_ObjectHideFlags: 1

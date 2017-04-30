@@ -28,6 +28,9 @@ public class SkillInstantiator : Photon.MonoBehaviour {
 
     skill.transform.Translate(offset);
 
+    var skillBehaviour = skill.GetComponent<Skill>();
+    skillBehaviour.SetStatus(_status);
+
     _canUse = false;
     MonoUtility.Instance.DelaySec(_skillCT[i], () => {
       _canUse = true;
@@ -55,6 +58,7 @@ public class SkillInstantiator : Photon.MonoBehaviour {
   [SerializeField] private RigidState _rigidState;
   [SerializeField] private SkillInfo _skillInfo;
   [SerializeField] private SpriteRenderer _renderer;
+  [SerializeField] private PlayerStatus _status;
   private bool _canUse = true;
 }
 

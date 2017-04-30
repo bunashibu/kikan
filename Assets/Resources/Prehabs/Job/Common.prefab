@@ -604,10 +604,12 @@ MonoBehaviour:
   _names: 
   _skillCT: []
   _rigorCT: []
+  _appearOffset: []
   _weaponAnim: {fileID: 95669708981810512}
   _rigidState: {fileID: 114000012861491266}
   _skillInfo: {fileID: 114911368492550572}
   _renderer: {fileID: 212642414779630898}
+  _status: {fileID: 114000011648146592}
 --- !u!114 &114311064836627604
 MonoBehaviour:
   m_ObjectHideFlags: 1

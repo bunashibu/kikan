@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ManjiShift : MonoBehaviour {
+public class ManjiShift : Skill {
   void OnTriggerEnter2D(Collider2D collider) {
     var target = collider.gameObject;
 

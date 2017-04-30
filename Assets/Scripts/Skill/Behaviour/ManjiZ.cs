@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ManjiZ : MonoBehaviour {
+public class ManjiZ : Skill {
   void OnTriggerEnter2D(Collider2D collider) {
     var target = collider.gameObject;
 

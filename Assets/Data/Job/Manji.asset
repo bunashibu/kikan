@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Name: Manji
   m_EditorClassIdentifier: 
   id: 0
-  life: 30
-  atk: 100
-  dfn: 100
+  life: 3000
+  atk: 1
+  dfn: 1
   spd: 80
   jmp: 400
