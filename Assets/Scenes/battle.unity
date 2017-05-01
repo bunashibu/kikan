@@ -9780,7 +9780,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _anim: {fileID: 1798065909}
-  _hiddenBar: {fileID: 0}
+  _worldBar: {fileID: 490272872}
 --- !u!95 &1798065909
 Animator:
   serializedVersion: 3

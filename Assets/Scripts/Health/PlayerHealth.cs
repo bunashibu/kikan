@@ -20,7 +20,7 @@ public class PlayerHealth : Health {
 
   public override void Die() {
     base.Die();
-    _anim.SetBool("Die", true);
+    //_anim.SetBool("Die", true);
   }
 
   [SerializeField] private Animator _anim;

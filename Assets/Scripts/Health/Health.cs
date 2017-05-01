@@ -6,11 +6,20 @@ public class Health : Photon.MonoBehaviour, IGauge<int> {
     Cur = life;
     Min = 0; // Until C#6
     Max = maxLife;
+
+    photonView.RPC("SyncInit", PhotonTargets.Others, Cur, Min, Max);
   }
 
   [PunRPC]
-  public void SyncCur(int val) {
-    Cur = val;
+  public void SyncInit(int cur, int min, int max) {
+    Cur = cur;
+    Min = min;
+    Max = max;
+  }
+
+  [PunRPC]
+  public void SyncCur(int cur) {
+    Cur = cur;
   }
 
   public void Plus(int quantity) {
@@ -20,6 +29,8 @@ public class Health : Photon.MonoBehaviour, IGauge<int> {
       Cur = Min;
     if (Cur > Max)
       Cur = Max;
+
+    photonView.RPC("SyncCur", PhotonTargets.Others, Cur);
 
     if (Cur == Min)
       Die();
