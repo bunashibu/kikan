@@ -813,7 +813,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _anim: {fileID: 95930055764971676}
-  _hiddenBar: {fileID: 114283101673446462}
+  _worldBar: {fileID: 114283101673446462}
 --- !u!114 &114572845960354168
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -932,7 +932,6 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114409857702172010}
   - {fileID: 114878352491881542}
-  - {fileID: 114504324772229166}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1

@@ -6,9 +6,11 @@ public class ManjiShift : Skill {
     var target = collider.gameObject;
 
     if (target.tag == "Enemy") {
+      /*
       // damage = _atk * _power;
       target.GetComponent<EnemyHealth>().IsDamaged(20);
       target.GetComponent<Enemy>().ShowHealthBar();
+      */
     }
   }
 

@@ -1,11 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Health : ScriptableObject, IGauge<int> {
+public class Health : Photon.MonoBehaviour, IGauge<int> {
   public void Init(int life, int maxLife) {
     Cur = life;
     Min = 0; // Until C#6
     Max = maxLife;
+  }
+
+  [PunRPC]
+  public void SyncCur(int val) {
+    Cur = val;
   }
 
   public void Plus(int quantity) {
@@ -16,11 +21,16 @@ public class Health : ScriptableObject, IGauge<int> {
     if (Cur > Max)
       Cur = Max;
 
-    Dead = (Cur == Min) ? true : false;
+    if (Cur == Min)
+      Die();
   }
 
   public void Minus(int quantity) {
     Plus(-quantity);
+  }
+
+  public virtual void Die() {
+    Dead = true;
   }
 
   public int Cur { get; private set; }

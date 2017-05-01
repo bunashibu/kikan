@@ -31,14 +31,11 @@ public class JobPicker : MonoBehaviour {
   }
 
   private void InitPlayerHealth(int n) {
-    var health = ScriptableObject.CreateInstance<Health>();
-    health.Init(_data[n].life, _data[n].life);
-
     _bar = Instantiate(_bar) as Bar;
     _bar.transform.SetParent(_canvas.transform, false);
 
     var playerHealth = _player.GetComponent<PlayerHealth>();
-    playerHealth.Init(health, _bar);
+    playerHealth.Init(_data[n].life, _bar);
     playerHealth.Show();
   }
 

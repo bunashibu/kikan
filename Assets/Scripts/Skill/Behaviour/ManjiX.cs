@@ -8,15 +8,15 @@ public class ManjiX : Skill {
 
       if (target.tag == "Enemy") {
         int damage = status.atk + _power;
-        target.GetComponent<EnemyHealth>().IsDamaged(damage);
+        target.GetComponent<EnemyHealth>().Minus(damage);
         target.GetComponent<Enemy>().ShowHealthBar();
       }
 
       if (target.tag == "Player") {
         Debug.Log("OnTrigger");
         //int damage = status.atk + _power;
-        var hs = target.GetComponent<PlayerHealth>();
-        hs.IsDamaged(100);
+        var health = target.GetComponent<PlayerHealth>();
+        health.Minus(100);
       }
     }
   }

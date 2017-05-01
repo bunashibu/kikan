@@ -1,43 +1,30 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerHealth : Photon.MonoBehaviour {
-  public void Init(Health health, Bar hudBar) {
-    _health = health;
+public class PlayerHealth : Health {
+  public void Init(int life, Bar hudBar) {
+    Init(life, life);
+
     _hudBar = hudBar;
 
     if (photonView.isMine)
-      _hiddenBar.gameObject.SetActive(false);
-  }
-
-  public void IsHealed(int quantity) {
-    _health.Plus(quantity);
-    Show();
-  }
-
-  public void IsDamaged(int quantity) {
-    IsHealed(-quantity);
-
-    if (_health.Dead)
-      Die();
+      _worldBar.gameObject.SetActive(false);
   }
 
   public void Show() {
-    _hudBar.Show(_health.Cur, _health.Max);
+    if (photonView.isMine)
+      _hudBar.Show(Cur, Max);
+    else
+      _worldBar.Show(Cur, Max);
   }
 
-  // called by other players
-  public void ShowHidden() {
-    _hiddenBar.Show(_health.Cur, _health.Max);
-  }
-
-  public void Die() {
+  public override void Die() {
+    base.Die();
     _anim.SetBool("Die", true);
   }
 
   [SerializeField] private Animator _anim;
-  [SerializeField] private Bar _hiddenBar;
-  private Health _health;
+  [SerializeField] private Bar _worldBar;
   private Bar _hudBar;
 }
 

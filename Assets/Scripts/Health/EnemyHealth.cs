@@ -2,34 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHealth : MonoBehaviour {
-  public void Init(Health health, Bar bar) {
-    _health = health;
+public class EnemyHealth : Health {
+  public void Init(int life, Bar bar) {
+    Init(life, life);
     _bar = bar;
   }
 
-  public void IsHealed(int quantity) {
-    _health.Plus(quantity);
-    Show();
-  }
-
-  public void IsDamaged(int quantity) {
-    IsHealed(-quantity);
-
-    if (_health.Dead)
-      Die();
-  }
-
   public void Show() {
-    _bar.Show(_health.Cur, _health.Max);
+    _bar.Show(Cur, Max);
   }
 
-  public void Die() {
+  public override void Die() {
+    base.Die();
     _anim.SetBool("Die", true);
   }
 
   [SerializeField] private Animator _anim;
-  private Health _health;
   private Bar _bar;
 }
 
