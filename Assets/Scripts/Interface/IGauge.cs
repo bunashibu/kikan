@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public interface ISlider<T> {
+public interface IGauge<T> {
   T Cur { get; }
   T Min { get; }
   T Max { get; }
