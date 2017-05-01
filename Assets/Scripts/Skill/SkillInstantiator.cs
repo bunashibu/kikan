@@ -8,6 +8,7 @@ public class SkillInstantiator : Photon.MonoBehaviour {
       for (int i=0; i<_keys.Length; ++i) {
         if (_canUse && Input.GetKey(_keys[i])) {
           InstantiateSkill(i);
+          UpdateCT(i);
           break;
         }
       }
@@ -17,20 +18,25 @@ public class SkillInstantiator : Photon.MonoBehaviour {
   private void InstantiateSkill(int i) {
     string path = "Prehabs/Skill/" + _jobName + "/" + _names[i];
 
-    var skill = PhotonNetwork.Instantiate(path, this.transform.position, Quaternion.identity, 0);
-
-    var skillSprite = skill.GetComponent<SpriteRenderer>();
-    skillSprite.flipX = _renderer.flipX;
-
     var offset = _appearOffset[i];
-    if (skillSprite.flipX)
+    if (_renderer.flipX)
       offset.x *= -1;
 
-    skill.transform.Translate(offset);
+    var skill = PhotonNetwork.Instantiate(path, this.transform.position + offset, Quaternion.identity, 0);
+
+    FixFlipX(skill);
 
     var skillBehaviour = skill.GetComponent<Skill>();
     skillBehaviour.SetStatus(_status);
+    Debug.Log("SetStatus");
+  }
 
+  private void FixFlipX(GameObject skill) {
+    var skillSprite = skill.GetComponent<SpriteRenderer>();
+    skillSprite.flipX = _renderer.flipX;
+  }
+
+  private void UpdateCT(int i) {
     _canUse = false;
     MonoUtility.Instance.DelaySec(_skillCT[i], () => {
       _canUse = true;

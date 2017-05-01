@@ -7,7 +7,7 @@ public class ManjiShift : Skill {
 
     if (target.tag == "Enemy") {
       // damage = _atk * _power;
-      target.GetComponent<HealthSystem>().IsDamaged(20);
+      target.GetComponent<EnemyHealth>().IsDamaged(20);
       target.GetComponent<Enemy>().ShowHealthBar();
     }
   }

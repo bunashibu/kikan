@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _renderer: {fileID: 212000013285222208}
+  _skill: {fileID: 114000010207159786}
 --- !u!114 &114603389603180056
 MonoBehaviour:
   m_ObjectHideFlags: 1

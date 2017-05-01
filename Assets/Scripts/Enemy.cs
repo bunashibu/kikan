@@ -7,13 +7,13 @@ public class Enemy : MonoBehaviour {
     var health = ScriptableObject.CreateInstance<Health>();
     health.Init(_data.life, _data.life);
 
-    var hs = GetComponent<HealthSystem>();
+    var hs = GetComponent<EnemyHealth>();
     hs.Init(health, _bar);
   }
 
   void OnTriggerEnter2D(Collider2D collider) {
     if (collider.gameObject.tag == "Player") {
-      collider.gameObject.GetComponent<HealthSystem>().IsDamaged(_data.atk * 2);
+      collider.gameObject.GetComponent<PlayerHealth>().IsDamaged(_data.atk * 2);
     }
   }
 

@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class HealthSystem : MonoBehaviour {
-  public void Init(Health health, Bar bar) {
+public class PlayerHealth : Photon.MonoBehaviour {
+  public void Init(Health health, Bar hudBar) {
     _health = health;
-    _bar = bar;
+    _hudBar = hudBar;
+
+    if (photonView.isMine)
+      _hiddenBar.gameObject.SetActive(false);
   }
 
   public void IsHealed(int quantity) {
@@ -20,7 +23,12 @@ public class HealthSystem : MonoBehaviour {
   }
 
   public void Show() {
-    _bar.Show(_health.Cur, _health.Max);
+    _hudBar.Show(_health.Cur, _health.Max);
+  }
+
+  // called by other players
+  public void ShowHidden() {
+    _hiddenBar.Show(_health.Cur, _health.Max);
   }
 
   public void Die() {
@@ -28,7 +36,8 @@ public class HealthSystem : MonoBehaviour {
   }
 
   [SerializeField] private Animator _anim;
+  [SerializeField] private Bar _hiddenBar;
   private Health _health;
-  private Bar _bar;
+  private Bar _hudBar;
 }
 

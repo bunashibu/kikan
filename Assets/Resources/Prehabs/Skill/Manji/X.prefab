@@ -194,6 +194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _renderer: {fileID: 212000012323840186}
+  _skill: {fileID: 114000012261134560}
 --- !u!212 &212000012323840186
 SpriteRenderer:
   m_ObjectHideFlags: 1

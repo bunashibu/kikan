@@ -22,7 +22,7 @@ public class JobPicker : MonoBehaviour {
         sprite.flipX = true;
     }
 
-    InitPlayerHealthSystem(n);
+    InitPlayerHealth(n);
     InitPlayerStatus(n);
     InitPlayerMovement(n);
 
@@ -30,21 +30,22 @@ public class JobPicker : MonoBehaviour {
     Destroy(_camera);
   }
 
-  private void InitPlayerHealthSystem(int n) {
+  private void InitPlayerHealth(int n) {
     var health = ScriptableObject.CreateInstance<Health>();
     health.Init(_data[n].life, _data[n].life);
 
     _bar = Instantiate(_bar) as Bar;
     _bar.transform.SetParent(_canvas.transform, false);
 
-    var hs = _player.GetComponent<HealthSystem>();
-    hs.Init(health, _bar);
-    hs.Show();
+    var playerHealth = _player.GetComponent<PlayerHealth>();
+    playerHealth.Init(health, _bar);
+    playerHealth.Show();
   }
 
   private void InitPlayerStatus(int n) {
     var status = _player.GetComponent<PlayerStatus>();
 
+    status.lv  = 1;
     status.atk = _data[n].atk;
     status.dfn = _data[n].dfn;
     status.spd = _data[n].spd;

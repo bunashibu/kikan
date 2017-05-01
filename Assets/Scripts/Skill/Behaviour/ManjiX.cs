@@ -3,18 +3,21 @@ using System.Collections;
 
 public class ManjiX : Skill {
   void OnTriggerEnter2D(Collider2D collider) {
-    var target = collider.gameObject;
+    if (!photonView.isMine) {
+      var target = collider.gameObject;
 
-    if (target.tag == "Enemy") {
-      int damage = _status.atk + _power;
-      target.GetComponent<HealthSystem>().IsDamaged(damage);
-      target.GetComponent<Enemy>().ShowHealthBar();
-    }
+      if (target.tag == "Enemy") {
+        int damage = status.atk + _power;
+        target.GetComponent<EnemyHealth>().IsDamaged(damage);
+        target.GetComponent<Enemy>().ShowHealthBar();
+      }
 
-    if (target.tag == "Player") {
-      int damage = _status.atk + _power;
-      var hs = target.GetComponent<HealthSystem>();
-      hs.IsDamaged(damage);
+      if (target.tag == "Player") {
+        Debug.Log("OnTrigger");
+        //int damage = status.atk + _power;
+        var hs = target.GetComponent<PlayerHealth>();
+        hs.IsDamaged(100);
+      }
     }
   }
 

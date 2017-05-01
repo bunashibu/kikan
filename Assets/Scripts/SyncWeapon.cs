@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SyncWeaponAnim : MonoBehaviour {
+public class SyncWeapon : MonoBehaviour {
   void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
     if (stream.isWriting) {
       stream.SendNext(_renderer.flipX);

@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Skill : MonoBehaviour {
-  public void SetStatus(PlayerStatus status) {
-    _status = status;
+public class Skill : Photon.MonoBehaviour {
+  public void SetStatus(PlayerStatus statusArg) {
+    status = statusArg;
   }
 
-  protected PlayerStatus _status;
+  [System.NonSerialized] public PlayerStatus status;
 }
 
