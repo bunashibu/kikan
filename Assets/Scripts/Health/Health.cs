@@ -11,14 +11,14 @@ public class Health : Photon.MonoBehaviour, IGauge<int> {
   }
 
   [PunRPC]
-  public void SyncInit(int cur, int min, int max) {
+  protected void SyncInit(int cur, int min, int max) {
     Cur = cur;
     Min = min;
     Max = max;
   }
 
   [PunRPC]
-  public void SyncCur(int cur) {
+  protected void SyncCur(int cur) {
     Cur = cur;
   }
 

@@ -11,6 +11,7 @@ public class PlayerHealth : Health {
       _worldBar.gameObject.SetActive(false);
   }
 
+  [PunRPC]
   public void Show() {
     if (photonView.isMine)
       _hudBar.Show(Cur, Max);

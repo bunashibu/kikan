@@ -24,16 +24,9 @@ public class SkillInstantiator : Photon.MonoBehaviour {
 
     var skill = PhotonNetwork.Instantiate(path, this.transform.position + offset, Quaternion.identity, 0);
 
-    FixFlipX(skill);
-
-    var skillBehaviour = skill.GetComponent<Skill>();
-    skillBehaviour.SetStatus(_status);
-    Debug.Log("SetStatus");
-  }
-
-  private void FixFlipX(GameObject skill) {
-    var skillSprite = skill.GetComponent<SpriteRenderer>();
-    skillSprite.flipX = _renderer.flipX;
+    var flipX = _renderer.flipX;
+    var player = PhotonNetwork.player;
+    skill.GetComponent<PhotonView>().RPC("Sync", PhotonTargets.All, flipX, player);
   }
 
   private void UpdateCT(int i) {

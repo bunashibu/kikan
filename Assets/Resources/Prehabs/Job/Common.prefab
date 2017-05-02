@@ -419,6 +419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _anim: {fileID: 95000010494430044}
+  _worldBar: {fileID: 0}
 --- !u!114 &114000012861491266
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -610,6 +611,7 @@ MonoBehaviour:
   _skillInfo: {fileID: 114911368492550572}
   _renderer: {fileID: 212642414779630898}
   _status: {fileID: 114000011648146592}
+  _player: {fileID: 1000011996982660}
 --- !u!114 &114311064836627604
 MonoBehaviour:
   m_ObjectHideFlags: 1
