@@ -6,6 +6,7 @@ public abstract class Bar : MonoBehaviour {
   public abstract void Show(int cur, int max);
 
   protected virtual void Animate(int cur, int max) {
+    Debug.Log("Animate " + cur + " " + max);
     if (cur == 0) {
       GetComponent<Slider>().value = 0;
       return;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyHealth : Health {
   public void Init(int life, Bar bar) {
-    Init(life, life);
+    //Init(life, life);
     _bar = bar;
   }
 

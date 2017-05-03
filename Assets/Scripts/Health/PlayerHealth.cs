@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerHealth : Health {
   public void Init(int life, Bar hudBar) {
-    Init(life, life);
+    photonView.RPC("SyncInit", PhotonTargets.All, life, 0, life);
 
     _hudBar = hudBar;
 

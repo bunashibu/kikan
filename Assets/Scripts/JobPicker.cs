@@ -36,7 +36,8 @@ public class JobPicker : MonoBehaviour {
 
     var playerHealth = _player.GetComponent<PlayerHealth>();
     playerHealth.Init(_data[n].life, _bar);
-    playerHealth.Show();
+
+    _player.GetComponent<PhotonView>().RPC("Show", PhotonTargets.All);
   }
 
   private void InitPlayerStatus(int n) {

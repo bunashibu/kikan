@@ -2,14 +2,6 @@
 using System.Collections;
 
 public class Health : Photon.MonoBehaviour, IGauge<int> {
-  public void Init(int life, int maxLife) {
-    Cur = life;
-    Min = 0; // Until C#6
-    Max = maxLife;
-
-    photonView.RPC("SyncInit", PhotonTargets.Others, Cur, Min, Max);
-  }
-
   [PunRPC]
   protected void SyncInit(int cur, int min, int max) {
     Cur = cur;
@@ -45,7 +37,7 @@ public class Health : Photon.MonoBehaviour, IGauge<int> {
   }
 
   public int Cur { get; private set; }
-  public int Min { get; private set; } // = 0; C#6
+  public int Min { get; private set; }
   public int Max { get; private set; }
   public bool Dead { get; private set; }
 }

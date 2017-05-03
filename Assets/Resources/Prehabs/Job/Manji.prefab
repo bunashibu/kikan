@@ -420,7 +420,6 @@ MonoBehaviour:
   _skillInfo: {fileID: 114133107298816194}
   _renderer: {fileID: 212620572494064958}
   _status: {fileID: 114037318656622916}
-  _player: {fileID: 1222958424102090}
 --- !u!114 &114071637982662584
 MonoBehaviour:
   m_ObjectHideFlags: 1

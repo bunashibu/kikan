@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class ManjiZ : Skill {
   void OnTriggerEnter2D(Collider2D collider) {
-    var target = collider.gameObject;
+    if (PhotonNetwork.isMasterClient) {
+      var target = collider.gameObject;
+      var targetView = target.GetComponent<PhotonView>();
 
-    if (target.tag == "Enemy") {
-      // damage = _atk * _power;
-      /*
-      target.GetComponent<EnemyHealth>().IsDamaged(20);
-      target.GetComponent<Enemy>().ShowHealthBar();
-      */
+      if (targetView.owner != _skillUser) {
+        if (target.tag == "Player") {
+          var health = target.GetComponent<PlayerHealth>();
+          health.Minus(30);
+          targetView.RPC("Show", PhotonTargets.All);
+        }
+      }
     }
   }
 
