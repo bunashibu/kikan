@@ -9,6 +9,7 @@ public class ClimbSMB : StateMachineBehaviour {
       _colliderFoot = animator.GetComponents<BoxCollider2D>()[1];
       _rigidState = animator.GetComponent<RigidState>();
       _climb = animator.GetComponent<Climb>();
+      _health = animator.GetComponent<PlayerHealth>();
     }
 
     Debug.Log("climb");
@@ -26,6 +27,8 @@ public class ClimbSMB : StateMachineBehaviour {
       bool OnlyUpKeyDown    = Input.GetKey(KeyCode.UpArrow)    && !Input.GetKey(KeyCode.DownArrow);
       bool OnlyDownKeyDown  = Input.GetKey(KeyCode.DownArrow)  && !Input.GetKey(KeyCode.UpArrow);
       bool JumpButtonDown   = Input.GetButton("Jump");
+
+      if (_health.Dead) { ActTransition("Die", animator); return; }
 
       if (OnlyUpKeyDown)   _climb.MoveUp();
       if (OnlyDownKeyDown) _climb.MoveDown();
@@ -65,5 +68,6 @@ public class ClimbSMB : StateMachineBehaviour {
   private RigidState _rigidState;
   private Climb _climb;
   private bool _isTransferable;
+  private PlayerHealth _health;
 }
 

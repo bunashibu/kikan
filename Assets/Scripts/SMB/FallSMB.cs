@@ -9,6 +9,7 @@ public class FallSMB : StateMachineBehaviour {
       _skillInfo = animator.GetComponentInChildren<SkillInfo>();
       _renderers = animator.GetComponentsInChildren<SpriteRenderer>();
       _airLinearMove = animator.GetComponent<AirLinearMove>();
+      _health = animator.GetComponent<PlayerHealth>();
     }
 
     Debug.Log("Fall");
@@ -31,6 +32,8 @@ public class FallSMB : StateMachineBehaviour {
       bool SkillFlag = (stateX == SkillState.Using) ||
                        (stateShift == SkillState.Using) ||
                        (stateZ == SkillState.Using);
+
+      if (_health.Dead) { ActTransition("Die", animator); return; }
 
       if (SkillFlag) { ActTransition("Skill", animator); return; }
 
@@ -60,5 +63,6 @@ public class FallSMB : StateMachineBehaviour {
   private SkillInfo _skillInfo;
   private SpriteRenderer[] _renderers;
   private AirLinearMove _airLinearMove;
+  private PlayerHealth _health;
 }
 

@@ -19,12 +19,6 @@ public class PlayerHealth : Health {
       _worldBar.Show(Cur, Max);
   }
 
-  public override void Die() {
-    base.Die();
-    //_anim.SetBool("Die", true);
-  }
-
-  [SerializeField] private Animator _anim;
   [SerializeField] private Bar _worldBar;
   private Bar _hudBar;
 }

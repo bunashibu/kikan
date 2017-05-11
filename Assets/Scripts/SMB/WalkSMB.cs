@@ -9,6 +9,7 @@ public class WalkSMB : StateMachineBehaviour {
       _skillInfo = animator.GetComponentInChildren<SkillInfo>();
       _renderers = animator.GetComponentsInChildren<SpriteRenderer>();
       _linearMove = animator.GetComponent<GroundLinearMove>();
+      _health = animator.GetComponent<PlayerHealth>();
     }
 
     Debug.Log("walk");
@@ -33,6 +34,8 @@ public class WalkSMB : StateMachineBehaviour {
       bool SkillFlag = (stateX == SkillState.Using) ||
                        (stateShift == SkillState.Using) ||
                        (stateZ == SkillState.Using);
+
+      if (_health.Dead) { ActTransition("Die", animator); return; }
 
       if (SkillFlag) { ActTransition("Skill", animator); return; }
 
@@ -65,5 +68,6 @@ public class WalkSMB : StateMachineBehaviour {
   private SkillInfo _skillInfo;
   private SpriteRenderer[] _renderers;
   private GroundLinearMove _linearMove;
+  private PlayerHealth _health;
 }
 

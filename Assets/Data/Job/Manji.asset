@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Manji
   m_EditorClassIdentifier: 
   id: 0
-  life: 3000
+  life: 100
   atk: 1
   dfn: 1
   spd: 80

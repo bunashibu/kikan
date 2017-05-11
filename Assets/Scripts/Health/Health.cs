@@ -14,6 +14,11 @@ public class Health : Photon.MonoBehaviour, IGauge<int> {
     Cur = cur;
   }
 
+  [PunRPC]
+  protected void SyncDead(bool dead) {
+    Dead = dead;
+  }
+
   public void Plus(int quantity) {
     Cur += quantity;
 
@@ -24,15 +29,17 @@ public class Health : Photon.MonoBehaviour, IGauge<int> {
 
     photonView.RPC("SyncCur", PhotonTargets.Others, Cur);
 
-    if (Cur == Min)
+    if (Cur == Min) {
       Die();
+      photonView.RPC("SyncDead", PhotonTargets.Others, Dead);
+    }
   }
 
   public void Minus(int quantity) {
     Plus(-quantity);
   }
 
-  public virtual void Die() {
+  private void Die() {
     Dead = true;
   }
 

@@ -8,6 +8,7 @@ public class StepDownJumpSMB : StateMachineBehaviour {
       _rigidState = animator.GetComponent<RigidState>();
       _colliderFoot = animator.GetComponents<BoxCollider2D>()[1];
       _jump = animator.GetComponent<StepDownJump>();
+      _health = animator.GetComponent<PlayerHealth>();
     }
 
     Debug.Log("StepDown");
@@ -19,6 +20,8 @@ public class StepDownJumpSMB : StateMachineBehaviour {
 
   override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
     if (_photonView.isMine) {
+      if (_health.Dead) { ActTransition("Die", animator); return; }
+
       if (_rigidState.Air) {
         _isAlreadyJumped = true;
       }
@@ -53,5 +56,6 @@ public class StepDownJumpSMB : StateMachineBehaviour {
   private BoxCollider2D _colliderFoot;
   private bool _isAlreadyJumped;
   private bool _fallFlag;
+  private PlayerHealth _health;
 }
 

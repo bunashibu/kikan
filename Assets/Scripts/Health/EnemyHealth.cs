@@ -12,12 +12,6 @@ public class EnemyHealth : Health {
     _bar.Show(Cur, Max);
   }
 
-  public override void Die() {
-    base.Die();
-    _anim.SetBool("Die", true);
-  }
-
-  [SerializeField] private Animator _anim;
   private Bar _bar;
 }
 
