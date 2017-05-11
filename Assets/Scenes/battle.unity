@@ -9779,7 +9779,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acbecdd317770bc4bb7eb8e8b8ecf407, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _anim: {fileID: 1798065909}
   _worldBar: {fileID: 490272872}
 --- !u!95 &1798065909
 Animator:
@@ -10259,11 +10258,12 @@ MonoBehaviour:
   - {fileID: 502785835}
   - {fileID: 1628920479}
   - {fileID: 92540856}
-  _data:
+  _jobData:
   - {fileID: 11400000, guid: d4901d621e93d784fb9bb619c9dff702, type: 2}
   - {fileID: 11400000, guid: 04fff0473b3c2ca40b8cc82fcc70ad36, type: 2}
   _canvas: {fileID: 375732893}
   _bar: {fileID: 114000012113145708, guid: 39b62fe9619e9e44b99229f851890bf7, type: 2}
+  _gameData: {fileID: 11400000, guid: 79929a1e9bd66f4488365796315797b6, type: 2}
 --- !u!114 &1857252215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10299,7 +10299,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 200019479}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []

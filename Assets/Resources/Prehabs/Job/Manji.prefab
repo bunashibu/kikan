@@ -813,7 +813,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acbecdd317770bc4bb7eb8e8b8ecf407, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _anim: {fileID: 95930055764971676}
   _worldBar: {fileID: 114283101673446462}
 --- !u!114 &114572845960354168
 MonoBehaviour:
@@ -865,6 +864,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0dc351ed630d5045849750cf0fde4d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _status: {fileID: 114037318656622916}
+  _health: {fileID: 114504324772229166}
+  _gameData: {fileID: 11400000, guid: 79929a1e9bd66f4488365796315797b6, type: 2}
 --- !u!114 &114732547741241738
 MonoBehaviour:
   m_ObjectHideFlags: 1

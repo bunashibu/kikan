@@ -9,12 +9,11 @@ public class JobPicker : MonoBehaviour {
 
   public void Pick(int n) {
     // Team 0 is Red(Right), Team 1 is Blue(Left)
-    float x = 37.0f;
-    float y = -2.5f;
+    var pos = _gameData.RespawnPosition;
     if ((int)PhotonNetwork.player.CustomProperties["Team"] == 1)
-      x *= -1;
+      pos.x *= -1;
 
-    _player = PhotonNetwork.Instantiate("Prehabs/Job/" + _jobs[n].name, new Vector3(x, y, 0), Quaternion.identity, 0);
+    _player = PhotonNetwork.Instantiate("Prehabs/Job/" + _jobs[n].name, pos, Quaternion.identity, 0);
 
     var renderers = _player.GetComponentsInChildren<SpriteRenderer>();
     if ((int)PhotonNetwork.player.CustomProperties["Team"] == 1) {
@@ -35,7 +34,7 @@ public class JobPicker : MonoBehaviour {
     _bar.transform.SetParent(_canvas.transform, false);
 
     var playerHealth = _player.GetComponent<PlayerHealth>();
-    playerHealth.Init(_data[n].life, _bar);
+    playerHealth.Init(_jobData[n].life, _bar);
 
     _player.GetComponent<PhotonView>().RPC("Show", PhotonTargets.All);
   }
@@ -44,18 +43,18 @@ public class JobPicker : MonoBehaviour {
     var status = _player.GetComponent<PlayerStatus>();
 
     status.lv  = 1;
-    status.atk = _data[n].atk;
-    status.dfn = _data[n].dfn;
-    status.spd = _data[n].spd;
-    status.jmp = _data[n].jmp;
+    status.atk = _jobData[n].atk;
+    status.dfn = _jobData[n].dfn;
+    status.spd = _jobData[n].spd;
+    status.jmp = _jobData[n].jmp;
   }
 
   private void InitPlayerMovement(int n) {
     var linearMove = _player.GetComponent<GroundLinearMove>();
     var jump = _player.GetComponent<GroundJump>();
 
-    linearMove.SetForce(_data[n].spd);
-    jump.SetForce(_data[n].jmp);
+    linearMove.SetForce(_jobData[n].spd);
+    jump.SetForce(_jobData[n].jmp);
   }
 
   private void DisableAllButtons() {
@@ -66,9 +65,10 @@ public class JobPicker : MonoBehaviour {
   [SerializeField] private GameObject[] _jobs;
   [SerializeField] private GameObject _camera;
   [SerializeField] private Button[] _buttons;
-  [SerializeField] private JobStatus[] _data;
+  [SerializeField] private JobStatus[] _jobData;
   [SerializeField] private Canvas _canvas;
   [SerializeField] private Bar _bar;
+  [SerializeField] private GameData _gameData;
   private GameObject _player;
 }
 

@@ -6,19 +6,19 @@ public class DieSMB : StateMachineBehaviour {
   override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
     if (_photonView == null) {
       _photonView = animator.GetComponent<PhotonView>();
-      //_health = animator.GetComponent<PlayerHealth>();
       _respawner = animator.GetComponent<PlayerRespawner>();
     }
 
+    _respawner.Respawn();
 
     Debug.Log("Die");
   }
 
   override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-    /*
-    if (_respawner.Ready)
+    if (_respawner.Ready) {
+      _respawner.Ready = false;
       ActTransition("Idle", animator);
-      */
+    }
   }
 
   private void ActTransition(string stateName, Animator animator) {
@@ -27,7 +27,6 @@ public class DieSMB : StateMachineBehaviour {
   }
 
   private PhotonView _photonView;
-  private PlayerHealth _health;
   private PlayerRespawner _respawner;
 }
 
