@@ -12,7 +12,7 @@ public class ManjiZ : Skill {
         if (target.tag == "Player") {
           var health = target.GetComponent<PlayerHealth>();
           health.Minus(30);
-          targetView.RPC("Show", PhotonTargets.All);
+          health.Show();
         }
       }
     }

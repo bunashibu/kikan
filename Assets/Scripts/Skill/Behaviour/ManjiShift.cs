@@ -11,7 +11,7 @@ public class ManjiShift : Skill {
         if (target.tag == "Player") {
           var health = target.GetComponent<PlayerHealth>();
           health.Minus(50);
-          targetView.RPC("Show", PhotonTargets.All);
+          health.Show();
         }
       }
     }

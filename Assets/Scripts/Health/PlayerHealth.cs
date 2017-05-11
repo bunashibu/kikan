@@ -12,11 +12,19 @@ public class PlayerHealth : Health {
   }
 
   [PunRPC]
-  public void Show() {
+  private void SyncShow() {
     if (photonView.isMine)
       _hudBar.Show(Cur, Max);
     else
       _worldBar.Show(Cur, Max);
+  }
+
+  public void Show() {
+    photonView.RPC("SyncShow", PhotonTargets.All);
+  }
+
+  public void FullRecovery() {
+    Plus(Max);
   }
 
   [SerializeField] private Bar _worldBar;
