@@ -3,19 +3,19 @@ using System.Collections;
 
 public class Health : Photon.MonoBehaviour, IGauge<int> {
   [PunRPC]
-  protected void SyncInit(int cur, int min, int max) {
+  protected void SyncHpInit(int cur, int min, int max) {
     Cur = cur;
     Min = min;
     Max = max;
   }
 
   [PunRPC]
-  protected void SyncCur(int cur) {
+  protected void SyncHpCur(int cur) {
     Cur = cur;
   }
 
   [PunRPC]
-  protected void SyncDead(bool dead) {
+  protected void SyncHpDead(bool dead) {
     Dead = dead;
   }
 
@@ -27,13 +27,13 @@ public class Health : Photon.MonoBehaviour, IGauge<int> {
     if (Cur > Max)
       Cur = Max;
 
-    photonView.RPC("SyncCur", PhotonTargets.Others, Cur);
+    photonView.RPC("SyncHpCur", PhotonTargets.Others, Cur);
 
     if (Dead) {
       if (Cur > Min)
         Reborn();
 
-      photonView.RPC("SyncDead", PhotonTargets.Others, Dead);
+      photonView.RPC("SyncHpDead", PhotonTargets.Others, Dead);
     }
   }
 

@@ -9634,8 +9634,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 297d14fa12f4b8e44a94f523eb5fa5ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bar: {fileID: 490272872}
-  _data: {fileID: 11400000, guid: dea86f677fe12af4aa2f5d458e4eb166, type: 2}
 --- !u!61 &1798065905
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10193,7 +10191,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d4901d621e93d784fb9bb619c9dff702, type: 2}
   - {fileID: 11400000, guid: 04fff0473b3c2ca40b8cc82fcc70ad36, type: 2}
   _canvas: {fileID: 375732893}
-  _bar: {fileID: 114000012113145708, guid: 39b62fe9619e9e44b99229f851890bf7, type: 2}
+  _hudHpBar: {fileID: 114000012113145708, guid: 39b62fe9619e9e44b99229f851890bf7,
+    type: 2}
+  _hudExpBar: {fileID: 114086689800236772, guid: 1dcf407e0a853d440845ca486f8e6523,
+    type: 2}
   _gameData: {fileID: 11400000, guid: 79929a1e9bd66f4488365796315797b6, type: 2}
 --- !u!114 &1857252215
 MonoBehaviour:

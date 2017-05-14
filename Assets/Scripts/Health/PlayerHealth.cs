@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerHealth : Health {
   public void Init(int life, Bar hudBar) {
-    photonView.RPC("SyncInit", PhotonTargets.All, life, 0, life);
+    photonView.RPC("SyncHpInit", PhotonTargets.All, life, 0, life);
 
     _hudBar = hudBar;
 
@@ -12,7 +12,7 @@ public class PlayerHealth : Health {
   }
 
   [PunRPC]
-  private void SyncShow() {
+  private void SyncHpShow() {
     if (photonView.isMine)
       _hudBar.Show(Cur, Max);
     else
@@ -20,7 +20,7 @@ public class PlayerHealth : Health {
   }
 
   public void Show() {
-    photonView.RPC("SyncShow", PhotonTargets.All);
+    photonView.RPC("SyncHpShow", PhotonTargets.All);
   }
 
   public void FullRecovery() {

@@ -3,28 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Level))]
-public class NextExp : MonoBehaviour, IGauge<int> {
-  public void Init() {
+public class NextExp : Photon.MonoBehaviour, IGauge<int> {
+  [PunRPC]
+  protected void SyncExpInit() {
     _index = 0;
     Cur = 0;
     Min = 0;
     Max = _table.Data[_index];
   }
 
+  [PunRPC]
+  protected void SyncExpCur(int cur) {
+    Cur = cur;
+  }
+
   public void Plus(int quantity) {
     Cur += quantity;
 
-    if (Cur >= Max)
-      LvUp();
+    if (Cur >= Max) {
+      photonView.RPC("SyncLvUp", PhotonTargets.All);
+      return;
+    }
     if (Cur < Min)
       Cur = Min;
+
+    photonView.RPC("SyncExpCur", PhotonTargets.Others, Cur);
   }
 
   public void Minus(int quantity) {
     Plus(-quantity);
   }
 
-  private void LvUp() {
+  [PunRPC]
+  protected void SyncLvUp() {
     _level.LvUp();
     _index += 1;
     Max = _table.Data[_index];

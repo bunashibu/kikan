@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 224467373955124694}
   - component: {fileID: 114117558165675836}
   m_Layer: 9
-  m_Name: WorldHealthBar
+  m_Name: WorldHpBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

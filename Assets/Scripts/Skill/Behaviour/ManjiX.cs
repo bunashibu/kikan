@@ -17,7 +17,9 @@ public class ManjiX : Skill {
             var skillUser = PhotonView.Find(_viewID).gameObject;
 
             var killExp = target.GetComponent<KillExp>().Exp;
-            skillUser.GetComponent<NextExp>().Plus(killExp);
+            var nextExp = skillUser.GetComponent<PlayerNextExp>();
+            nextExp.Plus(killExp);
+            nextExp.Show();
 
             skillUser.GetComponent<KillDeathRecoder>().RecordKill();
             target.GetComponent<KillDeathRecoder>().RecordDeath();

@@ -22,6 +22,7 @@ public class JobPicker : MonoBehaviour {
     }
 
     InitPlayerHealth(n);
+    InitPlayerExp();
     InitPlayerStatus(n);
     InitPlayerMovement(n);
 
@@ -30,12 +31,21 @@ public class JobPicker : MonoBehaviour {
   }
 
   private void InitPlayerHealth(int n) {
-    _bar = Instantiate(_bar) as Bar;
-    _bar.transform.SetParent(_canvas.transform, false);
+    _hudHpBar = Instantiate(_hudHpBar) as Bar;
+    _hudHpBar.transform.SetParent(_canvas.transform, false);
 
     var playerHealth = _player.GetComponent<PlayerHealth>();
-    playerHealth.Init(_jobData[n].Life, _bar);
+    playerHealth.Init(_jobData[n].Life, _hudHpBar);
     playerHealth.Show();
+  }
+
+  private void InitPlayerExp() {
+    _hudExpBar = Instantiate(_hudExpBar) as Bar;
+    _hudExpBar.transform.SetParent(_canvas.transform, false);
+
+    var playerNextExp = _player.GetComponent<PlayerNextExp>();
+    playerNextExp.Init(_hudExpBar);
+    playerNextExp.Show();
   }
 
   private void InitPlayerStatus(int n) {
@@ -65,7 +75,8 @@ public class JobPicker : MonoBehaviour {
   [SerializeField] private Button[] _buttons;
   [SerializeField] private JobStatus[] _jobData;
   [SerializeField] private Canvas _canvas;
-  [SerializeField] private Bar _bar;
+  [SerializeField] private Bar _hudHpBar;
+  [SerializeField] private Bar _hudExpBar;
   [SerializeField] private GameData _gameData;
   private GameObject _player;
 }
