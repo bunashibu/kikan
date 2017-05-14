@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class Level : Photon.MonoBehaviour {
   void Awake() {
-    Cur = 1;
+    Lv = 1;
   }
 
   [PunRPC]
-  private void SyncCur(int cur) {
-    Cur = cur;
+  private void SyncCur(int lv) {
+    Lv = lv;
   }
 
   public void LvUp() {
-    Cur += 1;
-    photonView.RPC("SyncCur", PhotonTargets.Others, Cur);
+    Lv += 1;
+    photonView.RPC("SyncCur", PhotonTargets.Others, Lv);
   }
 
-  public int Cur { get; private set; }
+  public int Lv { get; private set; }
 }
 

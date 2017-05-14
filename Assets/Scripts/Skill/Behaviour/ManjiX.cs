@@ -12,12 +12,16 @@ public class ManjiX : Skill {
           var health = target.GetComponent<PlayerHealth>();
           health.Minus(10);
           health.Show();
+
+          if (health.Dead)
+            _kdRecoder.Kill(target);
         }
       }
     }
   }
 
   [SerializeField] private BoxCollider2D _collider;
+  [SerializeField] private KillDeathRecoder _kdRecoder;
   [SerializeField] private int _power;
 }
 
