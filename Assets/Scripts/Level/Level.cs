@@ -12,7 +12,7 @@ public class Level : Photon.MonoBehaviour {
     Lv = lv;
   }
 
-  public void LvUp() {
+  public virtual void LvUp() {
     Lv += 1;
     photonView.RPC("SyncCur", PhotonTargets.Others, Lv);
   }

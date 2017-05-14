@@ -21,7 +21,7 @@ public class NextExp : Photon.MonoBehaviour, IGauge<int> {
     Cur += quantity;
 
     if (Cur >= Max) {
-      photonView.RPC("SyncLvUp", PhotonTargets.All);
+      photonView.RPC("SyncExpLvUp", PhotonTargets.All);
       return;
     }
     if (Cur < Min)
@@ -35,7 +35,7 @@ public class NextExp : Photon.MonoBehaviour, IGauge<int> {
   }
 
   [PunRPC]
-  protected void SyncLvUp() {
+  protected void SyncExpLvUp() {
     _level.LvUp();
     _index += 1;
     Max = _table.Data[_index];

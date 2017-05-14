@@ -23,6 +23,7 @@ public class JobPicker : MonoBehaviour {
 
     InitPlayerHealth(n);
     InitPlayerExp();
+    InitPlayerLevel();
     InitPlayerStatus(n);
     InitPlayerMovement(n);
 
@@ -46,6 +47,15 @@ public class JobPicker : MonoBehaviour {
     var playerNextExp = _player.GetComponent<PlayerNextExp>();
     playerNextExp.Init(_hudExpBar);
     playerNextExp.Show();
+  }
+
+  private void InitPlayerLevel() {
+    _levelPanel = Instantiate(_levelPanel) as LevelPanel;
+    _levelPanel.transform.SetParent(_canvas.transform, false);
+
+    var playerLevel = _player.GetComponent<PlayerLevel>();
+    playerLevel.Init(_levelPanel);
+    playerLevel.Show();
   }
 
   private void InitPlayerStatus(int n) {
@@ -77,6 +87,7 @@ public class JobPicker : MonoBehaviour {
   [SerializeField] private Canvas _canvas;
   [SerializeField] private Bar _hudHpBar;
   [SerializeField] private Bar _hudExpBar;
+  [SerializeField] private LevelPanel _levelPanel;
   [SerializeField] private GameData _gameData;
   private GameObject _player;
 }
