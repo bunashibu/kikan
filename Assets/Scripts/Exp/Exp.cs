@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Level))]
 public class Exp : MonoBehaviour, IGauge<int> {
   public void Init() {
+    _index = 0;
     Cur = 0;
     Min = 0;
     Max = _table.Data[_index];
-
-    _index = 0;
   }
 
   public void Plus(int quantity) {
@@ -24,19 +24,18 @@ public class Exp : MonoBehaviour, IGauge<int> {
     Plus(-quantity);
   }
 
-  public void LvUp() {
-    _status.lv += 1;
+  private void LvUp() {
+    _level.LvUp();
     _index += 1;
-
     Max = _table.Data[_index];
     Cur = Min;
   }
 
   [SerializeField] private ExpTable _table;
-  [SerializeField] private PlayerStatus _status;
+  [SerializeField] private Level _level;
   public int Cur { get; private set; }
   public int Min { get; private set; }
   public int Max { get; private set; }
-  private int _index;
+  protected int _index;
 }
 
