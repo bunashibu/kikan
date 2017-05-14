@@ -11,9 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdabc219a3518e644aa5c8ee1d0fa953, type: 3}
   m_Name: Magician
   m_EditorClassIdentifier: 
-  id: 1
-  life: 10
-  atk: 200
-  dfn: 100
-  spd: 100
-  jmp: 100
+  Id: 1
+  Life: 0
+  Atk: 0
+  Dfn: 0
+  Spd: 0
+  Jmp: 0

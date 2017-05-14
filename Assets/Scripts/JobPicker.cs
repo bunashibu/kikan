@@ -34,26 +34,25 @@ public class JobPicker : MonoBehaviour {
     _bar.transform.SetParent(_canvas.transform, false);
 
     var playerHealth = _player.GetComponent<PlayerHealth>();
-    playerHealth.Init(_jobData[n].life, _bar);
+    playerHealth.Init(_jobData[n].Life, _bar);
     playerHealth.Show();
   }
 
   private void InitPlayerStatus(int n) {
     var status = _player.GetComponent<PlayerStatus>();
 
-    status.lv  = 1;
-    status.atk = _jobData[n].atk;
-    status.dfn = _jobData[n].dfn;
-    status.spd = _jobData[n].spd;
-    status.jmp = _jobData[n].jmp;
+    status.Atk = _jobData[n].Atk;
+    status.Dfn = _jobData[n].Dfn;
+    status.Spd = _jobData[n].Spd;
+    status.Jmp = _jobData[n].Jmp;
   }
 
   private void InitPlayerMovement(int n) {
     var linearMove = _player.GetComponent<GroundLinearMove>();
     var jump = _player.GetComponent<GroundJump>();
 
-    linearMove.SetForce(_jobData[n].spd);
-    jump.SetForce(_jobData[n].jmp);
+    linearMove.SetForce(_jobData[n].Spd);
+    jump.SetForce(_jobData[n].Jmp);
   }
 
   private void DisableAllButtons() {

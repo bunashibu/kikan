@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 
 public class Enemy : MonoBehaviour {
+  /*
   void Start() {
     var hs = GetComponent<EnemyHealth>();
     hs.Init(_data.life, _bar);
@@ -23,5 +24,6 @@ public class Enemy : MonoBehaviour {
 
   [SerializeField] private Bar _bar;
   [SerializeField] private EnemyStatus _data;
+  */
 }
 

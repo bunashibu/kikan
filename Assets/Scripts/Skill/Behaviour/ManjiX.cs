@@ -5,15 +5,9 @@ public class ManjiX : Skill {
   void OnTriggerEnter2D(Collider2D collider) {
     if (PhotonNetwork.isMasterClient) {
       var target = collider.gameObject;
-      var targetView = target.GetComponent<PhotonView>();
+      var targetUser = target.GetComponent<PhotonView>().owner;
 
-      if (targetView.owner != _skillUser) {
-        if (target.tag == "Enemy") {
-          int damage = _power;
-          target.GetComponent<EnemyHealth>().Minus(damage);
-          target.GetComponent<Enemy>().ShowHealthBar();
-        }
-
+      if (targetUser != _skillUser) {
         if (target.tag == "Player") {
           var health = target.GetComponent<PlayerHealth>();
           health.Minus(10);
