@@ -5,6 +5,7 @@ using UnityEngine;
 public class ManjiZ : Skill {
   void OnTriggerEnter2D(Collider2D collider) {
     if (PhotonNetwork.isMasterClient) {
+      /*
       var target = collider.gameObject;
       var targetUser = target.GetComponent<PhotonView>().owner;
 
@@ -15,6 +16,7 @@ public class ManjiZ : Skill {
           health.Show();
         }
       }
+      */
     }
   }
 

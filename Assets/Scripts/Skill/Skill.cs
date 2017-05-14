@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Skill : Photon.MonoBehaviour {
   [PunRPC]
-  protected void SyncInit(bool flipX, PhotonPlayer skillUser) {
+  protected void SyncInit(bool flipX, int viewID) {
     gameObject.GetComponent<SpriteRenderer>().flipX = flipX;
-    _skillUser = skillUser;
+    _viewID = viewID;
   }
 
-  public void Init(bool flipX, PhotonPlayer skillUser) {
-    photonView.RPC("SyncInit", PhotonTargets.All, flipX, skillUser);
+  public void Init(bool flipX, int viewID) {
+    photonView.RPC("SyncInit", PhotonTargets.All, flipX, viewID);
   }
 
-  protected PhotonPlayer _skillUser;
+  protected int _viewID;
 }
 

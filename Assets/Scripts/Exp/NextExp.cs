@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Level))]
-public class Exp : MonoBehaviour, IGauge<int> {
+public class NextExp : MonoBehaviour, IGauge<int> {
   public void Init() {
     _index = 0;
     Cur = 0;
@@ -36,6 +36,6 @@ public class Exp : MonoBehaviour, IGauge<int> {
   public int Cur { get; private set; }
   public int Min { get; private set; }
   public int Max { get; private set; }
-  protected int _index;
+  private int _index;
 }
 

@@ -4,6 +4,7 @@ using System.Collections;
 public class ManjiShift : Skill {
   void OnTriggerEnter2D(Collider2D collider) {
     if (PhotonNetwork.isMasterClient) {
+      /*
       var target = collider.gameObject;
       var targetUser = target.GetComponent<PhotonView>().owner;
 
@@ -14,6 +15,7 @@ public class ManjiShift : Skill {
           health.Show();
         }
       }
+      */
     }
   }
 

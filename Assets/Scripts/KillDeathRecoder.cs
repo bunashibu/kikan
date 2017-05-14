@@ -8,12 +8,24 @@ public class KillDeathRecoder : Photon.MonoBehaviour {
     DeathCnt = 0;
   }
 
-  public void Kill(GameObject target) {
-    KillCnt += 1;
+  [PunRPC]
+  private void SyncKillCnt(int killCnt) {
+    KillCnt = killCnt;
   }
 
-  public void Death() {
+  [PunRPC]
+  private void SyncDeathCnt(int deathCnt) {
+    DeathCnt = deathCnt;
+  }
+
+  public void RecordKill() {
+    KillCnt += 1;
+    photonView.RPC("SyncKillCnt", PhotonTargets.Others, KillCnt);
+  }
+
+  public void RecordDeath() {
     DeathCnt += 1;
+    photonView.RPC("SyncDeathCnt", PhotonTargets.Others, DeathCnt);
   }
 
   public int KillCnt { get; private set; }

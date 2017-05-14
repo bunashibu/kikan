@@ -24,10 +24,7 @@ public class SkillInstantiator : Photon.MonoBehaviour {
     var pos = this.transform.position + offset;
 
     var skill = PhotonNetwork.Instantiate(path, pos, Quaternion.identity, 0).GetComponent<Skill>();
-
-    var flipX = _renderer.flipX;
-    var player = PhotonNetwork.player;
-    skill.Init(flipX, player);
+    skill.Init(_renderer.flipX, _playerView.viewID);
   }
 
   private void UpdateCT(int i) {
@@ -54,11 +51,11 @@ public class SkillInstantiator : Photon.MonoBehaviour {
   [SerializeField] private float[] _skillCT;
   [SerializeField] private float[] _rigorCT;
   [SerializeField] private Vector3[] _appearOffset;
-  [SerializeField] private Animator _weaponAnim;
   [SerializeField] private RigidState _rigidState;
   [SerializeField] private SkillInfo _skillInfo;
   [SerializeField] private SpriteRenderer _renderer;
   [SerializeField] private PlayerStatus _status;
+  [SerializeField] private PhotonView _playerView;
   private bool _canUse = true;
 }
 
