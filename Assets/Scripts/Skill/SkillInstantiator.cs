@@ -21,12 +21,13 @@ public class SkillInstantiator : Photon.MonoBehaviour {
     var offset = _appearOffset[i];
     if (_renderer.flipX)
       offset.x *= -1;
+    var pos = this.transform.position + offset;
 
-    var skill = PhotonNetwork.Instantiate(path, this.transform.position + offset, Quaternion.identity, 0);
+    var skill = PhotonNetwork.Instantiate(path, pos, Quaternion.identity, 0).GetComponent<Skill>();
 
     var flipX = _renderer.flipX;
     var player = PhotonNetwork.player;
-    skill.GetComponent<PhotonView>().RPC("Sync", PhotonTargets.All, flipX, player);
+    skill.Init(flipX, player);
   }
 
   private void UpdateCT(int i) {
