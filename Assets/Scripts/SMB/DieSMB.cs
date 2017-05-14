@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class DieSMB : StateMachineBehaviour {
@@ -9,16 +10,10 @@ public class DieSMB : StateMachineBehaviour {
       _respawner = animator.GetComponent<PlayerRespawner>();
     }
 
-    _respawner.Respawn();
+    Action action = () => { ActTransition("Idle", animator); };
+    _respawner.Respawn(action);
 
     Debug.Log("Die");
-  }
-
-  override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-    if (_respawner.Ready) {
-      _respawner.Ready = false;
-      ActTransition("Idle", animator);
-    }
   }
 
   private void ActTransition(string stateName, Animator animator) {

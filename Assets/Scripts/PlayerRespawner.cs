@@ -1,14 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class PlayerRespawner : MonoBehaviour {
-  void Awake() {
-    Active = true;
-    Ready = false;
-  }
-
-  public void Respawn() {
+  public void Respawn(Action ActTransition) {
     MonoUtility.Instance.DelaySec(3.0f, () => {
       var pos = _gameData.RespawnPosition;
       if ((int)PhotonNetwork.player.CustomProperties["Team"] == 1)
@@ -17,14 +13,13 @@ public class PlayerRespawner : MonoBehaviour {
       gameObject.transform.position = pos;
       _health.FullRecovery();
       _health.Show();
-      Ready = true;
+
+      ActTransition();
     });
   }
 
-  [SerializeField] PlayerStatus _status;
-  [SerializeField] PlayerHealth _health;
-  [SerializeField] GameData _gameData;
-  public bool Active { get; set; }
-  public bool Ready { get; set; }
+  [SerializeField] private PlayerStatus _status;
+  [SerializeField] private PlayerHealth _health;
+  [SerializeField] private GameData _gameData;
 }
 
