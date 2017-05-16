@@ -21,7 +21,9 @@ public class PlayerLevel : Level {
 
   public override void LvUp() {
     base.LvUp();
-    Show();
+
+    if (photonView.isMine)
+      Show();
   }
 
   private LevelPanel _lvPanel;

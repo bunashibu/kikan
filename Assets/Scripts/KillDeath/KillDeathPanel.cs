@@ -51,7 +51,7 @@ public class KillDeathPanel : Photon.MonoBehaviour {
   private void SyncKDPanelLv(int lv, PhotonPlayer player) {
     int team = (int)_teamTable[player][0];
     int index = (int)_teamTable[player][1];
-    _teamPanels[team].ShowKill(lv, index);
+    _teamPanels[team].ShowLv(lv, index);
   }
 
   [PunRPC]
