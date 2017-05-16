@@ -21,8 +21,8 @@ public class ManjiX : Skill {
             nextExp.Plus(killExp);
             nextExp.Show();
 
-            skillUser.GetComponent<KillDeathRecoder>().RecordKill();
-            target.GetComponent<KillDeathRecoder>().RecordDeath();
+            skillUser.GetComponent<PlayerKillDeathRecorder>().RecordKill();
+            target.GetComponent<PlayerKillDeathRecorder>().RecordDeath();
           }
         }
       }

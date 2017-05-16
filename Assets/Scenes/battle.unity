@@ -12942,8 +12942,8 @@ MonoBehaviour:
     type: 2}
   _hudExpBar: {fileID: 114591676240663140, guid: 1dcf407e0a853d440845ca486f8e6523,
     type: 2}
-  _levelPanel: {fileID: 114578394497458258, guid: d354bc829ce1fa644b2a1f50e3fc1af9,
-    type: 2}
+  _lvPanel: {fileID: 114578394497458258, guid: d354bc829ce1fa644b2a1f50e3fc1af9, type: 2}
+  _kdPanel: {fileID: 1953781252}
   _gameData: {fileID: 11400000, guid: 79929a1e9bd66f4488365796315797b6, type: 2}
 --- !u!114 &1857252215
 MonoBehaviour:
@@ -13565,6 +13565,7 @@ GameObject:
   - component: {fileID: 1953781251}
   - component: {fileID: 1953781250}
   - component: {fileID: 1953781252}
+  - component: {fileID: 1953781253}
   m_Layer: 5
   m_Name: KillDeathPanel
   m_TagString: Untagged
@@ -13637,8 +13638,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _teamPanels:
-  - {fileID: 587062096}
-  - {fileID: 875564809}
+  - {fileID: 875564813}
+  - {fileID: 587062100}
+--- !u!114 &1953781253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1953781248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  OwnerShipWasTransfered: 0
+  prefixBackup: -1
+  synchronization: 0
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 0}
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 1
+  instantiationId: 1
+  currentMasterID: -1
+  isRuntimeInstantiated: 0
 --- !u!1 &1954619596
 GameObject:
   m_ObjectHideFlags: 0

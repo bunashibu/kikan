@@ -38,6 +38,7 @@ public class BattleApplication : Photon.PunBehaviour {
       if (_isMaster) {
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.MaxPlayers = (byte)_matchNum;
+        roomOptions.CustomRoomProperties = new Hashtable() { {"PlayerNum", _matchNum} };
 
         PhotonNetwork.CreateRoom(_roomName, roomOptions, null);
       } else

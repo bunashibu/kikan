@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,10 +12,6 @@ public class KillDeathTeamPanel : MonoBehaviour {
     _killText = new Text[size];
     _deathText = new Text[size];
 
-    _level = new int[size].Select(x => 1).ToArray();
-    _kill = new int[size];
-    _death = new int[size];
-
     for (int i=0; i<size; ++i) {
       Text[] texts = _panels[i].GetComponentsInChildren<Text>();
       _nameText[i] = texts[0];
@@ -25,28 +20,29 @@ public class KillDeathTeamPanel : MonoBehaviour {
       _deathText[i] = texts[3];
 
       _nameText[i].text = "";
-      UpdateText(ref _levelText[i], ref _level[i]);
-      UpdateText(ref _killText[i], ref _kill[i]);
-      UpdateText(ref _deathText[i], ref _death[i]);
+      _levelText[i].text = " 1";
+      _killText[i].text = " 0";
+      _deathText[i].text = " 0";
     }
   }
 
-  public void PlusLevel(int i) {
-    _level[i] += 1;
-    UpdateText(ref _levelText[i], ref _level[i]);
+  public void ShowName(string name, int i) {
+    _nameText[i].text = name;
   }
 
-  public void PlusKill(int i) {
-    _kill[i] += 1;
-    UpdateText(ref _killText[i], ref _kill[i]);
+  public void ShowLevel(int level, int i) {
+    UpdateText(ref _levelText[i], level);
   }
 
-  public void PlusDeath(int i) {
-    _death[i] += 1;
-    UpdateText(ref _deathText[i], ref _death[i]);
+  public void ShowKill(int kill, int i) {
+    UpdateText(ref _killText[i], kill);
   }
 
-  private void UpdateText(ref Text text, ref int n) {
+  public void ShowDeath(int death, int i) {
+    UpdateText(ref _deathText[i], death);
+  }
+
+  private void UpdateText(ref Text text, int n) {
     string indent = (n < 10) ? " " : "";
     text.text = indent + n;
   }
@@ -56,8 +52,5 @@ public class KillDeathTeamPanel : MonoBehaviour {
   private Text[] _levelText;
   private Text[] _killText;
   private Text[] _deathText;
-  private int[] _level;
-  private int[] _kill;
-  private int[] _death;
 }
 

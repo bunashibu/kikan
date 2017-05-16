@@ -21,9 +21,10 @@ public class JobPicker : MonoBehaviour {
         sprite.flipX = true;
     }
 
-    InitPlayerHealth(n);
+    InitPlayerHp(n);
     InitPlayerExp();
-    InitPlayerLevel();
+    InitPlayerLv();
+    InitPlayerKillDeath();
     InitPlayerStatus(n);
     InitPlayerMovement(n);
 
@@ -31,13 +32,13 @@ public class JobPicker : MonoBehaviour {
     Destroy(_camera);
   }
 
-  private void InitPlayerHealth(int n) {
+  private void InitPlayerHp(int n) {
     _hudHpBar = Instantiate(_hudHpBar) as Bar;
     _hudHpBar.transform.SetParent(_canvas.transform, false);
 
-    var playerHealth = _player.GetComponent<PlayerHealth>();
-    playerHealth.Init(_jobData[n].Life, _hudHpBar);
-    playerHealth.Show();
+    var playerHp = _player.GetComponent<PlayerHealth>();
+    playerHp.Init(_jobData[n].Life, _hudHpBar);
+    playerHp.Show();
   }
 
   private void InitPlayerExp() {
@@ -49,13 +50,18 @@ public class JobPicker : MonoBehaviour {
     playerNextExp.Show();
   }
 
-  private void InitPlayerLevel() {
-    _levelPanel = Instantiate(_levelPanel) as LevelPanel;
-    _levelPanel.transform.SetParent(_canvas.transform, false);
+  private void InitPlayerLv() {
+    _lvPanel = Instantiate(_lvPanel) as LevelPanel;
+    _lvPanel.transform.SetParent(_canvas.transform, false);
 
-    var playerLevel = _player.GetComponent<PlayerLevel>();
-    playerLevel.Init(_levelPanel);
-    playerLevel.Show();
+    var playerLv = _player.GetComponent<PlayerLevel>();
+    playerLv.Init(_lvPanel, _kdPanel);
+    playerLv.Show();
+  }
+
+  private void InitPlayerKillDeath() {
+    var playerKDRec = _player.GetComponent<PlayerKillDeathRecorder>();
+    playerKDRec.Init(_kdPanel);
   }
 
   private void InitPlayerStatus(int n) {
@@ -87,7 +93,8 @@ public class JobPicker : MonoBehaviour {
   [SerializeField] private Canvas _canvas;
   [SerializeField] private Bar _hudHpBar;
   [SerializeField] private Bar _hudExpBar;
-  [SerializeField] private LevelPanel _levelPanel;
+  [SerializeField] private LevelPanel _lvPanel;
+  [SerializeField] private KillDeathPanel _kdPanel;
   [SerializeField] private GameData _gameData;
   private GameObject _player;
 }
