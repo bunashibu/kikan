@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Level : Photon.MonoBehaviour {
-  void Awake() {
+  public void Init() {
     Lv = 1;
   }
 

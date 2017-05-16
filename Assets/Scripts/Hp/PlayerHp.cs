@@ -1,14 +1,16 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Assertions;
 
 public class PlayerHp : Hp {
   public void Init(int life, Bar hudBar) {
+    Assert.IsTrue(photonView.isMine);
+
     photonView.RPC("SyncHpInit", PhotonTargets.All, life, 0, life);
 
     _hudBar = hudBar;
-
-    if (photonView.isMine)
-      _worldBar.gameObject.SetActive(false);
+    _worldBar.gameObject.SetActive(false);
   }
 
   [PunRPC]

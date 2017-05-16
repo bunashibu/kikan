@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class PlayerNextExp : NextExp {
   public void Init(Bar hudBar) {
+    Assert.IsTrue(photonView.isMine);
+
     photonView.RPC("SyncExpInit", PhotonTargets.All);
     _hudBar = hudBar;
   }
