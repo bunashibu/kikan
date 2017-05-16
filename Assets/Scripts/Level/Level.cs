@@ -8,13 +8,13 @@ public class Level : Photon.MonoBehaviour {
   }
 
   [PunRPC]
-  private void SyncCur(int lv) {
+  protected void SyncLvCur(int lv) {
     Lv = lv;
   }
 
   public virtual void LvUp() {
     Lv += 1;
-    photonView.RPC("SyncCur", PhotonTargets.Others, Lv);
+    photonView.RPC("SyncLvCur", PhotonTargets.Others, Lv);
   }
 
   public int Lv { get; private set; }
