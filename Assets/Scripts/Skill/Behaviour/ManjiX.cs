@@ -9,11 +9,11 @@ public class ManjiX : Skill {
 
       if (targetID != _viewID) {
         if (target.tag == "Player") {
-          var health = target.GetComponent<PlayerHealth>();
-          health.Minus(10);
-          health.Show();
+          var hp = target.GetComponent<PlayerHp>();
+          hp.Minus(10);
+          hp.Show();
 
-          if (health.Dead) {
+          if (hp.Dead) {
             var skillUser = PhotonView.Find(_viewID).gameObject;
 
             var killExp = target.GetComponent<KillExp>().Exp;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHealth : Health {
+public class EnemyHp : Hp {
   public void Init(int life, Bar bar) {
     //Init(life, life);
     _bar = bar;

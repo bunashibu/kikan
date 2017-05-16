@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerHealth : Health {
+public class PlayerHp : Hp {
   public void Init(int life, Bar hudBar) {
     photonView.RPC("SyncHpInit", PhotonTargets.All, life, 0, life);
 

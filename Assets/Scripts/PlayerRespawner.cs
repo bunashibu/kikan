@@ -11,15 +11,15 @@ public class PlayerRespawner : MonoBehaviour {
         pos.x *= -1;
 
       gameObject.transform.position = pos;
-      _health.FullRecovery();
-      _health.Show();
+      _hp.FullRecovery();
+      _hp.Show();
 
       ActTransition();
     });
   }
 
   [SerializeField] private PlayerStatus _status;
-  [SerializeField] private PlayerHealth _health;
+  [SerializeField] private PlayerHp _hp;
   [SerializeField] private GameData _gameData;
 }
 

@@ -6,7 +6,7 @@ public class LieDownSMB : StateMachineBehaviour {
     if (_photonView == null) {
       _photonView = animator.GetComponent<PhotonView>();
       _rigidState = animator.GetComponent<RigidState>();
-      _health = animator.GetComponent<PlayerHealth>();
+      _hp = animator.GetComponent<PlayerHp>();
     }
 
     Debug.Log("liedown");
@@ -20,7 +20,7 @@ public class LieDownSMB : StateMachineBehaviour {
       bool DownKeyUp        = Input.GetKeyUp(KeyCode.DownArrow);
       bool UpKeyDown        = Input.GetKeyDown(KeyCode.UpArrow);
 
-      if (_health.Dead) { ActTransition("Die", animator); return; }
+      if (_hp.Dead) { ActTransition("Die", animator); return; }
 
       if (_rigidState.Ground) {
         if (OnlyLeftKeyDown || OnlyRightKeyDown) { ActTransition("Walk", animator);         return; }
@@ -41,6 +41,6 @@ public class LieDownSMB : StateMachineBehaviour {
 
   private PhotonView _photonView;
   private RigidState _rigidState;
-  private PlayerHealth _health;
+  private PlayerHp _hp;
 }
 

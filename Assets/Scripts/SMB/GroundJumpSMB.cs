@@ -8,7 +8,7 @@ public class GroundJumpSMB : StateMachineBehaviour {
       _rigidState = animator.GetComponent<RigidState>();
       _skillInfo = animator.GetComponentInChildren<SkillInfo>();
       _jump = animator.GetComponent<GroundJump>();
-      _health = animator.GetComponent<PlayerHealth>();
+      _hp = animator.GetComponent<PlayerHp>();
     }
 
     Debug.Log("jump");
@@ -25,7 +25,7 @@ public class GroundJumpSMB : StateMachineBehaviour {
                        (stateShift == SkillState.Using) ||
                        (stateZ == SkillState.Using);
 
-      if (_health.Dead) { ActTransition("Die", animator); return; }
+      if (_hp.Dead) { ActTransition("Die", animator); return; }
 
       if (SkillFlag) { ActTransition("Skill", animator); return; }
 
@@ -44,6 +44,6 @@ public class GroundJumpSMB : StateMachineBehaviour {
   private RigidState _rigidState;
   private SkillInfo _skillInfo;
   private GroundJump _jump;
-  private PlayerHealth _health;
+  private PlayerHp _hp;
 }
 

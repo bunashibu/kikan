@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Health : Photon.MonoBehaviour, IGauge<int> {
+public class Hp : Photon.MonoBehaviour, IGauge<int> {
   [PunRPC]
   protected void SyncHpInit(int cur, int min, int max) {
     Cur = cur;

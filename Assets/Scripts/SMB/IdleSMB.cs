@@ -7,7 +7,7 @@ public class IdleSMB : StateMachineBehaviour {
       _photonView = animator.GetComponent<PhotonView>();
       _rigidState = animator.GetComponent<RigidState>();
       _skillInfo = animator.GetComponentInChildren<SkillInfo>();
-      _health = animator.GetComponent<PlayerHealth>();
+      _hp = animator.GetComponent<PlayerHp>();
     }
 
     Debug.Log("idle");
@@ -33,7 +33,7 @@ public class IdleSMB : StateMachineBehaviour {
                        (stateShift == SkillState.Using) ||
                        (stateZ == SkillState.Using);
 
-      if (_health.Dead) { ActTransition("Die", animator); return; }
+      if (_hp.Dead) { ActTransition("Die", animator); return; }
 
       if (SkillFlag) { ActTransition("Skill", animator); return; }
 
@@ -61,6 +61,6 @@ public class IdleSMB : StateMachineBehaviour {
   private PhotonView _photonView;
   private RigidState _rigidState;
   private SkillInfo _skillInfo;
-  private PlayerHealth _health;
+  private PlayerHp _hp;
 }
 

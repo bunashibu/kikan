@@ -36,7 +36,7 @@ public class JobPicker : MonoBehaviour {
     _hudHpBar = Instantiate(_hudHpBar) as Bar;
     _hudHpBar.transform.SetParent(_canvas.transform, false);
 
-    var playerHp = _player.GetComponent<PlayerHealth>();
+    var playerHp = _player.GetComponent<PlayerHp>();
     playerHp.Init(_jobData[n].Life, _hudHpBar);
     playerHp.Show();
   }

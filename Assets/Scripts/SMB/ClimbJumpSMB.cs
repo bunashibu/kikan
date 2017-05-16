@@ -9,7 +9,7 @@ public class ClimbJumpSMB : StateMachineBehaviour {
       _renderers = animator.GetComponentsInChildren<SpriteRenderer>();
       _jump = animator.GetComponent<ClimbJump>();
       _linearMove = animator.GetComponent<GroundLinearMove>();
-      _health = animator.GetComponent<PlayerHealth>();
+      _hp = animator.GetComponent<PlayerHp>();
     }
 
     Debug.Log("ClimbJump");
@@ -25,7 +25,7 @@ public class ClimbJumpSMB : StateMachineBehaviour {
 
   override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
     if (_photonView.isMine) {
-      if (_health.Dead) { ActTransition("Die", animator); return; }
+      if (_hp.Dead) { ActTransition("Die", animator); return; }
       if (_rigidState.Air) { ActTransition("Fall", animator); return; }
     }
   }
@@ -40,6 +40,6 @@ public class ClimbJumpSMB : StateMachineBehaviour {
   private SpriteRenderer[] _renderers;
   private ClimbJump _jump;
   private GroundLinearMove _linearMove;
-  private PlayerHealth _health;
+  private PlayerHp _hp;
 }
 
