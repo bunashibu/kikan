@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 114642447191522244}
   - component: {fileID: 114823730115069634}
   m_Layer: 9
-  m_Name: NameText
+  m_Name: Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -418,7 +418,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acbecdd317770bc4bb7eb8e8b8ecf407, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _anim: {fileID: 95000010494430044}
   _worldBar: {fileID: 0}
 --- !u!114 &114000012861491266
 MonoBehaviour:
@@ -606,12 +605,11 @@ MonoBehaviour:
   _skillCT: []
   _rigorCT: []
   _appearOffset: []
-  _weaponAnim: {fileID: 95669708981810512}
   _rigidState: {fileID: 114000012861491266}
   _skillInfo: {fileID: 114911368492550572}
   _renderer: {fileID: 212642414779630898}
   _status: {fileID: 114000011648146592}
-  _player: {fileID: 1000011996982660}
+  _playerView: {fileID: 0}
 --- !u!114 &114311064836627604
 MonoBehaviour:
   m_ObjectHideFlags: 1

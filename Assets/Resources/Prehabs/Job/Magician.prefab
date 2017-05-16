@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 114699522408614702}
   - component: {fileID: 114237059507920784}
   m_Layer: 9
-  m_Name: NameText
+  m_Name: Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -500,12 +500,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _jobName: Magician
   _keys: 
-  _names: []
+  _names: 
   _skillCT: []
   _rigorCT: []
-  _weaponAnim: {fileID: 0}
+  _appearOffset: []
   _rigidState: {fileID: 0}
-  _skillState: {fileID: 0}
+  _skillInfo: {fileID: 0}
+  _renderer: {fileID: 0}
+  _status: {fileID: 0}
+  _playerView: {fileID: 0}
 --- !u!114 &114305371494304468
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -557,7 +560,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acbecdd317770bc4bb7eb8e8b8ecf407, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _anim: {fileID: 95108125892297200}
+  _worldBar: {fileID: 0}
 --- !u!114 &114430097152750932
 MonoBehaviour:
   m_ObjectHideFlags: 1
