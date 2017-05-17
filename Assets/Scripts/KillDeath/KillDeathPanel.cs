@@ -76,12 +76,12 @@ public class KillDeathPanel : Photon.MonoBehaviour {
     photonView.RPC("SyncKDPanelLv", PhotonTargets.All, lv, PhotonNetwork.player);
   }
 
-  public void UpdateKill(int kill) {
-    photonView.RPC("SyncKDPanelKill", PhotonTargets.All, kill, PhotonNetwork.player);
+  public void UpdateKill(int kill, PhotonPlayer player) {
+    photonView.RPC("SyncKDPanelKill", PhotonTargets.All, kill, player);
   }
 
-  public void UpdateDeath(int death) {
-    photonView.RPC("SyncKDPanelDeath", PhotonTargets.All, death, PhotonNetwork.player);
+  public void UpdateDeath(int death, PhotonPlayer player) {
+    photonView.RPC("SyncKDPanelDeath", PhotonTargets.All, death, player);
   }
 
   [SerializeField] private KillDeathTeamPanel[] _teamPanels;

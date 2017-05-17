@@ -21,12 +21,12 @@ public class PlayerKillDeathRecorder : KillDeathRecorder {
 
   public override void RecordKill() {
     base.RecordKill();
-    _kdPanel.UpdateKill(KillCnt);
+    _kdPanel.UpdateKill(KillCnt, photonView.owner);
   }
 
   public override void RecordDeath() {
     base.RecordDeath();
-    _kdPanel.UpdateDeath(DeathCnt);
+    _kdPanel.UpdateDeath(DeathCnt, photonView.owner);
   }
 
   private KillDeathPanel _kdPanel;
