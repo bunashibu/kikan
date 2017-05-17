@@ -9,20 +9,22 @@ public class ManjiX : Skill {
 
       if (targetID != _viewID) {
         if (target.tag == "Player") {
-          var hp = target.GetComponent<PlayerHp>();
-          hp.Minus(10);
-          hp.Show();
+          if (_limiter.Check(target)) {
+            var hp = target.GetComponent<PlayerHp>();
+            hp.Minus(10);
+            hp.Show();
 
-          if (hp.Dead) {
-            var skillUser = PhotonView.Find(_viewID).gameObject;
+            if (hp.Dead) {
+              var skillUser = PhotonView.Find(_viewID).gameObject;
 
-            var killExp = target.GetComponent<KillExp>().Exp;
-            var nextExp = skillUser.GetComponent<PlayerNextExp>();
-            nextExp.Plus(killExp);
-            nextExp.Show();
+              var killExp = target.GetComponent<KillExp>().Exp;
+              var nextExp = skillUser.GetComponent<PlayerNextExp>();
+              nextExp.Plus(killExp);
+              nextExp.Show();
 
-            skillUser.GetComponent<PlayerKillDeathRecorder>().RecordKill();
-            target.GetComponent<PlayerKillDeathRecorder>().RecordDeath();
+              skillUser.GetComponent<PlayerKillDeathRecorder>().RecordKill();
+              target.GetComponent<PlayerKillDeathRecorder>().RecordDeath();
+            }
           }
         }
       }
@@ -31,5 +33,6 @@ public class ManjiX : Skill {
 
   [SerializeField] private BoxCollider2D _collider;
   [SerializeField] private int _power;
+  [SerializeField] private TargetLimiter _limiter;
 }
 

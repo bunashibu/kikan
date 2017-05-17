@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class Skill : Photon.MonoBehaviour {
   [PunRPC]
@@ -10,6 +11,8 @@ public class Skill : Photon.MonoBehaviour {
   }
 
   public void Init(bool flipX, int viewID) {
+    Assert.IsTrue(photonView.isMine);
+
     photonView.RPC("SyncInit", PhotonTargets.All, flipX, viewID);
   }
 
