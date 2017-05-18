@@ -5,17 +5,20 @@ using UnityEngine.Assertions;
 
 public class Skill : Photon.MonoBehaviour {
   [PunRPC]
-  protected void SyncInit(bool flipX, int viewID) {
+  protected void SyncInit(bool flipX, int viewID, int team) {
     gameObject.GetComponent<SpriteRenderer>().flipX = flipX;
-    _viewID = viewID;
+    _user = PhotonView.Find(viewID).gameObject;
+    _team = team;
   }
 
   public void Init(bool flipX, int viewID) {
     Assert.IsTrue(photonView.isMine);
 
-    photonView.RPC("SyncInit", PhotonTargets.All, flipX, viewID);
+    var team = (int)PhotonNetwork.player.CustomProperties["Team"];
+    photonView.RPC("SyncInit", PhotonTargets.All, flipX, viewID, team);
   }
 
-  protected int _viewID;
+  protected GameObject _user;
+  protected int _team;
 }
 

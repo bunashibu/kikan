@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class JobPicker : MonoBehaviour {
   void Start() {
@@ -8,18 +9,7 @@ public class JobPicker : MonoBehaviour {
   }
 
   public void Pick(int n) {
-    // Team 0 is Red(Right), Team 1 is Blue(Left)
-    var pos = _gameData.RespawnPosition;
-    if ((int)PhotonNetwork.player.CustomProperties["Team"] == 1)
-      pos.x *= -1;
-
-    _player = PhotonNetwork.Instantiate("Prehabs/Job/" + _jobs[n].name, pos, Quaternion.identity, 0);
-
-    var renderers = _player.GetComponentsInChildren<SpriteRenderer>();
-    if ((int)PhotonNetwork.player.CustomProperties["Team"] == 1) {
-      foreach (var sprite in renderers)
-        sprite.flipX = true;
-    }
+    InstantiatePlayer(n);
 
     InitPlayerHp(n);
     InitPlayerExp();
@@ -30,6 +20,32 @@ public class JobPicker : MonoBehaviour {
 
     DisableAllButtons();
     Destroy(_camera);
+  }
+
+  private void InstantiatePlayer(int n) {
+    // Team 0 is Red(Right), Team 1 is Blue(Left)
+    var pos = _gameData.RespawnPosition;
+    if ((int)PhotonNetwork.player.CustomProperties["Team"] == 1)
+      pos.x *= -1;
+
+    _player = PhotonNetwork.Instantiate("Prehabs/Job/" + _jobs[n].name, pos, Quaternion.identity, 0);
+    AdjustFlipX();
+    SetViewID();
+  }
+
+  private void AdjustFlipX() {
+    var renderers = _player.GetComponentsInChildren<SpriteRenderer>();
+    if ((int)PhotonNetwork.player.CustomProperties["Team"] == 1) {
+      foreach (var sprite in renderers)
+        sprite.flipX = true;
+    }
+  }
+
+  private void SetViewID() {
+    var viewID = _player.GetComponent<PhotonView>().viewID;
+
+    var props = new Hashtable() {{"ViewID", viewID}};
+    PhotonNetwork.player.SetCustomProperties(props);
   }
 
   private void InitPlayerHp(int n) {
