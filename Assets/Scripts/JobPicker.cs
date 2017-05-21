@@ -82,11 +82,7 @@ public class JobPicker : MonoBehaviour {
 
   private void InitPlayerStatus(int n) {
     var status = _player.GetComponent<PlayerStatus>();
-
-    status.Atk = _jobData[n].Atk;
-    status.Dfn = _jobData[n].Dfn;
-    status.Spd = _jobData[n].Spd;
-    status.Jmp = _jobData[n].Jmp;
+    status.Init(_jobData[n]);
   }
 
   private void InitPlayerMovement(int n) {

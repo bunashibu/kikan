@@ -12,7 +12,12 @@ public class ManjiX : Skill {
       if (target.tag == "Player") {
         if (_limiter.Check(target)) {
           var targetHp = target.GetComponent<PlayerHp>();
-          targetHp.Minus(10);
+
+          int atk = _user.GetComponent<PlayerStatus>().Atk;
+          int deviation = (int)((Random.value - 0.5) * 2 + MaxDeviation);
+          int damage = atk + deviation;
+
+          targetHp.Minus(damage);
           targetHp.Show();
 
           if (targetHp.Dead) {
@@ -31,5 +36,6 @@ public class ManjiX : Skill {
   [SerializeField] private int _power;
   [SerializeField] private TargetLimiter _limiter;
   [SerializeField] private ExpGetter _expGetter;
+  private static readonly int MaxDeviation = 10;
 }
 
