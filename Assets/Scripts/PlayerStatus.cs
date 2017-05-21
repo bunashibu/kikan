@@ -1,12 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerStatus : MonoBehaviour {
+public class PlayerStatus : Photon.MonoBehaviour {
+  [PunRPC]
+  private void SyncPlayerStatusInit(int atk, int dfn, int spd, int jmp) {
+    Atk = atk;
+    Dfn = dfn;
+    Spd = spd;
+    Jmp = jmp;
+  }
+
   public void Init(JobStatus jobStatus) {
     Atk = jobStatus.Atk;
     Dfn = jobStatus.Dfn;
     Spd = jobStatus.Spd;
     Jmp = jobStatus.Jmp;
+
+    photonView.RPC("SyncPlayerStatusInit", PhotonTargets.Others, Atk, Dfn, Spd, Jmp);
   }
 
   public int Atk { get; private set; }
