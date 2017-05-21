@@ -11,4 +11,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 281fcac925c3610499f849ff715832ee, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
-  RespawnPosition: {x: 37, y: -2.5, z: 0}
+  _respawnPosition: {x: 37, y: -2.5, z: 0}

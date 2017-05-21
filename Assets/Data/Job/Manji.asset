@@ -11,9 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdabc219a3518e644aa5c8ee1d0fa953, type: 3}
   m_Name: Manji
   m_EditorClassIdentifier: 
-  Id: 0
-  Life: 3000
-  Atk: 200
-  Dfn: 1
-  Spd: 80
-  Jmp: 400
+  _id: 0
+  _life: 3000
+  _atk: 200
+  _dfn: 1
+  _spd: 80
+  _jmp: 400
