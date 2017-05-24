@@ -2,6 +2,30 @@
 using System.Collections;
 
 public class ManjiX : Skill {
+  void OnTriggerEnter2D(Collider2D collider) {
+    if (PhotonNetwork.isMasterClient) {
+      var target = collider.gameObject;
+
+      bool isSkillUser = (target == _user);
+      bool isOtherPlayer = (target.tag == "Player");
+      bool isEnemy = (target.tag == "Enemy");
+
+      if (isSkillUser)
+        return;
+
+      if (isOtherPlayer) {
+        bool isNotLimited = _limiter.Check(target, _team);
+
+        if (isNotLimited)
+          PlayerDamageProcess(target);
+      }
+
+      if (isEnemy) {
+        Debug.Log("Enemy damage impl");
+      }
+    }
+  }
+
   [PunRPC]
   private void InstantiateDamagePanel(int damage) {
     var skin = _user.GetComponent<PlayerDamageSkin>().Skin;
@@ -10,36 +34,35 @@ public class ManjiX : Skill {
     damagePanel.Create(damage, skin);
   }
 
-  void OnTriggerEnter2D(Collider2D collider) {
-    if (PhotonNetwork.isMasterClient) {
-      var target = collider.gameObject;
+  private int CalcDamage() {
+    int atk = _user.GetComponent<PlayerStatus>().Atk;
+    int deviation = (int)((Random.value - 0.5) * 2 * MaxDeviation);
 
-      if (target == _user)
-        return;
+    return atk + deviation;
+  }
 
-      if (target.tag == "Player") {
-        if (_limiter.Check(target, _team)) {
-          var targetHp = target.GetComponent<PlayerHp>();
+  private void PlayerDamageProcess(GameObject target) {
+    int damage = CalcDamage();
 
-          int atk = _user.GetComponent<PlayerStatus>().Atk;
-          int deviation = (int)((Random.value - 0.5) * 2 * MaxDeviation);
-          int damage = atk + deviation;
+    photonView.RPC("InstantiateDamagePanel", PhotonTargets.All, damage);
+    DamageToPlayer(target, damage);
+  }
 
-          photonView.RPC("InstantiateDamagePanel", PhotonTargets.All, damage);
+  private void DamageToPlayer(GameObject target, int damage) {
+    var targetHp = target.GetComponent<PlayerHp>();
+    targetHp.Minus(damage);
+    targetHp.Show();
 
-          targetHp.Minus(damage);
-          targetHp.Show();
+    if (targetHp.Dead)
+      PlayerDeathProcess(target);
+  }
 
-          if (targetHp.Dead) {
-            _expGetter.SetExpReceiver(_user, _team);
-            _expGetter.GetExpFrom(target);
+  private void PlayerDeathProcess(GameObject target) {
+    _expGetter.SetExpReceiver(_user, _team);
+    _expGetter.GetExpFrom(target);
 
-            _user.GetComponent<PlayerKillDeathRecorder>().RecordKill();
-            target.GetComponent<PlayerKillDeathRecorder>().RecordDeath();
-          }
-        }
-      }
-    }
+    _user.GetComponent<PlayerKillDeathRecorder>().RecordKill();
+    target.GetComponent<PlayerKillDeathRecorder>().RecordDeath();
   }
 
   [SerializeField] private BoxCollider2D _collider;
