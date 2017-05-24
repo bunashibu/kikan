@@ -7,7 +7,23 @@ public class TargetLimiter : MonoBehaviour {
     _targetList = new Dictionary<GameObject, int>();
   }
 
-  public bool Check(GameObject target) {
+  public bool Check(GameObject target, int team) {
+    bool isOtherTeam = OtherTeamCheck(target, team);
+    bool isNotDupHit = DupHitCheck(target);
+
+    return isOtherTeam && isNotDupHit;
+  }
+
+  private bool OtherTeamCheck(GameObject target, int team) {
+    int targetTeam = (int)target.GetComponent<PhotonView>().owner.CustomProperties["Team"];
+
+    if (targetTeam == team)
+      return false;
+    else
+      return true;
+  }
+
+  private bool DupHitCheck(GameObject target) {
     if (_targetList.ContainsKey(target))
       return SecondOrLaterTimeCheck(target);
     else

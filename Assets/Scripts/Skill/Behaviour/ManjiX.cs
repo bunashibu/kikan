@@ -2,6 +2,14 @@
 using System.Collections;
 
 public class ManjiX : Skill {
+  [PunRPC]
+  private void InstantiateDamagePanel(int damage) {
+    var skin = _user.GetComponent<PlayerDamageSkin>().Skin;
+    var damagePanel = Instantiate(_damagePanel, gameObject.transform, false);
+
+    damagePanel.Create(damage, skin);
+  }
+
   void OnTriggerEnter2D(Collider2D collider) {
     if (PhotonNetwork.isMasterClient) {
       var target = collider.gameObject;
@@ -10,16 +18,14 @@ public class ManjiX : Skill {
         return;
 
       if (target.tag == "Player") {
-        if (_limiter.Check(target)) {
+        if (_limiter.Check(target, _team)) {
           var targetHp = target.GetComponent<PlayerHp>();
 
           int atk = _user.GetComponent<PlayerStatus>().Atk;
           int deviation = (int)((Random.value - 0.5) * 2 * MaxDeviation);
           int damage = atk + deviation;
 
-          var skin = _user.GetComponent<PlayerDamageSkin>().Skin;
-          var damagePanel = Instantiate(_damagePanel, gameObject.transform, false);
-          damagePanel.Create(damage, skin);
+          photonView.RPC("InstantiateDamagePanel", PhotonTargets.All, damage);
 
           targetHp.Minus(damage);
           targetHp.Show();
