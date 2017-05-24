@@ -5,7 +5,15 @@ using System.Linq;
 using UnityEngine;
 
 public class DamagePanel : MonoBehaviour {
-  public void Create(int damage, DamageSkin skin) {
+  public void CreateHit(int damage, DamageSkin skin) {
+    Create(damage, skin, DamageType.Hit);
+  }
+
+  public void CreateTake(int damage, DamageSkin skin) {
+    Create(damage, skin, DamageType.Take);
+  }
+
+  private void Create(int damage, DamageSkin skin, DamageType type) {
     Value = damage;
 
     string str = damage.ToString();
@@ -18,7 +26,22 @@ public class DamagePanel : MonoBehaviour {
       ++i;
 
       var renderer = number.GetComponent<SpriteRenderer>();
-      renderer.sprite = skin.Hit[index];
+
+      switch (type) {
+        case DamageType.Hit:
+          renderer.sprite = skin.Hit[index];
+          break;
+        case DamageType.Critical:
+          renderer.sprite = skin.Critical[index];
+          break;
+        case DamageType.Take:
+          renderer.sprite = skin.Take[index];
+          break;
+        case DamageType.Heal:
+          renderer.sprite = skin.Heal[index];
+          break;
+      }
+
       renderer.sortingOrder = i;
     }
   }

@@ -17,3 +17,10 @@ public enum SkillState {
   Used
 }
 
+public enum DamageType {
+  Hit,
+  Critical,
+  Take,
+  Heal
+}
+

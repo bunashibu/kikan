@@ -27,11 +27,21 @@ public class ManjiX : Skill {
   }
 
   [PunRPC]
-  private void InstantiateDamagePanel(int damage) {
-    var skin = _user.GetComponent<PlayerDamageSkin>().Skin;
-    var damagePanel = Instantiate(_damagePanel, gameObject.transform, false);
+  private void InstantiateDamagePanel(int damage, PhotonPlayer targetPlayer, int viewID) {
+    bool isTarget = (PhotonNetwork.player == targetPlayer);
 
-    damagePanel.Create(damage, skin);
+    if (isTarget) {
+      var target = PhotonView.Find(viewID).gameObject;
+      var skin = target.GetComponent<PlayerDamageSkin>().Skin;
+      var damagePanel = Instantiate(_damagePanel, gameObject.transform, false);
+
+      damagePanel.CreateTake(damage, skin);
+    } else {
+      var skin = _user.GetComponent<PlayerDamageSkin>().Skin;
+      var damagePanel = Instantiate(_damagePanel, gameObject.transform, false);
+
+      damagePanel.CreateHit(damage, skin);
+    }
   }
 
   private int CalcDamage() {
@@ -42,9 +52,14 @@ public class ManjiX : Skill {
   }
 
   private void PlayerDamageProcess(GameObject target) {
+    var targetView = target.GetComponent<PhotonView>();
+    var targetPlayer = targetView.owner;
+    var targetViewID = targetView.viewID;
+
     int damage = CalcDamage();
 
-    photonView.RPC("InstantiateDamagePanel", PhotonTargets.All, damage);
+    photonView.RPC("InstantiateDamagePanel", PhotonTargets.All, damage, targetPlayer, targetViewID);
+
     DamageToPlayer(target, damage);
   }
 
