@@ -14,8 +14,12 @@ public class ManjiX : Skill {
           var targetHp = target.GetComponent<PlayerHp>();
 
           int atk = _user.GetComponent<PlayerStatus>().Atk;
-          int deviation = (int)((Random.value - 0.5) * 2 + MaxDeviation);
+          int deviation = (int)((Random.value - 0.5) * 2 * MaxDeviation);
           int damage = atk + deviation;
+
+          var skin = _user.GetComponent<PlayerDamageSkin>().Skin;
+          var damagePanel = Instantiate(_damagePanel, gameObject.transform, false);
+          damagePanel.Create(damage, skin);
 
           targetHp.Minus(damage);
           targetHp.Show();
@@ -36,6 +40,7 @@ public class ManjiX : Skill {
   [SerializeField] private int _power;
   [SerializeField] private TargetLimiter _limiter;
   [SerializeField] private ExpGetter _expGetter;
+  [SerializeField] private DamagePanel _damagePanel;
   private static readonly int MaxDeviation = 10;
 }
 

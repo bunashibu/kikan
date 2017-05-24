@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 114762156422380140}
   - component: {fileID: 114240627563800778}
   - component: {fileID: 114931539536895646}
+  - component: {fileID: 114182300045006078}
   m_Layer: 9
   m_Name: Manji
   m_TagString: Player
@@ -557,6 +558,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigid: {fileID: 50159110143766000}
+--- !u!114 &114182300045006078
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1222958424102090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16c9f66632304e34babb9c7194c34dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _skin: {fileID: 11400000, guid: 950c137ab9585e94aaf57f5f836cecd9, type: 2}
 --- !u!114 &114215280910280342
 MonoBehaviour:
   m_ObjectHideFlags: 1

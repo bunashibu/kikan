@@ -66,3 +66,6 @@ TagManager:
   - name: Skill
     uniqueID: 950836439
     locked: 0
+  - name: Damage
+    uniqueID: 1505944233
+    locked: 0
