@@ -10,8 +10,6 @@ public class ExpGetter : MonoBehaviour {
 
   public void GetExpFrom(GameObject target) {
     var teammateList = GetTeammateList();
-    Debug.Log(teammateList.Count);
-
     var killExp = target.GetComponent<KillExp>().Exp;
 
     int size = teammateList.Count;
@@ -23,10 +21,12 @@ public class ExpGetter : MonoBehaviour {
       ratio = 0.6;
 
     int receiverExp = (int)(killExp * ratio);
-    int teammateExp = (int)((killExp - receiverExp) / size);
-
     GiveExpToReceiver(receiverExp);
-    GiveExpToTeammate(teammateExp, teammateList);
+
+    if (size > 0) {
+      int teammateExp = (int)((killExp - receiverExp) / size);
+      GiveExpToTeammate(teammateExp, teammateList);
+    }
   }
 
   private List<GameObject> GetTeammateList() {
