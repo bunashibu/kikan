@@ -42,7 +42,7 @@ public class NextExp : Photon.MonoBehaviour, IGauge<int> {
     Cur = Min;
   }
 
-  [SerializeField] private ExpTable _table;
+  [SerializeField] private DataTable _table;
   [SerializeField] private Level _level;
   public int Cur { get; private set; }
   public int Min { get; private set; }

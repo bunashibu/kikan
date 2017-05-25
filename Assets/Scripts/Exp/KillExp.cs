@@ -13,7 +13,7 @@ public class KillExp : MonoBehaviour {
     }
   }
 
-  [SerializeField] private ExpTable _table;
+  [SerializeField] private DataTable _table;
   [SerializeField] private Level _level;
   private int _index;
 }

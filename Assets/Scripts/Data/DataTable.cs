@@ -5,13 +5,13 @@ using System.Collections.ObjectModel;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class ExpTable : ScriptableObject {
+public class DataTable : ScriptableObject {
   public ReadOnlyCollection<int> Data {
     get {
-      return Array.AsReadOnly(_data);
+      return Array.AsReadOnly(_table);
     }
   }
 
-  [SerializeField] private int[] _data;
+  [SerializeField] private int[] _table;
 }
 
