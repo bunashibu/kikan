@@ -133,9 +133,9 @@ GameObject:
   - component: {fileID: 114685664338584306}
   - component: {fileID: 114438636751118534}
   - component: {fileID: 114762156422380140}
-  - component: {fileID: 114240627563800778}
   - component: {fileID: 114931539536895646}
   - component: {fileID: 114182300045006078}
+  - component: {fileID: 114465877454194242}
   m_Layer: 9
   m_Name: Manji
   m_TagString: Player
@@ -582,19 +582,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _trans: {fileID: 224235004673622830}
---- !u!114 &114240627563800778
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1222958424102090}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f854313589b20545b19730a7e056ee8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _table: {fileID: 11400000, guid: 791597593be91a545b78b225c074d878, type: 2}
-  _level: {fileID: 114438636751118534}
 --- !u!114 &114283101673446462
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -843,6 +830,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fafce94b5f44a044fa5c539eafb09b7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114465877454194242
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1222958424102090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42d34e02e1c29624fa16824f4e1d197b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _expTable: {fileID: 11400000, guid: 791597593be91a545b78b225c074d878, type: 2}
+  _goldTable: {fileID: 11400000, guid: 08f3819bcd389ae498dddc20a49a3239, type: 2}
+  _level: {fileID: 114438636751118534}
 --- !u!114 &114504324772229166
 MonoBehaviour:
   m_ObjectHideFlags: 1

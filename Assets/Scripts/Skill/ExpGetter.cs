@@ -10,7 +10,7 @@ public class ExpGetter : MonoBehaviour {
 
   public void GetExpFrom(GameObject target) {
     var teammateList = GetTeammateList();
-    var killExp = target.GetComponent<KillExp>().Exp;
+    var killExp = target.GetComponent<KillReward>().Exp;
 
     int size = teammateList.Count;
     double ratio = 1;
