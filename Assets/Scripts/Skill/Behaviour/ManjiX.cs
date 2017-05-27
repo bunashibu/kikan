@@ -73,8 +73,8 @@ public class ManjiX : Skill {
   }
 
   private void PlayerDeathProcess(GameObject target) {
-    _expGetter.SetExpReceiver(_user, _team);
-    _expGetter.GetExpFrom(target);
+    _rewardGetter.SetRewardReceiver(_user, _team);
+    _rewardGetter.GetRewardFrom(target);
 
     _user.GetComponent<PlayerKillDeathRecorder>().RecordKill();
     target.GetComponent<PlayerKillDeathRecorder>().RecordDeath();
@@ -83,7 +83,7 @@ public class ManjiX : Skill {
   [SerializeField] private BoxCollider2D _collider;
   [SerializeField] private int _power;
   [SerializeField] private TargetLimiter _limiter;
-  [SerializeField] private ExpGetter _expGetter;
+  [SerializeField] private RewardGetter _rewardGetter;
   [SerializeField] private DamagePanel _damagePanel;
   private static readonly int MaxDeviation = 10;
 }

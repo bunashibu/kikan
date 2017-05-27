@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExpGetter : MonoBehaviour {
-  public void SetExpReceiver(GameObject receiver, int team) {
+public class RewardGetter : MonoBehaviour {
+  public void SetRewardReceiver(GameObject receiver, int team) {
     _receiver = receiver;
     _receiveTeam = team;
   }
 
-  public void GetExpFrom(GameObject target) {
+  public void GetRewardFrom(GameObject target) {
     var teammateList = GetTeammateList();
     var killExp = target.GetComponent<KillReward>().Exp;
+    var killGold = target.GetComponent<KillReward>().Gold;
 
     int size = teammateList.Count;
     double ratio = 1;
@@ -21,11 +22,17 @@ public class ExpGetter : MonoBehaviour {
       ratio = 0.6;
 
     int receiverExp = (int)(killExp * ratio);
+    int receiverGold = (int)(killGold * ratio);
+
     GiveExpToReceiver(receiverExp);
+    GiveGoldToReceiver(receiverGold);
 
     if (size > 0) {
       int teammateExp = (int)((killExp - receiverExp) / size);
+      int teammateGold = (int)((killGold - receiverGold) / size);
+
       GiveExpToTeammate(teammateExp, teammateList);
+      GiveGoldToTeammate(teammateGold, teammateList);
     }
   }
 
@@ -54,12 +61,24 @@ public class ExpGetter : MonoBehaviour {
     nextExp.Show();
   }
 
+  private void GiveGoldToReceiver(int gold) {
+    var playerGold = _receiver.GetComponent<PlayerGold>();
+    playerGold.Plus(gold);
+  }
+
   private void GiveExpToTeammate(int exp, List<GameObject> teammateList) {
     foreach (var teammate in teammateList) {
       var nextExp = teammate.GetComponent<PlayerNextExp>();
 
       nextExp.Plus(exp);
       nextExp.Show();
+    }
+  }
+
+  private void GiveGoldToTeammate(int gold, List<GameObject> teammateList) {
+    foreach (var teammate in teammateList) {
+      var playerGold = teammate.GetComponent<PlayerGold>();
+      playerGold.Plus(gold);
     }
   }
 
