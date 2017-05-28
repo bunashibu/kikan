@@ -55,7 +55,7 @@ public class JobPicker : MonoBehaviour {
 
     var playerHp = _player.GetComponent<PlayerHp>();
     playerHp.Init(_jobData[n].Life, _hudHpBar);
-    playerHp.Show();
+    playerHp.UpdateView();
   }
 
   private void InitPlayerExp() {
@@ -64,7 +64,7 @@ public class JobPicker : MonoBehaviour {
 
     var playerNextExp = _player.GetComponent<PlayerNextExp>();
     playerNextExp.Init(_hudExpBar);
-    playerNextExp.Show();
+    playerNextExp.UpdateView();
   }
 
   private void InitPlayerLv() {
@@ -73,11 +73,11 @@ public class JobPicker : MonoBehaviour {
 
     var playerLv = _player.GetComponent<PlayerLevel>();
     playerLv.Init(_lvPanel, _kdPanel);
-    playerLv.Show();
+    playerLv.UpdateView();
   }
 
   private void InitPlayerKillDeath() {
-    var playerKDRec = _player.GetComponent<PlayerKillDeathRecorder>();
+    var playerKDRec = _player.GetComponent<PlayerKillDeath>();
     playerKDRec.Init(_kdPanel);
   }
 

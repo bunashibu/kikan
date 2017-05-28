@@ -12,13 +12,13 @@ public class PlayerNextExp : NextExp {
   }
 
   [PunRPC]
-  private void SyncExpShow() {
+  private void SyncExpUpdate() {
     if (photonView.isMine)
-      _hudBar.Show(Cur, Max);
+      _hudBar.UpdateView(Cur, Max);
   }
 
-  public void Show() {
-    photonView.RPC("SyncExpShow", PhotonTargets.All);
+  public void UpdateView() {
+    photonView.RPC("SyncExpUpdate", PhotonTargets.All);
   }
 
   private Bar _hudBar;

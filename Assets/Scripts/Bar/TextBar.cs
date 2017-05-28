@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class TextBar : Bar {
-  public override void Show(int cur, int max) {
+  public override void UpdateView(int cur, int max) {
     _text.text = "[" + cur.ToString() + "/" + max.ToString() + "]  ";
     Animate(cur, max);
   }

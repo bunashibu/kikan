@@ -12,18 +12,18 @@ public class PlayerLevel : Level {
     _kdPanel = kdPanel;
   }
 
-  public void Show() {
+  public void UpdateView() {
     Assert.IsTrue(photonView.isMine);
 
-    _lvPanel.Show(Lv);
-    _kdPanel.UpdateLv(Lv);
+    _lvPanel.UpdateView(Lv);
+    _kdPanel.UpdateLvView(Lv);
   }
 
   public override void LvUp() {
     base.LvUp();
 
     if (photonView.isMine)
-      Show();
+      UpdateView();
   }
 
   private LevelPanel _lvPanel;

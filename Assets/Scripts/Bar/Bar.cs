@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 
 public abstract class Bar : MonoBehaviour {
-  public abstract void Show(int cur, int max);
+  public abstract void UpdateView(int cur, int max);
 
   protected virtual void Animate(int cur, int max) {
     Debug.Log("Animate " + cur + " " + max);

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-public class PlayerKillDeathRecorder : KillDeathRecorder {
+public class PlayerKillDeath : KillDeath {
   [PunRPC]
-  private void SyncKDRecInit(int kdViewID) {
+  private void SyncKillDeathInit(int kdViewID) {
     var kdPanel = PhotonView.Find(kdViewID).gameObject.GetComponent<KillDeathPanel>();
     _kdPanel = kdPanel;
   }
@@ -16,17 +16,15 @@ public class PlayerKillDeathRecorder : KillDeathRecorder {
     Init();
 
     var kdViewID = kdPanel.GetComponent<PhotonView>().viewID;
-    photonView.RPC("SyncKDRecInit", PhotonTargets.All, kdViewID);
+    photonView.RPC("SyncKillDeathInit", PhotonTargets.All, kdViewID);
   }
 
-  public override void RecordKill() {
-    base.RecordKill();
-    _kdPanel.UpdateKill(KillCnt, photonView.owner);
+  public void UpdateKillView() {
+    _kdPanel.UpdateKillView(KillCount, photonView.owner);
   }
 
-  public override void RecordDeath() {
-    base.RecordDeath();
-    _kdPanel.UpdateDeath(DeathCnt, photonView.owner);
+  public void UpdateDeathView() {
+    _kdPanel.UpdateDeathView(DeathCount, photonView.owner);
   }
 
   private KillDeathPanel _kdPanel;

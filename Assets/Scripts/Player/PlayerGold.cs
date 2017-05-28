@@ -12,13 +12,13 @@ public class PlayerGold : Gold {
   }
 
   [PunRPC]
-  private void SyncGoldShow(int cur) {
+  private void SyncGoldUpdate(int cur) {
     if (photonView.isMine)
       _goldPanel.UpdateGold(cur);
   }
 
-  public void Show() {
-    photonView.RPC("SyncGoldShow", PhotonTargets.All, Cur);
+  public void UpdateView() {
+    photonView.RPC("SyncGoldUpdate", PhotonTargets.All, Cur);
   }
 
   private GoldPanel _goldPanel;

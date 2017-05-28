@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyHp : Hp {
+  /*
   public void Init(int life, Bar bar) {
     //Init(life, life);
     _bar = bar;
@@ -13,5 +14,6 @@ public class EnemyHp : Hp {
   }
 
   private Bar _bar;
+  */
 }
 

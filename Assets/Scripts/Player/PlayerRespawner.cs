@@ -12,7 +12,7 @@ public class PlayerRespawner : MonoBehaviour {
 
       gameObject.transform.position = pos;
       _hp.FullRecovery();
-      _hp.Show();
+      _hp.UpdateView();
 
       ActTransition();
     });

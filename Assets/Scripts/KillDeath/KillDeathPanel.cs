@@ -36,7 +36,7 @@ public class KillDeathPanel : Photon.MonoBehaviour {
 
       _teamTable[player] = new int[] { team, index };
 
-      _teamPanels[team].ShowName(player.NickName, index);
+      _teamPanels[team].UpdateNameView(player.NickName, index);
     }
   }
 
@@ -44,43 +44,43 @@ public class KillDeathPanel : Photon.MonoBehaviour {
   private void SyncKDPanelName(PhotonPlayer player) {
     int team = (int)_teamTable[player][0];
     int index = (int)_teamTable[player][1];
-    _teamPanels[team].ShowName(player.NickName, index);
+    _teamPanels[team].UpdateNameView(player.NickName, index);
   }
 
   [PunRPC]
   private void SyncKDPanelLv(int lv, PhotonPlayer player) {
     int team = (int)_teamTable[player][0];
     int index = (int)_teamTable[player][1];
-    _teamPanels[team].ShowLv(lv, index);
+    _teamPanels[team].UpdateLvView(lv, index);
   }
 
   [PunRPC]
   private void SyncKDPanelKill(int kill, PhotonPlayer player) {
     int team = (int)_teamTable[player][0];
     int index = (int)_teamTable[player][1];
-    _teamPanels[team].ShowKill(kill, index);
+    _teamPanels[team].UpdateKillView(kill, index);
   }
 
   [PunRPC]
   private void SyncKDPanelDeath(int death, PhotonPlayer player) {
     int team = (int)_teamTable[player][0];
     int index = (int)_teamTable[player][1];
-    _teamPanels[team].ShowDeath(death, index);
+    _teamPanels[team].UpdateDeathView(death, index);
   }
 
-  public void UpdateName(PhotonPlayer player) {
+  public void UpdateNameView(PhotonPlayer player) {
     photonView.RPC("SyncKDPanelName", PhotonTargets.All, player);
   }
 
-  public void UpdateLv(int lv) {
+  public void UpdateLvView(int lv) {
     photonView.RPC("SyncKDPanelLv", PhotonTargets.All, lv, PhotonNetwork.player);
   }
 
-  public void UpdateKill(int kill, PhotonPlayer player) {
+  public void UpdateKillView(int kill, PhotonPlayer player) {
     photonView.RPC("SyncKDPanelKill", PhotonTargets.All, kill, player);
   }
 
-  public void UpdateDeath(int death, PhotonPlayer player) {
+  public void UpdateDeathView(int death, PhotonPlayer player) {
     photonView.RPC("SyncKDPanelDeath", PhotonTargets.All, death, player);
   }
 

@@ -14,15 +14,15 @@ public class PlayerHp : Hp {
   }
 
   [PunRPC]
-  private void SyncHpShow() {
+  private void SyncHpUpdate() {
     if (photonView.isMine)
-      _hudBar.Show(Cur, Max);
+      _hudBar.UpdateView(Cur, Max);
     else
-      _worldBar.Show(Cur, Max);
+      _worldBar.UpdateView(Cur, Max);
   }
 
-  public void Show() {
-    photonView.RPC("SyncHpShow", PhotonTargets.All);
+  public void UpdateView() {
+    photonView.RPC("SyncHpUpdate", PhotonTargets.All);
   }
 
   public void FullRecovery() {

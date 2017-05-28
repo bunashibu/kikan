@@ -26,19 +26,19 @@ public class KillDeathTeamPanel : MonoBehaviour {
     }
   }
 
-  public void ShowName(string name, int i) {
+  public void UpdateNameView(string name, int i) {
     _nameText[i].text = name;
   }
 
-  public void ShowLv(int lv, int i) {
+  public void UpdateLvView(int lv, int i) {
     UpdateText(ref _lvText[i], lv);
   }
 
-  public void ShowKill(int kill, int i) {
+  public void UpdateKillView(int kill, int i) {
     UpdateText(ref _killText[i], kill);
   }
 
-  public void ShowDeath(int death, int i) {
+  public void UpdateDeathView(int death, int i) {
     UpdateText(ref _deathText[i], death);
   }
 

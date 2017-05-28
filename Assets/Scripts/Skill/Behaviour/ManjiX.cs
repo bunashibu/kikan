@@ -66,7 +66,7 @@ public class ManjiX : Skill {
   private void DamageToPlayer(GameObject target, int damage) {
     var targetHp = target.GetComponent<PlayerHp>();
     targetHp.Minus(damage);
-    targetHp.Show();
+    targetHp.UpdateView();
 
     if (targetHp.Dead)
       PlayerDeathProcess(target);
@@ -76,8 +76,14 @@ public class ManjiX : Skill {
     _rewardGetter.SetRewardReceiver(_user, _team);
     _rewardGetter.GetRewardFrom(target);
 
-    _user.GetComponent<PlayerKillDeathRecorder>().RecordKill();
-    target.GetComponent<PlayerKillDeathRecorder>().RecordDeath();
+    var userKillDeath = _user.GetComponent<PlayerKillDeath>();
+    var targetKillDeath = target.GetComponent<PlayerKillDeath>();
+
+    userKillDeath.RecordKill();
+    targetKillDeath.RecordDeath();
+
+    userKillDeath.UpdateKillView();
+    targetKillDeath.UpdateDeathView();
   }
 
   [SerializeField] private BoxCollider2D _collider;
