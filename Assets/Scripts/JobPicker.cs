@@ -15,6 +15,7 @@ public class JobPicker : MonoBehaviour {
     InitPlayerExp();
     InitPlayerLv();
     InitPlayerKillDeath();
+    InitPlayerGold();
     InitPlayerStatus(n);
     InitPlayerMovement(n);
 
@@ -80,6 +81,11 @@ public class JobPicker : MonoBehaviour {
     playerKDRec.Init(_kdPanel);
   }
 
+  private void InitPlayerGold() {
+    var playerGold = _player.GetComponent<PlayerGold>();
+    playerGold.Init(_goldPanel);
+  }
+
   private void InitPlayerStatus(int n) {
     var status = _player.GetComponent<PlayerStatus>();
     status.Init(_jobData[n]);
@@ -107,6 +113,7 @@ public class JobPicker : MonoBehaviour {
   [SerializeField] private Bar _hudExpBar;
   [SerializeField] private LevelPanel _lvPanel;
   [SerializeField] private KillDeathPanel _kdPanel;
+  [SerializeField] private GoldPanel _goldPanel;
   [SerializeField] private GameData _gameData;
   private GameObject _player;
 }

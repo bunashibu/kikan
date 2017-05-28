@@ -63,7 +63,9 @@ public class RewardGetter : MonoBehaviour {
 
   private void GiveGoldToReceiver(int gold) {
     var playerGold = _receiver.GetComponent<PlayerGold>();
+
     playerGold.Plus(gold);
+    playerGold.Show();
   }
 
   private void GiveExpToTeammate(int exp, List<GameObject> teammateList) {
@@ -78,7 +80,9 @@ public class RewardGetter : MonoBehaviour {
   private void GiveGoldToTeammate(int gold, List<GameObject> teammateList) {
     foreach (var teammate in teammateList) {
       var playerGold = teammate.GetComponent<PlayerGold>();
+
       playerGold.Plus(gold);
+      playerGold.Show();
     }
   }
 

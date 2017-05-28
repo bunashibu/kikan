@@ -92,7 +92,7 @@ MonoBehaviour:
   _collider: {fileID: 61000012106027728}
   _power: 100
   _limiter: {fileID: 114684319468281384}
-  _expGetter: {fileID: 114156312013185612}
+  _rewardGetter: {fileID: 114156312013185612}
   _damagePanel: {fileID: 114748708156150968, guid: 9a20024cd0387a447bcb9ed0933695d4,
     type: 2}
 --- !u!114 &114156312013185612
