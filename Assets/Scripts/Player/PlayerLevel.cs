@@ -7,7 +7,9 @@ public class PlayerLevel : Level {
   public void Init(LevelPanel lvPanel, KillDeathPanel kdPanel) {
     Assert.IsTrue(photonView.isMine);
 
-    Init();
+    int initialLv = 1;
+    Init(initialLv);
+
     _lvPanel = lvPanel;
     _kdPanel = kdPanel;
   }

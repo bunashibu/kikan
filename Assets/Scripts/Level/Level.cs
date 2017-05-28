@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Level : Photon.MonoBehaviour {
-  public void Init() {
-    Lv = 1;
+  public void Init(int initialLv) {
+    Lv = initialLv;
   }
 
   [PunRPC]
