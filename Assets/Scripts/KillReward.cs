@@ -5,13 +5,13 @@ using UnityEngine;
 public class KillReward : MonoBehaviour {
   public int Exp {
     get {
-      return _expTable.Data[_level.Lv];
+      return _expTable.Data[_level.Lv - 1];
     }
   }
 
   public int Gold {
     get {
-      return _goldTable.Data[_level.Lv];
+      return _goldTable.Data[_level.Lv - 1];
     }
   }
 
