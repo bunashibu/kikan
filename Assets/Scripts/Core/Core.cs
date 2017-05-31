@@ -2,16 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Core : MonoBehaviour {
-  public void Init() {
-    int initialLv = 0;
-    _level.Init(initialLv);
-  }
-
+[CreateAssetMenu]
+public class Core : ScriptableObject {
   public void LvUp() {
-    _level.LvUp();
+    _level += 1;
   }
 
-  private Level _level;
+  public KeyCode Key {
+    get {
+      return _keyCode;
+    }
+  }
+
+  public int Value {
+    get {
+      return _valueTable.Data[_level];
+    }
+  }
+
+  [SerializeField] private DataTable _valueTable;
+  [SerializeField] private KeyCode _keyCode;
+  private int _level = 0;
 }
 

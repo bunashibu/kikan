@@ -3,19 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CorePanel : MonoBehaviour {
-  public void UpdateSpeedView() {
+  public CoreChart Critical {
+    get {
+      return _criticalChart;
+    }
   }
 
-  public void UpdateHpView() {
-  }
-
-  public void UpdateAttackView() {
-  }
-
-  public void UpdateCriticalView() {
-  }
-
-  public void UpdateHealView() {
-  }
+  [SerializeField] private CoreChart _criticalChart;
 }
 

@@ -27,7 +27,7 @@ public class ManjiX : Skill {
   }
 
   [PunRPC]
-  private void InstantiateDamagePanel(int damage, PhotonPlayer targetPlayer, int viewID) {
+  private void InstantiateDamagePanel(int damage, bool isCritical, PhotonPlayer targetPlayer, int viewID) {
     bool isTarget = (PhotonNetwork.player == targetPlayer);
 
     if (isTarget) {
@@ -40,15 +40,35 @@ public class ManjiX : Skill {
       var skin = _user.GetComponent<PlayerDamageSkin>().Skin;
       var damagePanel = Instantiate(_damagePanel, gameObject.transform, false);
 
-      damagePanel.CreateHit(damage, skin);
+      if (isCritical)
+        damagePanel.CreateCritical(damage, skin);
+      else
+        damagePanel.CreateHit(damage, skin);
     }
   }
 
   private int CalcDamage() {
     int atk = _user.GetComponent<PlayerStatus>().Atk;
+    double ratio = (double)((_user.GetComponent<PlayerCore>().Attack + 100) / 100);
     int deviation = (int)((Random.value - 0.5) * 2 * MaxDeviation);
 
-    return atk + deviation;
+    int damage = (int)(atk * ratio) + deviation;
+
+    _isCritical = CriticalCheck();
+    if (_isCritical)
+      damage *= 2;
+
+    return damage;
+  }
+
+  private bool CriticalCheck() {
+    int probability = _user.GetComponent<PlayerCore>().Critical;
+    int threshold = (int)(Random.value * 99);
+
+    if (probability > threshold)
+      return true;
+
+    return false;
   }
 
   private void PlayerDamageProcess(GameObject target) {
@@ -58,7 +78,7 @@ public class ManjiX : Skill {
 
     int damage = CalcDamage();
 
-    photonView.RPC("InstantiateDamagePanel", PhotonTargets.All, damage, targetPlayer, targetViewID);
+    photonView.RPC("InstantiateDamagePanel", PhotonTargets.All, damage, _isCritical, targetPlayer, targetViewID);
 
     DamageToPlayer(target, damage);
   }
@@ -92,5 +112,6 @@ public class ManjiX : Skill {
   [SerializeField] private RewardGetter _rewardGetter;
   [SerializeField] private DamagePanel _damagePanel;
   private static readonly int MaxDeviation = 10;
+  private bool _isCritical = false;
 }
 

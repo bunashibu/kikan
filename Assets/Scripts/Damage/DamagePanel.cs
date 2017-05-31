@@ -9,8 +9,16 @@ public class DamagePanel : MonoBehaviour {
     Create(damage, skin, DamageType.Hit);
   }
 
+  public void CreateCritical(int damage, DamageSkin skin) {
+    Create(damage, skin, DamageType.Critical);
+  }
+
   public void CreateTake(int damage, DamageSkin skin) {
     Create(damage, skin, DamageType.Take);
+  }
+
+  public void CreateHeal(int damage, DamageSkin skin) {
+    Create(damage, skin, DamageType.Heal);
   }
 
   private void Create(int damage, DamageSkin skin, DamageType type) {
