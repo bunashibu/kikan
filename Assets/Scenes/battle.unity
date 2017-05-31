@@ -14106,7 +14106,7 @@ MonoBehaviour:
   _lvPanel: {fileID: 114578394497458258, guid: d354bc829ce1fa644b2a1f50e3fc1af9, type: 2}
   _kdPanel: {fileID: 1953781252}
   _goldPanel: {fileID: 889843195}
-  _corePanel: {fileID: 0}
+  _corePanel: {fileID: 1331817296}
   _gameData: {fileID: 11400000, guid: 79929a1e9bd66f4488365796315797b6, type: 2}
 --- !u!114 &1857252215
 MonoBehaviour:

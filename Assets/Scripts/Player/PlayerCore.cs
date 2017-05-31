@@ -5,10 +5,20 @@ using UnityEngine;
 public class PlayerCore : Photon.MonoBehaviour {
   void Update() {
     if (photonView.isMine) {
-      bool unlockE = Input.GetKeyDown(KeyCode.E);
+      bool lvUpCriticalRequest = Input.GetKeyDown(_criticalCore.Key);
 
-      if (unlockE) {
+      if (lvUpCriticalRequest) {
+        Debug.Log("lvUpCriticalRequest is true");
 
+        if(_isReconfirming) {
+          Debug.Log("LvUp");
+          _criticalCore.LvUp();
+          UpdateCriticalView(_criticalCore.Level);
+          _isReconfirming = false;
+        } else {
+          Debug.Log("Reconfirming now");
+          _isReconfirming = true;
+        }
       }
     }
   }
@@ -17,8 +27,12 @@ public class PlayerCore : Photon.MonoBehaviour {
     _corePanel = corePanel;
   }
 
-  public void UpdateCriticalView(int level) {
-    //_corePanel.UpdateCriticalView(level);
+  private void UpdateAttackView(int level) {
+    _corePanel.Attack.UpdateView(level);
+  }
+
+  private void UpdateCriticalView(int level) {
+    _corePanel.Critical.UpdateView(level);
   }
 
   public int Attack {
@@ -36,5 +50,6 @@ public class PlayerCore : Photon.MonoBehaviour {
   [SerializeField] private Core _attackCore;
   [SerializeField] private Core _criticalCore;
   private CorePanel _corePanel;
+  private bool _isReconfirming = false;
 }
 

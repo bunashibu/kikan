@@ -20,6 +20,12 @@ public class Core : ScriptableObject {
     }
   }
 
+  public int Level {
+    get {
+      return _level;
+    }
+  }
+
   [SerializeField] private DataTable _valueTable;
   [SerializeField] private KeyCode _keyCode;
   private int _level = 0;
