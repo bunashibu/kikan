@@ -9,6 +9,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8adbfcf8aa71b7c4b9f879d7ace3e2ea, type: 3}
-  m_Name: CriticalTable
+  m_Name: CriticalGold
   m_EditorClassIdentifier: 
-  _table: 3200000003000000060000000c0000001200000019000000
+  _table: 1c020000de0300005406000024090000e40c0000

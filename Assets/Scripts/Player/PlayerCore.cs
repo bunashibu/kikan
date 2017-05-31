@@ -8,15 +8,24 @@ public class PlayerCore : Photon.MonoBehaviour {
       bool lvUpCriticalRequest = Input.GetKeyDown(_criticalCore.Key);
 
       if (lvUpCriticalRequest) {
-        Debug.Log("lvUpCriticalRequest is true");
 
         if(_isReconfirming) {
-          Debug.Log("LvUp");
-          _criticalCore.LvUp();
-          UpdateCriticalView(_criticalCore.Level);
-          _isReconfirming = false;
+
+          _isAffordable = (_playerGold.Cur >= _criticalCore.Gold);
+
+          if (_isAffordable) {
+            _playerGold.Minus(_criticalCore.Gold);
+            _playerGold.UpdateView();
+
+            _criticalCore.LvUp();
+            UpdateCriticalView(_criticalCore.Level);
+            _isReconfirming = false;
+
+          } else {
+            Debug.Log("You don't have enough gold.");
+          }
+
         } else {
-          Debug.Log("Reconfirming now");
           _isReconfirming = true;
         }
       }
@@ -47,9 +56,11 @@ public class PlayerCore : Photon.MonoBehaviour {
     }
   }
 
+  [SerializeField] private PlayerGold _playerGold;
   [SerializeField] private Core _attackCore;
   [SerializeField] private Core _criticalCore;
   private CorePanel _corePanel;
   private bool _isReconfirming = false;
+  private bool _isAffordable = false;
 }
 

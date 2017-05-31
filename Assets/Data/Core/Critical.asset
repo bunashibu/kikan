@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Name: Critical
   m_EditorClassIdentifier: 
   _valueTable: {fileID: 11400000, guid: b252e294706f9cd478eadb7dd283a2d8, type: 2}
+  _goldTable: {fileID: 11400000, guid: e7ad6da43f1788241b12faef88840e48, type: 2}
   _keyCode: 101

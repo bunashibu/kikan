@@ -20,6 +20,12 @@ public class Core : ScriptableObject {
     }
   }
 
+  public int Gold {
+    get {
+      return _goldTable.Data[_level];
+    }
+  }
+
   public int Level {
     get {
       return _level;
@@ -27,6 +33,7 @@ public class Core : ScriptableObject {
   }
 
   [SerializeField] private DataTable _valueTable;
+  [SerializeField] private DataTable _goldTable;
   [SerializeField] private KeyCode _keyCode;
   private int _level = 0;
 }

@@ -843,6 +843,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0a6701f5a9991842b83a56beadd4fc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerGold: {fileID: 114494370642848112}
   _attackCore: {fileID: 11400000, guid: 3802f8fc58bfd1846927a44ea5acbc56, type: 2}
   _criticalCore: {fileID: 11400000, guid: 28e7ad9a253ab3642ab24ec5f77fbd6b, type: 2}
 --- !u!114 &114465877454194242
