@@ -845,11 +845,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerGold: {fileID: 114494370642848112}
   _coreList:
-  - {fileID: 11400000, guid: 28e7ad9a253ab3642ab24ec5f77fbd6b, type: 2}
-  - {fileID: 11400000, guid: 28e7ad9a253ab3642ab24ec5f77fbd6b, type: 2}
+  - {fileID: 11400000, guid: ee538c803e6b7d34fb16311e882cd98d, type: 2}
+  - {fileID: 11400000, guid: 22fc32fd35f8f3a43aac545cd5ffef2f, type: 2}
   - {fileID: 11400000, guid: 3802f8fc58bfd1846927a44ea5acbc56, type: 2}
   - {fileID: 11400000, guid: 28e7ad9a253ab3642ab24ec5f77fbd6b, type: 2}
-  - {fileID: 11400000, guid: 28e7ad9a253ab3642ab24ec5f77fbd6b, type: 2}
+  - {fileID: 11400000, guid: dfc62fce6272db8438d9dd234fe2c625, type: 2}
 --- !u!114 &114465877454194242
 MonoBehaviour:
   m_ObjectHideFlags: 1
