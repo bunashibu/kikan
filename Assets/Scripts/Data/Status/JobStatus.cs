@@ -7,10 +7,6 @@ public class JobStatus : ScriptableObject {
     get { return _id; }
   }
 
-  public int Life {
-    get { return _life; }
-  }
-
   public int Atk {
     get { return _atk; }
   }
@@ -28,7 +24,6 @@ public class JobStatus : ScriptableObject {
   }
 
   [SerializeField] private int _id;
-  [SerializeField] private int _life;
   [SerializeField] private int _atk;
   [SerializeField] private int _dfn;
   [SerializeField] private int _spd;

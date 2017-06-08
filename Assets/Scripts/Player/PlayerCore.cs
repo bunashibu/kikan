@@ -38,6 +38,13 @@ public class PlayerCore : Photon.MonoBehaviour {
 
       _coreList[i].LvUp();
       UpdateView(i, _coreList[i].Level);
+
+      // Hp Core
+      if (i == 1) {
+        _playerHp.UpdateMaxHp();
+        _playerHp.UpdateView();
+      }
+
       _reconfirmList[i] = false;
     }
   }
@@ -81,6 +88,7 @@ public class PlayerCore : Photon.MonoBehaviour {
   }
 
   [SerializeField] private PlayerGold _playerGold;
+  [SerializeField] private PlayerHp _playerHp;
   [SerializeField] private List<Core> _coreList;
   private CorePanel _corePanel;
   private List<bool> _reconfirmList;

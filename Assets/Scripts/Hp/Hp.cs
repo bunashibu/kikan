@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Hp : Photon.MonoBehaviour, IGauge<int> {
   [PunRPC]
-  protected void SyncHpInit(int cur, int min, int max) {
+  protected void SyncHpAll(int cur, int min, int max) {
     Cur = cur;
     Min = min;
     Max = max;
@@ -13,6 +13,11 @@ public class Hp : Photon.MonoBehaviour, IGauge<int> {
   [PunRPC]
   protected void SyncHpCur(int cur) {
     Cur = cur;
+  }
+
+  [PunRPC]
+  protected void SyncHpMax(int max) {
+    Max = max;
   }
 
   [PunRPC]

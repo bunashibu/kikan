@@ -24,10 +24,14 @@ public class PlayerLevel : Level {
   public override void LvUp() {
     base.LvUp();
 
-    if (photonView.isMine)
+    if (photonView.isMine) {
       UpdateView();
+      _playerHp.UpdateMaxHp();
+      _playerHp.UpdateView();
+    }
   }
 
+  [SerializeField] private PlayerHp _playerHp;
   private LevelPanel _lvPanel;
   private KillDeathPanel _kdPanel;
 }
