@@ -49,7 +49,7 @@ public class ManjiX : Skill {
 
   private int CalcDamage() {
     int atk = _user.GetComponent<PlayerStatus>().Atk;
-    double ratio = (double)((_user.GetComponent<PlayerCore>().Attack + 100) / 100);
+    double ratio = (double)((_user.GetComponent<PlayerCore>().Attack + 100) / 100.0);
     int deviation = (int)((Random.value - 0.5) * 2 * MaxDeviation);
 
     int damage = (int)(atk * ratio) + deviation;

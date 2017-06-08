@@ -5,6 +5,7 @@ using UnityEngine;
 public class Level : Photon.MonoBehaviour {
   public void Init(int initialLv) {
     Lv = initialLv;
+    photonView.RPC("SyncLvCur", PhotonTargets.Others, Lv);
   }
 
   [PunRPC]
