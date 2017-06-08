@@ -11,6 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1abcd8b4a55234f4787c4ab3090684bc, type: 3}
   m_Name: Speed
   m_EditorClassIdentifier: 
-  _valueTable: {fileID: 0}
+  _valueTable: {fileID: 11400000, guid: cb52de6969897a34d892395606334ee2, type: 2}
   _goldTable: {fileID: 11400000, guid: e7ad6da43f1788241b12faef88840e48, type: 2}
   _keyCode: 114

@@ -11,4 +11,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8adbfcf8aa71b7c4b9f879d7ace3e2ea, type: 3}
   m_Name: SpeedValue
   m_EditorClassIdentifier: 
-  _table: 000000000300000006000000090000000c0000000f000000
+  _table: 0000000004000000080000000c0000001000000014000000

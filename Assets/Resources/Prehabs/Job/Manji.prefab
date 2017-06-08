@@ -560,6 +560,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigid: {fileID: 50159110143766000}
+  _core: {fileID: 114454518508664006}
 --- !u!114 &114182300045006078
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -926,6 +927,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigid: {fileID: 50159110143766000}
+  _core: {fileID: 114454518508664006}
 --- !u!114 &114685664338584306
 MonoBehaviour:
   m_ObjectHideFlags: 1
