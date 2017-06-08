@@ -10404,11 +10404,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6fe73ec0a98a7347ac58e95025f5182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speedChart: {fileID: 1306506652}
-  _hpChart: {fileID: 307851255}
-  _attackChart: {fileID: 1281273984}
-  _criticalChart: {fileID: 660315351}
-  _healChart: {fileID: 1603275045}
+  _chartList:
+  - {fileID: 1306506652}
+  - {fileID: 307851255}
+  - {fileID: 1281273984}
+  - {fileID: 660315351}
+  - {fileID: 1603275045}
 --- !u!222 &1331817297
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13554,6 +13555,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acbecdd317770bc4bb7eb8e8b8ecf407, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hpTable: {fileID: 0}
   _worldBar: {fileID: 490272872}
 --- !u!95 &1798065909
 Animator:
@@ -13618,6 +13620,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigid: {fileID: 1798065910}
+  _core: {fileID: 0}
 --- !u!114 &1798065914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13630,6 +13633,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigid: {fileID: 1798065910}
+  _core: {fileID: 0}
 --- !u!114 &1798065915
 MonoBehaviour:
   m_ObjectHideFlags: 0

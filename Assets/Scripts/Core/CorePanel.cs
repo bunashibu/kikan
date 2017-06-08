@@ -3,40 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CorePanel : MonoBehaviour {
-  public CoreChart Speed {
+  public List<CoreChart> ChartList {
     get {
-      return _speedChart;
+      return _chartList;
     }
   }
 
-  public CoreChart Hp {
-    get {
-      return _hpChart;
-    }
-  }
-
-  public CoreChart Attack {
-    get {
-      return _attackChart;
-    }
-  }
-
-  public CoreChart Critical {
-    get {
-      return _criticalChart;
-    }
-  }
-
-  public CoreChart Heal {
-    get {
-      return _healChart;
-    }
-  }
-
-  [SerializeField] private CoreChart _speedChart;
-  [SerializeField] private CoreChart _hpChart;
-  [SerializeField] private CoreChart _attackChart;
-  [SerializeField] private CoreChart _criticalChart;
-  [SerializeField] private CoreChart _healChart;
+  [SerializeField] private List<CoreChart> _chartList;
 }
 

@@ -8,30 +8,37 @@ public class PlayerCore : Photon.MonoBehaviour {
   }
 
   void Update() {
-    if (photonView.isMine) {
-      for (int i=0; i<_coreList.Count; ++i) {
-        bool lvUpRequest = Input.GetKeyDown(_coreList[i].Key);
+    if (photonView.isMine == false)
+      return;
 
-        // HACK: Too dirty
-        if (lvUpRequest) {
-          if (_reconfirmList[i]) {
-            bool isAffordable = (_playerGold.Cur >= _coreList[i].Gold);
+    for (int i=0; i<_coreList.Count; ++i) {
+      bool lvUpRequest = Input.GetKeyDown(_coreList[i].Key);
+      if (lvUpRequest == false)
+        continue;
 
-            if (isAffordable) {
-              _playerGold.Minus(_coreList[i].Gold);
-              _playerGold.UpdateView();
-
-              _coreList[i].LvUp();
-              UpdateView(i, _coreList[i].Level);
-              _reconfirmList[i] = false;
-            } else {
-              Debug.Log("You don't have enough gold.");
-            }
-          } else {
-            _reconfirmList[i] = true;
-          }
-        }
+      if (_reconfirmList[i] == false) {
+        _reconfirmList[i] = true;
+        return;
       }
+
+      bool notEnoughGold = (_playerGold.Cur < _coreList[i].Gold);
+      if (notEnoughGold) {
+        Debug.Log("You don't have enough gold");
+        return;
+      }
+
+      bool isMaxLevel = (_coreList[i].Level == MaxCoreLevel);
+      if (isMaxLevel) {
+        Debug.Log("Your core level is already max");
+        return;
+      }
+
+      _playerGold.Minus(_coreList[i].Gold);
+      _playerGold.UpdateView();
+
+      _coreList[i].LvUp();
+      UpdateView(i, _coreList[i].Level);
+      _reconfirmList[i] = false;
     }
   }
 
@@ -39,28 +46,8 @@ public class PlayerCore : Photon.MonoBehaviour {
     _corePanel = corePanel;
   }
 
-  // HACK: Maybe it should use array
   private void UpdateView(int index, int level) {
-    switch (index) {
-      case 0:
-        _corePanel.Speed.UpdateView(level);
-        break;
-      case 1:
-        _corePanel.Hp.UpdateView(level);
-        break;
-      case 2:
-        _corePanel.Attack.UpdateView(level);
-        break;
-      case 3:
-        _corePanel.Critical.UpdateView(level);
-        break;
-      case 4:
-        _corePanel.Heal.UpdateView(level);
-        break;
-      default:
-        Debug.Log("Error: PlayerCore-UpdateView argument-index is wrong");
-        break;
-    }
+    _corePanel.ChartList[index].UpdateView(level);
   }
 
   public int Speed {
@@ -97,5 +84,6 @@ public class PlayerCore : Photon.MonoBehaviour {
   [SerializeField] private List<Core> _coreList;
   private CorePanel _corePanel;
   private List<bool> _reconfirmList;
+  private static readonly int MaxCoreLevel = 5;
 }
 
