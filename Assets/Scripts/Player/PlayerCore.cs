@@ -45,6 +45,10 @@ public class PlayerCore : Photon.MonoBehaviour {
         _playerHp.UpdateView();
       }
 
+      // Heal Core
+      if (i == 4)
+        _playerHealer.UpdateMaxHealQuantity();
+
       _reconfirmList[i] = false;
     }
   }
@@ -89,6 +93,7 @@ public class PlayerCore : Photon.MonoBehaviour {
 
   [SerializeField] private PlayerGold _playerGold;
   [SerializeField] private PlayerHp _playerHp;
+  [SerializeField] private PlayerAutomaticHealer _playerHealer;
   [SerializeField] private List<Core> _coreList;
   private CorePanel _corePanel;
   private List<bool> _reconfirmList;

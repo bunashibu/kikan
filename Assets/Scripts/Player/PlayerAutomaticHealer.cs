@@ -20,7 +20,8 @@ public class PlayerAutomaticHealer : Photon.MonoBehaviour {
   public void UpdateMaxHealQuantity() {
     Assert.IsTrue(photonView.isMine);
 
-    HealQuantity = _healTable.Data[_level.Lv - 1];
+    double ratio = (double)(_core.Heal / 100.0);
+    HealQuantity = (int)(_healTable.Data[_level.Lv - 1] * ratio);
   }
 
   private void AutomaticHeal() {
@@ -36,6 +37,7 @@ public class PlayerAutomaticHealer : Photon.MonoBehaviour {
   [SerializeField] private DataTable _healTable;
   [SerializeField] private PlayerHp _playerHp;
   [SerializeField] private PlayerLevel _level;
+  [SerializeField] private PlayerCore _core;
   public int HealQuantity { get; private set; }
 
   private bool _isReady = true; // Rename

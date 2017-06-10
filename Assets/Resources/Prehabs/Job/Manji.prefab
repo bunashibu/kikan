@@ -849,6 +849,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerGold: {fileID: 114494370642848112}
   _playerHp: {fileID: 114504324772229166}
+  _playerHealer: {fileID: 114969582724046644}
   _coreList:
   - {fileID: 11400000, guid: ee538c803e6b7d34fb16311e882cd98d, type: 2}
   - {fileID: 11400000, guid: 22fc32fd35f8f3a43aac545cd5ffef2f, type: 2}
@@ -1120,6 +1121,7 @@ MonoBehaviour:
   _healTable: {fileID: 11400000, guid: 2af9baa41fbfe914b983bc901c00fe8a, type: 2}
   _playerHp: {fileID: 114504324772229166}
   _level: {fileID: 114438636751118534}
+  _core: {fileID: 114454518508664006}
 --- !u!114 &114976675510564106
 MonoBehaviour:
   m_ObjectHideFlags: 1
