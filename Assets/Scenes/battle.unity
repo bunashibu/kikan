@@ -13556,6 +13556,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hpTable: {fileID: 0}
+  _level: {fileID: 0}
+  _core: {fileID: 0}
   _worldBar: {fileID: 490272872}
 --- !u!95 &1798065909
 Animator:

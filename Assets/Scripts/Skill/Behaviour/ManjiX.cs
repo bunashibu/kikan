@@ -6,24 +6,42 @@ public class ManjiX : Skill {
     if (PhotonNetwork.isMasterClient) {
       var target = collider.gameObject;
 
-      bool isSkillUser = (target == _user);
-      bool isOtherPlayer = (target.tag == "Player");
-      bool isEnemy = (target.tag == "Enemy");
-
-      if (isSkillUser)
+      if (target == _user)
         return;
 
-      if (isOtherPlayer) {
-        bool isNotLimited = _limiter.Check(target, _team);
+      if (target.tag == "Player" && _limiter.Check(target, _team))
+        PlayerDamageProcess(target);
 
-        if (isNotLimited)
-          PlayerDamageProcess(target);
-      }
-
-      if (isEnemy) {
+      if (target.tag == "Enemy")
         Debug.Log("Enemy damage impl");
-      }
     }
+  }
+
+  private void PlayerDamageProcess(GameObject target) {
+    int damage = CalcDamage();
+
+    var targetHp = target.GetComponent<PlayerHp>();
+    targetHp.Minus(damage);
+    targetHp.UpdateView();
+
+    var targetView = target.GetComponent<PhotonView>();
+    photonView.RPC("InstantiateDamagePanel", PhotonTargets.All, damage, _isCritical, targetView.owner, targetView.viewID);
+
+    if (targetHp.Dead)
+      PlayerDeathProcess(target);
+  }
+
+  private void PlayerDeathProcess(GameObject target) {
+    _rewardGetter.SetRewardReceiver(_user, _team);
+    _rewardGetter.GetRewardFrom(target);
+
+    var killPlayer = _user.GetComponent<PlayerKillDeath>();
+    killPlayer.RecordKill();
+    killPlayer.UpdateKillView();
+
+    var deathPlayer = target.GetComponent<PlayerKillDeath>();
+    deathPlayer.RecordDeath();
+    deathPlayer.UpdateDeathView();
   }
 
   [PunRPC]
@@ -36,7 +54,8 @@ public class ManjiX : Skill {
       var damagePanel = Instantiate(_damagePanel, gameObject.transform, false);
 
       damagePanel.CreateTake(damage, skin);
-    } else {
+    }
+    else {
       var skin = _user.GetComponent<PlayerDamageSkin>().Skin;
       var damagePanel = Instantiate(_damagePanel, gameObject.transform, false);
 
@@ -69,41 +88,6 @@ public class ManjiX : Skill {
       return true;
 
     return false;
-  }
-
-  private void PlayerDamageProcess(GameObject target) {
-    var targetView = target.GetComponent<PhotonView>();
-    var targetPlayer = targetView.owner;
-    var targetViewID = targetView.viewID;
-
-    int damage = CalcDamage();
-
-    photonView.RPC("InstantiateDamagePanel", PhotonTargets.All, damage, _isCritical, targetPlayer, targetViewID);
-
-    DamageToPlayer(target, damage);
-  }
-
-  private void DamageToPlayer(GameObject target, int damage) {
-    var targetHp = target.GetComponent<PlayerHp>();
-    targetHp.Minus(damage);
-    targetHp.UpdateView();
-
-    if (targetHp.Dead)
-      PlayerDeathProcess(target);
-  }
-
-  private void PlayerDeathProcess(GameObject target) {
-    _rewardGetter.SetRewardReceiver(_user, _team);
-    _rewardGetter.GetRewardFrom(target);
-
-    var userKillDeath = _user.GetComponent<PlayerKillDeath>();
-    var targetKillDeath = target.GetComponent<PlayerKillDeath>();
-
-    userKillDeath.RecordKill();
-    targetKillDeath.RecordDeath();
-
-    userKillDeath.UpdateKillView();
-    targetKillDeath.UpdateDeathView();
   }
 
   [SerializeField] private BoxCollider2D _collider;
