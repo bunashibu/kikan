@@ -10,16 +10,16 @@ public class RewardGetter : MonoBehaviour {
 
   public void GetRewardFrom(GameObject target) {
     var teammateList = GetTeammateList();
+    int teamSize = teammateList.Count;
+
+    double ratio = 1;
+    if (teamSize == 1)
+      ratio = 0.7;
+    if (teamSize == 2)
+      ratio = 0.6;
+
     var killExp = target.GetComponent<KillReward>().Exp;
     var killGold = target.GetComponent<KillReward>().Gold;
-
-    int size = teammateList.Count;
-    double ratio = 1;
-
-    if (size == 1)
-      ratio = 0.7;
-    if (size == 2)
-      ratio = 0.6;
 
     int receiverExp = (int)(killExp * ratio);
     int receiverGold = (int)(killGold * ratio);
@@ -27,9 +27,9 @@ public class RewardGetter : MonoBehaviour {
     GiveExpToReceiver(receiverExp);
     GiveGoldToReceiver(receiverGold);
 
-    if (size > 0) {
-      int teammateExp = (int)((killExp - receiverExp) / size);
-      int teammateGold = (int)((killGold - receiverGold) / size);
+    if (teamSize > 0) {
+      int teammateExp = (int)((killExp - receiverExp) / teamSize);
+      int teammateGold = (int)((killGold - receiverGold) / teamSize);
 
       GiveExpToTeammate(teammateExp, teammateList);
       GiveGoldToTeammate(teammateGold, teammateList);
