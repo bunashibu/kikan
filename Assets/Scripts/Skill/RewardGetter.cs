@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RewardGetter : MonoBehaviour {
+public class RewardGetter {
   public void SetRewardReceiver(GameObject receiver, int team) {
     _receiver = receiver;
     _receiveTeam = team;
