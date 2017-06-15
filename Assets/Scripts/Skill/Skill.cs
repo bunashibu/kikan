@@ -7,7 +7,7 @@ public class Skill : Photon.MonoBehaviour {
   [PunRPC]
   protected void SyncInit(bool flipX, int viewID, int team) {
     gameObject.GetComponent<SpriteRenderer>().flipX = flipX;
-    _user = PhotonView.Find(viewID).gameObject;
+    _skillUser = PhotonView.Find(viewID).gameObject;
     _team = team;
   }
 
@@ -18,7 +18,7 @@ public class Skill : Photon.MonoBehaviour {
     photonView.RPC("SyncInit", PhotonTargets.All, flipX, viewID, team);
   }
 
-  protected GameObject _user;
+  protected GameObject _skillUser;
   protected int _team;
 }
 

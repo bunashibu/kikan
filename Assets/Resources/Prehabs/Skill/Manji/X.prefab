@@ -26,7 +26,6 @@ GameObject:
   - component: {fileID: 114394669513654396}
   - component: {fileID: 114241741538194156}
   - component: {fileID: 114684319468281384}
-  - component: {fileID: 114156312013185612}
   m_Layer: 0
   m_Name: X
   m_TagString: Untagged
@@ -89,23 +88,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 576a704c8596dab4a86c29e2195e628d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _collider: {fileID: 61000012106027728}
-  _power: 100
-  _limiter: {fileID: 114684319468281384}
-  _rewardGetter: {fileID: 114156312013185612}
   _damagePanel: {fileID: 114748708156150968, guid: 9a20024cd0387a447bcb9ed0933695d4,
     type: 2}
---- !u!114 &114156312013185612
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010592744632}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be98daae716b5a5489a9dddb2ae9deca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  _limiter: {fileID: 114684319468281384}
+  _power: 100
+  _maxDeviation: 10
 --- !u!114 &114241741538194156
 MonoBehaviour:
   m_ObjectHideFlags: 1
