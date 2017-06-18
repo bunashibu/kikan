@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CoreGroundLinearMove {
-  public void FixedUpdate() {
+  public void FixedUpdate(Rigidbody2D rigid, PlayerCore core) {
     if (_actFlag) {
-      _rigid.velocity = new Vector2(0, _rigid.velocity.y); // like Aizen
+      rigid.velocity = new Vector2(0, rigid.velocity.y); // like Aizen
 
-      float ratio = (float)((_core.Speed + 100) / 100.0);
-      _rigid.AddForce(_inputVec * _force * ratio);
+      float ratio = (float)((core.Speed + 100) / 100.0);
+      rigid.AddForce(_inputVec * _force * ratio);
 
       _actFlag = false;
       _inputVec.x = 0;
@@ -35,8 +35,6 @@ public class CoreGroundLinearMove {
     _force = force;
   }
 
-  [SerializeField] private Rigidbody2D _rigid;
-  [SerializeField] private PlayerCore _core;
   private float _force = 60.0f;
   private bool _actFlag;
   private Vector2 _inputVec;

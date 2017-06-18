@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CoreGroundJump {
-  public void FixedUpdate() {
+  public void FixedUpdate(Rigidbody2D rigid, PlayerCore core) {
     if (_actFlag) {
-      _rigid.velocity = new Vector2(_rigid.velocity.x, 0);
+      rigid.velocity = new Vector2(rigid.velocity.x, 0);
 
-      float ratio = (float)((_core.Speed + 100) / 100.0);
-      _rigid.AddForce(Vector2.up * _force * ratio);
+      float ratio = (float)((core.Speed + 100) / 100.0);
+      rigid.AddForce(Vector2.up * _force * ratio);
 
       _actFlag = false;
     }
@@ -22,8 +22,6 @@ public class CoreGroundJump {
     _force = force;
   }
 
-  [SerializeField] private Rigidbody2D _rigid;
-  [SerializeField] private PlayerCore _core;
   private float _force = 300.0f;
   private bool _actFlag;
 }

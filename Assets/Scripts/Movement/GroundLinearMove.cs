@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GroundLinearMove : MonoBehaviour {
-  void FixedUpdate() {
+public class GroundLinearMove {
+  public void FixedUpdate(Rigidbody2D rigid) {
     if (_actFlag) {
-      _rigid.velocity = new Vector2(0, _rigid.velocity.y); // like Aizen
-      _rigid.AddForce(_inputVec * _force);
+      rigid.velocity = new Vector2(0, rigid.velocity.y); // like Aizen
+      rigid.AddForce(_inputVec * _force);
 
       _actFlag = false;
       _inputVec.x = 0;
@@ -32,7 +32,6 @@ public class GroundLinearMove : MonoBehaviour {
     _force = force;
   }
 
-  [SerializeField] private Rigidbody2D _rigid;
   private float _force = 60.0f;
   private bool _actFlag;
   private Vector2 _inputVec;

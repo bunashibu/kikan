@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CoreAirLinearMove {
-  public void FixedUpdate() {
+  public void FixedUpdate(Rigidbody2D rigid, PlayerCore core) {
     if (_actFlag) {
-      float ratio = (float)((_core.Speed + 100) / 100.0);
-      _rigid.AddForce(_inputVec * 2.0f * ratio);
+      float ratio = (float)((core.Speed + 100) / 100.0);
+      rigid.AddForce(_inputVec * 2.0f * ratio);
 
       _actFlag = false;
       _inputVec.x = 0;
@@ -29,8 +29,6 @@ public class CoreAirLinearMove {
       _inputVec.x = 1;
   }
 
-  [SerializeField] private Rigidbody2D _rigid;
-  [SerializeField] private PlayerCore _core;
   private bool _actFlag;
   private Vector2 _inputVec;
 }

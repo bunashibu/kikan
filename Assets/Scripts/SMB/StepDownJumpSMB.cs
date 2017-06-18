@@ -4,18 +4,19 @@ using System.Collections;
 public class StepDownJumpSMB : StateMachineBehaviour {
   override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
     if (_photonView == null) {
-      _photonView = animator.GetComponent<PhotonView>();
-      _rigidState = animator.GetComponent<RigidState>();
+      _photonView   = animator.GetComponent<PhotonView>();
+      _rigidState   = animator.GetComponent<RigidState>();
       _colliderFoot = animator.GetComponents<BoxCollider2D>()[1];
-      _jump = animator.GetComponent<StepDownJump>();
-      _hp = animator.GetComponent<PlayerHp>();
+
+      _movement     = animator.GetComponent<LobbyPlayer>().Movement;
+      _hp           = animator.GetComponent<PlayerHp>();
     }
 
     Debug.Log("StepDown");
 
     InitFlag();
     _colliderFoot.isTrigger = true;
-    _jump.StepDown();
+    _movement.StepDownJump();
   }
 
   override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
@@ -52,10 +53,11 @@ public class StepDownJumpSMB : StateMachineBehaviour {
 
   private PhotonView _photonView;
   private RigidState _rigidState;
-  private StepDownJump _jump;
   private BoxCollider2D _colliderFoot;
+
+  private LobbyPlayerMovement _movement;
+  private PlayerHp _hp;
   private bool _isAlreadyJumped;
   private bool _fallFlag;
-  private PlayerHp _hp;
 }
 

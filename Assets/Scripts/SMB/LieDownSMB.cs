@@ -6,7 +6,7 @@ public class LieDownSMB : StateMachineBehaviour {
     if (_photonView == null) {
       _photonView = animator.GetComponent<PhotonView>();
       _rigidState = animator.GetComponent<RigidState>();
-      _hp = animator.GetComponent<PlayerHp>();
+      _hp         = animator.GetComponent<PlayerHp>();
     }
 
     Debug.Log("liedown");

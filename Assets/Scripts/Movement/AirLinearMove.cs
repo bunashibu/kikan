@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class AirLinearMove : MonoBehaviour {
-  void FixedUpdate() {
+public class AirLinearMove {
+  public void FixedUpdate(Rigidbody2D rigid) {
     if (_actFlag) {
-      _rigid.AddForce(_inputVec * 2.0f);
+      rigid.AddForce(_inputVec * 2.0f);
 
       _actFlag = false;
       _inputVec.x = 0;
@@ -27,7 +27,6 @@ public class AirLinearMove : MonoBehaviour {
       _inputVec.x = 1;
   }
 
-  [SerializeField] private Rigidbody2D _rigid;
   private bool _actFlag;
   private Vector2 _inputVec;
 }

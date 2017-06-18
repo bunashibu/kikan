@@ -3,18 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LobbyPlayerMovement {
+  public LobbyPlayerMovement() {
+    _airLinear    = new AirLinearMove();
+    _groundLinear = new GroundLinearMove();
+
+    _groundJump   = new GroundJump();
+    _climbJump    = new ClimbJump();
+    _stepDownJump = new StepDownJump();
+
+    _climb        = new Climb();
+    _lieDown      = new LieDown();
+  }
+
   // INFO: Must be called in MonoBehaviour-FixedUpdate()
-  public void FixedUpdate() {
-    /*
-    _airLinear.FixedUpdate();
-    _groundLinear.FixedUpdate();
+  public void FixedUpdate(Rigidbody2D rigid, Transform trans) {
+    _airLinear.FixedUpdate(rigid);
+    _groundLinear.FixedUpdate(rigid);
 
-    _groundJump.FixedUpdate();
-    _climbJump.FixedUpdate();
-    _stepDownJump.FixedUpdate();
+    _groundJump.FixedUpdate(rigid);
+    _climbJump.FixedUpdate(rigid);
+    _stepDownJump.FixedUpdate(rigid);
 
-    _climb.FixedUpdate();
-    */
+    _climb.FixedUpdate(trans);
   }
 
   public void AirMoveLeft() {
@@ -53,12 +63,12 @@ public class LobbyPlayerMovement {
     _climb.MoveDown();
   }
 
-  public void LieDown() {
-    _lieDown.Lie();
+  public void LieDown(BoxCollider2D collider) {
+    _lieDown.Lie(collider);
   }
 
-  public void Stand() {
-    _lieDown.Stand();
+  public void Stand(BoxCollider2D collider) {
+    _lieDown.Stand(collider);
   }
 
   private AirLinearMove _airLinear;

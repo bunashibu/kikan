@@ -7,7 +7,7 @@ public class SkillSMB : StateMachineBehaviour {
     if (_photonView == null) {
       _photonView = animator.GetComponent<PhotonView>();
       _rigidState = animator.GetComponent<RigidState>();
-      _hp = animator.GetComponent<PlayerHp>();
+      _hp         = animator.GetComponent<PlayerHp>();
     }
 
     _transitionFlag = false;
@@ -44,7 +44,8 @@ public class SkillSMB : StateMachineBehaviour {
 
   private PhotonView _photonView;
   private RigidState _rigidState;
-  private bool _transitionFlag;
+
   private PlayerHp _hp;
+  private bool _transitionFlag;
 }
 

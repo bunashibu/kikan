@@ -6,10 +6,11 @@ public class FallSMB : StateMachineBehaviour {
     if (_photonView == null) {
       _photonView = animator.GetComponent<PhotonView>();
       _rigidState = animator.GetComponent<RigidState>();
-      _skillInfo = animator.GetComponentInChildren<SkillInfo>();
-      _renderers = animator.GetComponentsInChildren<SpriteRenderer>();
-      _airLinearMove = animator.GetComponent<AirLinearMove>();
-      _hp = animator.GetComponent<PlayerHp>();
+      _skillInfo  = animator.GetComponentInChildren<SkillInfo>();
+      _renderers  = animator.GetComponentsInChildren<SpriteRenderer>();
+
+      _movement   = animator.GetComponent<LobbyPlayer>().Movement;
+      _hp         = animator.GetComponent<PlayerHp>();
     }
 
     Debug.Log("Fall");
@@ -37,8 +38,8 @@ public class FallSMB : StateMachineBehaviour {
 
       if (SkillFlag) { ActTransition("Skill", animator); return; }
 
-      if (OnlyLeftKeyDown)  { _airLinearMove.MoveLeft(); foreach (var sprite in _renderers) sprite.flipX = false; }
-      if (OnlyRightKeyDown) { _airLinearMove.MoveRight(); foreach (var sprite in _renderers) sprite.flipX = true; }
+      if (OnlyLeftKeyDown)  { _movement.AirMoveLeft(); foreach (var sprite in _renderers) sprite.flipX = false; }
+      if (OnlyRightKeyDown) { _movement.AirMoveRight(); foreach (var sprite in _renderers) sprite.flipX = true; }
 
       if (_rigidState.Ladder) {
         if (ClimbFlag) { ActTransition("Climb", animator); return; }
@@ -62,7 +63,8 @@ public class FallSMB : StateMachineBehaviour {
   private RigidState _rigidState;
   private SkillInfo _skillInfo;
   private SpriteRenderer[] _renderers;
-  private AirLinearMove _airLinearMove;
+
+  private LobbyPlayerMovement _movement;
   private PlayerHp _hp;
 }
 

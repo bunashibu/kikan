@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class StepDownJump : MonoBehaviour {
-  void FixedUpdate() {
+public class StepDownJump {
+  public void FixedUpdate(Rigidbody2D rigid) {
     if (_actFlag) {
-      _rigid.velocity = new Vector2(_rigid.velocity.x, 0);
-      _rigid.AddForce(Vector2.up * 200.0f);
+      rigid.velocity = new Vector2(rigid.velocity.x, 0);
+      rigid.AddForce(Vector2.up * 200.0f);
       _actFlag = false;
     }
   }
@@ -14,7 +14,6 @@ public class StepDownJump : MonoBehaviour {
     _actFlag = true;
   }
 
-  [SerializeField] private Rigidbody2D _rigid;
   private bool _actFlag;
 }
 

@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Climb : MonoBehaviour {
-  void FixedUpdate() {
+public class Climb {
+  public void FixedUpdate(Transform trans) {
     if (_actFlag) {
-      _trans.Translate(_inputVec * 0.04f);
+      trans.Translate(_inputVec * 0.04f);
       _actFlag = false;
     }
   }
@@ -25,7 +25,6 @@ public class Climb : MonoBehaviour {
       _inputVec.y = -1;
   }
 
-  [SerializeField] private Transform _trans;
   private bool _actFlag;
   private Vector3 _inputVec;
 }

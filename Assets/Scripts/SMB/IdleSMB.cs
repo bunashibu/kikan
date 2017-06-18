@@ -6,8 +6,8 @@ public class IdleSMB : StateMachineBehaviour {
     if (_photonView == null) {
       _photonView = animator.GetComponent<PhotonView>();
       _rigidState = animator.GetComponent<RigidState>();
-      _skillInfo = animator.GetComponentInChildren<SkillInfo>();
-      _hp = animator.GetComponent<PlayerHp>();
+      _skillInfo  = animator.GetComponentInChildren<SkillInfo>();
+      _hp         = animator.GetComponent<PlayerHp>();
     }
 
     Debug.Log("idle");
@@ -25,9 +25,9 @@ public class IdleSMB : StateMachineBehaviour {
       bool ClimbFlag = (OnlyUpKeyDown && !_rigidState.LadderTopEdge) ||
                        (OnlyDownKeyDown && !_rigidState.LadderBottomEdge);
 
-      SkillState stateX = _skillInfo.GetState(SkillName.X);
+      SkillState stateX     = _skillInfo.GetState(SkillName.X);
       SkillState stateShift = _skillInfo.GetState(SkillName.Shift);
-      SkillState stateZ = _skillInfo.GetState(SkillName.Z);
+      SkillState stateZ     = _skillInfo.GetState(SkillName.Z);
 
       bool SkillFlag = (stateX == SkillState.Using) ||
                        (stateShift == SkillState.Using) ||

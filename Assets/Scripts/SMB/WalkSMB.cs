@@ -6,10 +6,11 @@ public class WalkSMB : StateMachineBehaviour {
     if (_photonView == null) {
       _photonView = animator.GetComponent<PhotonView>();
       _rigidState = animator.GetComponent<RigidState>();
-      _skillInfo = animator.GetComponentInChildren<SkillInfo>();
-      _renderers = animator.GetComponentsInChildren<SpriteRenderer>();
-      _linearMove = animator.GetComponent<GroundLinearMove>();
-      _hp = animator.GetComponent<PlayerHp>();
+      _skillInfo  = animator.GetComponentInChildren<SkillInfo>();
+      _renderers  = animator.GetComponentsInChildren<SpriteRenderer>();
+
+      _movement   = animator.GetComponent<LobbyPlayer>().Movement;
+      _hp         = animator.GetComponent<PlayerHp>();
     }
 
     Debug.Log("walk");
@@ -27,9 +28,9 @@ public class WalkSMB : StateMachineBehaviour {
       bool ClimbFlag = (OnlyUpKeyDown && !_rigidState.LadderTopEdge) ||
                        (OnlyDownKeyDown && !_rigidState.LadderBottomEdge);
 
-      SkillState stateX = _skillInfo.GetState(SkillName.X);
+      SkillState stateX     = _skillInfo.GetState(SkillName.X);
       SkillState stateShift = _skillInfo.GetState(SkillName.Shift);
-      SkillState stateZ = _skillInfo.GetState(SkillName.Z);
+      SkillState stateZ     = _skillInfo.GetState(SkillName.Z);
 
       bool SkillFlag = (stateX == SkillState.Using) ||
                        (stateShift == SkillState.Using) ||
@@ -39,8 +40,8 @@ public class WalkSMB : StateMachineBehaviour {
 
       if (SkillFlag) { ActTransition("Skill", animator); return; }
 
-      if (OnlyLeftKeyDown)  { _linearMove.MoveLeft(); foreach (var sprite in _renderers) sprite.flipX = false; }
-      if (OnlyRightKeyDown) { _linearMove.MoveRight(); foreach (var sprite in _renderers) sprite.flipX = true; }
+      if (OnlyLeftKeyDown)  { _movement.GroundMoveLeft(); foreach (var sprite in _renderers) sprite.flipX = false; }
+      if (OnlyRightKeyDown) { _movement.GroundMoveRight(); foreach (var sprite in _renderers) sprite.flipX = true; }
 
       if (_rigidState.Ladder) {
         if (ClimbFlag) { ActTransition("Climb", animator); return; }
@@ -67,7 +68,8 @@ public class WalkSMB : StateMachineBehaviour {
   private RigidState _rigidState;
   private SkillInfo _skillInfo;
   private SpriteRenderer[] _renderers;
-  private GroundLinearMove _linearMove;
+
+  private LobbyPlayerMovement _movement;
   private PlayerHp _hp;
 }
 

@@ -6,10 +6,10 @@ public class ClimbJumpSMB : StateMachineBehaviour {
     if (_photonView == null) {
       _photonView = animator.GetComponent<PhotonView>();
       _rigidState = animator.GetComponent<RigidState>();
-      _renderers = animator.GetComponentsInChildren<SpriteRenderer>();
-      _jump = animator.GetComponent<ClimbJump>();
-      _linearMove = animator.GetComponent<GroundLinearMove>();
-      _hp = animator.GetComponent<PlayerHp>();
+      _renderers  = animator.GetComponentsInChildren<SpriteRenderer>();
+
+      _movement   = animator.GetComponent<LobbyPlayer>().Movement;
+      _hp         = animator.GetComponent<PlayerHp>();
     }
 
     Debug.Log("ClimbJump");
@@ -17,10 +17,10 @@ public class ClimbJumpSMB : StateMachineBehaviour {
     bool OnlyLeftKeyDown  = Input.GetKey(KeyCode.LeftArrow)  && !Input.GetKey(KeyCode.RightArrow);
     bool OnlyRightKeyDown = Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow);
 
-    if (OnlyLeftKeyDown)  { _linearMove.MoveLeft(); foreach (var sprite in _renderers) sprite.flipX = false; }
-    if (OnlyRightKeyDown) { _linearMove.MoveRight(); foreach (var sprite in _renderers) sprite.flipX = true; }
+    if (OnlyLeftKeyDown)  { _movement.GroundMoveLeft(); foreach (var sprite in _renderers) sprite.flipX = false; }
+    if (OnlyRightKeyDown) { _movement.GroundMoveRight(); foreach (var sprite in _renderers) sprite.flipX = true; }
 
-    _jump.JumpOff();
+    _movement.ClimbJump();
   }
 
   override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
@@ -38,8 +38,8 @@ public class ClimbJumpSMB : StateMachineBehaviour {
   private PhotonView _photonView;
   private RigidState _rigidState;
   private SpriteRenderer[] _renderers;
-  private ClimbJump _jump;
-  private GroundLinearMove _linearMove;
+
+  private LobbyPlayerMovement _movement;
   private PlayerHp _hp;
 }
 

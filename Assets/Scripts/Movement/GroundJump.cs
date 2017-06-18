@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GroundJump : MonoBehaviour {
-  void FixedUpdate() {
+public class GroundJump {
+  public void FixedUpdate(Rigidbody2D rigid) {
     if (_actFlag) {
-      _rigid.velocity = new Vector2(_rigid.velocity.x, 0);
-      _rigid.AddForce(Vector2.up * _force);
+      rigid.velocity = new Vector2(rigid.velocity.x, 0);
+      rigid.AddForce(Vector2.up * _force);
 
       _actFlag = false;
     }
@@ -19,7 +19,6 @@ public class GroundJump : MonoBehaviour {
     _force = force;
   }
 
-  [SerializeField] private Rigidbody2D _rigid;
   private float _force = 300.0f;
   private bool _actFlag;
 }

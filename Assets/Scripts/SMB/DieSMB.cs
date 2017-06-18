@@ -7,7 +7,7 @@ public class DieSMB : StateMachineBehaviour {
   override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
     if (_photonView == null) {
       _photonView = animator.GetComponent<PhotonView>();
-      _respawner = animator.GetComponent<PlayerRespawner>();
+      _respawner  = animator.GetComponent<PlayerRespawner>();
     }
 
     Action action = () => { ActTransition("Idle", animator); };
