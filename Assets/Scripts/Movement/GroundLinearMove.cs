@@ -32,8 +32,8 @@ public class GroundLinearMove {
     _force = force;
   }
 
-  private float _force = 60.0f;
-  private bool _actFlag;
-  private Vector2 _inputVec;
+  protected float _force = 60.0f;
+  protected bool _actFlag;
+  protected Vector2 _inputVec;
 }
 

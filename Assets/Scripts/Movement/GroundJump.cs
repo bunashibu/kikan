@@ -19,7 +19,7 @@ public class GroundJump {
     _force = force;
   }
 
-  private float _force = 300.0f;
-  private bool _actFlag;
+  protected float _force = 300.0f;
+  protected bool _actFlag;
 }
 

@@ -27,7 +27,7 @@ public class AirLinearMove {
       _inputVec.x = 1;
   }
 
-  private bool _actFlag;
-  private Vector2 _inputVec;
+  protected bool _actFlag;
+  protected Vector2 _inputVec;
 }
 

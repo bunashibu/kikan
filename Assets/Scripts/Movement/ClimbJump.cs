@@ -14,6 +14,6 @@ public class ClimbJump {
     _actFlag = true;
   }
 
-  private bool _actFlag;
+  protected bool _actFlag;
 }
 

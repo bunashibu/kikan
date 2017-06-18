@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CoreGroundJump {
+public class CoreGroundJump : GroundJump {
   public void FixedUpdate(Rigidbody2D rigid, PlayerCore core) {
     if (_actFlag) {
       rigid.velocity = new Vector2(rigid.velocity.x, 0);
@@ -13,16 +13,5 @@ public class CoreGroundJump {
       _actFlag = false;
     }
   }
-
-  public void Jump() {
-    _actFlag = true;
-  }
-
-  public void SetForce(float force) {
-    _force = force;
-  }
-
-  private float _force = 300.0f;
-  private bool _actFlag;
 }
 
