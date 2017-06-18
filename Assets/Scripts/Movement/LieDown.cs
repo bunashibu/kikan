@@ -7,7 +7,7 @@ public class LieDown : MonoBehaviour {
     _collider.size = new Vector2(0.9f, 0.6f);
   }
 
-  public void Stay() {
+  public void Stand() {
     _collider.offset = new Vector2(0.0f, -0.05f);
     _collider.size = new Vector2(0.6f, 0.9f);
   }

@@ -3,6 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LobbyPlayerMovement {
+  // INFO: Must be called in MonoBehaviour-FixedUpdate()
+  public void FixedUpdate() {
+    /*
+    _airLinear.FixedUpdate();
+    _groundLinear.FixedUpdate();
+
+    _groundJump.FixedUpdate();
+    _climbJump.FixedUpdate();
+    _stepDownJump.FixedUpdate();
+
+    _climb.FixedUpdate();
+    */
+  }
+
   public void AirMoveLeft() {
     _airLinear.MoveLeft();
   }

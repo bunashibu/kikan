@@ -1,11 +1,12 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class GroundLinearMove : MonoBehaviour {
-  void FixedUpdate() {
+public class CoreAirLinearMove {
+  public void FixedUpdate() {
     if (_actFlag) {
-      _rigid.velocity = new Vector2(0, _rigid.velocity.y); // like Aizen
-      _rigid.AddForce(_inputVec * _force);
+      float ratio = (float)((_core.Speed + 100) / 100.0);
+      _rigid.AddForce(_inputVec * 2.0f * ratio);
 
       _actFlag = false;
       _inputVec.x = 0;
@@ -28,12 +29,8 @@ public class GroundLinearMove : MonoBehaviour {
       _inputVec.x = 1;
   }
 
-  public void SetForce(float force) {
-    _force = force;
-  }
-
   [SerializeField] private Rigidbody2D _rigid;
-  private float _force = 60.0f;
+  [SerializeField] private PlayerCore _core;
   private bool _actFlag;
   private Vector2 _inputVec;
 }
