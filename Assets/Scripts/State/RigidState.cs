@@ -2,7 +2,7 @@
 using System.Collections;
 
 [RequireComponent(typeof(BoxCollider2D))]
-public class RigidState : MonoBehaviour {
+public class RigidState : Photon.MonoBehaviour {
   public bool Ground {
     get {
       return _colliderFoot.IsTouchingLayers(_groundLayer);
@@ -42,6 +42,15 @@ public class RigidState : MonoBehaviour {
   public bool Slow { get; set; }
   public bool Heavy { get; set; }
   public bool Rigor { get; set; }
+
+  public void UpdateRigor() {
+    photonView.RPC("SyncRigor", PhotonTargets.Others, Rigor);
+  }
+
+  [PunRPC]
+  private void SyncRigor(bool rigor) {
+    Rigor = rigor;
+  }
 
   [SerializeField] private BoxCollider2D _colliderCenter;
   [SerializeField] private BoxCollider2D _colliderFoot;
