@@ -36,15 +36,30 @@ public class WalkSMB : StateMachineBehaviour {
                        (stateShift == SkillState.Using) ||
                        (stateZ == SkillState.Using);
 
-      if (_hp.Dead) { ActTransition("Die", animator); return; }
+      if (_hp.Dead) {
+        ActTransition("Die", animator); return;
+      }
 
-      if (SkillFlag) { ActTransition("Skill", animator); return; }
+      if (SkillFlag) {
+        ActTransition("Skill", animator); return;
+      }
 
-      if (OnlyLeftKeyDown)  { _movement.GroundMoveLeft(); foreach (var sprite in _renderers) sprite.flipX = false; }
-      if (OnlyRightKeyDown) { _movement.GroundMoveRight(); foreach (var sprite in _renderers) sprite.flipX = true; }
+      if (OnlyLeftKeyDown)  {
+        _movement.GroundMoveLeft();
 
-      if (_rigidState.Ladder) {
-        if (ClimbFlag) { ActTransition("Climb", animator); return; }
+        foreach (var sprite in _renderers)
+          sprite.flipX = false;
+      }
+
+      if (OnlyRightKeyDown) {
+        _movement.GroundMoveRight();
+
+        foreach (var sprite in _renderers)
+          sprite.flipX = true;
+      }
+
+      if (_rigidState.Ladder && ClimbFlag) {
+        ActTransition("Climb", animator); return;
       }
 
       if (_rigidState.Ground) {
