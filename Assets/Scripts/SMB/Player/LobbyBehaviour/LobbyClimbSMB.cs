@@ -3,52 +3,42 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LobbyClimbSMB : StateMachineBehaviour {
-  /*
   override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-    if (_photonView == null) {
-      _photonView   = animator.GetComponent<PhotonView>();
-      _rigid        = animator.GetComponent<Rigidbody2D>();
-      _colliderFoot = animator.GetComponents<BoxCollider2D>()[1];
-      _rigidState   = animator.GetComponent<RigidState>();
-      _movement     = animator.GetComponent<LobbyPlayer>().Movement;
+    _player.Rigid.isKinematic = true;
+    _player.Rigid.velocity = new Vector2(0.0f, 0.0f);
+    _player.ColliderFoot.isTrigger = true;
 
-      _stateTransfer = new LobbyPlayerStateTransfer(animator);
-    }
-
-    _rigid.isKinematic = true;
-    _rigid.velocity = new Vector2(0.0f, 0.0f);
-    _colliderFoot.isTrigger = true;
     _isTransferable = false;
   }
 
   override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-    if (_photonView.isMine) {
+    if (_player.PhotonView.isMine) {
       Climb();
 
-      if (_rigidState.Ladder)
+      if (_player.RigidState.Ladder)
         _isTransferable = true;
 
       if (_isTransferable) {
-        if ( ShouldTransitToClimbJump() ) { _stateTransfer.TransitTo ( "ClimbJump" , animator ) ; return; }
-        if ( ShouldTransitToIdle()      ) { _stateTransfer.TransitTo ( "Idle"      , animator ) ; return; }
-        if ( ShouldTransitToFall()      ) { _stateTransfer.TransitTo ( "Fall"      , animator ) ; return; }
+        if ( ShouldTransitToClimbJump() ) { _player.StateTransfer.TransitTo ( "ClimbJump" , animator ) ; return; }
+        if ( ShouldTransitToIdle()      ) { _player.StateTransfer.TransitTo ( "Idle"      , animator ) ; return; }
+        if ( ShouldTransitToFall()      ) { _player.StateTransfer.TransitTo ( "Fall"      , animator ) ; return; }
       }
     }
   }
 
   override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-    _rigid.isKinematic = false;
-    _colliderFoot.isTrigger = false;
+    _player.Rigid.isKinematic = false;
+    _player.ColliderFoot.isTrigger = false;
   }
 
   private void Climb() {
     bool OnlyUpKeyDown = Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow);
     if (OnlyUpKeyDown)
-      _movement.ClimbUp();
+      _player.Movement.ClimbUp();
 
     bool OnlyDownKeyDown = Input.GetKey(KeyCode.DownArrow) && !Input.GetKey(KeyCode.UpArrow);
     if (OnlyDownKeyDown)
-      _movement.ClimbDown();
+      _player.Movement.ClimbDown();
   }
 
   private bool ShouldTransitToClimbJump() {
@@ -59,21 +49,14 @@ public class LobbyClimbSMB : StateMachineBehaviour {
   }
 
   private bool ShouldTransitToIdle() {
-    return _rigidState.LadderBottomEdge && _rigidState.Ground;
+    return _player.RigidState.LadderBottomEdge && _player.RigidState.Ground;
   }
 
   private bool ShouldTransitToFall() {
-    return _rigidState.Air && !_rigidState.Ladder;
+    return _player.RigidState.Air && !_player.RigidState.Ladder;
   }
 
-  private PhotonView _photonView;
-  private Rigidbody2D _rigid;
-  private BoxCollider2D _colliderFoot;
-  private RigidState _rigidState;
-  private LobbyPlayerMovement _movement;
+  [SerializeField] private LobbyPlayerSMB _player;
   private bool _isTransferable;
-
-  private LobbyPlayerStateTransfer _stateTransfer;
-  */
 }
 

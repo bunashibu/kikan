@@ -4,51 +4,35 @@ using UnityEngine;
 
 public class LobbyClimbJumpSMB : StateMachineBehaviour {
   override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-    if (_photonView == null) {
-      _photonView = animator.GetComponent<PhotonView>();
-      _renderers  = animator.GetComponentsInChildren<SpriteRenderer>();
-      _movement   = animator.GetComponent<LobbyPlayer>().Movement;
-
-      //_stateTransfer = new StateTransfer();
-    }
-
     ClimbJump();
   }
 
   override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-    if (_photonView.isMine) {
-      if ( ShouldTransitToFall() ) { _stateTransfer.TransitTo( "Fall" , animator ); return; }
+    if (_player.PhotonView.isMine) {
+      if ( _player.RigidState.Air ) { _player.StateTransfer.TransitTo( "Fall" , animator ); return; }
     }
   }
 
   private void ClimbJump() {
     bool OnlyLeftKeyDown = Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow);
     if (OnlyLeftKeyDown) {
-      _movement.GroundMoveLeft();
+      _player.Movement.GroundMoveLeft();
 
-      foreach (var sprite in _renderers)
+      foreach (var sprite in _player.Renderers)
         sprite.flipX = false;
     }
 
     bool OnlyRightKeyDown = Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow);
     if (OnlyRightKeyDown) {
-      _movement.GroundMoveRight();
+      _player.Movement.GroundMoveRight();
 
-      foreach (var sprite in _renderers)
+      foreach (var sprite in _player.Renderers)
         sprite.flipX = true;
     }
 
-    _movement.ClimbJump();
+    _player.Movement.ClimbJump();
   }
 
-  private bool ShouldTransitToFall() {
-    return false;
-  }
-
-  private PhotonView _photonView;
-  private SpriteRenderer[] _renderers; // INFO: [PlayerSprite, WeaponSprite]
-  private LobbyPlayerMovement _movement;
-
-  private StateTransfer _stateTransfer;
+  [SerializeField] private LobbyPlayerSMB _player;
 }
 

@@ -2,15 +2,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LobbyStepDownJumpSMB : MonoBehaviour {
+public class LobbyStepDownJumpSMB : StateMachineBehaviour {
+  override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
+    InitFlag();
+    _player.ColliderFoot.isTrigger = true;
+    _player.Movement.StepDownJump();
+  }
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+  override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
+    if (_player.PhotonView.isMine) {
+      UpdateFlag();
+      if ( _player.RigidState.Air && _fallFlag ) { _player.StateTransfer.TransitTo( "Fall" , animator ); return; }
+    }
+  }
+
+  override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
+    _player.ColliderFoot.isTrigger = false;
+  }
+
+  private void InitFlag() {
+    _isAlreadyJumped = false;
+    _fallFlag = false;
+  }
+
+  private void UpdateFlag() {
+    if (_player.RigidState.Air)
+      _isAlreadyJumped = true;
+
+    if (_player.RigidState.Ground && _isAlreadyJumped)
+      _fallFlag = true;
+  }
+
+  [SerializeField] private LobbyPlayerSMB _player;
+  private bool _isAlreadyJumped;
+  private bool _fallFlag;
 }
+
