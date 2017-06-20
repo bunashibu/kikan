@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class IdleSMB : BattlePlayerSMB {
+public class BattleIdleSMB : StateMachineBehaviour {
+  /*
   override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
     base.OnStateEnter(animator, stateInfo, layerIndex);
     _currentStateName = "Idle";
@@ -19,5 +20,6 @@ public class IdleSMB : BattlePlayerSMB {
       if ( ShouldTransitionTo( "Fall"       ) ) { ActTransition( "Fall"       , animator ); return; }
     }
   }
+  */
 }
 
