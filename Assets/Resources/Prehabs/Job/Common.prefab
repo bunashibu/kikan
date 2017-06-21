@@ -570,6 +570,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a6063b68f151d040a4d606fd28aa824, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _photonView: {fileID: 114710117432744930}
+  _renderers:
+  - {fileID: 212000013636046964}
+  - {fileID: 212642414779630898}
+  _rigid: {fileID: 50000013460582292}
+  _colliderFoot: {fileID: 61000011156448030}
 --- !u!114 &114642343969648306
 MonoBehaviour:
   m_ObjectHideFlags: 1

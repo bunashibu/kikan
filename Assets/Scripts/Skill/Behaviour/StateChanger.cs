@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class StateChanger {
   public void ChangeTo(string state, float sec, GameObject target) {
+    /*
     switch (state) {
       case "Rigor":
         var rigidState = target.GetComponent<RigidState>();
@@ -19,6 +20,7 @@ public class StateChanger {
         Debug.Log("StateChanger-ChangeTo(string state <-this arg is wrong");
         break;
     }
+    */
   }
 }
 

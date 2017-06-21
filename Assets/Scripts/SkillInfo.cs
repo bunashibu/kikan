@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkillInfo : MonoBehaviour {
-  void Awake() {
+public class SkillInfo {
+  public SkillInfo() {
     _states = new Dictionary<SkillName, SkillState>();
 
-    _states.Add(SkillName.X, SkillState.Ready);
-    _states.Add(SkillName.Shift, SkillState.Ready);
-    _states.Add(SkillName.Z, SkillState.Ready);
+    _states.Add(SkillName.X     , SkillState.Ready);
+    _states.Add(SkillName.Shift , SkillState.Ready);
+    _states.Add(SkillName.Z     , SkillState.Ready);
   }
 
   public SkillState GetState(SkillName name) {

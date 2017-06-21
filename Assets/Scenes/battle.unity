@@ -13460,9 +13460,6 @@ GameObject:
   - component: {fileID: 1798065908}
   - component: {fileID: 1798065909}
   - component: {fileID: 1798065910}
-  - component: {fileID: 1798065915}
-  - component: {fileID: 1798065914}
-  - component: {fileID: 1798065913}
   m_Layer: 0
   m_Name: Kinoko
   m_TagString: Enemy
@@ -13610,46 +13607,6 @@ BoxCollider2D:
   m_Offset: {x: 0, y: -0.15}
   serializedVersion: 2
   m_Size: {x: 0.1, y: 0.1}
---- !u!114 &1798065913
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1798065903}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d7f8094b9f82e2448b3dac04aa94e5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rigid: {fileID: 1798065910}
-  _core: {fileID: 0}
---- !u!114 &1798065914
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1798065903}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eec01e86a25bd5c4bb38fbe5d8180df9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rigid: {fileID: 1798065910}
-  _core: {fileID: 0}
---- !u!114 &1798065915
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1798065903}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e2dd264760cd4a418e2289b7e37e299, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _groundLinear: {fileID: 1798065914}
-  _groundJump: {fileID: 1798065913}
-  _rigid: {fileID: 1798065910}
 --- !u!1 &1798997866
 GameObject:
   m_ObjectHideFlags: 0
