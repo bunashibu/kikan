@@ -224,6 +224,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3c575c382110c34f9775a5d9f5ccffc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <PhotonView>k__BackingField: {fileID: 0}
+  <Renderers>k__BackingField: []
+  <Rigid>k__BackingField: {fileID: 0}
+  <ColliderFoot>k__BackingField: {fileID: 0}
+  <RigidState>k__BackingField: {fileID: 0}
 --- !u!114 &114825270091894172
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1148,8 +1153,7 @@ AnimatorStateMachine:
   - {fileID: 1101881938272624374}
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
-  m_StateMachineBehaviours:
-  - {fileID: 114698561786526024}
+  m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: -60, y: -12, z: 0}
   m_EntryPosition: {x: -48, y: 120, z: 0}
   m_ExitPosition: {x: 588, y: 324, z: 0}

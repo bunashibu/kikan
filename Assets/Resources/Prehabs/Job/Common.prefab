@@ -103,11 +103,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4616160121811102}
   - component: {fileID: 212642414779630898}
-  - component: {fileID: 114083002816734976}
   - component: {fileID: 95669708981810512}
+  - component: {fileID: 114083002816734976}
   - component: {fileID: 114642343969648306}
   - component: {fileID: 114031079343608982}
-  - component: {fileID: 114911368492550572}
   m_Layer: 0
   m_Name: Hand
   m_TagString: Untagged
@@ -490,7 +489,6 @@ MonoBehaviour:
   _rigorCT: []
   _appearOffset: []
   _rigidState: {fileID: 114000012861491266}
-  _skillInfo: {fileID: 114911368492550572}
   _renderer: {fileID: 212642414779630898}
   _status: {fileID: 0}
   _playerView: {fileID: 0}
@@ -576,6 +574,7 @@ MonoBehaviour:
   - {fileID: 212642414779630898}
   _rigid: {fileID: 50000013460582292}
   _colliderFoot: {fileID: 61000011156448030}
+  _rigidState: {fileID: 114000012861491266}
 --- !u!114 &114642343969648306
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -687,17 +686,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _photonView: {fileID: 114710117432744930}
   _text: {fileID: 114642447191522244}
---- !u!114 &114911368492550572
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1102636445822790}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c85be6d432e6c554fb4198d335e2f25d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!124 &124000013662909244
 Behaviour:
   m_ObjectHideFlags: 1

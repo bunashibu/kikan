@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LobbyLieDownSMB : StateMachineBehaviour {
+  override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
+    if (_player == null)
+      _player = animator.GetComponent<LobbyPlayer>();
+  }
+
   override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
     if (_player.PhotonView.isMine) {
       if ( ShouldTransitToWalk()         ) { _player.StateTransfer.TransitTo( "Walk"         , animator ); return; }
@@ -31,6 +36,6 @@ public class LobbyLieDownSMB : StateMachineBehaviour {
     return _player.RigidState.Ground && (DownKeyUp || UpKeyDown);
   }
 
-  [SerializeField] private LobbyPlayerSMB _player;
+  private LobbyPlayer _player;
 }
 

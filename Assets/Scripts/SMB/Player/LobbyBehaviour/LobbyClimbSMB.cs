@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class LobbyClimbSMB : StateMachineBehaviour {
   override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
+    if (_player == null)
+      _player = animator.GetComponent<LobbyPlayer>();
+
     _player.Rigid.isKinematic = true;
     _player.Rigid.velocity = new Vector2(0.0f, 0.0f);
     _player.ColliderFoot.isTrigger = true;
@@ -56,7 +59,7 @@ public class LobbyClimbSMB : StateMachineBehaviour {
     return _player.RigidState.Air && !_player.RigidState.Ladder;
   }
 
-  [SerializeField] private LobbyPlayerSMB _player;
+  private LobbyPlayer _player;
   private bool _isTransferable;
 }
 

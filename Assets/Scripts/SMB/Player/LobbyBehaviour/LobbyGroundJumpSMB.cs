@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class LobbyGroundJumpSMB : StateMachineBehaviour {
   override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
+    if (_player == null)
+      _player = animator.GetComponent<LobbyPlayer>();
+
     _player.Movement.GroundJump();
   }
 
@@ -22,6 +25,6 @@ public class LobbyGroundJumpSMB : StateMachineBehaviour {
     return SkillFlag;
   }
 
-  [SerializeField] private LobbyPlayerSMB _player;
+  private LobbyPlayer _player;
 }
 

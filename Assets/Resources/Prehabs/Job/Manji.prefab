@@ -42,7 +42,6 @@ GameObject:
   - component: {fileID: 114572845960354168}
   - component: {fileID: 114103916784843228}
   - component: {fileID: 114365085813304948}
-  - component: {fileID: 114133107298816194}
   m_Layer: 0
   m_Name: Sword
   m_TagString: Untagged
@@ -418,7 +417,6 @@ MonoBehaviour:
   - {x: -0.4, y: 0.1, z: 0}
   - {x: -0.2, y: -0.1, z: 0}
   _rigidState: {fileID: 114096718221911472}
-  _skillInfo: {fileID: 114133107298816194}
   _renderer: {fileID: 212620572494064958}
   _status: {fileID: 114037318656622916}
   _playerView: {fileID: 114800105221254742}
@@ -531,17 +529,6 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
---- !u!114 &114133107298816194
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1078551180647806}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c85be6d432e6c554fb4198d335e2f25d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114182300045006078
 MonoBehaviour:
   m_ObjectHideFlags: 1

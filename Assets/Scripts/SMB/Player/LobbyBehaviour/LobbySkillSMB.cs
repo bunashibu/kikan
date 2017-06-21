@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class LobbySkillSMB : StateMachineBehaviour {
   override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
+    if (_player == null)
+      _player = animator.GetComponent<LobbyPlayer>();
+
     _transitionFlag = false;
   }
 
@@ -28,7 +31,7 @@ public class LobbySkillSMB : StateMachineBehaviour {
     return _player.RigidState.Ground && WalkFlag;
   }
 
-  [SerializeField] private LobbyPlayerSMB _player;
+  private LobbyPlayer _player;
   private bool _transitionFlag;
 }
 

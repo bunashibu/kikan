@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class LobbyPlayer : Photon.MonoBehaviour {
   void Awake() {
-    Movement   = new LobbyPlayerMovement();
+    Movement      = new LobbyPlayerMovement();
     StateTransfer = new StateTransfer(_initState);
+    SkillInfo     = new SkillInfo();
+  }
+
+  void FixedUpdate() {
+    Movement.FixedUpdate(_rigid, _trans);
   }
 
   public PhotonView       PhotonView   { get { return _photonView;   } }
@@ -19,6 +24,7 @@ public class LobbyPlayer : Photon.MonoBehaviour {
   public SkillInfo           SkillInfo     { get; private set; }
 
   [SerializeField] private PhotonView       _photonView;
+  [SerializeField] private Transform        _trans;
   [SerializeField] private SpriteRenderer[] _renderers;  // INFO: [PlayerSprite, WeaponSprite]
   [SerializeField] private Rigidbody2D      _rigid;
   [SerializeField] private BoxCollider2D    _colliderFoot;

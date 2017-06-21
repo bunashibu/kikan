@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class LobbyClimbJumpSMB : StateMachineBehaviour {
   override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
+    if (_player == null)
+      _player = animator.GetComponent<LobbyPlayer>();
+
     ClimbJump();
   }
 
@@ -33,6 +36,6 @@ public class LobbyClimbJumpSMB : StateMachineBehaviour {
     _player.Movement.ClimbJump();
   }
 
-  [SerializeField] private LobbyPlayerSMB _player;
+  private LobbyPlayer _player;
 }
 

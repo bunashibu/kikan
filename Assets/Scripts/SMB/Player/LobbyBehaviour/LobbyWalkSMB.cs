@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LobbyWalkSMB : StateMachineBehaviour {
+  override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
+    if (_player == null)
+      _player = animator.GetComponent<LobbyPlayer>();
+  }
+
   override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
     if (_player.PhotonView.isMine) {
       GroundMove();
@@ -69,6 +74,6 @@ public class LobbyWalkSMB : StateMachineBehaviour {
     return _player.RigidState.Ground && (BothKeyDown || OneKeyUp);
   }
 
-  [SerializeField] private LobbyPlayerSMB _player;
+  private LobbyPlayer _player;
 }
 

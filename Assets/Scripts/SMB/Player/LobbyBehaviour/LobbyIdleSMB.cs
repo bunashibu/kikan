@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LobbyIdleSMB : StateMachineBehaviour {
+  override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
+    if (_player == null)
+      _player = animator.GetComponent<LobbyPlayer>();
+  }
+
   override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
     if (_player.PhotonView.isMine) {
       if ( ShouldTransitToSkill()      ) { _player.StateTransfer.TransitTo( "Skill"      , animator ); return; }
@@ -50,6 +55,6 @@ public class LobbyIdleSMB : StateMachineBehaviour {
     return _player.RigidState.Ground && Input.GetButton("Jump");
   }
 
-  [SerializeField] private LobbyPlayerSMB _player;
+  private LobbyPlayer _player;
 }
 

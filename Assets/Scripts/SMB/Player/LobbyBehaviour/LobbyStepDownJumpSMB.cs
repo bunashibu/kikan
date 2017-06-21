@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class LobbyStepDownJumpSMB : StateMachineBehaviour {
   override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
+    if (_player == null)
+      _player = animator.GetComponent<LobbyPlayer>();
+
     InitFlag();
     _player.ColliderFoot.isTrigger = true;
     _player.Movement.StepDownJump();
@@ -33,7 +36,7 @@ public class LobbyStepDownJumpSMB : StateMachineBehaviour {
       _fallFlag = true;
   }
 
-  [SerializeField] private LobbyPlayerSMB _player;
+  private LobbyPlayer _player;
   private bool _isAlreadyJumped;
   private bool _fallFlag;
 }
