@@ -17,7 +17,7 @@ public class LobbyWalkSMB : StateMachineBehaviour {
       if ( ShouldTransitToStepDownJump() ) { _player.StateTransfer.TransitTo( "StepDownJump" , animator ); return; }
       if ( ShouldTransitToGroundJump()   ) { _player.StateTransfer.TransitTo( "GroundJump"   , animator ); return; }
       if ( ShouldTransitToIdle()         ) { _player.StateTransfer.TransitTo( "Idle"         , animator ); return; }
-      if ( _player.RigidState.Air        ) { _player.StateTransfer.TransitTo( "Fall"         , animator ); return; }
+      if ( _player.State.Air        ) { _player.StateTransfer.TransitTo( "Fall"         , animator ); return; }
     }
   }
 
@@ -51,27 +51,27 @@ public class LobbyWalkSMB : StateMachineBehaviour {
   private bool ShouldTransitToClimb() {
     bool OnlyUpKeyDown   = Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow);
     bool OnlyDownKeyDown = Input.GetKey(KeyCode.DownArrow) && !Input.GetKey(KeyCode.UpArrow);
-    bool ClimbFlag       = ( OnlyUpKeyDown   && !_player.RigidState.LadderTopEdge    ) ||
-                           ( OnlyDownKeyDown && !_player.RigidState.LadderBottomEdge );
+    bool ClimbFlag       = ( OnlyUpKeyDown   && !_player.State.LadderTopEdge    ) ||
+                           ( OnlyDownKeyDown && !_player.State.LadderBottomEdge );
 
-    return _player.RigidState.Ladder && ClimbFlag;
+    return _player.State.Ladder && ClimbFlag;
   }
 
   private bool ShouldTransitToStepDownJump() {
     bool OnlyDownKeyDown  = Input.GetKey(KeyCode.DownArrow)  && !Input.GetKey(KeyCode.UpArrow);
 
-    return _player.RigidState.Ground && OnlyDownKeyDown && Input.GetButton("Jump");
+    return _player.State.Ground && OnlyDownKeyDown && Input.GetButton("Jump");
   }
 
   private bool ShouldTransitToGroundJump() {
-    return _player.RigidState.Ground && Input.GetButton("Jump");
+    return _player.State.Ground && Input.GetButton("Jump");
   }
 
   private bool ShouldTransitToIdle() {
     bool BothKeyDown = Input.GetKey(KeyCode.LeftArrow)   && Input.GetKey(KeyCode.RightArrow);
     bool OneKeyUp    = Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow);
 
-    return _player.RigidState.Ground && (BothKeyDown || OneKeyUp);
+    return _player.State.Ground && (BothKeyDown || OneKeyUp);
   }
 
   private LobbyPlayer _player;

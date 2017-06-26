@@ -5,6 +5,7 @@ using UnityEngine;
 public class LobbyPlayer : Photon.MonoBehaviour {
   void Awake() {
     Movement      = new LobbyPlayerMovement();
+    State         = new PlayerState(_colliderCenter, _colliderFoot);
     StateTransfer = new StateTransfer(_initState);
     SkillInfo     = new SkillInfo();
   }
@@ -17,9 +18,9 @@ public class LobbyPlayer : Photon.MonoBehaviour {
   public SpriteRenderer[] Renderers    { get { return _renderers;    } }
   public Rigidbody2D      Rigid        { get { return _rigid;        } }
   public BoxCollider2D    ColliderFoot { get { return _colliderFoot; } }
-  public RigidState       RigidState   { get { return _rigidState;   } }
 
   public LobbyPlayerMovement Movement      { get; private set; }
+  public PlayerState         State         { get; private set; }
   public StateTransfer       StateTransfer { get; private set; }
   public SkillInfo           SkillInfo     { get; private set; }
 
@@ -28,7 +29,6 @@ public class LobbyPlayer : Photon.MonoBehaviour {
   [SerializeField] private SpriteRenderer[] _renderers;  // INFO: [PlayerSprite, WeaponSprite]
   [SerializeField] private Rigidbody2D      _rigid;
   [SerializeField] private BoxCollider2D    _colliderFoot;
-  [SerializeField] private RigidState       _rigidState;
   private static readonly string _initState = "Idle";
 }
 

@@ -15,7 +15,7 @@ public class LobbyStepDownJumpSMB : StateMachineBehaviour {
   override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
     if (_player.PhotonView.isMine) {
       UpdateFlag();
-      if ( _player.RigidState.Air && _fallFlag ) { _player.StateTransfer.TransitTo( "Fall" , animator ); return; }
+      if ( _player.State.Air && _fallFlag ) { _player.StateTransfer.TransitTo( "Fall" , animator ); return; }
     }
   }
 
@@ -29,10 +29,10 @@ public class LobbyStepDownJumpSMB : StateMachineBehaviour {
   }
 
   private void UpdateFlag() {
-    if (_player.RigidState.Air)
+    if (_player.State.Air)
       _isAlreadyJumped = true;
 
-    if (_player.RigidState.Ground && _isAlreadyJumped)
+    if (_player.State.Ground && _isAlreadyJumped)
       _fallFlag = true;
   }
 

@@ -13,7 +13,7 @@ public class LobbyGroundJumpSMB : StateMachineBehaviour {
   override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
     if (_player.PhotonView.isMine) {
       if ( ShouldTransitToSkill() ) { _player.StateTransfer.TransitTo( "Skill" , animator ); return; }
-      if ( _player.RigidState.Air ) { _player.StateTransfer.TransitTo( "Fall"  , animator ); return; }
+      if ( _player.State.Air ) { _player.StateTransfer.TransitTo( "Fall"  , animator ); return; }
     }
   }
 

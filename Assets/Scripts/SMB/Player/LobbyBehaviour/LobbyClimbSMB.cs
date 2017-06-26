@@ -18,7 +18,7 @@ public class LobbyClimbSMB : StateMachineBehaviour {
     if (_player.PhotonView.isMine) {
       Climb();
 
-      if (_player.RigidState.Ladder)
+      if (_player.State.Ladder)
         _isTransferable = true;
 
       if (_isTransferable) {
@@ -52,11 +52,11 @@ public class LobbyClimbSMB : StateMachineBehaviour {
   }
 
   private bool ShouldTransitToIdle() {
-    return _player.RigidState.LadderBottomEdge && _player.RigidState.Ground;
+    return _player.State.LadderBottomEdge && _player.State.Ground;
   }
 
   private bool ShouldTransitToFall() {
-    return _player.RigidState.Air && !_player.RigidState.Ladder;
+    return _player.State.Air && !_player.State.Ladder;
   }
 
   private LobbyPlayer _player;

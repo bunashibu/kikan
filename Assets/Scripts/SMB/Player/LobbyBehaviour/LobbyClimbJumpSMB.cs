@@ -12,7 +12,7 @@ public class LobbyClimbJumpSMB : StateMachineBehaviour {
 
   override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
     if (_player.PhotonView.isMine) {
-      if ( _player.RigidState.Air ) { _player.StateTransfer.TransitTo( "Fall" , animator ); return; }
+      if ( _player.State.Air ) { _player.StateTransfer.TransitTo( "Fall" , animator ); return; }
     }
   }
 

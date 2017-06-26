@@ -1,8 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(BoxCollider2D))]
-public class RigidState : MonoBehaviour {
+public class PlayerState {
+  public PlayerState(BoxCollider2D colliderCenter, BoxCollider2D colliderFoot) {
+    _colliderCenter        = colliderCenter;
+    _colliderFoot          = colliderFoot;
+
+    _groundLayer           = LayerMask.NameToLayer("Ground");
+    _ladderLayer           = LayerMask.NameToLayer("Ladder");
+    _ladderTopEdgeLayer    = LayerMask.NameToLayer("LadderTopEdge");
+    _ladderBottomEdgeLayer = LayerMask.NameToLayer("LadderBottomEdge");
+    _portalLayer           = LayerMask.NameToLayer("Portal");
+  }
+
   public bool Ground           { get { return _colliderFoot.IsTouchingLayers(_groundLayer);             }  }
   public bool Air              { get { return !Ground;                                                  }  }
   public bool Ladder           { get { return _colliderCenter.IsTouchingLayers(_ladderLayer);           }  }
@@ -14,12 +24,12 @@ public class RigidState : MonoBehaviour {
   public bool Heavy { get; set; }
   public bool Rigor { get; set; }
 
-  [SerializeField] private BoxCollider2D _colliderCenter;
-  [SerializeField] private BoxCollider2D _colliderFoot;
-  [SerializeField] private LayerMask _groundLayer;
-  [SerializeField] private LayerMask _ladderLayer;
-  [SerializeField] private LayerMask _ladderTopEdgeLayer;
-  [SerializeField] private LayerMask _ladderBottomEdgeLayer;
-  [SerializeField] private LayerMask _portalLayer;
+  private BoxCollider2D _colliderCenter;
+  private BoxCollider2D _colliderFoot;
+  private int _groundLayer;
+  private int _ladderLayer;
+  private int _ladderTopEdgeLayer;
+  private int _ladderBottomEdgeLayer;
+  private int _portalLayer;
 }
 

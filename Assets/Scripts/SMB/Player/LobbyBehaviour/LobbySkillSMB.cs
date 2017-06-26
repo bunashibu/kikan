@@ -12,13 +12,13 @@ public class LobbySkillSMB : StateMachineBehaviour {
 
   override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
     if (_player.PhotonView.isMine) {
-      if (_player.RigidState.Rigor)
+      if (_player.State.Rigor)
         _transitionFlag = true;
 
-      if (_transitionFlag && !_player.RigidState.Rigor) {
+      if (_transitionFlag && !_player.State.Rigor) {
         if ( ShouldTransitToWalk()     ) { _player.StateTransfer.TransitTo( "Walk" , animator ); return; }
-        if ( _player.RigidState.Ground ) { _player.StateTransfer.TransitTo( "Idle" , animator ); return; }
-        if ( _player.RigidState.Air    ) { _player.StateTransfer.TransitTo( "Fall" , animator ); return; }
+        if ( _player.State.Ground ) { _player.StateTransfer.TransitTo( "Idle" , animator ); return; }
+        if ( _player.State.Air    ) { _player.StateTransfer.TransitTo( "Fall" , animator ); return; }
       }
     }
   }
@@ -28,7 +28,7 @@ public class LobbySkillSMB : StateMachineBehaviour {
     bool OnlyRightKeyDown = Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow);
     bool WalkFlag         = OnlyLeftKeyDown || OnlyRightKeyDown;
 
-    return _player.RigidState.Ground && WalkFlag;
+    return _player.State.Ground && WalkFlag;
   }
 
   private LobbyPlayer _player;

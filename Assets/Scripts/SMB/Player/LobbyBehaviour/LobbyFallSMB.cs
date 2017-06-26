@@ -17,7 +17,7 @@ public class LobbyFallSMB : StateMachineBehaviour {
       if ( ShouldTransitToWalk()       ) { _player.StateTransfer.TransitTo( "Walk"       , animator ); return; }
       if ( ShouldTransitToLieDown()    ) { _player.StateTransfer.TransitTo( "LieDown"    , animator ); return; }
       if ( ShouldTransitToGroundJump() ) { _player.StateTransfer.TransitTo( "GroundJump" , animator ); return; }
-      if ( _player.RigidState.Ground   ) { _player.StateTransfer.TransitTo( "Idle"       , animator ); return; }
+      if ( _player.State.Ground   ) { _player.StateTransfer.TransitTo( "Idle"       , animator ); return; }
     }
   }
 
@@ -50,10 +50,10 @@ public class LobbyFallSMB : StateMachineBehaviour {
   private bool ShouldTransitToClimb() {
     bool OnlyUpKeyDown   = Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow);
     bool OnlyDownKeyDown = Input.GetKey(KeyCode.DownArrow) && !Input.GetKey(KeyCode.UpArrow);
-    bool ClimbFlag       = ( OnlyUpKeyDown   && !_player.RigidState.LadderTopEdge    ) ||
-                           ( OnlyDownKeyDown && !_player.RigidState.LadderBottomEdge );
+    bool ClimbFlag       = ( OnlyUpKeyDown   && !_player.State.LadderTopEdge    ) ||
+                           ( OnlyDownKeyDown && !_player.State.LadderBottomEdge );
 
-    return _player.RigidState.Ladder && ClimbFlag;
+    return _player.State.Ladder && ClimbFlag;
   }
 
   private bool ShouldTransitToWalk() {
@@ -61,18 +61,18 @@ public class LobbyFallSMB : StateMachineBehaviour {
     bool OnlyRightKeyDown = Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow);
     bool WalkFlag         = OnlyLeftKeyDown || OnlyRightKeyDown;
 
-    return _player.RigidState.Ground && WalkFlag;
+    return _player.State.Ground && WalkFlag;
   }
 
   private bool ShouldTransitToLieDown() {
     bool OnlyDownKeyDown = Input.GetKey(KeyCode.DownArrow) && !Input.GetKey(KeyCode.UpArrow);
-    bool LieDownFlag     = OnlyDownKeyDown && !_player.RigidState.LadderTopEdge;
+    bool LieDownFlag     = OnlyDownKeyDown && !_player.State.LadderTopEdge;
 
-    return _player.RigidState.Ground && LieDownFlag;
+    return _player.State.Ground && LieDownFlag;
   }
 
   private bool ShouldTransitToGroundJump() {
-    return _player.RigidState.Ground && Input.GetButton("Jump");
+    return _player.State.Ground && Input.GetButton("Jump");
   }
 
   private LobbyPlayer _player;

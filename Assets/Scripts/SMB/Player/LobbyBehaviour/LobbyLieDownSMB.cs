@@ -13,7 +13,7 @@ public class LobbyLieDownSMB : StateMachineBehaviour {
       if ( ShouldTransitToWalk()         ) { _player.StateTransfer.TransitTo( "Walk"         , animator ); return; }
       if ( ShouldTransitToStepDownJump() ) { _player.StateTransfer.TransitTo( "StepDownJump" , animator ); return; }
       if ( ShouldTransitToIdle()         ) { _player.StateTransfer.TransitTo( "Idle"         , animator ); return; }
-      if ( _player.RigidState.Air        ) { _player.StateTransfer.TransitTo( "Fall"         , animator ); return; }
+      if ( _player.State.Air        ) { _player.StateTransfer.TransitTo( "Fall"         , animator ); return; }
     }
   }
 
@@ -22,18 +22,18 @@ public class LobbyLieDownSMB : StateMachineBehaviour {
     bool OnlyRightKeyDown = Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow);
     bool WalkFlag         = OnlyLeftKeyDown || OnlyRightKeyDown;
 
-    return _player.RigidState.Ground && WalkFlag;
+    return _player.State.Ground && WalkFlag;
   }
 
   private bool ShouldTransitToStepDownJump() {
-    return _player.RigidState.Ground && Input.GetButton("Jump");
+    return _player.State.Ground && Input.GetButton("Jump");
   }
 
   private bool ShouldTransitToIdle() {
     bool DownKeyUp = Input.GetKeyUp(KeyCode.DownArrow);
     bool UpKeyDown = Input.GetKeyDown(KeyCode.UpArrow);
 
-    return _player.RigidState.Ground && (DownKeyUp || UpKeyDown);
+    return _player.State.Ground && (DownKeyUp || UpKeyDown);
   }
 
   private LobbyPlayer _player;
