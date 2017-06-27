@@ -2,29 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hp : Photon.MonoBehaviour, IGauge<int> {
-  [PunRPC]
-  protected void SyncHpAll(int cur, int min, int max) {
-    Cur = cur;
-    Min = min;
-    Max = max;
-  }
-
-  [PunRPC]
-  protected void SyncHpCur(int cur) {
-    Cur = cur;
-  }
-
-  [PunRPC]
-  protected void SyncHpMax(int max) {
-    Max = max;
-  }
-
-  [PunRPC]
-  protected void SyncHpDead(bool dead) {
-    Dead = dead;
-  }
-
+public class Hp : IGauge<int> {
   public void Plus(int quantity) {
     Cur += quantity;
 
@@ -33,14 +11,8 @@ public class Hp : Photon.MonoBehaviour, IGauge<int> {
     if (Cur > Max)
       Cur = Max;
 
-    photonView.RPC("SyncHpCur", PhotonTargets.Others, Cur);
-
-    if (Dead) {
-      if (Cur > Min)
-        Reborn();
-
-      photonView.RPC("SyncHpDead", PhotonTargets.Others, Dead);
-    }
+    if (IsDead && (Cur > Min))
+      Reborn();
   }
 
   public void Minus(int quantity) {
@@ -48,17 +20,17 @@ public class Hp : Photon.MonoBehaviour, IGauge<int> {
   }
 
   private void Die() {
-    Dead = true;
+    IsDead = true;
     Cur = Min;
   }
 
   private void Reborn() {
-    Dead = false;
+    IsDead = false;
   }
 
   public int Cur { get; private set; }
   public int Min { get; private set; }
   public int Max { get; private set; }
-  public bool Dead { get; private set; }
+  public bool IsDead { get; private set; }
 }
 
