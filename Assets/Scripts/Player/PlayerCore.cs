@@ -42,7 +42,7 @@ public class PlayerCore : Photon.MonoBehaviour {
       // Hp Core
       if (i == 1) {
         _playerHp.UpdateMaxHp();
-        _playerHp.UpdateView();
+        //_playerHp.UpdateView();
       }
 
       // Heal Core

@@ -63,9 +63,11 @@ public class JobPicker : MonoBehaviour {
   }
 
   private void InitPlayerHp() {
+    /*
     var playerHp = _player.GetComponent<BattlePlayer>().Hp;
     playerHp.Init(_hpBar);
     playerHp.UpdateView();
+    */
   }
 
   private void InitPlayerExp() {

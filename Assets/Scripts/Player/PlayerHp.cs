@@ -3,49 +3,51 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerHp : Hp {
-  public PlayerHp(BattlePlayer player) {
+  public PlayerHp(BattlePlayer player, DataTable hpTable) {
     _player = player;
-    _player.SyncObserver.SyncAllHp();
-  }
+    _hpTable = hpTable;
 
-  public void Init(Bar hudBar) {
-    /*
-    Assert.IsTrue(photonView.isMine);
-
-    photonView.RPC("SyncHpAll", PhotonTargets.All, _hpTable.Data[0], 0, _hpTable.Data[0]);
-
-    _hudBar = hudBar;
-    _worldBar.gameObject.SetActive(false);
-    */
-  }
-
-  public void UpdateView() {
-    //photonView.RPC("SyncHpUpdate", PhotonTargets.All);
-  }
-
-  public override void Plus(int quantity) {
-    base.Plus(quantity);
-    _player.SyncObserver.SyncCurHp();
-  }
-
-  public override void Minus(int quantity) {
-    base.Minus(quantity);
-    _player.SyncObserver.SyncCurHp();
+    Min = 0;
+    Max = _hpTable.Data[0];
+    Cur = Max;
   }
 
   public void UpdateMaxHp() {
     /*
     double ratio = (double)((_player.Core.Hp + 100) / 100.0);
     Max = (int)(_hpTable.Data[_player.Level.Lv - 1] * ratio);
-
-    _player.SyncObserver.SyncMaxHp();
     */
+
+    _player.SyncObserver.SyncPlayerMaxHp();
   }
 
   public void FullRecover() {
     Plus(Max);
   }
 
+  // Must be Called by SyncObserver only
+  public void ForceSyncHp(int cur, int min, int max) {
+    Cur = cur;
+    Min = min;
+    Max = max;
+  }
+
+  // Must be Called by SyncObserver only
+  public void ForceSyncCur(int cur) {
+    Cur = cur;
+  }
+
+  // Must be Called by SyncObserver only
+  public void ForceSyncMax(int max) {
+    Max = max;
+  }
+
+  // Must be Called by SyncObserver only
+  public void ForceSyncIsDead(bool isDead) {
+    IsDead = isDead;
+  }
+
   private BattlePlayer _player;
+  private DataTable _hpTable;
 }
 

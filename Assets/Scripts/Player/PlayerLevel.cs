@@ -28,7 +28,7 @@ public class PlayerLevel : Level {
       UpdateView();
 
       _playerHp.UpdateMaxHp();
-      _playerHp.UpdateView();
+      //_playerHp.UpdateView();
 
       _playerHealer.UpdateMaxHealQuantity();
     }

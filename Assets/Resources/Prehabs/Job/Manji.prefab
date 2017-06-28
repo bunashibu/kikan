@@ -115,9 +115,9 @@ GameObject:
   - component: {fileID: 61963090403572176}
   - component: {fileID: 95930055764971676}
   - component: {fileID: 50159110143766000}
-  - component: {fileID: 114037318656622916}
   - component: {fileID: 114800105221254742}
   - component: {fileID: 114409857702172010}
+  - component: {fileID: 114037318656622916}
   - component: {fileID: 114732547741241738}
   - component: {fileID: 114878352491881542}
   - component: {fileID: 114685664338584306}
@@ -129,6 +129,8 @@ GameObject:
   - component: {fileID: 114494370642848112}
   - component: {fileID: 114454518508664006}
   - component: {fileID: 114969582724046644}
+  - component: {fileID: 114346652777482960}
+  - component: {fileID: 114610620364185106}
   m_Layer: 9
   m_Name: Manji
   m_TagString: Player
@@ -608,6 +610,25 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114346652777482960
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1222958424102090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8d6c748c9a9264b867ad5ac0dceefe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _photonView: {fileID: 0}
+  _trans: {fileID: 0}
+  _renderers: []
+  _rigid: {fileID: 0}
+  _colliderCenter: {fileID: 0}
+  _colliderFoot: {fileID: 0}
+  _syncObserver: {fileID: 114610620364185106}
+  _hpTable: {fileID: 0}
 --- !u!114 &114365085813304948
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -830,6 +851,18 @@ MonoBehaviour:
   instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
+--- !u!114 &114610620364185106
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1222958424102090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78eb315df0929dd498a58368cb5991f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: 114346652777482960}
 --- !u!114 &114685664338584306
 MonoBehaviour:
   m_ObjectHideFlags: 1

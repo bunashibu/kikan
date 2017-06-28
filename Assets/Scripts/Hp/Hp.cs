@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Hp : IGauge<int> {
-  public virtual void Plus(int quantity) {
+  public void Plus(int quantity) {
     Cur += quantity;
     AdjustBoundary();
   }
 
-  public virtual void Minus(int quantity) {
+  public void Minus(int quantity) {
     Cur -= quantity;
     AdjustBoundary();
   }
@@ -32,9 +32,9 @@ public class Hp : IGauge<int> {
     IsDead = false;
   }
 
-  public int Cur { get; private set; }
-  public int Min { get; private set; }
-  public int Max { get; private set; }
-  public bool IsDead { get; private set; }
+  public int Cur { get; protected set; }
+  public int Min { get; protected set; }
+  public int Max { get; protected set; }
+  public bool IsDead { get; protected set; }
 }
 
