@@ -7,7 +7,7 @@ public class ClimbSMB : StateMachineBehaviour {
       _photonView   = animator.GetComponent<PhotonView>();
       _rigid        = animator.GetComponent<Rigidbody2D>();
       _colliderFoot = animator.GetComponents<BoxCollider2D>()[1];
-      _rigidState   = animator.GetComponent<RigidState>();
+      _rigidState   = animator.GetComponent<PlayerState>();
 
       _movement     = animator.GetComponent<LobbyPlayer>().Movement;
       _hp           = animator.GetComponent<PlayerHp>();
@@ -29,7 +29,7 @@ public class ClimbSMB : StateMachineBehaviour {
       bool OnlyDownKeyDown  = Input.GetKey(KeyCode.DownArrow)  && !Input.GetKey(KeyCode.UpArrow);
       bool JumpButtonDown   = Input.GetButton("Jump");
 
-      if (_hp.Dead) { ActTransition("Die", animator); return; }
+      if (_hp.IsDead) { ActTransition("Die", animator); return; }
 
       if (OnlyUpKeyDown)   _movement.ClimbUp();
       if (OnlyDownKeyDown) _movement.ClimbDown();
@@ -66,7 +66,7 @@ public class ClimbSMB : StateMachineBehaviour {
   private PhotonView _photonView;
   private Rigidbody2D _rigid;
   private BoxCollider2D _colliderFoot;
-  private RigidState _rigidState;
+  private PlayerState _rigidState;
 
   private LobbyPlayerMovement _movement;
   private PlayerHp _hp;

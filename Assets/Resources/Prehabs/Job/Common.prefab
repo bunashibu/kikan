@@ -41,12 +41,11 @@ GameObject:
   - component: {fileID: 224000010966695226}
   - component: {fileID: 212000013636046964}
   - component: {fileID: 61000011156448030}
-  - component: {fileID: 61000010270929332}
   - component: {fileID: 61000013377866254}
+  - component: {fileID: 61000010270929332}
   - component: {fileID: 95000010494430044}
   - component: {fileID: 50000013460582292}
   - component: {fileID: 114606102195267942}
-  - component: {fileID: 114000012861491266}
   - component: {fileID: 114710117432744930}
   - component: {fileID: 114311064836627604}
   - component: {fileID: 114031372312786196}
@@ -338,34 +337,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &114000012861491266
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011996982660}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6138b839369cac4c943c69b429fc1bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _colliderCenter: {fileID: 61000013377866254}
-  _colliderFoot: {fileID: 61000010270929332}
-  _groundLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  _ladderLayer:
-    serializedVersion: 2
-    m_Bits: 1024
-  _ladderTopEdgeLayer:
-    serializedVersion: 2
-    m_Bits: 2048
-  _ladderBottomEdgeLayer:
-    serializedVersion: 2
-    m_Bits: 4096
-  _portalLayer:
-    serializedVersion: 2
-    m_Bits: 8192
 --- !u!114 &114031079343608982
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -488,7 +459,6 @@ MonoBehaviour:
   _skillCT: []
   _rigorCT: []
   _appearOffset: []
-  _rigidState: {fileID: 114000012861491266}
   _renderer: {fileID: 212642414779630898}
   _status: {fileID: 0}
   _playerView: {fileID: 0}
@@ -569,12 +539,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _photonView: {fileID: 114710117432744930}
+  _trans: {fileID: 224000010966695226}
   _renderers:
   - {fileID: 212000013636046964}
   - {fileID: 212642414779630898}
   _rigid: {fileID: 50000013460582292}
-  _colliderFoot: {fileID: 61000011156448030}
-  _rigidState: {fileID: 114000012861491266}
+  _colliderCenter: {fileID: 61000013377866254}
+  _colliderFoot: {fileID: 61000010270929332}
 --- !u!114 &114642343969648306
 MonoBehaviour:
   m_ObjectHideFlags: 1

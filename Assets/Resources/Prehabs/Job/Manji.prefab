@@ -111,13 +111,11 @@ GameObject:
   - component: {fileID: 224235004673622830}
   - component: {fileID: 212543119074357088}
   - component: {fileID: 61760561158213272}
-  - component: {fileID: 61963090403572176}
   - component: {fileID: 61116396818863762}
+  - component: {fileID: 61963090403572176}
   - component: {fileID: 95930055764971676}
   - component: {fileID: 50159110143766000}
-  - component: {fileID: 114504324772229166}
   - component: {fileID: 114037318656622916}
-  - component: {fileID: 114096718221911472}
   - component: {fileID: 114800105221254742}
   - component: {fileID: 114409857702172010}
   - component: {fileID: 114732547741241738}
@@ -416,7 +414,6 @@ MonoBehaviour:
   - {x: -0.4, y: -0.1, z: 0}
   - {x: -0.4, y: 0.1, z: 0}
   - {x: -0.2, y: -0.1, z: 0}
-  _rigidState: {fileID: 114096718221911472}
   _renderer: {fileID: 212620572494064958}
   _status: {fileID: 114037318656622916}
   _playerView: {fileID: 114800105221254742}
@@ -436,34 +433,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &114096718221911472
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1222958424102090}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6138b839369cac4c943c69b429fc1bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _colliderCenter: {fileID: 61116396818863762}
-  _colliderFoot: {fileID: 61963090403572176}
-  _groundLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  _ladderLayer:
-    serializedVersion: 2
-    m_Bits: 1024
-  _ladderTopEdgeLayer:
-    serializedVersion: 2
-    m_Bits: 2048
-  _ladderBottomEdgeLayer:
-    serializedVersion: 2
-    m_Bits: 4096
-  _portalLayer:
-    serializedVersion: 2
-    m_Bits: 8192
 --- !u!114 &114103916784843228
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -789,7 +758,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fafce94b5f44a044fa5c539eafb09b7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerHp: {fileID: 114504324772229166}
   _playerHealer: {fileID: 114969582724046644}
 --- !u!114 &114454518508664006
 MonoBehaviour:
@@ -803,7 +771,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerGold: {fileID: 114494370642848112}
-  _playerHp: {fileID: 114504324772229166}
   _playerHealer: {fileID: 114969582724046644}
   _coreList:
   - {fileID: 11400000, guid: ee538c803e6b7d34fb16311e882cd98d, type: 2}
@@ -836,21 +803,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 228b1d5e6002fcc41982cc5bd1c2809d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114504324772229166
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1222958424102090}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: acbecdd317770bc4bb7eb8e8b8ecf407, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _hpTable: {fileID: 11400000, guid: 1e81de872edf78241a359a3838a6f3b8, type: 2}
-  _level: {fileID: 114438636751118534}
-  _core: {fileID: 114454518508664006}
-  _worldBar: {fileID: 114283101673446462}
 --- !u!114 &114572845960354168
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -890,7 +842,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _status: {fileID: 114037318656622916}
-  _hp: {fileID: 114504324772229166}
   _gameData: {fileID: 11400000, guid: 79929a1e9bd66f4488365796315797b6, type: 2}
 --- !u!114 &114732547741241738
 MonoBehaviour:
@@ -1013,7 +964,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healTable: {fileID: 11400000, guid: 2af9baa41fbfe914b983bc901c00fe8a, type: 2}
-  _playerHp: {fileID: 114504324772229166}
   _level: {fileID: 114438636751118534}
   _core: {fileID: 114454518508664006}
 --- !u!114 &114976675510564106

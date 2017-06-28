@@ -5,13 +5,14 @@ using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class JobPicker : MonoBehaviour {
   void Start() {
+    InstantiateHudObjects();
     Destroy(gameObject, 10.0f);
   }
 
   public void Pick(int n) {
     InstantiatePlayer(n);
 
-    InitPlayerHp(n);
+    InitPlayerHp();
     InitPlayerExp();
     InitPlayerLv();
     InitPlayerKillDeath();
@@ -22,6 +23,17 @@ public class JobPicker : MonoBehaviour {
 
     DisableAllButtons();
     Destroy(_camera);
+  }
+
+  private void InstantiateHudObjects() {
+    _hpBar = Instantiate(_hpBar) as Bar;
+    _hpBar.transform.SetParent(_canvas.transform, false);
+
+    _expBar = Instantiate(_expBar) as Bar;
+    _expBar.transform.SetParent(_canvas.transform, false);
+
+    _lvPanel = Instantiate(_lvPanel) as LevelPanel;
+    _lvPanel.transform.SetParent(_canvas.transform, false);
   }
 
   private void InstantiatePlayer(int n) {
@@ -50,28 +62,19 @@ public class JobPicker : MonoBehaviour {
     PhotonNetwork.player.SetCustomProperties(props);
   }
 
-  private void InitPlayerHp(int n) {
-    _hudHpBar = Instantiate(_hudHpBar) as Bar;
-    _hudHpBar.transform.SetParent(_canvas.transform, false);
-
-    var playerHp = _player.GetComponent<PlayerHp>();
-    playerHp.Init(_hudHpBar);
+  private void InitPlayerHp() {
+    var playerHp = _player.GetComponent<BattlePlayer>().Hp;
+    playerHp.Init(_hpBar);
     playerHp.UpdateView();
   }
 
   private void InitPlayerExp() {
-    _hudExpBar = Instantiate(_hudExpBar) as Bar;
-    _hudExpBar.transform.SetParent(_canvas.transform, false);
-
     var playerNextExp = _player.GetComponent<PlayerNextExp>();
-    playerNextExp.Init(_hudExpBar);
+    playerNextExp.Init(_expBar);
     playerNextExp.UpdateView();
   }
 
   private void InitPlayerLv() {
-    _lvPanel = Instantiate(_lvPanel) as LevelPanel;
-    _lvPanel.transform.SetParent(_canvas.transform, false);
-
     var playerLv = _player.GetComponent<PlayerLevel>();
     playerLv.Init(_lvPanel, _kdPanel);
     playerLv.UpdateView();
@@ -115,8 +118,8 @@ public class JobPicker : MonoBehaviour {
   [SerializeField] private Button[] _buttons;
   [SerializeField] private JobStatus[] _jobData;
   [SerializeField] private Canvas _canvas;
-  [SerializeField] private Bar _hudHpBar;
-  [SerializeField] private Bar _hudExpBar;
+  [SerializeField] private Bar _hpBar;
+  [SerializeField] private Bar _expBar;
   [SerializeField] private LevelPanel _lvPanel;
   [SerializeField] private KillDeathPanel _kdPanel;
   [SerializeField] private GoldPanel _goldPanel;

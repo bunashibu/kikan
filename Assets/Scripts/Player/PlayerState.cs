@@ -6,11 +6,11 @@ public class PlayerState {
     _colliderCenter        = colliderCenter;
     _colliderFoot          = colliderFoot;
 
-    _groundLayer           = LayerMask.NameToLayer("Ground");
-    _ladderLayer           = LayerMask.NameToLayer("Ladder");
-    _ladderTopEdgeLayer    = LayerMask.NameToLayer("LadderTopEdge");
-    _ladderBottomEdgeLayer = LayerMask.NameToLayer("LadderBottomEdge");
-    _portalLayer           = LayerMask.NameToLayer("Portal");
+    _groundLayer           = LayerMask.GetMask("Ground");
+    _ladderLayer           = LayerMask.GetMask("Ladder");
+    _ladderTopEdgeLayer    = LayerMask.GetMask("LadderTopEdge");
+    _ladderBottomEdgeLayer = LayerMask.GetMask("LadderBottomEdge");
+    _portalLayer           = LayerMask.GetMask("Portal");
   }
 
   public bool Ground           { get { return _colliderFoot.IsTouchingLayers(_groundLayer);             }  }
@@ -26,10 +26,10 @@ public class PlayerState {
 
   private BoxCollider2D _colliderCenter;
   private BoxCollider2D _colliderFoot;
-  private int _groundLayer;
-  private int _ladderLayer;
-  private int _ladderTopEdgeLayer;
-  private int _ladderBottomEdgeLayer;
-  private int _portalLayer;
+  private LayerMask _groundLayer;
+  private LayerMask _ladderLayer;
+  private LayerMask _ladderTopEdgeLayer;
+  private LayerMask _ladderBottomEdgeLayer;
+  private LayerMask _portalLayer;
 }
 

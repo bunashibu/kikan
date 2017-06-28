@@ -19,7 +19,7 @@ public abstract class DamageSkill : Skill {
                    _damageBehaviour.Critical, targetView.owner, targetView.viewID);
 
     var targetHp = target.GetComponent<PlayerHp>();
-    if (targetHp.Dead) {
+    if (targetHp.IsDead) {
       _rewardGetter.SetRewardReceiver(_skillUser, _team);
       _rewardGetter.GetRewardFrom(target);
 

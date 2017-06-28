@@ -51,7 +51,7 @@ public class SkillInstantiator : Photon.MonoBehaviour {
   [SerializeField] private float[] _skillCT;
   [SerializeField] private float[] _rigorCT;
   [SerializeField] private Vector3[] _appearOffset;
-  [SerializeField] private RigidState _rigidState;
+  [SerializeField] private PlayerState _rigidState;
   [SerializeField] private SkillInfo _skillInfo;
   [SerializeField] private SpriteRenderer _renderer;
   [SerializeField] private PlayerStatus _status;

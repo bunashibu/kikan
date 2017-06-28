@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BattlePlayerMovement : MonoBehaviour {
+public class BattlePlayerMovement {
   public BattlePlayerMovement() {
     _coreAirLinear    = new CoreAirLinearMove();
     _coreGroundLinear = new CoreGroundLinearMove();

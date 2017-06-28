@@ -18,6 +18,7 @@ public class LobbyPlayer : Photon.MonoBehaviour {
   public SpriteRenderer[] Renderers    { get { return _renderers;    } }
   public Rigidbody2D      Rigid        { get { return _rigid;        } }
   public BoxCollider2D    ColliderFoot { get { return _colliderFoot; } }
+  //public PlayerState      State        { get { return _playerState;  } }
 
   public LobbyPlayerMovement Movement      { get; private set; }
   public PlayerState         State         { get; private set; }
@@ -28,7 +29,9 @@ public class LobbyPlayer : Photon.MonoBehaviour {
   [SerializeField] private Transform        _trans;
   [SerializeField] private SpriteRenderer[] _renderers;  // INFO: [PlayerSprite, WeaponSprite]
   [SerializeField] private Rigidbody2D      _rigid;
+  [SerializeField] private BoxCollider2D    _colliderCenter;
   [SerializeField] private BoxCollider2D    _colliderFoot;
+  //[SerializeField] private PlayerState      _playerState;
   private static readonly string _initState = "Idle";
 }
 

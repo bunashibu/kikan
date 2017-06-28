@@ -6,7 +6,7 @@ public class SkillSMB : StateMachineBehaviour {
   override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
     if (_photonView == null) {
       _photonView = animator.GetComponent<PhotonView>();
-      _rigidState = animator.GetComponent<RigidState>();
+      _rigidState = animator.GetComponent<PlayerState>();
       _hp         = animator.GetComponent<PlayerHp>();
     }
 
@@ -16,7 +16,7 @@ public class SkillSMB : StateMachineBehaviour {
 
   override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
     if (_photonView.isMine) {
-      if (_hp.Dead) { ActTransition("Die", animator); return; }
+      if (_hp.IsDead) { ActTransition("Die", animator); return; }
 
       if (_rigidState.Rigor)
         _transitionFlag = true;
@@ -43,7 +43,7 @@ public class SkillSMB : StateMachineBehaviour {
   }
 
   private PhotonView _photonView;
-  private RigidState _rigidState;
+  private PlayerState _rigidState;
 
   private PlayerHp _hp;
   private bool _transitionFlag;

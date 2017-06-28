@@ -3,9 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Hp : IGauge<int> {
-  public void Plus(int quantity) {
+  public virtual void Plus(int quantity) {
     Cur += quantity;
+    AdjustBoundary();
+  }
 
+  public virtual void Minus(int quantity) {
+    Cur -= quantity;
+    AdjustBoundary();
+  }
+
+  private void AdjustBoundary() {
     if (Cur <= Min)
       Die();
     if (Cur > Max)
@@ -13,10 +21,6 @@ public class Hp : IGauge<int> {
 
     if (IsDead && (Cur > Min))
       Reborn();
-  }
-
-  public void Minus(int quantity) {
-    Plus(-quantity);
   }
 
   private void Die() {

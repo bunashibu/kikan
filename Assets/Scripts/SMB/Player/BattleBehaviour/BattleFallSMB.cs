@@ -5,7 +5,7 @@ public class FallSMB : StateMachineBehaviour {
   override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
     if (_photonView == null) {
       _photonView = animator.GetComponent<PhotonView>();
-      _rigidState = animator.GetComponent<RigidState>();
+      _rigidState = animator.GetComponent<PlayerState>();
       _skillInfo  = animator.GetComponentInChildren<SkillInfo>();
       _renderers  = animator.GetComponentsInChildren<SpriteRenderer>();
 
@@ -34,7 +34,7 @@ public class FallSMB : StateMachineBehaviour {
                        (stateShift == SkillState.Using) ||
                        (stateZ == SkillState.Using);
 
-      if (_hp.Dead) { ActTransition("Die", animator); return; }
+      if (_hp.IsDead) { ActTransition("Die", animator); return; }
 
       if (SkillFlag) { ActTransition("Skill", animator); return; }
 
@@ -60,7 +60,7 @@ public class FallSMB : StateMachineBehaviour {
   }
 
   private PhotonView _photonView;
-  private RigidState _rigidState;
+  private PlayerState _rigidState;
   private SkillInfo _skillInfo;
   private SpriteRenderer[] _renderers;
 
