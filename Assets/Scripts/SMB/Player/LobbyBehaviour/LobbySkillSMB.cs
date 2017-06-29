@@ -16,9 +16,9 @@ public class LobbySkillSMB : StateMachineBehaviour {
         _transitionFlag = true;
 
       if (_transitionFlag && !_player.State.Rigor) {
-        if ( ShouldTransitToWalk()     ) { _player.StateTransfer.TransitTo( "Walk" , animator ); return; }
-        if ( _player.State.Ground ) { _player.StateTransfer.TransitTo( "Idle" , animator ); return; }
-        if ( _player.State.Air    ) { _player.StateTransfer.TransitTo( "Fall" , animator ); return; }
+        if ( ShouldTransitToWalk() ) { _player.StateTransfer.TransitTo( "Walk" , animator ); return; }
+        if ( _player.State.Ground  ) { _player.StateTransfer.TransitTo( "Idle" , animator ); return; }
+        if ( _player.State.Air     ) { _player.StateTransfer.TransitTo( "Fall" , animator ); return; }
       }
     }
   }

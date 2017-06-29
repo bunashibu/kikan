@@ -13,7 +13,7 @@ public class LobbyLieDownSMB : StateMachineBehaviour {
       if ( ShouldTransitToWalk()         ) { _player.StateTransfer.TransitTo( "Walk"         , animator ); return; }
       if ( ShouldTransitToStepDownJump() ) { _player.StateTransfer.TransitTo( "StepDownJump" , animator ); return; }
       if ( ShouldTransitToIdle()         ) { _player.StateTransfer.TransitTo( "Idle"         , animator ); return; }
-      if ( _player.State.Air        ) { _player.StateTransfer.TransitTo( "Fall"         , animator ); return; }
+      if ( _player.State.Air             ) { _player.StateTransfer.TransitTo( "Fall"         , animator ); return; }
     }
   }
 

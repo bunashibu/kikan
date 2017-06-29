@@ -1,76 +1,66 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ClimbSMB : StateMachineBehaviour {
+public class BattleClimbSMB : StateMachineBehaviour {
   override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-    if (_photonView == null) {
-      _photonView   = animator.GetComponent<PhotonView>();
-      _rigid        = animator.GetComponent<Rigidbody2D>();
-      _colliderFoot = animator.GetComponents<BoxCollider2D>()[1];
-      _rigidState   = animator.GetComponent<PlayerState>();
+    if (_player == null)
+      _player = animator.GetComponent<BattlePlayer>();
 
-      _movement     = animator.GetComponent<LobbyPlayer>().Movement;
-      _hp           = animator.GetComponent<PlayerHp>();
-    }
+    _player.Rigid.isKinematic = true;
+    _player.Rigid.velocity = new Vector2(0.0f, 0.0f);
+    _player.ColliderFoot.isTrigger = true;
 
-    Debug.Log("climb");
-
-    _rigid.isKinematic = true;
-    _rigid.velocity = new Vector2(0.0f, 0.0f);
-    _colliderFoot.isTrigger = true;
     _isTransferable = false;
   }
 
   override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-    if (_photonView.isMine) {
-      bool OnlyLeftKeyDown  = Input.GetKey(KeyCode.LeftArrow)  && !Input.GetKey(KeyCode.RightArrow);
-      bool OnlyRightKeyDown = Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow);
-      bool OnlyUpKeyDown    = Input.GetKey(KeyCode.UpArrow)    && !Input.GetKey(KeyCode.DownArrow);
-      bool OnlyDownKeyDown  = Input.GetKey(KeyCode.DownArrow)  && !Input.GetKey(KeyCode.UpArrow);
-      bool JumpButtonDown   = Input.GetButton("Jump");
+    if (_player.PhotonView.isMine) {
+      Climb();
 
-      if (_hp.IsDead) { ActTransition("Die", animator); return; }
-
-      if (OnlyUpKeyDown)   _movement.ClimbUp();
-      if (OnlyDownKeyDown) _movement.ClimbDown();
-
-      if (_rigidState.Ladder)
+      if (_player.State.Ladder)
         _isTransferable = true;
 
+      if ( _player.Hp.IsDead ) { _player.StateTransfer.TransitTo( "Die" , animator ); return; }
+
       if (_isTransferable) {
-        if ((OnlyLeftKeyDown || OnlyRightKeyDown) && JumpButtonDown) {
-          ActTransition("ClimbJump", animator); return;
-        }
-
-        if (_rigidState.LadderBottomEdge && _rigidState.Ground) {
-          ActTransition("Idle", animator); return;
-        }
-
-        if (_rigidState.Air && !_rigidState.Ladder) {
-          ActTransition("Fall", animator); return;
-        }
+        if ( ShouldTransitToClimbJump() ) { _player.StateTransfer.TransitTo ( "ClimbJump" , animator ) ; return; }
+        if ( ShouldTransitToIdle()      ) { _player.StateTransfer.TransitTo ( "Idle"      , animator ) ; return; }
+        if ( ShouldTransitToFall()      ) { _player.StateTransfer.TransitTo ( "Fall"      , animator ) ; return; }
       }
     }
   }
 
   override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-    _rigid.isKinematic = false;
-    _colliderFoot.isTrigger = false;
+    _player.Rigid.isKinematic = false;
+    _player.ColliderFoot.isTrigger = false;
   }
 
-  private void ActTransition(string stateName, Animator animator) {
-    animator.SetBool(stateName, true);
-    animator.SetBool("Climb", false);
+  private void Climb() {
+    bool OnlyUpKeyDown = Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow);
+    if (OnlyUpKeyDown)
+      _player.Movement.ClimbUp();
+
+    bool OnlyDownKeyDown = Input.GetKey(KeyCode.DownArrow) && !Input.GetKey(KeyCode.UpArrow);
+    if (OnlyDownKeyDown)
+      _player.Movement.ClimbDown();
   }
 
-  private PhotonView _photonView;
-  private Rigidbody2D _rigid;
-  private BoxCollider2D _colliderFoot;
-  private PlayerState _rigidState;
+  private bool ShouldTransitToClimbJump() {
+    bool OnlyLeftKeyDown  = Input.GetKey(KeyCode.LeftArrow)  && !Input.GetKey(KeyCode.RightArrow);
+    bool OnlyRightKeyDown = Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow);
 
-  private LobbyPlayerMovement _movement;
-  private PlayerHp _hp;
+    return (OnlyLeftKeyDown || OnlyRightKeyDown) && Input.GetButton("Jump");
+  }
 
+  private bool ShouldTransitToIdle() {
+    return _player.State.LadderBottomEdge && _player.State.Ground;
+  }
+
+  private bool ShouldTransitToFall() {
+    return _player.State.Air && !_player.State.Ladder;
+  }
+
+  private BattlePlayer _player;
   private bool _isTransferable;
 }
 

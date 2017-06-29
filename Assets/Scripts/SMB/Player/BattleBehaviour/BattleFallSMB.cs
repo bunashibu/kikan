@@ -1,70 +1,80 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FallSMB : StateMachineBehaviour {
+public class BattleFallSMB : StateMachineBehaviour {
   override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-    if (_photonView == null) {
-      _photonView = animator.GetComponent<PhotonView>();
-      _rigidState = animator.GetComponent<PlayerState>();
-      _skillInfo  = animator.GetComponentInChildren<SkillInfo>();
-      _renderers  = animator.GetComponentsInChildren<SpriteRenderer>();
-
-      _movement   = animator.GetComponent<LobbyPlayer>().Movement;
-      _hp         = animator.GetComponent<PlayerHp>();
-    }
-
-    Debug.Log("Fall");
+    if (_player == null)
+      _player = animator.GetComponent<BattlePlayer>();
   }
 
   override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-    if (_photonView.isMine) {
-      bool OnlyLeftKeyDown  = Input.GetKey(KeyCode.LeftArrow)  && !Input.GetKey(KeyCode.RightArrow);
-      bool OnlyRightKeyDown = Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow);
-      bool OnlyDownKeyDown  = Input.GetKey(KeyCode.DownArrow)  && !Input.GetKey(KeyCode.UpArrow);
-      bool OnlyUpKeyDown    = Input.GetKey(KeyCode.UpArrow)    && !Input.GetKey(KeyCode.DownArrow);
-      bool JumpButtonDown   = Input.GetButton("Jump");
-      bool LieDownFlag = OnlyDownKeyDown && !_rigidState.LadderTopEdge;
-      bool ClimbFlag = OnlyUpKeyDown && !_rigidState.LadderTopEdge;
+    if (_player.PhotonView.isMine) {
+      AirMove();
 
-      SkillState stateX = _skillInfo.GetState(SkillName.X);
-      SkillState stateShift = _skillInfo.GetState(SkillName.Shift);
-      SkillState stateZ = _skillInfo.GetState(SkillName.Z);
-
-      bool SkillFlag = (stateX == SkillState.Using) ||
-                       (stateShift == SkillState.Using) ||
-                       (stateZ == SkillState.Using);
-
-      if (_hp.IsDead) { ActTransition("Die", animator); return; }
-
-      if (SkillFlag) { ActTransition("Skill", animator); return; }
-
-      if (OnlyLeftKeyDown)  { _movement.AirMoveLeft(); foreach (var sprite in _renderers) sprite.flipX = false; }
-      if (OnlyRightKeyDown) { _movement.AirMoveRight(); foreach (var sprite in _renderers) sprite.flipX = true; }
-
-      if (_rigidState.Ladder) {
-        if (ClimbFlag) { ActTransition("Climb", animator); return; }
-      }
-
-      if (_rigidState.Ground) {
-        if (OnlyLeftKeyDown || OnlyRightKeyDown) { ActTransition("Walk", animator);       return; }
-        if (LieDownFlag)                         { ActTransition("LieDown", animator);    return; }
-        if (JumpButtonDown)                      { ActTransition("GroundJump", animator); return; }
-        ActTransition("Idle", animator); return;
-      }
+      if ( _player.Hp.IsDead           ) { _player.StateTransfer.TransitTo( "Die"        , animator ); return; }
+      if ( ShouldTransitToSkill()      ) { _player.StateTransfer.TransitTo( "Skill"      , animator ); return; }
+      if ( ShouldTransitToClimb()      ) { _player.StateTransfer.TransitTo( "Climb"      , animator ); return; }
+      if ( ShouldTransitToWalk()       ) { _player.StateTransfer.TransitTo( "Walk"       , animator ); return; }
+      if ( ShouldTransitToLieDown()    ) { _player.StateTransfer.TransitTo( "LieDown"    , animator ); return; }
+      if ( ShouldTransitToGroundJump() ) { _player.StateTransfer.TransitTo( "GroundJump" , animator ); return; }
+      if ( _player.State.Ground        ) { _player.StateTransfer.TransitTo( "Idle"       , animator ); return; }
     }
   }
 
-  private void ActTransition(string stateName, Animator animator) {
-    animator.SetBool(stateName, true);
-    animator.SetBool("Fall", false);
+  private void AirMove() {
+    bool OnlyLeftKeyDown = Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow);
+    if (OnlyLeftKeyDown) {
+      _player.Movement.AirMoveLeft();
+
+      foreach (var sprite in _player.Renderers)
+        sprite.flipX = false;
+    }
+
+    bool OnlyRightKeyDown = Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow);
+    if (OnlyRightKeyDown) {
+      _player.Movement.AirMoveRight();
+
+      foreach (var sprite in _player.Renderers)
+        sprite.flipX = true;
+    }
   }
 
-  private PhotonView _photonView;
-  private PlayerState _rigidState;
-  private SkillInfo _skillInfo;
-  private SpriteRenderer[] _renderers;
+  private bool ShouldTransitToSkill() {
+    bool SkillFlag = ( _player.SkillInfo.GetState ( SkillName.X     ) == SkillState.Using ) ||
+                     ( _player.SkillInfo.GetState ( SkillName.Shift ) == SkillState.Using ) ||
+                     ( _player.SkillInfo.GetState ( SkillName.Z     ) == SkillState.Using );
 
-  private LobbyPlayerMovement _movement;
-  private PlayerHp _hp;
+    return SkillFlag;
+  }
+
+  private bool ShouldTransitToClimb() {
+    bool OnlyUpKeyDown   = Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow);
+    bool OnlyDownKeyDown = Input.GetKey(KeyCode.DownArrow) && !Input.GetKey(KeyCode.UpArrow);
+    bool ClimbFlag       = ( OnlyUpKeyDown   && !_player.State.LadderTopEdge    ) ||
+                           ( OnlyDownKeyDown && !_player.State.LadderBottomEdge );
+
+    return _player.State.Ladder && ClimbFlag;
+  }
+
+  private bool ShouldTransitToWalk() {
+    bool OnlyLeftKeyDown  = Input.GetKey(KeyCode.LeftArrow)  && !Input.GetKey(KeyCode.RightArrow);
+    bool OnlyRightKeyDown = Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow);
+    bool WalkFlag         = OnlyLeftKeyDown || OnlyRightKeyDown;
+
+    return _player.State.Ground && WalkFlag;
+  }
+
+  private bool ShouldTransitToLieDown() {
+    bool OnlyDownKeyDown = Input.GetKey(KeyCode.DownArrow) && !Input.GetKey(KeyCode.UpArrow);
+    bool LieDownFlag     = OnlyDownKeyDown && !_player.State.LadderTopEdge;
+
+    return _player.State.Ground && LieDownFlag;
+  }
+
+  private bool ShouldTransitToGroundJump() {
+    return _player.State.Ground && Input.GetButton("Jump");
+  }
+
+  private BattlePlayer _player;
 }
 

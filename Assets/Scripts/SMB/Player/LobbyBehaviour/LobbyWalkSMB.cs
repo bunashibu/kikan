@@ -17,7 +17,7 @@ public class LobbyWalkSMB : StateMachineBehaviour {
       if ( ShouldTransitToStepDownJump() ) { _player.StateTransfer.TransitTo( "StepDownJump" , animator ); return; }
       if ( ShouldTransitToGroundJump()   ) { _player.StateTransfer.TransitTo( "GroundJump"   , animator ); return; }
       if ( ShouldTransitToIdle()         ) { _player.StateTransfer.TransitTo( "Idle"         , animator ); return; }
-      if ( _player.State.Air        ) { _player.StateTransfer.TransitTo( "Fall"         , animator ); return; }
+      if ( _player.State.Air             ) { _player.StateTransfer.TransitTo( "Fall"         , animator ); return; }
     }
   }
 

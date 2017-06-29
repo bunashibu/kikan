@@ -2,50 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkillSMB : StateMachineBehaviour {
+public class BattleSkillSMB : StateMachineBehaviour {
   override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-    if (_photonView == null) {
-      _photonView = animator.GetComponent<PhotonView>();
-      _rigidState = animator.GetComponent<PlayerState>();
-      _hp         = animator.GetComponent<PlayerHp>();
-    }
+    if (_player == null)
+      _player = animator.GetComponent<BattlePlayer>();
 
     _transitionFlag = false;
-    Debug.Log("skill");
   }
 
   override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-    if (_photonView.isMine) {
-      if (_hp.IsDead) { ActTransition("Die", animator); return; }
-
-      if (_rigidState.Rigor)
+    if (_player.PhotonView.isMine) {
+      if (_player.State.Rigor)
         _transitionFlag = true;
 
-      if (_transitionFlag && !_rigidState.Rigor) {
-        bool OnlyLeftKeyDown  = Input.GetKey(KeyCode.LeftArrow)  && !Input.GetKey(KeyCode.RightArrow);
-        bool OnlyRightKeyDown = Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow);
+      if ( _player.Hp.IsDead ) { _player.StateTransfer.TransitTo( "Die" , animator ); return; }
 
-        if (_rigidState.Ground) {
-          if (OnlyLeftKeyDown || OnlyRightKeyDown) { ActTransition("Walk", animator); return; }
-                                                     ActTransition("Idle", animator); return;
-        }
-
-        if (_rigidState.Air) {
-          ActTransition("Fall", animator); return;
-        }
+      if (_transitionFlag && !_player.State.Rigor) {
+        if ( ShouldTransitToWalk() ) { _player.StateTransfer.TransitTo( "Walk" , animator ); return; }
+        if ( _player.State.Ground  ) { _player.StateTransfer.TransitTo( "Idle" , animator ); return; }
+        if ( _player.State.Air     ) { _player.StateTransfer.TransitTo( "Fall" , animator ); return; }
       }
     }
   }
 
-  private void ActTransition(string stateName, Animator animator) {
-    animator.SetBool(stateName, true);
-    animator.SetBool("Skill", false);
+  private bool ShouldTransitToWalk() {
+    bool OnlyLeftKeyDown  = Input.GetKey(KeyCode.LeftArrow)  && !Input.GetKey(KeyCode.RightArrow);
+    bool OnlyRightKeyDown = Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow);
+    bool WalkFlag         = OnlyLeftKeyDown || OnlyRightKeyDown;
+
+    return _player.State.Ground && WalkFlag;
   }
 
-  private PhotonView _photonView;
-  private PlayerState _rigidState;
-
-  private PlayerHp _hp;
+  private BattlePlayer _player;
   private bool _transitionFlag;
 }
 

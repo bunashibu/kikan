@@ -419,6 +419,7 @@ MonoBehaviour:
   _renderer: {fileID: 212620572494064958}
   _status: {fileID: 114037318656622916}
   _playerView: {fileID: 114800105221254742}
+  _player: {fileID: 114346652777482960}
 --- !u!114 &114071637982662584
 MonoBehaviour:
   m_ObjectHideFlags: 1

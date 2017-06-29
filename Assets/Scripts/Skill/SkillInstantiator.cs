@@ -33,9 +33,9 @@ public class SkillInstantiator : Photon.MonoBehaviour {
       _canUse = true;
     });
 
-    _skillInfo.SetState(_names[i], SkillState.Using);
+    _player.SkillInfo.SetState(_names[i], SkillState.Using);
     MonoUtility.Instance.DelaySec(_skillCT[i], () => {
-      _skillInfo.SetState(_names[i], SkillState.Ready);
+      _player.SkillInfo.SetState(_names[i], SkillState.Ready);
     });
 
     _rigidState.Rigor = true;
@@ -56,6 +56,7 @@ public class SkillInstantiator : Photon.MonoBehaviour {
   [SerializeField] private SpriteRenderer _renderer;
   [SerializeField] private PlayerStatus _status;
   [SerializeField] private PhotonView _playerView;
+  [SerializeField] private BattlePlayer _player;
   private bool _canUse = true;
 }
 

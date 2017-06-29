@@ -1,46 +1,41 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LieDownSMB : StateMachineBehaviour {
+public class BattleLieDownSMB : StateMachineBehaviour {
   override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-    if (_photonView == null) {
-      _photonView = animator.GetComponent<PhotonView>();
-      _rigidState = animator.GetComponent<PlayerState>();
-      _hp         = animator.GetComponent<PlayerHp>();
-    }
-
-    Debug.Log("liedown");
+    if (_player == null)
+      _player = animator.GetComponent<BattlePlayer>();
   }
 
   override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-    if (_photonView.isMine) {
-      bool OnlyLeftKeyDown  = Input.GetKey(KeyCode.LeftArrow)  && !Input.GetKey(KeyCode.RightArrow);
-      bool OnlyRightKeyDown = Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow);
-      bool JumpButtonDown   = Input.GetButton("Jump");
-      bool DownKeyUp        = Input.GetKeyUp(KeyCode.DownArrow);
-      bool UpKeyDown        = Input.GetKeyDown(KeyCode.UpArrow);
-
-      if (_hp.IsDead) { ActTransition("Die", animator); return; }
-
-      if (_rigidState.Ground) {
-        if (OnlyLeftKeyDown || OnlyRightKeyDown) { ActTransition("Walk", animator);         return; }
-        if (JumpButtonDown)                      { ActTransition("StepDownJump", animator); return; }
-        if (DownKeyUp || UpKeyDown)              { ActTransition("Idle", animator);         return; }
-      }
-
-      if (_rigidState.Air) {
-        ActTransition("Fall", animator); return;
-      }
+    if (_player.PhotonView.isMine) {
+      if ( _player.Hp.IsDead             ) { _player.StateTransfer.TransitTo( "Die"          , animator ); return; }
+      if ( ShouldTransitToWalk()         ) { _player.StateTransfer.TransitTo( "Walk"         , animator ); return; }
+      if ( ShouldTransitToStepDownJump() ) { _player.StateTransfer.TransitTo( "StepDownJump" , animator ); return; }
+      if ( ShouldTransitToIdle()         ) { _player.StateTransfer.TransitTo( "Idle"         , animator ); return; }
+      if ( _player.State.Air             ) { _player.StateTransfer.TransitTo( "Fall"         , animator ); return; }
     }
   }
 
-  private void ActTransition(string stateName, Animator animator) {
-    animator.SetBool(stateName, true);
-    animator.SetBool("LieDown", false);
+  private bool ShouldTransitToWalk() {
+    bool OnlyLeftKeyDown  = Input.GetKey(KeyCode.LeftArrow)  && !Input.GetKey(KeyCode.RightArrow);
+    bool OnlyRightKeyDown = Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow);
+    bool WalkFlag         = OnlyLeftKeyDown || OnlyRightKeyDown;
+
+    return _player.State.Ground && WalkFlag;
   }
 
-  private PhotonView _photonView;
-  private PlayerState _rigidState;
-  private PlayerHp _hp;
+  private bool ShouldTransitToStepDownJump() {
+    return _player.State.Ground && Input.GetButton("Jump");
+  }
+
+  private bool ShouldTransitToIdle() {
+    bool DownKeyUp = Input.GetKeyUp(KeyCode.DownArrow);
+    bool UpKeyDown = Input.GetKeyDown(KeyCode.UpArrow);
+
+    return _player.State.Ground && (DownKeyUp || UpKeyDown);
+  }
+
+  private BattlePlayer _player;
 }
 
