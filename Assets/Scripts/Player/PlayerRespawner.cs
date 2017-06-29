@@ -13,6 +13,8 @@ public class PlayerRespawner : MonoBehaviour {
       gameObject.transform.position = pos;
 
       _player.Hp.FullRecover();
+      _player.SyncObserver.SyncCurHp();
+      _player.SyncObserver.SyncIsDead();
       _player.SyncObserver.SyncUpdateHpView();
 
       ActTransition();

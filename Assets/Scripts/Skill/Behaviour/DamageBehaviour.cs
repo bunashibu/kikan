@@ -12,6 +12,8 @@ public class DamageBehaviour {
 
     var player = target.GetComponent<BattlePlayer>();
     player.Hp.Minus(Damage);
+    player.SyncObserver.SyncCurHp();
+    player.SyncObserver.SyncIsDead();
     player.SyncObserver.SyncUpdateHpView();
   }
 

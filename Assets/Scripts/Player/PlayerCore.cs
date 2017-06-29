@@ -34,7 +34,7 @@ public class PlayerCore : Photon.MonoBehaviour {
       }
 
       _player.Gold.Minus(_coreList[i].Gold);
-      //_player.SyncObserver.SyncUpdateGoldView();
+      _player.Gold.UpdateView();
 
       _coreList[i].LvUp();
       UpdateView(i, _coreList[i].Level);

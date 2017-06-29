@@ -38,6 +38,7 @@ public class JobPicker : MonoBehaviour {
 
   private void InstantiatePlayer(int n) {
     var pos = _gameData.RespawnPosition;
+
     // INFO: Team 0 is Red(Right), Team 1 is Blue(Left)
     if ((int)PhotonNetwork.player.CustomProperties["Team"] == 1)
       pos.x *= -1;
