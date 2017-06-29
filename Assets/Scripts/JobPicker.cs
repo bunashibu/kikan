@@ -37,18 +37,18 @@ public class JobPicker : MonoBehaviour {
   }
 
   private void InstantiatePlayer(int n) {
-    // Team 0 is Red(Right), Team 1 is Blue(Left)
     var pos = _gameData.RespawnPosition;
+    // INFO: Team 0 is Red(Right), Team 1 is Blue(Left)
     if ((int)PhotonNetwork.player.CustomProperties["Team"] == 1)
       pos.x *= -1;
 
-    _player = PhotonNetwork.Instantiate("Prehabs/Job/" + _jobs[n].name, pos, Quaternion.identity, 0);
+    _player = PhotonNetwork.Instantiate("Prehabs/Job/" + _jobs[n].name, pos, Quaternion.identity, 0).GetComponent<BattlePlayer>();
     AdjustFlipX();
     SetViewID();
   }
 
   private void AdjustFlipX() {
-    var renderers = _player.GetComponentsInChildren<SpriteRenderer>();
+    var renderers = _player.Renderers;
     if ((int)PhotonNetwork.player.CustomProperties["Team"] == 1) {
       foreach (var sprite in renderers)
         sprite.flipX = true;
@@ -56,58 +56,69 @@ public class JobPicker : MonoBehaviour {
   }
 
   private void SetViewID() {
-    var viewID = _player.GetComponent<PhotonView>().viewID;
+    var viewID = _player.PhotonView.viewID;
 
     var props = new Hashtable() {{"ViewID", viewID}};
     PhotonNetwork.player.SetCustomProperties(props);
   }
 
   private void InitPlayerHp() {
-    /*
-    var playerHp = _player.GetComponent<BattlePlayer>().Hp;
-    playerHp.Init(_hpBar);
-    playerHp.UpdateView();
-    */
+    _player.Hp.SetViewObject(_hpBar);
+    _player.SyncObserver.SyncUpdateHpView();
   }
 
   private void InitPlayerExp() {
-    var playerNextExp = _player.GetComponent<PlayerNextExp>();
+    /*
+    var playerNextExp = _player.NextExp;
     playerNextExp.Init(_expBar);
     playerNextExp.UpdateView();
+    */
   }
 
   private void InitPlayerLv() {
+    /*
     var playerLv = _player.GetComponent<PlayerLevel>();
     playerLv.Init(_lvPanel, _kdPanel);
     playerLv.UpdateView();
+    */
   }
 
   private void InitPlayerKillDeath() {
+    /*
     var playerKDRec = _player.GetComponent<PlayerKillDeath>();
     playerKDRec.Init(_kdPanel);
+    */
   }
 
   private void InitPlayerGold() {
+    /*
     var playerGold = _player.GetComponent<PlayerGold>();
     playerGold.Init(_goldPanel);
+    */
   }
 
   private void InitPlayerCore() {
+    /*
     var playerCore = _player.GetComponent<PlayerCore>();
     playerCore.Init(_corePanel);
+    */
   }
 
   private void InitPlayerStatus(int n) {
+    /*
     var status = _player.GetComponent<PlayerStatus>();
     status.Init(_jobData[n]);
+    */
   }
 
   private void InitPlayerMovement(int n) {
+    /*
     var linearMove = _player.GetComponent<GroundLinearMove>();
     var jump = _player.GetComponent<GroundJump>();
 
     linearMove.SetForce(_jobData[n].Spd);
     jump.SetForce(_jobData[n].Jmp);
+    */
   }
 
   private void DisableAllButtons() {
@@ -127,6 +138,6 @@ public class JobPicker : MonoBehaviour {
   [SerializeField] private GoldPanel _goldPanel;
   [SerializeField] private CorePanel _corePanel;
   [SerializeField] private GameData _gameData;
-  private GameObject _player;
+  private BattlePlayer _player;
 }
 

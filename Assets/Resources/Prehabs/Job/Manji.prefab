@@ -629,6 +629,7 @@ MonoBehaviour:
   _colliderFoot: {fileID: 0}
   _syncObserver: {fileID: 114610620364185106}
   _hpTable: {fileID: 0}
+  _worldBar: {fileID: 114283101673446462}
 --- !u!114 &114365085813304948
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -847,8 +848,8 @@ MonoBehaviour:
   - {fileID: 114103916784843228}
   - {fileID: 114365085813304948}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 1
+  instantiationId: 1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114610620364185106
@@ -957,8 +958,8 @@ MonoBehaviour:
   - {fileID: 114409857702172010}
   - {fileID: 114878352491881542}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 2
+  instantiationId: 2
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114878352491881542
