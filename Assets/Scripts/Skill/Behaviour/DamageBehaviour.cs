@@ -10,9 +10,9 @@ public class DamageBehaviour {
   public void DamageToPlayer(int power, int maxDeviation, GameObject target) {
     CalcDamage(power, maxDeviation);
 
-    var targetHp = target.GetComponent<PlayerHp>();
-    targetHp.Minus(Damage);
-    //targetHp.UpdateView();
+    var player = target.GetComponent<BattlePlayer>();
+    player.Hp.Minus(Damage);
+    player.SyncObserver.SyncUpdateHpView();
   }
 
   private void CalcDamage(int power, int maxDeviation) {

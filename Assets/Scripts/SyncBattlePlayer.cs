@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SyncPlayer : MonoBehaviour {
+public class SyncBattlePlayer : MonoBehaviour {
   void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
     if (stream.isWriting) {
       stream.SendNext(_renderer.flipX);
@@ -14,8 +14,7 @@ public class SyncPlayer : MonoBehaviour {
       stream.SendNext(_anim.GetBool("GroundJump"));
       stream.SendNext(_anim.GetBool("ClimbJump"));
       stream.SendNext(_anim.GetBool("Skill"));
-      //stream.SendNext(_anim.GetBool("Die"));
-      //stream.SendNext(_health);
+      stream.SendNext(_anim.GetBool("Die"));
     } else {
       _renderer.flipX = (bool)stream.ReceiveNext();
       _anim.SetBool("Idle", (bool)stream.ReceiveNext());
@@ -26,7 +25,7 @@ public class SyncPlayer : MonoBehaviour {
       _anim.SetBool("GroundJump", (bool)stream.ReceiveNext());
       _anim.SetBool("ClimbJump", (bool)stream.ReceiveNext());
       _anim.SetBool("Skill", (bool)stream.ReceiveNext());
-      //_anim.SetBool("Die", (bool)stream.ReceiveNext());
+      _anim.SetBool("Die", (bool)stream.ReceiveNext());
     }
   }
 

@@ -3,27 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class DamageSkill : Skill {
-  // INFO: Must Instantiate in InheritedClass like below.
-  protected abstract void Awake(); /* {
-    _damageBehaviour = new DamageBehaviour();
-    _rewardGetter = new RewardGetter();
-  }
-  */
+  /*                                                      *
+   * INFO: Must Instantiate in InheritedClass like below. *
+   *                                                      */
+  protected abstract void Awake();
 
-  protected void DamageToPlayer(int power, int maxDeviation, GameObject target) {
+  /*                                             *
+   * protected override void Awake() {           *
+   *   _damageBehaviour = new DamageBehaviour(); *
+   *   _rewardGetter = new RewardGetter();       *
+   * }                                           *
+   *                                             */
+
+  protected void DamageToPlayer(int power, int maxDeviation, BattlePlayer target) {
     _damageBehaviour.SetSkillUser(_skillUser);
-    _damageBehaviour.DamageToPlayer(power, maxDeviation, target);
+    _damageBehaviour.DamageToPlayer(power, maxDeviation, target.gameObject);
 
-    var targetView = target.GetComponent<PhotonView>();
     photonView.RPC("SyncInstantiateDamagePanel", PhotonTargets.All, _damageBehaviour.Damage,
-                   _damageBehaviour.Critical, targetView.owner, targetView.viewID);
+                   _damageBehaviour.Critical, target.PhotonView.owner, target.PhotonView.viewID);
 
-    var targetHp = target.GetComponent<PlayerHp>();
-    if (targetHp.IsDead) {
+    if (target.Hp.IsDead) {
       _rewardGetter.SetRewardReceiver(_skillUser, _team);
-      _rewardGetter.GetRewardFrom(target);
+      _rewardGetter.GetRewardFrom(target.gameObject);
 
-      RecordKillDeath(target);
+      RecordKillDeath(target.gameObject);
     }
   }
 

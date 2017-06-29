@@ -11,12 +11,13 @@ public class ManjiShift : DamageSkill {
   void OnTriggerEnter2D(Collider2D collider) {
     if (PhotonNetwork.isMasterClient) {
       var target = collider.gameObject;
+      var targetPlayer = target.GetComponent<BattlePlayer>();
 
       if (target == _skillUser)
         return;
 
       if (target.tag == "Player" && _limiter.Check(target, _team))
-        DamageToPlayer(_power, _maxDeviation, target);
+        DamageToPlayer(_power, _maxDeviation, targetPlayer);
     }
   }
 

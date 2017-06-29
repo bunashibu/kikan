@@ -32,9 +32,9 @@ public class PlayerHp : Hp {
     Plus(Max);
   }
 
-  /*                                                          */
-  /* INFO: ForceSyncXXX method is only called by SyncObserver */
-  /*                                                          */
+  /*                                                               *
+   * INFO: ForceSyncXXX method must be called by SyncObserver only *
+   *                                                               */
   public void ForceSyncHp(int cur, int min, int max) {
     Assert.IsTrue(_player.SyncObserver.ShouldSync);
     Cur = cur;
