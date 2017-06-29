@@ -20,8 +20,8 @@ public class PlayerAutomaticHealer : Photon.MonoBehaviour {
   public void UpdateMaxHealQuantity() {
     Assert.IsTrue(photonView.isMine);
 
-    double ratio = (double)(_core.Heal / 100.0);
-    HealQuantity = (int)(_healTable.Data[_level.Lv - 1] * ratio);
+    double ratio = (double)(_player.Core.Heal / 100.0);
+    HealQuantity = (int)(_healTable.Data[_player.Level.Lv - 1] * ratio);
   }
 
   private void AutomaticHeal() {
@@ -35,14 +35,12 @@ public class PlayerAutomaticHealer : Photon.MonoBehaviour {
       if (_player.Hp.IsDead) return;
 
       _player.Hp.Plus(HealQuantity);
-      //_playerHp.UpdateView();
+      _player.SyncObserver.SyncUpdateHpView();
     });
   }
 
   [SerializeField] private BattlePlayer _player;
   [SerializeField] private DataTable _healTable;
-  [SerializeField] private PlayerLevel _level;
-  [SerializeField] private PlayerCore _core;
   public int HealQuantity { get; private set; }
 
   private bool _isActive = false;

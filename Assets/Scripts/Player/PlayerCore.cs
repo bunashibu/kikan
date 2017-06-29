@@ -21,7 +21,7 @@ public class PlayerCore : Photon.MonoBehaviour {
         return;
       }
 
-      bool notEnoughGold = (_playerGold.Cur < _coreList[i].Gold);
+      bool notEnoughGold = (_player.Gold.Cur < _coreList[i].Gold);
       if (notEnoughGold) {
         Debug.Log("You don't have enough gold");
         return;
@@ -33,16 +33,16 @@ public class PlayerCore : Photon.MonoBehaviour {
         return;
       }
 
-      _playerGold.Minus(_coreList[i].Gold);
-      _playerGold.UpdateView();
+      _player.Gold.Minus(_coreList[i].Gold);
+      //_player.SyncObserver.SyncUpdateGoldView();
 
       _coreList[i].LvUp();
       UpdateView(i, _coreList[i].Level);
 
       // Hp Core
       if (i == 1) {
-        _playerHp.UpdateMaxHp();
-        //_playerHp.UpdateView();
+        _player.Hp.UpdateMaxHp();
+        _player.SyncObserver.SyncUpdateHpView();
       }
 
       // Heal Core
@@ -91,8 +91,7 @@ public class PlayerCore : Photon.MonoBehaviour {
     }
   }
 
-  [SerializeField] private PlayerGold _playerGold;
-  [SerializeField] private PlayerHp _playerHp;
+  [SerializeField] private BattlePlayer _player;
   [SerializeField] private PlayerAutomaticHealer _playerHealer;
   [SerializeField] private List<Core> _coreList;
   private CorePanel _corePanel;

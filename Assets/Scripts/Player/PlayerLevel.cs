@@ -27,14 +27,14 @@ public class PlayerLevel : Level {
     if (photonView.isMine) {
       UpdateView();
 
-      _playerHp.UpdateMaxHp();
-      //_playerHp.UpdateView();
+      _player.Hp.UpdateMaxHp();
+      _player.SyncObserver.SyncUpdateHpView();
 
       _playerHealer.UpdateMaxHealQuantity();
     }
   }
 
-  [SerializeField] private PlayerHp _playerHp;
+  [SerializeField] private BattlePlayer _player;
   [SerializeField] private PlayerAutomaticHealer _playerHealer;
   private LevelPanel _lvPanel;
   private KillDeathPanel _kdPanel;

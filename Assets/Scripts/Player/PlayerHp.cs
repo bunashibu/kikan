@@ -22,10 +22,8 @@ public class PlayerHp : Hp {
   }
 
   public void UpdateMaxHp() {
-    /*
     double ratio = (double)((_player.Core.Hp + 100) / 100.0);
     Max = (int)(_hpTable.Data[_player.Level.Lv - 1] * ratio);
-    */
 
     _player.SyncObserver.SyncMaxHp();
   }

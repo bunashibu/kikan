@@ -71,6 +71,14 @@ public class BattlePlayerMovement {
     _lieDown.Stand(collider);
   }
 
+  public void SetLinearMoveForce(float force) {
+    _coreGroundLinear.SetForce(force);
+  }
+
+  public void SetJumpForce(float force) {
+    _coreGroundJump.SetForce(force);
+  }
+
   private CoreAirLinearMove _coreAirLinear;
   private CoreGroundLinearMove _coreGroundLinear;
 

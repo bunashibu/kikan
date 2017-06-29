@@ -5,11 +5,11 @@ using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class JobPicker : MonoBehaviour {
   void Start() {
-    InstantiateHudObjects();
     Destroy(gameObject, 10.0f);
   }
 
   public void Pick(int n) {
+    InstantiateHudObjects();
     InstantiatePlayer(n);
 
     InitPlayerHp();
@@ -68,57 +68,40 @@ public class JobPicker : MonoBehaviour {
   }
 
   private void InitPlayerExp() {
-    /*
     var playerNextExp = _player.NextExp;
     playerNextExp.Init(_expBar);
     playerNextExp.UpdateView();
-    */
   }
 
   private void InitPlayerLv() {
-    /*
-    var playerLv = _player.GetComponent<PlayerLevel>();
+    var playerLv = _player.Level;
     playerLv.Init(_lvPanel, _kdPanel);
     playerLv.UpdateView();
-    */
   }
 
   private void InitPlayerKillDeath() {
-    /*
-    var playerKDRec = _player.GetComponent<PlayerKillDeath>();
+    var playerKDRec = _player.KillDeath;
     playerKDRec.Init(_kdPanel);
-    */
   }
 
   private void InitPlayerGold() {
-    /*
-    var playerGold = _player.GetComponent<PlayerGold>();
+    var playerGold = _player.Gold;
     playerGold.Init(_goldPanel);
-    */
   }
 
   private void InitPlayerCore() {
-    /*
-    var playerCore = _player.GetComponent<PlayerCore>();
+    var playerCore = _player.Core;
     playerCore.Init(_corePanel);
-    */
   }
 
   private void InitPlayerStatus(int n) {
-    /*
-    var status = _player.GetComponent<PlayerStatus>();
+    var status = _player.Status;
     status.Init(_jobData[n]);
-    */
   }
 
   private void InitPlayerMovement(int n) {
-    /*
-    var linearMove = _player.GetComponent<GroundLinearMove>();
-    var jump = _player.GetComponent<GroundJump>();
-
-    linearMove.SetForce(_jobData[n].Spd);
-    jump.SetForce(_jobData[n].Jmp);
-    */
+    _player.Movement.SetLinearMoveForce(_jobData[n].Spd);
+    _player.Movement.SetJumpForce(_jobData[n].Jmp);
   }
 
   private void DisableAllButtons() {
