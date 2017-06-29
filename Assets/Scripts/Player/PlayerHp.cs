@@ -12,9 +12,12 @@ public class PlayerHp : Hp {
     Min = 0;
     Max = _hpTable.Data[0];
     Cur = Max;
+
+    if (_player.PhotonView.isMine)
+      _worldBar.gameObject.SetActive(false);
   }
 
-  public void SetViewObject(Bar hudBar) {
+  public void AttachHudBar(Bar hudBar) {
     _hudBar = hudBar;
   }
 
@@ -31,6 +34,9 @@ public class PlayerHp : Hp {
     Plus(Max);
   }
 
+  /*                                                          */
+  /* INFO: ForceSyncXXX method is only called by SyncObserver */
+  /*                                                          */
   public void ForceSyncHp(int cur, int min, int max) {
     Assert.IsTrue(_player.SyncObserver.ShouldSync);
     Cur = cur;

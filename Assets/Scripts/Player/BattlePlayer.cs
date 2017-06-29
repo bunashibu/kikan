@@ -7,7 +7,7 @@ public class BattlePlayer : MonoBehaviour {
   void Awake() {
     Movement      = new BattlePlayerMovement();
     State         = new PlayerState(_colliderCenter, _colliderFoot);
-    Hp            = new PlayerHp(this, _hpTable, _worldBar);
+    Hp            = new PlayerHp(this, _hpTable, _worldHpBar);
     StateTransfer = new StateTransfer(_initState);
     SkillInfo     = new SkillInfo();
   }
@@ -46,11 +46,6 @@ public class BattlePlayer : MonoBehaviour {
   // respawner
   // automatic healer
 
-  /*
-    _hudBar = hudBar;
-    _worldBar.gameObject.SetActive(false);
-  */
-
   [SerializeField] private PhotonView       _photonView;
   [SerializeField] private Transform        _trans;
   [SerializeField] private SpriteRenderer[] _renderers;  // INFO: [PlayerSprite, WeaponSprite]
@@ -61,7 +56,7 @@ public class BattlePlayer : MonoBehaviour {
   [SerializeField] private BattlePlayerSyncObserver _syncObserver;
 
   [SerializeField] private DataTable _hpTable;
-  [SerializeField] private Bar _worldBar;
+  [SerializeField] private Bar _worldHpBar;
 
   private static readonly string _initState = "Idle";
 }

@@ -10,7 +10,7 @@ public class PlayerAutomaticHealer : Photon.MonoBehaviour {
 
   void Update() {
     if (photonView.isMine) {
-      bool isInjured = (_playerHp.Cur < _playerHp.Max);
+      bool isInjured = (_player.Hp.Cur < _player.Hp.Max);
 
       if (isInjured)
         AutomaticHeal();
@@ -32,15 +32,15 @@ public class PlayerAutomaticHealer : Photon.MonoBehaviour {
     MonoUtility.Instance.DelaySec(HealInterval, () => {
       _isActive = false;
 
-      if (_playerHp.IsDead) return;
+      if (_player.Hp.IsDead) return;
 
-      _playerHp.Plus(HealQuantity);
+      _player.Hp.Plus(HealQuantity);
       //_playerHp.UpdateView();
     });
   }
 
+  [SerializeField] private BattlePlayer _player;
   [SerializeField] private DataTable _healTable;
-  [SerializeField] private PlayerHp _playerHp;
   [SerializeField] private PlayerLevel _level;
   [SerializeField] private PlayerCore _core;
   public int HealQuantity { get; private set; }

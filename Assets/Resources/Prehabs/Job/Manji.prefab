@@ -621,15 +621,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a8d6c748c9a9264b867ad5ac0dceefe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _photonView: {fileID: 0}
-  _trans: {fileID: 0}
-  _renderers: []
-  _rigid: {fileID: 0}
-  _colliderCenter: {fileID: 0}
-  _colliderFoot: {fileID: 0}
+  _photonView: {fileID: 114800105221254742}
+  _trans: {fileID: 224235004673622830}
+  _renderers:
+  - {fileID: 212543119074357088}
+  - {fileID: 212620572494064958}
+  _rigid: {fileID: 50159110143766000}
+  _colliderCenter: {fileID: 61116396818863762}
+  _colliderFoot: {fileID: 61963090403572176}
   _syncObserver: {fileID: 114610620364185106}
-  _hpTable: {fileID: 0}
-  _worldBar: {fileID: 114283101673446462}
+  _hpTable: {fileID: 11400000, guid: 1e81de872edf78241a359a3838a6f3b8, type: 2}
+  _worldHpBar: {fileID: 114283101673446462}
 --- !u!114 &114365085813304948
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -848,8 +850,8 @@ MonoBehaviour:
   - {fileID: 114103916784843228}
   - {fileID: 114365085813304948}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 1
-  instantiationId: 1
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114610620364185106
@@ -958,8 +960,8 @@ MonoBehaviour:
   - {fileID: 114409857702172010}
   - {fileID: 114878352491881542}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 2
-  instantiationId: 2
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114878352491881542

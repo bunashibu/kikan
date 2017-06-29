@@ -14074,10 +14074,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d4901d621e93d784fb9bb619c9dff702, type: 2}
   - {fileID: 11400000, guid: 04fff0473b3c2ca40b8cc82fcc70ad36, type: 2}
   _canvas: {fileID: 375732893}
-  _hudHpBar: {fileID: 114000012113145708, guid: 39b62fe9619e9e44b99229f851890bf7,
-    type: 2}
-  _hudExpBar: {fileID: 114591676240663140, guid: 1dcf407e0a853d440845ca486f8e6523,
-    type: 2}
+  _hpBar: {fileID: 114000012113145708, guid: 39b62fe9619e9e44b99229f851890bf7, type: 2}
+  _expBar: {fileID: 114591676240663140, guid: 1dcf407e0a853d440845ca486f8e6523, type: 2}
   _lvPanel: {fileID: 114578394497458258, guid: d354bc829ce1fa644b2a1f50e3fc1af9, type: 2}
   _kdPanel: {fileID: 1953781252}
   _goldPanel: {fileID: 889843195}
