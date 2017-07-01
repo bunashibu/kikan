@@ -14,6 +14,8 @@ public class DamageBehaviour {
     player.Hp.Minus(Damage);
     player.SyncObserver.SyncCurHp();
     player.SyncObserver.SyncIsDead();
+
+    player.Hp.UpdateView();
     player.SyncObserver.SyncUpdateHpView();
   }
 

@@ -21,15 +21,20 @@ public class PlayerHp : Hp {
     _hudBar = hudBar;
   }
 
+  public void FullRecover() {
+    Plus(Max);
+  }
+
   public void UpdateMaxHp() {
     double ratio = (double)((_player.Core.Hp + 100) / 100.0);
     Max = (int)(_hpTable.Data[_player.Level.Lv - 1] * ratio);
-
-    _player.SyncObserver.SyncMaxHp();
   }
 
-  public void FullRecover() {
-    Plus(Max);
+  public void UpdateView() {
+    if (_player.PhotonView.isMine)
+      _hudBar.UpdateView(Cur, Max);
+    else
+      _worldBar.UpdateView(Cur, Max);
   }
 
   /*                                                               *
@@ -55,15 +60,6 @@ public class PlayerHp : Hp {
   public void ForceSyncIsDead(bool isDead) {
     Assert.IsTrue(_player.SyncObserver.ShouldSync);
     IsDead = isDead;
-  }
-
-  public void ForceSyncUpdateView() {
-    Assert.IsTrue(_player.SyncObserver.ShouldSync);
-
-    if (_player.PhotonView.isMine)
-      _hudBar.UpdateView(Cur, Max);
-    else
-      _worldBar.UpdateView(Cur, Max);
   }
 
   private BattlePlayer _player;

@@ -20,7 +20,7 @@ public class ManjiZ : DamageSkill {
 
       if (target.tag == "Player" && _limiter.Check(target, _team)) {
         DamageToPlayer(_power, _maxDeviation, targetPlayer);
-        _stateChanger.ChangeTo("Rigor", 2.0f, target);
+        //_stateChanger.ChangeTo("Rigor", 2.0f, target);
       }
     }
   }

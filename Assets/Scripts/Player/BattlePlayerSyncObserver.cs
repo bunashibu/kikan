@@ -21,7 +21,7 @@ public class BattlePlayerSyncObserver : Photon.MonoBehaviour {
   }
 
   public void SyncUpdateHpView() {
-    _player.PhotonView.RPC("SyncUpdateHpViewRPC", PhotonTargets.All);
+    _player.PhotonView.RPC("SyncUpdateHpViewRPC", PhotonTargets.Others);
   }
 
   [PunRPC]
@@ -46,7 +46,7 @@ public class BattlePlayerSyncObserver : Photon.MonoBehaviour {
 
   [PunRPC]
   private void SyncUpdateHpViewRPC() {
-    ForceSync( () => { _player.Hp.ForceSyncUpdateView(); } );
+    _player.Hp.UpdateView();
   }
 
   private void ForceSync(Action action) {

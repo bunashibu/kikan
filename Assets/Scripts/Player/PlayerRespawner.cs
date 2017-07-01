@@ -15,6 +15,8 @@ public class PlayerRespawner : MonoBehaviour {
       _player.Hp.FullRecover();
       _player.SyncObserver.SyncCurHp();
       _player.SyncObserver.SyncIsDead();
+
+      _player.Hp.UpdateView();
       _player.SyncObserver.SyncUpdateHpView();
 
       ActTransition();
