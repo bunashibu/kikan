@@ -37,11 +37,6 @@ public class PlayerHp : Hp {
       _worldBar.UpdateView(Cur, Max);
   }
 
-  protected override void Die() {
-    base.Die();
-    _player.SyncObserver.SyncIsDead();
-  }
-
   /*                                                               *
    * INFO: ForceSyncXXX method must be called by SyncObserver only *
    *                                                               */
@@ -60,11 +55,6 @@ public class PlayerHp : Hp {
   public void ForceSyncMax(int max) {
     Assert.IsTrue(_player.SyncObserver.ShouldSync);
     Max = max;
-  }
-
-  public void ForceSyncIsDead(bool isDead) {
-    Assert.IsTrue(_player.SyncObserver.ShouldSync);
-    IsDead = isDead;
   }
 
   private BattlePlayer _player;

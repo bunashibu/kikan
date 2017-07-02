@@ -22,7 +22,7 @@ public abstract class DamageSkill : Skill {
     photonView.RPC("SyncInstantiateDamagePanel", PhotonTargets.All, _damageBehaviour.Damage,
                    _damageBehaviour.Critical, target.PhotonView.owner, target.PhotonView.viewID);
 
-    if (target.Hp.IsDead) {
+    if (target.Hp.Cur <= 0) {
       _rewardGetter.SetRewardReceiver(_skillUser, _team);
       _rewardGetter.GetRewardFrom(target.gameObject);
 

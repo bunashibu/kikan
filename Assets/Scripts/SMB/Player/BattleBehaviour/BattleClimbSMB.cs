@@ -20,7 +20,7 @@ public class BattleClimbSMB : StateMachineBehaviour {
       if (_player.State.Ladder)
         _isTransferable = true;
 
-      if ( _player.Hp.IsDead ) { _player.StateTransfer.TransitTo( "Die" , animator ); return; }
+      if ( _player.Hp.Cur <= 0 ) { _player.StateTransfer.TransitTo( "Die" , animator ); return; }
 
       if (_isTransferable) {
         if ( ShouldTransitToClimbJump() ) { _player.StateTransfer.TransitTo ( "ClimbJump" , animator ) ; return; }

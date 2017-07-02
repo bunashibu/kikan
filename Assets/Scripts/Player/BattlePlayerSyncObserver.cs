@@ -16,10 +16,6 @@ public class BattlePlayerSyncObserver : Photon.MonoBehaviour {
     _player.PhotonView.RPC("SyncMaxHpRPC", PhotonTargets.Others, _player.Hp.Max);
   }
 
-  public void SyncIsDead() {
-    _player.PhotonView.RPC("SyncIsDeadRPC", PhotonTargets.Others, _player.Hp.IsDead);
-  }
-
   public void SyncUpdateHpView() {
     _player.PhotonView.RPC("SyncUpdateHpViewRPC", PhotonTargets.Others);
   }
@@ -37,11 +33,6 @@ public class BattlePlayerSyncObserver : Photon.MonoBehaviour {
   [PunRPC]
   private void SyncMaxHpRPC(int max) {
     ForceSync( () => { _player.Hp.ForceSyncCur(max); } );
-  }
-
-  [PunRPC]
-  private void SyncIsDeadRPC(bool isDead) {
-    ForceSync( () => { _player.Hp.ForceSyncIsDead(isDead); } );
   }
 
   [PunRPC]

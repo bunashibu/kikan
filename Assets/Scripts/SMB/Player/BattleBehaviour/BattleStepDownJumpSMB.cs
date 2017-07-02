@@ -15,7 +15,7 @@ public class BattleStepDownJumpSMB : StateMachineBehaviour {
     if (_player.PhotonView.isMine) {
       UpdateFlag();
 
-      if ( _player.Hp.IsDead              ) { _player.StateTransfer.TransitTo( "Die" , animator ); return; }
+      if ( _player.Hp.Cur <= 0              ) { _player.StateTransfer.TransitTo( "Die" , animator ); return; }
       if ( _player.State.Air && _fallFlag ) { _player.StateTransfer.TransitTo( "Fall" , animator ); return; }
     }
   }

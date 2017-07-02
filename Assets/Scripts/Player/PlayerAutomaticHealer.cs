@@ -32,7 +32,7 @@ public class PlayerAutomaticHealer : Photon.MonoBehaviour {
     MonoUtility.Instance.DelaySec(HealInterval, () => {
       _isActive = false;
 
-      if (_player.Hp.IsDead) return;
+      if (_player.Hp.Cur <= 0 ) return;
 
       _player.Hp.Plus(HealQuantity);
       _player.SyncObserver.SyncCurHp();

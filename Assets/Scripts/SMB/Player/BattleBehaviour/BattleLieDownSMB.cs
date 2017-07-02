@@ -9,7 +9,7 @@ public class BattleLieDownSMB : StateMachineBehaviour {
 
   override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
     if (_player.PhotonView.isMine) {
-      if ( _player.Hp.IsDead             ) { _player.StateTransfer.TransitTo( "Die"          , animator ); return; }
+      if ( _player.Hp.Cur <= 0             ) { _player.StateTransfer.TransitTo( "Die"          , animator ); return; }
       if ( ShouldTransitToWalk()         ) { _player.StateTransfer.TransitTo( "Walk"         , animator ); return; }
       if ( ShouldTransitToStepDownJump() ) { _player.StateTransfer.TransitTo( "StepDownJump" , animator ); return; }
       if ( ShouldTransitToIdle()         ) { _player.StateTransfer.TransitTo( "Idle"         , animator ); return; }

@@ -15,7 +15,7 @@ public class BattleSkillSMB : StateMachineBehaviour {
       if (_player.State.Rigor)
         _transitionFlag = true;
 
-      if ( _player.Hp.IsDead ) { _player.StateTransfer.TransitTo( "Die" , animator ); return; }
+      if ( _player.Hp.Cur <= 0 ) { _player.StateTransfer.TransitTo( "Die" , animator ); return; }
 
       if (_transitionFlag && !_player.State.Rigor) {
         if ( ShouldTransitToWalk() ) { _player.StateTransfer.TransitTo( "Walk" , animator ); return; }

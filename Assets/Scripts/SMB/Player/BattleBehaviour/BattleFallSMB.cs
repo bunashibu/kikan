@@ -11,7 +11,7 @@ public class BattleFallSMB : StateMachineBehaviour {
     if (_player.PhotonView.isMine) {
       AirMove();
 
-      if ( _player.Hp.IsDead           ) { _player.StateTransfer.TransitTo( "Die"        , animator ); return; }
+      if ( _player.Hp.Cur <= 0           ) { _player.StateTransfer.TransitTo( "Die"        , animator ); return; }
       if ( ShouldTransitToSkill()      ) { _player.StateTransfer.TransitTo( "Skill"      , animator ); return; }
       if ( ShouldTransitToClimb()      ) { _player.StateTransfer.TransitTo( "Climb"      , animator ); return; }
       if ( ShouldTransitToWalk()       ) { _player.StateTransfer.TransitTo( "Walk"       , animator ); return; }

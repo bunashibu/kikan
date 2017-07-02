@@ -15,19 +15,13 @@ public class Hp : IGauge<int> {
 
   private void AdjustBoundary() {
     if (Cur <= Min)
-      Die();
+      Cur = Min;
     if (Cur > Max)
       Cur = Max;
-  }
-
-  protected virtual void Die() {
-    IsDead = true;
-    Cur = Min;
   }
 
   public int Cur { get; protected set; }
   public int Min { get; protected set; }
   public int Max { get; protected set; }
-  public bool IsDead { get; protected set; }
 }
 
