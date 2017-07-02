@@ -23,7 +23,7 @@ public class Hp : IGauge<int> {
       Reborn();
   }
 
-  private void Die() {
+  protected virtual void Die() {
     IsDead = true;
     Cur = Min;
   }

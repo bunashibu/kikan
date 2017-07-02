@@ -37,6 +37,11 @@ public class PlayerHp : Hp {
       _worldBar.UpdateView(Cur, Max);
   }
 
+  protected override void Die() {
+    base.Die();
+    _player.SyncObserver.SyncIsDead();
+  }
+
   /*                                                               *
    * INFO: ForceSyncXXX method must be called by SyncObserver only *
    *                                                               */
