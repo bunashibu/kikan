@@ -18,18 +18,11 @@ public class Hp : IGauge<int> {
       Die();
     if (Cur > Max)
       Cur = Max;
-
-    if (IsDead && (Cur > Min))
-      Reborn();
   }
 
   protected virtual void Die() {
     IsDead = true;
     Cur = Min;
-  }
-
-  private void Reborn() {
-    IsDead = false;
   }
 
   public int Cur { get; protected set; }
