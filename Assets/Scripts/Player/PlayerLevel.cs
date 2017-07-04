@@ -28,10 +28,10 @@ public class PlayerLevel : Level {
       UpdateView();
 
       _player.Hp.UpdateMaxHp();
-      _player.SyncObserver.SyncMaxHp();
+      _player.Observer.SyncMaxHp();
 
       _player.Hp.UpdateView();
-      _player.SyncObserver.SyncUpdateHpView();
+      _player.Observer.SyncUpdateHpView();
 
       _playerHealer.UpdateMaxHealQuantity();
     }

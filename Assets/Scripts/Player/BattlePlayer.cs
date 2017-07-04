@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(BattlePlayerSyncObserver))]
+[RequireComponent(typeof(BattlePlayerObserver))]
 public class BattlePlayer : MonoBehaviour {
   void Awake() {
     Movement      = new BattlePlayerMovement();
@@ -21,7 +21,7 @@ public class BattlePlayer : MonoBehaviour {
   public Rigidbody2D      Rigid        { get { return _rigid;        } }
   public BoxCollider2D    ColliderFoot { get { return _colliderFoot; } }
 
-  public BattlePlayerSyncObserver SyncObserver { get { return _syncObserver; } }
+  public BattlePlayerObserver Observer { get { return _observer; } }
 
   public BattlePlayerMovement Movement      { get; private set; }
   public PlayerState          State         { get; private set; }
@@ -54,8 +54,8 @@ public class BattlePlayer : MonoBehaviour {
   [SerializeField] private BoxCollider2D    _colliderCenter;
   [SerializeField] private BoxCollider2D    _colliderFoot;
 
-  [Header("Synchronizer")]
-  [SerializeField] private BattlePlayerSyncObserver _syncObserver;
+  [Header("Observer")]
+  [SerializeField] private BattlePlayerObserver _observer;
 
   [Header("Data")]
   [SerializeField] private DataTable _hpTable;

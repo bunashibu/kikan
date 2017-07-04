@@ -66,7 +66,7 @@ public class JobPicker : MonoBehaviour {
   private void InitPlayerHp() {
     _player.Hp.AttachHudBar(_hpBar);
     _player.Hp.UpdateView();
-    _player.SyncObserver.SyncUpdateHpView();
+    _player.Observer.SyncUpdateHpView();
   }
 
   private void InitPlayerExp() {

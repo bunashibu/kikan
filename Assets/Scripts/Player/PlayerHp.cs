@@ -41,19 +41,19 @@ public class PlayerHp : Hp {
    * INFO: ForceSyncXXX method must be called by SyncObserver only *
    *                                                               */
   public void ForceSyncHp(int cur, int min, int max) {
-    Assert.IsTrue(_player.SyncObserver.ShouldSync);
+    Assert.IsTrue(_player.Observer.ShouldSync);
     Cur = cur;
     Min = min;
     Max = max;
   }
 
   public void ForceSyncCur(int cur) {
-    Assert.IsTrue(_player.SyncObserver.ShouldSync);
+    Assert.IsTrue(_player.Observer.ShouldSync);
     Cur = cur;
   }
 
   public void ForceSyncMax(int max) {
-    Assert.IsTrue(_player.SyncObserver.ShouldSync);
+    Assert.IsTrue(_player.Observer.ShouldSync);
     Max = max;
   }
 

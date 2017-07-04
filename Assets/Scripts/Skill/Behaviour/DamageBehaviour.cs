@@ -12,10 +12,10 @@ public class DamageBehaviour {
 
     var player = target.GetComponent<BattlePlayer>();
     player.Hp.Minus(Damage);
-    player.SyncObserver.SyncCurHp();
+    player.Observer.SyncCurHp();
 
     player.Hp.UpdateView();
-    player.SyncObserver.SyncUpdateHpView();
+    player.Observer.SyncUpdateHpView();
   }
 
   private void CalcDamage(int power, int maxDeviation) {

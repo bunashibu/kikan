@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BattlePlayerSyncObserver : Photon.MonoBehaviour {
+public class BattlePlayerObserver : Photon.MonoBehaviour {
   public void SyncHp() {
     _player.PhotonView.RPC("SyncHpRPC", PhotonTargets.Others, _player.Hp.Cur, _player.Hp.Min, _player.Hp.Max);
   }
