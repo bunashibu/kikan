@@ -43,7 +43,7 @@ public class JobPicker : MonoBehaviour {
     if ((int)PhotonNetwork.player.CustomProperties["Team"] == 1)
       pos.x *= -1;
 
-    _player = PhotonNetwork.Instantiate("Prehabs/Job/" + _jobs[n].name, pos, Quaternion.identity, 0).GetComponent<BattlePlayer>();
+    _player = PhotonNetwork.Instantiate("Prefabs/Job/" + _jobs[n].name, pos, Quaternion.identity, 0).GetComponent<BattlePlayer>();
     AdjustFlipX();
     SetViewID();
   }

@@ -16,7 +16,7 @@ public class SkillInstantiator : Photon.MonoBehaviour {
   }
 
   private void InstantiateSkill(int i) {
-    string path = "Prehabs/Skill/" + _jobName + "/" + _names[i];
+    string path = "Prefabs/Skill/" + _jobName + "/" + _names[i];
 
     var offset = _appearOffset[i];
     if (_renderer.flipX)

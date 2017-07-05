@@ -14,7 +14,7 @@ public class EnemySpawner : MonoBehaviour {
     PhotonNetwork.Instantiate("Prehabs/Enemy/" + enemyName, pos, Quaternion.identity, 0);
   }
 
-  [SerializeField] private string[] _enemyNameList;
+  [SerializeField] private string[] _spawnEnemyNames;
   [SerializeField] private float[] _spawnRatio; // INFO: e.g. [0.1, 0.9]
 }
 

@@ -8,7 +8,7 @@ public class LobbyPhotonManager : Photon.PunBehaviour {
   void Start() {
     var currentScene = SceneManager.GetSceneByName("Lobby");
     MonoUtility.Instance.DelayUntil(() => currentScene == SceneManager.GetActiveScene(), () => {
-      PhotonNetwork.Instantiate("Prehabs/Job/Common", new Vector3(0, 0, 0), Quaternion.identity, 0);
+      PhotonNetwork.Instantiate("Prefabs/Job/Common", new Vector3(0, 0, 0), Quaternion.identity, 0);
     });
   }
 

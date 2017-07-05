@@ -7841,7 +7841,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bbda806055a8f64eb3fd055bbc62fc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyNameList: []
+  _spawnEnemyNames: []
   _spawnRatio: []
 --- !u!251 &995997479
 PlatformEffector2D:
@@ -8246,7 +8246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bbda806055a8f64eb3fd055bbc62fc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyNameList: []
+  _spawnEnemyNames: []
   _spawnRatio: []
 --- !u!61 &1045126386
 BoxCollider2D:
@@ -13081,7 +13081,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bbda806055a8f64eb3fd055bbc62fc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyNameList:
+  _spawnEnemyNames:
   - Mushroom
   - Pig
   _spawnRatio:
@@ -13935,7 +13935,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bbda806055a8f64eb3fd055bbc62fc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyNameList: []
+  _spawnEnemyNames: []
   _spawnRatio: []
 --- !u!1 &1903629418
 GameObject:
