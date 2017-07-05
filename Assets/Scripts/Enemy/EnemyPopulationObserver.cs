@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyPopulationObserver : MonoBehaviour {
-  [SerializeField] private int[] _populationList;
+  public void RegisterToSpawnList() {
+
+  }
+
+  [SerializeField] private List<EnemySpawner> _spawnerList;
+  [Space(10)]
+  [SerializeField] private int _population;
 }
 

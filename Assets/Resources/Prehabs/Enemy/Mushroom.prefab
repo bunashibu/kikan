@@ -57,10 +57,10 @@ GameObject:
   - component: {fileID: 61372181327318606}
   - component: {fileID: 61374861551725720}
   - component: {fileID: 50137535225740868}
-  - component: {fileID: 114321209171938186}
   - component: {fileID: 95441550684647506}
+  - component: {fileID: 114321209171938186}
   m_Layer: 0
-  m_Name: Kinoko
+  m_Name: Mushroom
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -143,13 +143,13 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_AngularDrag: 0
+  m_GravityScale: 2.4
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!61 &61372181327318606
 BoxCollider2D:
   m_ObjectHideFlags: 1
