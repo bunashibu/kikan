@@ -108,8 +108,9 @@ GameObject:
   - component: {fileID: 61862736165608304}
   - component: {fileID: 50828163428360486}
   - component: {fileID: 95979600268523808}
-  - component: {fileID: 114463142213475920}
   - component: {fileID: 114281805833401298}
+  - component: {fileID: 114463142213475920}
+  - component: {fileID: 114575972786325222}
   m_Layer: 0
   m_Name: Pig
   m_TagString: Enemy
@@ -318,6 +319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 297d14fa12f4b8e44a94f523eb5fa5ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _photonView: {fileID: 114281805833401298}
 --- !u!114 &114468486198302008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -339,6 +341,18 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114575972786325222
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1850968585228374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ab3f9d6fa8e9024a93d28a3c90ecda2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemy: {fileID: 114463142213475920}
 --- !u!114 &114608901932161504
 MonoBehaviour:
   m_ObjectHideFlags: 1

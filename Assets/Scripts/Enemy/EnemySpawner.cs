@@ -14,7 +14,7 @@ public class EnemySpawner : MonoBehaviour {
 
   public void NetworkSpawn() {
     int index = calcEnemyIndex();
-    var pos = new Vector3(0.0f, 0.0f, 0.0f);
+    var pos = new Vector3(Random.value * 5.0f, Random.value * 2.0f, 0.0f); // TODO
 
     PhotonNetwork.Instantiate("Prefabs/Enemy/" + _spawnEnemyNames[index], pos, Quaternion.identity, 0);
   }

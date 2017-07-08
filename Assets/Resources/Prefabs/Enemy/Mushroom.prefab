@@ -58,8 +58,9 @@ GameObject:
   - component: {fileID: 61374861551725720}
   - component: {fileID: 50137535225740868}
   - component: {fileID: 95441550684647506}
-  - component: {fileID: 114321209171938186}
   - component: {fileID: 114079833863249228}
+  - component: {fileID: 114321209171938186}
+  - component: {fileID: 114936866454747730}
   m_Layer: 0
   m_Name: Mushroom
   m_TagString: Enemy
@@ -296,6 +297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 297d14fa12f4b8e44a94f523eb5fa5ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _photonView: {fileID: 114079833863249228}
 --- !u!114 &114341522501252952
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -382,6 +384,18 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114936866454747730
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1279108751842680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ab3f9d6fa8e9024a93d28a3c90ecda2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemy: {fileID: 114321209171938186}
 --- !u!212 &212555299422138682
 SpriteRenderer:
   m_ObjectHideFlags: 1
