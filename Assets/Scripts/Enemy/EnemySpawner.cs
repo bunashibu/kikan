@@ -13,11 +13,15 @@ public class EnemySpawner : MonoBehaviour {
   }
 
   public void NetworkSpawn() {
+    int index = calcEnemyIndex();
     var pos = new Vector3(0.0f, 0.0f, 0.0f);
 
+    PhotonNetwork.Instantiate("Prefabs/Enemy/" + _spawnEnemyNames[index], pos, Quaternion.identity, 0);
+  }
+
+  private int calcEnemyIndex() {
     int index = 0;
     var threshold = Random.value;
-    Debug.Log(threshold);
 
     _spawnRatio.Aggregate((probability, x) => {
       if (probability > threshold) {
@@ -28,7 +32,7 @@ public class EnemySpawner : MonoBehaviour {
       }
     });
 
-    PhotonNetwork.Instantiate("Prefabs/Enemy/" + _spawnEnemyNames[index], pos, Quaternion.identity, 0);
+    return index;
   }
 
   [SerializeField] private string[] _spawnEnemyNames;

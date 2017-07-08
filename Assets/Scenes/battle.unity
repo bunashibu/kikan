@@ -5038,6 +5038,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   _population: 12
+  _intervalSec: 20
 --- !u!1 &583684382
 GameObject:
   m_ObjectHideFlags: 0
@@ -13059,7 +13060,6 @@ MonoBehaviour:
   _spawnRatio:
   - 0.666
   - 0.333
-  _hoge: 64000000
 --- !u!251 &1764783110
 PlatformEffector2D:
   m_ObjectHideFlags: 0
