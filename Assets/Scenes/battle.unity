@@ -5034,9 +5034,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawnerList:
   - {fileID: 1764783109}
-  - {fileID: 1900621468}
-  - {fileID: 1045126385}
-  - {fileID: 995997478}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _population: 12
 --- !u!1 &583684382
 GameObject:
@@ -7801,7 +7801,6 @@ GameObject:
   - component: {fileID: 995997477}
   - component: {fileID: 995997480}
   - component: {fileID: 995997479}
-  - component: {fileID: 995997478}
   m_Layer: 8
   m_Name: Middle3
   m_TagString: Untagged
@@ -7830,19 +7829,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -2.528}
   m_SizeDelta: {x: 30.72, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &995997478
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 995997476}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bbda806055a8f64eb3fd055bbc62fc9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _spawnEnemyNames: []
-  _spawnRatio: []
 --- !u!251 &995997479
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -8188,7 +8174,6 @@ GameObject:
   - component: {fileID: 1045126383}
   - component: {fileID: 1045126386}
   - component: {fileID: 1045126384}
-  - component: {fileID: 1045126385}
   m_Layer: 8
   m_Name: Middle2
   m_TagString: Untagged
@@ -8235,19 +8220,6 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
---- !u!114 &1045126385
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1045126382}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bbda806055a8f64eb3fd055bbc62fc9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _spawnEnemyNames: []
-  _spawnRatio: []
 --- !u!61 &1045126386
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13087,6 +13059,7 @@ MonoBehaviour:
   _spawnRatio:
   - 0.666
   - 0.333
+  _hoge: 64000000
 --- !u!251 &1764783110
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -13864,7 +13837,6 @@ GameObject:
   - component: {fileID: 1900621465}
   - component: {fileID: 1900621467}
   - component: {fileID: 1900621466}
-  - component: {fileID: 1900621468}
   m_Layer: 8
   m_Name: Middle1
   m_TagString: Untagged
@@ -13924,19 +13896,6 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0.4}
   serializedVersion: 2
   m_Size: {x: 20.48, y: 0.2}
---- !u!114 &1900621468
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1900621464}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bbda806055a8f64eb3fd055bbc62fc9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _spawnEnemyNames: []
-  _spawnRatio: []
 --- !u!1 &1903629418
 GameObject:
   m_ObjectHideFlags: 0

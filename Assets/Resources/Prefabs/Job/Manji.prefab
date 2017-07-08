@@ -641,7 +641,7 @@ MonoBehaviour:
   _rigid: {fileID: 50159110143766000}
   _colliderCenter: {fileID: 61116396818863762}
   _colliderFoot: {fileID: 61963090403572176}
-  _syncObserver: {fileID: 114610620364185106}
+  _observer: {fileID: 114610620364185106}
   _hpTable: {fileID: 11400000, guid: 1e81de872edf78241a359a3838a6f3b8, type: 2}
   _worldHpBar: {fileID: 114283101673446462}
   _nextExp: {fileID: 114762156422380140}
