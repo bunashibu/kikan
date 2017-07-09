@@ -33,7 +33,7 @@ public class PlayerCore : Photon.MonoBehaviour {
         return;
       }
 
-      _player.Gold.Minus(_coreList[i].Gold);
+      _player.Gold.Subtract(_coreList[i].Gold);
       _player.Gold.UpdateView();
 
       _coreList[i].LvUp();

@@ -54,14 +54,14 @@ public class RewardGetter {
   private void GiveExpToReceiver(int exp) {
     var nextExp = _receiver.GetComponent<PlayerNextExp>();
 
-    nextExp.Plus(exp);
+    nextExp.Add(exp);
     nextExp.UpdateView();
   }
 
   private void GiveGoldToReceiver(int gold) {
     var playerGold = _receiver.GetComponent<PlayerGold>();
 
-    playerGold.Plus(gold);
+    playerGold.Add(gold);
     playerGold.UpdateView();
   }
 
@@ -69,7 +69,7 @@ public class RewardGetter {
     foreach (var teammate in teammateList) {
       var nextExp = teammate.GetComponent<PlayerNextExp>();
 
-      nextExp.Plus(exp);
+      nextExp.Add(exp);
       nextExp.UpdateView();
     }
   }
@@ -78,7 +78,7 @@ public class RewardGetter {
     foreach (var teammate in teammateList) {
       var playerGold = teammate.GetComponent<PlayerGold>();
 
-      playerGold.Plus(gold);
+      playerGold.Add(gold);
       playerGold.UpdateView();
     }
   }

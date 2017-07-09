@@ -34,7 +34,7 @@ public class PlayerAutomaticHealer : Photon.MonoBehaviour {
 
       if (_player.Hp.Cur <= 0 ) return;
 
-      _player.Hp.Plus(HealQuantity);
+      _player.Hp.Add(HealQuantity);
       _player.Observer.SyncCurHp();
 
       _player.Hp.UpdateView();

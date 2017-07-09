@@ -15,7 +15,7 @@ public class Gold : Photon.MonoBehaviour, IGauge<int> {
     Cur = cur;
   }
 
-  public void Plus(int quantity) {
+  public void Add(int quantity) {
     Cur += quantity;
 
     if (Cur > Max)
@@ -26,8 +26,8 @@ public class Gold : Photon.MonoBehaviour, IGauge<int> {
     photonView.RPC("SyncGoldCur", PhotonTargets.Others, Cur);
   }
 
-  public void Minus(int quantity) {
-    Plus(-quantity);
+  public void Subtract(int quantity) {
+    Add(-quantity);
   }
 
   public int Cur { get; private set; }

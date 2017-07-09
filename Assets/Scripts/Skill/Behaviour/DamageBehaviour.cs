@@ -11,7 +11,7 @@ public class DamageBehaviour {
     CalcDamage(power, maxDeviation);
 
     var player = target.GetComponent<BattlePlayer>();
-    player.Hp.Minus(Damage);
+    player.Hp.Subtract(Damage);
     player.Observer.SyncCurHp();
 
     player.Hp.UpdateView();

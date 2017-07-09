@@ -22,7 +22,7 @@ public class PlayerHp : Hp {
   }
 
   public void FullRecover() {
-    Plus(Max);
+    Add(Max);
   }
 
   public void UpdateMaxHp() {

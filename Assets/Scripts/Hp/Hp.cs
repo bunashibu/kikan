@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Hp : IGauge<int> {
-  public void Plus(int quantity) {
+  public void Add(int quantity) {
     Cur += quantity;
     AdjustBoundary();
   }
 
-  public void Minus(int quantity) {
+  public void Subtract(int quantity) {
     Cur -= quantity;
     AdjustBoundary();
   }
