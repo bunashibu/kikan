@@ -24,7 +24,7 @@ public abstract class DamageSkill : Skill {
 
     if (target.Hp.Cur <= 0) {
       _rewardGetter.SetRewardReceiver(_skillUser, _team);
-      _rewardGetter.GetRewardFrom(target.gameObject);
+      _rewardGetter.GetRewardFrom(target);
 
       RecordKillDeath(target.gameObject);
     }
