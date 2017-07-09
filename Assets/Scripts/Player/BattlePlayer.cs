@@ -29,8 +29,8 @@ public class BattlePlayer : MonoBehaviour, IKillReward {
   public StateTransfer        StateTransfer { get; private set; }
   public SkillInfo            SkillInfo     { get; private set; }
 
-  public int KillExp  { get { return _expTable.Data[Level.Lv - 1];  } }
-  public int KillGold { get { return _goldTable.Data[Level.Lv - 1]; } }
+  public int KillExp  { get { return _killExpTable.Data[Level.Lv - 1];  } }
+  public int KillGold { get { return _killGoldTable.Data[Level.Lv - 1]; } }
 
   //
   // Consider
@@ -72,8 +72,8 @@ public class BattlePlayer : MonoBehaviour, IKillReward {
   [SerializeField] private PlayerCore      _core;
 
   [Header("Kill Reward")]
-  [SerializeField] private DataTable _expTable;
-  [SerializeField] private DataTable _goldTable;
+  [SerializeField] private DataTable _killExpTable;
+  [SerializeField] private DataTable _killGoldTable;
 
   [Space(10)]
   [SerializeField] private PlayerStatus     _status;
