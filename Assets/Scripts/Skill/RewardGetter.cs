@@ -18,18 +18,17 @@ public class RewardGetter {
     if (teamSize == 2)
       ratio = 0.6;
 
-    var killExp = target.GetComponent<KillReward>().Exp;
-    var killGold = target.GetComponent<KillReward>().Gold;
+    var targetPlayer = target.GetComponent<BattlePlayer>();
 
-    int receiverExp = (int)(killExp * ratio);
-    int receiverGold = (int)(killGold * ratio);
+    int receiverExp = (int)(targetPlayer.KillExp * ratio);
+    int receiverGold = (int)(targetPlayer.KillGold * ratio);
 
     GiveExpToReceiver(receiverExp);
     GiveGoldToReceiver(receiverGold);
 
     if (teamSize > 0) {
-      int teammateExp = (int)((killExp - receiverExp) / teamSize);
-      int teammateGold = (int)((killGold - receiverGold) / teamSize);
+      int teammateExp = (int)((targetPlayer.KillExp - receiverExp) / teamSize);
+      int teammateGold = (int)((targetPlayer.KillGold - receiverGold) / teamSize);
 
       GiveExpToTeammate(teammateExp, teammateList);
       GiveGoldToTeammate(teammateGold, teammateList);

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(BattlePlayerObserver))]
-public class BattlePlayer : MonoBehaviour {
+public class BattlePlayer : MonoBehaviour, IKillReward {
   void Awake() {
     Movement      = new BattlePlayerMovement();
     State         = new PlayerState(_colliderCenter, _colliderFoot);
@@ -29,6 +29,9 @@ public class BattlePlayer : MonoBehaviour {
   public StateTransfer        StateTransfer { get; private set; }
   public SkillInfo            SkillInfo     { get; private set; }
 
+  public int KillExp  { get { return _expTable.Data[Level.Lv - 1];  } }
+  public int KillGold { get { return _goldTable.Data[Level.Lv - 1]; } }
+
   //
   // Consider
   //
@@ -38,7 +41,6 @@ public class BattlePlayer : MonoBehaviour {
   public PlayerKillDeath KillDeath { get { return _killDeath; } }
   public PlayerCore      Core      { get { return _core;      } }
 
-  public KillReward       KillReward { get { return _killReward; } }
   public PlayerStatus     Status     { get { return _status;     } }
   public PlayerDamageSkin DamageSkin { get { return _damageSkin; } }
 
@@ -69,8 +71,11 @@ public class BattlePlayer : MonoBehaviour {
   [SerializeField] private PlayerKillDeath _killDeath;
   [SerializeField] private PlayerCore      _core;
 
+  [Header("Kill Reward")]
+  [SerializeField] private DataTable _expTable;
+  [SerializeField] private DataTable _goldTable;
+
   [Space(10)]
-  [SerializeField] private KillReward       _killReward;
   [SerializeField] private PlayerStatus     _status;
   [SerializeField] private PlayerDamageSkin _damageSkin;
 

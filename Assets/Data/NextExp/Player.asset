@@ -9,6 +9,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8adbfcf8aa71b7c4b9f879d7ace3e2ea, type: 3}
-  m_Name: NextExp
+  m_Name: Player
   m_EditorClassIdentifier: 
   _table: 3c0000005a0000007d000000af000000f5000000400100009f0100001c0200008a0200000c030000a7030000050400006c040000dd04000000000000
