@@ -8,8 +8,6 @@ public class EnemySpawner : MonoBehaviour {
   void Awake() {
     float ratioSum = _spawnRatio.Aggregate((x, y) => x + y);
     Assert.AreApproximatelyEqual(ratioSum, 1.0f, 0.001f);
-
-    NetworkSpawn();
   }
 
   public void NetworkSpawn() {
