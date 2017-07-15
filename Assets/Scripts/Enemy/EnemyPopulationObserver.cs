@@ -5,9 +5,11 @@ using UnityEngine;
 public class EnemyPopulationObserver : MonoBehaviour {
   void Start() {
     // Clean
-    for (int i=0; i<_spawnerList.Count; ++i) {
-      for (int k=0; k<_population[i]; ++k) {
-        _spawnerList[i].NetworkSpawn();
+    if (PhotonNetwork.player.IsMasterClient) {
+      for (int i=0; i<_spawnerList.Count; ++i) {
+        for (int k=0; k<_population[i]; ++k) {
+          _spawnerList[i].NetworkSpawn();
+        }
       }
     }
   }
