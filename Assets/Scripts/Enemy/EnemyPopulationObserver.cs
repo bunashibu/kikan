@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class EnemyPopulationObserver : MonoBehaviour {
   void Start() {
-    // Clean
     if (PhotonNetwork.player.IsMasterClient) {
       for (int i=0; i<_spawnerList.Count; ++i) {
-        for (int k=0; k<_population[i]; ++k) {
-          _spawnerList[i].NetworkSpawn();
-        }
+        for (int k=0; k<_population[i]; ++k)
+          _spawnerList[i].NetworkSpawn(this);
       }
     }
   }
 
-  public void IntervalReplenishPopulation(int spawnerIndex) {
+  public void IntervalReplenishPopulation(Enemy enemy) {
+    int index = GetNearestSpawnerIndex();
+
     MonoUtility.Instance.DelaySec(_intervalSec, () => {
-      _spawnerList[spawnerIndex].NetworkSpawn();
+      _spawnerList[index].NetworkSpawn(this);
     });
   }
 

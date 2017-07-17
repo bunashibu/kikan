@@ -10,11 +10,13 @@ public class EnemySpawner : MonoBehaviour {
     Assert.AreApproximatelyEqual(ratioSum, 1.0f, 0.001f);
   }
 
-  public void NetworkSpawn() {
+  public void NetworkSpawn(EnemyPopulationObserver populationObserver) {
     int index = calcEnemyIndex();
     var pos = new Vector3(Random.value * 5.0f, Random.value * 2.0f, 0.0f); // TODO
 
-    PhotonNetwork.Instantiate("Prefabs/Enemy/" + _spawnEnemyNames[index], pos, Quaternion.identity, 0);
+    var enemyObj = PhotonNetwork.Instantiate("Prefabs/Enemy/" + _spawnEnemyNames[index], pos, Quaternion.identity, 0);
+    var enemy    = enemyObj.GetComponent<Enemy>();
+    enemy.AttachPopulationObserver(populationObserver);
   }
 
   private int calcEnemyIndex() {
