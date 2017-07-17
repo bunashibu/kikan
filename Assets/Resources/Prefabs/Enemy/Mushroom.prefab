@@ -61,6 +61,7 @@ GameObject:
   - component: {fileID: 114079833863249228}
   - component: {fileID: 114321209171938186}
   - component: {fileID: 114936866454747730}
+  - component: {fileID: 114323066325102114}
   m_Layer: 0
   m_Name: Mushroom
   m_TagString: Enemy
@@ -234,11 +235,12 @@ MonoBehaviour:
   group: 0
   OwnerShipWasTransfered: 0
   prefixBackup: -1
-  synchronization: 0
+  synchronization: 3
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 114323066325102114}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
@@ -322,6 +324,19 @@ MonoBehaviour:
   _photonView: {fileID: 114079833863249228}
   _killExp: 30
   _killGold: 45
+--- !u!114 &114323066325102114
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1279108751842680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ee2888173992e843b23260e078480db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 212555299422138682}
+  _anim: {fileID: 95441550684647506}
 --- !u!114 &114341522501252952
 MonoBehaviour:
   m_ObjectHideFlags: 1
