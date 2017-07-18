@@ -8,7 +8,7 @@ public class EnemyIdleSMB : StateMachineBehaviour {
       _enemy = animator.GetComponent<Enemy>();
 
     if (PhotonNetwork.player.IsMasterClient) {
-      MonoUtility.Instance.DelaySec(5.0f, () => { // TEMP
+      MonoUtility.Instance.DelaySec(7.0f, () => { // TEMP
         _enemy.StateTransfer.TransitTo("Die", animator);
       });
     }

@@ -11,6 +11,11 @@ public class EnemyDieSMB : StateMachineBehaviour {
       _enemy.PopulationObserver.IntervalReplenishPopulation(_enemy);
   }
 
+  override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
+    if (PhotonNetwork.player.IsMasterClient)
+      PhotonNetwork.Destroy(animator.gameObject);
+  }
+
   private Enemy _enemy;
 }
 

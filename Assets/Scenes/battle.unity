@@ -5370,7 +5370,7 @@ MonoBehaviour:
   _spawnerList:
   - {fileID: 1764783109}
   _population: 04000000
-  _intervalSec: 20
+  _intervalSec: 10
 --- !u!1 &583684382
 GameObject:
   m_ObjectHideFlags: 0
