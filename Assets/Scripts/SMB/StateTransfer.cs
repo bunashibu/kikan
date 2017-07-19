@@ -5,6 +5,7 @@ using UnityEngine;
 public class StateTransfer {
   public StateTransfer(string initState) {
     _currentState = initState;
+    // animator.SetBool(initState, true);
   }
 
   public void TransitTo(string transitState, Animator animator) {

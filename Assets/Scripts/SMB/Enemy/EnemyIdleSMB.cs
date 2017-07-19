@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class EnemyIdleSMB : StateMachineBehaviour {
   override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
+    Debug.Log("Idle");
     if (_enemy == null)
       _enemy = animator.GetComponent<Enemy>();
 
     if (PhotonNetwork.player.IsMasterClient) {
-      MonoUtility.Instance.DelaySec(7.0f, () => { // TEMP
+      MonoUtility.Instance.DelaySec(3.0f, () => { // TEMP
         _enemy.StateTransfer.TransitTo("Die", animator);
       });
     }
