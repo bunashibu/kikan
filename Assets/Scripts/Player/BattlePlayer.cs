@@ -8,7 +8,7 @@ public class BattlePlayer : MonoBehaviour, IKillReward {
     Movement      = new BattlePlayerMovement();
     State         = new PlayerState(_colliderCenter, _colliderFoot);
     Hp            = new PlayerHp(this, _hpTable, _worldHpBar);
-    StateTransfer = new StateTransfer(_initState);
+    StateTransfer = new StateTransfer(_initState, _animator);
     SkillInfo     = new SkillInfo();
   }
 
@@ -55,6 +55,7 @@ public class BattlePlayer : MonoBehaviour, IKillReward {
   [SerializeField] private Rigidbody2D      _rigid;
   [SerializeField] private BoxCollider2D    _colliderCenter;
   [SerializeField] private BoxCollider2D    _colliderFoot;
+  [SerializeField] private Animator         _animator;
 
   [Header("Observer")]
   [SerializeField] private BattlePlayerObserver _observer;

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class StateTransfer {
-  public StateTransfer(string initState) {
+  public StateTransfer(string initState, Animator animator) {
     _currentState = initState;
-    // animator.SetBool(initState, true);
+    animator.SetBool(initState, true);
   }
 
   public void TransitTo(string transitState, Animator animator) {

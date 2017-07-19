@@ -369,6 +369,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _photonView: {fileID: 114281805833401298}
+  _animator: {fileID: 95979600268523808}
   _killExp: 60
   _killGold: 90
 --- !u!114 &114468486198302008

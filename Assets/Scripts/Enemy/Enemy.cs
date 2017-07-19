@@ -5,7 +5,7 @@ using System.Collections;
 [RequireComponent(typeof(EnemyObserver))]
 public class Enemy : MonoBehaviour, IKillReward {
   void Awake() {
-    StateTransfer = new StateTransfer(_initState);
+    StateTransfer = new StateTransfer(_initState, _animator);
   }
 
   public void AttachPopulationObserver(EnemyPopulationObserver populationObserver) {
@@ -26,6 +26,7 @@ public class Enemy : MonoBehaviour, IKillReward {
 
   [Header("Unity/Photon Components")]
   [SerializeField] private PhotonView _photonView;
+  [SerializeField] private Animator   _animator;
 
   [Header("Kill Reward")]
   [SerializeField] private int _killExp;

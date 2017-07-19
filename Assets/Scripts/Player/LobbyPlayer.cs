@@ -6,7 +6,7 @@ public class LobbyPlayer : Photon.MonoBehaviour {
   void Awake() {
     Movement      = new LobbyPlayerMovement();
     State         = new PlayerState(_colliderCenter, _colliderFoot);
-    StateTransfer = new StateTransfer(_initState);
+    StateTransfer = new StateTransfer(_initState, _animator);
     SkillInfo     = new SkillInfo();
   }
 
@@ -30,6 +30,7 @@ public class LobbyPlayer : Photon.MonoBehaviour {
   [SerializeField] private Rigidbody2D      _rigid;
   [SerializeField] private BoxCollider2D    _colliderCenter;
   [SerializeField] private BoxCollider2D    _colliderFoot;
+  [SerializeField] private Animator         _animator;
   private static readonly string _initState = "Idle";
 }
 
