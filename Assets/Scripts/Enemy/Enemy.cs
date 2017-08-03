@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour, IKillReward {
 
   // Unity
   public PhotonView PhotonView { get { return _photonView; } }
+  public Transform  Transform  { get { return _transform;  } }
 
   // Observer
   public EnemyPopulationObserver PopulationObserver { get; private set; }
@@ -26,6 +27,7 @@ public class Enemy : MonoBehaviour, IKillReward {
 
   [Header("Unity/Photon Components")]
   [SerializeField] private PhotonView _photonView;
+  [SerializeField] private Transform  _transform;
   [SerializeField] private Animator   _animator;
 
   [Header("Kill Reward")]

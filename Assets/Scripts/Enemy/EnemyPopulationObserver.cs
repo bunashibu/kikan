@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class EnemyPopulationObserver : MonoBehaviour {
@@ -9,15 +10,19 @@ public class EnemyPopulationObserver : MonoBehaviour {
   }
 
   public void IntervalReplenishPopulation(Enemy enemy) {
-    int index = GetNearestSpawnerIndex();
+    int index = GetNearestSpawnerIndex(enemy.transform.position);
+    float seedX = enemy.transform.position.x;
 
     MonoUtility.Instance.DelaySec(_intervalSec, () => {
-      _spawnerList[index].NetworkSpawn(this);
+      _spawnerList[index].NetworkSpawn(this, seedX);
     });
   }
 
-  public int GetNearestSpawnerIndex() {
-    return (int)(Random.value * (_spawnerList.Count - 1)); // TODO
+  public int GetNearestSpawnerIndex(Vector3 pos) {
+    var distance = _spawnerList.Min(spawner => System.Math.Abs(pos.y - spawner.gameObject.transform.position.y));
+    var nearestSpawner = _spawnerList.First(spawner => System.Math.Abs(pos.y - spawner.gameObject.transform.position.y) == distance);
+
+    return _spawnerList.IndexOf(nearestSpawner);
   }
 
   private void InitialSetupPopulation() {

@@ -10,7 +10,7 @@ public class EnemySpawner : MonoBehaviour {
     Assert.AreApproximatelyEqual(ratioSum, 1.0f, 0.001f);
   }
 
-  public void NetworkSpawn(EnemyPopulationObserver populationObserver) {
+  public void NetworkSpawn(EnemyPopulationObserver populationObserver, float seedX = 0) {
     int index = calcEnemyIndex();
     var pos = new Vector3(Random.value * 5.0f, Random.value * 2.0f, 0.0f); // TODO
 

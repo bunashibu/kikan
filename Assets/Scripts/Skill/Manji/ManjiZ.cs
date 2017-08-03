@@ -7,7 +7,7 @@ public class ManjiZ : DamageSkill {
     _damageBehaviour = new DamageBehaviour();
     _rewardGetter = new RewardGetter();
 
-    _stateChanger = new StateChanger();
+    //_stateChanger = new StateChanger();
   }
 
   void OnTriggerEnter2D(Collider2D collider) {
@@ -29,6 +29,6 @@ public class ManjiZ : DamageSkill {
   [SerializeField] private int _power;
   [SerializeField] private int _maxDeviation;
 
-  private StateChanger _stateChanger;
+  //private StateChanger _stateChanger;
 }
 
