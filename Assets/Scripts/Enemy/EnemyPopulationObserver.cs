@@ -28,7 +28,7 @@ public class EnemyPopulationObserver : MonoBehaviour {
   private void InitialSetupPopulation() {
     for (int i=0; i<_spawnerList.Count; ++i) {
       for (int k=0; k<_population[i]; ++k)
-        _spawnerList[i].NetworkSpawn(this);
+        _spawnerList[i].NetworkSpawn(this, _initialSeedX[i]);
     }
   }
 
@@ -37,5 +37,8 @@ public class EnemyPopulationObserver : MonoBehaviour {
   [Space(10)]
   [SerializeField] private int[] _population;
   [SerializeField] private float _intervalSec;
+
+  [Space(10)]
+  [SerializeField] private float[] _initialSeedX;
 }
 

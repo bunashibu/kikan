@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 224328075674804462}
   - component: {fileID: 114160104579090538}
   - component: {fileID: 114157905736696690}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: EnemyHealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 224065918014699916}
   - component: {fileID: 222448677924085634}
   - component: {fileID: 114997528205009050}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 223534750187905922}
   - component: {fileID: 114468486198302008}
   - component: {fileID: 114608901932161504}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 224310551408441550}
   - component: {fileID: 222443185603312364}
   - component: {fileID: 114325710082897968}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224951366708490936}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 114575972786325222}
   - component: {fileID: 114186672912638236}
   - component: {fileID: 114153724479301750}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Pig
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -369,6 +369,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _photonView: {fileID: 114281805833401298}
+  _transform: {fileID: 0}
   _animator: {fileID: 95979600268523808}
   _killExp: 60
   _killGold: 90

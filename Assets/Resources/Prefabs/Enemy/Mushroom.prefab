@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 224967394648204344}
   - component: {fileID: 222595595494100794}
   - component: {fileID: 114278276880544530}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 224115088638968340}
   - component: {fileID: 114925975028285902}
   - component: {fileID: 114643642540556978}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: EnemyHealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63,7 +63,7 @@ GameObject:
   - component: {fileID: 114936866454747730}
   - component: {fileID: 114323066325102114}
   - component: {fileID: 114066355077697178}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Mushroom
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -81,7 +81,7 @@ GameObject:
   - component: {fileID: 223647917283471804}
   - component: {fileID: 114107118337372204}
   - component: {fileID: 114140779552014800}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224443304707042360}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 224627041513820494}
   - component: {fileID: 222198836091210582}
   - component: {fileID: 114341522501252952}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -334,6 +334,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _photonView: {fileID: 114079833863249228}
+  _transform: {fileID: 0}
   _animator: {fileID: 95441550684647506}
   _killExp: 30
   _killGold: 45

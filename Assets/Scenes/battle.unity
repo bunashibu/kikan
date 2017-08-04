@@ -5374,6 +5374,11 @@ MonoBehaviour:
   - {fileID: 995997478}
   _population: 04000000040000000400000004000000
   _intervalSec: 10
+  _initialSeedX:
+  - 0
+  - 0
+  - 0
+  - 0
 --- !u!1 &583684382
 GameObject:
   m_ObjectHideFlags: 0
@@ -8334,6 +8339,7 @@ MonoBehaviour:
   _spawnRatio:
   - 0.333
   - 0.666
+  _dispersion: 7
 --- !u!251 &995997479
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -8774,6 +8780,7 @@ MonoBehaviour:
   _spawnRatio:
   - 0.333
   - 0.666
+  _dispersion: 6
 --- !u!61 &1045126386
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13925,6 +13932,7 @@ MonoBehaviour:
   _spawnRatio:
   - 0.666
   - 0.333
+  _dispersion: 2
 --- !u!251 &1764783110
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -14833,6 +14841,7 @@ MonoBehaviour:
   _spawnRatio:
   - 0.666
   - 0.333
+  _dispersion: 4
 --- !u!1 &1903629418
 GameObject:
   m_ObjectHideFlags: 0
