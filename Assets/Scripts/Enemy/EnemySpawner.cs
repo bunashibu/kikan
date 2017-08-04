@@ -15,7 +15,7 @@ public class EnemySpawner : MonoBehaviour {
     int index = GetRandomIndex();
 
     float x = GetRandomPosX(seedX);
-    float y = GetRandomPosY();
+    float y = _spawnArea.CalculateY(x, _offsetY[index]);
     var pos = new Vector3(x, y, 0.0f);
 
     var enemyObj = PhotonNetwork.Instantiate("Prefabs/Enemy/" + _spawnEnemyNames[index], pos, Quaternion.identity, 0);
@@ -47,13 +47,14 @@ public class EnemySpawner : MonoBehaviour {
     return (float)(_dispersion * Math.Sqrt(-2 * Math.Log(x1)) * Math.Cos(2 * Math.PI * x2));// + seedX);
   }
 
-  private float GetRandomPosY() {
-    Debug.Log(gameObject.transform.position);
-    return gameObject.transform.position.y;
-  }
-
   [SerializeField] private string[] _spawnEnemyNames;
-  [SerializeField] private float[] _spawnRatio; // INFO: e.g. [0.1, 0.9]
+  [SerializeField] private float[] _spawnRatio; // e.g. [0.1, 0.9]
+
+  [Header("Half height of sprite(1.0 == 100px)")]
+  [SerializeField] private float[] _offsetY;
+
+  [Space(10)]
+  [SerializeField] private SpawnArea _spawnArea;
 
   [Space(10)]
   [SerializeField] private float _dispersion;

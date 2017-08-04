@@ -369,7 +369,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _photonView: {fileID: 114281805833401298}
-  _transform: {fileID: 0}
+  _spriteRenderer: {fileID: 212191663063185894}
   _animator: {fileID: 95979600268523808}
   _killExp: 60
   _killGold: 90

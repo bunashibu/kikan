@@ -8294,6 +8294,7 @@ GameObject:
   - component: {fileID: 995997480}
   - component: {fileID: 995997479}
   - component: {fileID: 995997478}
+  - component: {fileID: 995997481}
   m_Layer: 8
   m_Name: Middle3
   m_TagString: Untagged
@@ -8339,7 +8340,11 @@ MonoBehaviour:
   _spawnRatio:
   - 0.333
   - 0.666
-  _dispersion: 7
+  _offsetY:
+  - 0.6
+  - 0.6
+  _spawnArea: {fileID: 995997481}
+  _dispersion: 5
 --- !u!251 &995997479
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -8383,6 +8388,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 30.72, y: 0.2}
   m_EdgeRadius: 0
+--- !u!114 &995997481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 995997476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf971a3a003d7d943b70965573bb0e1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _a:
+  - 0
+  _b:
+  - -2.028
+  _xRange:
+  - -15.36
+  - 15.36
 --- !u!1 &996142128
 GameObject:
   m_ObjectHideFlags: 0
@@ -8717,6 +8740,7 @@ GameObject:
   - component: {fileID: 1045126386}
   - component: {fileID: 1045126384}
   - component: {fileID: 1045126385}
+  - component: {fileID: 1045126387}
   m_Layer: 8
   m_Name: Middle2
   m_TagString: Untagged
@@ -8780,7 +8804,11 @@ MonoBehaviour:
   _spawnRatio:
   - 0.333
   - 0.666
-  _dispersion: 6
+  _offsetY:
+  - 0.6
+  - 0.6
+  _spawnArea: {fileID: 1045126387}
+  _dispersion: 4
 --- !u!61 &1045126386
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8806,6 +8834,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 25.6, y: 0.2}
   m_EdgeRadius: 0
+--- !u!114 &1045126387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1045126382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf971a3a003d7d943b70965573bb0e1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _a:
+  - 0
+  _b:
+  - -1.125
+  _xRange:
+  - -12.8
+  - 12.8
 --- !u!1 &1047271900
 GameObject:
   m_ObjectHideFlags: 0
@@ -13892,6 +13938,7 @@ GameObject:
   - component: {fileID: 1764783111}
   - component: {fileID: 1764783110}
   - component: {fileID: 1764783109}
+  - component: {fileID: 1764783112}
   m_Layer: 8
   m_Name: Slope
   m_TagString: Untagged
@@ -13932,7 +13979,11 @@ MonoBehaviour:
   _spawnRatio:
   - 0.666
   - 0.333
-  _dispersion: 2
+  _offsetY:
+  - 0.6
+  - 0.6
+  _spawnArea: {fileID: 1764783112}
+  _dispersion: 6
 --- !u!251 &1764783110
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -13987,6 +14038,36 @@ PolygonCollider2D:
       - {x: -11.81, y: 5.169}
       - {x: -16.518002, y: 5.169}
       - {x: -16.518, y: 5.769}
+--- !u!114 &1764783112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1764783107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf971a3a003d7d943b70965573bb0e1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _a:
+  - 0
+  - -0.782
+  - 0
+  - 0.782
+  - 0
+  _b:
+  - 5.769
+  - 4.868
+  - 0.702
+  - -4.868
+  - 5.769
+  _xRange:
+  - -16.518
+  - -11.81
+  - -5.329
+  - 5.329
+  - 11.81
+  - 16.518
 --- !u!1 &1782751710
 GameObject:
   m_ObjectHideFlags: 0
@@ -14754,6 +14835,7 @@ GameObject:
   - component: {fileID: 1900621467}
   - component: {fileID: 1900621466}
   - component: {fileID: 1900621468}
+  - component: {fileID: 1900621469}
   m_Layer: 8
   m_Name: Middle1
   m_TagString: Untagged
@@ -14841,7 +14923,29 @@ MonoBehaviour:
   _spawnRatio:
   - 0.666
   - 0.333
-  _dispersion: 4
+  _offsetY:
+  - 0.6
+  - 0.6
+  _spawnArea: {fileID: 1900621469}
+  _dispersion: 3
+--- !u!114 &1900621469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1900621464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf971a3a003d7d943b70965573bb0e1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _a:
+  - 0
+  _b:
+  - -0.175
+  _xRange:
+  - -10.24
+  - 10.24
 --- !u!1 &1903629418
 GameObject:
   m_ObjectHideFlags: 0

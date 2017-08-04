@@ -10,7 +10,8 @@ public class EnemyPopulationObserver : MonoBehaviour {
   }
 
   public void IntervalReplenishPopulation(Enemy enemy) {
-    int index = GetNearestSpawnerIndex(enemy.transform.position);
+    float offsetY = enemy.SpriteRenderer.bounds.size.y / 2;
+    int index = GetNearestSpawnerIndex(enemy.transform.position, offsetY);
     float seedX = enemy.transform.position.x;
 
     MonoUtility.Instance.DelaySec(_intervalSec, () => {
@@ -18,9 +19,9 @@ public class EnemyPopulationObserver : MonoBehaviour {
     });
   }
 
-  public int GetNearestSpawnerIndex(Vector3 pos) {
-    var distance = _spawnerList.Min(spawner => System.Math.Abs(pos.y - spawner.gameObject.transform.position.y));
-    var nearestSpawner = _spawnerList.First(spawner => System.Math.Abs(pos.y - spawner.gameObject.transform.position.y) == distance);
+  public int GetNearestSpawnerIndex(Vector3 pos, float offsetY) {
+    var distance = _spawnerList.Min(spawner => System.Math.Abs(pos.y - offsetY - spawner.transform.position.y));
+    var nearestSpawner = _spawnerList.First(spawner => System.Math.Abs(pos.y - offsetY - spawner.transform.position.y) == distance);
 
     return _spawnerList.IndexOf(nearestSpawner);
   }

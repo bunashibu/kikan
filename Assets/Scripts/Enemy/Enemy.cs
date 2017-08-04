@@ -13,8 +13,8 @@ public class Enemy : MonoBehaviour, IKillReward {
   }
 
   // Unity
-  public PhotonView PhotonView { get { return _photonView; } }
-  public Transform  Transform  { get { return _transform;  } }
+  public PhotonView     PhotonView     { get { return _photonView;     } }
+  public SpriteRenderer SpriteRenderer { get { return _spriteRenderer; } }
 
   // Observer
   public EnemyPopulationObserver PopulationObserver { get; private set; }
@@ -26,9 +26,9 @@ public class Enemy : MonoBehaviour, IKillReward {
   public int KillGold { get { return _killGold; } }
 
   [Header("Unity/Photon Components")]
-  [SerializeField] private PhotonView _photonView;
-  [SerializeField] private Transform  _transform;
-  [SerializeField] private Animator   _animator;
+  [SerializeField] private PhotonView     _photonView;
+  [SerializeField] private SpriteRenderer _spriteRenderer;
+  [SerializeField] private Animator       _animator;
 
   [Header("Kill Reward")]
   [SerializeField] private int _killExp;
