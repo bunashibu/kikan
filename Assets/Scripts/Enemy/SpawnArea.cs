@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -11,8 +12,11 @@ public class SpawnArea : MonoBehaviour {
         return _a[i] * x + _b[i] + offsetY;
     }
 
-    Assert.IsTrue(false); // Never come to here.
-    return 0;
+    throw new ArgumentOutOfRangeException();
+  }
+
+  public bool IsInRange(float x) {
+    return (_xRange.First() <= x && x <= _xRange.Last());
   }
 
   public float Adjust(float x) {

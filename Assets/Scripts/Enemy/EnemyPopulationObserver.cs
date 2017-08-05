@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 using UnityEngine;
 
 public class EnemyPopulationObserver : MonoBehaviour {
@@ -21,10 +22,13 @@ public class EnemyPopulationObserver : MonoBehaviour {
 
   // Compare Enemy's foot with Ground
   public int GetNearestSpawnerIndex(Vector3 pos, float offsetY) {
-    var distance = _spawnerList.Min(spawner =>
+    var list = _spawnerList.Where(spawner => spawner.SpawnArea.IsInRange(pos.x));
+
+    var distance = list.Min(spawner =>
       System.Math.Abs(pos.y - offsetY - spawner.SpawnArea.CalculateY(pos.x))
     );
-    var nearestSpawner= _spawnerList.First(spawner =>
+
+    var nearestSpawner = list.First(spawner =>
       System.Math.Abs(pos.y - offsetY - spawner.SpawnArea.CalculateY(pos.x)) == distance
     );
 

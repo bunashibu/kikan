@@ -45,7 +45,8 @@ public class EnemySpawner : MonoBehaviour {
     double x2 = Random.value;
 
     float posX = (float)(_dispersion * Math.Sqrt(-2 * Math.Log(x1)) * Math.Cos(2 * Math.PI * x2));// + seedX);
-    posX = _spawnArea.Adjust(posX);
+    if (!_spawnArea.IsInRange(posX))
+      posX = _spawnArea.Adjust(posX);
 
     return posX;
   }
