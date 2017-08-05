@@ -19,6 +19,7 @@ public class EnemyPopulationObserver : MonoBehaviour {
     });
   }
 
+  // Compare Enemy's foot with Ground
   public int GetNearestSpawnerIndex(Vector3 pos, float offsetY) {
     var distance = _spawnerList.Min(spawner =>
       System.Math.Abs(pos.y - offsetY - spawner.SpawnArea.CalculateY(pos.x))

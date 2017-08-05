@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyIdleSMB : StateMachineBehaviour {
   override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-    Debug.Log("Idle");
     if (_enemy == null)
       _enemy = animator.GetComponent<Enemy>();
 

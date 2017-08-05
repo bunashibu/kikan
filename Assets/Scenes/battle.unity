@@ -5374,11 +5374,6 @@ MonoBehaviour:
   - {fileID: 995997478}
   _population: 0c000000040000000400000004000000
   _intervalSec: 5
-  _offsetY:
-  - 0.5
-  - 0.5
-  - 0.5
-  - 0.5
   _initialSeedX:
   - 0
   - 0
@@ -13988,7 +13983,7 @@ MonoBehaviour:
   - 0.6
   - 0.6
   _spawnArea: {fileID: 1764783112}
-  _dispersion: 6
+  _dispersion: 5.5
 --- !u!251 &1764783110
 PlatformEffector2D:
   m_ObjectHideFlags: 0
