@@ -5372,8 +5372,13 @@ MonoBehaviour:
   - {fileID: 1900621468}
   - {fileID: 1045126385}
   - {fileID: 995997478}
-  _population: 04000000040000000400000004000000
-  _intervalSec: 10
+  _population: 0c000000040000000400000004000000
+  _intervalSec: 5
+  _offsetY:
+  - 0.5
+  - 0.5
+  - 0.5
+  - 0.5
   _initialSeedX:
   - 0
   - 0
@@ -14057,9 +14062,9 @@ MonoBehaviour:
   - 0
   _b:
   - 5.769
-  - 4.868
+  - -3.465
   - 0.702
-  - -4.868
+  - -3.465
   - 5.769
   _xRange:
   - -16.518

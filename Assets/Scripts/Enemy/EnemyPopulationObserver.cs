@@ -20,8 +20,12 @@ public class EnemyPopulationObserver : MonoBehaviour {
   }
 
   public int GetNearestSpawnerIndex(Vector3 pos, float offsetY) {
-    var distance = _spawnerList.Min(spawner => System.Math.Abs(pos.y - offsetY - spawner.transform.position.y));
-    var nearestSpawner = _spawnerList.First(spawner => System.Math.Abs(pos.y - offsetY - spawner.transform.position.y) == distance);
+    var distance = _spawnerList.Min(spawner =>
+      System.Math.Abs(pos.y - offsetY - spawner.SpawnArea.CalculateY(pos.x))
+    );
+    var nearestSpawner= _spawnerList.First(spawner =>
+      System.Math.Abs(pos.y - offsetY - spawner.SpawnArea.CalculateY(pos.x)) == distance
+    );
 
     return _spawnerList.IndexOf(nearestSpawner);
   }

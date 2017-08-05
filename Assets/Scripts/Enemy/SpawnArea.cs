@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Assertions;
 
 public class SpawnArea : MonoBehaviour {
-  public float CalculateY(float x, float offsetY) {
+  public float CalculateY(float x, float offsetY = 0) {
     for (int i=0; i<_xRange.Count-1; ++i) {
       if (_xRange[i] <= x && x < _xRange[i+1])
         return _a[i] * x + _b[i] + offsetY;

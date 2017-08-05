@@ -47,6 +47,8 @@ public class EnemySpawner : MonoBehaviour {
     return (float)(_dispersion * Math.Sqrt(-2 * Math.Log(x1)) * Math.Cos(2 * Math.PI * x2));// + seedX);
   }
 
+  public SpawnArea SpawnArea { get { return _spawnArea; } }
+
   [SerializeField] private string[] _spawnEnemyNames;
   [SerializeField] private float[] _spawnRatio; // e.g. [0.1, 0.9]
 
