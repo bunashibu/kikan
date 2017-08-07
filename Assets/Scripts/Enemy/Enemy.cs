@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour, IKillReward {
   // Unity
   public PhotonView     PhotonView     { get { return _photonView;     } }
   public SpriteRenderer SpriteRenderer { get { return _spriteRenderer; } }
+  public Rigidbody2D    Rigid          { get { return _rigid;          } }
 
   // Observer
   public EnemyPopulationObserver PopulationObserver { get; private set; }
@@ -28,6 +29,7 @@ public class Enemy : MonoBehaviour, IKillReward {
   [Header("Unity/Photon Components")]
   [SerializeField] private PhotonView     _photonView;
   [SerializeField] private SpriteRenderer _spriteRenderer;
+  [SerializeField] private Rigidbody2D    _rigid;
   [SerializeField] private Animator       _animator;
 
   [Header("Kill Reward")]
