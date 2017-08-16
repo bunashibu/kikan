@@ -19,7 +19,7 @@ public class BattlePlayer : MonoBehaviour, IKillReward {
   public PhotonView       PhotonView   { get { return _photonView;   } }
   public SpriteRenderer[] Renderers    { get { return _renderers;    } }
   public Rigidbody2D      Rigid        { get { return _rigid;        } }
-  public BoxCollider2D    ColliderFoot { get { return _colliderFoot; } }
+  public Collider2D       ColliderFoot { get { return _colliderFoot; } }
 
   public BattlePlayerObserver Observer { get { return _observer; } }
 
@@ -53,8 +53,8 @@ public class BattlePlayer : MonoBehaviour, IKillReward {
   [SerializeField] private Transform        _trans;
   [SerializeField] private SpriteRenderer[] _renderers;  // INFO: [PlayerSprite, WeaponSprite]
   [SerializeField] private Rigidbody2D      _rigid;
-  [SerializeField] private BoxCollider2D    _colliderCenter;
-  [SerializeField] private BoxCollider2D    _colliderFoot;
+  [SerializeField] private Collider2D       _colliderCenter;
+  [SerializeField] private Collider2D       _colliderFoot;
   [SerializeField] private Animator         _animator;
 
   [Header("Observer")]

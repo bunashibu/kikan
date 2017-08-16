@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class PlayerState {
-  public PlayerState(BoxCollider2D colliderCenter, BoxCollider2D colliderFoot) {
+  public PlayerState(Collider2D colliderCenter, Collider2D colliderFoot) {
     _colliderCenter        = colliderCenter;
     _colliderFoot          = colliderFoot;
 
@@ -24,8 +24,8 @@ public class PlayerState {
   public bool Heavy { get; set; }
   public bool Rigor { get; set; }
 
-  private BoxCollider2D _colliderCenter;
-  private BoxCollider2D _colliderFoot;
+  private Collider2D _colliderCenter;
+  private Collider2D _colliderFoot;
   private LayerMask _groundLayer;
   private LayerMask _ladderLayer;
   private LayerMask _ladderTopEdgeLayer;
