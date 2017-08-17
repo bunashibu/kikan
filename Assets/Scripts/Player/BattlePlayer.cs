@@ -6,7 +6,8 @@ using UnityEngine;
 public class BattlePlayer : MonoBehaviour, IKillReward {
   void Awake() {
     Movement      = new BattlePlayerMovement();
-    State         = new PlayerState(_colliderCenter, _colliderFoot);
+    FootCollider  = new FootCollider(_footBoxCollider, _footCircleCollider);
+    State         = new PlayerState(_colliderCenter, this.FootCollider);
     Hp            = new PlayerHp(this, _hpTable, _worldHpBar);
     StateTransfer = new StateTransfer(_initState, _animator);
     SkillInfo     = new SkillInfo();
@@ -19,11 +20,11 @@ public class BattlePlayer : MonoBehaviour, IKillReward {
   public PhotonView       PhotonView   { get { return _photonView;   } }
   public SpriteRenderer[] Renderers    { get { return _renderers;    } }
   public Rigidbody2D      Rigid        { get { return _rigid;        } }
-  public Collider2D       ColliderFoot { get { return _colliderFoot; } }
 
   public BattlePlayerObserver Observer { get { return _observer; } }
 
   public BattlePlayerMovement Movement      { get; private set; }
+  public FootCollider         FootCollider  { get; private set; }
   public PlayerState          State         { get; private set; }
   public PlayerHp             Hp            { get; private set; }
   public StateTransfer        StateTransfer { get; private set; }
@@ -54,7 +55,8 @@ public class BattlePlayer : MonoBehaviour, IKillReward {
   [SerializeField] private SpriteRenderer[] _renderers;  // INFO: [PlayerSprite, WeaponSprite]
   [SerializeField] private Rigidbody2D      _rigid;
   [SerializeField] private Collider2D       _colliderCenter;
-  [SerializeField] private Collider2D       _colliderFoot;
+  [SerializeField] private BoxCollider2D    _footBoxCollider;
+  [SerializeField] private CircleCollider2D _footCircleCollider;
   [SerializeField] private Animator         _animator;
 
   [Header("Observer")]

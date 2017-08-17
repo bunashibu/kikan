@@ -112,6 +112,7 @@ GameObject:
   - component: {fileID: 212543119074357088}
   - component: {fileID: 61760561158213272}
   - component: {fileID: 61116396818863762}
+  - component: {fileID: 61968041453497018}
   - component: {fileID: 58622238180313314}
   - component: {fileID: 95930055764971676}
   - component: {fileID: 50159110143766000}
@@ -354,6 +355,31 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 0.6, y: 0.9}
+  m_EdgeRadius: 0
+--- !u!61 &61968041453497018
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1222958424102090}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.45}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.8, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 0.1}
   m_EdgeRadius: 0
 --- !u!81 &81510259978721282
 AudioListener:
@@ -664,7 +690,8 @@ MonoBehaviour:
   - {fileID: 212620572494064958}
   _rigid: {fileID: 50159110143766000}
   _colliderCenter: {fileID: 61116396818863762}
-  _colliderFoot: {fileID: 58622238180313314}
+  _footBoxCollider: {fileID: 61968041453497018}
+  _footCircleCollider: {fileID: 58622238180313314}
   _animator: {fileID: 95930055764971676}
   _observer: {fileID: 114610620364185106}
   _hpTable: {fileID: 11400000, guid: 1e81de872edf78241a359a3838a6f3b8, type: 2}

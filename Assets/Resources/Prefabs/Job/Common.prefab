@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 61000011156448030}
   - component: {fileID: 61000013377866254}
   - component: {fileID: 61000010270929332}
+  - component: {fileID: 58531835641266628}
   - component: {fileID: 95000010494430044}
   - component: {fileID: 50000013460582292}
   - component: {fileID: 114606102195267942}
@@ -212,6 +213,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!58 &58531835641266628
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011996982660}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.45}
+  serializedVersion: 2
+  m_Radius: 0.05
 --- !u!61 &61000010270929332
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -579,7 +595,8 @@ MonoBehaviour:
   - {fileID: 212642414779630898}
   _rigid: {fileID: 50000013460582292}
   _colliderCenter: {fileID: 61000013377866254}
-  _colliderFoot: {fileID: 61000010270929332}
+  _footBoxCollider: {fileID: 61000010270929332}
+  _footCircleCollider: {fileID: 58531835641266628}
   _animator: {fileID: 95000010494430044}
 --- !u!114 &114642343969648306
 MonoBehaviour:
