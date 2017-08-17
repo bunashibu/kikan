@@ -22,6 +22,16 @@ public class FootCollider {
     _circleCollider.isTrigger = false;
   }
 
+  public void UseBox() {
+    _boxCollider.enabled    = true;
+    _circleCollider.enabled = false;
+  }
+
+  public void UseCircle() {
+    _boxCollider.enabled    = false;
+    _circleCollider.enabled = true;
+  }
+
   private BoxCollider2D _boxCollider;
   private CircleCollider2D _circleCollider;
 }

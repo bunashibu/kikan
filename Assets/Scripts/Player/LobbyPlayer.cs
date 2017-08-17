@@ -6,7 +6,7 @@ public class LobbyPlayer : Photon.MonoBehaviour {
   void Awake() {
     Movement      = new LobbyPlayerMovement();
     FootCollider  = new FootCollider(_footBoxCollider, _footCircleCollider);
-    State         = new PlayerState(_colliderCenter, this.FootCollider);
+    State         = new PlayerState(_ladderCollider, this.FootCollider);
     StateTransfer = new StateTransfer(_initState, _animator);
     SkillInfo     = new SkillInfo();
   }
@@ -29,7 +29,7 @@ public class LobbyPlayer : Photon.MonoBehaviour {
   [SerializeField] private Transform        _trans;
   [SerializeField] private SpriteRenderer[] _renderers;  // INFO: [PlayerSprite, WeaponSprite]
   [SerializeField] private Rigidbody2D      _rigid;
-  [SerializeField] private BoxCollider2D    _colliderCenter;
+  [SerializeField] private BoxCollider2D    _ladderCollider;
   [SerializeField] private BoxCollider2D    _footBoxCollider;
   [SerializeField] private CircleCollider2D _footCircleCollider;
   [SerializeField] private Animator         _animator;

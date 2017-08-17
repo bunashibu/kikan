@@ -689,7 +689,7 @@ MonoBehaviour:
   - {fileID: 212543119074357088}
   - {fileID: 212620572494064958}
   _rigid: {fileID: 50159110143766000}
-  _colliderCenter: {fileID: 61116396818863762}
+  _ladderCollider: {fileID: 61116396818863762}
   _footBoxCollider: {fileID: 61968041453497018}
   _footCircleCollider: {fileID: 58622238180313314}
   _animator: {fileID: 95930055764971676}

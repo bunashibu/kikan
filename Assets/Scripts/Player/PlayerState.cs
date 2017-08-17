@@ -2,8 +2,8 @@
 using System.Collections;
 
 public class PlayerState {
-  public PlayerState(Collider2D colliderCenter, FootCollider footCollider) {
-    _colliderCenter        = colliderCenter;
+  public PlayerState(BoxCollider2D ladderCollider, FootCollider footCollider) {
+    _ladderCollider        = ladderCollider;
     _footCollider          = footCollider;
 
     _groundLayer           = LayerMask.GetMask("Ground");
@@ -15,16 +15,16 @@ public class PlayerState {
 
   public bool Ground           { get { return _footCollider.IsTouchingLayers(_groundLayer);             }  }
   public bool Air              { get { return !Ground;                                                  }  }
-  public bool Ladder           { get { return _colliderCenter.IsTouchingLayers(_ladderLayer);           }  }
+  public bool Ladder           { get { return _ladderCollider.IsTouchingLayers(_ladderLayer);           }  }
   public bool LadderTopEdge    { get { return _footCollider.IsTouchingLayers(_ladderTopEdgeLayer);      }  }
-  public bool LadderBottomEdge { get { return _colliderCenter.IsTouchingLayers(_ladderBottomEdgeLayer); }  }
-  public bool Portal           { get { return _colliderCenter.IsTouchingLayers(_portalLayer);           }  }
+  public bool LadderBottomEdge { get { return _ladderCollider.IsTouchingLayers(_ladderBottomEdgeLayer); }  }
+  public bool Portal           { get { return _ladderCollider.IsTouchingLayers(_portalLayer);           }  }
 
   public bool Slow { get; set; }
   public bool Heavy { get; set; }
   public bool Rigor { get; set; }
 
-  private Collider2D _colliderCenter;
+  private Collider2D _ladderCollider;
   private FootCollider _footCollider;
   private LayerMask _groundLayer;
   private LayerMask _ladderLayer;

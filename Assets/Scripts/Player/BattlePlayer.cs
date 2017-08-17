@@ -7,7 +7,7 @@ public class BattlePlayer : MonoBehaviour, IKillReward {
   void Awake() {
     Movement      = new BattlePlayerMovement();
     FootCollider  = new FootCollider(_footBoxCollider, _footCircleCollider);
-    State         = new PlayerState(_colliderCenter, this.FootCollider);
+    State         = new PlayerState(_ladderCollider, this.FootCollider);
     Hp            = new PlayerHp(this, _hpTable, _worldHpBar);
     StateTransfer = new StateTransfer(_initState, _animator);
     SkillInfo     = new SkillInfo();
@@ -54,7 +54,7 @@ public class BattlePlayer : MonoBehaviour, IKillReward {
   [SerializeField] private Transform        _trans;
   [SerializeField] private SpriteRenderer[] _renderers;  // INFO: [PlayerSprite, WeaponSprite]
   [SerializeField] private Rigidbody2D      _rigid;
-  [SerializeField] private Collider2D       _colliderCenter;
+  [SerializeField] private BoxCollider2D    _ladderCollider;
   [SerializeField] private BoxCollider2D    _footBoxCollider;
   [SerializeField] private CircleCollider2D _footCircleCollider;
   [SerializeField] private Animator         _animator;
