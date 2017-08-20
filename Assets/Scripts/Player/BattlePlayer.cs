@@ -11,6 +11,8 @@ public class BattlePlayer : MonoBehaviour, IKillReward {
     Hp            = new PlayerHp(this, _hpTable, _worldHpBar);
     StateTransfer = new StateTransfer(_initState, _animator);
     SkillInfo     = new SkillInfo();
+
+    FootCollider.UseBox();
   }
 
   void FixedUpdate() {
