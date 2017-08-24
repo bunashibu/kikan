@@ -4,8 +4,8 @@ using System.Collections;
 public class GroundLinearMove {
   public void FixedUpdate(Rigidbody2D rigid) {
     if (_actFlag) {
-      rigid.velocity = new Vector2(0, rigid.velocity.y); // like Aizen
-      rigid.AddForce(_inputVec * _force);
+      rigid.velocity = new Vector2(0, rigid.velocity.y);
+      rigid.AddForce(_inputVec * (_force * 0.06f), ForceMode2D.Impulse);
 
       _actFlag = false;
       _inputVec.x = 0;

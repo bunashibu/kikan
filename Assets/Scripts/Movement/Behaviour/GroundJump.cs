@@ -4,8 +4,7 @@ using System.Collections;
 public class GroundJump {
   public void FixedUpdate(Rigidbody2D rigid) {
     if (_actFlag) {
-      rigid.velocity = new Vector2(rigid.velocity.x, 0);
-      rigid.AddForce(Vector2.up * _force);
+      rigid.AddForce(Vector2.up * (_force * 0.03f), ForceMode2D.Impulse);
 
       _actFlag = false;
     }

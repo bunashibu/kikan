@@ -10,7 +10,7 @@ public class LinearJumpEnemyMovement {
 
   // INFO: Must be called in MonoBehaviour-FixedUpdate()
   public void FixedUpdate(Rigidbody2D rigid) {
-    _groundLinear.FixedUpdate(rigid);
+    //_groundLinear.FixedUpdate(rigid);
     _groundJump.FixedUpdate(rigid);
   }
 
