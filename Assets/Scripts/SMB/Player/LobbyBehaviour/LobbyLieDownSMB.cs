@@ -26,7 +26,7 @@ public class LobbyLieDownSMB : StateMachineBehaviour {
   }
 
   private bool ShouldTransitToStepDownJump() {
-    return _player.State.Ground && Input.GetButton("Jump");
+    return !_player.State.CanNotDownGround && _player.State.Ground && Input.GetButton("Jump");
   }
 
   private bool ShouldTransitToIdle() {
