@@ -8,7 +8,7 @@ public class BattleClimbSMB : StateMachineBehaviour {
 
     _player.Rigid.isKinematic = true;
     _player.Rigid.velocity = new Vector2(0.0f, 0.0f);
-    _player.FootCollider.TriggerON();
+    _player.FootCollider.isTrigger = true;
 
     _isTransferable = false;
   }
@@ -32,7 +32,7 @@ public class BattleClimbSMB : StateMachineBehaviour {
 
   override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
     _player.Rigid.isKinematic = false;
-    _player.FootCollider.TriggerOFF();
+    _player.FootCollider.isTrigger = false;
   }
 
   private void Climb() {

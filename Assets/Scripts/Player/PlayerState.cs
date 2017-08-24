@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class PlayerState {
-  public PlayerState(BoxCollider2D ladderCollider, FootCollider footCollider) {
+  public PlayerState(BoxCollider2D ladderCollider, BoxCollider2D footCollider) {
     _ladderCollider        = ladderCollider;
     _footCollider          = footCollider;
 
@@ -24,8 +24,8 @@ public class PlayerState {
   public bool Heavy { get; set; }
   public bool Rigor { get; set; }
 
-  private Collider2D _ladderCollider;
-  private FootCollider _footCollider;
+  private BoxCollider2D _ladderCollider;
+  private BoxCollider2D _footCollider;
   private LayerMask _groundLayer;
   private LayerMask _ladderLayer;
   private LayerMask _ladderTopEdgeLayer;

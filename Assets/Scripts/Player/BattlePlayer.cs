@@ -6,13 +6,10 @@ using UnityEngine;
 public class BattlePlayer : MonoBehaviour, IKillReward {
   void Awake() {
     Movement      = new BattlePlayerMovement();
-    FootCollider  = new FootCollider(_footBoxCollider, _footCircleCollider);
-    State         = new PlayerState(_ladderCollider, this.FootCollider);
+    State         = new PlayerState(_ladderCollider, _footCollider);
     Hp            = new PlayerHp(this, _hpTable, _worldHpBar);
     StateTransfer = new StateTransfer(_initState, _animator);
     SkillInfo     = new SkillInfo();
-
-    FootCollider.UseBox();
   }
 
   void FixedUpdate() {
@@ -22,11 +19,11 @@ public class BattlePlayer : MonoBehaviour, IKillReward {
   public PhotonView       PhotonView   { get { return _photonView;   } }
   public SpriteRenderer[] Renderers    { get { return _renderers;    } }
   public Rigidbody2D      Rigid        { get { return _rigid;        } }
+  public BoxCollider2D    FootCollider { get { return _footCollider; } }
 
   public BattlePlayerObserver Observer { get { return _observer; } }
 
   public BattlePlayerMovement Movement      { get; private set; }
-  public FootCollider         FootCollider  { get; private set; }
   public PlayerState          State         { get; private set; }
   public PlayerHp             Hp            { get; private set; }
   public StateTransfer        StateTransfer { get; private set; }
@@ -57,8 +54,7 @@ public class BattlePlayer : MonoBehaviour, IKillReward {
   [SerializeField] private SpriteRenderer[] _renderers;  // INFO: [PlayerSprite, WeaponSprite]
   [SerializeField] private Rigidbody2D      _rigid;
   [SerializeField] private BoxCollider2D    _ladderCollider;
-  [SerializeField] private BoxCollider2D    _footBoxCollider;
-  [SerializeField] private CircleCollider2D _footCircleCollider;
+  [SerializeField] private BoxCollider2D    _footCollider;
   [SerializeField] private Animator         _animator;
 
   [Header("Observer")]

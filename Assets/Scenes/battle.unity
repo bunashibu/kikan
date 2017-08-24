@@ -3300,7 +3300,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 395969869}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3440,7 +3440,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 411945383}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5462,7 +5462,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 579611709}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5493,7 +5493,7 @@ GameObject:
   m_Component:
   - component: {fileID: 579649441}
   - component: {fileID: 579649442}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Area1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14485,7 +14485,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1573227161}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17306,7 +17306,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1924336415}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Area2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17782,7 +17782,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 2002896310}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Portal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17997,7 +17997,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 2056820817}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Middle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

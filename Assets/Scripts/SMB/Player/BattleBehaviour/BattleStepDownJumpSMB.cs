@@ -7,7 +7,7 @@ public class BattleStepDownJumpSMB : StateMachineBehaviour {
       _player = animator.GetComponent<BattlePlayer>();
 
     InitFlag();
-    _player.FootCollider.TriggerON();
+    _player.FootCollider.isTrigger = true;
     _player.Movement.StepDownJump();
   }
 
@@ -21,7 +21,7 @@ public class BattleStepDownJumpSMB : StateMachineBehaviour {
   }
 
   override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-    _player.FootCollider.TriggerOFF();
+    _player.FootCollider.isTrigger = false;
   }
 
   private void InitFlag() {
