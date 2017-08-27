@@ -8,9 +8,17 @@ public class LobbyPlayer : Photon.MonoBehaviour {
     State         = new PlayerState(_ladderCollider, _footCollider);
     StateTransfer = new StateTransfer(_initState, _animator);
     SkillInfo     = new SkillInfo();
+
+    // TEMP
+    Movement.SetLinearMoveForce(80.0f);
+    Movement.SetJumpForce(400.0f);
   }
 
   void FixedUpdate() {
+    if (State.Ground) {
+      Rigid.AddForce(Physics2D.gravity * -2.4f);
+    }
+
     Movement.FixedUpdate(_rigid, _trans);
   }
 

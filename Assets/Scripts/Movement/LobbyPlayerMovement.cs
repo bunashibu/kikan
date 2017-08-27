@@ -71,6 +71,14 @@ public class LobbyPlayerMovement {
     _lieDown.Stand(collider);
   }
 
+  public void SetLinearMoveForce(float force) {
+    _groundLinear.SetForce(force);
+  }
+
+  public void SetJumpForce(float force) {
+    _groundJump.SetForce(force);
+  }
+
   private AirLinearMove _airLinear;
   private GroundLinearMove _groundLinear;
 
