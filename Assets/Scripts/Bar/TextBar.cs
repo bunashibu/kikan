@@ -2,12 +2,14 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class TextBar : Bar {
-  public override void UpdateView(int cur, int max) {
-    _text.text = "[" + cur.ToString() + "/" + max.ToString() + "]  ";
-    Animate(cur, max);
+namespace Bunashibu.Kikan {
+  public class TextBar : Bar {
+    public override void UpdateView(int cur, int max) {
+      _text.text = "[" + cur.ToString() + "/" + max.ToString() + "]  ";
+      Animate(cur, max);
+    }
+  
+    [SerializeField] private Text _text;
   }
-
-  [SerializeField] private Text _text;
 }
 

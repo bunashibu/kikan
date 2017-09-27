@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GetPlayerName : MonoBehaviour {
-  void Start() {
-    _text.text = _photonView.owner.NickName;
+namespace Bunashibu.Kikan {
+  public class GetPlayerName : MonoBehaviour {
+    void Start() {
+      _text.text = _photonView.owner.NickName;
+    }
+  
+    [SerializeField] private PhotonView _photonView;
+    [SerializeField] private Text _text;
   }
-
-  [SerializeField] private PhotonView _photonView;
-  [SerializeField] private Text _text;
 }
 

@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IKillReward {
-  int KillExp { get; }
-  int KillGold { get; }
+namespace Bunashibu.Kikan {
+  public interface IKillReward {
+    int KillExp { get; }
+    int KillGold { get; }
+  }
 }
 

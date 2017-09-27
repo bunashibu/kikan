@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GoldPanel : MonoBehaviour {
-  public void UpdateGold(int cur) {
-    _text.text = cur.ToString();
+namespace Bunashibu.Kikan {
+  public class GoldPanel : MonoBehaviour {
+    public void UpdateGold(int cur) {
+      _text.text = cur.ToString();
+    }
+  
+    [SerializeField] private Text _text;
   }
-
-  [SerializeField] private Text _text;
 }
 

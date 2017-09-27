@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyObserver : MonoBehaviour {
-  [SerializeField] private Enemy _enemy;
+namespace Bunashibu.Kikan {
+  public class EnemyObserver : MonoBehaviour {
+    [SerializeField] private Enemy _enemy;
+  }
 }
 

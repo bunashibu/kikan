@@ -2,19 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StateTransfer {
-  public StateTransfer(string initState, Animator animator) {
-    _currentState = initState;
-    animator.SetBool(initState, true);
+namespace Bunashibu.Kikan {
+  public class StateTransfer {
+    public StateTransfer(string initState, Animator animator) {
+      _currentState = initState;
+      animator.SetBool(initState, true);
+    }
+  
+    public void TransitTo(string transitState, Animator animator) {
+      animator.SetBool(transitState, true);
+      animator.SetBool(_currentState, false);
+  
+      _currentState = transitState;
+    }
+  
+    private string _currentState;
   }
-
-  public void TransitTo(string transitState, Animator animator) {
-    animator.SetBool(transitState, true);
-    animator.SetBool(_currentState, false);
-
-    _currentState = transitState;
-  }
-
-  private string _currentState;
 }
 
