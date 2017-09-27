@@ -8,7 +8,7 @@ public class LobbyStepDownJumpSMB : StateMachineBehaviour {
       _player = animator.GetComponent<LobbyPlayer>();
 
     InitFlag();
-    _player.FootCollider.isTrigger = true;
+    //_player.FootCollider.isTrigger = true;
     _player.Movement.StepDownJump();
   }
 
@@ -20,7 +20,7 @@ public class LobbyStepDownJumpSMB : StateMachineBehaviour {
   }
 
   override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-    _player.FootCollider.isTrigger = false;
+    //_player.FootCollider.isTrigger = false;
   }
 
   private void InitFlag() {
