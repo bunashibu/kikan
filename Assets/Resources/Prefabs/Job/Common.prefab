@@ -523,7 +523,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _groundMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 33024
   _friction: 0
 --- !u!114 &114606102195267942
 MonoBehaviour:
