@@ -14,8 +14,17 @@ namespace Bunashibu.Kikan {
       IsAir    = true;
     }
 
+    public void OnSlope() {
+      IsSlope = true;
+    }
+
+    public void OffSlope() {
+      IsSlope = false;
+    }
+
     public bool IsGround { get; private set; }
     public bool IsAir    { get; private set; }
+    public bool IsSlope  { get; private set; }
   }
 }
 
