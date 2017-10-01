@@ -12,7 +12,7 @@ namespace Bunashibu.Kikan {
         return Array.AsReadOnly(_table);
       }
     }
-  
+
     [SerializeField] private int[] _table;
   }
 }

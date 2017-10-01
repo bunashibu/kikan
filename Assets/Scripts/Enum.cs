@@ -11,13 +11,13 @@ namespace Bunashibu.Kikan {
     Space,
     Alt
   }
-  
+
   public enum SkillState {
     Ready,
     Using,
     Used
   }
-  
+
   public enum DamageType {
     Hit,
     Critical,

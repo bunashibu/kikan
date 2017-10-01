@@ -9,7 +9,7 @@ namespace Bunashibu.Kikan {
         return _skin;
       }
     }
-  
+
     [SerializeField] private DamageSkin _skin;
   }
 }

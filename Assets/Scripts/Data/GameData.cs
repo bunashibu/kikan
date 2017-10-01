@@ -10,7 +10,7 @@ namespace Bunashibu.Kikan {
         return _respawnPosition;
       }
     }
-  
+
     [SerializeField] private Vector3 _respawnPosition;
   }
 }

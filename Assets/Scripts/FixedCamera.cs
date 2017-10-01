@@ -7,7 +7,7 @@ namespace Bunashibu.Kikan {
       float x = 31.3f;
       if ((int)PhotonNetwork.player.CustomProperties["Team"] == 1)
         x *= -1;
-  
+
       transform.position = new Vector3(x, 0.0f, -1.0f);
     }
   }

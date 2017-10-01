@@ -7,23 +7,23 @@ namespace Bunashibu.Kikan {
     public int Id {
       get { return _id; }
     }
-  
+
     public int Atk {
       get { return _atk; }
     }
-  
+
     public int Dfn {
       get { return _dfn; }
     }
-  
+
     public int Spd{
       get { return _spd; }
     }
-  
+
     public int Jmp {
       get { return _jmp; }
     }
-  
+
     [SerializeField] private int _id;
     [SerializeField] private int _atk;
     [SerializeField] private int _dfn;

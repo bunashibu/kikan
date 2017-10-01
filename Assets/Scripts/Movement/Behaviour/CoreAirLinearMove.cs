@@ -8,7 +8,7 @@ namespace Bunashibu.Kikan {
       if (_actFlag) {
         float ratio = (float)((core.Speed + 100) / 100.0);
         rigid.AddForce(_inputVec * 2.0f * ratio);
-  
+
         _actFlag = false;
         _inputVec.x = 0;
       }

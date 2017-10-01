@@ -9,11 +9,11 @@ namespace Bunashibu.Kikan {
       //Init(life, life);
       _bar = bar;
     }
-  
+
     public void Show() {
       _bar.Show(Cur, Max);
     }
-  
+
     private Bar _bar;
     */
   }

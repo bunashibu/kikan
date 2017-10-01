@@ -10,19 +10,19 @@ namespace Bunashibu.Kikan {
         var pos = _gameData.RespawnPosition;
         if ((int)PhotonNetwork.player.CustomProperties["Team"] == 1)
           pos.x *= -1;
-  
+
         gameObject.transform.position = pos;
-  
+
         _player.Hp.FullRecover();
         _player.Observer.SyncCurHp();
-  
+
         _player.Hp.UpdateView();
         _player.Observer.SyncUpdateHpView();
-  
+
         ActTransition();
       });
     }
-  
+
     [SerializeField] private BattlePlayer _player;
     [SerializeField] private GameData _gameData;
   }

@@ -9,33 +9,33 @@ namespace Bunashibu.Kikan {
     public void CreateHit(int damage, DamageSkin skin) {
       Create(damage, skin, DamageType.Hit);
     }
-  
+
     public void CreateCritical(int damage, DamageSkin skin) {
       Create(damage, skin, DamageType.Critical);
     }
-  
+
     public void CreateTake(int damage, DamageSkin skin) {
       Create(damage, skin, DamageType.Take);
     }
-  
+
     public void CreateHeal(int damage, DamageSkin skin) {
       Create(damage, skin, DamageType.Heal);
     }
-  
+
     private void Create(int damage, DamageSkin skin, DamageType type) {
       Value = damage;
-  
+
       string str = damage.ToString();
       var indices = str.ToCharArray().Select(x => Convert.ToInt32(x.ToString()));
-  
+
       int i = 0;
       foreach(int index in indices) {
         var number = Instantiate(_numberPref, gameObject.transform, false);
         number.transform.Translate(i * 0.3f, 1.0f, 0.0f);
         ++i;
-  
+
         var renderer = number.GetComponent<SpriteRenderer>();
-  
+
         switch (type) {
           case DamageType.Hit:
             renderer.sprite = skin.Hit[index];
@@ -50,11 +50,11 @@ namespace Bunashibu.Kikan {
             renderer.sprite = skin.Heal[index];
             break;
         }
-  
+
         renderer.sortingOrder = i;
       }
     }
-  
+
     public int Value { get; private set; }
     [SerializeField] private GameObject _numberPref;
   }

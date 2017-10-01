@@ -11,7 +11,7 @@ namespace Bunashibu.Kikan {
           var rigidState = target.GetComponent<RigidState>();
           rigidState.Rigor = true;
           rigidState.UpdateRigor();
-  
+
           MonoUtility.Instance.DelaySec(sec, () => {
             rigidState.Rigor = false;
             rigidState.UpdateRigor();

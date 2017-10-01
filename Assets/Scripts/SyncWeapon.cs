@@ -17,7 +17,7 @@ namespace Bunashibu.Kikan {
         _anim.SetBool("Z", (bool)stream.ReceiveNext());
       }
     }
-  
+
     [SerializeField] private SpriteRenderer _renderer;
     [SerializeField] private Animator _anim;
   }

@@ -8,7 +8,7 @@ namespace Bunashibu.Kikan {
       Debug.Log("Portal Enter() was called");
       target.transform.position = _exit.transform.position;
     }
-  
+
     [SerializeField] private GameObject _exit;
   }
 }

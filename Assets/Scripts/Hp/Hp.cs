@@ -8,19 +8,19 @@ namespace Bunashibu.Kikan {
       Cur += quantity;
       AdjustBoundary();
     }
-  
+
     public void Subtract(int quantity) {
       Cur -= quantity;
       AdjustBoundary();
     }
-  
+
     private void AdjustBoundary() {
       if (Cur <= Min)
         Cur = Min;
       if (Cur > Max)
         Cur = Max;
     }
-  
+
     public int Cur { get; protected set; }
     public int Min { get; protected set; }
     public int Max { get; protected set; }

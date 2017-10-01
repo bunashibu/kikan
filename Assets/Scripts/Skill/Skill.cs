@@ -11,14 +11,14 @@ namespace Bunashibu.Kikan {
       _skillUser = PhotonView.Find(viewID).gameObject;
       _team = team;
     }
-  
+
     public void Init(bool flipX, int viewID) {
       Assert.IsTrue(photonView.isMine);
-  
+
       var team = (int)PhotonNetwork.player.CustomProperties["Team"];
       photonView.RPC("SyncInit", PhotonTargets.All, flipX, viewID, team);
     }
-  
+
     protected GameObject _skillUser;
     protected int _team;
   }

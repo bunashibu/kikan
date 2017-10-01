@@ -8,7 +8,7 @@ namespace Bunashibu.Kikan {
       _text.text = "[" + cur.ToString() + "/" + max.ToString() + "]  ";
       Animate(cur, max);
     }
-  
+
     [SerializeField] private Text _text;
   }
 }

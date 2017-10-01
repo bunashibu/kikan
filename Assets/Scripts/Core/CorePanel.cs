@@ -9,7 +9,7 @@ namespace Bunashibu.Kikan {
         return _chartList;
       }
     }
-  
+
     [SerializeField] private List<CoreChart> _chartList;
   }
 }

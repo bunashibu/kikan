@@ -10,11 +10,11 @@ namespace Bunashibu.Kikan {
         _actFlag = false;
       }
     }
-  
+
     public void JumpOff() {
       _actFlag = true;
     }
-  
+
     protected bool _actFlag;
   }
 }

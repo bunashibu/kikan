@@ -9,16 +9,16 @@ namespace Bunashibu.Kikan {
         Destroy(this);
       }
     }
-  
+
     public static T Instance {
       get {
         if (instance == null)
           instance = FindObjectOfType(typeof(T)) as T;
-  
+
         return instance;
       }
     }
-  
+
     private static T instance;
   }
 }

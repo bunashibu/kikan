@@ -10,7 +10,7 @@ namespace Bunashibu.Kikan {
       else
         gameObject.SetActive(false);
     }
-  
+
     [SerializeField] private PhotonView _photonView;
   }
 }

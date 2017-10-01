@@ -10,17 +10,17 @@ namespace Bunashibu.Kikan {
       Movement.SetLinearMoveForce(_linearMoveForce);
       Movement.SetJumpForce(_jumpForce);
     }
-  
+
     void Update() {
       //Movement.GroundMoveLeft();
     }
-  
+
     void FixedUpdate() {
       Movement.FixedUpdate(_enemy.Rigid);
     }
-  
+
     public LinearJumpEnemyMovement Movement { get; private set; }
-  
+
     [SerializeField] private Enemy _enemy;
     [SerializeField] private float _linearMoveForce;
     [SerializeField] private float _jumpForce;

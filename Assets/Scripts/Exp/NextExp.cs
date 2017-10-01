@@ -12,29 +12,29 @@ namespace Bunashibu.Kikan {
       Min = 0;
       Max = _table.Data[_index];
     }
-  
+
     [PunRPC]
     protected void SyncExpCur(int cur) {
       Cur = cur;
     }
-  
+
     public void Add(int quantity) {
       Cur += quantity;
-  
+
       if (Cur >= Max) {
         photonView.RPC("SyncExpLvUp", PhotonTargets.All);
         return;
       }
       if (Cur < Min)
         Cur = Min;
-  
+
       photonView.RPC("SyncExpCur", PhotonTargets.Others, Cur);
     }
-  
+
     public void Subtract(int quantity) {
       Add(-quantity);
     }
-  
+
     [PunRPC]
     protected void SyncExpLvUp() {
       _level.LvUp();
@@ -42,7 +42,7 @@ namespace Bunashibu.Kikan {
       Max = _table.Data[_index];
       Cur = Min;
     }
-  
+
     [SerializeField] private DataTable _table;
     [SerializeField] private Level _level;
     public int Cur { get; private set; }

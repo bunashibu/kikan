@@ -8,7 +8,7 @@ namespace Bunashibu.Kikan {
     public void UpdateGold(int cur) {
       _text.text = cur.ToString();
     }
-  
+
     [SerializeField] private Text _text;
   }
 }

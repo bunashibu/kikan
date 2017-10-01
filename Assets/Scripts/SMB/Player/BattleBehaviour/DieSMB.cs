@@ -10,13 +10,13 @@ namespace Bunashibu.Kikan {
         _player     = animator.GetComponent<BattlePlayer>();
         _respawner  = animator.GetComponent<PlayerRespawner>();
       }
-  
+
       Action action = () => { _player.StateTransfer.TransitTo("Idle", animator); };
       _respawner.Respawn(action);
-  
+
       Debug.Log("Die");
     }
-  
+
     private BattlePlayer _player;
     private PlayerRespawner _respawner;
   }

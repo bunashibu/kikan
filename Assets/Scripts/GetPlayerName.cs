@@ -8,7 +8,7 @@ namespace Bunashibu.Kikan {
     void Start() {
       _text.text = _photonView.owner.NickName;
     }
-  
+
     [SerializeField] private PhotonView _photonView;
     [SerializeField] private Text _text;
   }
