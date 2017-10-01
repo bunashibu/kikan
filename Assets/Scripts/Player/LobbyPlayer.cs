@@ -11,7 +11,7 @@ namespace Bunashibu.Kikan {
       StateTransfer = new StateTransfer(_initState, _animator);
       SkillInfo     = new SkillInfo();
 
-      Movement.SetLinearMoveForce(80.0f);
+      Movement.SetLinearMoveForce(4.0f);
       Movement.SetJumpForce(400.0f);
     }
 

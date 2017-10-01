@@ -13,6 +13,9 @@ namespace Bunashibu.Kikan {
 
     void Update() {
       UpdateRaycast();
+
+      if (State.IsGround)
+        CalculateFriction();
     }
 
     private void UpdateRaycast() {
@@ -38,6 +41,16 @@ namespace Bunashibu.Kikan {
     private void ApplyAirSettings() {
       _character.Rigid.gravityScale = 1;
       State.ToAir();
+    }
+
+    private void CalculateFriction() {
+      var movingDirection = new Vector2(Mathf.Sign(_character.Rigid.velocity.x), 0);
+      Vector2 estimatedVelocity = _character.Rigid.velocity - (movingDirection * _friction);
+
+      if (Mathf.Sign(estimatedVelocity.x) == movingDirection.x)
+        _character.Rigid.velocity = estimatedVelocity;
+      else
+        _character.Rigid.velocity = new Vector2(0, 0);
     }
 
     public CharacterState State { get; private set; }

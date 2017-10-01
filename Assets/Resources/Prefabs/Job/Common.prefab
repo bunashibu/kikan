@@ -524,7 +524,7 @@ MonoBehaviour:
   _groundMask:
     serializedVersion: 2
     m_Bits: 33024
-  _friction: 0
+  _friction: 0.1
 --- !u!114 &114606102195267942
 MonoBehaviour:
   m_ObjectHideFlags: 1
