@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   public class LinearJumpEnemyMovement {
+    /*
     public LinearJumpEnemyMovement() {
       _groundLinear = new GroundLinearMove();
       _groundJump   = new GroundJump();
@@ -37,6 +38,7 @@ namespace Bunashibu.Kikan {
 
     private GroundLinearMove _groundLinear;
     private GroundJump _groundJump;
+    */
   }
 }
 

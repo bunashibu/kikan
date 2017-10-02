@@ -2,7 +2,7 @@
 using System.Collections;
 
 namespace Bunashibu.Kikan {
-  public class GroundLinearMove {
+  public class FlatGroundMove {
     public void FixedUpdate(Rigidbody2D rigid) {
       if (_actFlag) {
         rigid.velocity = new Vector2(0, rigid.velocity.y);

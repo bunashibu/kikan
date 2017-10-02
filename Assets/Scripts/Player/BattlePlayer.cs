@@ -14,10 +14,6 @@ namespace Bunashibu.Kikan {
     }
 
     void FixedUpdate() {
-      if (State.Ground) {
-        Rigid.AddForce(Physics2D.gravity * -2.4f);
-      }
-
       Movement.FixedUpdate(_rigid, _trans);
     }
 

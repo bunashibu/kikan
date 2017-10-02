@@ -5,6 +5,7 @@ using UnityEngine;
 namespace Bunashibu.Kikan {
   [RequireComponent(typeof(Enemy))]
   public class MushroomAI : MonoBehaviour {
+    /*
     void Awake() {
       Movement = new LinearJumpEnemyMovement();
       Movement.SetLinearMoveForce(_linearMoveForce);
@@ -18,6 +19,7 @@ namespace Bunashibu.Kikan {
     void FixedUpdate() {
       Movement.FixedUpdate(_enemy.Rigid);
     }
+    */
 
     public LinearJumpEnemyMovement Movement { get; private set; }
 

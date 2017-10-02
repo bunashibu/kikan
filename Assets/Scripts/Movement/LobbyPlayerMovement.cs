@@ -6,7 +6,7 @@ namespace Bunashibu.Kikan {
   public class LobbyPlayerMovement {
     public LobbyPlayerMovement() {
       _airLinear    = new AirLinearMove();
-      _groundLinear = new GroundLinearMove();
+      _flatMove     = new FlatGroundMove();
 
       _groundJump   = new GroundJump();
       _climbJump    = new ClimbJump();
@@ -19,7 +19,7 @@ namespace Bunashibu.Kikan {
     // INFO: Must be called in MonoBehaviour-FixedUpdate()
     public void FixedUpdate(Rigidbody2D rigid, Transform trans) {
       _airLinear.FixedUpdate(rigid);
-      _groundLinear.FixedUpdate(rigid);
+      _flatMove.FixedUpdate(rigid);
 
       _groundJump.FixedUpdate(rigid);
       _climbJump.FixedUpdate(rigid);
@@ -37,11 +37,11 @@ namespace Bunashibu.Kikan {
     }
 
     public void GroundMoveLeft() {
-      _groundLinear.MoveLeft();
+      _flatMove.MoveLeft();
     }
 
     public void GroundMoveRight() {
-      _groundLinear.MoveRight();
+      _flatMove.MoveRight();
     }
 
     public void GroundJump() {
@@ -73,7 +73,7 @@ namespace Bunashibu.Kikan {
     }
 
     public void SetLinearMoveForce(float force) {
-      _groundLinear.SetForce(force);
+      _flatMove.SetForce(force);
     }
 
     public void SetJumpForce(float force) {
@@ -81,7 +81,7 @@ namespace Bunashibu.Kikan {
     }
 
     private AirLinearMove _airLinear;
-    private GroundLinearMove _groundLinear;
+    private FlatGroundMove _flatMove;
 
     private GroundJump _groundJump;
     private ClimbJump _climbJump;
