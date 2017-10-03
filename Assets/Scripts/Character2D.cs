@@ -12,43 +12,52 @@ namespace Bunashibu.Kikan {
     }
 
     void Update() {
-      UpdateVerticalRaycast();
-      UpdateHorizontalRaycast();
+      UpdateRaycast();
 
       if (State.IsGround)
         CalculateFriction();
     }
 
-    private void UpdateVerticalRaycast() {
-      Vector2      footRayOrigin = new Vector2(_character.Collider.bounds.center.x, _character.Collider.bounds.min.y);
-      RaycastHit2D hitGround     = Physics2D.Raycast(footRayOrigin, Vector2.down, Mathf.Abs(_character.Rigid.velocity.y), _groundMask);
-      Debug.DrawRay(footRayOrigin, Vector2.down * Mathf.Abs(_character.Rigid.velocity.y), Color.red);
+    private void UpdateRaycast() {
+      Vector2 footRayOrigin = new Vector2(_character.Collider.bounds.center.x, _character.Collider.bounds.min.y);
 
-      bool isGround = (hitGround.collider != null) && (hitGround.distance == 0);
+      RaycastHit2D hitGround;
+      bool isGround;
+      UpdateGroundRaycast(footRayOrigin, out hitGround, out isGround);
 
-      if (isGround)
-        ApplyGroundSettings(hitGround);
-      else
+      RaycastHit2D hitLeftSlope;
+      bool isLeftSlope;
+      UpdateSlopeRaycast(Vector2.left, footRayOrigin, out hitLeftSlope, out isLeftSlope);
+
+      RaycastHit2D hitRightSlope;
+      bool isRightSlope;
+      UpdateSlopeRaycast(Vector2.right, footRayOrigin, out hitRightSlope, out isRightSlope);
+
+      if (isGround) {
+        if (isLeftSlope)
+          ApplySlopeSettings(hitLeftSlope);
+        else if (isRightSlope)
+          ApplySlopeSettings(hitRightSlope);
+        else
+          ApplyGroundSettings(hitGround);
+
+      } else {
         ApplyAirSettings();
+      }
     }
 
-    private void UpdateHorizontalRaycast() {
-      Vector2      leftRayOrigin = new Vector2(_character.Collider.bounds.min.x, _character.Collider.bounds.min.y);
-      RaycastHit2D hitLeftSlope  = Physics2D.Raycast(leftRayOrigin, Vector2.left, Mathf.Abs(_character.Rigid.velocity.x), _slopeMask);
-      bool         isLeftSlope   = (hitLeftSlope.collider != null) && (hitLeftSlope.distance == 0);
-      Debug.DrawRay(leftRayOrigin, Vector2.left * Mathf.Abs(_character.Rigid.velocity.x), Color.red);
+    private void UpdateGroundRaycast(Vector2 footRayOrigin, out RaycastHit2D hitGround, out bool isGround) {
+      hitGround = Physics2D.Raycast(footRayOrigin, Vector2.down, Mathf.Abs(_character.Rigid.velocity.y), _groundMask);
+      isGround  = (hitGround.collider != null) && (hitGround.distance == 0);
+      Debug.DrawRay(footRayOrigin, Vector2.down * Mathf.Abs(_character.Rigid.velocity.y), Color.red);
+    }
 
-      Vector2      rightRayOrigin = new Vector2(_character.Collider.bounds.max.x, _character.Collider.bounds.min.y);
-      RaycastHit2D hitRightSlope  = Physics2D.Raycast(rightRayOrigin, Vector2.right, Mathf.Abs(_character.Rigid.velocity.x), _slopeMask);
-      bool         isRightSlope   = (hitRightSlope.collider != null) && (hitRightSlope.distance == 0);
-      Debug.DrawRay(rightRayOrigin, Vector2.right * Mathf.Abs(_character.Rigid.velocity.x), Color.red);
+    private void UpdateSlopeRaycast(Vector2 direction, Vector2 footRayOrigin, out RaycastHit2D hitSlope, out bool isSlope) {
+      float rayLength = Mathf.Abs(_character.Rigid.velocity.x); // divide by XX FPS
 
-      if (isLeftSlope)
-        ApplySlopeSettings(hitLeftSlope);
-      else if (isRightSlope)
-        ApplySlopeSettings(hitRightSlope);
-      else
-        ApplyFlatSettings();
+      hitSlope = Physics2D.Raycast(footRayOrigin, direction, rayLength, _slopeMask);
+      isSlope  = (hitSlope.collider != null) && (hitSlope.distance == 0);
+      Debug.DrawRay(footRayOrigin, direction * rayLength, Color.red);
     }
 
     private void ApplyGroundSettings(RaycastHit2D hitGround) {
@@ -58,20 +67,14 @@ namespace Bunashibu.Kikan {
       State.ToGround();
     }
 
-    private void ApplyAirSettings() {
-      _character.Rigid.gravityScale = 1;
-      State.ToAir();
-    }
-
-    private void ApplyFlatSettings() {
-      State.OffSlope();
-    }
-
     private void ApplySlopeSettings(RaycastHit2D hitSlope) {
       float angle = Vector2.Angle(hitSlope.normal, Vector2.up);
       Debug.Log(angle);
+    }
 
-      State.OnSlope();
+    private void ApplyAirSettings() {
+      _character.Rigid.gravityScale = 1;
+      State.ToAir();
     }
 
     private void CalculateFriction() {
@@ -90,6 +93,8 @@ namespace Bunashibu.Kikan {
     [SerializeField] private LayerMask _slopeMask;
     [Range(0, 1)]
     [SerializeField] private float _friction;
+    [Range(0, 90)]
+    [SerializeField] private float _maxClimbableAngle;
     private ICharacter _character;
   }
 }
