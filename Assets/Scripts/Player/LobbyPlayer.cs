@@ -15,10 +15,15 @@ namespace Bunashibu.Kikan {
       Movement.SetJumpForce(400.0f);
     }
 
+    void Update() {
+      State.Ground = Character.State.IsGround;
+    }
+
     void FixedUpdate() {
       Movement.FixedUpdate(_rigid, _trans);
     }
 
+    public Character2D      Character  { get { return _character;    } }
     public PhotonView       PhotonView { get { return _photonView;   } }
     public SpriteRenderer[] Renderers  { get { return _renderers;    } }
     public Rigidbody2D      Rigid      { get { return _rigid;        } }
@@ -29,8 +34,7 @@ namespace Bunashibu.Kikan {
     public StateTransfer       StateTransfer { get; private set; }
     public SkillInfo           SkillInfo     { get; private set; }
 
-    public Character2D         Character     { get; private set; }
-
+    [SerializeField] private Character2D      _character;
     [SerializeField] private PhotonView       _photonView;
     [SerializeField] private Transform        _trans;
     [SerializeField] private SpriteRenderer[] _renderers;  // INFO: [PlayerSprite, WeaponSprite]

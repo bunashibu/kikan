@@ -13,6 +13,20 @@ namespace Bunashibu.Kikan {
       SkillInfo     = new SkillInfo();
     }
 
+    void Update() {
+      Vector2 footRayOrigin = new Vector2(_footCollider.bounds.center.x, _footCollider.bounds.min.y);
+
+      RaycastHit2D hitGround = Physics2D.Raycast(footRayOrigin, Vector2.down, 1.0f, _groundMask);
+      State.Ground = (hitGround.collider != null) && (hitGround.distance < 0.5f);
+      Debug.DrawRay(footRayOrigin, Vector2.down, Color.red);
+      Debug.Log(State.Ground);
+      Debug.Log(hitGround.collider);
+      Debug.Log(hitGround.distance.ToString("F15"));
+
+    }
+
+    [SerializeField] private LayerMask _groundMask;
+
     void FixedUpdate() {
       Movement.FixedUpdate(_rigid, _trans);
     }

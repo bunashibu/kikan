@@ -667,6 +667,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a8d6c748c9a9264b867ad5ac0dceefe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _groundMask:
+    serializedVersion: 2
+    m_Bits: 33024
   _photonView: {fileID: 114800105221254742}
   _trans: {fileID: 224235004673622830}
   _renderers:
