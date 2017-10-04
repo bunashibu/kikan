@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace Bunashibu.Kikan {
   public class PlayerState {
-    public PlayerState(BoxCollider2D ladderCollider, BoxCollider2D footCollider) {
+    public PlayerState(Collider2D ladderCollider, Collider2D footCollider) {
       _ladderCollider        = ladderCollider;
       _footCollider          = footCollider;
 
@@ -35,8 +35,8 @@ namespace Bunashibu.Kikan {
     public bool Heavy { get; set; }
     public bool Rigor { get; set; }
 
-    private BoxCollider2D _ladderCollider;
-    private BoxCollider2D _footCollider;
+    private Collider2D _ladderCollider;
+    private Collider2D _footCollider;
     private LayerMask _groundLayer;
     private LayerMask _canNotDownGroundLayer;
     private LayerMask _ladderLayer;

@@ -16,9 +16,10 @@ namespace Bunashibu.Kikan {
     void Update() {
       Vector2 footRayOrigin = new Vector2(_footCollider.bounds.center.x, _footCollider.bounds.min.y);
 
-      RaycastHit2D hitGround = Physics2D.Raycast(footRayOrigin, Vector2.down, 1.0f, _groundMask);
-      State.Ground = (hitGround.collider != null) && (hitGround.distance < 0.5f);
-      Debug.DrawRay(footRayOrigin, Vector2.down, Color.red);
+      float rayLength = 0.25f + Mathf.Abs(Rigid.velocity.y) * Time.deltaTime;
+      RaycastHit2D hitGround = Physics2D.Raycast(footRayOrigin, Vector2.down, rayLength, _groundMask);
+      State.Ground = (hitGround.collider != null) && (hitGround.distance < 0.25f);
+      Debug.DrawRay(footRayOrigin, Vector2.down * rayLength, Color.red);
       Debug.Log(State.Ground);
       Debug.Log(hitGround.collider);
       Debug.Log(hitGround.distance.ToString("F15"));
@@ -34,7 +35,7 @@ namespace Bunashibu.Kikan {
     public PhotonView       PhotonView   { get { return _photonView;   } }
     public SpriteRenderer[] Renderers    { get { return _renderers;    } }
     public Rigidbody2D      Rigid        { get { return _rigid;        } }
-    public BoxCollider2D    FootCollider { get { return _footCollider; } }
+    public Collider2D       FootCollider { get { return _footCollider; } }
 
     public BattlePlayerObserver Observer { get { return _observer; } }
 
@@ -68,8 +69,8 @@ namespace Bunashibu.Kikan {
     [SerializeField] private Transform        _trans;
     [SerializeField] private SpriteRenderer[] _renderers;  // INFO: [PlayerSprite, WeaponSprite]
     [SerializeField] private Rigidbody2D      _rigid;
-    [SerializeField] private BoxCollider2D    _ladderCollider;
-    [SerializeField] private BoxCollider2D    _footCollider;
+    [SerializeField] private Collider2D    _ladderCollider;
+    [SerializeField] private Collider2D    _footCollider;
     [SerializeField] private Animator         _animator;
 
     [Header("Observer")]

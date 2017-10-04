@@ -112,7 +112,6 @@ GameObject:
   - component: {fileID: 212543119074357088}
   - component: {fileID: 61760561158213272}
   - component: {fileID: 61116396818863762}
-  - component: {fileID: 61968041453497018}
   - component: {fileID: 95930055764971676}
   - component: {fileID: 50159110143766000}
   - component: {fileID: 114800105221254742}
@@ -130,6 +129,7 @@ GameObject:
   - component: {fileID: 114346652777482960}
   - component: {fileID: 114610620364185106}
   - component: {fileID: 114172174937367482}
+  - component: {fileID: 68219048761684462}
   m_Layer: 9
   m_Name: Manji
   m_TagString: Player
@@ -340,31 +340,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6, y: 0.9}
   m_EdgeRadius: 0
---- !u!61 &61968041453497018
-BoxCollider2D:
+--- !u!68 &68219048761684462
+EdgeCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1222958424102090}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: f895975dc5d49634da4a679789515eb3, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.45}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.8, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.1, y: 0.1}
-  m_EdgeRadius: 0.00001
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: 0, y: -0.4}
+  - {x: 0, y: -0.5}
 --- !u!81 &81510259978721282
 AudioListener:
   m_ObjectHideFlags: 1
@@ -677,7 +669,7 @@ MonoBehaviour:
   - {fileID: 212620572494064958}
   _rigid: {fileID: 50159110143766000}
   _ladderCollider: {fileID: 61116396818863762}
-  _footCollider: {fileID: 61968041453497018}
+  _footCollider: {fileID: 68219048761684462}
   _animator: {fileID: 95930055764971676}
   _observer: {fileID: 114610620364185106}
   _hpTable: {fileID: 11400000, guid: 1e81de872edf78241a359a3838a6f3b8, type: 2}
