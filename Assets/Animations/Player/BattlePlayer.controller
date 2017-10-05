@@ -103,11 +103,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ae6fefc1cdc4de458164a2f811b9000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _photonView: {fileID: 0}
-  _rigidState: {fileID: 0}
-  _skillInfo: {fileID: 0}
-  _renderers: []
-  _hp: {fileID: 0}
 --- !u!114 &114000010965093018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -119,11 +114,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cae8ecbef03bf67488f7746fcd2e5719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _photonView: {fileID: 0}
-  _rigidState: {fileID: 0}
-  _skillInfo: {fileID: 0}
-  _renderers: []
-  _hp: {fileID: 0}
 --- !u!114 &114000011149281420
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -146,9 +136,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a9fd1b859f7a7b49a5f303b00cdb03b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _photonView: {fileID: 0}
-  _rigidState: {fileID: 0}
-  _hp: {fileID: 0}
 --- !u!114 &114000013527745932
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -160,10 +147,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e283638d1571364399b7be72a419013, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _photonView: {fileID: 0}
-  _rigidState: {fileID: 0}
-  _skillInfo: {fileID: 0}
-  _hp: {fileID: 0}
 --- !u!114 &114000013985910208
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -175,12 +158,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b91e5cdf0ac6e4645b0971b8ceee4dab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _photonView: {fileID: 0}
-  _rigid: {fileID: 0}
-  _colliderFoot: {fileID: 0}
-  _rigidState: {fileID: 0}
-  _hp: {fileID: 0}
-  _isTransferable: 0
 --- !u!114 &114000014028001874
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -192,12 +169,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cef7247bd33b3d34eb00205f16bc6b44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _photonView: {fileID: 0}
-  _rigidState: {fileID: 0}
-  _colliderFoot: {fileID: 0}
-  _hp: {fileID: 0}
-  _isAlreadyJumped: 0
-  _fallFlag: 0
 --- !u!114 &114136149163334124
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -209,10 +180,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9d7a46e89485a34aa7e0df557e867c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _photonView: {fileID: 0}
-  _rigidState: {fileID: 0}
-  _hp: {fileID: 0}
-  _transitionFlag: 0
 --- !u!114 &114698561786526024
 MonoBehaviour:
   m_ObjectHideFlags: 1
