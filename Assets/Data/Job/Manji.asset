@@ -14,5 +14,5 @@ MonoBehaviour:
   _id: 0
   _atk: 200
   _dfn: 1
-  _spd: 4
+  _spd: 160
   _jmp: 400

@@ -15955,6 +15955,7 @@ GameObject:
   - component: {fileID: 1764783110}
   - component: {fileID: 1764783109}
   - component: {fileID: 1764783112}
+  - component: {fileID: 1764783115}
   m_Layer: 8
   m_Name: Slope
   m_TagString: Untagged
@@ -16014,7 +16015,7 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 256
+  m_SurfaceArc: 179
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
@@ -16024,7 +16025,7 @@ BoxCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1764783107}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 35c347771c671a3419efb6df1abe030c, type: 2}
   m_IsTrigger: 0
@@ -16079,7 +16080,7 @@ EdgeCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1764783107}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 6200000, guid: eeea7e605b9f90547b112c1c52461b8a, type: 2}
   m_IsTrigger: 0
@@ -16098,7 +16099,7 @@ BoxCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1764783107}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 35c347771c671a3419efb6df1abe030c, type: 2}
   m_IsTrigger: 0
@@ -16117,6 +16118,42 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.63, y: 1}
   m_EdgeRadius: 0
+--- !u!60 &1764783115
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1764783107}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 1
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -11.81, y: 5.769}
+      - {x: -5.329, y: 0.702}
+      - {x: 5.329, y: 0.702}
+      - {x: 11.81, y: 5.769}
+      - {x: 16.518, y: 5.769}
+      - {x: 16.518, y: 5.169}
+      - {x: 11.81, y: 5.169}
+      - {x: 5.329, y: 0.502}
+      - {x: -5.329, y: 0.502}
+      - {x: -11.81, y: 5.169}
+      - {x: -16.518, y: 5.169}
+      - {x: -16.518, y: 5.769}
 --- !u!1 &1798997866
 GameObject:
   m_ObjectHideFlags: 0
