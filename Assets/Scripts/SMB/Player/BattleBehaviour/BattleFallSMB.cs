@@ -1,5 +1,6 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Bunashibu.Kikan {
   public class BattleFallSMB : StateMachineBehaviour {
@@ -18,7 +19,7 @@ namespace Bunashibu.Kikan {
         if ( ShouldTransitToWalk()       ) { _player.StateTransfer.TransitTo( "Walk"       , animator ); return; }
         if ( ShouldTransitToLieDown()    ) { _player.StateTransfer.TransitTo( "LieDown"    , animator ); return; }
         if ( ShouldTransitToGroundJump() ) { _player.StateTransfer.TransitTo( "GroundJump" , animator ); return; }
-        if ( _player.State.Ground        ) { _player.StateTransfer.TransitTo( "Idle"       , animator ); return; }
+        if ( ShouldTransitToIdle()       ) { _player.StateTransfer.TransitTo( "Idle"       , animator ); return; }
       }
     }
 
@@ -73,8 +74,11 @@ namespace Bunashibu.Kikan {
     }
 
     private bool ShouldTransitToGroundJump() {
-      return _player.State.Ground && Input.GetButton("Jump");
-      //return _player.State.Ground && Mathf.Approximately(_player.Rigid.velocity.y, 0) && Input.GetButton("Jump");
+      return _player.State.Ground && Mathf.Approximately(_player.Rigid.velocity.y, 0) && Input.GetButton("Jump");
+    }
+
+    private bool ShouldTransitToIdle() {
+      return _player.State.Ground && Mathf.Approximately(_player.Rigid.velocity.y, 0);
     }
 
     private BattlePlayer _player;

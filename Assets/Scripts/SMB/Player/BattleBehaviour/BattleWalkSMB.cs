@@ -1,5 +1,6 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Bunashibu.Kikan {
   public class BattleWalkSMB : StateMachineBehaviour {
@@ -18,7 +19,7 @@ namespace Bunashibu.Kikan {
         if ( ShouldTransitToStepDownJump() ) { _player.StateTransfer.TransitTo( "StepDownJump" , animator ); return; }
         if ( ShouldTransitToGroundJump()   ) { _player.StateTransfer.TransitTo( "GroundJump"   , animator ); return; }
         if ( ShouldTransitToIdle()         ) { _player.StateTransfer.TransitTo( "Idle"         , animator ); return; }
-        if ( _player.State.Air             ) { _player.StateTransfer.TransitTo( "Fall"         , animator ); return; }
+        if ( ShouldTransitToFall()         ) { _player.StateTransfer.TransitTo( "Fall"         , animator ); return; }
       }
     }
 
@@ -65,7 +66,7 @@ namespace Bunashibu.Kikan {
     }
 
     private bool ShouldTransitToGroundJump() {
-      return _player.State.Ground && Input.GetButton("Jump");
+      return _player.State.Ground && Mathf.Approximately(_player.Rigid.velocity.y, 0) && Input.GetButton("Jump");
     }
 
     private bool ShouldTransitToIdle() {
@@ -73,6 +74,10 @@ namespace Bunashibu.Kikan {
       bool OneKeyUp    = Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow);
 
       return _player.State.Ground && (BothKeyDown || OneKeyUp);
+    }
+
+    private bool ShouldTransitToFall() {
+      return _player.State.Air && (_player.Rigid.velocity.y < 0);
     }
 
     private BattlePlayer _player;

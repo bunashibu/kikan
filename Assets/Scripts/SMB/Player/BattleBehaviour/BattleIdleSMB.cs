@@ -1,5 +1,6 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Bunashibu.Kikan {
   public class BattleIdleSMB : StateMachineBehaviour {
@@ -53,7 +54,7 @@ namespace Bunashibu.Kikan {
     }
 
     private bool ShouldTransitToGroundJump() {
-      return _player.State.Ground && Input.GetButton("Jump");
+      return _player.State.Ground && Mathf.Approximately(_player.Rigid.velocity.y, 0) && Input.GetButton("Jump");
     }
 
     private BattlePlayer _player;
