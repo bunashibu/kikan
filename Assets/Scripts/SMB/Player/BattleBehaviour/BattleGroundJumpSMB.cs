@@ -5,20 +5,25 @@ using UnityEngine;
 namespace Bunashibu.Kikan {
   public class BattleGroundJumpSMB : StateMachineBehaviour {
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
+      Debug.Log("Jump");
+
       if (_player == null)
         _player = animator.GetComponent<BattlePlayer>();
 
+      _isAlreadyJumped = false;
       _player.Movement.GroundJump();
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
       if (_player.PhotonView.isMine) {
+        if (_player.State.Air)
+          _isAlreadyJumped = true;
+
         AirMove();
 
         if ( _player.Hp.Cur <= 0    ) { _player.StateTransfer.TransitTo( "Die"   , animator ); return; }
         if ( ShouldTransitToSkill() ) { _player.StateTransfer.TransitTo( "Skill" , animator ); return; }
         if ( ShouldTransitToFall()  ) { _player.StateTransfer.TransitTo( "Fall"  , animator ); return; }
-        if ( ShouldTransitToIdle()  ) { _player.StateTransfer.TransitTo( "Idle"  , animator ); return; }
       }
     }
 
@@ -49,14 +54,14 @@ namespace Bunashibu.Kikan {
     }
 
     private bool ShouldTransitToFall() {
-      return _player.State.Air && (_player.Rigid.velocity.y < 0);
-    }
+      if (_isAlreadyJumped)
+        return _player.Rigid.velocity.y <= 0;
 
-    private bool ShouldTransitToIdle() {
-      return _player.State.Ground && Mathf.Approximately(_player.Rigid.velocity.y, 0);
+      return false;
     }
 
     private BattlePlayer _player;
+    private bool _isAlreadyJumped;
   }
 }
 

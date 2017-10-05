@@ -20,10 +20,11 @@ namespace Bunashibu.Kikan {
       RaycastHit2D hitGround = Physics2D.Raycast(footRayOrigin, Vector2.down, rayLength, _groundMask);
       State.Ground = (hitGround.collider != null) && (hitGround.distance < 0.25f);
       Debug.DrawRay(footRayOrigin, Vector2.down * rayLength, Color.red);
+      /*
       Debug.Log(State.Ground);
       Debug.Log(hitGround.collider);
       Debug.Log(hitGround.distance.ToString("F15"));
-
+      */
     }
 
     [SerializeField] private LayerMask _groundMask;
