@@ -17,6 +17,7 @@ namespace Bunashibu.Kikan {
         if ( _player.Hp.Cur <= 0    ) { _player.StateTransfer.TransitTo( "Die"   , animator ); return; }
         if ( ShouldTransitToSkill() ) { _player.StateTransfer.TransitTo( "Skill" , animator ); return; }
         if ( ShouldTransitToFall()  ) { _player.StateTransfer.TransitTo( "Fall"  , animator ); return; }
+        if ( ShouldTransitToIdle()  ) { _player.StateTransfer.TransitTo( "Idle"  , animator ); return; }
       }
     }
 
@@ -48,6 +49,10 @@ namespace Bunashibu.Kikan {
 
     private bool ShouldTransitToFall() {
       return _player.State.Air && (_player.Rigid.velocity.y < 0);
+    }
+
+    private bool ShouldTransitToIdle() {
+      return _player.State.Ground && Mathf.Approximately(_player.Rigid.velocity.y, 0);
     }
 
     private BattlePlayer _player;

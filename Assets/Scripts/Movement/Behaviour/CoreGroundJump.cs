@@ -9,7 +9,7 @@ namespace Bunashibu.Kikan {
         rigid.velocity = new Vector2(rigid.velocity.x, 0);
 
         float ratio = (float)((core.Speed + 100) / 100.0);
-        rigid.AddForce(Vector2.up * _force * ratio);
+        rigid.AddForce(Vector2.up * _force * ratio, ForceMode2D.Impulse);
 
         _actFlag = false;
       }
