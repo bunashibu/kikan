@@ -16,18 +16,26 @@ namespace Bunashibu.Kikan {
     void Update() {
       Vector2 footRayOrigin = new Vector2(_footCollider.bounds.center.x, _footCollider.bounds.min.y);
 
-      float rayLength = 0.25f + Mathf.Abs(Rigid.velocity.y) * Time.deltaTime;
-      RaycastHit2D hitGround = Physics2D.Raycast(footRayOrigin, Vector2.down, rayLength, _groundMask);
-      State.Ground = (hitGround.collider != null) && (hitGround.distance < 0.25f);
+      float rayLength = 0.1f + Mathf.Abs(Rigid.velocity.y) * Time.deltaTime;
+      RaycastHit2D hitGround = Physics2D.Raycast(footRayOrigin, Vector2.down , rayLength, _groundMask);
+      State.GroundInfo = hitGround;
+
+      if (hitGround.collider != null) {
+        State.Ground = (Mathf.Abs(hitGround.distance - _prevDistance) < 0.1f) && (hitGround.distance > 0);
+        State.InGround = hitGround.distance == 0;
+        _prevDistance = hitGround.distance;
+      } else {
+        State.Ground = false;
+        State.InGround = false;
+      }
+
       Debug.DrawRay(footRayOrigin, Vector2.down * rayLength, Color.red);
-      /*
-      Debug.Log(State.Ground);
-      Debug.Log(hitGround.collider);
+      //Debug.Log(hitGround.collider);
       Debug.Log(hitGround.distance.ToString("F15"));
-      */
     }
 
     [SerializeField] private LayerMask _groundMask;
+    float _prevDistance;
 
     void FixedUpdate() {
       Movement.FixedUpdate(_rigid, _trans);

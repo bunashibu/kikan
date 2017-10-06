@@ -17,8 +17,8 @@ namespace Bunashibu.Kikan {
       if (_player.PhotonView.isMine) {
         UpdateFlag();
 
-        if ( _player.Hp.Cur <= 0            ) { _player.StateTransfer.TransitTo( "Die" , animator ); return; }
-        if ( _player.State.Air && _fallFlag ) { _player.StateTransfer.TransitTo( "Fall" , animator ); return; }
+        if ( _player.Hp.Cur <= 0 ) { _player.StateTransfer.TransitTo( "Die" , animator );  return; }
+        if ( _fallFlag           ) { _player.StateTransfer.TransitTo( "Fall" , animator ); return; }
       }
     }
 
@@ -27,20 +27,20 @@ namespace Bunashibu.Kikan {
     }
 
     private void InitFlag() {
-      _isAlreadyJumped = false;
+      _isPassedGround = false;
       _fallFlag = false;
     }
 
     private void UpdateFlag() {
-      if (_player.State.Air)
-        _isAlreadyJumped = true;
+      if (_player.State.InGround)
+        _isPassedGround = true;
 
-      if (_player.State.Ground && _isAlreadyJumped)
+      if (_player.State.Air && _isPassedGround)
         _fallFlag = true;
     }
 
     private BattlePlayer _player;
-    private bool _isAlreadyJumped;
+    private bool _isPassedGround;
     private bool _fallFlag;
   }
 }
