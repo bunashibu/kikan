@@ -24,16 +24,8 @@ namespace Bunashibu.Kikan {
       */
     }
 
-    public bool InGround {
-      get; set;
-    }
-
-    public RaycastHit2D GroundInfo {
-      get; set;
-    }
-
     public bool CanNotDownGround { get { return _footCollider.IsTouchingLayers(_canNotDownGroundLayer);           } }
-    public bool Air              { get { return !Ground && !InGround;                                             } }
+    public bool Air              { get { return !Ground;                                                          } }
     public bool Ladder           { get { return _ladderCollider.IsTouchingLayers(_ladderLayer);                   } }
     public bool LadderTopEdge    { get { return _footCollider.IsTouchingLayers(_ladderTopEdgeLayer);              } }
     public bool LadderBottomEdge { get { return _ladderCollider.IsTouchingLayers(_ladderBottomEdgeLayer);         } }

@@ -18,24 +18,43 @@ namespace Bunashibu.Kikan {
 
       float rayLength = 0.1f + Mathf.Abs(Rigid.velocity.y) * Time.deltaTime;
       RaycastHit2D hitGround = Physics2D.Raycast(footRayOrigin, Vector2.down , rayLength, _groundMask);
-      State.GroundInfo = hitGround;
-
-      if (hitGround.collider != null) {
-        State.Ground = (Mathf.Abs(hitGround.distance - _prevDistance) < 0.1f) && (hitGround.distance > 0);
-        State.InGround = hitGround.distance == 0;
-        _prevDistance = hitGround.distance;
-      } else {
-        State.Ground = false;
-        State.InGround = false;
-      }
 
       Debug.DrawRay(footRayOrigin, Vector2.down * rayLength, Color.red);
-      //Debug.Log(hitGround.collider);
-      Debug.Log(hitGround.distance.ToString("F15"));
     }
 
     [SerializeField] private LayerMask _groundMask;
-    float _prevDistance;
+
+    void OnCollisionEnter2D(Collision2D collision) {
+      string layerName = LayerMask.LayerToName(collision.gameObject.layer);
+      if (layerName == "Ground" || layerName == "CanNotDownGround") {
+        Debug.Log("Collision Enter");
+        State.Ground = true;
+      }
+    }
+
+    void OnCollisionExit2D(Collision2D collision) {
+      string layerName = LayerMask.LayerToName(collision.gameObject.layer);
+      if (layerName == "Ground" || layerName == "CanNotDownGround") {
+        Debug.Log("Collision Exit");
+        State.Ground = false;
+      }
+    }
+
+    void OnTriggerEnter2D(Collider2D collider) {
+      string layerName = LayerMask.LayerToName(collider.gameObject.layer);
+      if (layerName == "Ground" || layerName == "CanNotDownGround") {
+        Debug.Log("Trigger Enter");
+        State.Ground = true;
+      }
+    }
+
+    void OnTriggerExit2D(Collider2D collider) {
+      string layerName = LayerMask.LayerToName(collider.gameObject.layer);
+      if (layerName == "Ground" || layerName == "CanNotDownGround") {
+        Debug.Log("Trigger Exit");
+        State.Ground = false;
+      }
+    }
 
     void FixedUpdate() {
       Movement.FixedUpdate(_rigid, _trans);

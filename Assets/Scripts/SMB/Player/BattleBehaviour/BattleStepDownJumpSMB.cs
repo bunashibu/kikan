@@ -27,12 +27,16 @@ namespace Bunashibu.Kikan {
     }
 
     private void InitFlag() {
+      _isAlreadyJumped = false;
       _isPassedGround = false;
       _fallFlag = false;
     }
 
     private void UpdateFlag() {
-      if (_player.State.InGround)
+      if (_player.State.Air)
+        _isAlreadyJumped = true;
+
+      if (_player.State.Ground && _isAlreadyJumped)
         _isPassedGround = true;
 
       if (_player.State.Air && _isPassedGround)
@@ -40,6 +44,7 @@ namespace Bunashibu.Kikan {
     }
 
     private BattlePlayer _player;
+    private bool _isAlreadyJumped;
     private bool _isPassedGround;
     private bool _fallFlag;
   }
