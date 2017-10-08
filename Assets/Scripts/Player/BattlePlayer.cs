@@ -23,6 +23,15 @@ namespace Bunashibu.Kikan {
       if (State.Ground) {
         float angle = Vector2.Angle(hitGround.normal, Vector2.up);
         State.GroundAngle = angle;
+
+        if (angle > 0 && angle < 90) {
+          float sign = Mathf.Sign(hitGround.normal.x);
+          State.GroundLeft  = (sign == 1 ) ? true : false;
+          State.GroundRight = (sign == -1) ? true : false;
+        } else {
+          State.GroundLeft = false;
+          State.GroundRight = false;
+        }
       }
 
       Debug.DrawRay(footRayOrigin, Vector2.down * rayLength, Color.red);

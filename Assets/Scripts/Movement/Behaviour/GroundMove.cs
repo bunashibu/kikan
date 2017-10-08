@@ -31,7 +31,7 @@ namespace Bunashibu.Kikan {
 
       float radAngle = degAngle * Mathf.Deg2Rad;
       _direction.x = direction.x * Mathf.Cos(radAngle);
-      _direction.y = direction.y * Mathf.Sin(radAngle);
+      _direction.y = Mathf.Sin(radAngle);
     }
 
     protected float _force = 4.0f;
