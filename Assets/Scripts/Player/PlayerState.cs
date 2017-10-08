@@ -24,6 +24,10 @@ namespace Bunashibu.Kikan {
       */
     }
 
+    public bool InGround {
+      get; set;
+    }
+
     public float GroundAngle {
       get; set;
     }

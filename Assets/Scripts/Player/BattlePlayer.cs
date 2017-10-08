@@ -18,6 +18,7 @@ namespace Bunashibu.Kikan {
 
       float rayLength = 0.1f + Mathf.Abs(Rigid.velocity.y) * Time.deltaTime;
       RaycastHit2D hitGround = Physics2D.Raycast(footRayOrigin, Vector2.down , rayLength, _groundMask);
+      State.InGround = Mathf.Approximately(hitGround.distance, 0);
 
       if (State.Ground) {
         float angle = Vector2.Angle(hitGround.normal, Vector2.up);

@@ -65,7 +65,7 @@ namespace Bunashibu.Kikan {
       bool OnlyRightKeyDown = Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow);
       bool WalkFlag         = OnlyLeftKeyDown || OnlyRightKeyDown;
 
-      return _player.State.Ground && WalkFlag;
+      return _player.State.Ground && !_player.State.InGround && WalkFlag;
     }
 
     private bool ShouldTransitToLieDown() {
