@@ -76,11 +76,11 @@ namespace Bunashibu.Kikan {
     }
 
     private bool ShouldTransitToGroundJump() {
-      return _player.State.Ground && Mathf.Approximately(_player.Rigid.velocity.y, 0) && Input.GetButton("Jump");
+      return _player.State.Ground && Input.GetButton("Jump");
     }
 
     private bool ShouldTransitToIdle() {
-      return _player.State.Ground && Mathf.Approximately(_player.Rigid.velocity.y, 0);
+      return _player.State.Ground;
     }
 
     private BattlePlayer _player;
