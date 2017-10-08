@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Bunashibu.Kikan {
   public class LobbyPlayerMovement {
     public LobbyPlayerMovement() {
-      _airLinear    = new AirLinearMove();
+      _airMove      = new AirMove();
       _groundMove   = new GroundMove();
 
       _groundJump   = new GroundJump();
@@ -18,7 +18,7 @@ namespace Bunashibu.Kikan {
 
     // INFO: Must be called in MonoBehaviour-FixedUpdate()
     public void FixedUpdate(Rigidbody2D rigid, Transform trans) {
-      _airLinear.FixedUpdate(rigid);
+      _airMove.FixedUpdate(rigid);
       _groundMove.FixedUpdate(rigid);
 
       _groundJump.FixedUpdate(rigid);
@@ -29,11 +29,11 @@ namespace Bunashibu.Kikan {
     }
 
     public void AirMoveLeft() {
-      _airLinear.MoveLeft();
+      _airMove.MoveLeft();
     }
 
     public void AirMoveRight() {
-      _airLinear.MoveRight();
+      _airMove.MoveRight();
     }
 
     public void GroundMoveLeft(float degAngle = 0) {
@@ -72,7 +72,7 @@ namespace Bunashibu.Kikan {
       _lieDown.Stand(collider);
     }
 
-    public void SetLinearMoveForce(float force) {
+    public void SetMoveForce(float force) {
       _groundMove.SetForce(force);
     }
 
@@ -80,7 +80,7 @@ namespace Bunashibu.Kikan {
       _groundJump.SetForce(force);
     }
 
-    private AirLinearMove _airLinear;
+    private AirMove _airMove;
     private GroundMove _groundMove;
 
     private GroundJump _groundJump;

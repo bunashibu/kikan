@@ -5,20 +5,20 @@ using UnityEngine;
 namespace Bunashibu.Kikan {
   public class BattlePlayerMovement {
     public BattlePlayerMovement() {
-      _coreAirLinear    = new CoreAirLinearMove();
-      _coreGroundMove   = new CoreGroundMove();
+      _coreAirMove    = new CoreAirMove();
+      _coreGroundMove = new CoreGroundMove();
 
-      _coreGroundJump   = new CoreGroundJump();
-      _coreClimbJump    = new CoreClimbJump();
-      _stepDownJump     = new StepDownJump();
+      _coreGroundJump = new CoreGroundJump();
+      _coreClimbJump  = new CoreClimbJump();
+      _stepDownJump   = new StepDownJump();
 
-      _climb            = new Climb();
-      _lieDown          = new LieDown();
+      _climb          = new Climb();
+      _lieDown        = new LieDown();
     }
 
     // INFO: Must be called in MonoBehaviour-FixedUpdate()
     public void FixedUpdate(Rigidbody2D rigid, Transform trans) {
-      _coreAirLinear.FixedUpdate(rigid);
+      _coreAirMove.FixedUpdate(rigid);
       _coreGroundMove.FixedUpdate(rigid);
 
       _coreGroundJump.FixedUpdate(rigid);
@@ -29,11 +29,11 @@ namespace Bunashibu.Kikan {
     }
 
     public void AirMoveLeft() {
-      _coreAirLinear.MoveLeft();
+      _coreAirMove.MoveLeft();
     }
 
     public void AirMoveRight() {
-      _coreAirLinear.MoveRight();
+      _coreAirMove.MoveRight();
     }
 
     public void GroundMoveLeft(float degAngle = 0) {
@@ -72,7 +72,7 @@ namespace Bunashibu.Kikan {
       _lieDown.Stand(collider);
     }
 
-    public void SetLinearMoveForce(float force) {
+    public void SetMoveForce(float force) {
       _coreGroundMove.SetForce(force);
     }
 
@@ -80,7 +80,7 @@ namespace Bunashibu.Kikan {
       _coreGroundJump.SetForce(force);
     }
 
-    private CoreAirLinearMove _coreAirLinear;
+    private CoreAirMove _coreAirMove;
     private CoreGroundMove _coreGroundMove;
 
     private CoreGroundJump _coreGroundJump;

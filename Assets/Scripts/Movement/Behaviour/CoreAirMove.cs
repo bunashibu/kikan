@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
-  public class CoreAirLinearMove : AirLinearMove {
+  public class CoreAirMove : AirMove {
     public void FixedUpdate(Rigidbody2D rigid, PlayerCore core) {
       if (_actFlag) {
         float ratio = (float)((core.Speed + 100) / 100.0);

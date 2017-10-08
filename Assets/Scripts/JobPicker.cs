@@ -103,7 +103,7 @@ namespace Bunashibu.Kikan {
     }
 
     private void InitPlayerMovement(int n) {
-      _player.Movement.SetLinearMoveForce(_jobData[n].Spd);
+      _player.Movement.SetMoveForce(_jobData[n].Spd);
       _player.Movement.SetJumpForce(_jobData[n].Jmp);
     }
 

@@ -2,7 +2,7 @@
 using System.Collections;
 
 namespace Bunashibu.Kikan {
-  public class AirLinearMove {
+  public class AirMove {
     public void FixedUpdate(Rigidbody2D rigid) {
       if (_actFlag) {
         rigid.AddForce(_inputVec * 2.0f);
