@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
-  public class CoreFlatGroundMove : FlatGroundMove {
+  public class CoreGroundMove : GroundMove {
     public void FixedUpdate(Rigidbody2D rigid, PlayerCore core) {
       if (_actFlag) {
         rigid.velocity = new Vector2(0, 0); // like Aizen

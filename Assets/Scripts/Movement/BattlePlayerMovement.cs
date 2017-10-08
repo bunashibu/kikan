@@ -6,7 +6,7 @@ namespace Bunashibu.Kikan {
   public class BattlePlayerMovement {
     public BattlePlayerMovement() {
       _coreAirLinear    = new CoreAirLinearMove();
-      _coreFlatMove     = new CoreFlatGroundMove();
+      _coreGroundMove   = new CoreGroundMove();
 
       _coreGroundJump   = new CoreGroundJump();
       _coreClimbJump    = new CoreClimbJump();
@@ -19,7 +19,7 @@ namespace Bunashibu.Kikan {
     // INFO: Must be called in MonoBehaviour-FixedUpdate()
     public void FixedUpdate(Rigidbody2D rigid, Transform trans) {
       _coreAirLinear.FixedUpdate(rigid);
-      _coreFlatMove.FixedUpdate(rigid);
+      _coreGroundMove.FixedUpdate(rigid);
 
       _coreGroundJump.FixedUpdate(rigid);
       _coreClimbJump.FixedUpdate(rigid);
@@ -37,11 +37,11 @@ namespace Bunashibu.Kikan {
     }
 
     public void GroundMoveLeft(float degAngle = 0) {
-      _coreFlatMove.MoveLeft(degAngle);
+      _coreGroundMove.MoveLeft(degAngle);
     }
 
     public void GroundMoveRight(float degAngle = 0) {
-      _coreFlatMove.MoveRight(degAngle);
+      _coreGroundMove.MoveRight(degAngle);
     }
 
     public void GroundJump() {
@@ -73,7 +73,7 @@ namespace Bunashibu.Kikan {
     }
 
     public void SetLinearMoveForce(float force) {
-      _coreFlatMove.SetForce(force);
+      _coreGroundMove.SetForce(force);
     }
 
     public void SetJumpForce(float force) {
@@ -81,7 +81,7 @@ namespace Bunashibu.Kikan {
     }
 
     private CoreAirLinearMove _coreAirLinear;
-    private CoreFlatGroundMove _coreFlatMove;
+    private CoreGroundMove _coreGroundMove;
 
     private CoreGroundJump _coreGroundJump;
     private CoreClimbJump _coreClimbJump;

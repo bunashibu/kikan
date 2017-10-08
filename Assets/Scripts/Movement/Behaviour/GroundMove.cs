@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
-  public class FlatGroundMove {
+  public class GroundMove {
     public void FixedUpdate(Rigidbody2D rigid) {
       if (_actFlag) {
         rigid.velocity = new Vector2(0, 0);
