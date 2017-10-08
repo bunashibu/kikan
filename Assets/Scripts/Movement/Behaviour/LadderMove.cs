@@ -5,29 +5,26 @@ namespace Bunashibu.Kikan {
   public class LadderMove {
     public void FixedUpdate(Transform trans) {
       if (_actFlag) {
-        trans.Translate(_inputVec * 0.04f);
+        trans.Translate(_direction * 0.04f);
         _actFlag = false;
       }
     }
 
     public void MoveUp() {
-      _actFlag = true;
-      _inputVec.y += 1;
-
-      if (_inputVec.y > 1)
-        _inputVec.y = 1;
+      Move(Vector2.up);
     }
 
     public void MoveDown() {
-      _actFlag = true;
-      _inputVec.y -= 1;
+      Move(Vector2.down);
+    }
 
-      if (_inputVec.y < -1)
-        _inputVec.y = -1;
+    private void Move(Vector2 direction) {
+      _actFlag = true;
+      _direction = direction;
     }
 
     private bool _actFlag;
-    private Vector3 _inputVec;
+    private Vector3 _direction;
   }
 }
 
