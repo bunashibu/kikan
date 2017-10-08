@@ -23,7 +23,6 @@ namespace Bunashibu.Kikan {
       if (State.Ground) {
         float angle = Vector2.Angle(hitGround.normal, Vector2.up);
         State.GroundAngle = angle;
-        Debug.Log(angle);
       }
 
       Debug.DrawRay(footRayOrigin, Vector2.down * rayLength, Color.red);

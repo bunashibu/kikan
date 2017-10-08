@@ -11,7 +11,6 @@ namespace Bunashibu.Kikan {
 
         _actFlag = false;
         _direction.x = 0;
-        _radAngle = 0;
       }
     }
 
@@ -24,19 +23,18 @@ namespace Bunashibu.Kikan {
     }
 
     public void MoveRight(float degAngle) {
-      Vector2 direction = Vector2.right;
-      Move(direction, degAngle);
+      Move(Vector2.right, degAngle);
     }
 
     private void Move(Vector2 direction, float degAngle) {
       _actFlag = true;
-      _radAngle = degAngle * Mathf.Deg2Rad;
-      _direction.x = direction.x * Mathf.Cos(_radAngle);
-      _direction.y = direction.y * Mathf.Sin(_radAngle);
+
+      float radAngle = degAngle * Mathf.Deg2Rad;
+      _direction.x = direction.x * Mathf.Cos(radAngle);
+      _direction.y = direction.y * Mathf.Sin(radAngle);
     }
 
     protected float _force = 4.0f;
-    protected float _radAngle = 0;
     protected bool _actFlag;
     protected Vector2 _direction;
   }
