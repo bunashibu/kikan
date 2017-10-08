@@ -6,13 +6,13 @@ namespace Bunashibu.Kikan {
   public class CoreFlatGroundMove : FlatGroundMove {
     public void FixedUpdate(Rigidbody2D rigid, PlayerCore core) {
       if (_actFlag) {
-        rigid.velocity = new Vector2(0, rigid.velocity.y); // like Aizen
+        rigid.velocity = new Vector2(0, 0); // like Aizen
 
         float ratio = (float)((core.Speed + 100) / 100.0);
-        rigid.AddForce(_inputVec * _force * ratio);
+        rigid.AddForce(_direction * _force * ratio);
 
         _actFlag = false;
-        _inputVec.x = 0;
+        _direction.x = 0;
       }
     }
   }

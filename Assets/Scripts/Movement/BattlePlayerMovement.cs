@@ -36,12 +36,12 @@ namespace Bunashibu.Kikan {
       _coreAirLinear.MoveRight();
     }
 
-    public void GroundMoveLeft() {
-      _coreFlatMove.MoveLeft();
+    public void GroundMoveLeft(float degAngle = 0) {
+      _coreFlatMove.MoveLeft(degAngle);
     }
 
-    public void GroundMoveRight() {
-      _coreFlatMove.MoveRight();
+    public void GroundMoveRight(float degAngle = 0) {
+      _coreFlatMove.MoveRight(degAngle);
     }
 
     public void GroundJump() {

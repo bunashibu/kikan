@@ -30,14 +30,14 @@ namespace Bunashibu.Kikan {
       bool OnlyRightKeyDown = Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow);
 
       if (OnlyLeftKeyDown)  {
-        _player.Movement.GroundMoveLeft();
+        _player.Movement.GroundMoveLeft(_player.State.GroundAngle);
 
         foreach (var sprite in _player.Renderers)
           sprite.flipX = false;
       }
 
       if (OnlyRightKeyDown) {
-        _player.Movement.GroundMoveRight();
+        _player.Movement.GroundMoveRight(_player.State.GroundAngle);
 
         foreach (var sprite in _player.Renderers)
           sprite.flipX = true;

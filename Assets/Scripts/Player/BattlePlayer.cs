@@ -19,6 +19,12 @@ namespace Bunashibu.Kikan {
       float rayLength = 0.1f + Mathf.Abs(Rigid.velocity.y) * Time.deltaTime;
       RaycastHit2D hitGround = Physics2D.Raycast(footRayOrigin, Vector2.down , rayLength, _groundMask);
 
+      if (State.Ground) {
+        float angle = Vector2.Angle(hitGround.normal, Vector2.up);
+        State.GroundAngle = angle;
+        Debug.Log(angle);
+      }
+
       Debug.DrawRay(footRayOrigin, Vector2.down * rayLength, Color.red);
     }
 
