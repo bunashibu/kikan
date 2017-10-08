@@ -2,7 +2,7 @@
 using System.Collections;
 
 namespace Bunashibu.Kikan {
-  public class Climb {
+  public class LadderMove {
     public void FixedUpdate(Transform trans) {
       if (_actFlag) {
         trans.Translate(_inputVec * 0.04f);

@@ -7,12 +7,12 @@ namespace Bunashibu.Kikan {
     public LobbyPlayerMovement() {
       _airMove      = new AirMove();
       _groundMove   = new GroundMove();
+      _ladderMove   = new LadderMove();
 
       _groundJump   = new GroundJump();
-      _climbJump    = new ClimbJump();
+      _ladderJump   = new LadderJump();
       _stepDownJump = new StepDownJump();
 
-      _climb        = new Climb();
       _lieDown      = new LieDown();
     }
 
@@ -20,12 +20,11 @@ namespace Bunashibu.Kikan {
     public void FixedUpdate(Rigidbody2D rigid, Transform trans) {
       _airMove.FixedUpdate(rigid);
       _groundMove.FixedUpdate(rigid);
+      _ladderMove.FixedUpdate(trans);
 
       _groundJump.FixedUpdate(rigid);
-      _climbJump.FixedUpdate(rigid);
+      _ladderJump.FixedUpdate(rigid);
       _stepDownJump.FixedUpdate(rigid);
-
-      _climb.FixedUpdate(trans);
     }
 
     public void AirMoveLeft() {
@@ -44,24 +43,24 @@ namespace Bunashibu.Kikan {
       _groundMove.MoveRight(degAngle);
     }
 
+    public void LadderMoveUp() {
+      _ladderMove.MoveUp();
+    }
+
+    public void LadderMoveDown() {
+      _ladderMove.MoveDown();
+    }
+
     public void GroundJump() {
       _groundJump.Jump();
     }
 
-    public void ClimbJump() {
-      _climbJump.JumpOff();
+    public void LadderJump() {
+      _ladderJump.JumpOff();
     }
 
     public void StepDownJump() {
       _stepDownJump.StepDown();
-    }
-
-    public void ClimbUp() {
-      _climb.MoveUp();
-    }
-
-    public void ClimbDown() {
-      _climb.MoveDown();
     }
 
     public void LieDown(BoxCollider2D collider) {
@@ -82,12 +81,12 @@ namespace Bunashibu.Kikan {
 
     private AirMove _airMove;
     private GroundMove _groundMove;
+    private LadderMove _ladderMove;
 
     private GroundJump _groundJump;
-    private ClimbJump _climbJump;
+    private LadderJump _ladderJump;
     private StepDownJump _stepDownJump;
 
-    private Climb _climb;
     private LieDown _lieDown;
   }
 }

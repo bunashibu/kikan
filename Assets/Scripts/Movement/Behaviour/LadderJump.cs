@@ -2,7 +2,7 @@
 using System.Collections;
 
 namespace Bunashibu.Kikan {
-  public class ClimbJump {
+  public class LadderJump {
     public void FixedUpdate(Rigidbody2D rigid) {
       if (_actFlag) {
         rigid.velocity = new Vector2(rigid.velocity.x, 0);

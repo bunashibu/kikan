@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
-  public class BattleClimbJumpSMB : StateMachineBehaviour {
+  public class BattleLadderJumpSMB : StateMachineBehaviour {
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
       if (_player == null)
         _player = animator.GetComponent<BattlePlayer>();
 
-      ClimbJump();
+      LadderJump();
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
@@ -18,7 +18,7 @@ namespace Bunashibu.Kikan {
       }
     }
 
-    private void ClimbJump() {
+    private void LadderJump() {
       bool OnlyLeftKeyDown = Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow);
       if (OnlyLeftKeyDown) {
         _player.Movement.GroundMoveLeft();
@@ -35,7 +35,7 @@ namespace Bunashibu.Kikan {
           sprite.flipX = true;
       }
 
-      _player.Movement.ClimbJump();
+      _player.Movement.LadderJump();
     }
 
     private BattlePlayer _player;

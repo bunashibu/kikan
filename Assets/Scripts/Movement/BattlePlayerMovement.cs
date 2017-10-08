@@ -7,12 +7,12 @@ namespace Bunashibu.Kikan {
     public BattlePlayerMovement() {
       _coreAirMove    = new CoreAirMove();
       _coreGroundMove = new CoreGroundMove();
+      _ladderMove     = new LadderMove();
 
       _coreGroundJump = new CoreGroundJump();
-      _coreClimbJump  = new CoreClimbJump();
+      _coreLadderJump  = new CoreLadderJump();
       _stepDownJump   = new StepDownJump();
 
-      _climb          = new Climb();
       _lieDown        = new LieDown();
     }
 
@@ -20,12 +20,11 @@ namespace Bunashibu.Kikan {
     public void FixedUpdate(Rigidbody2D rigid, Transform trans) {
       _coreAirMove.FixedUpdate(rigid);
       _coreGroundMove.FixedUpdate(rigid);
+      _ladderMove.FixedUpdate(trans);
 
       _coreGroundJump.FixedUpdate(rigid);
-      _coreClimbJump.FixedUpdate(rigid);
+      _coreLadderJump.FixedUpdate(rigid);
       _stepDownJump.FixedUpdate(rigid);
-
-      _climb.FixedUpdate(trans);
     }
 
     public void AirMoveLeft() {
@@ -44,24 +43,24 @@ namespace Bunashibu.Kikan {
       _coreGroundMove.MoveRight(degAngle);
     }
 
+    public void LadderMoveUp() {
+      _ladderMove.MoveUp();
+    }
+
+    public void LadderMoveDown() {
+      _ladderMove.MoveDown();
+    }
+
     public void GroundJump() {
       _coreGroundJump.Jump();
     }
 
-    public void ClimbJump() {
-      _coreClimbJump.JumpOff();
+    public void LadderJump() {
+      _coreLadderJump.JumpOff();
     }
 
     public void StepDownJump() {
       _stepDownJump.StepDown();
-    }
-
-    public void ClimbUp() {
-      _climb.MoveUp();
-    }
-
-    public void ClimbDown() {
-      _climb.MoveDown();
     }
 
     public void LieDown(BoxCollider2D collider) {
@@ -82,14 +81,13 @@ namespace Bunashibu.Kikan {
 
     private CoreAirMove _coreAirMove;
     private CoreGroundMove _coreGroundMove;
+    private LadderMove _ladderMove;
 
     private CoreGroundJump _coreGroundJump;
-    private CoreClimbJump _coreClimbJump;
+    private CoreLadderJump _coreLadderJump;
     private StepDownJump _stepDownJump;
 
-    private Climb _climb;
     private LieDown _lieDown;
-
   }
 }
 

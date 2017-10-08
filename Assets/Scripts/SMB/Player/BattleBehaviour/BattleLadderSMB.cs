@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
-  public class BattleClimbSMB : StateMachineBehaviour {
+  public class BattleLadderSMB : StateMachineBehaviour {
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
       if (_player == null)
         _player = animator.GetComponent<BattlePlayer>();
@@ -17,7 +17,7 @@ namespace Bunashibu.Kikan {
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
       if (_player.PhotonView.isMine) {
-        Climb();
+        LadderMove();
 
         if (_player.State.Ladder)
           _isTransferable = true;
@@ -25,9 +25,9 @@ namespace Bunashibu.Kikan {
         if ( _player.Hp.Cur <= 0 ) { _player.StateTransfer.TransitTo( "Die" , animator ); return; }
 
         if (_isTransferable) {
-          if ( ShouldTransitToClimbJump() ) { _player.StateTransfer.TransitTo ( "ClimbJump" , animator ) ; return; }
-          if ( ShouldTransitToIdle()      ) { _player.StateTransfer.TransitTo ( "Idle"      , animator ) ; return; }
-          if ( ShouldTransitToFall()      ) { _player.StateTransfer.TransitTo ( "Fall"      , animator ) ; return; }
+          if ( ShouldTransitToLadderJump() ) { _player.StateTransfer.TransitTo ( "LadderJump" , animator ) ; return; }
+          if ( ShouldTransitToIdle()       ) { _player.StateTransfer.TransitTo ( "Idle"       , animator ) ; return; }
+          if ( ShouldTransitToFall()       ) { _player.StateTransfer.TransitTo ( "Fall"       , animator ) ; return; }
         }
       }
     }
@@ -37,17 +37,17 @@ namespace Bunashibu.Kikan {
       _player.FootCollider.isTrigger = false;
     }
 
-    private void Climb() {
+    private void LadderMove() {
       bool OnlyUpKeyDown = Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow);
       if (OnlyUpKeyDown)
-        _player.Movement.ClimbUp();
+        _player.Movement.LadderMoveUp();
 
       bool OnlyDownKeyDown = Input.GetKey(KeyCode.DownArrow) && !Input.GetKey(KeyCode.UpArrow);
       if (OnlyDownKeyDown)
-        _player.Movement.ClimbDown();
+        _player.Movement.LadderMoveDown();
     }
 
-    private bool ShouldTransitToClimbJump() {
+    private bool ShouldTransitToLadderJump() {
       bool OnlyLeftKeyDown  = Input.GetKey(KeyCode.LeftArrow)  && !Input.GetKey(KeyCode.RightArrow);
       bool OnlyRightKeyDown = Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow);
 
