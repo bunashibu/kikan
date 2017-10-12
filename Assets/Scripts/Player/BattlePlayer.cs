@@ -22,6 +22,8 @@ namespace Bunashibu.Kikan {
 
       if (State.Ground) {
         float angle = Vector2.Angle(hitGround.normal, Vector2.up);
+        if (angle == 90)
+          angle = 0;
         State.GroundAngle = angle;
 
         if (angle > 0 && angle < 90) {
