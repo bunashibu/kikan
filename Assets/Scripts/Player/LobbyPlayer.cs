@@ -7,7 +7,7 @@ namespace Bunashibu.Kikan {
   public class LobbyPlayer : Photon.MonoBehaviour, ICharacter {
     void Awake() {
       Movement      = new LobbyPlayerMovement();
-      State         = new PlayerState(_collider, _collider);
+      State         = new CharacterState(_collider, _collider);
       StateTransfer = new StateTransfer(_initState, _animator);
       SkillInfo     = new SkillInfo();
 
@@ -28,7 +28,7 @@ namespace Bunashibu.Kikan {
     public Collider2D       FootCollider   { get { return _footCollider;   }  }
 
     public LobbyPlayerMovement Movement      { get; private set; }
-    public PlayerState         State         { get; private set; }
+    public CharacterState         State         { get; private set; }
     public StateTransfer       StateTransfer { get; private set; }
     public SkillInfo           SkillInfo     { get; private set; }
 

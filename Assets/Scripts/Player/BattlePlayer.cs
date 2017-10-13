@@ -7,7 +7,7 @@ namespace Bunashibu.Kikan {
   public class BattlePlayer : MonoBehaviour, ICharacter, IKillReward {
     void Awake() {
       Movement      = new BattlePlayerMovement();
-      State         = new PlayerState(_ladderCollider, _footCollider);
+      State         = new CharacterState(_ladderCollider, _footCollider);
       Hp            = new PlayerHp(this, _hpTable, _worldHpBar);
       StateTransfer = new StateTransfer(_initState, _animator);
       SkillInfo     = new SkillInfo();
@@ -26,7 +26,7 @@ namespace Bunashibu.Kikan {
     public BattlePlayerObserver Observer { get { return _observer; } }
 
     public BattlePlayerMovement Movement      { get; private set; }
-    public PlayerState          State         { get; private set; }
+    public CharacterState          State         { get; private set; }
     public PlayerHp             Hp            { get; private set; }
     public StateTransfer        StateTransfer { get; private set; }
     public SkillInfo            SkillInfo     { get; private set; }

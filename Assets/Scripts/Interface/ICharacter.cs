@@ -7,7 +7,7 @@ namespace Bunashibu.Kikan {
     Rigidbody2D    Rigid          { get; }
     Collider2D     LadderCollider { get; }
     Collider2D     FootCollider   { get; }
-    PlayerState    State          { get; }
+    CharacterState    State          { get; }
   }
 }
 

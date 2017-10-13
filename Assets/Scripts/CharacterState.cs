@@ -1,16 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
 
 namespace Bunashibu.Kikan {
   public class CharacterState {
-    public bool IsGround { get; private set; }
-    public bool IsAir    { get; private set; }
+    public CharacterState(Collider2D ladderCollider, Collider2D footCollider) {
+      _ladderCollider        = ladderCollider;
+      _footCollider          = footCollider;
 
-    [System.Obsolete]
-    public bool Ground { get { return IsGround; } }
-    [System.Obsolete]
-    public bool Air    { get { return IsAir;    } }
+      _groundLayer           = LayerMask.GetMask("Ground");
+      _canNotDownGroundLayer = LayerMask.GetMask("CanNotDownGround");
+      _ladderLayer           = LayerMask.GetMask("Ladder");
+      _ladderTopEdgeLayer    = LayerMask.GetMask("LadderTopEdge");
+      _ladderBottomEdgeLayer = LayerMask.GetMask("LadderBottomEdge");
+      _portalLayer           = LayerMask.GetMask("Portal");
+    }
 
     public float GroundAngle {
       get; set;
@@ -23,6 +26,27 @@ namespace Bunashibu.Kikan {
     public bool GroundRight {
       get; set;
     }
+
+    public bool Ground           { get { return _footCollider.IsTouchingLayers(_groundLayer) || CanNotDownGround; } }
+    public bool CanNotDownGround { get { return _footCollider.IsTouchingLayers(_canNotDownGroundLayer);           } }
+    public bool Air              { get { return !Ground;                                                          } }
+    public bool Ladder           { get { return _ladderCollider.IsTouchingLayers(_ladderLayer);                   } }
+    public bool LadderTopEdge    { get { return _footCollider.IsTouchingLayers(_ladderTopEdgeLayer);              } }
+    public bool LadderBottomEdge { get { return _ladderCollider.IsTouchingLayers(_ladderBottomEdgeLayer);         } }
+    public bool Portal           { get { return _ladderCollider.IsTouchingLayers(_portalLayer);                   } }
+
+    public bool Slow { get; set; }
+    public bool Heavy { get; set; }
+    public bool Rigor { get; set; }
+
+    private Collider2D _ladderCollider;
+    private Collider2D _footCollider;
+    private LayerMask _groundLayer;
+    private LayerMask _canNotDownGroundLayer;
+    private LayerMask _ladderLayer;
+    private LayerMask _ladderTopEdgeLayer;
+    private LayerMask _ladderBottomEdgeLayer;
+    private LayerMask _portalLayer;
   }
 }
 
