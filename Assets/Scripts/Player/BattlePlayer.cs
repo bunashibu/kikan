@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   [RequireComponent(typeof(BattlePlayerObserver))]
-  public class BattlePlayer : MonoBehaviour, IKillReward {
+  public class BattlePlayer : MonoBehaviour, ICharacter, IKillReward {
     void Awake() {
       Movement      = new BattlePlayerMovement();
       State         = new PlayerState(_ladderCollider, _footCollider);
@@ -13,70 +13,15 @@ namespace Bunashibu.Kikan {
       SkillInfo     = new SkillInfo();
     }
 
-    void Update() {
-      Vector2 footRayOrigin = new Vector2(_footCollider.bounds.center.x, _footCollider.bounds.min.y);
-
-      float rayLength = 0.1f + Mathf.Abs(Rigid.velocity.y) * Time.deltaTime;
-      RaycastHit2D hitGround = Physics2D.Raycast(footRayOrigin, Vector2.down , rayLength, _groundMask);
-      State.InGround = Mathf.Approximately(hitGround.distance, 0);
-
-      if (State.Ground) {
-        float angle = Vector2.Angle(hitGround.normal, Vector2.up);
-        if (angle == 90)
-          angle = 0;
-        State.GroundAngle = angle;
-
-        if (angle > 0 && angle < 90) {
-          float sign = Mathf.Sign(hitGround.normal.x);
-          State.GroundLeft  = (sign == 1 ) ? true : false;
-          State.GroundRight = (sign == -1) ? true : false;
-        } else {
-          State.GroundLeft = false;
-          State.GroundRight = false;
-        }
-      }
-
-      Debug.DrawRay(footRayOrigin, Vector2.down * rayLength, Color.red);
-    }
-
-    [SerializeField] private LayerMask _groundMask;
-
-    void OnCollisionEnter2D(Collision2D collision) {
-      string layerName = LayerMask.LayerToName(collision.gameObject.layer);
-      if (layerName == "Ground" || layerName == "CanNotDownGround") {
-        State.Ground = true;
-      }
-    }
-
-    void OnCollisionExit2D(Collision2D collision) {
-      string layerName = LayerMask.LayerToName(collision.gameObject.layer);
-      if (layerName == "Ground" || layerName == "CanNotDownGround") {
-        State.Ground = false;
-      }
-    }
-
-    void OnTriggerEnter2D(Collider2D collider) {
-      string layerName = LayerMask.LayerToName(collider.gameObject.layer);
-      if (layerName == "Ground" || layerName == "CanNotDownGround") {
-        State.Ground = true;
-      }
-    }
-
-    void OnTriggerExit2D(Collider2D collider) {
-      string layerName = LayerMask.LayerToName(collider.gameObject.layer);
-      if (layerName == "Ground" || layerName == "CanNotDownGround") {
-        State.Ground = false;
-      }
-    }
-
     void FixedUpdate() {
       Movement.FixedUpdate(_rigid, _trans);
     }
 
-    public PhotonView       PhotonView   { get { return _photonView;   } }
-    public SpriteRenderer[] Renderers    { get { return _renderers;    } }
-    public Rigidbody2D      Rigid        { get { return _rigid;        } }
-    public Collider2D       FootCollider { get { return _footCollider; } }
+    public PhotonView       PhotonView     { get { return _photonView;     } }
+    public SpriteRenderer[] Renderers      { get { return _renderers;      } }
+    public Rigidbody2D      Rigid          { get { return _rigid;          } }
+    public Collider2D       LadderCollider { get { return _ladderCollider; } }
+    public Collider2D       FootCollider   { get { return _footCollider;   } }
 
     public BattlePlayerObserver Observer { get { return _observer; } }
 
@@ -110,8 +55,8 @@ namespace Bunashibu.Kikan {
     [SerializeField] private Transform        _trans;
     [SerializeField] private SpriteRenderer[] _renderers;  // INFO: [PlayerSprite, WeaponSprite]
     [SerializeField] private Rigidbody2D      _rigid;
-    [SerializeField] private Collider2D    _ladderCollider;
-    [SerializeField] private Collider2D    _footCollider;
+    [SerializeField] private Collider2D       _ladderCollider;
+    [SerializeField] private Collider2D       _footCollider;
     [SerializeField] private Animator         _animator;
 
     [Header("Observer")]

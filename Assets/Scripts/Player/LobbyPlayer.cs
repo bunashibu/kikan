@@ -15,19 +15,17 @@ namespace Bunashibu.Kikan {
       Movement.SetJumpForce(400.0f);
     }
 
-    void Update() {
-      State.Ground = Character.State.IsGround;
-    }
-
     void FixedUpdate() {
       Movement.FixedUpdate(_rigid, _trans);
     }
 
-    public Character2D      Character  { get { return _character;    } }
-    public PhotonView       PhotonView { get { return _photonView;   } }
-    public SpriteRenderer[] Renderers  { get { return _renderers;    } }
-    public Rigidbody2D      Rigid      { get { return _rigid;        } }
-    public BoxCollider2D    Collider   { get { return _collider; } }
+    public Character2D      Character      { get { return _character;      }  }
+    public PhotonView       PhotonView     { get { return _photonView;     }  }
+    public SpriteRenderer[] Renderers      { get { return _renderers;      }  }
+    public Rigidbody2D      Rigid          { get { return _rigid;          }  }
+    public Collider2D       Collider       { get { return _collider;       }  }
+    public Collider2D       LadderCollider { get { return _ladderCollider; }  }
+    public Collider2D       FootCollider   { get { return _footCollider;   }  }
 
     public LobbyPlayerMovement Movement      { get; private set; }
     public PlayerState         State         { get; private set; }
@@ -39,7 +37,9 @@ namespace Bunashibu.Kikan {
     [SerializeField] private Transform        _trans;
     [SerializeField] private SpriteRenderer[] _renderers;  // INFO: [PlayerSprite, WeaponSprite]
     [SerializeField] private Rigidbody2D      _rigid;
-    [SerializeField] private BoxCollider2D    _collider;
+    [SerializeField] private Collider2D       _collider;
+    [SerializeField] private Collider2D       _ladderCollider;
+    [SerializeField] private Collider2D       _footCollider;
     [SerializeField] private Animator         _animator;
     private static readonly string _initState = "Idle";
   }
