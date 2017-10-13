@@ -21,8 +21,6 @@ namespace Bunashibu.Kikan {
     }
     */
 
-    public LinearJumpEnemyMovement Movement { get; private set; }
-
     [SerializeField] private Enemy _enemy;
     [SerializeField] private float _linearMoveForce;
     [SerializeField] private float _jumpForce;
