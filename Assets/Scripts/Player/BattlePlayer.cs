@@ -44,7 +44,6 @@ namespace Bunashibu.Kikan {
     void OnCollisionEnter2D(Collision2D collision) {
       string layerName = LayerMask.LayerToName(collision.gameObject.layer);
       if (layerName == "Ground" || layerName == "CanNotDownGround") {
-        Debug.Log("Collision Enter");
         State.Ground = true;
       }
     }
@@ -52,7 +51,6 @@ namespace Bunashibu.Kikan {
     void OnCollisionExit2D(Collision2D collision) {
       string layerName = LayerMask.LayerToName(collision.gameObject.layer);
       if (layerName == "Ground" || layerName == "CanNotDownGround") {
-        Debug.Log("Collision Exit");
         State.Ground = false;
       }
     }
@@ -60,7 +58,6 @@ namespace Bunashibu.Kikan {
     void OnTriggerEnter2D(Collider2D collider) {
       string layerName = LayerMask.LayerToName(collider.gameObject.layer);
       if (layerName == "Ground" || layerName == "CanNotDownGround") {
-        Debug.Log("Trigger Enter");
         State.Ground = true;
       }
     }
@@ -68,7 +65,6 @@ namespace Bunashibu.Kikan {
     void OnTriggerExit2D(Collider2D collider) {
       string layerName = LayerMask.LayerToName(collider.gameObject.layer);
       if (layerName == "Ground" || layerName == "CanNotDownGround") {
-        Debug.Log("Trigger Exit");
         State.Ground = false;
       }
     }
