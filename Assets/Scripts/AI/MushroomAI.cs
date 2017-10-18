@@ -9,8 +9,16 @@ namespace Bunashibu.Kikan {
       _movement = new MushroomMovement();
     }
 
+    void Update() {
+      UpdateBehaviour();
+    }
+
     void FixedUpdate() {
       _movement.FixedUpdate(_enemy.Rigid);
+    }
+
+    private void UpdateBehaviour() {
+
     }
 
     [SerializeField] private Enemy _enemy;

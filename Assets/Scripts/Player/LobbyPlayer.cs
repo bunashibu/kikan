@@ -19,13 +19,13 @@ namespace Bunashibu.Kikan {
       Movement.FixedUpdate(_rigid, _trans);
     }
 
-    public Character2D      Character      { get { return _character;      }  }
-    public PhotonView       PhotonView     { get { return _photonView;     }  }
-    public SpriteRenderer[] Renderers      { get { return _renderers;      }  }
-    public Rigidbody2D      Rigid          { get { return _rigid;          }  }
-    public Collider2D       Collider       { get { return _collider;       }  }
-    public Collider2D       LadderCollider { get { return _ladderCollider; }  }
-    public Collider2D       FootCollider   { get { return _footCollider;   }  }
+    public Character2D      Character      { get { return _character;      } }
+    public PhotonView       PhotonView     { get { return _photonView;     } }
+    public SpriteRenderer[] Renderers      { get { return _renderers;      } }
+    public Rigidbody2D      Rigid          { get { return _rigid;          } }
+    public Collider2D       Collider       { get { return _collider;       } }
+    public Collider2D       LadderCollider { get { return _ladderCollider; } }
+    public Collider2D       FootCollider   { get { return _footCollider;   } }
 
     public LobbyPlayerMovement Movement      { get; private set; }
     public CharacterState      State         { get; private set; }
