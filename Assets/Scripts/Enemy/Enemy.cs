@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 
 namespace Bunashibu.Kikan {
+  [RequireComponent(typeof(Character2D))]
   [RequireComponent(typeof(EnemyObserver))]
   public class Enemy : MonoBehaviour, IKillReward {
     void Awake() {
