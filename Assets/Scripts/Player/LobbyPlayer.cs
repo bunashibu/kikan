@@ -28,7 +28,7 @@ namespace Bunashibu.Kikan {
     public Collider2D       FootCollider   { get { return _footCollider;   }  }
 
     public LobbyPlayerMovement Movement      { get; private set; }
-    public CharacterState         State         { get; private set; }
+    public CharacterState      State         { get; private set; }
     public StateTransfer       StateTransfer { get; private set; }
     public SkillInfo           SkillInfo     { get; private set; }
 
