@@ -8,12 +8,13 @@ namespace Bunashibu.Kikan {
     void Awake() {
       _movement = new MushroomMovement();
 
-      _movement.SetMoveForce(100.0f);
+      _movement.SetMoveForce(2.0f);
       _movement.SetJumpForce(400.0f);
     }
 
     void Update() {
-      UpdateBehaviour();
+      if (_enemy.PhotonView.isMine)
+        UpdateBehaviour();
     }
 
     void FixedUpdate() {
@@ -21,13 +22,11 @@ namespace Bunashibu.Kikan {
     }
 
     private void UpdateBehaviour() {
-      if (!_enemy.PhotonView.isMine) return;
-
       if (!_strategyFlag) {
         ConsiderStrategy();
 
         MonoUtility.Instance.DelaySec(Random.value * 10, () => {
-          ConsiderStrategy();
+          _strategyFlag = false;
         });
 
         _strategyFlag = true;
@@ -57,8 +56,6 @@ namespace Bunashibu.Kikan {
         _strategy = "MoveLeft";
       else
         _strategy = "Stay";
-
-      _strategyFlag = false;
     }
 
     [SerializeField] private Enemy _enemy;

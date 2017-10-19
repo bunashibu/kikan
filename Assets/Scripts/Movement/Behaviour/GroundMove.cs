@@ -7,7 +7,7 @@ namespace Bunashibu.Kikan {
     public void FixedUpdate(Rigidbody2D rigid) {
       if (_actFlag) {
         rigid.velocity = new Vector2(0, 0);
-        rigid.AddForce(_direction * _force);
+        rigid.AddForce(_direction * _force, ForceMode2D.Impulse);
 
         _actFlag = false;
         _direction.x = 0;

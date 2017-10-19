@@ -13,9 +13,17 @@ namespace Bunashibu.Kikan {
       SkillInfo     = new SkillInfo();
     }
 
+    void Update() {
+      Movement.SetMoveForce(debugMoveForce);
+      debugAngle = State.GroundAngle;
+    }
+
     void FixedUpdate() {
       Movement.FixedUpdate(_rigid, _trans);
     }
+
+    public float debugMoveForce = 3.0f;
+    public float debugAngle;
 
     public PhotonView       PhotonView     { get { return _photonView;     } }
     public SpriteRenderer[] Renderers      { get { return _renderers;      } }
