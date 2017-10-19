@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 68566584230510960}
   - component: {fileID: 95979600268523808}
   - component: {fileID: 114281805833401298}
+  - component: {fileID: 114144349001397524}
   - component: {fileID: 114463142213475920}
   - component: {fileID: 114575972786325222}
   - component: {fileID: 114186672912638236}
@@ -213,6 +214,20 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114144349001397524
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1850968585228374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41da1085115ab8b4eb09b7310337c406, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _groundMask:
+    serializedVersion: 2
+    m_Bits: 33024
 --- !u!114 &114153724479301750
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -363,8 +378,8 @@ MonoBehaviour:
   _photonView: {fileID: 114281805833401298}
   _spriteRenderer: {fileID: 212191663063185894}
   _rigid: {fileID: 50828163428360486}
-  _ladderCollider: {fileID: 0}
-  _footCollider: {fileID: 0}
+  _ladderCollider: {fileID: 61033099147209652}
+  _footCollider: {fileID: 68566584230510960}
   _animator: {fileID: 95979600268523808}
   _killExp: 60
   _killGold: 90

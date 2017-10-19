@@ -412,6 +412,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemy: {fileID: 114321209171938186}
+  debugAngle: 0
+  debugGroundLeft: 0
+  _strategy: Stay
 --- !u!114 &114925975028285902
 MonoBehaviour:
   m_ObjectHideFlags: 1

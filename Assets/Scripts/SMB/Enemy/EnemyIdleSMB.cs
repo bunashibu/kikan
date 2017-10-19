@@ -10,7 +10,7 @@ namespace Bunashibu.Kikan {
 
       if (PhotonNetwork.player.IsMasterClient) {
         MonoUtility.Instance.DelaySec(3.0f, () => { // TEMP
-          _enemy.StateTransfer.TransitTo("Die", animator);
+          //_enemy.StateTransfer.TransitTo("Die", animator);
         });
       }
     }
