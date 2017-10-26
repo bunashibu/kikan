@@ -31,7 +31,7 @@ namespace Bunashibu.Kikan {
       Max = (int)(_hpTable.Data[_player.Level.Lv - 1] * ratio);
     }
 
-    public void UpdateView() {
+    public override void UpdateView() {
       if (_player.PhotonView.isMine)
         _hudBar.UpdateView(Cur, Max);
       else

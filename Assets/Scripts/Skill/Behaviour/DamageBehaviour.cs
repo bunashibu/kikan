@@ -14,10 +14,8 @@ namespace Bunashibu.Kikan {
       target.Hp.Subtract(Damage);
       target.Observer.SyncCurHp();
 
-      /*
       target.Hp.UpdateView();
       target.Observer.SyncUpdateHpView();
-      */
     }
 
     private void CalcDamage(int power, int maxDeviation) {

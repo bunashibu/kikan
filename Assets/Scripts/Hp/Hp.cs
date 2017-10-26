@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
-  public class Hp : IGauge<int> {
+  public abstract class Hp : IGauge<int> {
     public void Add(int quantity) {
       Cur += quantity;
       AdjustBoundary();
@@ -13,6 +13,8 @@ namespace Bunashibu.Kikan {
       Cur -= quantity;
       AdjustBoundary();
     }
+
+    public abstract void UpdateView();
 
     private void AdjustBoundary() {
       if (Cur <= Min)

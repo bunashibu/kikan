@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
+  /*
   public class EnemyHp : Hp {
     /*
     public void Init(int life, Bar bar) {
@@ -15,7 +16,7 @@ namespace Bunashibu.Kikan {
     }
 
     private Bar _bar;
-    */
   }
+*/
 }
 
