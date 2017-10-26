@@ -17,12 +17,12 @@ namespace Bunashibu.Kikan {
         if (target == _skillUser)
           return;
 
-        if (target.tag == "Player" && _limiter.Check(target, _team))
+        if (target.tag == "Player" && _targetRistrictor.ShouldPass(target, _team))
           DamageToPlayer(_power, _maxDeviation, targetPlayer);
       }
     }
 
-    [SerializeField] private TargetLimiter _limiter;
+    [SerializeField] private TargetRistrictor _targetRistrictor;
     [SerializeField] private int _power;
     [SerializeField] private int _maxDeviation;
   }

@@ -12,6 +12,7 @@ namespace Bunashibu.Kikan {
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
+      /*
       if (PhotonNetwork.isMasterClient) {
         var target = collider.gameObject;
         var targetPlayer = target.GetComponent<BattlePlayer>();
@@ -24,9 +25,10 @@ namespace Bunashibu.Kikan {
           //_stateChanger.ChangeTo("Rigor", 2.0f, target);
         }
       }
+      */
     }
 
-    [SerializeField] private TargetLimiter _limiter;
+    [SerializeField] private TargetRistrictor _targetRistrictor;
     [SerializeField] private int _power;
     [SerializeField] private int _maxDeviation;
 
