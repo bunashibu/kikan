@@ -5,13 +5,14 @@ using System.Collections;
 namespace Bunashibu.Kikan {
   public class SkillInstantiator : Photon.MonoBehaviour {
     void Update() {
-      if (photonView.isMine) {
-        for (int i=0; i<_keys.Length; ++i) {
-          if (_canUse && Input.GetKey(_keys[i])) {
-            InstantiateSkill(i);
-            UpdateCT(i);
-            break;
-          }
+      if (!photonView.isMine)
+        return;
+
+      for (int i=0; i<_keys.Length; ++i) {
+        if (_canUse && Input.GetKey(_keys[i])) {
+          InstantiateSkill(i);
+          UpdateCT(i);
+          break;
         }
       }
     }

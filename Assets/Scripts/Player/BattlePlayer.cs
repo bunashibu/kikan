@@ -11,6 +11,7 @@ namespace Bunashibu.Kikan {
       Hp            = new PlayerHp(this, _hpTable, _worldHpBar);
       StateTransfer = new StateTransfer(_initState, _animator);
       SkillInfo     = new SkillInfo();
+      PlayerInfo    = new PlayerInfo();
     }
 
     void Update() {
@@ -38,6 +39,7 @@ namespace Bunashibu.Kikan {
     public PlayerHp             Hp            { get; private set; }
     public StateTransfer        StateTransfer { get; private set; }
     public SkillInfo            SkillInfo     { get; private set; }
+    public PlayerInfo           PlayerInfo    { get; private set; }
 
     public int KillExp  { get { return _killExpTable.Data[Level.Lv - 1];  } }
     public int KillGold { get { return _killGoldTable.Data[Level.Lv - 1]; } }

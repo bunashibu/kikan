@@ -5,23 +5,14 @@ using UnityEngine;
 namespace Bunashibu.Kikan {
   public class TargetRistrictor : MonoBehaviour {
     void Awake() {
-      _targetList = new Dictionary<GameObject, int>();
+      _targetList = new Dictionary<IBattle, int>();
     }
 
-    public bool ShouldPass(GameObject target, int team) {
-      return IsOtherTeam(target, team) && !IsMaxDupHit(target);
+    public bool ShouldRistrict(IBattle target) {
+      return IsMaxDupHit(target);
     }
 
-    private bool IsOtherTeam(GameObject target, int team) {
-      int targetTeam = (int)target.GetComponent<PhotonView>().owner.CustomProperties["Team"];
-
-      if (targetTeam == team)
-        return false;
-      else
-        return true;
-    }
-
-    private bool IsMaxDupHit(GameObject target) {
+    private bool IsMaxDupHit(IBattle target) {
       if (!_targetList.ContainsKey(target)) {
         _targetList[target] = 0;
         return false;
@@ -37,7 +28,7 @@ namespace Bunashibu.Kikan {
 
     [SerializeField] private int _targetNum;
     [SerializeField] private int _dupHitNum;
-    private Dictionary<GameObject, int> _targetList;
+    private Dictionary<IBattle, int> _targetList;
   }
 }
 

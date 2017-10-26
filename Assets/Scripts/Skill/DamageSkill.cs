@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
+  [System.Obsolete]
   public abstract class DamageSkill : Skill {
     /*                                                      *
      * INFO: Must Instantiate in InheritedClass like below. *
@@ -16,9 +17,10 @@ namespace Bunashibu.Kikan {
      * }                                           *
      *                                             */
 
+    /*
     protected void DamageToPlayer(int power, int maxDeviation, BattlePlayer target) {
       _damageBehaviour.SetSkillUser(_skillUser);
-      _damageBehaviour.DamageToPlayer(power, maxDeviation, target.gameObject);
+      _damageBehaviour.DamageToTarget(power, maxDeviation, target.gameObject);
 
       photonView.RPC("SyncInstantiateDamagePanel", PhotonTargets.All, _damageBehaviour.Damage,
                      _damageBehaviour.Critical, target.PhotonView.owner, target.PhotonView.viewID);
@@ -83,6 +85,7 @@ namespace Bunashibu.Kikan {
     [SerializeField] protected DamagePanel _damagePanel;
     protected DamageBehaviour _damageBehaviour;
     protected RewardGetter _rewardGetter;
+    */
   }
 }
 

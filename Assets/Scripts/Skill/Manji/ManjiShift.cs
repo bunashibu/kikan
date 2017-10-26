@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
-  public class ManjiShift : DamageSkill {
-    protected override void Awake() {
+  public class ManjiShift : Skill {
+    void Awake() {
       _damageBehaviour = new DamageBehaviour();
       _rewardGetter = new RewardGetter();
     }
@@ -27,6 +27,8 @@ namespace Bunashibu.Kikan {
     [SerializeField] private TargetRistrictor _targetRistrictor;
     [SerializeField] private int _power;
     [SerializeField] private int _maxDeviation;
+    private DamageBehaviour _damageBehaviour;
+    private RewardGetter _rewardGetter;
   }
 }
 

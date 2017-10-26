@@ -8,15 +8,16 @@ namespace Bunashibu.Kikan {
       _skillUser = skillUser;
     }
 
-    public void DamageToPlayer(int power, int maxDeviation, GameObject target) {
+    public void DamageToTarget(int power, int maxDeviation, IBattle target) {
       CalcDamage(power, maxDeviation);
 
-      var player = target.GetComponent<BattlePlayer>();
-      player.Hp.Subtract(Damage);
-      player.Observer.SyncCurHp();
+      target.Hp.Subtract(Damage);
+      target.Observer.SyncCurHp();
 
-      player.Hp.UpdateView();
-      player.Observer.SyncUpdateHpView();
+      /*
+      target.Hp.UpdateView();
+      target.Observer.SyncUpdateHpView();
+      */
     }
 
     private void CalcDamage(int power, int maxDeviation) {
