@@ -24,7 +24,7 @@ namespace Bunashibu.Kikan {
     }
 
     public int Cur { get; protected set; }
-    public int Min { get; protected set; }
+    public int Min { get { return 0; }   }
     public int Max { get; protected set; }
   }
 }

@@ -15,7 +15,7 @@ namespace Bunashibu.Kikan {
     }
 
     public void SyncHp() {
-      _player.PhotonView.RPC("SyncHpRPC", PhotonTargets.Others, _player.Hp.Cur, _player.Hp.Min, _player.Hp.Max);
+      _player.PhotonView.RPC("SyncHpRPC", PhotonTargets.Others, _player.Hp.Cur, _player.Hp.Max);
     }
 
     public void SyncCurHp() {
@@ -31,8 +31,8 @@ namespace Bunashibu.Kikan {
     }
 
     [PunRPC]
-    private void SyncHpRPC(int cur, int min, int max) {
-      ForceSync("Hp", () => _player.Hp.ForceSync(cur, min, max));
+    private void SyncHpRPC(int cur, int max) {
+      ForceSync("Hp", () => _player.Hp.ForceSync(cur, max));
     }
 
     [PunRPC]

@@ -10,7 +10,6 @@ namespace Bunashibu.Kikan {
       _hpTable = hpTable;
       _worldBar = worldBar;
 
-      Min = 0;
       Max = _hpTable.Data[0];
       Cur = Max;
 
@@ -42,10 +41,9 @@ namespace Bunashibu.Kikan {
      * INFO: ForceSyncXXX method must be called ONLY by Observer. *
      *       Otherwise it breaks encapsulation.                   *
      *                                                            */
-    public void ForceSync(int cur, int min, int max) {
+    public void ForceSync(int cur, int max) {
       Assert.IsTrue(_player.Observer.ShouldSync("Hp"));
       Cur = cur;
-      Min = min;
       Max = max;
     }
 
