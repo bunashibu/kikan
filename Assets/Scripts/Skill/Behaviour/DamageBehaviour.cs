@@ -4,34 +4,26 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   public class DamageBehaviour {
-    public void SetSkillUser(GameObject skillUser) {
-      _skillUser = skillUser;
-    }
-
-    public void DamageToTarget(int power, int maxDeviation, IBattle target) {
-      CalcDamage(power, maxDeviation);
-
-      target.Hp.Subtract(Damage);
+    public void DamageToTarget(int damage, IBattle target) {
+      target.Hp.Subtract(damage);
       target.Observer.SyncCurHp();
 
       target.Hp.UpdateView();
       target.Observer.SyncUpdateHpView();
     }
 
-    private void CalcDamage(int power, int maxDeviation) {
-      int atkPower = (int)(_skillUser.GetComponent<PlayerStatus>().Atk * power / 100.0);
-      double ratio = (double)((_skillUser.GetComponent<PlayerCore>().Attack + 100) / 100.0);
+    public int CalculateDamage(int power, int maxDeviation, int criticalProbability) {
       int deviation = (int)((Random.value - 0.5) * 2 * maxDeviation);
+      int damage = power + deviation;
 
-      Damage = (int)(atkPower * ratio) + deviation;
+      IsCritical = JudgeCritical(criticalProbability);
+      if (IsCritical)
+        damage *= 2;
 
-      Critical = CriticalCheck();
-      if (Critical)
-        Damage *= 2;
+      return damage;
     }
 
-    private bool CriticalCheck() {
-      int probability = _skillUser.GetComponent<PlayerCore>().Critical;
+    private bool JudgeCritical(int probability) {
       int threshold = (int)(Random.value * 99);
 
       if (probability > threshold)
@@ -40,9 +32,7 @@ namespace Bunashibu.Kikan {
       return false;
     }
 
-    private GameObject _skillUser;
-    public int Damage { get; private set; }
-    public bool Critical { get; private set; }
+    public bool IsCritical { get; private set; }
   }
 }
 
