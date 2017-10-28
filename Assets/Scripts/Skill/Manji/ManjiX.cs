@@ -26,16 +26,35 @@ namespace Bunashibu.Kikan {
         if (_targetRistrictor.ShouldRistrict((IBattle)target))
           return;
 
-        int playerPower = _powerCalculator.CalculatePlayerPower(skillUser);
-        int power = playerPower * (_skillPower / 100);
+        DamageToPlayer(target, skillUser);
 
-        int damage = _damageBehaviour.CalculateDamage(power, _maxDeviation, skillUser.Core.Critical);
+        if (target.Hp.Cur <= 0) {
+          _rewardGetter.SetRewardReceiver(skillUser);
+          _rewardGetter.GetRewardFrom(target);
 
-        _damageBehaviour.DamageToTarget(damage, (IBattle)target);
+          RecordKillDeath(target, skillUser);
+        }
       }
 
       if (targetObj.tag == "Enemy") {
       }
+    }
+
+    private void DamageToPlayer(BattlePlayer target, BattlePlayer skillUser) {
+      int playerPower = _powerCalculator.CalculatePlayerPower(skillUser);
+      int power = playerPower * (_skillPower / 100);
+
+      int damage = _damageBehaviour.CalculateDamage(power, _maxDeviation, skillUser.Core.Critical);
+
+      _damageBehaviour.DamageToTarget(damage, (IBattle)target);
+    }
+
+    private void RecordKillDeath(BattlePlayer target, BattlePlayer skillUser) {
+      target.KillDeath.RecordDeath();
+      target.KillDeath.UpdateDeathView();
+
+      skillUser.KillDeath.RecordKill();
+      skillUser.KillDeath.UpdateKillView();
     }
 
     [SerializeField] private TargetRistrictor _targetRistrictor;

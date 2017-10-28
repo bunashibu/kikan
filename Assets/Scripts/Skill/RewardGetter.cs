@@ -4,9 +4,8 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   public class RewardGetter {
-    public void SetRewardReceiver(GameObject receiver, int team) {
+    public void SetRewardReceiver(BattlePlayer receiver) {
       _receiver = receiver;
-      _receiveTeam = team;
     }
 
     public void GetRewardFrom(IKillReward target) {
@@ -20,29 +19,29 @@ namespace Bunashibu.Kikan {
         ratio = 0.6;
 
       int receiverExp = (int)(target.KillExp * ratio);
-      int receiverGold = (int)(target.KillGold * ratio);
-
       GiveExpToReceiver(receiverExp);
+
+      int receiverGold = (int)(target.KillGold * ratio);
       GiveGoldToReceiver(receiverGold);
 
       if (teamSize > 0) {
         int teammateExp = (int)((target.KillExp - receiverExp) / teamSize);
-        int teammateGold = (int)((target.KillGold - receiverGold) / teamSize);
-
         GiveExpToTeammate(teammateExp, teammateList);
+
+        int teammateGold = (int)((target.KillGold - receiverGold) / teamSize);
         GiveGoldToTeammate(teammateGold, teammateList);
       }
     }
 
-    private List<GameObject> GetTeammateList() {
-      var teammateList = new List<GameObject>();
+    private List<BattlePlayer> GetTeammateList() {
+      var teammateList = new List<BattlePlayer>();
 
       foreach (var player in PhotonNetwork.playerList) {
         var team = (int)player.CustomProperties["Team"];
 
-        if (team == _receiveTeam) {
+        if (team == _receiver.PlayerInfo.Team) {
           var viewID = (int)player.CustomProperties["ViewID"];
-          var teammate = PhotonView.Find(viewID).gameObject;
+          var teammate = PhotonView.Find(viewID).gameObject.GetComponent<BattlePlayer>();
 
           if (teammate != _receiver)
             teammateList.Add(teammate);
@@ -53,39 +52,30 @@ namespace Bunashibu.Kikan {
     }
 
     private void GiveExpToReceiver(int exp) {
-      var nextExp = _receiver.GetComponent<PlayerNextExp>();
-
-      nextExp.Add(exp);
-      nextExp.UpdateView();
+      _receiver.NextExp.Add(exp);
+      _receiver.NextExp.UpdateView();
     }
 
     private void GiveGoldToReceiver(int gold) {
-      var playerGold = _receiver.GetComponent<PlayerGold>();
-
-      playerGold.Add(gold);
-      playerGold.UpdateView();
+      _receiver.Gold.Add(gold);
+      _receiver.Gold.UpdateView();
     }
 
-    private void GiveExpToTeammate(int exp, List<GameObject> teammateList) {
+    private void GiveExpToTeammate(int exp, List<BattlePlayer> teammateList) {
       foreach (var teammate in teammateList) {
-        var nextExp = teammate.GetComponent<PlayerNextExp>();
-
-        nextExp.Add(exp);
-        nextExp.UpdateView();
+        teammate.NextExp.Add(exp);
+        teammate.NextExp.UpdateView();
       }
     }
 
-    private void GiveGoldToTeammate(int gold, List<GameObject> teammateList) {
+    private void GiveGoldToTeammate(int gold, List<BattlePlayer> teammateList) {
       foreach (var teammate in teammateList) {
-        var playerGold = teammate.GetComponent<PlayerGold>();
-
-        playerGold.Add(gold);
-        playerGold.UpdateView();
+        teammate.Gold.Add(gold);
+        teammate.Gold.UpdateView();
       }
     }
 
-    private GameObject _receiver;
-    private int _receiveTeam;
+    private BattlePlayer _receiver;
   }
 }
 
