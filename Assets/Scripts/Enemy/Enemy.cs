@@ -5,7 +5,7 @@ using System.Collections;
 namespace Bunashibu.Kikan {
   [RequireComponent(typeof(Character2D))]
   [RequireComponent(typeof(EnemyObserver))]
-  public class Enemy : MonoBehaviour, ICharacter, IKillReward {
+  public class Enemy : MonoBehaviour, ICharacter {
     void Awake() {
       State         = new CharacterState(_ladderCollider, _footCollider);
       StateTransfer = new StateTransfer(_initState, _animator);

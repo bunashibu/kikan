@@ -8,7 +8,7 @@ namespace Bunashibu.Kikan {
       _receiver = receiver;
     }
 
-    public void GetRewardFrom(IKillReward target) {
+    public void GetRewardFrom(IBattle target) {
       var teammateList = GetTeammateList();
       int teamSize = teammateList.Count;
 

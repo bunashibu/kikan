@@ -4,8 +4,10 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   public interface IBattle {
-    Hp Hp { get; }
+    PlayerHp Hp { get; }
     BattlePlayerObserver Observer { get; }
+    int KillExp { get; }
+    int KillGold { get; }
   }
 }
 

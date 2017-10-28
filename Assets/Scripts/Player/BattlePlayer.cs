@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   [RequireComponent(typeof(BattlePlayerObserver))]
-  public class BattlePlayer : MonoBehaviour, ICharacter, IKillReward {
+  public class BattlePlayer : MonoBehaviour, ICharacter, IBattle {
     void Awake() {
       Movement      = new BattlePlayerMovement();
       State         = new CharacterState(_ladderCollider, _footCollider);
