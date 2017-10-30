@@ -87,5 +87,6 @@ namespace Bunashibu.Kikan {
     protected RewardGetter _rewardGetter;
     */
   }
+
 }
 
