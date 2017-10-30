@@ -42,7 +42,6 @@ namespace Bunashibu.Kikan {
     }
 
     private void DamageToPlayer(BattlePlayer target, BattlePlayer skillUser) {
-      Debug.Log("DamageToPlayer!!!!!!!!");
       int playerPower = _powerCalculator.CalculatePlayerPower(skillUser);
       int power = playerPower * (_skillPower / 100);
 
