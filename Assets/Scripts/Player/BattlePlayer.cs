@@ -11,7 +11,7 @@ namespace Bunashibu.Kikan {
       Hp            = new PlayerHp(this, _hpTable, _worldHpBar);
       StateTransfer = new StateTransfer(_initState, _animator);
       SkillInfo     = new SkillInfo();
-      PlayerInfo    = new PlayerInfo();
+      PlayerInfo    = new PlayerInfo(this);
     }
 
     void FixedUpdate() {

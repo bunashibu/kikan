@@ -12,6 +12,7 @@ namespace Bunashibu.Kikan {
       _shouldSync.Add("Hp",  false);
       _shouldSync.Add("CurHp", false);
       _shouldSync.Add("MaxHp", false);
+      _shouldSync.Add("Team", false);
     }
 
     public bool ShouldSync(string key) {
@@ -19,6 +20,7 @@ namespace Bunashibu.Kikan {
       return _shouldSync[key];
     }
 
+    /* Hp */
     public void SyncHp() {
       _player.PhotonView.RPC("SyncHpRPC", PhotonTargets.Others, _player.Hp.Cur, _player.Hp.Max);
     }
@@ -35,6 +37,12 @@ namespace Bunashibu.Kikan {
       _player.PhotonView.RPC("SyncUpdateHpViewRPC", PhotonTargets.Others);
     }
 
+    /* Team */
+    public void SyncTeam() {
+      _player.PhotonView.RPC("SyncTeamRPC", PhotonTargets.Others, _player.PlayerInfo.Team);
+    }
+
+    /* Hp RPC */
     [PunRPC]
     private void SyncHpRPC(int cur, int max) {
       ForceSync("Hp", () => _player.Hp.ForceSync(cur, max));
@@ -53,6 +61,12 @@ namespace Bunashibu.Kikan {
     [PunRPC]
     private void SyncUpdateHpViewRPC() {
       _player.Hp.UpdateView();
+    }
+
+    /* Team RPC */
+    [PunRPC]
+    private void SyncTeamRPC(int team) {
+      ForceSync("Team", () => _player.PlayerInfo.ForceSync(team));
     }
 
     private void ForceSync(string key, Action action) {

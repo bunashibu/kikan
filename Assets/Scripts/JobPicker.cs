@@ -47,6 +47,7 @@ namespace Bunashibu.Kikan {
       _player = PhotonNetwork.Instantiate("Prefabs/Job/" + _jobs[n].name, pos, Quaternion.identity, 0).GetComponent<BattlePlayer>();
       AdjustFlipX();
       SetViewID();
+      _player.Observer.SyncTeam();
     }
 
     private void AdjustFlipX() {
