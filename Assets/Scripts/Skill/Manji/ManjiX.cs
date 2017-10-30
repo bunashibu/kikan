@@ -5,6 +5,7 @@ using UnityEngine;
 namespace Bunashibu.Kikan {
   public class ManjiX : Skill {
     void Awake() {
+      _powerCalculator = new PowerCalculator();
       _damageCalculator = new DamageCalculator();
       _rewardGetter = new RewardGetter();
     }
