@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
+  /*
   public class ManjiShift : Skill {
     void Awake() {
       _damageBehaviour = new DamageBehaviour();
@@ -10,7 +11,6 @@ namespace Bunashibu.Kikan {
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
-      /*
       if (PhotonNetwork.isMasterClient) {
         var target = collider.gameObject;
         var targetPlayer = target.GetComponent<BattlePlayer>();
@@ -21,7 +21,6 @@ namespace Bunashibu.Kikan {
         if (target.tag == "Player" && _limiter.Check(target, _team))
           DamageToPlayer(_power, _maxDeviation, targetPlayer);
       }
-      */
     }
 
     [SerializeField] private TargetRistrictor _targetRistrictor;
@@ -30,5 +29,6 @@ namespace Bunashibu.Kikan {
     private DamageBehaviour _damageBehaviour;
     private RewardGetter _rewardGetter;
   }
+*/
 }
 

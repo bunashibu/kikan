@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
-  public class DamageBehaviour {
+  public class DamageCalculator {
     public int CalculateDamage(int power, int maxDeviation, int criticalProbability) {
       int deviation = (int)((Random.value - 0.5) * 2 * maxDeviation);
       int damage = power + deviation;

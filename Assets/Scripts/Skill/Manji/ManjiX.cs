@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Bunashibu.Kikan {
   public class ManjiX : Skill {
     void Awake() {
-      _damageBehaviour = new DamageBehaviour();
+      _damageCalculator = new DamageCalculator();
       _rewardGetter = new RewardGetter();
     }
 
@@ -44,7 +44,7 @@ namespace Bunashibu.Kikan {
       int playerPower = _powerCalculator.CalculatePlayerPower(skillUser);
       int power = playerPower * (_skillPower / 100);
 
-      int damage = _damageBehaviour.CalculateDamage(power, _maxDeviation, skillUser.Core.Critical);
+      int damage = _damageCalculator.CalculateDamage(power, _maxDeviation, skillUser.Core.Critical);
 
       target.Hp.Subtract(damage);
       target.Hp.UpdateView();
@@ -62,7 +62,7 @@ namespace Bunashibu.Kikan {
     [SerializeField] private int _skillPower;
     [SerializeField] private int _maxDeviation;
     private PowerCalculator _powerCalculator;
-    private DamageBehaviour _damageBehaviour;
+    private DamageCalculator _damageCalculator;
     private RewardGetter _rewardGetter;
   }
 }

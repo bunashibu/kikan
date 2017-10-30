@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
+  /*
   public class ManjiZ : Skill {
     void Awake() {
       _damageBehaviour = new DamageBehaviour();
@@ -25,7 +26,6 @@ namespace Bunashibu.Kikan {
           //_stateChanger.ChangeTo("Rigor", 2.0f, target);
         }
       }
-      */
     }
 
     [SerializeField] private TargetRistrictor _targetRistrictor;
@@ -36,5 +36,6 @@ namespace Bunashibu.Kikan {
 
     //private StateChanger _stateChanger;
   }
+*/
 }
 
