@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   public abstract class Hp : IGauge<int> {
-    public void Add(int quantity) {
+    public virtual void Add(int quantity) {
       Cur += quantity;
       AdjustBoundary();
     }
 
-    public void Subtract(int quantity) {
+    public virtual void Subtract(int quantity) {
       Cur -= quantity;
       AdjustBoundary();
     }

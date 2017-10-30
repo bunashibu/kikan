@@ -17,6 +17,25 @@ namespace Bunashibu.Kikan {
         _worldBar.gameObject.SetActive(false);
     }
 
+    public override void Add(int quantity) {
+      base.Add(quantity);
+      _player.Observer.SyncCurHp();
+    }
+
+    public override void Subtract(int quantity) {
+      base.Subtract(quantity);
+      _player.Observer.SyncCurHp();
+    }
+
+    public override void UpdateView() {
+      if (_player.PhotonView.isMine)
+        _hudBar.UpdateView(Cur, Max);
+      else
+        _worldBar.UpdateView(Cur, Max);
+
+      _player.Observer.SyncUpdateHpView();
+    }
+
     public void AttachHudBar(Bar hudBar) {
       _hudBar = hudBar;
     }
@@ -28,13 +47,6 @@ namespace Bunashibu.Kikan {
     public void UpdateMaxHp() {
       double ratio = (double)((_player.Core.Hp + 100) / 100.0);
       Max = (int)(_hpTable.Data[_player.Level.Lv - 1] * ratio);
-    }
-
-    public override void UpdateView() {
-      if (_player.PhotonView.isMine)
-        _hudBar.UpdateView(Cur, Max);
-      else
-        _worldBar.UpdateView(Cur, Max);
     }
 
     /*                                                            *

@@ -23,7 +23,7 @@ namespace Bunashibu.Kikan {
 
         if (target.PlayerInfo.Team == skillUser.PlayerInfo.Team)
           return;
-        if (_targetRistrictor.ShouldRistrict((IBattle)target))
+        if (_targetRistrictor.ShouldRistrict(target))
           return;
 
         DamageToPlayer(target, skillUser);
@@ -46,7 +46,8 @@ namespace Bunashibu.Kikan {
 
       int damage = _damageBehaviour.CalculateDamage(power, _maxDeviation, skillUser.Core.Critical);
 
-      _damageBehaviour.DamageToTarget(damage, (IBattle)target);
+      target.Hp.Subtract(damage);
+      target.Hp.UpdateView();
     }
 
     private void RecordKillDeath(BattlePlayer target, BattlePlayer skillUser) {

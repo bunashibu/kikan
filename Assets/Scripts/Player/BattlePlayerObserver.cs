@@ -14,6 +14,11 @@ namespace Bunashibu.Kikan {
       _shouldSync.Add("MaxHp", false);
     }
 
+    public bool ShouldSync(string key) {
+      Assert.IsTrue(_shouldSync.ContainsKey(key));
+      return _shouldSync[key];
+    }
+
     public void SyncHp() {
       _player.PhotonView.RPC("SyncHpRPC", PhotonTargets.Others, _player.Hp.Cur, _player.Hp.Max);
     }
@@ -54,11 +59,6 @@ namespace Bunashibu.Kikan {
       _shouldSync[key] = true;
       action();
       _shouldSync[key] = false;
-    }
-
-    public bool ShouldSync(string key) {
-      Assert.IsTrue(_shouldSync.ContainsKey(key));
-      return _shouldSync[key];
     }
 
     [SerializeField] private BattlePlayer _player;
