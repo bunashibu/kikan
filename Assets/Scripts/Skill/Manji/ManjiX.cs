@@ -5,9 +5,11 @@ using UnityEngine;
 namespace Bunashibu.Kikan {
   public class ManjiX : Skill {
     void Awake() {
+      _rewardGetter = new RewardGetter();
+      _targetRistrictor = new TargetRistrictor(_targetNum, _dupHitNum);
+      _killDeathRecorder = new KillDeathRecorder();
       _powerCalculator = new PowerCalculator();
       _damageCalculator = new DamageCalculator();
-      _rewardGetter = new RewardGetter();
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
@@ -51,13 +53,19 @@ namespace Bunashibu.Kikan {
       target.Hp.UpdateView();
     }
 
-    [SerializeField] private TargetRistrictor _targetRistrictor;
+    [Header("PowerSettings")]
     [SerializeField] private int _skillPower;
     [SerializeField] private int _maxDeviation;
+
+    [Header("TargetSettings")]
+    [SerializeField] private int _targetNum;
+    [SerializeField] private int _dupHitNum;
+
+    private RewardGetter _rewardGetter;
+    private TargetRistrictor _targetRistrictor;
+    private KillDeathRecorder _killDeathRecorder;
     private PowerCalculator _powerCalculator;
     private DamageCalculator _damageCalculator;
-    private RewardGetter _rewardGetter;
-    private KillDeathRecorder _killDeathRecorder;
   }
 }
 

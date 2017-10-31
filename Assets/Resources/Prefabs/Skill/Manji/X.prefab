@@ -25,7 +25,6 @@ GameObject:
   - component: {fileID: 114394669513654396}
   - component: {fileID: 114241741538194156}
   - component: {fileID: 114000012261134560}
-  - component: {fileID: 114684319468281384}
   m_Layer: 0
   m_Name: X
   m_TagString: Untagged
@@ -99,9 +98,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 576a704c8596dab4a86c29e2195e628d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetRistrictor: {fileID: 114684319468281384}
   _skillPower: 100
   _maxDeviation: 10
+  _targetNum: 3
+  _dupHitNum: 0
 --- !u!114 &114241741538194156
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -193,19 +193,6 @@ MonoBehaviour:
   instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
---- !u!114 &114684319468281384
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010592744632}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1f785113e123bc4ca51f90f213137b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _targetNum: 3
-  _dupHitNum: 0
 --- !u!212 &212000012323840186
 SpriteRenderer:
   m_ObjectHideFlags: 1

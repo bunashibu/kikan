@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
-  public class TargetRistrictor : MonoBehaviour {
-    void Awake() {
+  public class TargetRistrictor {
+    public TargetRistrictor(int targetNum, int dupHitNum) {
       _targetList = new Dictionary<IBattle, int>();
+      _targetNum = targetNum;
+      _dupHitNum = dupHitNum;
     }
 
     public bool ShouldRistrict(IBattle target) {
@@ -26,9 +28,9 @@ namespace Bunashibu.Kikan {
       }
     }
 
-    [SerializeField] private int _targetNum;
-    [SerializeField] private int _dupHitNum;
     private Dictionary<IBattle, int> _targetList;
+    private int _targetNum;
+    private int _dupHitNum;
   }
 }
 
