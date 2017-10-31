@@ -33,7 +33,7 @@ namespace Bunashibu.Kikan {
           _rewardGetter.SetRewardReceiver(skillUser);
           _rewardGetter.GetRewardFrom(target);
 
-          RecordKillDeath(target, skillUser);
+          _killDeathRecorder.RecordKillDeath(target, skillUser);
         }
       }
 
@@ -51,20 +51,13 @@ namespace Bunashibu.Kikan {
       target.Hp.UpdateView();
     }
 
-    private void RecordKillDeath(BattlePlayer target, BattlePlayer skillUser) {
-      target.KillDeath.RecordDeath();
-      target.KillDeath.UpdateDeathView();
-
-      skillUser.KillDeath.RecordKill();
-      skillUser.KillDeath.UpdateKillView();
-    }
-
     [SerializeField] private TargetRistrictor _targetRistrictor;
     [SerializeField] private int _skillPower;
     [SerializeField] private int _maxDeviation;
     private PowerCalculator _powerCalculator;
     private DamageCalculator _damageCalculator;
     private RewardGetter _rewardGetter;
+    private KillDeathRecorder _killDeathRecorder;
   }
 }
 

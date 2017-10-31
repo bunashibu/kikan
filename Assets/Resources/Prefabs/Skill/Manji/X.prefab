@@ -21,10 +21,10 @@ GameObject:
   - component: {fileID: 4000014141607456}
   - component: {fileID: 212000012323840186}
   - component: {fileID: 61000012106027728}
-  - component: {fileID: 114000012261134560}
   - component: {fileID: 95000010503078980}
   - component: {fileID: 114394669513654396}
   - component: {fileID: 114241741538194156}
+  - component: {fileID: 114000012261134560}
   - component: {fileID: 114684319468281384}
   m_Layer: 0
   m_Name: X
