@@ -26,8 +26,7 @@ namespace Bunashibu.Kikan {
       Number = number;
 
       // INFO: e.g. number = 8351 -> "8351" -> ['8','3','5','1'] -> indices = [8, 3, 5, 1]
-      string str = number.ToString();
-      var indices = str.ToCharArray().Select(x => Convert.ToInt32(x.ToString()));
+      var indices = number.ToString().ToCharArray().Select(x => Convert.ToInt32(x.ToString()));
 
       int i = 0;
       foreach(int index in indices) {
