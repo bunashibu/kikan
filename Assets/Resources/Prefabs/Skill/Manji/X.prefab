@@ -102,6 +102,8 @@ MonoBehaviour:
   _maxDeviation: 10
   _targetNum: 3
   _dupHitNum: 0
+  _popupNumber: {fileID: 114748708156150968, guid: 9a20024cd0387a447bcb9ed0933695d4,
+    type: 2}
 --- !u!114 &114241741538194156
 MonoBehaviour:
   m_ObjectHideFlags: 1

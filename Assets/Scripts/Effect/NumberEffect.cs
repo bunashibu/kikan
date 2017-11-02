@@ -5,24 +5,28 @@ using System.Linq;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
-  public class PopupNumber : MonoBehaviour {
-    public void CreateHit(int number, DamageSkin skin) {
-      Create(number, skin, DamageType.Hit);
+  public class NumberEffect : MonoBehaviour {
+    public NumberEffect(GameObject digitPref) {
+      _digitPref = digitPref;
     }
 
-    public void CreateCritical(int number, DamageSkin skin) {
-      Create(number, skin, DamageType.Critical);
+    public void PopupHit(int number, DamageSkin skin) {
+      Popup(number, skin, DamageType.Hit);
     }
 
-    public void CreateTake(int number, DamageSkin skin) {
-      Create(number, skin, DamageType.Take);
+    public void PopupCritical(int number, DamageSkin skin) {
+      Popup(number, skin, DamageType.Critical);
     }
 
-    public void CreateHeal(int number, DamageSkin skin) {
-      Create(number, skin, DamageType.Heal);
+    public void PopupTake(int number, DamageSkin skin) {
+      Popup(number, skin, DamageType.Take);
     }
 
-    private void Create(int number, DamageSkin skin, DamageType type) {
+    public void PopupHeal(int number, DamageSkin skin) {
+      Popup(number, skin, DamageType.Heal);
+    }
+
+    private void Popup(int number, DamageSkin skin, DamageType type) {
       Number = number;
 
       // INFO: e.g. number = 8351 -> "8351" -> ['8','3','5','1'] -> indices = [8, 3, 5, 1]
@@ -56,7 +60,7 @@ namespace Bunashibu.Kikan {
     }
 
     public int Number { get; private set; }
-    [SerializeField] private GameObject _digitPref;
+    private GameObject _digitPref;
   }
 }
 

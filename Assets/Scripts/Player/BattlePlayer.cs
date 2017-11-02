@@ -45,8 +45,8 @@ namespace Bunashibu.Kikan {
     public PlayerKillDeath KillDeath { get { return _killDeath; } }
     public PlayerCore      Core      { get { return _core;      } }
 
-    public PlayerStatus     Status     { get { return _status;     } }
-    public PlayerDamageSkin DamageSkin { get { return _damageSkin; } }
+    public PlayerStatus    Status     { get { return _status;     } }
+    public DamageSkin      DamageSkin { get { return _damageSkin; } }
 
     // portal
     // respawner
@@ -81,8 +81,8 @@ namespace Bunashibu.Kikan {
     [SerializeField] private DataTable _killGoldTable;
 
     [Space(10)]
-    [SerializeField] private PlayerStatus     _status;
-    [SerializeField] private PlayerDamageSkin _damageSkin;
+    [SerializeField] private PlayerStatus _status;
+    [SerializeField] private DamageSkin   _damageSkin;
 
     private static readonly string _initState = "Idle";
   }

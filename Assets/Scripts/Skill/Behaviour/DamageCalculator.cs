@@ -6,13 +6,13 @@ namespace Bunashibu.Kikan {
   public class DamageCalculator {
     public int CalculateDamage(int power, int maxDeviation, int criticalProbability) {
       int deviation = (int)((Random.value - 0.5) * 2 * maxDeviation);
-      int damage = power + deviation;
+      Damage = power + deviation;
 
       IsCritical = JudgeCritical(criticalProbability);
       if (IsCritical)
-        damage *= 2;
+        Damage *= 2;
 
-      return damage;
+      return Damage;
     }
 
     private bool JudgeCritical(int probability) {
@@ -24,6 +24,7 @@ namespace Bunashibu.Kikan {
       return false;
     }
 
+    public int Damage { get; private set; }
     public bool IsCritical { get; private set; }
   }
 }
