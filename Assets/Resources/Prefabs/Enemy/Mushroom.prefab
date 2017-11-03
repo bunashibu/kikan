@@ -65,6 +65,7 @@ GameObject:
   - component: {fileID: 114835469236397476}
   - component: {fileID: 114323066325102114}
   - component: {fileID: 114066355077697178}
+  - component: {fileID: 114917523622065830}
   m_Layer: 14
   m_Name: Mushroom
   m_TagString: Enemy
@@ -333,6 +334,7 @@ MonoBehaviour:
   _ladderCollider: {fileID: 61837418900441294}
   _footCollider: {fileID: 68516081104492556}
   _animator: {fileID: 95441550684647506}
+  _numberPopupEnvironment: {fileID: 114917523622065830}
   _killExp: 30
   _killGold: 45
 --- !u!114 &114323066325102114
@@ -415,6 +417,20 @@ MonoBehaviour:
   debugAngle: 0
   debugGroundLeft: 0
   _strategy: Stay
+--- !u!114 &114917523622065830
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1279108751842680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 794664095fb228546a6ea130b5e55c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _numberPref: {fileID: 1578667973928876, guid: 1f1ce531c544f5e41bdee5db83607926,
+    type: 2}
+  _allSkinData: {fileID: 11400000, guid: f0bd4ccd89724744b805577e3ded0629, type: 2}
 --- !u!114 &114925975028285902
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -8,7 +8,7 @@ namespace Bunashibu.Kikan {
     void Awake() {
       _movement = new MushroomMovement();
 
-      _movement.SetMoveForce(2.0f);
+      _movement.SetMoveForce(1.0f);
       _movement.SetJumpForce(400.0f);
     }
 

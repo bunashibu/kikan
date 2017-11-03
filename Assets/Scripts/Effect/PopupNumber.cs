@@ -5,8 +5,8 @@ using UnityEngine;
 namespace Bunashibu.Kikan {
   public class PopupNumber : MonoBehaviour {
     void Start() {
-      Destroy(gameObject, 2.0f);
-      _subtractColor = new Color(0, 0, 0, 0.02f);
+      Destroy(gameObject, 1.0f);
+      _subtractColor = new Color(0, 0, 0, 0.008f);
     }
 
     void Update() {
@@ -15,7 +15,7 @@ namespace Bunashibu.Kikan {
     }
 
     private void MoveUp() {
-      transform.Translate(Vector2.up * 0.01f);
+      transform.Translate(Vector2.up * 0.002f);
     }
 
     private void FadeOut() {

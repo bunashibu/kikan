@@ -3,20 +3,41 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
-  /*
   public class EnemyHp : Hp {
-    /*
-    public void Init(int life, Bar bar) {
-      //Init(life, life);
-      _bar = bar;
+    public EnemyHp() {
+      /*
+      _player = player;
+      _hpTable = hpTable;
+      _worldBar = worldBar;
+
+      Max = _hpTable.Data[0];
+      Cur = Max;
+
+      if (_player.PhotonView.isMine)
+        _worldBar.gameObject.SetActive(false);
+      */
     }
 
-    public void Show() {
-      _bar.Show(Cur, Max);
+    public override void Add(int quantity) {
+      //base.Add(quantity);
+      //_enemy.Observer.SyncCurHp();
     }
 
-    private Bar _bar;
+    public override void Subtract(int quantity) {
+      //base.Subtract(quantity);
+      //_enemy.Observer.SyncCurHp();
+    }
+
+    public override void UpdateView() {
+      /*
+      if (_enemy.PhotonView.isMine)
+        _hudBar.UpdateView(Cur, Max);
+      else
+        _worldBar.UpdateView(Cur, Max);
+
+      _player.Observer.SyncUpdateHpView();
+      */
+    }
   }
-*/
 }
 

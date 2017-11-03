@@ -37,16 +37,16 @@ namespace Bunashibu.Kikan {
 
         switch (type) {
           case DamageType.Hit:
-            renderer.sprite = _skinData.GetSkin(skinId).Hit[index];
+            renderer.sprite = _allSkinData.GetSkin(skinId).Hit[index];
             break;
           case DamageType.Critical:
-            renderer.sprite = _skinData.GetSkin(skinId).Critical[index];
+            renderer.sprite = _allSkinData.GetSkin(skinId).Critical[index];
             break;
           case DamageType.Take:
-            renderer.sprite = _skinData.GetSkin(skinId).Take[index];
+            renderer.sprite = _allSkinData.GetSkin(skinId).Take[index];
             break;
           case DamageType.Heal:
-            renderer.sprite = _skinData.GetSkin(skinId).Heal[index];
+            renderer.sprite = _allSkinData.GetSkin(skinId).Heal[index];
             break;
         }
 
@@ -55,7 +55,7 @@ namespace Bunashibu.Kikan {
     }
 
     [SerializeField] private GameObject _numberPref;
-    [SerializeField] private AllSkinData _skinData;
+    [SerializeField] private AllSkinData _allSkinData;
   }
 }
 
