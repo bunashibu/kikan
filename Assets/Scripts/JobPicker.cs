@@ -6,7 +6,7 @@ using Hashtable = ExitGames.Client.Photon.Hashtable;
 namespace Bunashibu.Kikan {
   public class JobPicker : MonoBehaviour {
     void Start() {
-      Destroy(gameObject, 10.0f);
+      //Destroy(gameObject, 10.0f);
     }
 
     public void Pick(int n) {
@@ -24,6 +24,7 @@ namespace Bunashibu.Kikan {
 
       DisableAllButtons();
       Destroy(_camera);
+      Destroy(gameObject);
     }
 
     private void InstantiateHudObjects() {
