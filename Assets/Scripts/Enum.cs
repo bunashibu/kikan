@@ -24,5 +24,10 @@ namespace Bunashibu.Kikan {
     Take,
     Heal
   }
+
+  public enum PopupType {
+    Player,
+    Enemy
+  }
 }
 

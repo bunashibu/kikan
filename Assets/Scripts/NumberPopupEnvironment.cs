@@ -6,17 +6,32 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   public class NumberPopupEnvironment : Photon.MonoBehaviour {
-    public void Popup(int damage, bool isCritical, int skinId) {
-      photonView.RPC("SyncPopup", PhotonTargets.All, damage, isCritical, skinId);
+    public void Popup(int damage, bool isCritical, int skinId, PopupType popupType) {
+      switch (popupType) {
+        case PopupType.Player:
+          photonView.RPC("SyncPlayerPopup", PhotonTargets.All, damage, isCritical, skinId);
+          break;
+        case PopupType.Enemy:
+          photonView.RPC("SyncEnemyPopup", PhotonTargets.All, damage, isCritical, skinId);
+          break;
+      }
     }
 
     [PunRPC]
-    private void SyncPopup(int damage, bool isCritical, int skinId) {
+    private void SyncPlayerPopup(int damage, bool isCritical, int skinId) {
       if (photonView.owner == PhotonNetwork.player) {
         Popup(damage, skinId, DamageType.Take);
         return;
       }
 
+      if (isCritical)
+        Popup(damage, skinId, DamageType.Critical);
+      else
+        Popup(damage, skinId, DamageType.Hit);
+    }
+
+    [PunRPC]
+    private void SyncEnemyPopup(int damage, bool isCritical, int skinId) {
       if (isCritical)
         Popup(damage, skinId, DamageType.Critical);
       else

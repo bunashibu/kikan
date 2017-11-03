@@ -33,7 +33,7 @@ namespace Bunashibu.Kikan {
 
       if (IsCorrectAttackPlayer(target, skillUser)) {
         DamageToPlayer(target, skillUser);
-        target.NumberPopupEnvironment.Popup(_damageCalculator.Damage, _damageCalculator.IsCritical, skillUser.DamageSkin.Id);
+        target.NumberPopupEnvironment.Popup(_damageCalculator.Damage, _damageCalculator.IsCritical, skillUser.DamageSkin.Id, PopupType.Player);
 
         if (target.Hp.Cur <= 0)
           ProceedPlayerDeath(target, skillUser);
@@ -46,7 +46,7 @@ namespace Bunashibu.Kikan {
 
       if (IsCorrectAttackEnemy(target)) {
         DamageToEnemy(target, skillUser);
-        target.NumberPopupEnvironment.Popup(_damageCalculator.Damage, _damageCalculator.IsCritical, skillUser.DamageSkin.Id);
+        target.NumberPopupEnvironment.Popup(_damageCalculator.Damage, _damageCalculator.IsCritical, skillUser.DamageSkin.Id, PopupType.Enemy);
 
         if (target.Hp.Cur <= 0)
           ProceedEnemyDeath(target, skillUser);
