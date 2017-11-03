@@ -7,6 +7,8 @@ using UnityEngine;
 namespace Bunashibu.Kikan {
   [CreateAssetMenu]
   public class DamageSkin : ScriptableObject {
+    public int Id { get { return _id; } }
+
     public ReadOnlyCollection<Sprite> Hit {
       get {
         return Array.AsReadOnly(_hit);
@@ -31,6 +33,7 @@ namespace Bunashibu.Kikan {
       }
     }
 
+    [SerializeField] private int _id;
     [SerializeField] private Sprite[] _hit;
     [SerializeField] private Sprite[] _critical;
     [SerializeField] private Sprite[] _take;

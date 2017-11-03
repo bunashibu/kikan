@@ -19,7 +19,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4377051304067884}
-  - component: {fileID: 114748708156150968}
   m_Layer: 0
   m_Name: PopupNumber
   m_TagString: Untagged
@@ -40,15 +39,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114748708156150968
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1180714464021554}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f893f0b79a58d494481a4855e11a8225, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _digitPref: {fileID: 1578667973928876, guid: 1f1ce531c544f5e41bdee5db83607926, type: 2}

@@ -33,7 +33,7 @@ namespace Bunashibu.Kikan {
 
       if (IsCorrectAttackTarget(target, skillUser)) {
         DamageToPlayer(target, skillUser);
-        PopupDamage();
+        target.NumberPopupEnvironment.Popup(_damageCalculator.Damage, _damageCalculator.IsCritical, skillUser.DamageSkin.Id);
 
         if (target.Hp.Cur <= 0)
           ProceedDeath(target, skillUser);
@@ -51,21 +51,12 @@ namespace Bunashibu.Kikan {
 
     private void DamageToPlayer(BattlePlayer target, BattlePlayer skillUser) {
       int playerPower = _powerCalculator.CalculatePlayerPower(skillUser);
-      int power = playerPower * (_skillPower / 100);
+      int attackPower = playerPower * (_skillPower / 100);
 
-      int damage = _damageCalculator.CalculateDamage(power, _maxDeviation, skillUser.Core.Critical);
+      int damage = _damageCalculator.CalculateDamage(attackPower, _maxDeviation, skillUser.Core.Critical);
 
       target.Hp.Subtract(damage);
       target.Hp.UpdateView();
-    }
-
-    private void PopupDamage() {
-      /*
-      if (_damageCalculator.IsCritical)
-        _numberEffect.PopupCritical(_damageCalculator.Damage);
-      else
-        _numberEffect.PopupHit(_damageCalculator.Damage);
-        */
     }
 
     private void ProceedDeath(BattlePlayer target, BattlePlayer skillUser) {

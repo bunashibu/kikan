@@ -5,7 +5,8 @@ using System.Linq;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
-  public class NumberEffect : MonoBehaviour {
+  public class NumberEffect {
+    /*
     public NumberEffect(GameObject digitPref) {
       _digitPref = digitPref;
     }
@@ -61,6 +62,7 @@ namespace Bunashibu.Kikan {
 
     public int Number { get; private set; }
     private GameObject _digitPref;
+    */
   }
 }
 

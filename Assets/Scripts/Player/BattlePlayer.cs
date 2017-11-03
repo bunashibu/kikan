@@ -26,6 +26,8 @@ namespace Bunashibu.Kikan {
 
     public BattlePlayerObserver Observer { get { return _observer; } }
 
+    public NumberPopupEnvironment NumberPopupEnvironment { get { return _numberPopupEnvironment; } }
+
     public BattlePlayerMovement Movement      { get; private set; }
     public CharacterState       State         { get; private set; }
     public PlayerHp             Hp            { get; private set; }
@@ -63,6 +65,9 @@ namespace Bunashibu.Kikan {
 
     [Header("Observer")]
     [SerializeField] private BattlePlayerObserver _observer;
+
+    [Header("Environment")]
+    [SerializeField] private NumberPopupEnvironment _numberPopupEnvironment;
 
     [Header("Data")]
     [SerializeField] private DataTable _hpTable;
