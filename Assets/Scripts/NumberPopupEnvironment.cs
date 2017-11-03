@@ -29,11 +29,11 @@ namespace Bunashibu.Kikan {
 
       int i = 0;
       foreach(int index in indices) {
-        var digit = Instantiate(_digitPref, gameObject.transform, false);
-        digit.transform.Translate(i * 0.3f, 1.0f, 0.0f);
+        var numberObj = Instantiate(_numberPref, transform.position, Quaternion.identity);
+        numberObj.transform.Translate(i * 0.3f, 1.0f, 0.0f);
         ++i;
 
-        var renderer = digit.GetComponent<SpriteRenderer>();
+        var renderer = numberObj.GetComponent<SpriteRenderer>();
 
         switch (type) {
           case DamageType.Hit:
@@ -54,7 +54,7 @@ namespace Bunashibu.Kikan {
       }
     }
 
-    [SerializeField] private GameObject _digitPref;
+    [SerializeField] private GameObject _numberPref;
     [SerializeField] private AllSkinData _skinData;
   }
 }
