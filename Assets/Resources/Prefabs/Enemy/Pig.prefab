@@ -114,6 +114,7 @@ GameObject:
   - component: {fileID: 114575972786325222}
   - component: {fileID: 114186672912638236}
   - component: {fileID: 114153724479301750}
+  - component: {fileID: 114213207718908430}
   m_Layer: 14
   m_Name: Pig
   m_TagString: Enemy
@@ -311,6 +312,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _renderer: {fileID: 212191663063185894}
   _anim: {fileID: 95979600268523808}
+--- !u!114 &114213207718908430
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1850968585228374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 794664095fb228546a6ea130b5e55c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _numberPref: {fileID: 1578667973928876, guid: 1f1ce531c544f5e41bdee5db83607926,
+    type: 2}
+  _allSkinData: {fileID: 11400000, guid: f0bd4ccd89724744b805577e3ded0629, type: 2}
 --- !u!114 &114281805833401298
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -381,6 +396,7 @@ MonoBehaviour:
   _ladderCollider: {fileID: 61033099147209652}
   _footCollider: {fileID: 68566584230510960}
   _animator: {fileID: 95979600268523808}
+  _numberPopupEnvironment: {fileID: 114213207718908430}
   _killExp: 60
   _killGold: 90
 --- !u!114 &114468486198302008
