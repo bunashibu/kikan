@@ -25,7 +25,7 @@ namespace Bunashibu.Kikan {
       if (!_strategyFlag) {
         ConsiderStrategy();
 
-        MonoUtility.Instance.DelaySec(Random.value * 10, () => {
+        MonoUtility.Instance.DelaySec(Random.value * 3, () => {
           _strategyFlag = false;
         });
 

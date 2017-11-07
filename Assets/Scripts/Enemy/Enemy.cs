@@ -9,7 +9,7 @@ namespace Bunashibu.Kikan {
     void Awake() {
       State         = new CharacterState(_ladderCollider, _footCollider);
       StateTransfer = new StateTransfer(_initState, _animator);
-      Hp            = new EnemyHp();
+      Hp            = new EnemyHp(this, _hpBar, _enemyData.Life);
     }
 
     public void AttachPopulationObserver(EnemyPopulationObserver populationObserver) {
@@ -51,6 +51,12 @@ namespace Bunashibu.Kikan {
     [Header("Kill Reward")]
     [SerializeField] private int _killExp;
     [SerializeField] private int _killGold;
+
+    [Header("Hp")]
+    [SerializeField] private PlainBar _hpBar;
+
+    [Header("Data")]
+    [SerializeField] private EnemyData _enemyData;
 
     private static readonly string _initState = "Idle";
   }

@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace Bunashibu.Kikan {
   [CreateAssetMenu]
-  public class EnemyStatus : ScriptableObject {
+  public class EnemyData : ScriptableObject {
     public int Id {
       get { return _id; }
     }

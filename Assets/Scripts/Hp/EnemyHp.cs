@@ -4,40 +4,35 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   public class EnemyHp : Hp {
-    public EnemyHp() {
-      /*
-      _player = player;
-      _hpTable = hpTable;
-      _worldBar = worldBar;
+    public EnemyHp(Enemy enemy, PlainBar bar, int maxHp) {
+      _enemy = enemy;
+      _bar = bar;
 
-      Max = _hpTable.Data[0];
+      Max = maxHp;
       Cur = Max;
 
-      if (_player.PhotonView.isMine)
-        _worldBar.gameObject.SetActive(false);
-      */
+      _bar.gameObject.SetActive(false);
     }
 
     public override void Add(int quantity) {
-      //base.Add(quantity);
+      base.Add(quantity);
       //_enemy.Observer.SyncCurHp();
     }
 
     public override void Subtract(int quantity) {
-      //base.Subtract(quantity);
+      base.Subtract(quantity);
       //_enemy.Observer.SyncCurHp();
     }
 
     public override void UpdateView() {
-      /*
-      if (_enemy.PhotonView.isMine)
-        _hudBar.UpdateView(Cur, Max);
-      else
-        _worldBar.UpdateView(Cur, Max);
+      _bar.gameObject.SetActive(true);
+      _bar.UpdateView(Cur, Max);
 
-      _player.Observer.SyncUpdateHpView();
-      */
+      //_bar.gameObject.SetActive(false);
     }
+
+    private Enemy _enemy;
+    private PlainBar _bar;
   }
 }
 
