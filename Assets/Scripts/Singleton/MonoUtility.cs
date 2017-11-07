@@ -5,6 +5,10 @@ using System.Collections.Generic;
 
 namespace Bunashibu.Kikan {
   public class MonoUtility : SingletonMonoBehaviour<MonoUtility> {
+    void Awake() {
+      _coroutineDictionary = new Dictionary<string, IEnumerator>();
+    }
+
     public void DelayOneFrame(Action action) {
       StartCoroutine(ImplDelayOneFrame(action));
     }
@@ -15,6 +19,16 @@ namespace Bunashibu.Kikan {
 
     public void DelayUntil(Func<bool> condition, Action action) {
       StartCoroutine(ImplDelayUntil(condition, action));
+    }
+
+    // Memo: 1, This func should not be here.
+    //       2, Something that managing delay func class should be created.
+    public void OverwritableDelaySec(float sec, string keyName, Action action) {
+      if (_coroutineDictionary.ContainsKey(keyName))
+        StopCoroutine(_coroutineDictionary[keyName]);
+
+      _coroutineDictionary[keyName] = ImplDelaySec(sec, action);
+      StartCoroutine(_coroutineDictionary[keyName]);
     }
 
     public static List<T> ToList<T>(T[] ary) {
@@ -40,6 +54,8 @@ namespace Bunashibu.Kikan {
       yield return new WaitUntil(condition);
       action();
     }
+
+    private Dictionary<string, IEnumerator> _coroutineDictionary;
   }
 }
 

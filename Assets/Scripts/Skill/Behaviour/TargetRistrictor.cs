@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Bunashibu.Kikan {
   public class TargetRistrictor {
     public TargetRistrictor(int targetNum, int dupHitNum) {
-      _targetList = new Dictionary<IBattle, int>();
+      _targetDictionary = new Dictionary<IBattle, int>();
       _targetNum = targetNum;
       _dupHitNum = dupHitNum;
       _isMaxTargetHit = IsMaxTargetHit();
@@ -29,20 +29,20 @@ namespace Bunashibu.Kikan {
     }
 
     private bool IsMaxDupHit(IBattle target) {
-      if (!_targetList.ContainsKey(target)) {
-        _targetList[target] = 0;
+      if (!_targetDictionary.ContainsKey(target)) {
+        _targetDictionary[target] = 0;
         return false;
       }
 
-      if (_targetList[target] < _dupHitNum) {
-        _targetList[target] += 1;
+      if (_targetDictionary[target] < _dupHitNum) {
+        _targetDictionary[target] += 1;
         return false;
       } else {
         return true;
       }
     }
 
-    private Dictionary<IBattle, int> _targetList;
+    private Dictionary<IBattle, int> _targetDictionary;
     private Func<bool> _isMaxTargetHit;
     private int _targetNum;
     private int _dupHitNum;
