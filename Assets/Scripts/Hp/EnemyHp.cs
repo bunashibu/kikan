@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace Bunashibu.Kikan {
   public class EnemyHp : Hp {
@@ -15,12 +16,12 @@ namespace Bunashibu.Kikan {
 
     public override void Add(int quantity) {
       base.Add(quantity);
-      //_enemy.Observer.SyncCurHp();
+      _enemy.Observer.SyncCurHp();
     }
 
     public override void Subtract(int quantity) {
       base.Subtract(quantity);
-      //_enemy.Observer.SyncCurHp();
+      _enemy.Observer.SyncCurHp();
     }
 
     public override void UpdateView() {
@@ -30,6 +31,15 @@ namespace Bunashibu.Kikan {
       MonoUtility.Instance.OverwritableDelaySec(5.0f, "EnemyHpBarHide" + _enemy.gameObject.GetInstanceID().ToString(), () => {
         _bar.gameObject.SetActive(false);
       });
+    }
+
+    /*                                                            *
+     * INFO: ForceSyncXXX method must be called ONLY by Observer. *
+     *       Otherwise it breaks encapsulation.                   *
+     *                                                            */
+    public void ForceSyncCur(int cur) {
+      Assert.IsTrue(_enemy.Observer.ShouldSync("CurHp"));
+      Cur = cur;
     }
 
     private Enemy _enemy;

@@ -24,6 +24,7 @@ namespace Bunashibu.Kikan {
     public Collider2D     FootCollider   { get { return _footCollider;   } }
 
     // Observer
+    public EnemyObserver           Observer           { get { return _observer; } }
     public EnemyPopulationObserver PopulationObserver { get; private set; }
 
     // Environment
@@ -47,6 +48,9 @@ namespace Bunashibu.Kikan {
 
     [Header("Environment")]
     [SerializeField] private NumberPopupEnvironment _numberPopupEnvironment;
+
+    [Header("Observer")]
+    [SerializeField] private EnemyObserver _observer;
 
     [Header("Kill Reward")]
     [SerializeField] private int _killExp;

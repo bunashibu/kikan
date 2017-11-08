@@ -335,6 +335,7 @@ MonoBehaviour:
   _footCollider: {fileID: 68516081104492556}
   _animator: {fileID: 95441550684647506}
   _numberPopupEnvironment: {fileID: 114917523622065830}
+  _observer: {fileID: 114936866454747730}
   _killExp: 30
   _killGold: 45
   _hpBar: {fileID: 114643642540556978}
