@@ -21,9 +21,18 @@ namespace Bunashibu.Kikan {
       _enemy.PhotonView.RPC("SyncCurHpRPC", PhotonTargets.Others, _enemy.Hp.Cur);
     }
 
+    public void SyncUpdateHpView(PhotonPlayer skillOwner) {
+      _enemy.PhotonView.RPC("SyncUpdateHpViewRPC", PhotonTargets.All, skillOwner);
+    }
+
     [PunRPC]
     private void SyncCurHpRPC(int cur) {
       ForceSync("CurHp", () => _enemy.Hp.ForceSyncCur(cur));
+    }
+
+    [PunRPC]
+    private void SyncUpdateHpViewRPC(PhotonPlayer skillOwner) {
+      _enemy.Hp.SyncUpdateView(skillOwner);
     }
 
     private void ForceSync(string key, Action action) {

@@ -86,7 +86,7 @@ namespace Bunashibu.Kikan {
       int damage = _damageCalculator.CalculateDamage(attackPower, _maxDeviation, skillUser.Core.Critical);
 
       target.Hp.Subtract(damage);
-      target.Hp.UpdateView();
+      target.Hp.UpdateView(skillUser.PhotonView.owner);
     }
 
     private void ProceedPlayerDeath(BattlePlayer target, BattlePlayer skillUser) {

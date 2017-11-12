@@ -14,8 +14,6 @@ namespace Bunashibu.Kikan {
       AdjustBoundary();
     }
 
-    public abstract void UpdateView();
-
     private void AdjustBoundary() {
       if (Cur <= Min)
         Cur = Min;

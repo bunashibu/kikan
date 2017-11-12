@@ -24,13 +24,8 @@ namespace Bunashibu.Kikan {
       _enemy.Observer.SyncCurHp();
     }
 
-    public override void UpdateView() {
-      _bar.gameObject.SetActive(true);
-      _bar.UpdateView(Cur, Max);
-
-      MonoUtility.Instance.OverwritableDelaySec(5.0f, "EnemyHpBarHide" + _enemy.gameObject.GetInstanceID().ToString(), () => {
-        _bar.gameObject.SetActive(false);
-      });
+    public void UpdateView(PhotonPlayer skillOwner) {
+      _enemy.Observer.SyncUpdateHpView(skillOwner);
     }
 
     /*                                                            *
@@ -40,6 +35,17 @@ namespace Bunashibu.Kikan {
     public void ForceSyncCur(int cur) {
       Assert.IsTrue(_enemy.Observer.ShouldSync("CurHp"));
       Cur = cur;
+    }
+
+    public void SyncUpdateView(PhotonPlayer skillOwner) {
+      if (skillOwner == PhotonNetwork.player) {
+        _bar.gameObject.SetActive(true);
+        _bar.UpdateView(Cur, Max);
+
+        MonoUtility.Instance.OverwritableDelaySec(5.0f, "EnemyHpBarHide" + _enemy.gameObject.GetInstanceID().ToString(), () => {
+          _bar.gameObject.SetActive(false);
+        });
+      }
     }
 
     private Enemy _enemy;

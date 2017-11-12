@@ -27,7 +27,7 @@ namespace Bunashibu.Kikan {
       _player.Observer.SyncCurHp();
     }
 
-    public override void UpdateView() {
+    public void UpdateView() {
       if (_player.PhotonView.isMine)
         _hudBar.UpdateView(Cur, Max);
       else
