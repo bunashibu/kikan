@@ -9,7 +9,8 @@ namespace Bunashibu.Kikan {
     void Awake() {
       _shouldSync = new Dictionary<string, bool>();
 
-      _shouldSync.Add("CurHp", false);
+      _shouldSync.Add("CurHp"        , false);
+      _shouldSync.Add("UpdateHpView" , false);
     }
 
     public bool ShouldSync(string key) {
@@ -32,7 +33,7 @@ namespace Bunashibu.Kikan {
 
     [PunRPC]
     private void SyncUpdateHpViewRPC(PhotonPlayer skillOwner) {
-      _enemy.Hp.SyncUpdateView(skillOwner);
+      ForceSync("UpdateHpView", () => _enemy.Hp.ForceSyncUpdateView(skillOwner));
     }
 
     private void ForceSync(string key, Action action) {

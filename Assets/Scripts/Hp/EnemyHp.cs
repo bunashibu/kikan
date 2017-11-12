@@ -37,7 +37,9 @@ namespace Bunashibu.Kikan {
       Cur = cur;
     }
 
-    public void SyncUpdateView(PhotonPlayer skillOwner) {
+    public void ForceSyncUpdateView(PhotonPlayer skillOwner) {
+      Assert.IsTrue(_enemy.Observer.ShouldSync("UpdateHpView"));
+
       if (skillOwner == PhotonNetwork.player) {
         _bar.gameObject.SetActive(true);
         _bar.UpdateView(Cur, Max);

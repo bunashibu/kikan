@@ -9,10 +9,11 @@ namespace Bunashibu.Kikan {
     void Awake() {
       _shouldSync = new Dictionary<string, bool>();
 
-      _shouldSync.Add("Hp",  false);
-      _shouldSync.Add("CurHp", false);
-      _shouldSync.Add("MaxHp", false);
-      _shouldSync.Add("Team", false);
+      _shouldSync.Add("Hp"           , false);
+      _shouldSync.Add("CurHp"        , false);
+      _shouldSync.Add("MaxHp"        , false);
+      _shouldSync.Add("UpdateHpView" , false);
+      _shouldSync.Add("Team"         , false);
     }
 
     public bool ShouldSync(string key) {
@@ -34,7 +35,7 @@ namespace Bunashibu.Kikan {
     }
 
     public void SyncUpdateHpView() {
-      _player.PhotonView.RPC("SyncUpdateHpViewRPC", PhotonTargets.Others);
+      _player.PhotonView.RPC("SyncUpdateHpViewRPC", PhotonTargets.All);
     }
 
     /* Team */
@@ -60,7 +61,7 @@ namespace Bunashibu.Kikan {
 
     [PunRPC]
     private void SyncUpdateHpViewRPC() {
-      _player.Hp.UpdateView();
+      ForceSync("UpdateHpView", () => _player.Hp.ForceSyncUpdateView());
     }
 
     /* Team RPC */

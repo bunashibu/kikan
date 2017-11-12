@@ -28,11 +28,6 @@ namespace Bunashibu.Kikan {
     }
 
     public void UpdateView() {
-      if (_player.PhotonView.isMine)
-        _hudBar.UpdateView(Cur, Max);
-      else
-        _worldBar.UpdateView(Cur, Max);
-
       _player.Observer.SyncUpdateHpView();
     }
 
@@ -67,6 +62,15 @@ namespace Bunashibu.Kikan {
     public void ForceSyncMax(int max) {
       Assert.IsTrue(_player.Observer.ShouldSync("MaxHp"));
       Max = max;
+    }
+
+    public void ForceSyncUpdateView() {
+      Assert.IsTrue(_player.Observer.ShouldSync("UpdateHpView"));
+
+      if (_player.PhotonView.isMine)
+        _hudBar.UpdateView(Cur, Max);
+      else
+        _worldBar.UpdateView(Cur, Max);
     }
 
     private BattlePlayer _player;
