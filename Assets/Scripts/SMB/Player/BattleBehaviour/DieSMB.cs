@@ -11,6 +11,8 @@ namespace Bunashibu.Kikan {
         _respawner  = animator.GetComponent<PlayerRespawner>();
       }
 
+      _player.BodyCollider.enabled = false;
+
       Action action = () => { _player.StateTransfer.TransitTo("Idle", animator); };
       _respawner.Respawn(action);
 
