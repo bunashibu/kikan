@@ -7,15 +7,12 @@ namespace Bunashibu.Kikan {
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
       if (_enemy == null)
         _enemy = animator.GetComponent<Enemy>();
-
-      if (PhotonNetwork.player.IsMasterClient) {
-        MonoUtility.Instance.DelaySec(3.0f, () => { // TEMP
-          //_enemy.StateTransfer.TransitTo("Die", animator);
-        });
-      }
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
+      if (PhotonNetwork.player.IsMasterClient) {
+        if ( _enemy.Hp.Cur <= 0 ) { _enemy.StateTransfer.TransitTo( "Die" , animator ); return; }
+      }
     }
 
     private Enemy _enemy;

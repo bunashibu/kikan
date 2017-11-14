@@ -21,17 +21,17 @@ namespace Bunashibu.Kikan {
         return;
 
       if (targetObj.tag == "Player")
-        ProceedAttackToPlayer(targetObj);
+        ProceedAttackToPlayer(targetObj, collider);
 
       if (targetObj.tag == "Enemy")
-        ProceedAttackToEnemy(targetObj);
+        ProceedAttackToEnemy(targetObj, collider);
     }
 
-    private void ProceedAttackToPlayer(GameObject targetObj) {
+    private void ProceedAttackToPlayer(GameObject targetObj, Collider2D targetCollider) {
       var target = targetObj.GetComponent<BattlePlayer>();
       var skillUser = _skillUserObj.GetComponent<BattlePlayer>();
 
-      if (IsCorrectAttackPlayer(target, skillUser)) {
+      if (IsCorrectAttackPlayer(target, skillUser, targetCollider)) {
         DamageToPlayer(target, skillUser);
         target.NumberPopupEnvironment.Popup(_damageCalculator.Damage, _damageCalculator.IsCritical, skillUser.DamageSkin.Id, PopupType.Player);
 
@@ -40,11 +40,11 @@ namespace Bunashibu.Kikan {
       }
     }
 
-    private void ProceedAttackToEnemy(GameObject targetObj) {
+    private void ProceedAttackToEnemy(GameObject targetObj, Collider2D targetCollider) {
       var target = targetObj.GetComponent<Enemy>();
       var skillUser = _skillUserObj.GetComponent<BattlePlayer>();
 
-      if (IsCorrectAttackEnemy(target)) {
+      if (IsCorrectAttackEnemy(target, targetCollider)) {
         DamageToEnemy(target, skillUser);
         target.NumberPopupEnvironment.Popup(_damageCalculator.Damage, _damageCalculator.IsCritical, skillUser.DamageSkin.Id, PopupType.Enemy);
 
@@ -53,17 +53,21 @@ namespace Bunashibu.Kikan {
       }
     }
 
-    private bool IsCorrectAttackPlayer(BattlePlayer target, BattlePlayer skillUser) {
+    private bool IsCorrectAttackPlayer(BattlePlayer target, BattlePlayer skillUser, Collider2D targetCollider) {
       if (target.PlayerInfo.Team == skillUser.PlayerInfo.Team)
         return false;
       if (_targetRistrictor.ShouldRistrict(target))
+        return false;
+      if (targetCollider != target.BodyCollider)
         return false;
 
       return true;
     }
 
-    private bool IsCorrectAttackEnemy(Enemy target) {
+    private bool IsCorrectAttackEnemy(Enemy target, Collider2D targetCollider) {
       if (_targetRistrictor.ShouldRistrict(target))
+        return false;
+      if (targetCollider != target.BodyCollider)
         return false;
 
       return true;

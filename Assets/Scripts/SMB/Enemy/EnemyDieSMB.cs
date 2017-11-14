@@ -8,6 +8,9 @@ namespace Bunashibu.Kikan {
       if (_enemy == null)
         _enemy = animator.GetComponent<Enemy>();
 
+      _enemy.BodyCollider.enabled = false;
+      _enemy.AI.enabled = false;
+
       if (PhotonNetwork.player.IsMasterClient)
         _enemy.PopulationObserver.IntervalReplenishPopulation(_enemy);
     }

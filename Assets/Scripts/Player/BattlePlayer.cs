@@ -18,11 +18,11 @@ namespace Bunashibu.Kikan {
       Movement.FixedUpdate(_rigid, _trans);
     }
 
-    public PhotonView       PhotonView     { get { return _photonView;     } }
-    public SpriteRenderer[] Renderers      { get { return _renderers;      } }
-    public Rigidbody2D      Rigid          { get { return _rigid;          } }
-    public Collider2D       LadderCollider { get { return _ladderCollider; } }
-    public Collider2D       FootCollider   { get { return _footCollider;   } }
+    public PhotonView       PhotonView     { get { return _photonView;   } }
+    public SpriteRenderer[] Renderers      { get { return _renderers;    } }
+    public Rigidbody2D      Rigid          { get { return _rigid;        } }
+    public Collider2D       BodyCollider   { get { return _bodyCollider; } }
+    public Collider2D       FootCollider   { get { return _footCollider; } }
 
     public BattlePlayerObserver Observer { get { return _observer; } }
 
@@ -59,6 +59,7 @@ namespace Bunashibu.Kikan {
     [SerializeField] private Transform        _trans;
     [SerializeField] private SpriteRenderer[] _renderers;  // INFO: [PlayerSprite, WeaponSprite]
     [SerializeField] private Rigidbody2D      _rigid;
+    [SerializeField] private Collider2D       _bodyCollider;
     [SerializeField] private Collider2D       _ladderCollider;
     [SerializeField] private Collider2D       _footCollider;
     [SerializeField] private Animator         _animator;

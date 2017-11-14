@@ -560,8 +560,8 @@ MonoBehaviour:
   - {fileID: 212000013636046964}
   - {fileID: 212642414779630898}
   _rigid: {fileID: 50000013460582292}
-  _collider: {fileID: 61000011156448030}
-  _ladderCollider: {fileID: 0}
+  _bodyCollider: {fileID: 61000011156448030}
+  _ladderCollider: {fileID: 61000011156448030}
   _footCollider: {fileID: 68285350630742922}
   _animator: {fileID: 95000010494430044}
 --- !u!114 &114642343969648306
@@ -724,7 +724,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!212 &212642414779630898
 SpriteRenderer:

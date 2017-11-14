@@ -398,13 +398,15 @@ MonoBehaviour:
   _photonView: {fileID: 114079833863249228}
   _spriteRenderer: {fileID: 212555299422138682}
   _rigid: {fileID: 50137535225740868}
+  _bodyCollider: {fileID: 61837418900441294}
   _ladderCollider: {fileID: 61837418900441294}
   _footCollider: {fileID: 68516081104492556}
   _animator: {fileID: 95441550684647506}
-  _numberPopupEnvironment: {fileID: 114917523622065830}
   _observer: {fileID: 114936866454747730}
+  _numberPopupEnvironment: {fileID: 114917523622065830}
   _killExp: 30
   _killGold: 45
+  _ai: {fileID: 114835469236397476}
   _hpBar: {fileID: 114643642540556978}
   _enemyData: {fileID: 11400000, guid: dea86f677fe12af4aa2f5d458e4eb166, type: 2}
 --- !u!114 &114323066325102114

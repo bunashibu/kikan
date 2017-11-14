@@ -20,7 +20,7 @@ namespace Bunashibu.Kikan {
     public PhotonView     PhotonView     { get { return _photonView;     } }
     public SpriteRenderer SpriteRenderer { get { return _spriteRenderer; } }
     public Rigidbody2D    Rigid          { get { return _rigid;          } }
-    public Collider2D     LadderCollider { get { return _ladderCollider; } }
+    public Collider2D     BodyCollider   { get { return _bodyCollider;   } }
     public Collider2D     FootCollider   { get { return _footCollider;   } }
 
     // Observer
@@ -29,6 +29,9 @@ namespace Bunashibu.Kikan {
 
     // Environment
     public NumberPopupEnvironment NumberPopupEnvironment { get { return _numberPopupEnvironment; } }
+
+    // tmp
+    public MonoBehaviour AI { get { return _ai; } }
 
     // Enemy
     public CharacterState State         { get; private set; }
@@ -42,19 +45,24 @@ namespace Bunashibu.Kikan {
     [SerializeField] private PhotonView     _photonView;
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private Rigidbody2D    _rigid;
+    [SerializeField] private Collider2D     _bodyCollider;
     [SerializeField] private Collider2D     _ladderCollider;
     [SerializeField] private Collider2D     _footCollider;
     [SerializeField] private Animator       _animator;
 
-    [Header("Environment")]
-    [SerializeField] private NumberPopupEnvironment _numberPopupEnvironment;
-
     [Header("Observer")]
     [SerializeField] private EnemyObserver _observer;
+
+    [Header("Environment")]
+    [SerializeField] private NumberPopupEnvironment _numberPopupEnvironment;
 
     [Header("Kill Reward")]
     [SerializeField] private int _killExp;
     [SerializeField] private int _killGold;
+
+    // tmp
+    [Space(10)]
+    [SerializeField] private MonoBehaviour _ai;
 
     [Header("Hp")]
     [SerializeField] private PlainBar _hpBar;
