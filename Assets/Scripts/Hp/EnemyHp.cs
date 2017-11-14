@@ -45,7 +45,8 @@ namespace Bunashibu.Kikan {
         _bar.UpdateView(Cur, Max);
 
         MonoUtility.Instance.OverwritableDelaySec(5.0f, "EnemyHpBarHide" + _enemy.gameObject.GetInstanceID().ToString(), () => {
-          _bar.gameObject.SetActive(false);
+          if (_bar != null)
+            _bar.gameObject.SetActive(false);
         });
       }
     }
