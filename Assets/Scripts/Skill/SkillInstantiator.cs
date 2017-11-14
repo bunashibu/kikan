@@ -5,7 +5,7 @@ using System.Collections;
 namespace Bunashibu.Kikan {
   public class SkillInstantiator : Photon.MonoBehaviour {
     void Update() {
-      if (!photonView.isMine)
+      if (!photonView.isMine || _player.Hp.Cur <= 0)
         return;
 
       for (int i=0; i<_keys.Length; ++i) {
