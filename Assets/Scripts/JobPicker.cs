@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 namespace Bunashibu.Kikan {
@@ -10,7 +11,7 @@ namespace Bunashibu.Kikan {
     }
 
     public void Pick(int n) {
-      InstantiateHudObjects();
+      InstantiateHudObjects(n);
       InstantiatePlayer(n);
 
       InitPlayerHp();
@@ -27,7 +28,7 @@ namespace Bunashibu.Kikan {
       Destroy(gameObject);
     }
 
-    private void InstantiateHudObjects() {
+    private void InstantiateHudObjects(int n) {
       _hpBar = Instantiate(_hpBar) as Bar;
       _hpBar.transform.SetParent(_canvas.transform, false);
 
@@ -36,6 +37,9 @@ namespace Bunashibu.Kikan {
 
       _lvPanel = Instantiate(_lvPanel) as LevelPanel;
       _lvPanel.transform.SetParent(_canvas.transform, false);
+
+      var skillPanel = Instantiate(_skillPanelList[n]) as SkillPanel;
+      skillPanel.transform.SetParent(_canvas.transform, false);
     }
 
     private void InstantiatePlayer(int n) {
@@ -125,6 +129,7 @@ namespace Bunashibu.Kikan {
     [SerializeField] private KillDeathPanel _kdPanel;
     [SerializeField] private GoldPanel _goldPanel;
     [SerializeField] private CorePanel _corePanel;
+    [SerializeField] private List<SkillPanel> _skillPanelList;
     [SerializeField] private GameData _gameData;
     private BattlePlayer _player;
   }
