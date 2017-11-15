@@ -11,8 +11,8 @@ namespace Bunashibu.Kikan {
     }
 
     public void Pick(int n) {
-      InstantiateHudObjects(n);
       InstantiatePlayer(n);
+      InstantiateHudObjects(n);
 
       InitPlayerHp();
       InitPlayerExp();
@@ -28,6 +28,19 @@ namespace Bunashibu.Kikan {
       Destroy(gameObject);
     }
 
+    private void InstantiatePlayer(int n) {
+      var pos = _gameData.RespawnPosition;
+
+      // INFO: Team 0 is Red(Right), Team 1 is Blue(Left)
+      if ((int)PhotonNetwork.player.CustomProperties["Team"] == 1)
+        pos.x *= -1;
+
+      _player = PhotonNetwork.Instantiate("Prefabs/Job/" + _jobs[n].name, pos, Quaternion.identity, 0).GetComponent<BattlePlayer>();
+      AdjustFlipX();
+      SetViewID();
+      _player.Observer.SyncTeam();
+    }
+
     private void InstantiateHudObjects(int n) {
       _hpBar = Instantiate(_hpBar) as Bar;
       _hpBar.transform.SetParent(_canvas.transform, false);
@@ -40,19 +53,6 @@ namespace Bunashibu.Kikan {
 
       var skillPanel = Instantiate(_skillPanelList[n]) as SkillPanel;
       skillPanel.transform.SetParent(_canvas.transform, false);
-    }
-
-    private void InstantiatePlayer(int n) {
-      var pos = _gameData.RespawnPosition;
-
-      // INFO: Team 0 is Red(Right), Team 1 is Blue(Left)
-      if ((int)PhotonNetwork.player.CustomProperties["Team"] == 1)
-        pos.x *= -1;
-
-      _player = PhotonNetwork.Instantiate("Prefabs/Job/" + _jobs[n].name, pos, Quaternion.identity, 0).GetComponent<BattlePlayer>();
-      AdjustFlipX();
-      SetViewID();
-      _player.Observer.SyncTeam();
     }
 
     private void AdjustFlipX() {

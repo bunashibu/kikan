@@ -37,10 +37,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4257765238654794}
   - component: {fileID: 212620572494064958}
-  - component: {fileID: 114047511076577264}
   - component: {fileID: 95722833264577094}
   - component: {fileID: 114572845960354168}
   - component: {fileID: 114103916784843228}
+  - component: {fileID: 114047511076577264}
   - component: {fileID: 114365085813304948}
   m_Layer: 0
   m_Name: Sword
@@ -489,8 +489,8 @@ MonoBehaviour:
   _names: 000000000100000002000000
   _skillCT:
   - 0.5
-  - 1
-  - 0.3
+  - 5
+  - 7
   _rigorCT:
   - 0.3
   - 0.3

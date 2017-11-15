@@ -18033,16 +18033,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 224136402949142822, guid: 62edf362464fdeb40b00bf4c6974958d,
-        type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -140
-      objectReference: {fileID: 0}
-    - target: {fileID: 224136402949142822, guid: 62edf362464fdeb40b00bf4c6974958d,
-        type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1265298447425866, guid: 62edf362464fdeb40b00bf4c6974958d, type: 2}
       propertyPath: m_IsActive
       value: 0

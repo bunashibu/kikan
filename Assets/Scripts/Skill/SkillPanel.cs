@@ -5,7 +5,9 @@ using UnityEngine.UI;
 
 namespace Bunashibu.Kikan {
   public class SkillPanel : MonoBehaviour {
-    [SerializeField] private List<Image> _alphaList;
+    public List<GameObject> AlphaList { get { return _alphaList; } }
+
+    [SerializeField] private List<GameObject> _alphaList;
   }
 }
 

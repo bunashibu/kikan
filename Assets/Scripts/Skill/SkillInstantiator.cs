@@ -11,9 +11,12 @@ namespace Bunashibu.Kikan {
       for (int i=0; i<_keys.Length; ++i) {
         if (_canUse && Input.GetKey(_keys[i])) {
           InstantiateSkill(i);
-          UpdateCT(i);
+          StartCT(i);
           break;
         }
+
+        if (!_canUse)
+          UpdateCT(i);
       }
     }
 
@@ -29,7 +32,7 @@ namespace Bunashibu.Kikan {
       skill.Init(_renderer.flipX, _player.PhotonView.viewID);
     }
 
-    private void UpdateCT(int i) {
+    private void StartCT(int i) {
       _canUse = false;
       MonoUtility.Instance.DelaySec(_skillCT[i], () => {
         _canUse = true;
@@ -44,6 +47,18 @@ namespace Bunashibu.Kikan {
       MonoUtility.Instance.DelaySec(_rigorCT[i], () => {
         _player.State.Rigor = false;
         _player.SkillInfo.SetState(_names[i], SkillState.Used);
+      });
+    }
+
+    private void UpdateCT(int i) {
+      MonoUtility.Instance.DelaySec(_skillCT[i] / (float)17.0, () => {
+          /*
+        var rectTransform = skillPanel.AlphaList[0].GetComponent<RectTransform>();
+
+        // AlphaMask height == 55.0
+        // SkillPanel Update Count == 17.0
+        rectTransform.sizeDelta = new Vector2(rectTransform.sizeDelta.x, rectTransform.sizeDelta.y - (55.0 / 17.0));
+        */
       });
     }
 
