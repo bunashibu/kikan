@@ -71,7 +71,7 @@ namespace Bunashibu.Kikan {
 
     private void DamageToPlayer(BattlePlayer target, BattlePlayer skillUser) {
       int playerPower = _powerCalculator.CalculatePlayerPower(skillUser);
-      int attackPower = playerPower * (_skillPower / 100);
+      int attackPower = (int)(playerPower * (_skillPower / 100.0));
 
       int damage = _damageCalculator.CalculateDamage(attackPower, _maxDeviation, skillUser.Core.Critical);
 
@@ -81,7 +81,7 @@ namespace Bunashibu.Kikan {
 
     private void DamageToEnemy(Enemy target, BattlePlayer skillUser) {
       int playerPower = _powerCalculator.CalculatePlayerPower(skillUser);
-      int attackPower = playerPower * (_skillPower / 100);
+      int attackPower = (int)(playerPower * (_skillPower / 100.0));
 
       int damage = _damageCalculator.CalculateDamage(attackPower, _maxDeviation, skillUser.Core.Critical);
 

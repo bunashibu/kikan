@@ -22,9 +22,9 @@ GameObject:
   - component: {fileID: 212014017042670366}
   - component: {fileID: 61513241601632456}
   - component: {fileID: 95766012013135520}
-  - component: {fileID: 114967494035779532}
   - component: {fileID: 114467778468847226}
   - component: {fileID: 114465406672563434}
+  - component: {fileID: 114967494035779532}
   m_Layer: 0
   m_Name: Z
   m_TagString: Untagged
@@ -189,11 +189,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3da8f59e9cca7544388dda11a64f9601, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damagePanel: {fileID: 114748708156150968, guid: 9a20024cd0387a447bcb9ed0933695d4,
-    type: 2}
-  _limiter: {fileID: 0}
-  _power: 200
+  _skillPower: 120
   _maxDeviation: 10
+  _targetNum: 1
+  _dupHitNum: 0
 --- !u!212 &212014017042670366
 SpriteRenderer:
   m_ObjectHideFlags: 1

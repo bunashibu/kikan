@@ -22,9 +22,9 @@ GameObject:
   - component: {fileID: 212000013285222208}
   - component: {fileID: 61000012832900290}
   - component: {fileID: 95000012625614196}
-  - component: {fileID: 114000010207159786}
   - component: {fileID: 114603389603180056}
   - component: {fileID: 114760928928043728}
+  - component: {fileID: 114000010207159786}
   m_Layer: 0
   m_Name: Shift
   m_TagString: Untagged
@@ -98,11 +98,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac5c1da9781c95047a7862decb13aa3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damagePanel: {fileID: 114748708156150968, guid: 9a20024cd0387a447bcb9ed0933695d4,
-    type: 2}
-  _limiter: {fileID: 0}
-  _power: 250
+  _skillPower: 150
   _maxDeviation: 10
+  _targetNum: 6
+  _dupHitNum: 0
 --- !u!114 &114603389603180056
 MonoBehaviour:
   m_ObjectHideFlags: 1
