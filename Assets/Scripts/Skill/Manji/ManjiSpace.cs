@@ -12,6 +12,10 @@ namespace Bunashibu.Kikan {
       _damageCalculator  = new DamageCalculator();
     }
 
+    void Start() {
+      transform.parent = _skillUserObj.transform;
+    }
+
     void OnTriggerEnter2D(Collider2D collider) {
       if (!PhotonNetwork.isMasterClient)
         return;

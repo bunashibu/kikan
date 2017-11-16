@@ -16,8 +16,17 @@ namespace Bunashibu.Kikan {
       var skillUser = _skillUserObj.GetComponent<BattlePlayer>();
 
       int directionX = skillUser.Renderers[0].flipX ? 1 : -1;
-      _skillUserObj.transform.Translate(new Vector3(directionX * 3, 0, 0));
+      int directionY = 0;
 
+      if (Input.GetKey(KeyCode.UpArrow)) {
+        directionX = 0;
+        directionY = 1;
+      } else if (Input.GetKey(KeyCode.DownArrow)) {
+        directionX = 0;
+        directionY = -1;
+      }
+
+      _skillUserObj.transform.Translate(new Vector3(directionX * 3, directionY * 3, 0));
       skillUser.Rigid.velocity = new Vector2(0, 0);
     }
 
