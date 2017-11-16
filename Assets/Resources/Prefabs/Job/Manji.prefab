@@ -498,19 +498,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _jobName: Manji
-  _keys: 78000000300100007a000000
-  _names: 000000000100000002000000
+  _keys: 78000000300100007a00000032010000
+  _names: 00000000010000000200000003000000
   _skillCT:
   - 0.5
   - 5
   - 7
+  - 8
   _rigorCT:
+  - 0.3
   - 0.3
   - 0.3
   - 0.3
   _appearOffset:
   - {x: -0.4, y: -0.1, z: 0}
   - {x: -0.4, y: 0.1, z: 0}
+  - {x: -0.2, y: -0.1, z: 0}
   - {x: -0.2, y: -0.1, z: 0}
   _renderer: {fileID: 212620572494064958}
   _player: {fileID: 114346652777482960}
