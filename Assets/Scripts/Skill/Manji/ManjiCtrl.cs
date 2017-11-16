@@ -12,6 +12,15 @@ namespace Bunashibu.Kikan {
       _damageCalculator  = new DamageCalculator();
     }
 
+    void Start() {
+      var skillUser = _skillUserObj.GetComponent<BattlePlayer>();
+
+      int directionX = skillUser.Renderers[0].flipX ? 1 : -1;
+      _skillUserObj.transform.Translate(new Vector3(directionX * 3, 0, 0));
+
+      skillUser.Rigid.velocity = new Vector2(0, 0);
+    }
+
     void OnTriggerEnter2D(Collider2D collider) {
       if (!PhotonNetwork.isMasterClient)
         return;
