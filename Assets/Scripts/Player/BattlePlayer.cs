@@ -50,6 +50,8 @@ namespace Bunashibu.Kikan {
     public PlayerStatus    Status     { get { return _status;     } }
     public DamageSkin      DamageSkin { get { return _damageSkin; } }
 
+    public Weapon          Weapon { get { return _weapon; } }
+
     // portal
     // respawner
     // automatic healer
@@ -89,6 +91,9 @@ namespace Bunashibu.Kikan {
     [Space(10)]
     [SerializeField] private PlayerStatus _status;
     [SerializeField] private DamageSkin   _damageSkin;
+
+    [Space(10)]
+    [SerializeField] private Weapon _weapon;
 
     private static readonly string _initState = "Idle";
   }

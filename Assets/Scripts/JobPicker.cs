@@ -53,6 +53,8 @@ namespace Bunashibu.Kikan {
 
       var skillPanel = Instantiate(_skillPanelList[n]) as SkillPanel;
       skillPanel.transform.SetParent(_canvas.transform, false);
+
+      _player.Weapon.SkillInstantiator.AttachSkillPanel(skillPanel);
     }
 
     private void AdjustFlipX() {

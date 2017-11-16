@@ -1,23 +1,30 @@
-﻿using UnityEngine;
-using System;
+﻿using System;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Bunashibu.Kikan {
   public class SkillInstantiator : Photon.MonoBehaviour {
+    void Start() {
+      _canUseList = new List<bool>(){ true, true, true, true, true, true };
+    }
+
     void Update() {
       if (!photonView.isMine || _player.Hp.Cur <= 0)
         return;
 
       for (int i=0; i<_keys.Length; ++i) {
-        if (_canUse && Input.GetKey(_keys[i])) {
+        if (_canUseList[i] && Input.GetKey(_keys[i])) {
           InstantiateSkill(i);
           StartCT(i);
+          UpdateCT(i);
           break;
         }
-
-        if (!_canUse)
-          UpdateCT(i);
       }
+    }
+
+    public void AttachSkillPanel(SkillPanel panel) {
+      _panelUnitList = panel.UnitList;
     }
 
     private void InstantiateSkill(int i) {
@@ -33,10 +40,14 @@ namespace Bunashibu.Kikan {
     }
 
     private void StartCT(int i) {
-      _canUse = false;
+      _canUseList[i] = false;
       MonoUtility.Instance.DelaySec(_skillCT[i], () => {
-        _canUse = true;
+        _canUseList[i] = true;
       });
+
+      // Ignore X Skill CT
+      if (i != 0)
+        _panelUnitList[i].AlphaRectTransform.sizeDelta = new Vector2(55.0f, 55.0f);
 
       _player.SkillInfo.SetState(_names[i], SkillState.Using);
       MonoUtility.Instance.DelaySec(_skillCT[i], () => {
@@ -51,14 +62,14 @@ namespace Bunashibu.Kikan {
     }
 
     private void UpdateCT(int i) {
-      MonoUtility.Instance.DelaySec(_skillCT[i] / (float)17.0, () => {
-          /*
-        var rectTransform = skillPanel.AlphaList[0].GetComponent<RectTransform>();
+      MonoUtility.Instance.DelaySec(_skillCT[i] / 17.0f, () => {
+        // Memo: AlphaMask height == 55.0
+        //       SkillPanel-Update-Count == 17.0
+        var preSizeDelta = _panelUnitList[i].AlphaRectTransform.sizeDelta;
+        _panelUnitList[i].AlphaRectTransform.sizeDelta = new Vector2(preSizeDelta.x, preSizeDelta.y - (55.0f / 17.0f));
 
-        // AlphaMask height == 55.0
-        // SkillPanel Update Count == 17.0
-        rectTransform.sizeDelta = new Vector2(rectTransform.sizeDelta.x, rectTransform.sizeDelta.y - (55.0 / 17.0));
-        */
+        if (!_canUseList[i])
+          UpdateCT(i);
       });
     }
 
@@ -70,7 +81,8 @@ namespace Bunashibu.Kikan {
     [SerializeField] private Vector3[] _appearOffset;
     [SerializeField] private SpriteRenderer _renderer;
     [SerializeField] private BattlePlayer _player;
-    private bool _canUse = true;
+    private List<SkillPanelUnit> _panelUnitList;
+    private List<bool> _canUseList;
   }
 }
 

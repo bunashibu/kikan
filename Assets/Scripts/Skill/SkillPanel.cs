@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 namespace Bunashibu.Kikan {
   public class SkillPanel : MonoBehaviour {
-    public List<GameObject> AlphaList { get { return _alphaList; } }
+    public List<SkillPanelUnit> UnitList { get { return _unitList; } }
 
-    [SerializeField] private List<GameObject> _alphaList;
+    [SerializeField] private List<SkillPanelUnit> _unitList;
   }
 }
 
