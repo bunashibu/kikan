@@ -14,6 +14,15 @@ namespace Bunashibu.Kikan {
 
     void Start() {
       transform.parent = _skillUserObj.transform;
+
+      var skillUser = _skillUserObj.GetComponent<BattlePlayer>();
+      skillUser.Movement.SetMoveForce(skillUser.Status.Spd * 1.3f);
+      skillUser.Movement.SetJumpForce(skillUser.Status.Jmp * 1.3f);
+
+      MonoUtility.Instance.DelaySec(20.0f, () => {
+        skillUser.Movement.SetMoveForce(skillUser.Status.Spd);
+        skillUser.Movement.SetJumpForce(skillUser.Status.Jmp);
+      });
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
