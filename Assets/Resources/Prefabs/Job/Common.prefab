@@ -662,6 +662,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _photonView: {fileID: 114710117432744930}
+  _trackTargetTransform: {fileID: 224000010966695226}
+  _positionOffset: {x: 0, y: 1.3, z: -1}
 --- !u!114 &114823730115069634
 MonoBehaviour:
   m_ObjectHideFlags: 1

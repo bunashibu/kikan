@@ -17220,6 +17220,8 @@ MonoBehaviour:
   _skillPanelList:
   - {fileID: 114676753519682904, guid: 62edf362464fdeb40b00bf4c6974958d, type: 2}
   _gameData: {fileID: 11400000, guid: 79929a1e9bd66f4488365796315797b6, type: 2}
+  _trackCamera: {fileID: 114059435814291198, guid: 3142af973151ef34eae04eb0766280a5,
+    type: 2}
 --- !u!114 &1857252215
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ namespace Bunashibu.Kikan {
     public void Pick(int n) {
       InstantiatePlayer(n);
       InstantiateHudObjects(n);
+      InstantiateCamera();
 
       InitPlayerHp();
       InitPlayerExp();
@@ -55,6 +56,11 @@ namespace Bunashibu.Kikan {
       skillPanel.transform.SetParent(_canvas.transform, false);
 
       _player.Weapon.SkillInstantiator.AttachSkillPanel(skillPanel);
+    }
+
+    private void InstantiateCamera() {
+      _trackCamera = Instantiate(_trackCamera, _player.transform.position, Quaternion.identity) as TrackCamera;
+      _trackCamera.Init(_player.gameObject);
     }
 
     private void AdjustFlipX() {
@@ -133,6 +139,7 @@ namespace Bunashibu.Kikan {
     [SerializeField] private CorePanel _corePanel;
     [SerializeField] private List<SkillPanel> _skillPanelList;
     [SerializeField] private GameData _gameData;
+    [SerializeField] private TrackCamera _trackCamera;
     private BattlePlayer _player;
   }
 }
