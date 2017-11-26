@@ -23,7 +23,7 @@ TagManager:
   - Enemy
   - CanNotDownGround
   - EnemyLimitation
-  - 
+  - MapMark
   - 
   - 
   - 
@@ -68,4 +68,7 @@ TagManager:
     locked: 0
   - name: Damage
     uniqueID: 1505944233
+    locked: 0
+  - name: MapMark
+    uniqueID: 1795282007
     locked: 0
