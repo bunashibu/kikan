@@ -23,6 +23,7 @@ namespace Bunashibu.Kikan {
 
         if ( _player.Hp.Cur <= 0     ) { _player.StateTransfer.TransitTo( "Die"    , animator ); return; }
         if ( ShouldTransitToSkill()  ) { _player.StateTransfer.TransitTo( "Skill"  , animator ); return; }
+        if ( ShouldTransitToLadder() ) { _player.StateTransfer.TransitTo( "Ladder" , animator ); return; }
         if ( ShouldTransitToFall()   ) { _player.StateTransfer.TransitTo( "Fall"   , animator ); return; }
       }
     }
@@ -54,6 +55,15 @@ namespace Bunashibu.Kikan {
                        ( _player.SkillInfo.GetState ( SkillName.Alt   ) == SkillState.Using );
 
       return SkillFlag;
+    }
+
+    private bool ShouldTransitToLadder() {
+      bool OnlyUpKeyDown   = Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow);
+      bool OnlyDownKeyDown = Input.GetKey(KeyCode.DownArrow) && !Input.GetKey(KeyCode.UpArrow);
+      bool LadderFlag      = ( OnlyUpKeyDown   && !_player.State.LadderTopEdge    ) ||
+                             ( OnlyDownKeyDown && !_player.State.LadderBottomEdge );
+
+      return _player.State.Ladder && LadderFlag;
     }
 
     private bool ShouldTransitToFall() {

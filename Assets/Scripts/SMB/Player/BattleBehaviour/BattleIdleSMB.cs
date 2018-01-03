@@ -53,7 +53,7 @@ namespace Bunashibu.Kikan {
 
     private bool ShouldTransitToLieDown() {
       bool OnlyDownKeyDown = Input.GetKey(KeyCode.DownArrow) && !Input.GetKey(KeyCode.UpArrow);
-      bool LieDownFlag     = OnlyDownKeyDown && !_player.State.LadderTopEdge;
+      bool LieDownFlag     = OnlyDownKeyDown && !_player.State.Ladder;
 
       return _player.State.Ground && LieDownFlag;
     }
