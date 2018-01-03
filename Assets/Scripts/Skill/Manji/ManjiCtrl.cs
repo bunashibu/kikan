@@ -79,6 +79,12 @@ namespace Bunashibu.Kikan {
       if (skillUser.State.CanNotDownGround && (direction.y == -1))
         return;
 
+      transform.Rotate(0.0f, 0.0f, 90f);
+
+      // 1.4f is ManjiCtrl AppearOffset. See Weapon Inspector
+      float faceDirection = (skillUser.Renderers[0].flipX) ? 1.4f : -1.4f;
+      transform.Translate(-faceDirection, direction.y * 1.4f, 0.0f, Space.World);
+
       Vector2 moveVector = direction * _moveDistance;
       Vector2 footOrigin = new Vector2(skillUser.Transform.position.x, skillUser.Transform.position.y - halfCharaHeight);
 
