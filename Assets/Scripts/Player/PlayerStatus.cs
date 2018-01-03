@@ -20,6 +20,13 @@ namespace Bunashibu.Kikan {
       photonView.RPC("SyncPlayerStatusInit", PhotonTargets.Others, Atk, Dfn, Spd, Jmp);
     }
 
+    public void IncreaseAtk(int level) {
+      if (level <= 12)
+        Atk += 16;
+      else
+        Atk += 32;
+    }
+
     public int Atk { get; private set; }
     public int Dfn { get; private set; }
     public int Spd { get; private set; }

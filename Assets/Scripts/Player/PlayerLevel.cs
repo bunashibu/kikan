@@ -34,6 +34,8 @@ namespace Bunashibu.Kikan {
         _player.Hp.UpdateView();
         _player.Observer.SyncUpdateHpView();
 
+        _player.Status.IncreaseAtk(Lv);
+
         _playerHealer.UpdateMaxHealQuantity();
       }
     }

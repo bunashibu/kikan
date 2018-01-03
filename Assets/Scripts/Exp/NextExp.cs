@@ -19,6 +19,9 @@ namespace Bunashibu.Kikan {
     }
 
     public void Add(int quantity) {
+      if (_level.Lv >= 15) // 15 is MaxLv
+        return;
+
       Cur += quantity;
 
       if (Cur >= Max) {
