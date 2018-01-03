@@ -13,7 +13,8 @@ namespace Bunashibu.Kikan {
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
       if (_player.PhotonView.isMine) {
-        AirMove();
+        if (!_player.State.Rigor)
+          AirMove();
 
         if ( _player.Hp.Cur <= 0         ) { _player.StateTransfer.TransitTo( "Die"        , animator ); return; }
         if ( ShouldTransitToSkill()      ) { _player.StateTransfer.TransitTo( "Skill"      , animator ); return; }
