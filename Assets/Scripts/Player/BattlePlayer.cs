@@ -24,6 +24,7 @@ namespace Bunashibu.Kikan {
     public Rigidbody2D      Rigid          { get { return _rigid;        } }
     public Collider2D       BodyCollider   { get { return _bodyCollider; } }
     public Collider2D       FootCollider   { get { return _footCollider; } }
+    public Animator         Animator       { get { return _animator;     } }
 
     public BattlePlayerObserver Observer { get { return _observer; } }
 

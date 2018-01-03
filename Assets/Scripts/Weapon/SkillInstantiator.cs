@@ -10,7 +10,7 @@ namespace Bunashibu.Kikan {
     }
 
     void Update() {
-      if (!photonView.isMine || _player.Hp.Cur <= 0 || _player.State.Rigor)
+      if (!photonView.isMine || _player.Hp.Cur <= 0 || _player.State.Rigor || !IsCorrectAnimationState())
         return;
 
       for (int i=0; i<_keys.Length; ++i) {
@@ -25,6 +25,11 @@ namespace Bunashibu.Kikan {
 
     public void AttachSkillPanel(SkillPanel panel) {
       _panelUnitList = panel.UnitList;
+    }
+
+    private bool IsCorrectAnimationState() {
+      return !(_player.Animator.GetCurrentAnimatorStateInfo(0).IsName("Die") ||
+               _player.Animator.GetCurrentAnimatorStateInfo(0).IsName("Ladder"));
     }
 
     private void InstantiateSkill(int i) {
