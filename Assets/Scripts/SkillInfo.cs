@@ -10,6 +10,9 @@ namespace Bunashibu.Kikan {
       _states.Add(SkillName.X     , SkillState.Ready);
       _states.Add(SkillName.Shift , SkillState.Ready);
       _states.Add(SkillName.Z     , SkillState.Ready);
+      _states.Add(SkillName.Ctrl  , SkillState.Ready);
+      _states.Add(SkillName.Space , SkillState.Ready);
+      _states.Add(SkillName.Alt   , SkillState.Ready);
     }
 
     public SkillState GetState(SkillName name) {

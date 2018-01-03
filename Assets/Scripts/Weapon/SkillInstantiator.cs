@@ -10,7 +10,7 @@ namespace Bunashibu.Kikan {
     }
 
     void Update() {
-      if (!photonView.isMine || _player.Hp.Cur <= 0)
+      if (!photonView.isMine || _player.Hp.Cur <= 0 || _player.State.Rigor)
         return;
 
       for (int i=0; i<_keys.Length; ++i) {

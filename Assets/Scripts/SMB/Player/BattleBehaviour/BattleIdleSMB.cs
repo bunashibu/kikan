@@ -26,7 +26,10 @@ namespace Bunashibu.Kikan {
     private bool ShouldTransitToSkill() {
       bool SkillFlag = ( _player.SkillInfo.GetState ( SkillName.X     ) == SkillState.Using ) ||
                        ( _player.SkillInfo.GetState ( SkillName.Shift ) == SkillState.Using ) ||
-                       ( _player.SkillInfo.GetState ( SkillName.Z     ) == SkillState.Using );
+                       ( _player.SkillInfo.GetState ( SkillName.Z     ) == SkillState.Using ) ||
+                       ( _player.SkillInfo.GetState ( SkillName.Ctrl  ) == SkillState.Using ) ||
+                       ( _player.SkillInfo.GetState ( SkillName.Space ) == SkillState.Using ) ||
+                       ( _player.SkillInfo.GetState ( SkillName.Alt   ) == SkillState.Using );
 
       return SkillFlag;
     }
