@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
@@ -13,21 +14,7 @@ namespace Bunashibu.Kikan {
     }
 
     void Start() {
-      var skillUser = _skillUserObj.GetComponent<BattlePlayer>();
-
-      int directionX = skillUser.Renderers[0].flipX ? 1 : -1;
-      int directionY = 0;
-
-      if (Input.GetKey(KeyCode.UpArrow)) {
-        directionX = 0;
-        directionY = 1;
-      } else if (Input.GetKey(KeyCode.DownArrow)) {
-        directionX = 0;
-        directionY = -1;
-      }
-
-      _skillUserObj.transform.Translate(new Vector3(directionX * 3, directionY * 3, 0));
-      skillUser.Rigid.velocity = new Vector2(0, 0);
+      TranslateSkillUser();
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
@@ -43,6 +30,78 @@ namespace Bunashibu.Kikan {
 
       if (targetObj.tag == "Enemy")
         ProceedAttackToEnemy(targetObj);
+    }
+
+    private void TranslateSkillUser() {
+      var skillUser = _skillUserObj.GetComponent<BattlePlayer>();
+
+      if (Input.GetKey(KeyCode.UpArrow))
+        TranslateVertical(Vector2.up, skillUser);
+      else if (Input.GetKey(KeyCode.DownArrow))
+        TranslateVertical(Vector2.down, skillUser);
+      else if (skillUser.Renderers[0].flipX)
+        TranslateHorizontal(Vector2.right, skillUser);
+      else
+        TranslateHorizontal(Vector2.left, skillUser);
+    }
+
+    private void TranslateHorizontal(Vector2 direction, BattlePlayer skillUser) {
+      var halfCharaHeight = skillUser.BodyCollider.bounds.size.y / 2;
+
+      Vector2 moveVector = direction * _moveDistance;
+      Vector2 footOrigin = new Vector2(skillUser.Transform.position.x, skillUser.Transform.position.y - halfCharaHeight);
+
+      if (skillUser.State.Ground) {
+        RaycastHit2D hitGround = Physics2D.Raycast(footOrigin + moveVector, Vector2.down, halfCharaHeight * 2, _groundLayer);
+        bool shouldMoveToGround = (hitGround.collider != null);
+
+        if (shouldMoveToGround)
+          skillUser.Transform.position = hitGround.point + new Vector2(0, halfCharaHeight);
+        else
+          skillUser.Transform.Translate(moveVector);
+
+      } else if (skillUser.State.Air) {
+        RaycastHit2D hitGround = Physics2D.Raycast(footOrigin + moveVector + new Vector2(0, halfCharaHeight * 2), Vector2.down, halfCharaHeight * 2, _groundLayer);
+        bool shouldMoveToGround = (hitGround.collider != null);
+
+        if (shouldMoveToGround)
+          skillUser.Transform.position = hitGround.point + new Vector2(0, halfCharaHeight);
+        else
+          skillUser.Transform.Translate(moveVector);
+      }
+
+      skillUser.Rigid.velocity = new Vector2(0, 0);
+    }
+
+    private void TranslateVertical(Vector2 direction, BattlePlayer skillUser) {
+      var halfCharaHeight = skillUser.BodyCollider.bounds.size.y / 2;
+
+      if (skillUser.State.CanNotDownGround && (direction.y == -1))
+        return;
+
+      Vector2 moveVector = direction * _moveDistance;
+      Vector2 footOrigin = new Vector2(skillUser.Transform.position.x, skillUser.Transform.position.y - halfCharaHeight);
+
+      if (direction == Vector2.up) {
+        RaycastHit2D hitGround = Physics2D.Raycast(footOrigin + moveVector, -direction, _moveDistance, _groundLayer);
+        bool shouldMoveToGround = (hitGround.collider != null) && (!skillUser.FootCollider.IsTouching(hitGround.collider));
+
+        if (shouldMoveToGround)
+          skillUser.Transform.position = hitGround.point + new Vector2(0, halfCharaHeight);
+        else
+          skillUser.Transform.Translate(moveVector);
+
+      } else if (direction == Vector2.down) {
+        RaycastHit2D[] hitGroundAry = Physics2D.RaycastAll(footOrigin, direction, _moveDistance, _groundLayer);
+        bool shouldMoveToGround = (hitGroundAry.Length > 0) && (!skillUser.FootCollider.IsTouching(hitGroundAry.Last().collider));
+
+        if (shouldMoveToGround)
+          skillUser.Transform.position = hitGroundAry.Last().point + new Vector2(0, halfCharaHeight);
+        else
+          skillUser.Transform.Translate(moveVector);
+      }
+
+      skillUser.Rigid.velocity = new Vector2(0, 0);
     }
 
     private void ProceedAttackToPlayer(GameObject targetObj) {
@@ -126,6 +185,11 @@ namespace Bunashibu.Kikan {
     [Header("TargetSettings")]
     [SerializeField] private int _targetNum;
     [SerializeField] private int _dupHitNum;
+
+    [Space(10)]
+    [SerializeField] private LayerMask _groundLayer;
+
+    private float _moveDistance = 3;
 
     private RewardGetter      _rewardGetter;
     private TargetRistrictor  _targetRistrictor;
