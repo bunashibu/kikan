@@ -68,7 +68,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.1}
+  m_Size: {x: 1.3, y: 1.1}
   m_EdgeRadius: 0
 --- !u!95 &95000010503078980
 Animator:
@@ -98,7 +98,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 576a704c8596dab4a86c29e2195e628d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _collider: {fileID: 61000012106027728}
   _skillPower: 100
   _maxDeviation: 10
   _targetNum: 3
