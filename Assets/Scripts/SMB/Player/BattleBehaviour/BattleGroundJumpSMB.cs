@@ -21,9 +21,9 @@ namespace Bunashibu.Kikan {
 
         AirMove();
 
-        if ( _player.Hp.Cur <= 0    ) { _player.StateTransfer.TransitTo( "Die"   , animator ); return; }
-        if ( ShouldTransitToSkill() ) { _player.StateTransfer.TransitTo( "Skill" , animator ); return; }
-        if ( ShouldTransitToFall()  ) { _player.StateTransfer.TransitTo( "Fall"  , animator ); return; }
+        if ( _player.Hp.Cur <= 0     ) { _player.StateTransfer.TransitTo( "Die"    , animator ); return; }
+        if ( ShouldTransitToSkill()  ) { _player.StateTransfer.TransitTo( "Skill"  , animator ); return; }
+        if ( ShouldTransitToFall()   ) { _player.StateTransfer.TransitTo( "Fall"   , animator ); return; }
       }
     }
 
