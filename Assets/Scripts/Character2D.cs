@@ -34,6 +34,10 @@ namespace Bunashibu.Kikan {
           _character.State.GroundLeft  = false;
           _character.State.GroundRight = false;
         }
+      } else {
+        _character.State.GroundAngle = 0;
+        _character.State.GroundLeft  = false;
+        _character.State.GroundRight = false;
       }
 
       Debug.DrawRay(footRayOrigin, Vector2.down * rayLength, Color.red);
