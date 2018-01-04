@@ -16,6 +16,7 @@ namespace Bunashibu.Kikan {
       Dfn = jobStatus.Dfn;
       Spd = jobStatus.Spd;
       Jmp = jobStatus.Jmp;
+      MulCorrectionAtk = 1.0f;
 
       photonView.RPC("SyncPlayerStatusInit", PhotonTargets.Others, Atk, Dfn, Spd, Jmp);
     }
@@ -27,10 +28,19 @@ namespace Bunashibu.Kikan {
         Atk += 32;
     }
 
+    public void MultipleMulCorrectionAtk(float ratio) {
+      MulCorrectionAtk *= ratio;
+    }
+
+    public void ResetMulCorrectionAtk() {
+      MulCorrectionAtk = 1.0f;
+    }
+
     public int Atk { get; private set; }
     public int Dfn { get; private set; }
     public int Spd { get; private set; }
     public int Jmp { get; private set; }
+    public float MulCorrectionAtk { get; private set; }
   }
 }
 

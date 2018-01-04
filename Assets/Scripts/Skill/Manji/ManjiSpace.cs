@@ -11,9 +11,13 @@ namespace Bunashibu.Kikan {
       skillUser.Movement.SetMoveForce(skillUser.Status.Spd * 1.3f);
       skillUser.Movement.SetJumpForce(skillUser.Status.Jmp * 1.3f);
 
+      skillUser.Status.MultipleMulCorrectionAtk(1.5f);
+
       MonoUtility.Instance.DelaySec(20.0f, () => {
         skillUser.Movement.SetMoveForce(skillUser.Status.Spd);
         skillUser.Movement.SetJumpForce(skillUser.Status.Jmp);
+
+        skillUser.Status.ResetMulCorrectionAtk();
       });
     }
   }

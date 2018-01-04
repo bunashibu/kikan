@@ -7,7 +7,7 @@ namespace Bunashibu.Kikan {
     public int CalculatePlayerPower(BattlePlayer player) {
       double ratio = (double)((player.Core.Attack + 100) / 100.0);
 
-      return (int)(player.Status.Atk * ratio);
+      return (int)(player.Status.Atk * player.Status.MulCorrectionAtk * ratio);
     }
   }
 }
