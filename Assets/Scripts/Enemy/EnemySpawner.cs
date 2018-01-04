@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Assertions;
 
 namespace Bunashibu.Kikan {
+  [RequireComponent(typeof(SpawnArea))]
   public class EnemySpawner : MonoBehaviour {
     void Awake() {
       float ratioSum = _spawnRatio.Aggregate((x, y) => x + y);
@@ -45,7 +46,7 @@ namespace Bunashibu.Kikan {
       double x1 = Random.value;
       double x2 = Random.value;
 
-      float posX = (float)(_dispersion * Math.Sqrt(-2 * Math.Log(x1)) * Math.Cos(2 * Math.PI * x2));// + seedX);
+      float posX = (float)(_dispersion * Math.Sqrt(-2 * Math.Log(x1)) * Math.Cos(2 * Math.PI * x2) + seedX);
       if (!_spawnArea.IsInRange(posX))
         posX = _spawnArea.Adjust(posX);
 

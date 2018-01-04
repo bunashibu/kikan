@@ -47,6 +47,8 @@ namespace Bunashibu.Kikan {
 
     [Space(10)]
     [SerializeField] private int[] _population;
+
+    [Space(10)]
     [SerializeField] private float _intervalSec;
 
     [Space(10)]
