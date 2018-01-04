@@ -19,9 +19,7 @@ namespace Bunashibu.Kikan {
       float y = _spawnArea.CalculateY(x, _offsetY[index]);
       var pos = new Vector3(x, y, 0.0f);
 
-      // Debug
-      var enemyObj = PhotonNetwork.Instantiate("Prefabs/Enemy/Mushroom", pos, Quaternion.identity, 0);
-      //var enemyObj = PhotonNetwork.Instantiate("Prefabs/Enemy/" + _spawnEnemyNames[index], pos, Quaternion.identity, 0);
+      var enemyObj = PhotonNetwork.Instantiate("Prefabs/Enemy/" + _spawnEnemyNames[index], pos, Quaternion.identity, 0);
       var enemy    = enemyObj.GetComponent<Enemy>();
       enemy.AttachPopulationObserver(populationObserver);
     }
