@@ -9,12 +9,13 @@ namespace Bunashibu.Kikan {
 
       if (target.layer == LayerMask.NameToLayer(_portalLayerName)) {
         if (Input.GetKey(KeyCode.UpArrow)) {
-          target.GetComponent<Portal>().Enter(gameObject);
+          target.GetComponent<Portal>().Enter(_player);
         }
       }
     }
 
     [SerializeField] private string _portalLayerName;
+    [SerializeField] private BattlePlayer _player;
   }
 }
 

@@ -20,7 +20,7 @@ namespace Bunashibu.Kikan {
     }
 
     private void InterpolateTo(Vector3 destination) {
-      Vector3 nextPosition = transform.position * 0.98f + destination * 0.02f;
+      Vector3 nextPosition = transform.position * 0.92f + destination * 0.08f;
       transform.position = nextPosition;
     }
 

@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   public class Portal : MonoBehaviour {
-    public void Enter(GameObject target) {
-      Debug.Log("Portal Enter() was called");
+    public void Enter(BattlePlayer target) {
       target.transform.position = _exit.transform.position;
+      target.Rigid.velocity = new Vector2(0, 0);
     }
 
     [SerializeField] private GameObject _exit;
