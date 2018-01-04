@@ -1,11 +1,13 @@
 fileFormatVersion: 2
 guid: 70d72682f19c6d342b2bdfffea5c67ce
-timeCreated: 1515045369
+timeCreated: 1515052469
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: ebine1_idle_atlas_0
     21300002: ebine1_idle_atlas_1
+    21300004: ebina1_idle_atlas_0
+    21300006: ebina1_idle_atlas_1
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -82,7 +84,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ebine1_idle_atlas_0
+      name: ebina1_idle_atlas_0
       rect:
         serializedVersion: 2
         x: 0
@@ -96,7 +98,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: ebine1_idle_atlas_1
+      name: ebina1_idle_atlas_1
       rect:
         serializedVersion: 2
         x: 100

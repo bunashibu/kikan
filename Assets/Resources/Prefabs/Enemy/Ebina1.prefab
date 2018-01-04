@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 114254446825988984}
   - component: {fileID: 114213958790206684}
   m_Layer: 14
-  m_Name: Ebine1
+  m_Name: Ebina1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -160,7 +160,7 @@ Transform:
   m_GameObject: {fileID: 1863352739844968}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1}
   m_Children:
   - {fileID: 224641040651759068}
   - {fileID: 4470318406791028}
@@ -238,7 +238,7 @@ Animator:
   m_GameObject: {fileID: 1863352739844968}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4096d333f96075d4787f09e44bbb684b, type: 2}
+  m_Controller: {fileID: 9100000, guid: d422e2b91bdf6934482287f7015cd9ac, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -451,8 +451,8 @@ MonoBehaviour:
   _animator: {fileID: 95176159232201240}
   _observer: {fileID: 114818716500960406}
   _numberPopupEnvironment: {fileID: 114213958790206684}
-  _killExp: 30
-  _killGold: 45
+  _killExp: 60
+  _killGold: 90
   _ai: {fileID: 114497347247726722}
   _hpBar: {fileID: 114743910003164900}
   _enemyData: {fileID: 11400000, guid: dea86f677fe12af4aa2f5d458e4eb166, type: 2}
@@ -634,7 +634,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 0.9}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!222 &222116660831801992
 CanvasRenderer:
