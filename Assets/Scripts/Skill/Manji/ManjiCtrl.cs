@@ -14,7 +14,8 @@ namespace Bunashibu.Kikan {
     }
 
     void Start() {
-      TranslateSkillUser();
+      if (photonView.isMine)
+        TranslateSkillUser();
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
@@ -36,16 +37,18 @@ namespace Bunashibu.Kikan {
       var skillUser = _skillUserObj.GetComponent<BattlePlayer>();
 
       if (Input.GetKey(KeyCode.UpArrow))
-        TranslateVertical(Vector2.up, skillUser);
+        photonView.RPC("TranslateVertical", PhotonTargets.All, Vector2.up);
       else if (Input.GetKey(KeyCode.DownArrow))
-        TranslateVertical(Vector2.down, skillUser);
+        photonView.RPC("TranslateVertical", PhotonTargets.All, Vector2.down);
       else if (skillUser.Renderers[0].flipX)
-        TranslateHorizontal(Vector2.right, skillUser);
+        photonView.RPC("TranslateHorizontal", PhotonTargets.All, Vector2.right);
       else
-        TranslateHorizontal(Vector2.left, skillUser);
+        photonView.RPC("TranslateHorizontal", PhotonTargets.All, Vector2.left);
     }
 
-    private void TranslateHorizontal(Vector2 direction, BattlePlayer skillUser) {
+    [PunRPC]
+    private void TranslateHorizontal(Vector2 direction) {
+      var skillUser = _skillUserObj.GetComponent<BattlePlayer>();
       var halfCharaHeight = skillUser.BodyCollider.bounds.size.y / 2;
 
       Vector2 moveVector = direction * _moveDistance;
@@ -73,7 +76,9 @@ namespace Bunashibu.Kikan {
       skillUser.Rigid.velocity = new Vector2(0, 0);
     }
 
-    private void TranslateVertical(Vector2 direction, BattlePlayer skillUser) {
+    [PunRPC]
+    private void TranslateVertical(Vector2 direction) {
+      var skillUser = _skillUserObj.GetComponent<BattlePlayer>();
       var halfCharaHeight = skillUser.BodyCollider.bounds.size.y / 2;
 
       if (skillUser.State.CanNotDownGround && (direction.y == -1))
