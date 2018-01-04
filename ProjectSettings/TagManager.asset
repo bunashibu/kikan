@@ -51,6 +51,9 @@ TagManager:
   - name: Ground0
     uniqueID: 1376593765
     locked: 0
+  - name: Portal
+    uniqueID: 3474780293
+    locked: 0
   - name: Ladder
     uniqueID: 3753792529
     locked: 0
