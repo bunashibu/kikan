@@ -81,10 +81,11 @@ namespace Bunashibu.Kikan {
     }
 
     private bool ShouldTransitToIdle() {
-      bool BothKeyDown = Input.GetKey(KeyCode.LeftArrow)   && Input.GetKey(KeyCode.RightArrow);
-      bool OneKeyUp    = Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow);
+      bool OnlyLeftKeyDown  = Input.GetKey(KeyCode.LeftArrow)  && !Input.GetKey(KeyCode.RightArrow);
+      bool OnlyRightKeyDown = Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow);
+      bool IdleFlag = !OnlyLeftKeyDown && !OnlyRightKeyDown;
 
-      return _player.State.Ground && (BothKeyDown || OneKeyUp);
+      return _player.State.Ground && IdleFlag;
     }
 
     private bool ShouldTransitToFall() {
