@@ -61,6 +61,9 @@ namespace Bunashibu.Kikan {
     private void InstantiateCamera() {
       _trackCamera = Instantiate(_trackCamera, _player.transform.position, Quaternion.identity) as TrackCamera;
       _trackCamera.Init(_player.gameObject);
+
+      _landscapeTrackCamera = Instantiate(_landscapeTrackCamera, _player.transform.position, Quaternion.identity) as TrackCamera;
+      _landscapeTrackCamera.Init(_player.gameObject);
     }
 
     private void AdjustFlipX() {
@@ -140,6 +143,7 @@ namespace Bunashibu.Kikan {
     [SerializeField] private List<SkillPanel> _skillPanelList;
     [SerializeField] private GameData _gameData;
     [SerializeField] private TrackCamera _trackCamera;
+    [SerializeField] private TrackCamera _landscapeTrackCamera;
     private BattlePlayer _player;
   }
 }
