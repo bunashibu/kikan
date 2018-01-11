@@ -11,7 +11,14 @@ namespace Bunashibu.Kikan {
       }
     }
 
+    public Rect StageRect {
+      get {
+        return _stageRect;
+      }
+    }
+
     [SerializeField] private Vector3 _respawnPosition;
+    [SerializeField] private Rect _stageRect;
   }
 }
 

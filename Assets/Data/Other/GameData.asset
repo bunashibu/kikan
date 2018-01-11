@@ -12,3 +12,9 @@ MonoBehaviour:
   m_Name: GameData
   m_EditorClassIdentifier: 
   _respawnPosition: {x: 37, y: -2.5, z: 0}
+  _stageRect:
+    serializedVersion: 2
+    x: -39.5
+    y: -3
+    width: 79
+    height: 46.5

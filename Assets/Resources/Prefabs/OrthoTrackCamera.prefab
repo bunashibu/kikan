@@ -97,7 +97,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6e5c531277c1f544bb8ddebca31f080, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _camera: {fileID: 20793694766925804}
+  _gameData: {fileID: 11400000, guid: 79929a1e9bd66f4488365796315797b6, type: 2}
   _positionOffset: {x: 0, y: 1.3, z: -1}
+  _interpolateRatio: 0.92
 --- !u!124 &124099640803051416
 Behaviour:
   m_ObjectHideFlags: 1
