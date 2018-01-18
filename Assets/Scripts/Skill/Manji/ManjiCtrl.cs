@@ -37,47 +37,46 @@ namespace Bunashibu.Kikan {
       var skillUser = _skillUserObj.GetComponent<BattlePlayer>();
 
       if (Input.GetKey(KeyCode.UpArrow))
-        photonView.RPC("TranslateVertical", PhotonTargets.All, Vector2.up);
+        photonView.RPC("TranslateVertically", PhotonTargets.All, Vector2.up);
       else if (Input.GetKey(KeyCode.DownArrow))
-        photonView.RPC("TranslateVertical", PhotonTargets.All, Vector2.down);
+        photonView.RPC("TranslateVertically", PhotonTargets.All, Vector2.down);
       else if (skillUser.Renderers[0].flipX)
-        photonView.RPC("TranslateHorizontal", PhotonTargets.All, Vector2.right);
+        photonView.RPC("TranslateHorizontally", PhotonTargets.All, Vector2.right);
       else
-        photonView.RPC("TranslateHorizontal", PhotonTargets.All, Vector2.left);
+        photonView.RPC("TranslateHorizontally", PhotonTargets.All, Vector2.left);
     }
 
     [PunRPC]
-    private void TranslateHorizontal(Vector2 direction) {
+    private void TranslateHorizontally(Vector2 direction) {
       var skillUser = _skillUserObj.GetComponent<BattlePlayer>();
       var halfCharaHeight = skillUser.BodyCollider.bounds.size.y / 2;
 
       Vector2 moveVector = direction * _moveDistance;
       Vector2 footOrigin = new Vector2(skillUser.Transform.position.x, skillUser.Transform.position.y - halfCharaHeight);
 
-      if (skillUser.State.Ground) {
-        RaycastHit2D hitGround = Physics2D.Raycast(footOrigin + moveVector, Vector2.down, halfCharaHeight * 2, _groundLayer);
-        bool shouldMoveToGround = (hitGround.collider != null);
+      Vector2 rayOrigin = footOrigin + moveVector;
+      if (skillUser.State.Air)
+        rayOrigin += new Vector2(0, halfCharaHeight * 2);
 
-        if (shouldMoveToGround)
-          skillUser.Transform.position = hitGround.point + new Vector2(0, halfCharaHeight);
-        else
-          skillUser.Transform.Translate(moveVector);
-
-      } else if (skillUser.State.Air) {
-        RaycastHit2D hitGround = Physics2D.Raycast(footOrigin + moveVector + new Vector2(0, halfCharaHeight * 2), Vector2.down, halfCharaHeight * 2, _groundLayer);
-        bool shouldMoveToGround = (hitGround.collider != null);
-
-        if (shouldMoveToGround)
-          skillUser.Transform.position = hitGround.point + new Vector2(0, halfCharaHeight);
-        else
-          skillUser.Transform.Translate(moveVector);
-      }
+      TranslateHorizontallyImpl(skillUser, rayOrigin, moveVector);
 
       skillUser.Rigid.velocity = new Vector2(0, 0);
     }
 
+    private void TranslateHorizontallyImpl(BattlePlayer skillUser, Vector2 rayOrigin, Vector2 moveVector) {
+      var halfCharaHeight = skillUser.BodyCollider.bounds.size.y / 2;
+
+      RaycastHit2D hitGround = Physics2D.Raycast(rayOrigin, Vector2.down, halfCharaHeight * 2, _groundLayer);
+      bool shouldMoveToGround = (hitGround.collider != null);
+
+      if (shouldMoveToGround)
+        skillUser.Transform.position = hitGround.point + new Vector2(0, halfCharaHeight);
+      else
+        skillUser.Transform.Translate(moveVector);
+    }
+
     [PunRPC]
-    private void TranslateVertical(Vector2 direction) {
+    private void TranslateVertically(Vector2 direction) {
       var skillUser = _skillUserObj.GetComponent<BattlePlayer>();
       var halfCharaHeight = skillUser.BodyCollider.bounds.size.y / 2;
 
@@ -199,6 +198,9 @@ namespace Bunashibu.Kikan {
 
     [Space(10)]
     [SerializeField] private LayerMask _groundLayer;
+
+    [Space(10)]
+    [SerializeField] private GameData _gameData;
 
     private float _moveDistance = 3;
 
