@@ -58,14 +58,6 @@ namespace Bunashibu.Kikan {
       if (skillUser.State.Air)
         rayOrigin += new Vector2(0, halfCharaHeight * 2);
 
-      TranslateHorizontallyImpl(skillUser, rayOrigin, moveVector);
-
-      skillUser.Rigid.velocity = new Vector2(0, 0);
-    }
-
-    private void TranslateHorizontallyImpl(BattlePlayer skillUser, Vector2 rayOrigin, Vector2 moveVector) {
-      var halfCharaHeight = skillUser.BodyCollider.bounds.size.y / 2;
-
       RaycastHit2D hitGround = Physics2D.Raycast(rayOrigin, Vector2.down, halfCharaHeight * 2, _groundLayer);
       bool shouldMoveToGround = (hitGround.collider != null);
 
@@ -73,15 +65,18 @@ namespace Bunashibu.Kikan {
         skillUser.Transform.position = hitGround.point + new Vector2(0, halfCharaHeight);
       else
         skillUser.Transform.Translate(moveVector);
+
+      skillUser.Rigid.velocity = new Vector2(0, 0);
     }
 
     [PunRPC]
     private void TranslateVertically(Vector2 direction) {
       var skillUser = _skillUserObj.GetComponent<BattlePlayer>();
-      var halfCharaHeight = skillUser.BodyCollider.bounds.size.y / 2;
 
       if (skillUser.State.CanNotDownGround && (direction.y == -1))
         return;
+
+      var halfCharaHeight = skillUser.BodyCollider.bounds.size.y / 2;
 
       transform.Rotate(0.0f, 0.0f, 90f);
 
@@ -92,24 +87,21 @@ namespace Bunashibu.Kikan {
       Vector2 moveVector = direction * _moveDistance;
       Vector2 footOrigin = new Vector2(skillUser.Transform.position.x, skillUser.Transform.position.y - halfCharaHeight);
 
+      RaycastHit2D hitGround = new RaycastHit2D();
       if (direction == Vector2.up) {
-        RaycastHit2D hitGround = Physics2D.Raycast(footOrigin + moveVector, -direction, _moveDistance, _groundLayer);
-        bool shouldMoveToGround = (hitGround.collider != null) && (!skillUser.FootCollider.IsTouching(hitGround.collider));
-
-        if (shouldMoveToGround)
-          skillUser.Transform.position = hitGround.point + new Vector2(0, halfCharaHeight);
-        else
-          skillUser.Transform.Translate(moveVector);
-
+        hitGround = Physics2D.Raycast(footOrigin + moveVector, Vector2.down, _moveDistance, _groundLayer);
       } else if (direction == Vector2.down) {
-        RaycastHit2D[] hitGroundAry = Physics2D.RaycastAll(footOrigin, direction, _moveDistance, _groundLayer);
-        bool shouldMoveToGround = (hitGroundAry.Length > 0) && (!skillUser.FootCollider.IsTouching(hitGroundAry.Last().collider));
-
-        if (shouldMoveToGround)
-          skillUser.Transform.position = hitGroundAry.Last().point + new Vector2(0, halfCharaHeight);
-        else
-          skillUser.Transform.Translate(moveVector);
+        RaycastHit2D[] hitGroundAry = Physics2D.RaycastAll(footOrigin, Vector2.down, _moveDistance, _groundLayer);
+        if (hitGroundAry.Length > 0)
+          hitGround = hitGroundAry.Last();
       }
+
+      bool shouldMoveToGround = (hitGround.collider != null) && (!skillUser.FootCollider.IsTouching(hitGround.collider));
+
+      if (shouldMoveToGround)
+        skillUser.Transform.position = hitGround.point + new Vector2(0, halfCharaHeight);
+      else
+        skillUser.Transform.Translate(moveVector);
 
       skillUser.Rigid.velocity = new Vector2(0, 0);
     }
