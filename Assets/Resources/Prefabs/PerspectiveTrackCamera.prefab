@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4606346956699928}
   - component: {fileID: 20407009523488946}
   - component: {fileID: 124247421583207794}
-  - component: {fileID: 81355423559020608}
   - component: {fileID: 114006892038171270}
   m_Layer: 9
   m_Name: PerspectiveTrackCamera
@@ -79,13 +78,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &81355423559020608
-AudioListener:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1958052727800552}
-  m_Enabled: 1
 --- !u!114 &114006892038171270
 MonoBehaviour:
   m_ObjectHideFlags: 1
