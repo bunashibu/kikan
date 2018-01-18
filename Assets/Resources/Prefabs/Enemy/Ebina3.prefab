@@ -515,6 +515,7 @@ MonoBehaviour:
   _groundMask:
     serializedVersion: 2
     m_Bits: 33024
+  _gameData: {fileID: 11400000, guid: 79929a1e9bd66f4488365796315797b6, type: 2}
 --- !u!114 &114773863746440152
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -21,6 +21,7 @@ namespace Bunashibu.Kikan {
 
     public Character2D      Character      { get { return _character;      } }
     public PhotonView       PhotonView     { get { return _photonView;     } }
+    public Transform        Transform      { get { return transform;       } }
     public SpriteRenderer[] Renderers      { get { return _renderers;      } }
     public Rigidbody2D      Rigid          { get { return _rigid;          } }
     public Collider2D       BodyCollider   { get { return _bodyCollider;   } }

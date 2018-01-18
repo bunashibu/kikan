@@ -15,11 +15,11 @@ namespace Bunashibu.Kikan {
     }
 
     void FixedUpdate() {
-      Movement.FixedUpdate(_rigid, _trans);
+      Movement.FixedUpdate(_rigid, transform);
     }
 
     public PhotonView       PhotonView     { get { return _photonView;   } }
-    public Transform        Transform      { get { return _trans;        } }
+    public Transform        Transform      { get { return transform;     } }
     public SpriteRenderer[] Renderers      { get { return _renderers;    } }
     public Rigidbody2D      Rigid          { get { return _rigid;        } }
     public Collider2D       BodyCollider   { get { return _bodyCollider; } }
@@ -60,7 +60,6 @@ namespace Bunashibu.Kikan {
 
     [Header("Unity/Photon Components")]
     [SerializeField] private PhotonView       _photonView;
-    [SerializeField] private Transform        _trans;
     [SerializeField] private SpriteRenderer[] _renderers;  // INFO: [PlayerSprite, WeaponSprite]
     [SerializeField] private Rigidbody2D      _rigid;
     [SerializeField] private Collider2D       _bodyCollider;

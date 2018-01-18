@@ -13,7 +13,9 @@ namespace Bunashibu.Kikan {
     }
 
     void OnTriggerStay2D(Collider2D collider) {
-      if (_target != collider.gameObject);
+      if (collider.gameObject.tag != "Player")
+        return;
+      if (_target != collider.gameObject)
         return;
 
       if (_anim.GetCurrentAnimatorStateInfo(0).IsName("Ladder")) {

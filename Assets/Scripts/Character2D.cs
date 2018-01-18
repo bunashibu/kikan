@@ -12,6 +12,9 @@ namespace Bunashibu.Kikan {
 
     void Update() {
       UpdateGroundRaycast();
+
+      if (IsOutOfArea())
+        AdjustPosition();
     }
 
     private void UpdateGroundRaycast() {
@@ -43,7 +46,23 @@ namespace Bunashibu.Kikan {
       Debug.DrawRay(footRayOrigin, Vector2.down * rayLength, Color.red);
     }
 
+    private bool IsOutOfArea() {
+      var x = _character.Transform.position.x;
+      var y = _character.Transform.position.y;
+
+      if (x < _gameData.StageRect.xMin || _gameData.StageRect.xMax < x ||
+          y < _gameData.StageRect.yMin || _gameData.StageRect.yMax < y)
+        return true;
+
+      return false;
+    }
+
+    private void AdjustPosition() {
+      _character.Transform.position = new Vector3(0, 0, 0);
+    }
+
     [SerializeField] private LayerMask _groundMask;
+    [SerializeField] private GameData _gameData;
     private ICharacter _character;
   }
 }
