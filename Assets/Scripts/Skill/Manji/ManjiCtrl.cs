@@ -61,10 +61,18 @@ namespace Bunashibu.Kikan {
       RaycastHit2D hitGround = Physics2D.Raycast(rayOrigin, Vector2.down, halfCharaHeight * 2, _groundLayer);
       bool shouldMoveToGround = (hitGround.collider != null);
 
+      Vector2 estimatedPosition = new Vector2(0, 0);
       if (shouldMoveToGround)
-        skillUser.Transform.position = hitGround.point + new Vector2(0, halfCharaHeight);
+        estimatedPosition = hitGround.point + new Vector2(0, halfCharaHeight);
       else
-        skillUser.Transform.Translate(moveVector);
+        estimatedPosition = new Vector2(skillUser.Transform.position.x, skillUser.Transform.position.y) + moveVector;
+
+      if (IsOutOfArea(estimatedPosition)) {
+        estimatedPosition.x = Mathf.Clamp(estimatedPosition.x, _gameData.StageRect.xMin, _gameData.StageRect.xMax);
+        estimatedPosition.y = Mathf.Clamp(estimatedPosition.y, _gameData.StageRect.yMin, _gameData.StageRect.yMax);
+      }
+
+      skillUser.Transform.position = estimatedPosition;
 
       skillUser.Rigid.velocity = new Vector2(0, 0);
     }
@@ -98,12 +106,31 @@ namespace Bunashibu.Kikan {
 
       bool shouldMoveToGround = (hitGround.collider != null) && (!skillUser.FootCollider.IsTouching(hitGround.collider));
 
+      Vector2 estimatedPosition = new Vector2(0, 0);
       if (shouldMoveToGround)
-        skillUser.Transform.position = hitGround.point + new Vector2(0, halfCharaHeight);
+        estimatedPosition = hitGround.point + new Vector2(0, halfCharaHeight);
       else
-        skillUser.Transform.Translate(moveVector);
+        estimatedPosition = new Vector2(skillUser.Transform.position.x, skillUser.Transform.position.y) + moveVector;
+
+      if (IsOutOfArea(estimatedPosition)) {
+        estimatedPosition.x = Mathf.Clamp(estimatedPosition.x, _gameData.StageRect.xMin, _gameData.StageRect.xMax);
+        estimatedPosition.y = Mathf.Clamp(estimatedPosition.y, _gameData.StageRect.yMin, _gameData.StageRect.yMax);
+      }
+
+      skillUser.Transform.position = estimatedPosition;
 
       skillUser.Rigid.velocity = new Vector2(0, 0);
+    }
+
+    private bool IsOutOfArea(Vector2 vector) {
+      var x = vector.x;
+      var y = vector.y;
+
+      if (x < _gameData.StageRect.xMin || _gameData.StageRect.xMax < x ||
+          y < _gameData.StageRect.yMin || _gameData.StageRect.yMax < y)
+        return true;
+
+      return false;
     }
 
     private void ProceedAttackToPlayer(GameObject targetObj) {
