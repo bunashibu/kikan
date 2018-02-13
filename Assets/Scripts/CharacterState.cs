@@ -35,9 +35,10 @@ namespace Bunashibu.Kikan {
     public bool LadderBottomEdge { get { return _ladderCollider.IsTouchingLayers(_ladderBottomEdgeLayer);         } }
     public bool Portal           { get { return _ladderCollider.IsTouchingLayers(_portalLayer);                   } }
 
-    public bool Slow { get; set; }
+    public bool Slow  { get; set; }
     public bool Heavy { get; set; }
     public bool Rigor { get; set; }
+    public bool Stun  { get; set; }
 
     private Collider2D _ladderCollider;
     private Collider2D _footCollider;
