@@ -17,7 +17,8 @@ namespace Bunashibu.Kikan {
       if (_player.PhotonView.isMine) {
         LadderMove();
 
-        if ( _player.Hp.Cur <= 0 ) { _player.StateTransfer.TransitTo( "Die" , animator ); return; }
+        if ( _player.Hp.Cur <= 0    ) { _player.StateTransfer.TransitTo( "Die" , animator ); return; }
+        if ( _player.BuffState.Stun ) { _player.StateTransfer.TransitTo( "Stun", animator ); return; }
 
         if ( ShouldTransitToLadderJump() ) { _player.StateTransfer.TransitTo ( "LadderJump" , animator ) ; return; }
         if ( ShouldTransitToIdle()       ) { _player.StateTransfer.TransitTo ( "Idle"       , animator ) ; return; }

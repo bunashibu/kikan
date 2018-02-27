@@ -16,6 +16,7 @@ namespace Bunashibu.Kikan {
         GroundMove();
 
         if ( _player.Hp.Cur <= 0           ) { _player.StateTransfer.TransitTo( "Die"          , animator ); return; }
+        if ( _player.BuffState.Stun        ) { _player.StateTransfer.TransitTo( "Stun"         , animator ); return; }
         if ( ShouldTransitToSkill()        ) { _player.StateTransfer.TransitTo( "Skill"        , animator ); return; }
         if ( ShouldTransitToLadder()       ) { _player.StateTransfer.TransitTo( "Ladder"       , animator ); return; }
         if ( ShouldTransitToStepDownJump() ) { _player.StateTransfer.TransitTo( "StepDownJump" , animator ); return; }
