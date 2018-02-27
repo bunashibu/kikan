@@ -9,10 +9,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: be29a2aa155aa704c8f047e44ee468f3, type: 3}
-  m_Name: Mushroom
+  m_Name: Ebina2
   m_EditorClassIdentifier: 
-  _id: 0
-  _life: 1000
+  _id: 4
+  _life: 3250
   _atk: 0
   _dfn: 0
   _spd: 0

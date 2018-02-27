@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
-  public class MushroomMovement {
-    public MushroomMovement() {
+  public class EnemyMovement {
+    public EnemyMovement () {
       _groundMove   = new GroundMove();
       _groundJump   = new GroundJump();
     }

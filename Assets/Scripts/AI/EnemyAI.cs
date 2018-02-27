@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   [RequireComponent(typeof(Enemy))]
-  public class MushroomAI : MonoBehaviour {
+  public class EnemyAI : MonoBehaviour {
     void Awake() {
-      _movement = new MushroomMovement();
+      _movement = new EnemyMovement();
 
       _movement.SetMoveForce(1.0f);
       _movement.SetJumpForce(400.0f);
@@ -59,7 +59,7 @@ namespace Bunashibu.Kikan {
     }
 
     [SerializeField] private Enemy _enemy;
-    private MushroomMovement _movement;
+    private EnemyMovement _movement;
 
     public float debugAngle;
     public bool debugGroundLeft;

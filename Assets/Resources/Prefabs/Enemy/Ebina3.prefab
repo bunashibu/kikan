@@ -463,7 +463,7 @@ MonoBehaviour:
   _killGold: 390
   _ai: {fileID: 114365063050791810}
   _hpBar: {fileID: 114637151102556868}
-  _enemyData: {fileID: 11400000, guid: dea86f677fe12af4aa2f5d458e4eb166, type: 2}
+  _enemyData: {fileID: 11400000, guid: 57bcfa72dc404fa4bbe1f56b30581222, type: 2}
 --- !u!114 &114365063050791810
 MonoBehaviour:
   m_ObjectHideFlags: 1
