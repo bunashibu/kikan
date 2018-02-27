@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
-  public class StateEffect : MonoBehaviour {
+  public class BuffEffect : MonoBehaviour {
     void Awake() {
       StateTransfer = new StateTransfer("None", _animator);
     }

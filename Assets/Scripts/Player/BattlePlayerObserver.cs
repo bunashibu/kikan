@@ -43,6 +43,11 @@ namespace Bunashibu.Kikan {
       _player.PhotonView.RPC("SyncTeamRPC", PhotonTargets.Others, _player.PlayerInfo.Team);
     }
 
+    /* Buff */
+    public void SyncStun() {
+      _player.PhotonView.RPC("SyncStunRPC", PhotonTargets.Others, _player.BuffState.Stun);
+    }
+
     /* Hp RPC */
     [PunRPC]
     private void SyncHpRPC(int cur, int max) {
@@ -68,6 +73,12 @@ namespace Bunashibu.Kikan {
     [PunRPC]
     private void SyncTeamRPC(int team) {
       ForceSync("Team", () => _player.PlayerInfo.ForceSync(team));
+    }
+
+    /* Buff RPC */
+    [PunRPC]
+    private void SyncStunRPC(bool state) {
+      _player.BuffState.Stun = state;
     }
 
     private void ForceSync(string key, Action action) {

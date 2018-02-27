@@ -13,7 +13,7 @@ namespace Bunashibu.Kikan {
       if (_player.PhotonView.isMine) {
         if ( _player.Hp.Cur <= 0 ) { _player.StateTransfer.TransitTo( "Die" , animator ); return; }
 
-        if (!_player.State.Stun) {
+        if (!_player.BuffState.Stun) {
           if ( _player.State.Ground  ) { _player.StateTransfer.TransitTo( "Idle" , animator ); return; }
           if ( _player.State.Air     ) { _player.StateTransfer.TransitTo( "Fall" , animator ); return; }
         }

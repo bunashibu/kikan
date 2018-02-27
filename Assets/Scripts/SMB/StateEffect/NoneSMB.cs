@@ -7,7 +7,7 @@ namespace Bunashibu.Kikan {
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
       if (_character == null) {
         _character = animator.transform.parent.GetComponent<ICharacter>();
-        _stateEffect = animator.GetComponent<StateEffect>();
+        _buffEffect = animator.GetComponent<BuffEffect>();
         _transform = animator.GetComponent<Transform>();
       }
 
@@ -15,11 +15,11 @@ namespace Bunashibu.Kikan {
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-      if (_character.State.Stun) { _stateEffect.StateTransfer.TransitTo("Stun", animator); }
+      if (_character.BuffState.Stun) { _buffEffect.StateTransfer.TransitTo("Stun", animator); }
     }
 
     private ICharacter _character;
-    private StateEffect _stateEffect;
+    private BuffEffect _buffEffect;
     private Transform _transform;
   }
 }

@@ -8,6 +8,7 @@ namespace Bunashibu.Kikan {
   public class Enemy : MonoBehaviour, ICharacter, IBattle {
     void Awake() {
       State         = new CharacterState(_ladderCollider, _footCollider);
+      BuffState     = new BuffState();
       StateTransfer = new StateTransfer(_initState, _animator);
       Hp            = new EnemyHp(this, _hpBar, _enemyData.Life);
     }
@@ -36,6 +37,7 @@ namespace Bunashibu.Kikan {
 
     // Enemy
     public CharacterState State         { get; private set; }
+    public BuffState      BuffState     { get; private set; }
     public StateTransfer  StateTransfer { get; private set; }
     public EnemyHp        Hp            { get; private set; }
 

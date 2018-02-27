@@ -8,6 +8,7 @@ namespace Bunashibu.Kikan {
     void Awake() {
       Movement      = new LobbyPlayerMovement();
       State         = new CharacterState(_ladderCollider, _footCollider);
+      BuffState     = new BuffState();
       StateTransfer = new StateTransfer(_initState, _animator);
       SkillInfo     = new SkillInfo();
 
@@ -29,6 +30,7 @@ namespace Bunashibu.Kikan {
 
     public LobbyPlayerMovement Movement      { get; private set; }
     public CharacterState      State         { get; private set; }
+    public BuffState           BuffState     { get; private set; }
     public StateTransfer       StateTransfer { get; private set; }
     public SkillInfo           SkillInfo     { get; private set; }
 
