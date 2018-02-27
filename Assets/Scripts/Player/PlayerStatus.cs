@@ -9,6 +9,7 @@ namespace Bunashibu.Kikan {
       Dfn = dfn;
       Spd = spd;
       Jmp = jmp;
+      MulCorrectionAtk = 1.0f;
     }
 
     public void Init(JobStatus jobStatus) {
@@ -28,6 +29,7 @@ namespace Bunashibu.Kikan {
         Atk += 32;
     }
 
+    // Manji Space use this
     public void MultipleMulCorrectionAtk(float ratio) {
       MulCorrectionAtk *= ratio;
     }
