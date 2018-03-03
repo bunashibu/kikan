@@ -6,7 +6,7 @@ namespace Bunashibu.Kikan {
   [RequireComponent(typeof(BattlePlayerObserver))]
   public class BattlePlayer : MonoBehaviour, ICharacter, IBattle {
     void Awake() {
-      Movement      = new BattlePlayerMovement();
+      Movement      = new BattlePlayerMovement(_core);
       State         = new CharacterState(_ladderCollider, _footCollider);
       BuffState     = new BuffState();
       Hp            = new PlayerHp(this, _hpTable, _worldHpBar);

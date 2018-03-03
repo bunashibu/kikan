@@ -9,7 +9,7 @@ namespace Bunashibu.Kikan {
         rigid.velocity = new Vector2(0, 0); // like Aizen
 
         float ratio = (float)((core.Speed + 100) / 100.0);
-        rigid.AddForce(_direction * _force * ratio);
+        rigid.AddForce(_direction * _force * ratio, ForceMode2D.Impulse);
 
         _actFlag = false;
         _direction.x = 0;

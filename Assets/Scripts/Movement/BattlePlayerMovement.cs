@@ -4,7 +4,9 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   public class BattlePlayerMovement {
-    public BattlePlayerMovement() {
+    public BattlePlayerMovement(PlayerCore core) {
+      _core = core;
+
       _coreAirMove    = new CoreAirMove();
       _coreGroundMove = new CoreGroundMove();
       _ladderMove     = new LadderMove();
@@ -18,12 +20,12 @@ namespace Bunashibu.Kikan {
 
     // INFO: Must be called in MonoBehaviour-FixedUpdate()
     public void FixedUpdate(Rigidbody2D rigid, Transform trans) {
-      _coreAirMove.FixedUpdate(rigid);
-      _coreGroundMove.FixedUpdate(rigid);
+      _coreAirMove.FixedUpdate(rigid, _core);
+      _coreGroundMove.FixedUpdate(rigid, _core);
       _ladderMove.FixedUpdate(trans);
 
-      _coreGroundJump.FixedUpdate(rigid);
-      _coreLadderJump.FixedUpdate(rigid);
+      _coreGroundJump.FixedUpdate(rigid, _core);
+      _coreLadderJump.FixedUpdate(rigid, _core);
       _stepDownJump.FixedUpdate(rigid);
     }
 
@@ -78,6 +80,8 @@ namespace Bunashibu.Kikan {
     public void SetJumpForce(float force) {
       _coreGroundJump.SetForce(force);
     }
+
+    private PlayerCore _core;
 
     private CoreAirMove _coreAirMove;
     private CoreGroundMove _coreGroundMove;
