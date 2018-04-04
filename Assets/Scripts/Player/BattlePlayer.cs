@@ -61,13 +61,13 @@ namespace Bunashibu.Kikan {
     // automatic healer
 
     [Header("Unity/Photon Components")]
-    [SerializeField] private PhotonView       _photonView;
-    [SerializeField] private SpriteRenderer[] _renderers;  // INFO: [PlayerSprite, WeaponSprite]
-    [SerializeField] private Rigidbody2D      _rigid;
-    [SerializeField] private Collider2D       _bodyCollider;
-    [SerializeField] private Collider2D       _ladderCollider;
-    [SerializeField] private Collider2D       _footCollider;
-    [SerializeField] private Animator         _animator;
+    [SerializeField] private PhotonView          _photonView;
+    [SerializeField] private SpriteRenderer[]    _renderers;  // INFO: [PlayerSprite, WeaponSprite]
+    [SerializeField] private Rigidbody2D         _rigid;
+    [SerializeField] private Collider2D          _bodyCollider;
+    [SerializeField] private Collider2D          _ladderCollider;
+    [SerializeField] private Collider2D          _footCollider;
+    [SerializeField] private Animator            _animator;
 
     [Header("Observer")]
     [SerializeField] private BattlePlayerObserver _observer;

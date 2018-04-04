@@ -608,8 +608,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 695841a0dfeebc04ebc90201ce230af7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _renderer: {fileID: 212543119074357088}
-  _anim: {fileID: 95930055764971676}
+  _player: {fileID: 114346652777482960}
 --- !u!114 &114283101673446462
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -708,7 +707,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _photonView: {fileID: 114800105221254742}
-  _photonTransformView: {fileID: 114409857702172010}
   _renderers:
   - {fileID: 212543119074357088}
   - {fileID: 212620572494064958}
@@ -849,9 +847,9 @@ MonoBehaviour:
     SynchronizeEnabled: 1
     TeleportEnabled: 1
     TeleportIfDistanceGreaterThan: 4
-    InterpolateOption: 4
+    InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
-    InterpolateLerpSpeed: 60
+    InterpolateLerpSpeed: 2
     InterpolateMoveTowardsAcceleration: 2
     InterpolateMoveTowardsDeceleration: 2
     InterpolateSpeedCurve:

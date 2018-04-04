@@ -9,6 +9,8 @@ namespace Bunashibu.Kikan {
       PhotonNetwork.logLevel = _logLevel;
       PhotonNetwork.autoJoinLobby = false;
       PhotonNetwork.automaticallySyncScene = true;
+      PhotonNetwork.sendRate = 30;
+      PhotonNetwork.sendRateOnSerialize = 30;
     }
 
     void Start() {
