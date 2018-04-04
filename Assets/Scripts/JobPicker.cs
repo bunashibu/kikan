@@ -7,6 +7,10 @@ using Hashtable = ExitGames.Client.Photon.Hashtable;
 namespace Bunashibu.Kikan {
   public class JobPicker : MonoBehaviour {
     void Start() {
+      if ((int)PhotonNetwork.player.CustomProperties["Team"] == 1)
+        _initialCameraPosition.x *= -1;
+
+      _landscapeTrackCamera.SetPosition(_initialCameraPosition);
       //Destroy(gameObject, 10.0f);
     }
 
@@ -60,10 +64,10 @@ namespace Bunashibu.Kikan {
 
     private void InstantiateCamera() {
       _trackCamera = Instantiate(_trackCamera, _player.transform.position, Quaternion.identity) as TrackCamera;
-      _trackCamera.Init(_player.gameObject);
+      _trackCamera.SetTrackTarget(_player.gameObject);
 
-      _landscapeTrackCamera = Instantiate(_landscapeTrackCamera, _player.transform.position, Quaternion.identity) as TrackCamera;
-      _landscapeTrackCamera.Init(_player.gameObject);
+      //_landscapeTrackCamera = Instantiate(_landscapeTrackCamera, _player.transform.position, Quaternion.identity) as TrackCamera;
+      _landscapeTrackCamera.SetTrackTarget(_player.gameObject);
     }
 
     private void AdjustFlipX() {
@@ -144,6 +148,7 @@ namespace Bunashibu.Kikan {
     [SerializeField] private GameData _gameData;
     [SerializeField] private TrackCamera _trackCamera;
     [SerializeField] private TrackCamera _landscapeTrackCamera;
+    [SerializeField] private Vector3 _initialCameraPosition;
     private BattlePlayer _player;
   }
 }

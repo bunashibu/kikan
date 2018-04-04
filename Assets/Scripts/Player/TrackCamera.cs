@@ -4,11 +4,10 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   public class TrackCamera : MonoBehaviour {
-    void Start() {
-      transform.position = transform.position + _positionOffset;
-    }
-
     void Update() {
+      if (!_isTracking)
+        return;
+
       Vector3 trackPosition = _trackObj.transform.position + _positionOffset;
 
       if (transform.position != trackPosition) {
@@ -17,8 +16,13 @@ namespace Bunashibu.Kikan {
       }
     }
 
-    public void Init(GameObject trackObj) {
+    public void SetPosition(Vector3 position) {
+      transform.position = position + _positionOffset;
+    }
+
+    public void SetTrackTarget(GameObject trackObj) {
       _trackObj = trackObj;
+      _isTracking = true;
     }
 
     private void InterpolateTo(Vector3 destination) {
@@ -45,6 +49,7 @@ namespace Bunashibu.Kikan {
     [SerializeField] private GameData _gameData;
     [SerializeField] private Vector3 _positionOffset;
     [SerializeField] private float _interpolateRatio;
+    private bool _isTracking;
     private GameObject _trackObj;
   }
 }
