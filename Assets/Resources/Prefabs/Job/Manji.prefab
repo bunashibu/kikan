@@ -708,6 +708,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _photonView: {fileID: 114800105221254742}
+  _photonTransformView: {fileID: 114409857702172010}
   _renderers:
   - {fileID: 212543119074357088}
   - {fileID: 212620572494064958}
