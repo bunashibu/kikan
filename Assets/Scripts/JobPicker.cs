@@ -10,14 +10,14 @@ namespace Bunashibu.Kikan {
       if ((int)PhotonNetwork.player.CustomProperties["Team"] == 1)
         _initialCameraPosition.x *= -1;
 
-      _landscapeTrackCamera.SetPosition(_initialCameraPosition);
+      _trackCamera.SetPosition(_initialCameraPosition);
       //Destroy(gameObject, 10.0f);
     }
 
     public void Pick(int n) {
       InstantiatePlayer(n);
       InstantiateHudObjects(n);
-      InstantiateCamera();
+      _trackCamera.SetTrackTarget(_player.gameObject);
 
       InitPlayerHp();
       InitPlayerExp();
@@ -60,14 +60,6 @@ namespace Bunashibu.Kikan {
       skillPanel.transform.SetParent(_canvas.transform, false);
 
       _player.Weapon.SkillInstantiator.AttachSkillPanel(skillPanel);
-    }
-
-    private void InstantiateCamera() {
-      _trackCamera = Instantiate(_trackCamera, _player.transform.position, Quaternion.identity) as TrackCamera;
-      _trackCamera.SetTrackTarget(_player.gameObject);
-
-      //_landscapeTrackCamera = Instantiate(_landscapeTrackCamera, _player.transform.position, Quaternion.identity) as TrackCamera;
-      _landscapeTrackCamera.SetTrackTarget(_player.gameObject);
     }
 
     private void AdjustFlipX() {
@@ -147,7 +139,6 @@ namespace Bunashibu.Kikan {
     [SerializeField] private List<SkillPanel> _skillPanelList;
     [SerializeField] private GameData _gameData;
     [SerializeField] private TrackCamera _trackCamera;
-    [SerializeField] private TrackCamera _landscapeTrackCamera;
     [SerializeField] private Vector3 _initialCameraPosition;
     private BattlePlayer _player;
   }

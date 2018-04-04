@@ -8843,7 +8843,7 @@ MonoBehaviour:
   - {fileID: 1429993679}
   - {fileID: 501870109}
   - {fileID: 614388359}
-  _population: 08000000080000000800000008000000
+  _population: 04000000040000000400000004000000
   _intervalSec: 5
   _initialSeedX:
   - -15.832
@@ -19867,9 +19867,7 @@ MonoBehaviour:
   _skillPanelList:
   - {fileID: 114676753519682904, guid: 62edf362464fdeb40b00bf4c6974958d, type: 2}
   _gameData: {fileID: 11400000, guid: 79929a1e9bd66f4488365796315797b6, type: 2}
-  _trackCamera: {fileID: 114059435814291198, guid: 3142af973151ef34eae04eb0766280a5,
-    type: 2}
-  _landscapeTrackCamera: {fileID: 1357867647}
+  _trackCamera: {fileID: 1357867647}
   _initialCameraPosition: {x: 29.54, y: 0.6, z: 0}
 --- !u!114 &1857252215
 MonoBehaviour:
