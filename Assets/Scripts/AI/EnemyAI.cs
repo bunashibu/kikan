@@ -22,6 +22,10 @@ namespace Bunashibu.Kikan {
     }
 
     private void UpdateBehaviour() {
+      // temporary
+      if (_enemy.BuffState.Stun)
+        return;
+
       if (!_strategyFlag) {
         ConsiderStrategy();
 

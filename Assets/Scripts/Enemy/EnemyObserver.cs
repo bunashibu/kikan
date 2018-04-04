@@ -26,6 +26,10 @@ namespace Bunashibu.Kikan {
       _enemy.PhotonView.RPC("SyncUpdateHpViewRPC", PhotonTargets.All, skillOwner);
     }
 
+    public void SyncStun() {
+      _enemy.PhotonView.RPC("SyncStunRPC", PhotonTargets.Others, _enemy.BuffState.Stun);
+    }
+
     [PunRPC]
     private void SyncCurHpRPC(int cur) {
       ForceSync("CurHp", () => _enemy.Hp.ForceSyncCur(cur));
@@ -34,6 +38,11 @@ namespace Bunashibu.Kikan {
     [PunRPC]
     private void SyncUpdateHpViewRPC(PhotonPlayer skillOwner) {
       ForceSync("UpdateHpView", () => _enemy.Hp.ForceSyncUpdateView(skillOwner));
+    }
+
+    [PunRPC]
+    private void SyncStunRPC(bool state) {
+      _enemy.BuffState.Stun = state;
     }
 
     private void ForceSync(string key, Action action) {

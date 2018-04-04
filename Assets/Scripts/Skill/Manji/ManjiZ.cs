@@ -66,6 +66,13 @@ namespace Bunashibu.Kikan {
     }
 
     private void StunEnemy(Enemy enemy) {
+      enemy.BuffState.Stun = true;
+      enemy.Observer.SyncStun();
+
+      MonoUtility.Instance.DelaySec(_stunSec, () => {
+        enemy.BuffState.Stun = false;
+        enemy.Observer.SyncStun();
+      });
 
     }
 
