@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 20000013391492584}
   - component: {fileID: 124000013662909244}
   - component: {fileID: 92000013832566926}
-  - component: {fileID: 81000013860983582}
   - component: {fileID: 114759419203247690}
   m_Layer: 9
   m_Name: Camera
@@ -254,13 +253,6 @@ EdgeCollider2D:
   m_Points:
   - {x: 0, y: -0.4}
   - {x: 0, y: -0.5}
---- !u!81 &81000013860983582
-AudioListener:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010049149186}
-  m_Enabled: 1
 --- !u!92 &92000013832566926
 Behaviour:
   m_ObjectHideFlags: 1
@@ -542,7 +534,7 @@ MonoBehaviour:
   _groundMask:
     serializedVersion: 2
     m_Bits: 33024
-  _gameData: {fileID: 0}
+  _gameData: {fileID: 11400000, guid: 187dfd245e859634db7d6d30e4968f9d, type: 2}
 --- !u!114 &114606102195267942
 MonoBehaviour:
   m_ObjectHideFlags: 1
