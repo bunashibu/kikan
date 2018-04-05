@@ -14,6 +14,9 @@ namespace Bunashibu.Kikan {
         return;
 
       for (int i=0; i<_keys.Length; ++i) {
+        if (_player.Level.Lv < _requireLv[i])
+          continue;
+
         if (_canUseList[i] && Input.GetKey(_keys[i])) {
           InstantiateSkill(i);
           StartCT(i);
@@ -84,6 +87,7 @@ namespace Bunashibu.Kikan {
     [SerializeField] private float[] _skillCT;
     [SerializeField] private float[] _rigorCT;
     [SerializeField] private Vector3[] _appearOffset;
+    [SerializeField] private int[] _requireLv;
     [SerializeField] private SpriteRenderer _renderer;
     [SerializeField] private BattlePlayer _player;
     private List<SkillPanelUnit> _panelUnitList;
