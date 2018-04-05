@@ -24,8 +24,10 @@ namespace Bunashibu.Kikan {
         _player.Rigid.position = (Vector2)stream.ReceiveNext();
         _player.Rigid.velocity = (Vector2)stream.ReceiveNext();
 
+        /*
         float lag = Mathf.Abs((float) (PhotonNetwork.time - info.timestamp));
         _player.Rigid.position += _player.Rigid.velocity * lag;
+        */
 
         _player.Renderers[0].flipX = (bool)stream.ReceiveNext();
         _player.Animator.SetBool("Idle"       , (bool)stream.ReceiveNext());
