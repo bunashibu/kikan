@@ -7,6 +7,7 @@ namespace Bunashibu.Kikan {
   public class SkillInstantiator : Photon.MonoBehaviour {
     void Start() {
       _canUseList = new List<bool>(){ true, true, true, true, true, true };
+      _isDisabled = new List<bool>(){ false, true, true, true, true, true };
     }
 
     void Update() {
@@ -16,6 +17,9 @@ namespace Bunashibu.Kikan {
       for (int i=0; i<_keys.Length; ++i) {
         if (_player.Level.Lv < _requireLv[i])
           continue;
+
+        if (_isDisabled[i] && (_player.Level.Lv == _requireLv[i]))
+          EnableSkill(i);
 
         if (_canUseList[i] && Input.GetKey(_keys[i])) {
           InstantiateSkill(i);
@@ -81,6 +85,12 @@ namespace Bunashibu.Kikan {
       });
     }
 
+    private void EnableSkill(int index) {
+      var preSizeDelta = _panelUnitList[index].AlphaRectTransform.sizeDelta;
+      _panelUnitList[index].AlphaRectTransform.sizeDelta = new Vector2(preSizeDelta.x, 0);
+      _isDisabled[index] = false;
+    }
+
     [SerializeField] private string _jobName;
     [SerializeField] private KeyCode[] _keys;
     [SerializeField] private SkillName[] _names;
@@ -92,6 +102,7 @@ namespace Bunashibu.Kikan {
     [SerializeField] private BattlePlayer _player;
     private List<SkillPanelUnit> _panelUnitList;
     private List<bool> _canUseList;
+    private List<bool> _isDisabled;
   }
 }
 
