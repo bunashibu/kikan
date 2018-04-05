@@ -48,7 +48,7 @@ namespace Bunashibu.Kikan {
     public int HealQuantity { get; private set; }
 
     private bool _isActive = false;
-    private static readonly float HealInterval = 2.0f;
+    private static readonly float HealInterval = 1.0f;
   }
 }
 
