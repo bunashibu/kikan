@@ -38,6 +38,7 @@ namespace Bunashibu.Kikan {
         _player.Gold.UpdateView();
 
         _coreList[i].LvUp();
+        photonView.RPC("SyncCoreLvUp", PhotonTargets.Others, i);
         UpdateView(i, _coreList[i].Level);
 
         // Hp Core
@@ -93,6 +94,11 @@ namespace Bunashibu.Kikan {
       get {
         return _coreList[4].Value;
       }
+    }
+
+    [PunRPC]
+    private void SyncCoreLvUp(int index) {
+      _coreList[index].LvUp();
     }
 
     [SerializeField] private BattlePlayer _player;
