@@ -11064,7 +11064,7 @@ GameObject:
   m_Component:
   - component: {fileID: 954863480}
   m_Layer: 0
-  m_Name: HealArea
+  m_Name: TeamArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16573,7 +16573,7 @@ GameObject:
   - component: {fileID: 1446305615}
   - component: {fileID: 1446305614}
   m_Layer: 0
-  m_Name: RedHealArea
+  m_Name: RedArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16604,6 +16604,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _team: 0
+  _damage: 1000
 --- !u!61 &1446305615
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -22007,7 +22008,7 @@ GameObject:
   - component: {fileID: 2073973861}
   - component: {fileID: 2073973860}
   m_Layer: 0
-  m_Name: BlueHealArea
+  m_Name: BlueArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22038,6 +22039,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _team: 1
+  _damage: 1000
 --- !u!61 &2073973861
 BoxCollider2D:
   m_ObjectHideFlags: 0

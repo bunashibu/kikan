@@ -20,6 +20,8 @@ namespace Bunashibu.Kikan {
       var damage = _baseDamage + (int)(Random.value * _positiveDeviation);
       target.Hp.Subtract(damage);
       target.Hp.UpdateView();
+      target.NumberPopupEnvironment.Popup(damage, false, target.DamageSkin.Id, PopupType.Player);
+
       target.State.Invincible = true;
       MonoUtility.Instance.DelaySec(2.0f, () => { target.State.Invincible = false; } );
     }
