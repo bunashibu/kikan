@@ -28,6 +28,7 @@ namespace Bunashibu.Kikan {
     public bool Portal           { get { return _ladderCollider.IsTouchingLayers(_portalLayer);                   } }
 
     public bool Rigor { get; set; }
+    public bool Invincible { get; set; }
 
     private Collider2D _ladderCollider;
     private Collider2D _footCollider;

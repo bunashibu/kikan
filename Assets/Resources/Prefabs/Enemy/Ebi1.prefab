@@ -32,6 +32,7 @@ GameObject:
   - component: {fileID: 114112488513267606}
   - component: {fileID: 114399664780219442}
   - component: {fileID: 114174430385108528}
+  - component: {fileID: 114962318167475646}
   m_Layer: 14
   m_Name: Ebi1
   m_TagString: Enemy
@@ -681,6 +682,19 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114962318167475646
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1025727651334796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad94536f3ccda1c44ae0314a6a1b86fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _baseDamage: 100
+  _positiveDeviation: 20
 --- !u!212 &212085687482081126
 SpriteRenderer:
   m_ObjectHideFlags: 1

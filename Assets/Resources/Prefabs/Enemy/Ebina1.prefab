@@ -151,6 +151,7 @@ GameObject:
   - component: {fileID: 114714408207554070}
   - component: {fileID: 114254446825988984}
   - component: {fileID: 114213958790206684}
+  - component: {fileID: 114995646370320484}
   m_Layer: 14
   m_Name: Ebina1
   m_TagString: Enemy
@@ -681,6 +682,19 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
+--- !u!114 &114995646370320484
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1863352739844968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad94536f3ccda1c44ae0314a6a1b86fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _baseDamage: 200
+  _positiveDeviation: 20
 --- !u!212 &212763623630494992
 SpriteRenderer:
   m_ObjectHideFlags: 1
