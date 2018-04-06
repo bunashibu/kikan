@@ -17,7 +17,8 @@ namespace Bunashibu.Kikan {
     public void Pick(int n) {
       InstantiatePlayer(n);
       InstantiateHudObjects(n);
-      _trackCamera.SetTrackTarget(_player.gameObject);
+
+      InitPlayerSettings();
 
       InitPlayerHp();
       InitPlayerExp();
@@ -75,6 +76,18 @@ namespace Bunashibu.Kikan {
 
       var props = new Hashtable() {{"ViewID", viewID}};
       PhotonNetwork.player.SetCustomProperties(props);
+    }
+
+    private void InitPlayerSettings() {
+      _trackCamera.SetTrackTarget(_player.gameObject);
+
+      int team = (int)PhotonNetwork.player.CustomProperties["Team"];
+      if (team == 0)
+        _player.NameBackground.SetColor("RED");
+      else if (team == 1)
+        _player.NameBackground.SetColor("BLUE");
+
+      _player.Observer.SyncNameBackground();
     }
 
     private void InitPlayerHp() {

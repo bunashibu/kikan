@@ -19,13 +19,13 @@ namespace Bunashibu.Kikan {
       Movement.FixedUpdate(_rigid, transform);
     }
 
-    public PhotonView       PhotonView     { get { return _photonView;   } }
-    public Transform        Transform      { get { return transform;     } }
-    public SpriteRenderer[] Renderers      { get { return _renderers;    } }
-    public Rigidbody2D      Rigid          { get { return _rigid;        } }
-    public Collider2D       BodyCollider   { get { return _bodyCollider; } }
-    public Collider2D       FootCollider   { get { return _footCollider; } }
-    public Animator         Animator       { get { return _animator;     } }
+    public PhotonView       PhotonView   { get { return _photonView;     } }
+    public Transform        Transform    { get { return transform;       } }
+    public SpriteRenderer[] Renderers    { get { return _renderers;      } }
+    public Rigidbody2D      Rigid        { get { return _rigid;          } }
+    public Collider2D       BodyCollider { get { return _bodyCollider;   } }
+    public Collider2D       FootCollider { get { return _footCollider;   } }
+    public Animator         Animator     { get { return _animator;       } }
 
     public BattlePlayerObserver Observer { get { return _observer; } }
 
@@ -41,6 +41,8 @@ namespace Bunashibu.Kikan {
 
     public int KillExp  { get { return _killExpTable.Data[Level.Lv - 1];  } }
     public int KillGold { get { return _killGoldTable.Data[Level.Lv - 1]; } }
+
+    public NameBackground NameBackground { get { return _nameBackground; } }
 
     //
     // Consider
@@ -61,13 +63,13 @@ namespace Bunashibu.Kikan {
     // automatic healer
 
     [Header("Unity/Photon Components")]
-    [SerializeField] private PhotonView          _photonView;
-    [SerializeField] private SpriteRenderer[]    _renderers;  // INFO: [PlayerSprite, WeaponSprite]
-    [SerializeField] private Rigidbody2D         _rigid;
-    [SerializeField] private Collider2D          _bodyCollider;
-    [SerializeField] private Collider2D          _ladderCollider;
-    [SerializeField] private Collider2D          _footCollider;
-    [SerializeField] private Animator            _animator;
+    [SerializeField] private PhotonView       _photonView;
+    [SerializeField] private SpriteRenderer[] _renderers;  // INFO: [PlayerSprite, WeaponSprite]
+    [SerializeField] private Rigidbody2D      _rigid;
+    [SerializeField] private Collider2D       _bodyCollider;
+    [SerializeField] private Collider2D       _ladderCollider;
+    [SerializeField] private Collider2D       _footCollider;
+    [SerializeField] private Animator         _animator;
 
     [Header("Observer")]
     [SerializeField] private BattlePlayerObserver _observer;
@@ -90,6 +92,9 @@ namespace Bunashibu.Kikan {
     [Header("Kill Reward")]
     [SerializeField] private DataTable _killExpTable;
     [SerializeField] private DataTable _killGoldTable;
+
+    [Space(10)]
+    [SerializeField] private NameBackground _nameBackground;
 
     [Space(10)]
     [SerializeField] private PlayerStatus _status;

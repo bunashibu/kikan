@@ -48,6 +48,11 @@ namespace Bunashibu.Kikan {
       _player.PhotonView.RPC("SyncStunRPC", PhotonTargets.Others, _player.BuffState.Stun);
     }
 
+    /* Other */
+    public void SyncNameBackground() {
+      _player.PhotonView.RPC("SyncNameBackgroundRPC", PhotonTargets.Others, _player.NameBackground.ColorName);
+    }
+
     /* Hp RPC */
     [PunRPC]
     private void SyncHpRPC(int cur, int max) {
@@ -79,6 +84,12 @@ namespace Bunashibu.Kikan {
     [PunRPC]
     private void SyncStunRPC(bool state) {
       _player.BuffState.Stun = state;
+    }
+
+    /* Other */
+    [PunRPC]
+    private void SyncNameBackgroundRPC(string colorName) {
+      _player.NameBackground.SetColor(colorName);
     }
 
     private void ForceSync(string key, Action action) {

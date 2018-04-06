@@ -76,6 +76,7 @@ GameObject:
   - component: {fileID: 224828806676212244}
   - component: {fileID: 222083849123062222}
   - component: {fileID: 114407046333056684}
+  - component: {fileID: 114037969435547560}
   m_Layer: 9
   m_Name: Background
   m_TagString: Untagged
@@ -482,6 +483,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc09d9ceceb3ec244a161bcb2c3bd07f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114037969435547560
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1121326143136772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 741aa5c17eeb3c54e96221c5706ff1fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _image: {fileID: 114407046333056684}
 --- !u!114 &114047511076577264
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -727,6 +740,7 @@ MonoBehaviour:
   _core: {fileID: 114454518508664006}
   _killExpTable: {fileID: 11400000, guid: 791597593be91a545b78b225c074d878, type: 2}
   _killGoldTable: {fileID: 11400000, guid: 08f3819bcd389ae498dddc20a49a3239, type: 2}
+  _nameBackground: {fileID: 114037969435547560}
   _status: {fileID: 114037318656622916}
   _damageSkin: {fileID: 11400000, guid: 950c137ab9585e94aaf57f5f836cecd9, type: 2}
   _weapon: {fileID: 114020719393736472}
