@@ -65,12 +65,19 @@ namespace Bunashibu.Kikan {
             break;
         }
 
-        renderer.sortingOrder = i;
+        renderer.sortingOrder = i + _existCount;
       }
+
+      _existCount += indices.Count();
+
+      // To Avoid Overflow
+      if (_existCount > 1000000000)
+        _existCount = 0;
     }
 
     [SerializeField] private GameObject _numberPref;
     [SerializeField] private AllSkinData _allSkinData;
+    private int _existCount = 0;
   }
 }
 
