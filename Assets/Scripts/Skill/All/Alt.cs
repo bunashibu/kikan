@@ -5,8 +5,13 @@ using UnityEngine;
 namespace Bunashibu.Kikan {
   public class Alt : Skill {
     void Start() {
+      if (!photonView.isMine)
+        return;
+
       var skillUser = _skillUserObj.GetComponent<BattlePlayer>();
-      skillUser.Hp.Add(2000);
+
+      int addition = skillUser.Level.Lv * 50 + (int)(Random.value * 100);
+      skillUser.Hp.Add(2000 + addition);
       skillUser.Hp.UpdateView();
     }
   }
