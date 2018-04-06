@@ -947,6 +947,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3802f8fc58bfd1846927a44ea5acbc56, type: 2}
   - {fileID: 11400000, guid: 28e7ad9a253ab3642ab24ec5f77fbd6b, type: 2}
   - {fileID: 11400000, guid: dfc62fce6272db8438d9dd234fe2c625, type: 2}
+  _effectList:
+  - {fileID: 1788418684973576, guid: 876e52cc4218e664c997377cd5fabdbd, type: 2}
+  - {fileID: 1128153027581590, guid: e1cc1c51ca09fb64eaf9ffc2d519487e, type: 2}
+  - {fileID: 1905268956512524, guid: 4767f50223289fc42ac4bd4dbcb5b821, type: 2}
+  - {fileID: 1331061121750558, guid: 18119598119a9b444870bd926fbbd84a, type: 2}
+  - {fileID: 1398255987574106, guid: 503267ebce5beed4e89038ef7fc7c687, type: 2}
 --- !u!114 &114494370642848112
 MonoBehaviour:
   m_ObjectHideFlags: 1

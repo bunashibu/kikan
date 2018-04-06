@@ -41,6 +41,9 @@ namespace Bunashibu.Kikan {
         photonView.RPC("SyncCoreLvUp", PhotonTargets.Others, i);
         UpdateView(i, _coreList[i].Level);
 
+        var effect = PhotonNetwork.Instantiate("Prefabs/CoreLevelUpEffect/Core" + i.ToString() + "LevelUpEffect", Vector3.zero, Quaternion.identity, 0).GetComponent<CoreLevelUpEffect>() as CoreLevelUpEffect;
+        effect.SetParent(_player.PhotonView.viewID);
+
         // Hp Core
         if (i == 1) {
           _player.Hp.UpdateMaxHp();
@@ -104,6 +107,7 @@ namespace Bunashibu.Kikan {
     [SerializeField] private BattlePlayer _player;
     [SerializeField] private PlayerAutomaticHealer _playerHealer;
     [SerializeField] private List<Core> _coreList;
+    [SerializeField] private List<GameObject> _effectList;
     private CorePanel _corePanel;
     private List<bool> _reconfirmList;
     private static readonly int MaxCoreLevel = 5;

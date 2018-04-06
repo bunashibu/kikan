@@ -69,6 +69,9 @@ TagManager:
   - name: StateEffect
     uniqueID: 1802626207
     locked: 0
+  - name: CoreLevelUpEffect
+    uniqueID: 2331558819
+    locked: 0
   - name: Skill
     uniqueID: 950836439
     locked: 0
