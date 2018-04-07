@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
   public class PlayerCore : Photon.MonoBehaviour {
     void Awake() {
       _reconfirmList = new List<bool>() { false, false, false, false, false };
+      _coreList = _coreList.Select(core => ScriptableObject.Instantiate(core) as Core).ToList();
     }
 
     void Update() {
