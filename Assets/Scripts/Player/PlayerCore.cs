@@ -9,7 +9,7 @@ namespace Bunashibu.Kikan {
     }
 
     void Update() {
-      if (photonView.isMine == false)
+      if (!photonView.isMine)
         return;
 
       for (int i=0; i<_coreList.Count; ++i) {
