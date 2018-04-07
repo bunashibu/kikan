@@ -60,6 +60,9 @@ TagManager:
   - name: Enemy
     uniqueID: 3957793139
     locked: 0
+  - name: SkillBuff
+    uniqueID: 2919748849
+    locked: 0
   - name: Player
     uniqueID: 4205633467
     locked: 0

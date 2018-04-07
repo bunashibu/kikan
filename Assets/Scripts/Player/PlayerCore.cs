@@ -43,7 +43,7 @@ namespace Bunashibu.Kikan {
         photonView.RPC("SyncCoreLvUp", PhotonTargets.Others, i);
         UpdateView(i, _coreList[i].Level);
 
-        var effect = PhotonNetwork.Instantiate("Prefabs/CoreLevelUpEffect/Core" + i.ToString() + "LevelUpEffect", Vector3.zero, Quaternion.identity, 0).GetComponent<CoreLevelUpEffect>() as CoreLevelUpEffect;
+        var effect = PhotonNetwork.Instantiate("Prefabs/CoreLevelUpEffect/Core" + i.ToString() + "LevelUpEffect", Vector3.zero, Quaternion.identity, 0).GetComponent<ParentSetter>() as ParentSetter;
         effect.SetParent(_player.PhotonView.viewID);
 
         // Hp Core

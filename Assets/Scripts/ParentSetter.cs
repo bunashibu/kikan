@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
-  public class CoreLevelUpEffect : Photon.MonoBehaviour {
+  public class ParentSetter : Photon.MonoBehaviour {
     [PunRPC]
     private void SyncParent(int viewID) {
       SetParent(viewID);
