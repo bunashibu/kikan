@@ -9,11 +9,11 @@ namespace Bunashibu.Kikan {
       gameObject.SetActive(false);
     }
 
-    public void Set(string message) {
+    public void Set(string message, int viewID) {
       gameObject.SetActive(true);
       _text.text = message;
 
-      MonoUtility.Instance.DelaySec(5.0f, () => {
+      MonoUtility.Instance.OverwritableDelaySec(5.0f, "Remark" + viewID.ToString(), () => {
         _text.text = "";
         gameObject.SetActive(false);
       });

@@ -86,7 +86,7 @@ namespace Bunashibu.Kikan {
 
     private void UpdatePopupRemark(string senderName, string message, int viewID) {
       var speaker = PhotonView.Find(viewID).gameObject.GetComponent<ISpeaker>();
-      speaker.PopupRemark.Set(senderName + " : " + message);
+      speaker.PopupRemark.Set(senderName + " : " + message, viewID);
     }
   }
 }
