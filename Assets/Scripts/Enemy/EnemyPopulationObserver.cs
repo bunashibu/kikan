@@ -12,7 +12,7 @@ namespace Bunashibu.Kikan {
     }
 
     public void IntervalReplenishPopulation(Enemy enemy) {
-      float offsetY = enemy.SpriteRenderer.bounds.size.y / 2;
+      float offsetY = enemy.Renderer.bounds.size.y / 2;
       int index = GetNearestSpawnerIndex(enemy.transform.position, offsetY);
       float seedX = enemy.transform.position.x;
 

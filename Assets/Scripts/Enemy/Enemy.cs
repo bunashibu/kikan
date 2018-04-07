@@ -18,12 +18,12 @@ namespace Bunashibu.Kikan {
     }
 
     // Unity
-    public PhotonView     PhotonView     { get { return _photonView;     } }
-    public Transform      Transform      { get { return transform;       } }
-    public SpriteRenderer SpriteRenderer { get { return _spriteRenderer; } }
-    public Rigidbody2D    Rigid          { get { return _rigid;          } }
-    public Collider2D     BodyCollider   { get { return _bodyCollider;   } }
-    public Collider2D     FootCollider   { get { return _footCollider;   } }
+    public PhotonView     PhotonView   { get { return _photonView;     } }
+    public Transform      Transform    { get { return transform;       } }
+    public SpriteRenderer Renderer     { get { return _spriteRenderer; } }
+    public Rigidbody2D    Rigid        { get { return _rigid;          } }
+    public Collider2D     BodyCollider { get { return _bodyCollider;   } }
+    public Collider2D     FootCollider { get { return _footCollider;   } }
 
     // Observer
     public EnemyObserver           Observer           { get { return _observer; } }

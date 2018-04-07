@@ -54,11 +54,13 @@ namespace Bunashibu.Kikan {
 
     private void ConsiderStrategy() {
       float rand = Random.value;
-      if (rand < 0.4)
+      if (rand < 0.4) {
         _strategy = "MoveRight";
-      else if (rand < 0.8)
+        _enemy.Renderer.flipX = true;
+      } else if (rand < 0.8) {
         _strategy = "MoveLeft";
-      else
+        _enemy.Renderer.flipX = false;
+      } else
         _strategy = "Stay";
     }
 
