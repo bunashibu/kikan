@@ -26,7 +26,8 @@ namespace Bunashibu.Kikan {
 
       if (Event.current.type == EventType.KeyDown && (Event.current.keyCode == KeyCode.KeypadEnter || Event.current.keyCode == KeyCode.Return)) {
         if (!string.IsNullOrEmpty(this.inputLine)) {
-          this.photonView.RPC("Chat", PhotonTargets.All, this.inputLine);
+          int speakerViewID = (int)PhotonNetwork.player.CustomProperties["ViewID"];
+          this.photonView.RPC("Chat", PhotonTargets.All, this.inputLine, speakerViewID);
           this.inputLine = "";
           GUI.FocusControl("");
           return; // printing the now modified list would result in an error. to avoid this, we just skip this single frame
@@ -52,7 +53,9 @@ namespace Bunashibu.Kikan {
       GUI.SetNextControlName("ChatInput");
       inputLine = GUILayout.TextField(inputLine);
       if (GUILayout.Button("Send", GUILayout.ExpandWidth(false))) {
-        this.photonView.RPC("Chat", PhotonTargets.All, this.inputLine);
+        int speakerViewID = (int)PhotonNetwork.player.CustomProperties["ViewID"];
+        this.photonView.RPC("Chat", PhotonTargets.All, this.inputLine, speakerViewID);
+
         this.inputLine = "";
         GUI.FocusControl("");
       }
@@ -61,7 +64,7 @@ namespace Bunashibu.Kikan {
     }
 
     [PunRPC]
-    public void Chat(string newLine, PhotonMessageInfo mi) {
+    public void Chat(string newLine, int viewID, PhotonMessageInfo mi) {
       string senderName = "anonymous";
 
       if (mi.sender != null) {
@@ -73,10 +76,17 @@ namespace Bunashibu.Kikan {
 
       this.messages.Add(senderName +": " + newLine);
       scrollPos.y = Mathf.Infinity;
+
+      UpdatePopupRemark(senderName, newLine, viewID);
     }
 
     public void AddLine(string newLine) {
       this.messages.Add(newLine);
+    }
+
+    private void UpdatePopupRemark(string senderName, string message, int viewID) {
+      var speaker = PhotonView.Find(viewID).gameObject.GetComponent<ISpeaker>();
+      speaker.PopupRemark.Set(senderName + " : " + message);
     }
   }
 }
