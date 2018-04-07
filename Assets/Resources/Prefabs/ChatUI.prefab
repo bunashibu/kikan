@@ -55,9 +55,9 @@ MonoBehaviour:
   GuiRect:
     serializedVersion: 2
     x: 0
-    y: 550
+    y: 600
     width: 430
-    height: 200
+    height: 150
   IsVisible: 1
   AlignBottom: 0
   messages: []

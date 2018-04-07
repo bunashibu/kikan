@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Bunashibu.Kikan {
   [RequireComponent(typeof(PhotonView))]
   public class ChatUI : Photon.MonoBehaviour {
-    public Rect GuiRect = new Rect(0,0, 250,300);
+    public Rect GuiRect = new Rect(0, 0, 250, 300);
     public bool IsVisible = true;
     public bool AlignBottom = false;
     public List<string> messages = new List<string>();
@@ -35,6 +35,8 @@ namespace Bunashibu.Kikan {
           GUI.FocusControl("ChatInput");
         }
       }
+
+      GUI.Box(this.GuiRect, "");
 
       GUI.SetNextControlName("");
       GUILayout.BeginArea(this.GuiRect);
