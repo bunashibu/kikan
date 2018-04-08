@@ -4575,7 +4575,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _text: {fileID: 42171832}
   _sceneChanger: {fileID: 422559151}
-  _timeSec: 600
+  _timeSec: 10
 --- !u!1 &440095012
 GameObject:
   m_ObjectHideFlags: 0

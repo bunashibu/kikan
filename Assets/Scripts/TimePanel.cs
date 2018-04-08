@@ -7,8 +7,9 @@ namespace Bunashibu.Kikan {
   public class TimePanel : MonoBehaviour {
     void Update() {
       _timeSec -= Time.deltaTime;
-      if (_timeSec < 0)
-        _sceneChanger.ChangeScene("final_battle");
+      if (_timeSec < 0) {
+        Debug.Log("Go to Final Battle");
+      }
 
       UpdateTimePanel();
     }
@@ -33,8 +34,6 @@ namespace Bunashibu.Kikan {
     }
 
     [SerializeField] private Text _text;
-    [SerializeField] SceneChanger _sceneChanger;
-
     [SerializeField] private float _timeSec;
   }
 }
