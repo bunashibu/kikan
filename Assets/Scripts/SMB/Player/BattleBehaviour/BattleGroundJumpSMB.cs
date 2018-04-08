@@ -5,8 +5,6 @@ using UnityEngine;
 namespace Bunashibu.Kikan {
   public class BattleGroundJumpSMB : StateMachineBehaviour {
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-      Debug.Log("Jump");
-
       if (_player == null)
         _player = animator.GetComponent<BattlePlayer>();
 

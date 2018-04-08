@@ -5,8 +5,6 @@ using UnityEngine;
 namespace Bunashibu.Kikan {
   public class BattleIdleSMB : StateMachineBehaviour {
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-      Debug.Log("Idle");
-
       if (_player == null)
         _player = animator.GetComponent<BattlePlayer>();
     }

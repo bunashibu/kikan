@@ -10,7 +10,7 @@ namespace Bunashibu.Kikan {
 
       _player.Rigid.isKinematic = true;
       _player.Rigid.velocity = new Vector2(0.0f, 0.0f);
-      //_player.FootCollider.isTrigger = true;
+      _player.FootCollider.isTrigger = true;
 
       _isTransferable = false;
     }
@@ -32,7 +32,7 @@ namespace Bunashibu.Kikan {
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
       _player.Rigid.isKinematic = false;
-      //_player.FootCollider.isTrigger = false;
+      _player.FootCollider.isTrigger = false;
     }
 
     private void LadderMove() {

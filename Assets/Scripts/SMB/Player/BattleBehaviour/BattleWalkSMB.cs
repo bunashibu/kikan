@@ -5,8 +5,6 @@ using UnityEngine;
 namespace Bunashibu.Kikan {
   public class BattleWalkSMB : StateMachineBehaviour {
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-      Debug.Log("Walk");
-
       if (_player == null)
         _player = animator.GetComponent<BattlePlayer>();
     }

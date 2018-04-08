@@ -15,8 +15,6 @@ namespace Bunashibu.Kikan {
 
       Action action = () => { _player.StateTransfer.TransitTo("Idle", animator); };
       _respawner.Respawn(action);
-
-      Debug.Log("Die");
     }
 
     private BattlePlayer _player;
