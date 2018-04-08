@@ -10,18 +10,27 @@ namespace Bunashibu.Kikan {
     }
 
     void Update() {
-      if (_timePanel.TimeSec <= 3)
+      if (_stageName == "Battle")
+        UpdateStage();
+    }
+
+    private void UpdateStage() {
+      if (_timePanel.TimeSec <= 3) {
         _stage.StartRotation();
+        _finalStage.Emerge();
+        _finalStage.StartRotation();
+      }
 
       if (_timePanel.TimeSec <= 0) {
-        _finalStage.Emerge();
         _stage.Hide();
+        _stageName = "FinalBattle";
       }
     }
 
     [SerializeField] private TimePanel _timePanel;
     [SerializeField] private Stage _stage;
     [SerializeField] private FinalStage _finalStage;
+    private string _stageName = "Battle";
   }
 }
 

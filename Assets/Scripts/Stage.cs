@@ -29,7 +29,6 @@ namespace Bunashibu.Kikan {
     }
 
     [SerializeField] private TimePanel _timePanel;
-    [SerializeField] private FinalStage _finalStage;
 
     [Header("Battle Time (Second)")]
     [SerializeField] private float _time;
