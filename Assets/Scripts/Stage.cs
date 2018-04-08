@@ -13,6 +13,11 @@ namespace Bunashibu.Kikan {
       if (_isRotating) {
         float step = _rotateSpeed * Time.deltaTime;
         transform.rotation = Quaternion.RotateTowards(transform.rotation, _destRotation, step);
+
+        if (transform.rotation == _destRotation) {
+          _isRotating = false;
+          Hide();
+        }
       }
     }
 

@@ -15,14 +15,10 @@ namespace Bunashibu.Kikan {
     }
 
     private void UpdateStage() {
-      if (_timePanel.TimeSec <= 3) {
+      if (_timePanel.TimeSec <= 0) {
         _stage.StartRotation();
         _finalStage.Emerge();
         _finalStage.StartRotation();
-      }
-
-      if (_timePanel.TimeSec <= 0) {
-        _stage.Hide();
         _stageName = "FinalBattle";
       }
     }

@@ -39,14 +39,14 @@ namespace Bunashibu.Kikan {
       float cameraViewWidth  = cameraViewTopRight.x - cameraViewTopLeft.x;
       float cameraViewHeight = cameraViewTopLeft.y - cameraViewBottomLeft.y;
 
-      float nextX = Mathf.Clamp(transform.position.x, _gameData.StageRect.xMin + cameraViewWidth/2, _gameData.StageRect.xMax - cameraViewWidth/2);
-      float nextY = Mathf.Clamp(transform.position.y, _gameData.StageRect.yMin + cameraViewHeight/2 - 2, _gameData.StageRect.yMax - cameraViewHeight/2); // -2 is bottom base sprite height.
+      float nextX = Mathf.Clamp(transform.position.x, _stageData.StageRect.xMin + cameraViewWidth/2, _stageData.StageRect.xMax - cameraViewWidth/2);
+      float nextY = Mathf.Clamp(transform.position.y, _stageData.StageRect.yMin + cameraViewHeight/2 - 2, _stageData.StageRect.yMax - cameraViewHeight/2); // -2 is bottom base sprite height.
 
       transform.position = new Vector3(nextX, nextY, transform.position.z);
     }
 
     [SerializeField] private Camera _camera;
-    [SerializeField] private GameData _gameData;
+    [SerializeField] private StageData _stageData;
     [SerializeField] private Vector3 _positionOffset;
     [SerializeField] private float _interpolateRatio;
     private bool _isTracking;

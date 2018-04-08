@@ -35,7 +35,7 @@ namespace Bunashibu.Kikan {
     }
 
     private void InstantiatePlayer(int n) {
-      var pos = _gameData.RespawnPosition;
+      var pos = _stageData.RespawnPosition;
 
       // INFO: Team 0 is Red(Right), Team 1 is Blue(Left)
       if ((int)PhotonNetwork.player.CustomProperties["Team"] == 1)
@@ -150,7 +150,7 @@ namespace Bunashibu.Kikan {
     [SerializeField] private GoldPanel _goldPanel;
     [SerializeField] private CorePanel _corePanel;
     [SerializeField] private List<SkillPanel> _skillPanelList;
-    [SerializeField] private GameData _gameData;
+    [SerializeField] private StageData _stageData;
     [SerializeField] private TrackCamera _trackCamera;
     [SerializeField] private Vector3 _initialCameraPosition;
     private BattlePlayer _player;

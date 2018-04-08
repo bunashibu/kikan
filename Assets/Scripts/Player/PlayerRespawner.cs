@@ -7,7 +7,7 @@ namespace Bunashibu.Kikan {
   public class PlayerRespawner : MonoBehaviour {
     public void Respawn(Action ActTransition) {
       MonoUtility.Instance.DelaySec((float)_player.Level.Lv, () => {
-        var pos = _gameData.RespawnPosition;
+        var pos = _stageData.RespawnPosition;
         if ((int)PhotonNetwork.player.CustomProperties["Team"] == 1)
           pos.x *= -1;
 
@@ -26,7 +26,7 @@ namespace Bunashibu.Kikan {
     }
 
     [SerializeField] private BattlePlayer _player;
-    [SerializeField] private GameData _gameData;
+    [SerializeField] private StageData _stageData;
   }
 }
 

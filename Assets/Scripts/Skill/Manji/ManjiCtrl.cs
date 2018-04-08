@@ -68,8 +68,8 @@ namespace Bunashibu.Kikan {
         estimatedPosition = new Vector2(skillUser.Transform.position.x, skillUser.Transform.position.y) + moveVector;
 
       if (IsOutOfArea(estimatedPosition)) {
-        estimatedPosition.x = Mathf.Clamp(estimatedPosition.x, _gameData.StageRect.xMin, _gameData.StageRect.xMax);
-        estimatedPosition.y = Mathf.Clamp(estimatedPosition.y, _gameData.StageRect.yMin, _gameData.StageRect.yMax);
+        estimatedPosition.x = Mathf.Clamp(estimatedPosition.x, _stageData.StageRect.xMin, _stageData.StageRect.xMax);
+        estimatedPosition.y = Mathf.Clamp(estimatedPosition.y, _stageData.StageRect.yMin, _stageData.StageRect.yMax);
       }
 
       skillUser.Transform.position = estimatedPosition;
@@ -113,8 +113,8 @@ namespace Bunashibu.Kikan {
         estimatedPosition = new Vector2(skillUser.Transform.position.x, skillUser.Transform.position.y) + moveVector;
 
       if (IsOutOfArea(estimatedPosition)) {
-        estimatedPosition.x = Mathf.Clamp(estimatedPosition.x, _gameData.StageRect.xMin, _gameData.StageRect.xMax);
-        estimatedPosition.y = Mathf.Clamp(estimatedPosition.y, _gameData.StageRect.yMin, _gameData.StageRect.yMax);
+        estimatedPosition.x = Mathf.Clamp(estimatedPosition.x, _stageData.StageRect.xMin, _stageData.StageRect.xMax);
+        estimatedPosition.y = Mathf.Clamp(estimatedPosition.y, _stageData.StageRect.yMin, _stageData.StageRect.yMax);
       }
 
       skillUser.Transform.position = estimatedPosition;
@@ -126,8 +126,8 @@ namespace Bunashibu.Kikan {
       var x = vector.x;
       var y = vector.y;
 
-      if (x < _gameData.StageRect.xMin || _gameData.StageRect.xMax < x ||
-          y < _gameData.StageRect.yMin || _gameData.StageRect.yMax < y)
+      if (x < _stageData.StageRect.xMin || _stageData.StageRect.xMax < x ||
+          y < _stageData.StageRect.yMin || _stageData.StageRect.yMax < y)
         return true;
 
       return false;
@@ -219,7 +219,7 @@ namespace Bunashibu.Kikan {
     [SerializeField] private LayerMask _groundLayer;
 
     [Space(10)]
-    [SerializeField] private GameData _gameData;
+    [SerializeField] private StageData _stageData;
 
     private float _moveDistance = 3;
 
