@@ -6,16 +6,21 @@ using UnityEngine.UI;
 namespace Bunashibu.Kikan {
   public class TimePanel : MonoBehaviour {
     void Update() {
-      _timeSec -= Time.deltaTime;
-      if (_timeSec < 0) {
-        Debug.Log("Go to Final Battle");
-      }
+      if (_time <= 0)
+        return;
 
+      _time -= Time.deltaTime;
       UpdateTimePanel();
     }
 
+    public int TimeSec { get { return (int)_time; } }
+
+    public void SetTime(float time) {
+      _time = time;
+    }
+
     private void UpdateTimePanel() {
-      var minSec = ConvertToMinSec((int)_timeSec);
+      var minSec = ConvertToMinSec((int)_time);
       int min = minSec[0];
       int sec = minSec[1];
 
@@ -34,7 +39,7 @@ namespace Bunashibu.Kikan {
     }
 
     [SerializeField] private Text _text;
-    [SerializeField] private float _timeSec;
+    private float _time;
   }
 }
 
