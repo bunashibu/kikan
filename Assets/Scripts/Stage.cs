@@ -5,8 +5,8 @@ using UnityEngine;
 namespace Bunashibu.Kikan {
   public class Stage : MonoBehaviour {
     void Awake() {
-      _destRotation = Quaternion.Euler(90, 0, 0);
       _timePanel.SetTime(_time);
+      _destRotation = Quaternion.Euler(90, 0, 0);
     }
 
     void Update() {
