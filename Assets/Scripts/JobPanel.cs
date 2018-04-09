@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 namespace Bunashibu.Kikan {
-  public class JobPicker : MonoBehaviour {
+  public class JobPanel : MonoBehaviour {
     void Start() {
       if ((int)PhotonNetwork.player.CustomProperties["Team"] == 1)
         _initialCameraPosition.x *= -1;
@@ -30,7 +30,6 @@ namespace Bunashibu.Kikan {
       InitPlayerMovement(n);
 
       DisableAllButtons();
-      Destroy(_camera);
       Destroy(gameObject);
     }
 
@@ -139,7 +138,6 @@ namespace Bunashibu.Kikan {
     }
 
     [SerializeField] private GameObject[] _jobs;
-    [SerializeField] private GameObject _camera;
     [SerializeField] private Button[] _buttons;
     [SerializeField] private JobStatus[] _jobData;
     [SerializeField] private Canvas _canvas;
