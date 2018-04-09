@@ -2287,7 +2287,7 @@ Transform:
   m_LocalScale: {x: 150, y: 78, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &187031007
 MeshRenderer:
@@ -3989,7 +3989,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4733332064185284, guid: 248d3d80d001f1144b51b737c7b7340e, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 114703579228180500, guid: 248d3d80d001f1144b51b737c7b7340e,
         type: 2}
@@ -4206,7 +4206,7 @@ RectTransform:
   - {fileID: 1238257286}
   - {fileID: 186525844}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -15627,7 +15627,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4606346956699928, guid: 9847c2dcde8c4bb4f8bf26bae08a15d2, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1958052727800552, guid: 9847c2dcde8c4bb4f8bf26bae08a15d2, type: 2}
       propertyPath: m_IsActive
@@ -20578,7 +20578,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1666928741
 GameObject:
@@ -22022,6 +22022,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3483310954c64ef4cb5124ffbe823566, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerInstantiator: {fileID: 1924150859}
+  _canvas: {fileID: 375732893}
   _jobs:
   - {fileID: 1222958424102090, guid: 86add1277fe664846b3404c1ba3d1a1d, type: 2}
   - {fileID: 1459901079173184, guid: bcfba8b479c481c4f95e19e4005fa1ba, type: 2}
@@ -22029,21 +22031,11 @@ MonoBehaviour:
   - {fileID: 502785835}
   - {fileID: 1628920479}
   - {fileID: 92540856}
-  _jobData:
+  _jobStatus:
   - {fileID: 11400000, guid: d4901d621e93d784fb9bb619c9dff702, type: 2}
   - {fileID: 11400000, guid: 04fff0473b3c2ca40b8cc82fcc70ad36, type: 2}
-  _canvas: {fileID: 375732893}
-  _hpBar: {fileID: 114000012113145708, guid: 39b62fe9619e9e44b99229f851890bf7, type: 2}
-  _expBar: {fileID: 114591676240663140, guid: 1dcf407e0a853d440845ca486f8e6523, type: 2}
-  _lvPanel: {fileID: 114578394497458258, guid: d354bc829ce1fa644b2a1f50e3fc1af9, type: 2}
-  _kdPanel: {fileID: 1953781252}
-  _goldPanel: {fileID: 889843195}
-  _corePanel: {fileID: 1331817296}
   _skillPanelList:
   - {fileID: 114676753519682904, guid: 62edf362464fdeb40b00bf4c6974958d, type: 2}
-  _stageData: {fileID: 11400000, guid: 79929a1e9bd66f4488365796315797b6, type: 2}
-  _trackCamera: {fileID: 1357867647}
-  _initialCameraPosition: {x: 29.54, y: 0.6, z: 0}
 --- !u!4 &1857252215
 Transform:
   m_ObjectHideFlags: 0
@@ -22973,6 +22965,55 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.512, y: 0.1}
   m_EdgeRadius: 0
+--- !u!1 &1924150858
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1924150860}
+  - component: {fileID: 1924150859}
+  m_Layer: 0
+  m_Name: PlayerInstantiator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1924150859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1924150858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034ead08f5956f2408c59f4d0bca0638, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hpBar: {fileID: 114000012113145708, guid: 39b62fe9619e9e44b99229f851890bf7, type: 2}
+  _expBar: {fileID: 114591676240663140, guid: 1dcf407e0a853d440845ca486f8e6523, type: 2}
+  _lvPanel: {fileID: 114578394497458258, guid: d354bc829ce1fa644b2a1f50e3fc1af9, type: 2}
+  _kdPanel: {fileID: 1953781252}
+  _corePanel: {fileID: 1331817296}
+  _goldPanel: {fileID: 889843195}
+  _stageData: {fileID: 11400000, guid: 79929a1e9bd66f4488365796315797b6, type: 2}
+  _trackCamera: {fileID: 1357867647}
+  _initialCameraPosition: {x: 29.54, y: 0.6, z: 0}
+--- !u!4 &1924150860
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1924150858}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1924336414
 GameObject:
   m_ObjectHideFlags: 0
