@@ -74,6 +74,10 @@ namespace Bunashibu.Kikan {
     }
 
     private void UpdateCT(int i) {
+      // temp
+      if (i == 0)
+        return;
+
       MonoUtility.Instance.DelaySec(_skillCT[i] / 17.0f, () => {
         // Memo: AlphaMask height == 55.0
         //       SkillPanel-Update-Count == 17.0
