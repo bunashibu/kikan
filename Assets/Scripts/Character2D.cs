@@ -50,8 +50,8 @@ namespace Bunashibu.Kikan {
       var x = _character.Transform.position.x;
       var y = _character.Transform.position.y;
 
-      if (x < _stageData.StageRect.xMin || _stageData.StageRect.xMax < x ||
-          y < _stageData.StageRect.yMin || _stageData.StageRect.yMax < y)
+      if (x < StageManager.Instance.StageData.StageRect.xMin || StageManager.Instance.StageData.StageRect.xMax < x ||
+          y < StageManager.Instance.StageData.StageRect.yMin || StageManager.Instance.StageData.StageRect.yMax < y)
         return true;
 
       return false;
@@ -62,7 +62,6 @@ namespace Bunashibu.Kikan {
     }
 
     [SerializeField] private LayerMask _groundMask;
-    [SerializeField] private StageData _stageData;
     private ICharacter _character;
   }
 }
