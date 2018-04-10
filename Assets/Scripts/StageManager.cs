@@ -6,7 +6,7 @@ namespace Bunashibu.Kikan {
   public class StageManager : MonoBehaviour {
     void Awake() {
       _stageName = "Battle";
-      StageData = Resources.Load("Data/Other/StageData") as StageData;
+      StageData = Resources.Load("Data/StageData/Battle") as StageData;
 
       _stage.Emerge();
       _finalStage.Hide();
@@ -23,6 +23,7 @@ namespace Bunashibu.Kikan {
         _finalStage.Emerge();
         _finalStage.StartRotation();
         _stageName = "FinalBattle";
+        StageData = Resources.Load("Data/StageData/FinalBattle") as StageData;
       }
     }
 
