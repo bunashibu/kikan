@@ -4,9 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace Bunashibu.Kikan {
-  public class JobPanel : MonoBehaviour {
+  public class JobPanel : Photon.PunBehaviour {
     void Start() {
-      //Destroy(gameObject, 10.0f);
+      DisableAllButtons();
+      UpdateMatchPlayerCount();
+    }
+
+    public override void OnPhotonPlayerConnected(PhotonPlayer player) {
+      UpdateMatchPlayerCount();
     }
 
     public void Pick(int n) {
@@ -15,7 +20,21 @@ namespace Bunashibu.Kikan {
       _playerInstantiator.InitAll(_jobStatus[n]);
 
       DisableAllButtons();
+
       Destroy(gameObject);
+      Destroy(_playerInstantiator.gameObject);
+    }
+
+    private void UpdateMatchPlayerCount() {
+      int matchPlayerCount = (int)PhotonNetwork.room.CustomProperties["PlayerNum"];
+
+      if (PhotonNetwork.room.playerCount == matchPlayerCount)
+        EnableAllButtons();
+    }
+
+    private void EnableAllButtons() {
+      foreach (Button button in _buttons)
+        button.interactable = true;
     }
 
     private void DisableAllButtons() {

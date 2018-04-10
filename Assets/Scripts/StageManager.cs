@@ -5,6 +5,9 @@ using UnityEngine;
 namespace Bunashibu.Kikan {
   public class StageManager : MonoBehaviour {
     void Awake() {
+      _stageName = "Battle";
+      StageData = Resources.Load("Data/Other/StageData") as StageData;
+
       _stage.Emerge();
       _finalStage.Hide();
     }
@@ -23,10 +26,12 @@ namespace Bunashibu.Kikan {
       }
     }
 
+    public StageData StageData { get; private set; }
+
     [SerializeField] private TimePanel _timePanel;
     [SerializeField] private Stage _stage;
     [SerializeField] private FinalStage _finalStage;
-    private string _stageName = "Battle";
+    private string _stageName;
   }
 }
 
