@@ -24,15 +24,15 @@ namespace Bunashibu.Kikan {
           return;
         }
 
-        bool notEnoughGold = (_player.Gold.Cur <= _coreList[i].Gold);
-        if (notEnoughGold) {
-          Debug.Log("You don't have enough gold");
-          return;
-        }
-
         bool isMaxLevel = (_coreList[i].Level == MaxCoreLevel);
         if (isMaxLevel) {
           Debug.Log("Your core level is already max");
+          return;
+        }
+
+        bool notEnoughGold = (_player.Gold.Cur <= _coreList[i].Gold);
+        if (notEnoughGold) {
+          Debug.Log("You don't have enough gold");
           return;
         }
 
