@@ -11,6 +11,10 @@ namespace Bunashibu.Kikan {
       _enemy.BodyCollider.enabled = false;
       _enemy.AI.enabled = false;
 
+      // Probably this process should not be here...
+      if (StageManager.Instance.StageName == "FinalBattle")
+        return;
+
       if (PhotonNetwork.player.IsMasterClient)
         _enemy.PopulationObserver.IntervalReplenishPopulation(_enemy);
     }
