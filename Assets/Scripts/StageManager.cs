@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Bunashibu.Kikan {
   public class StageManager : SingletonMonoBehaviour<StageManager> {
     void Awake() {
-      _stageName = "Battle";
+      StageName = "Battle";
       StageData = Resources.Load("Data/StageData/Battle") as StageData;
 
       _stage.Emerge();
@@ -13,7 +13,7 @@ namespace Bunashibu.Kikan {
     }
 
     void Update() {
-      if (_stageName == "Battle")
+      if (StageName == "Battle")
         UpdateStage();
     }
 
@@ -22,17 +22,17 @@ namespace Bunashibu.Kikan {
         _stage.StartRotation();
         _finalStage.Emerge();
         _finalStage.StartRotation();
-        _stageName = "FinalBattle";
+        StageName = "FinalBattle";
         StageData = Resources.Load("Data/StageData/FinalBattle") as StageData;
       }
     }
 
     public StageData StageData { get; private set; }
+    public string    StageName { get; private set; }
 
     [SerializeField] private TimePanel _timePanel;
     [SerializeField] private Stage _stage;
     [SerializeField] private FinalStage _finalStage;
-    private string _stageName;
   }
 }
 

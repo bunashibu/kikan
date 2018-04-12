@@ -17,12 +17,13 @@ namespace Bunashibu.Kikan {
       float seedX = enemy.transform.position.x;
 
       MonoUtility.Instance.DelaySec(_intervalSec, () => {
-        _spawnerList[index].NetworkSpawn(this, seedX);
+        if (StageManager.Instance.StageName == "Battle")
+          _spawnerList[index].NetworkSpawn(this, seedX);
       });
     }
 
     // Compare Enemy's foot with Ground
-    public int GetNearestSpawnerIndex(Vector3 pos, float offsetY) {
+    private int GetNearestSpawnerIndex(Vector3 pos, float offsetY) {
       var list = _spawnerList.Where(spawner => spawner.SpawnArea.IsInRange(pos.x));
 
       var distance = list.Min(spawner =>
