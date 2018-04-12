@@ -34,12 +34,13 @@ namespace Bunashibu.Kikan {
     }
 
     private void ResetPlayerStatus() {
-      Debug.Log("Reset Status");
       int viewID = (int)PhotonNetwork.player.CustomProperties["ViewID"];
       var player = PhotonView.Find(viewID).GetComponent<BattlePlayer>() as BattlePlayer;
 
       player.Hp.FullRecover();
       player.Hp.UpdateView();
+
+      player.Weapon.SkillInstantiator.ResetAllCT();
     }
 
     [SerializeField] private TimePanel _timePanel;

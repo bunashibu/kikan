@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Assertions;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -26,6 +27,20 @@ namespace Bunashibu.Kikan {
     public void OverwritableDelaySec(float sec, string keyName, Action action) {
       if (_coroutineDictionary.ContainsKey(keyName))
         StopCoroutine(_coroutineDictionary[keyName]);
+
+      _coroutineDictionary[keyName] = ImplDelaySec(sec, action);
+      StartCoroutine(_coroutineDictionary[keyName]);
+    }
+
+    public void StoppableDelaySec(float sec, bool shouldStop, string keyName, Action action) {
+      if (shouldStop) {
+        if (!_coroutineDictionary.ContainsKey(keyName))
+          return;
+
+        StopCoroutine(_coroutineDictionary[keyName]);
+        _coroutineDictionary.Remove(keyName);
+        return;
+      }
 
       _coroutineDictionary[keyName] = ImplDelaySec(sec, action);
       StartCoroutine(_coroutineDictionary[keyName]);
