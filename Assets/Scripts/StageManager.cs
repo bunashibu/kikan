@@ -19,11 +19,13 @@ namespace Bunashibu.Kikan {
 
     private void UpdateStage() {
       if (_timePanel.TimeSec <= 0) {
+        StageName = "FinalBattle";
+        StageData = Resources.Load("Data/StageData/FinalBattle") as StageData;
+
         _stage.StartRotation();
         _finalStage.Emerge();
         _finalStage.StartRotation();
-        StageName = "FinalBattle";
-        StageData = Resources.Load("Data/StageData/FinalBattle") as StageData;
+        _finalStage.GatherPlayer();
       }
     }
 

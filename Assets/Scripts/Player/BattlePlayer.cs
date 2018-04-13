@@ -45,6 +45,8 @@ namespace Bunashibu.Kikan {
     public NameBackground NameBackground { get { return _nameBackground; } }
     public PopupRemark    PopupRemark    { get { return _popupRemark;    } }
 
+    public Character2D    Character { get { return _character; } }
+
     //
     // Consider
     //
@@ -97,6 +99,9 @@ namespace Bunashibu.Kikan {
     [Header("Canvas")]
     [SerializeField] private NameBackground _nameBackground;
     [SerializeField] private PopupRemark    _popupRemark;
+
+    [Space(10)]
+    [SerializeField] private Character2D _character;
 
     [Space(10)]
     [SerializeField] private PlayerStatus _status;

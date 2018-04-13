@@ -11,7 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 281fcac925c3610499f849ff715832ee, type: 3}
   m_Name: FinalBattle
   m_EditorClassIdentifier: 
-  _respawnPosition: {x: 0, y: 4.1, z: 0}
+  _respawnPosition: {x: 10.6, y: 7, z: 0}
+  _resetPosition: {x: 0, y: 4.1, z: 0}
   _stageRect:
     serializedVersion: 2
     x: -17.3

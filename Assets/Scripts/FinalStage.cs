@@ -13,6 +13,8 @@ namespace Bunashibu.Kikan {
         float step = _rotateSpeed * Time.deltaTime;
         transform.rotation = Quaternion.RotateTowards(transform.rotation, _destRotation, step);
 
+        GatherPlayer();
+
         if (transform.rotation == _destRotation) {
           _isRotating = false;
           _timePanel.SetTime(_time);
@@ -21,8 +23,25 @@ namespace Bunashibu.Kikan {
       }
     }
 
+    public void GatherPlayer() {
+      _player.Rigid.simulated = false;
+      _player.Character.enabled = false;
+
+      _player.Transform.position = _easing.GetNextPosition();
+    }
+
     public void Emerge() {
       gameObject.SetActive(true);
+
+      int viewID = (int)PhotonNetwork.player.CustomProperties["ViewID"];
+      _player = PhotonView.Find(viewID).GetComponent<BattlePlayer>() as BattlePlayer;
+
+      Vector3 startPosition = _player.Transform.position;
+      Vector3 gatherPosition = StageManager.Instance.StageData.RespawnPosition;
+      if (_player.PlayerInfo.Team == 1)
+        gatherPosition.x *= -1;
+
+      _easing = new QuadraticEaseInOut(startPosition, gatherPosition, 3.0f);
     }
 
     public void Hide() {
@@ -34,13 +53,13 @@ namespace Bunashibu.Kikan {
     }
 
     private void ResetPlayerStatus() {
-      int viewID = (int)PhotonNetwork.player.CustomProperties["ViewID"];
-      var player = PhotonView.Find(viewID).GetComponent<BattlePlayer>() as BattlePlayer;
+      _player.Rigid.simulated = true;
+      _player.Character.enabled = true;
 
-      player.Hp.FullRecover();
-      player.Hp.UpdateView();
+      _player.Hp.FullRecover();
+      _player.Hp.UpdateView();
 
-      player.Weapon.SkillInstantiator.ResetAllCT();
+      _player.Weapon.SkillInstantiator.ResetAllCT();
     }
 
     [SerializeField] private TimePanel _timePanel;
@@ -53,6 +72,8 @@ namespace Bunashibu.Kikan {
 
     private Quaternion _destRotation;
     private bool _isRotating;
+    private BattlePlayer _player;
+    private QuadraticEaseInOut _easing;
   }
 }
 

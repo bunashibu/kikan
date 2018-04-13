@@ -58,7 +58,7 @@ namespace Bunashibu.Kikan {
     }
 
     private void AdjustPosition() {
-      _character.Transform.position = StageManager.Instance.StageData.RespawnPosition;
+      _character.Transform.position = StageManager.Instance.StageData.ResetPosition;
     }
 
     [SerializeField] private LayerMask _groundMask;

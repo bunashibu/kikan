@@ -11,6 +11,12 @@ namespace Bunashibu.Kikan {
       }
     }
 
+    public Vector3 ResetPosition {
+      get {
+        return _resetPosition;
+      }
+    }
+
     public Rect StageRect {
       get {
         return _stageRect;
@@ -18,6 +24,7 @@ namespace Bunashibu.Kikan {
     }
 
     [SerializeField] private Vector3 _respawnPosition;
+    [SerializeField] private Vector3 _resetPosition;
     [SerializeField] private Rect _stageRect;
   }
 }
