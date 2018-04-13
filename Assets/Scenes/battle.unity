@@ -24113,6 +24113,7 @@ MonoBehaviour:
   _timePanel: {fileID: 422559152}
   _time: 120
   _rotateSpeed: 30
+  _camera: {fileID: 1357867647}
 --- !u!1 &2013363063
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,6 +4,10 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   public class TrackCamera : MonoBehaviour {
+    void Awake() {
+      _shouldRestrict = true;
+    }
+
     void Update() {
       if (!_isTracking)
         return;
@@ -12,7 +16,9 @@ namespace Bunashibu.Kikan {
 
       if (transform.position != trackPosition) {
         InterpolateTo(trackPosition);
-        RestrictEdgeBehaviour();
+
+        if (_shouldRestrict)
+          RestrictEdgeBehaviour();
       }
     }
 
@@ -24,6 +30,24 @@ namespace Bunashibu.Kikan {
       _trackObj = trackObj;
       _isTracking = true;
     }
+
+    public void EnableTracking() {
+      _isTracking = true;
+    }
+
+    public void DisableTracking() {
+      _isTracking = false;
+    }
+
+    public void EnableRestrict() {
+      _shouldRestrict = true;
+    }
+
+    public void DisableRestrict() {
+      _shouldRestrict = false;
+    }
+
+    public float OffsetZ { get { return _positionOffset.z; } }
 
     private void InterpolateTo(Vector3 destination) {
       Vector3 interpolatedPosition = transform.position * _interpolateRatio + destination * (1.0f - _interpolateRatio);
@@ -49,6 +73,7 @@ namespace Bunashibu.Kikan {
     [SerializeField] private Vector3 _positionOffset;
     [SerializeField] private float _interpolateRatio;
     private bool _isTracking;
+    private bool _shouldRestrict;
     private GameObject _trackObj;
   }
 }
