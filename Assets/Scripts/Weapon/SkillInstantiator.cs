@@ -44,12 +44,6 @@ namespace Bunashibu.Kikan {
           var preSizeDelta = _panelUnitList[i].AlphaRectTransform.sizeDelta;
           _panelUnitList[i].AlphaRectTransform.sizeDelta = new Vector2(preSizeDelta.x, 0);
         }
-
-        string indexStr = i.ToString();
-        MonoUtility.Instance.Stop("SkillCanUse" + indexStr);
-        MonoUtility.Instance.Stop("SkillInfoState" + indexStr);
-        MonoUtility.Instance.Stop("PlayerStateRigor" + indexStr);
-        MonoUtility.Instance.Stop("SkillPanelAlpha" + indexStr);
       }
     }
 

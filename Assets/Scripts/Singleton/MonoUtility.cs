@@ -45,6 +45,13 @@ namespace Bunashibu.Kikan {
       _coroutineDictionary.Remove(keyName);
     }
 
+    public void StopAll() {
+      foreach (IEnumerator coroutine in _coroutineDictionary.Values)
+        StopCoroutine(coroutine);
+
+      _coroutineDictionary = new Dictionary<string, IEnumerator>();
+    }
+
     public static List<T> ToList<T>(T[] ary) {
       var list = new List<T>();
 

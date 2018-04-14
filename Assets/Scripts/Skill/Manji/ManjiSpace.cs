@@ -27,7 +27,7 @@ namespace Bunashibu.Kikan {
 
       skillUser.Status.MultipleMulCorrectionAtk(powerRatio);
 
-      MonoUtility.Instance.DelaySec(20.0f, () => {
+      MonoUtility.Instance.StoppableDelaySec(20.0f, "ManjiSpace" + GetInstanceID().ToString(), () => {
         skillUser.Movement.SetMoveForce(skillUser.Status.Spd);
         skillUser.Movement.SetJumpForce(skillUser.Status.Jmp);
 
@@ -41,7 +41,7 @@ namespace Bunashibu.Kikan {
       var buff = PhotonNetwork.Instantiate("Prefabs/Skill/Manji/SpaceBuff", Vector3.zero, Quaternion.identity, 0).GetComponent<ParentSetter>() as ParentSetter;
       buff.SetParent(skillUser.PhotonView.viewID);
 
-      MonoUtility.Instance.DelaySec(20.0f, () => {
+      MonoUtility.Instance.StoppableDelaySec(20.0f, "ManjiBuff", () => {
           PhotonNetwork.Destroy(buff.gameObject);
       });
     }
