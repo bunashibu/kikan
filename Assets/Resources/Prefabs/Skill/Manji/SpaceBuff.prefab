@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114609385268279946}
   - component: {fileID: 114869149391462112}
   - component: {fileID: 114900079291591754}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: SpaceBuff
   m_TagString: Untagged
   m_Icon: {fileID: 0}

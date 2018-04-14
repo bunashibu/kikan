@@ -28,10 +28,12 @@ namespace Bunashibu.Kikan {
       }
     }
 
+    public SkillReference SkillReference { get { return _skillReference; } }
     public StageData StageData { get; private set; }
     public string    StageName { get; private set; }
 
     [SerializeField] private TimePanel _timePanel;
+    [SerializeField] private SkillReference _skillReference;
     [SerializeField] private Stage _stage;
     [SerializeField] private FinalStage _finalStage;
   }

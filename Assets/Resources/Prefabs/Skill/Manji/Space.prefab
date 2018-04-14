@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114709107417150014}
   - component: {fileID: 114050465660684916}
   - component: {fileID: 114485068409606656}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Space
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137,10 +137,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a84d68d913df9e4fa73614b34fa5670, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _skillPower: 0
-  _maxDeviation: 0
-  _targetNum: 0
-  _dupHitNum: 0
 --- !u!114 &114709107417150014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -199,7 +195,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 950836439
-  m_SortingLayer: 8
+  m_SortingLayer: 12
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

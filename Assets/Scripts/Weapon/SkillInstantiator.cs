@@ -68,6 +68,8 @@ namespace Bunashibu.Kikan {
 
       var skill = PhotonNetwork.Instantiate(path, pos, Quaternion.identity, 0).GetComponent<Skill>();
       skill.Init(_renderer.flipX, _player.PhotonView.viewID);
+
+      StageManager.Instance.SkillReference.Register(skill);
     }
 
     private void StartCT(int i) {

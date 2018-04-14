@@ -15501,6 +15501,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1203923080}
   - component: {fileID: 1203923079}
+  - component: {fileID: 1203923081}
   m_Layer: 0
   m_Name: StageManager
   m_TagString: Untagged
@@ -15520,6 +15521,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timePanel: {fileID: 422559152}
+  _skillReference: {fileID: 1203923081}
   _stage: {fileID: 1737448455}
   _finalStage: {fileID: 2008166472}
 --- !u!4 &1203923080
@@ -15537,6 +15539,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1203923081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1203923078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b70512a145cd18b49b94e178de80161b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1209026006
 GameObject:
   m_ObjectHideFlags: 0
@@ -21272,9 +21285,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timePanel: {fileID: 422559152}
-  _time: 60
+  _time: 17
   _rotateSpeed: 30
-  _enemyPopulationObserverList: []
 --- !u!1 &1757445202
 GameObject:
   m_ObjectHideFlags: 0

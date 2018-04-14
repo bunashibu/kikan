@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114528716700749216}
   - component: {fileID: 114684988666895266}
   - component: {fileID: 114247651202264512}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,6 @@ MonoBehaviour:
   _groundLayer:
     serializedVersion: 2
     m_Bits: 33024
-  _stageData: {fileID: 11400000, guid: 79929a1e9bd66f4488365796315797b6, type: 2}
 --- !u!114 &114528716700749216
 MonoBehaviour:
   m_ObjectHideFlags: 1

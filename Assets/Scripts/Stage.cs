@@ -41,9 +41,6 @@ namespace Bunashibu.Kikan {
     [Header("Rotation per second")]
     [SerializeField] private float _rotateSpeed;
 
-    [Header("Enemy Population Observer List")]
-    [SerializeField] private List<EnemyPopulationObserver> _enemyPopulationObserverList;
-
     private Quaternion _destRotation;
     private bool _isRotating;
   }

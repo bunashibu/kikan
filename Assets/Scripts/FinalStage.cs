@@ -35,6 +35,8 @@ namespace Bunashibu.Kikan {
       _camera.DisableTracking();
       _camera.DisableRestrict();
 
+      StageManager.Instance.SkillReference.DeleteAll();
+
       PrepareEasing();
     }
 
