@@ -25,7 +25,6 @@ namespace Bunashibu.Kikan {
         _stage.StartRotation();
         _finalStage.Emerge();
         _finalStage.StartRotation();
-        _finalStage.GatherPlayer();
       }
     }
 

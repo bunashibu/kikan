@@ -10,9 +10,7 @@ namespace Bunashibu.Kikan {
 
     void Update() {
       if (_isRotating) {
-        float step = _rotateSpeed * Time.deltaTime;
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, _destRotation, step);
-
+        Rotate();
         GatherPlayer();
 
         if (transform.rotation == _destRotation) {
@@ -24,31 +22,20 @@ namespace Bunashibu.Kikan {
       }
     }
 
-    public void GatherPlayer() {
-      _player.Rigid.simulated = false;
-      _player.Character.enabled = false;
-
-      _player.Transform.position = _easing.GetNextPosition();
-      _camera.transform.position = _easingCamera.GetNextPosition();
-    }
-
     public void Emerge() {
       gameObject.SetActive(true);
-
-      _camera.DisableTracking();
-      _camera.DisableRestrict();
 
       int viewID = (int)PhotonNetwork.player.CustomProperties["ViewID"];
       _player = PhotonView.Find(viewID).GetComponent<BattlePlayer>() as BattlePlayer;
 
-      Vector3 startPosition = _player.Transform.position;
-      Vector3 startCameraPosition = _camera.transform.position;
-      Vector3 gatherPosition = StageManager.Instance.StageData.RespawnPosition;
-      if (_player.PlayerInfo.Team == 1)
-        gatherPosition.x *= -1;
+      _player.Rigid.simulated = false;
+      _player.Character.enabled = false;
+      _player.Weapon.SkillInstantiator.enabled = false;
 
-      _easing = new QuadraticEaseInOut(startPosition, gatherPosition, 3.0f);
-      _easingCamera = new QuadraticEaseInOut(startCameraPosition, gatherPosition + new Vector3(0, 0, _camera.OffsetZ), 3.0f);
+      _camera.DisableTracking();
+      _camera.DisableRestrict();
+
+      PrepareEasing();
     }
 
     public void Hide() {
@@ -59,9 +46,31 @@ namespace Bunashibu.Kikan {
       _isRotating = true;
     }
 
+    private void PrepareEasing() {
+      Vector3 startPosition = _player.Transform.position;
+      Vector3 startCameraPosition = _camera.transform.position;
+      Vector3 gatherPosition = StageManager.Instance.StageData.RespawnPosition;
+      if (_player.PlayerInfo.Team == 1)
+        gatherPosition.x *= -1;
+
+      _easing = new QuadraticEaseInOut(startPosition, gatherPosition, 3.0f);
+      _easingCamera = new QuadraticEaseInOut(startCameraPosition, gatherPosition + new Vector3(0, 0, _camera.OffsetZ), 3.0f);
+    }
+
+    private void Rotate() {
+      float step = _rotateSpeed * Time.deltaTime;
+      transform.rotation = Quaternion.RotateTowards(transform.rotation, _destRotation, step);
+    }
+
+    private void GatherPlayer() {
+      _player.Transform.position = _easing.GetNextPosition();
+      _camera.transform.position = _easingCamera.GetNextPosition();
+    }
+
     private void ResetPlayerStatus() {
       _player.Rigid.simulated = true;
       _player.Character.enabled = true;
+      _player.Weapon.SkillInstantiator.enabled = true;
 
       _player.Hp.FullRecover();
       _player.Hp.UpdateView();
