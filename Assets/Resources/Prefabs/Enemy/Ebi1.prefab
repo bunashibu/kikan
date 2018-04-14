@@ -345,7 +345,7 @@ MonoBehaviour:
   _animator: {fileID: 95534193194726840}
   _observer: {fileID: 114408830905809988}
   _numberPopupEnvironment: {fileID: 114174430385108528}
-  _killExp: 30
+  _killExp: 3000
   _killGold: 4500
   _ai: {fileID: 114050103650658040}
   _hpBar: {fileID: 114530795779077986}
@@ -589,7 +589,6 @@ MonoBehaviour:
   _groundMask:
     serializedVersion: 2
     m_Bits: 33024
-  _stageData: {fileID: 11400000, guid: 79929a1e9bd66f4488365796315797b6, type: 2}
 --- !u!114 &114674547745194320
 MonoBehaviour:
   m_ObjectHideFlags: 1

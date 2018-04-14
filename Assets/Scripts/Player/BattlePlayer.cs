@@ -8,7 +8,7 @@ namespace Bunashibu.Kikan {
     void Awake() {
       Movement      = new BattlePlayerMovement(_core);
       State         = new CharacterState(_ladderCollider, _footCollider);
-      BuffState     = new BuffState();
+      BuffState     = new BuffState(Observer);
       Hp            = new PlayerHp(this, _hpTable, _worldHpBar);
       StateTransfer = new StateTransfer(_initState, _animator);
       SkillInfo     = new SkillInfo();

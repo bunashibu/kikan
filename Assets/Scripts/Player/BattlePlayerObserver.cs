@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Assertions;
 
 namespace Bunashibu.Kikan {
-  public class BattlePlayerObserver : MonoBehaviour {
+  public class BattlePlayerObserver : MonoBehaviour, IBuffObserver {
     void Awake() {
       _shouldSync = new Dictionary<string, bool>();
 
@@ -14,6 +14,8 @@ namespace Bunashibu.Kikan {
       _shouldSync.Add("MaxHp"        , false);
       _shouldSync.Add("UpdateHpView" , false);
       _shouldSync.Add("Team"         , false);
+      _shouldSync.Add("Buff"         , false);
+      _shouldSync.Add("BuffStun"     , false);
     }
 
     public bool ShouldSync(string key) {
@@ -44,6 +46,10 @@ namespace Bunashibu.Kikan {
     }
 
     /* Buff */
+    public void SyncBuff() {
+      _player.PhotonView.RPC("SyncBuffRPC", PhotonTargets.Others, _player.BuffState.Stun, _player.BuffState.Slow, _player.BuffState.Heavy);
+    }
+
     public void SyncStun() {
       _player.PhotonView.RPC("SyncStunRPC", PhotonTargets.Others, _player.BuffState.Stun);
     }
@@ -82,8 +88,13 @@ namespace Bunashibu.Kikan {
 
     /* Buff RPC */
     [PunRPC]
-    private void SyncStunRPC(bool state) {
-      _player.BuffState.Stun = state;
+    private void SyncBuffRPC(bool stun, bool slow, bool heavy) {
+      ForceSync("Buff", () => _player.BuffState.ForceSync(stun, slow, heavy));
+    }
+
+    [PunRPC]
+    private void SyncStunRPC(bool stun) {
+      ForceSync("BuffStun", () => _player.BuffState.ForceSyncStun(stun));
     }
 
     /* Other */

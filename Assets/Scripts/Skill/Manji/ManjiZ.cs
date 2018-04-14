@@ -33,7 +33,7 @@ namespace Bunashibu.Kikan {
 
       if (IsCorrectAttackPlayer(target, skillUser)) {
         DamageToPlayer(target, skillUser);
-        StunPlayer(target);
+        target.BuffState.ToBeStun(_stunSec);
         target.NumberPopupEnvironment.Popup(_damageCalculator.Damage, _damageCalculator.IsCritical, skillUser.DamageSkin.Id, PopupType.Player);
 
         if (target.Hp.Cur <= 0)
@@ -47,33 +47,12 @@ namespace Bunashibu.Kikan {
 
       if (IsCorrectAttackEnemy(target)) {
         DamageToEnemy(target, skillUser);
-        StunEnemy(target);
+        target.BuffState.ToBeStun(_stunSec);
         target.NumberPopupEnvironment.Popup(_damageCalculator.Damage, _damageCalculator.IsCritical, skillUser.DamageSkin.Id, PopupType.Enemy);
 
         if (target.Hp.Cur <= 0)
           ProceedEnemyDeath(target, skillUser);
       }
-    }
-
-    private void StunPlayer(BattlePlayer player) {
-      player.BuffState.Stun = true;
-      player.Observer.SyncStun();
-
-      MonoUtility.Instance.DelaySec(_stunSec, () => {
-        player.BuffState.Stun = false;
-        player.Observer.SyncStun();
-      });
-    }
-
-    private void StunEnemy(Enemy enemy) {
-      enemy.BuffState.Stun = true;
-      enemy.Observer.SyncStun();
-
-      MonoUtility.Instance.DelaySec(_stunSec, () => {
-        enemy.BuffState.Stun = false;
-        enemy.Observer.SyncStun();
-      });
-
     }
 
     private bool IsCorrectAttackPlayer(BattlePlayer target, BattlePlayer skillUser) {

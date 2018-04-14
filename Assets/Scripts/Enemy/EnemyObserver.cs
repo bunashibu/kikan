@@ -5,12 +5,14 @@ using UnityEngine;
 using UnityEngine.Assertions;
 
 namespace Bunashibu.Kikan {
-  public class EnemyObserver : MonoBehaviour {
+  public class EnemyObserver : MonoBehaviour, IBuffObserver {
     void Awake() {
       _shouldSync = new Dictionary<string, bool>();
 
       _shouldSync.Add("CurHp"        , false);
       _shouldSync.Add("UpdateHpView" , false);
+      _shouldSync.Add("Buff"         , false);
+      _shouldSync.Add("BuffStun"     , false);
     }
 
     public bool ShouldSync(string key) {
@@ -24,6 +26,10 @@ namespace Bunashibu.Kikan {
 
     public void SyncUpdateHpView(PhotonPlayer skillOwner) {
       _enemy.PhotonView.RPC("SyncUpdateHpViewRPC", PhotonTargets.All, skillOwner);
+    }
+
+    public void SyncBuff() {
+      _enemy.PhotonView.RPC("SyncBuffRPC", PhotonTargets.Others, _enemy.BuffState.Stun, _enemy.BuffState.Slow, _enemy.BuffState.Heavy);
     }
 
     public void SyncStun() {
@@ -41,8 +47,13 @@ namespace Bunashibu.Kikan {
     }
 
     [PunRPC]
-    private void SyncStunRPC(bool state) {
-      _enemy.BuffState.Stun = state;
+    private void SyncBuffRPC(bool stun, bool slow, bool heavy) {
+      ForceSync("Buff", () => _enemy.BuffState.ForceSync(stun, slow, heavy));
+    }
+
+    [PunRPC]
+    private void SyncStunRPC(bool stun) {
+      ForceSync("BuffStun", () => _enemy.BuffState.ForceSyncStun(stun));
     }
 
     private void ForceSync(string key, Action action) {

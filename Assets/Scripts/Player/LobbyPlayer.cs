@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   [RequireComponent(typeof(Character2D))]
-  public class LobbyPlayer : Photon.MonoBehaviour, ICharacter {
+  public class LobbyPlayer : Photon.MonoBehaviour { //, ICharacter {
     void Awake() {
       Movement      = new LobbyPlayerMovement();
       State         = new CharacterState(_ladderCollider, _footCollider);
-      BuffState     = new BuffState();
+      //BuffState     = new BuffState();
       StateTransfer = new StateTransfer(_initState, _animator);
       SkillInfo     = new SkillInfo();
 
@@ -30,7 +30,7 @@ namespace Bunashibu.Kikan {
 
     public LobbyPlayerMovement Movement      { get; private set; }
     public CharacterState      State         { get; private set; }
-    public BuffState           BuffState     { get; private set; }
+    //public BuffState           BuffState     { get; private set; }
     public StateTransfer       StateTransfer { get; private set; }
     public SkillInfo           SkillInfo     { get; private set; }
 
