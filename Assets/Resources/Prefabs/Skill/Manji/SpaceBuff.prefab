@@ -21,9 +21,10 @@ GameObject:
   - component: {fileID: 4977557606961110}
   - component: {fileID: 212469451525082106}
   - component: {fileID: 95741890615562052}
-  - component: {fileID: 114609385268279946}
   - component: {fileID: 114869149391462112}
   - component: {fileID: 114900079291591754}
+  - component: {fileID: 114992145058415476}
+  - component: {fileID: 114609385268279946}
   m_Layer: 18
   m_Name: SpaceBuff
   m_TagString: Untagged
@@ -163,6 +164,18 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
+--- !u!114 &114992145058415476
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1070949912443234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51822a018f827de45a8fec757e015cd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _parentSetter: {fileID: 114609385268279946}
 --- !u!212 &212469451525082106
 SpriteRenderer:
   m_ObjectHideFlags: 1
