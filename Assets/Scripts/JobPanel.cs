@@ -48,7 +48,6 @@ namespace Bunashibu.Kikan {
     [SerializeField] private Button[] _buttons;
     [SerializeField] private JobStatus[] _jobStatus;
     [SerializeField] private List<SkillPanel> _skillPanelList;
-
   }
 }
 
