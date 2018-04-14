@@ -46,10 +46,10 @@ namespace Bunashibu.Kikan {
         }
 
         string indexStr = i.ToString();
-        MonoUtility.Instance.StoppableDelaySec(0, true, "SkillCanUse" + indexStr, () => {});
-        MonoUtility.Instance.StoppableDelaySec(0, true, "SkillInfoState" + indexStr, () => {});
-        MonoUtility.Instance.StoppableDelaySec(0, true, "PlayerStateRigor" + indexStr, () => {});
-        MonoUtility.Instance.StoppableDelaySec(0, true, "SkillPanelAlpha" + indexStr, () => {});
+        MonoUtility.Instance.Stop("SkillCanUse" + indexStr);
+        MonoUtility.Instance.Stop("SkillInfoState" + indexStr);
+        MonoUtility.Instance.Stop("PlayerStateRigor" + indexStr);
+        MonoUtility.Instance.Stop("SkillPanelAlpha" + indexStr);
       }
     }
 
@@ -72,7 +72,7 @@ namespace Bunashibu.Kikan {
 
     private void StartCT(int i) {
       _canUseList[i] = false;
-      MonoUtility.Instance.StoppableDelaySec(_skillCT[i], false, "SkillCanUse" + i.ToString(), () => {
+      MonoUtility.Instance.StoppableDelaySec(_skillCT[i], "SkillCanUse" + i.ToString(), () => {
         _canUseList[i] = true;
       });
 
@@ -81,12 +81,12 @@ namespace Bunashibu.Kikan {
         _panelUnitList[i].AlphaRectTransform.sizeDelta = new Vector2(55.0f, 55.0f);
 
       _player.SkillInfo.SetState(_names[i], SkillState.Using);
-      MonoUtility.Instance.StoppableDelaySec(_skillCT[i], false, "SkillInfoState" + i.ToString(), () => {
+      MonoUtility.Instance.StoppableDelaySec(_skillCT[i], "SkillInfoState" + i.ToString(), () => {
         _player.SkillInfo.SetState(_names[i], SkillState.Ready);
       });
 
       _player.State.Rigor = true;
-      MonoUtility.Instance.StoppableDelaySec(_rigorCT[i], false, "PlayerStateRigor" + i.ToString(), () => {
+      MonoUtility.Instance.StoppableDelaySec(_rigorCT[i], "PlayerStateRigor" + i.ToString(), () => {
         _player.State.Rigor = false;
         _player.SkillInfo.SetState(_names[i], SkillState.Used);
       });
@@ -97,7 +97,7 @@ namespace Bunashibu.Kikan {
       if (i == 0)
         return;
 
-      MonoUtility.Instance.StoppableDelaySec(_skillCT[i] / 17.0f, false, "SkillPanelAlpha" + i.ToString(), () => {
+      MonoUtility.Instance.StoppableDelaySec(_skillCT[i] / 17.0f, "SkillPanelAlpha" + i.ToString(), () => {
         // Memo: AlphaMask height == 55.0
         //       SkillPanel-Update-Count == 17.0
         var preSizeDelta = _panelUnitList[i].AlphaRectTransform.sizeDelta;

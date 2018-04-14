@@ -32,18 +32,17 @@ namespace Bunashibu.Kikan {
       StartCoroutine(_coroutineDictionary[keyName]);
     }
 
-    public void StoppableDelaySec(float sec, bool shouldStop, string keyName, Action action) {
-      if (shouldStop) {
-        if (!_coroutineDictionary.ContainsKey(keyName))
-          return;
-
-        StopCoroutine(_coroutineDictionary[keyName]);
-        _coroutineDictionary.Remove(keyName);
-        return;
-      }
-
+    public void StoppableDelaySec(float sec, string keyName, Action action) {
       _coroutineDictionary[keyName] = ImplDelaySec(sec, action);
       StartCoroutine(_coroutineDictionary[keyName]);
+    }
+
+    public void Stop(string keyName) {
+      if (!_coroutineDictionary.ContainsKey(keyName))
+        return;
+
+      StopCoroutine(_coroutineDictionary[keyName]);
+      _coroutineDictionary.Remove(keyName);
     }
 
     public static List<T> ToList<T>(T[] ary) {
