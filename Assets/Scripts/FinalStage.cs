@@ -30,6 +30,8 @@ namespace Bunashibu.Kikan {
 
       _player.Rigid.velocity = Vector3.zero;
       _player.Rigid.simulated = false;
+      _player.Observer.SyncRigidSimulated();
+
       _player.Character.enabled = false;
       _player.Weapon.SkillInstantiator.enabled = false;
 
@@ -73,6 +75,8 @@ namespace Bunashibu.Kikan {
 
     private void ResetPlayerStatus() {
       _player.Rigid.simulated = true;
+      _player.Observer.SyncRigidSimulated();
+
       _player.Character.enabled = true;
       _player.Weapon.SkillInstantiator.enabled = true;
 
