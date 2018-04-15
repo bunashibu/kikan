@@ -61,17 +61,17 @@ namespace Bunashibu.Kikan {
       return list;
     }
 
-    private IEnumerator ImplDelayOneFrame(Action action) {
+    public IEnumerator ImplDelayOneFrame(Action action) {
       yield return new WaitForEndOfFrame();
       action();
     }
 
-    private IEnumerator ImplDelaySec(float sec, Action action) {
+    public IEnumerator ImplDelaySec(float sec, Action action) {
       yield return new WaitForSeconds(sec);
       action();
     }
 
-    private IEnumerator ImplDelayUntil(Func<bool> condition, Action action) {
+    public IEnumerator ImplDelayUntil(Func<bool> condition, Action action) {
       yield return new WaitUntil(condition);
       action();
     }

@@ -6,19 +6,20 @@ using UnityEngine;
 namespace Bunashibu.Kikan {
   public class ManjiSpace : Skill {
     void Start() {
-      EnhanceStatus();
+      transform.parent = _skillUserObj.transform;
 
-      if (photonView.isMine)
+      if (photonView.isMine) {
+        EnhanceStatus();
         InstantiateBuff();
+      }
     }
 
     void OnDestroy() {
-      ResetStatus();
+      if (photonView.isMine)
+        ResetStatus();
     }
 
     private void EnhanceStatus() {
-      transform.parent = _skillUserObj.transform;
-
       var skillUser = _skillUserObj.GetComponent<BattlePlayer>();
 
       float statusRatio = 1.3f;
@@ -39,9 +40,7 @@ namespace Bunashibu.Kikan {
         skillUser.Status.ResetMulCorrectionAtk();
       };
 
-      MonoUtility.Instance.StoppableDelaySec(20.0f, "ManjiSpace" + GetInstanceID().ToString(), () => {
-        Destroy(gameObject);
-      });
+      SkillReference.Instance.Register(this, 20.0f, () => { Destroy(gameObject); });
     }
 
     private void InstantiateBuff() {
@@ -50,11 +49,7 @@ namespace Bunashibu.Kikan {
       var buff = PhotonNetwork.Instantiate("Prefabs/Skill/Manji/SpaceBuff", Vector3.zero, Quaternion.identity, 0).GetComponent<ManjiSpaceBuff>() as ManjiSpaceBuff;
       buff.ParentSetter.SetParent(skillUser.PhotonView.viewID);
 
-      SkillReference.Instance.Register(buff);
-
-      MonoUtility.Instance.StoppableDelaySec(20.0f, "ManjiBuff", () => {
-        PhotonNetwork.Destroy(buff.gameObject);
-      });
+      SkillReference.Instance.Register(buff, 20.0f, () => { PhotonNetwork.Destroy(buff.gameObject); });
     }
 
     private Action ResetStatus;

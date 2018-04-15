@@ -18,7 +18,7 @@ namespace Bunashibu.Kikan {
     }
 
     [PunRPC]
-    private void SyncPlayerMulAtk(int mulCorrectionAtk) {
+    private void SyncPlayerMulAtk(float mulCorrectionAtk) {
       MulCorrectionAtk = mulCorrectionAtk;
     }
 
@@ -44,12 +44,12 @@ namespace Bunashibu.Kikan {
     // Manji Space use this
     public void MultipleMulCorrectionAtk(float ratio) {
       MulCorrectionAtk *= ratio;
-      //photonView.RPC("SyncPlayerMulAtk", PhotonTargets.Others, MulCorrectionAtk);
+      photonView.RPC("SyncPlayerMulAtk", PhotonTargets.Others, MulCorrectionAtk);
     }
 
     public void ResetMulCorrectionAtk() {
       MulCorrectionAtk = 1.0f;
-      //photonView.RPC("SyncPlayerMulAtk", PhotonTargets.Others, MulCorrectionAtk);
+      photonView.RPC("SyncPlayerMulAtk", PhotonTargets.Others, MulCorrectionAtk);
     }
 
     public int Atk { get; private set; }
