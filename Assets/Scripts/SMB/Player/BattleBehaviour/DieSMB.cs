@@ -12,9 +12,16 @@ namespace Bunashibu.Kikan {
       }
 
       _player.BodyCollider.enabled = false;
+      SkillReference.Instance.DeleteAll();
 
-      Action action = () => { _player.StateTransfer.TransitTo("Idle", animator); };
-      _respawner.Respawn(action);
+      if (StageManager.Instance.StageName == "Battle") {
+        Action action = () => { _player.StateTransfer.TransitTo("Idle", animator); };
+        _respawner.Respawn(action);
+      }
+
+      if (StageManager.Instance.StageName == "FinalBattle") {
+        MonoUtility.Instance.StopAll();
+      }
     }
 
     private BattlePlayer _player;

@@ -2287,7 +2287,7 @@ Transform:
   m_LocalScale: {x: 150, y: 78, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &187031007
 MeshRenderer:
@@ -4008,7 +4008,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4733332064185284, guid: 248d3d80d001f1144b51b737c7b7340e, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 114703579228180500, guid: 248d3d80d001f1144b51b737c7b7340e,
         type: 2}
@@ -4225,7 +4225,7 @@ RectTransform:
   - {fileID: 1238257286}
   - {fileID: 186525844}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -15501,7 +15501,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1203923080}
   - component: {fileID: 1203923079}
-  - component: {fileID: 1203923081}
   m_Layer: 0
   m_Name: StageManager
   m_TagString: Untagged
@@ -15521,7 +15520,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timePanel: {fileID: 422559152}
-  _skillReference: {fileID: 1203923081}
+  _skillReference: {fileID: 2015881002}
   _stage: {fileID: 1737448455}
   _finalStage: {fileID: 2008166472}
 --- !u!4 &1203923080
@@ -15539,17 +15538,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1203923081
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1203923078}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b70512a145cd18b49b94e178de80161b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1209026006
 GameObject:
   m_ObjectHideFlags: 0
@@ -15660,7 +15648,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4606346956699928, guid: 9847c2dcde8c4bb4f8bf26bae08a15d2, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1958052727800552, guid: 9847c2dcde8c4bb4f8bf26bae08a15d2, type: 2}
       propertyPath: m_IsActive
@@ -20612,7 +20600,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1666928741
 GameObject:
@@ -23071,7 +23059,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1924336414
 GameObject:
@@ -24180,6 +24168,46 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4, y: 3}
   m_EdgeRadius: 0
+--- !u!1 &2015881001
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2015881003}
+  - component: {fileID: 2015881002}
+  m_Layer: 0
+  m_Name: SkillReference
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2015881002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2015881001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b70512a145cd18b49b94e178de80161b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &2015881003
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2015881001}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2024437463
 GameObject:
   m_ObjectHideFlags: 0

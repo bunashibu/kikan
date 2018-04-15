@@ -50,7 +50,7 @@ namespace Bunashibu.Kikan {
       var buff = PhotonNetwork.Instantiate("Prefabs/Skill/Manji/SpaceBuff", Vector3.zero, Quaternion.identity, 0).GetComponent<ManjiSpaceBuff>() as ManjiSpaceBuff;
       buff.ParentSetter.SetParent(skillUser.PhotonView.viewID);
 
-      StageManager.Instance.SkillReference.Register(buff);
+      SkillReference.Instance.Register(buff);
 
       MonoUtility.Instance.StoppableDelaySec(20.0f, "ManjiBuff", () => {
         PhotonNetwork.Destroy(buff.gameObject);

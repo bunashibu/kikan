@@ -1,9 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
-  public class SkillReference : MonoBehaviour {
+  public class SkillReference : SingletonMonoBehaviour<SkillReference> {
     void Awake() {
       _existOwnSkillList = new List<Skill>();
     }

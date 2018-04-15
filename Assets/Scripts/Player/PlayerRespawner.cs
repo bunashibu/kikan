@@ -21,6 +21,8 @@ namespace Bunashibu.Kikan {
         _player.Hp.UpdateView();
         _player.Observer.SyncUpdateHpView();
 
+        _player.BuffState.Reset();
+
         ActTransition();
       });
     }
