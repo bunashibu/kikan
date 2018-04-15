@@ -20,6 +20,7 @@ namespace Bunashibu.Kikan {
         if ( _player.Hp.Cur <= 0    ) { _player.StateTransfer.TransitTo( "Die" , animator ); return; }
         if ( _player.BuffState.Stun ) { _player.StateTransfer.TransitTo( "Stun", animator ); return; }
         if ( _fallFlag              ) { _player.StateTransfer.TransitTo( "Fall", animator ); return; }
+        if (!_player.FootCollider.isTrigger) { _player.StateTransfer.TransitTo( "Idle", animator ); return; }
       }
     }
 

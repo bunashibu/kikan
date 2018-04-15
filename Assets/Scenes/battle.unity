@@ -15520,7 +15520,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timePanel: {fileID: 422559152}
-  _skillReference: {fileID: 2015881002}
   _stage: {fileID: 1737448455}
   _finalStage: {fileID: 2008166472}
 --- !u!4 &1203923080
@@ -21273,7 +21272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timePanel: {fileID: 422559152}
-  _time: 17
+  _time: 60
   _rotateSpeed: 30
 --- !u!1 &1757445202
 GameObject:

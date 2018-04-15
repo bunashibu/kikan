@@ -28,6 +28,7 @@ namespace Bunashibu.Kikan {
       int viewID = (int)PhotonNetwork.player.CustomProperties["ViewID"];
       _player = PhotonView.Find(viewID).GetComponent<BattlePlayer>() as BattlePlayer;
 
+      _player.Rigid.velocity = Vector3.zero;
       _player.Rigid.simulated = false;
       _player.Character.enabled = false;
       _player.Weapon.SkillInstantiator.enabled = false;
@@ -74,6 +75,8 @@ namespace Bunashibu.Kikan {
       _player.Rigid.simulated = true;
       _player.Character.enabled = true;
       _player.Weapon.SkillInstantiator.enabled = true;
+
+      _player.StateTransfer.TransitTo("Idle", _player.Animator);
 
       _player.Hp.FullRecover();
       _player.Hp.UpdateView();

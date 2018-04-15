@@ -35,6 +35,7 @@ namespace Bunashibu.Kikan {
 
     private void TranslateSkillUser() {
       var skillUser = _skillUserObj.GetComponent<BattlePlayer>();
+      skillUser.FootCollider.isTrigger = false;
 
       if (Input.GetKey(KeyCode.UpArrow))
         photonView.RPC("TranslateVertically", PhotonTargets.All, Vector2.up);
@@ -98,7 +99,8 @@ namespace Bunashibu.Kikan {
       RaycastHit2D hitGround = new RaycastHit2D();
       if (direction == Vector2.up) {
         hitGround = Physics2D.Raycast(footOrigin + moveVector, Vector2.down, _moveDistance, _groundLayer);
-      } else if (direction == Vector2.down) {
+      }
+      else if (direction == Vector2.down) {
         RaycastHit2D[] hitGroundAry = Physics2D.RaycastAll(footOrigin, Vector2.down, _moveDistance, _groundLayer);
         if (hitGroundAry.Length > 0)
           hitGround = hitGroundAry.Last();

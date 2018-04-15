@@ -15,8 +15,10 @@ namespace Bunashibu.Kikan {
     }
 
     void OnDestroy() {
-      if (photonView.isMine)
+      if (photonView.isMine) {
         ResetStatus();
+        SkillReference.Instance.Remove(this);
+      }
     }
 
     private void EnhanceStatus() {
@@ -40,7 +42,7 @@ namespace Bunashibu.Kikan {
         skillUser.Status.ResetMulCorrectionAtk();
       };
 
-      SkillReference.Instance.Register(this, 20.0f, () => { Destroy(gameObject); });
+      SkillReference.Instance.Register(this, 20.0f, () => { PhotonNetwork.Destroy(gameObject); });
     }
 
     private void InstantiateBuff() {
