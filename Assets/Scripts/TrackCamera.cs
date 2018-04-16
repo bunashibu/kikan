@@ -63,8 +63,8 @@ namespace Bunashibu.Kikan {
       float cameraViewWidth  = cameraViewTopRight.x - cameraViewTopLeft.x;
       float cameraViewHeight = cameraViewTopLeft.y - cameraViewBottomLeft.y;
 
-      float nextX = Mathf.Clamp(transform.position.x, StageManager.Instance.StageData.StageRect.xMin + cameraViewWidth/2, StageManager.Instance.StageData.StageRect.xMax - cameraViewWidth/2);
-      float nextY = Mathf.Clamp(transform.position.y, StageManager.Instance.StageData.StageRect.yMin + cameraViewHeight/2 - 2, StageManager.Instance.StageData.StageRect.yMax - cameraViewHeight/2); // -2 is bottom base sprite height.
+      float nextX = Mathf.Clamp(transform.position.x, StageReference.Instance.StageData.StageRect.xMin + cameraViewWidth/2, StageReference.Instance.StageData.StageRect.xMax - cameraViewWidth/2);
+      float nextY = Mathf.Clamp(transform.position.y, StageReference.Instance.StageData.StageRect.yMin + cameraViewHeight/2 - 2, StageReference.Instance.StageData.StageRect.yMax - cameraViewHeight/2); // -2 is bottom base sprite height.
 
       transform.position = new Vector3(nextX, nextY, transform.position.z);
     }

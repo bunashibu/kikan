@@ -55,7 +55,7 @@ namespace Bunashibu.Kikan {
     private void PrepareEasing() {
       Vector3 startPosition = _player.Transform.position;
       Vector3 startCameraPosition = _camera.transform.position;
-      Vector3 gatherPosition = StageManager.Instance.StageData.RespawnPosition;
+      Vector3 gatherPosition = StageReference.Instance.StageData.RespawnPosition;
       if (_player.PlayerInfo.Team == 1)
         gatherPosition.x *= -1;
 

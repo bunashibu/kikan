@@ -50,15 +50,15 @@ namespace Bunashibu.Kikan {
       var x = _character.Transform.position.x;
       var y = _character.Transform.position.y;
 
-      if (x < StageManager.Instance.StageData.StageRect.xMin || StageManager.Instance.StageData.StageRect.xMax < x ||
-          y < StageManager.Instance.StageData.StageRect.yMin || StageManager.Instance.StageData.StageRect.yMax < y)
+      if (x < StageReference.Instance.StageData.StageRect.xMin || StageReference.Instance.StageData.StageRect.xMax < x ||
+          y < StageReference.Instance.StageData.StageRect.yMin || StageReference.Instance.StageData.StageRect.yMax < y)
         return true;
 
       return false;
     }
 
     private void AdjustPosition() {
-      _character.Transform.position = StageManager.Instance.StageData.ResetPosition;
+      _character.Transform.position = StageReference.Instance.StageData.ResetPosition;
       _character.FootCollider.isTrigger = false;
     }
 

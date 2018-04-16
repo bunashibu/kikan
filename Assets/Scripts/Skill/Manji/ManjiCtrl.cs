@@ -69,8 +69,8 @@ namespace Bunashibu.Kikan {
         estimatedPosition = new Vector2(skillUser.Transform.position.x, skillUser.Transform.position.y) + moveVector;
 
       if (IsOutOfArea(estimatedPosition)) {
-        estimatedPosition.x = Mathf.Clamp(estimatedPosition.x, StageManager.Instance.StageData.StageRect.xMin, StageManager.Instance.StageData.StageRect.xMax);
-        estimatedPosition.y = Mathf.Clamp(estimatedPosition.y, StageManager.Instance.StageData.StageRect.yMin, StageManager.Instance.StageData.StageRect.yMax);
+        estimatedPosition.x = Mathf.Clamp(estimatedPosition.x, StageReference.Instance.StageData.StageRect.xMin, StageReference.Instance.StageData.StageRect.xMax);
+        estimatedPosition.y = Mathf.Clamp(estimatedPosition.y, StageReference.Instance.StageData.StageRect.yMin, StageReference.Instance.StageData.StageRect.yMax);
       }
 
       skillUser.Transform.position = estimatedPosition;
@@ -115,8 +115,8 @@ namespace Bunashibu.Kikan {
         estimatedPosition = new Vector2(skillUser.Transform.position.x, skillUser.Transform.position.y) + moveVector;
 
       if (IsOutOfArea(estimatedPosition)) {
-        estimatedPosition.x = Mathf.Clamp(estimatedPosition.x, StageManager.Instance.StageData.StageRect.xMin, StageManager.Instance.StageData.StageRect.xMax);
-        estimatedPosition.y = Mathf.Clamp(estimatedPosition.y, StageManager.Instance.StageData.StageRect.yMin, StageManager.Instance.StageData.StageRect.yMax);
+        estimatedPosition.x = Mathf.Clamp(estimatedPosition.x, StageReference.Instance.StageData.StageRect.xMin, StageReference.Instance.StageData.StageRect.xMax);
+        estimatedPosition.y = Mathf.Clamp(estimatedPosition.y, StageReference.Instance.StageData.StageRect.yMin, StageReference.Instance.StageData.StageRect.yMax);
       }
 
       skillUser.Transform.position = estimatedPosition;
@@ -128,8 +128,8 @@ namespace Bunashibu.Kikan {
       var x = vector.x;
       var y = vector.y;
 
-      if (x < StageManager.Instance.StageData.StageRect.xMin || StageManager.Instance.StageData.StageRect.xMax < x ||
-          y < StageManager.Instance.StageData.StageRect.yMin || StageManager.Instance.StageData.StageRect.yMax < y)
+      if (x < StageReference.Instance.StageData.StageRect.xMin || StageReference.Instance.StageData.StageRect.xMax < x ||
+          y < StageReference.Instance.StageData.StageRect.yMin || StageReference.Instance.StageData.StageRect.yMax < y)
         return true;
 
       return false;

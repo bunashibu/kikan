@@ -14,7 +14,7 @@ namespace Bunashibu.Kikan {
       _player.BodyCollider.enabled = false;
       SkillReference.Instance.DeleteAll();
 
-      if (StageManager.Instance.StageData.Name == "Battle") {
+      if (StageReference.Instance.StageData.Name == "Battle") {
         Action action = () => { _player.StateTransfer.TransitTo("Idle", animator); };
         _respawner.Respawn(action);
       }

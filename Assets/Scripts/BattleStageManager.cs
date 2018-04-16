@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
-  public class StageManager : SingletonMonoBehaviour<StageManager> {
+  public class BattleStageManager : SingletonMonoBehaviour<BattleStageManager>, IStageManager {
     void Awake() {
       StageData = Resources.Load("Data/StageData/Battle") as StageData;
 

@@ -17,7 +17,7 @@ namespace Bunashibu.Kikan {
       float seedX = enemy.transform.position.x;
 
       MonoUtility.Instance.DelaySec(_intervalSec, () => {
-        if (StageManager.Instance.StageData.Name == "Battle")
+        if (StageReference.Instance.StageData.Name == "Battle")
           _spawnerList[index].NetworkSpawn(this, seedX);
       });
     }
