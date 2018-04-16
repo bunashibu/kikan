@@ -16,7 +16,7 @@ MonoBehaviour:
   _resetPosition: {x: 0, y: 0, z: 0}
   _stageRect:
     serializedVersion: 2
-    x: -10
+    x: -9.9
     y: -5
-    width: 20
+    width: 19.8
     height: 15
