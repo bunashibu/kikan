@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   [RequireComponent(typeof(Character2D))]
-  public class LobbyPlayer : Photon.MonoBehaviour { //, ICharacter {
+  public class LobbyPlayer : Photon.MonoBehaviour, ICharacter {
     void Awake() {
       Movement      = new LobbyPlayerMovement();
       State         = new CharacterState(_ladderCollider, _footCollider);
-      //BuffState     = new BuffState();
+      BuffState     = new BuffState(Observer);
       StateTransfer = new StateTransfer(_initState, _animator);
       SkillInfo     = new SkillInfo();
 
@@ -28,9 +28,11 @@ namespace Bunashibu.Kikan {
     public Collider2D       BodyCollider   { get { return _bodyCollider;   } }
     public Collider2D       FootCollider   { get { return _footCollider;   } }
 
+    public LobbyPlayerObserver Observer { get { return _observer; } }
+
     public LobbyPlayerMovement Movement      { get; private set; }
     public CharacterState      State         { get; private set; }
-    //public BuffState           BuffState     { get; private set; }
+    public BuffState           BuffState     { get; private set; }
     public StateTransfer       StateTransfer { get; private set; }
     public SkillInfo           SkillInfo     { get; private set; }
 
@@ -43,6 +45,9 @@ namespace Bunashibu.Kikan {
     [SerializeField] private Collider2D       _ladderCollider;
     [SerializeField] private Collider2D       _footCollider;
     [SerializeField] private Animator         _animator;
+
+    [SerializeField] private LobbyPlayerObserver _observer;
+
     private static readonly string _initState = "Idle";
   }
 }
