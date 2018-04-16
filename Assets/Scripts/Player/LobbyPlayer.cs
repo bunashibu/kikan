@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   [RequireComponent(typeof(Character2D))]
-  public class LobbyPlayer : Photon.MonoBehaviour, ICharacter {
+  public class LobbyPlayer : Photon.MonoBehaviour, ICharacter, ISpeaker {
     void Awake() {
       Movement      = new LobbyPlayerMovement();
       State         = new CharacterState(_ladderCollider, _footCollider);
@@ -28,7 +28,8 @@ namespace Bunashibu.Kikan {
     public Collider2D       BodyCollider   { get { return _bodyCollider;   } }
     public Collider2D       FootCollider   { get { return _footCollider;   } }
 
-    public LobbyPlayerObserver Observer { get { return _observer; } }
+    public LobbyPlayerObserver Observer    { get { return _observer; } }
+    public PopupRemark         PopupRemark { get { return _popupRemark; } }
 
     public LobbyPlayerMovement Movement      { get; private set; }
     public CharacterState      State         { get; private set; }
@@ -47,6 +48,7 @@ namespace Bunashibu.Kikan {
     [SerializeField] private Animator         _animator;
 
     [SerializeField] private LobbyPlayerObserver _observer;
+    [SerializeField] private PopupRemark _popupRemark;
 
     private static readonly string _initState = "Idle";
   }

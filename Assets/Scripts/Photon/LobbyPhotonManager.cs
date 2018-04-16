@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 namespace Bunashibu.Kikan {
   public class LobbyPhotonManager : Photon.PunBehaviour {
     void Start() {
       var currentScene = SceneManager.GetSceneByName("Lobby");
       MonoUtility.Instance.DelayUntil(() => currentScene == SceneManager.GetActiveScene(), () => {
-        PhotonNetwork.Instantiate("Prefabs/Job/Common", new Vector3(0, 0, 0), Quaternion.identity, 0);
+        var player = PhotonNetwork.Instantiate("Prefabs/Job/Common", new Vector3(0, 0, 0), Quaternion.identity, 0).GetComponent<LobbyPlayer>() as LobbyPlayer;
+        SetViewID(player);
       });
     }
 
@@ -34,6 +36,13 @@ namespace Bunashibu.Kikan {
       _logoutFlag = true;
       _nextSceneName = "Registration";
       PhotonNetwork.LeaveRoom();
+    }
+
+    private void SetViewID(LobbyPlayer player) {
+      var viewID = player.PhotonView.viewID;
+
+      var props = new Hashtable() {{"ViewID", viewID}};
+      PhotonNetwork.player.SetCustomProperties(props);
     }
 
     [SerializeField] private SceneChanger _sceneChanger;

@@ -742,6 +742,7 @@ MonoBehaviour:
   _footCollider: {fileID: 68799707592216154}
   _animator: {fileID: 95000010494430044}
   _observer: {fileID: 114067467009775024}
+  _popupRemark: {fileID: 114198838768080286}
 --- !u!114 &114642343969648306
 MonoBehaviour:
   m_ObjectHideFlags: 1
