@@ -14,7 +14,7 @@ namespace Bunashibu.Kikan {
         if ( _enemy.Hp.Cur <= 0 ) { _enemy.StateTransfer.TransitTo( "Die" , animator ); return; }
 
         // Probably this process should not be here...
-        if (StageManager.Instance.StageName != "Battle")
+        if (StageManager.Instance.StageData.Name != "Battle")
           _enemy.StateTransfer.TransitTo("Die" , animator);
       }
     }

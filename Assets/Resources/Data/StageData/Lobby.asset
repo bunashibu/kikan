@@ -11,7 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 281fcac925c3610499f849ff715832ee, type: 3}
   m_Name: Lobby
   m_EditorClassIdentifier: 
+  _name: Lobby
   _respawnPosition: {x: 0, y: 0, z: 0}
+  _resetPosition: {x: 0, y: 0, z: 0}
   _stageRect:
     serializedVersion: 2
     x: -10

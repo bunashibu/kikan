@@ -12,7 +12,7 @@ namespace Bunashibu.Kikan {
       _enemy.AI.enabled = false;
 
       // Probably this process should not be here...
-      if (StageManager.Instance.StageName == "FinalBattle")
+      if (StageManager.Instance.StageData.Name == "FinalBattle")
         return;
 
       if (PhotonNetwork.player.IsMasterClient)

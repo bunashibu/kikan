@@ -5,6 +5,12 @@ using UnityEngine;
 namespace Bunashibu.Kikan {
   [CreateAssetMenu]
   public class StageData : ScriptableObject {
+    public string Name {
+      get {
+        return _name;
+      }
+    }
+
     public Vector3 RespawnPosition {
       get {
         return _respawnPosition;
@@ -23,6 +29,7 @@ namespace Bunashibu.Kikan {
       }
     }
 
+    [SerializeField] private string _name;
     [SerializeField] private Vector3 _respawnPosition;
     [SerializeField] private Vector3 _resetPosition;
     [SerializeField] private Rect _stageRect;
