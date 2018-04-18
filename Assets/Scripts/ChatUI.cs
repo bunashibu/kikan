@@ -8,9 +8,10 @@ namespace Bunashibu.Kikan {
     public Rect GuiRect = new Rect(0, 0, 250, 300);
     public bool IsVisible = true;
     public bool AlignBottom = false;
-    public List<string> messages = new List<string>();
+    public static List<string> messages = new List<string>();
     private string inputLine = "";
     private Vector2 scrollPos = Vector2.zero;
+    private static readonly int maxMessageCount = 100;
 
     public static readonly string ChatRPC = "Chat";
 
@@ -74,14 +75,17 @@ namespace Bunashibu.Kikan {
           senderName = "player " + mi.sender.ID;
       }
 
-      this.messages.Add(senderName +": " + newLine);
+      messages.Add(senderName +": " + newLine);
       scrollPos.y = Mathf.Infinity;
 
       UpdatePopupRemark(senderName, newLine, viewID);
     }
 
     public void AddLine(string newLine) {
-      this.messages.Add(newLine);
+      if (messages.Count + 1 > maxMessageCount)
+        messages = messages.GetRange(1, maxMessageCount - 1);
+
+      messages.Add(newLine);
     }
 
     private void UpdatePopupRemark(string senderName, string message, int viewID) {
