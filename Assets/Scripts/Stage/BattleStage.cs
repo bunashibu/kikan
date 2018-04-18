@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
-  public class Stage : MonoBehaviour {
+  public class BattleStage : MonoBehaviour {
     void Awake() {
       _timePanel.SetTime(_time);
       _destRotation = Quaternion.Euler(90, 0, 0);

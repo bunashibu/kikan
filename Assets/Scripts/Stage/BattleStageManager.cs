@@ -29,8 +29,8 @@ namespace Bunashibu.Kikan {
     public StageData StageData { get; private set; }
 
     [SerializeField] private TimePanel _timePanel;
-    [SerializeField] private Stage _stage;
-    [SerializeField] private FinalStage _finalStage;
+    [SerializeField] private BattleStage _stage;
+    [SerializeField] private BattleFinalStage _finalStage;
   }
 }
 
