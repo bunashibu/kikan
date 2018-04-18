@@ -345,8 +345,8 @@ MonoBehaviour:
   _animator: {fileID: 95534193194726840}
   _observer: {fileID: 114408830905809988}
   _numberPopupEnvironment: {fileID: 114174430385108528}
-  _killExp: 3000
-  _killGold: 4500
+  _killExp: 30
+  _killGold: 45
   _ai: {fileID: 114050103650658040}
   _hpBar: {fileID: 114530795779077986}
   _enemyData: {fileID: 11400000, guid: dea86f677fe12af4aa2f5d458e4eb166, type: 2}

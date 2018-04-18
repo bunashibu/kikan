@@ -58,7 +58,7 @@ namespace Bunashibu.Kikan {
     [SerializeField] private byte _maxPlayers;
     [SerializeField] private string _nextSceneName;
     private bool _isConnecting;
-    private string _gameVersion = "v0.1";
+    private readonly string _gameVersion = "1.0b1";
   }
 }
 

@@ -6,7 +6,7 @@ namespace Bunashibu.Kikan {
   public class ParentSetter : Photon.MonoBehaviour {
     [PunRPC]
     private void SyncParent(int viewID) {
-      SetParent(viewID);
+      SetParentImpl(viewID);
     }
 
     public void SetParent(int viewID) {
