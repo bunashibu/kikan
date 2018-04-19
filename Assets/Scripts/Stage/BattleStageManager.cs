@@ -23,6 +23,8 @@ namespace Bunashibu.Kikan {
         _stage.StartRotation();
         _finalStage.Emerge();
         _finalStage.StartRotation();
+
+        Instantiate(_judger);
       }
     }
 
@@ -31,6 +33,7 @@ namespace Bunashibu.Kikan {
     [SerializeField] private TimePanel _timePanel;
     [SerializeField] private BattleStage _stage;
     [SerializeField] private BattleFinalStage _finalStage;
+    [SerializeField] private WinLoseJudger _judger;
   }
 }
 
