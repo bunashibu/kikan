@@ -6870,7 +6870,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 502785836}
   m_OnClick:
     m_PersistentCalls:
@@ -21284,7 +21284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timePanel: {fileID: 422559152}
-  _time: 600
+  _time: 5
   _rotateSpeed: 30
 --- !u!1 &1757445202
 GameObject:

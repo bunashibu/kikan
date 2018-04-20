@@ -18,6 +18,9 @@ namespace Bunashibu.Kikan {
           _timePanel.SetTime(_time);
           _camera.EnableTracking();
           ResetPlayerStatus();
+
+          var judger = Instantiate(_judger).GetComponent<WinLoseJudger>() as WinLoseJudger;
+          judger.SetTimePanel(_timePanel);
         }
       }
     }
@@ -42,8 +45,6 @@ namespace Bunashibu.Kikan {
       MonoUtility.Instance.StopAll();
 
       PrepareEasing();
-
-      Instantiate(_judger);
     }
 
     public void Hide() {
