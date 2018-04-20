@@ -15549,7 +15549,6 @@ MonoBehaviour:
   _timePanel: {fileID: 422559152}
   _stage: {fileID: 1737448455}
   _finalStage: {fileID: 2008166472}
-  _judger: {fileID: 114188553657627926, guid: 3c7daadc1b98cef4696201250e17cc3d, type: 2}
 --- !u!1 &1209026006
 GameObject:
   m_ObjectHideFlags: 0
@@ -24125,6 +24124,7 @@ MonoBehaviour:
   _timePanel: {fileID: 422559152}
   _time: 120
   _rotateSpeed: 30
+  _judger: {fileID: 114188553657627926, guid: 3c7daadc1b98cef4696201250e17cc3d, type: 2}
   _camera: {fileID: 1357867647}
 --- !u!1 &2013363063
 GameObject:

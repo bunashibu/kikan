@@ -42,6 +42,8 @@ namespace Bunashibu.Kikan {
       MonoUtility.Instance.StopAll();
 
       PrepareEasing();
+
+      Instantiate(_judger);
     }
 
     public void Hide() {
@@ -97,6 +99,9 @@ namespace Bunashibu.Kikan {
 
     [Header("Rotation per second")]
     [SerializeField] private float _rotateSpeed;
+
+    [Space(10)]
+    [SerializeField] private WinLoseJudger _judger;
 
     [Space(10)]
     [SerializeField] private TrackCamera _camera;
