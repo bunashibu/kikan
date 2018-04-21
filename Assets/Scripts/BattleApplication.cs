@@ -60,7 +60,7 @@ namespace Bunashibu.Kikan {
     public override void OnJoinedRoom() {
       if (_isApplying) {
         Debug.Log("OnJoinedRoom() BA was called");
-        _sceneChanger.ChangeScene("Battle");
+        SceneChanger.Instance.ChangeScene("Battle");
       }
     }
 
@@ -197,7 +197,6 @@ namespace Bunashibu.Kikan {
     [SerializeField] private Text _CountDown;
     [SerializeField] private List<Text> _nameList;
     [SerializeField] private int _matchNum;
-    [SerializeField] private SceneChanger _sceneChanger;
     [SerializeField] private int _countDown; // Debug
     private bool _isMaster;
     private bool _isApplying;

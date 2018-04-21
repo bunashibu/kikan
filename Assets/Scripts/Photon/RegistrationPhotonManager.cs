@@ -48,13 +48,12 @@ namespace Bunashibu.Kikan {
 
     public override void OnJoinedRoom() {
       Debug.Log("OnJoinedRoom() was called");
-      _sceneChanger.ChangeScene(_nextSceneName);
+      SceneChanger.Instance.ChangeScene(_nextSceneName);
     }
 
     [SerializeField] private PhotonLogLevel _logLevel;
     [SerializeField] private GameObject _controlPanel;
     [SerializeField] private GameObject _progressLabel;
-    [SerializeField] private SceneChanger _sceneChanger;
     [SerializeField] private byte _maxPlayers;
     [SerializeField] private string _nextSceneName;
     private bool _isConnecting;
