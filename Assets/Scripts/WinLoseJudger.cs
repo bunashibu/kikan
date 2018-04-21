@@ -7,11 +7,14 @@ namespace Bunashibu.Kikan {
   public class WinLoseJudger : Photon.PunBehaviour {
     void Start() {
       InitAlivePlayerCount();
-    }
+      MonoUtility.Instance.DelayUntil(() => _timePanel.TimeSec <= 0, () => {
+        int[] alivePlayerCount = PhotonNetwork.room.CustomProperties["AlivePlayerCount"] as int[];
+        int redCount = alivePlayerCount[0];
+        int blueCount = alivePlayerCount[1];
 
-    void Update() {
-      if (_timePanel.TimeSec <= 0)
-        ShowDraw();
+        if ( (redCount > 0) && (blueCount > 0) )
+          ShowDraw();
+      });
     }
 
     public void SetTimePanel(TimePanel timePanel) {
