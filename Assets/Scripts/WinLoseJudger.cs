@@ -26,6 +26,9 @@ namespace Bunashibu.Kikan {
     }
 
     public override void OnPhotonCustomRoomPropertiesChanged(Hashtable props) {
+      if (_isFinished)
+        return;
+
       int[] alivePlayerCount = props["AlivePlayerCount"] as int[];
       int redCount = alivePlayerCount[0];
       int blueCount = alivePlayerCount[1];
@@ -42,28 +45,36 @@ namespace Bunashibu.Kikan {
     }
 
     public override void OnConnectedToMaster() {
-      Debug.Log("XXXXXX OnConnectedToMaster() was called");
-      PhotonNetwork.JoinRoom("Lobby");
+      if (_isFinished) {
+        Debug.Log("XXXXXX OnConnectedToMaster() was called");
+        PhotonNetwork.JoinRoom("Lobby");
+      }
     }
 
     public override void OnPhotonJoinRoomFailed(object[] codeAndMsg) {
-      Debug.Log("XXXXXX Failed to Join Room!");
-      RoomOptions roomOptions = new RoomOptions();
-      roomOptions.MaxPlayers = (byte)20;
+      if (_isFinished) {
+        Debug.Log("XXXXXX Failed to Join Room!");
+        RoomOptions roomOptions = new RoomOptions();
+        roomOptions.MaxPlayers = (byte)20;
 
-      PhotonNetwork.JoinOrCreateRoom("Lobby", roomOptions, null);
+        PhotonNetwork.JoinOrCreateRoom("Lobby", roomOptions, null);
+      }
     }
 
     public override void OnJoinedRoom() {
-      Debug.Log("XXXXXX Joined Room!");
-      SceneChanger.Instance.ChangeScene("Lobby");
+      if (_isFinished) {
+        Debug.Log("XXXXXX Joined Room!");
+        SceneChanger.Instance.ChangeScene("Lobby");
+      }
     }
 
     public override void OnLeftRoom() {
-      if (PhotonNetwork.connected)
-        PhotonNetwork.JoinRoom("Lobby");
-      else
+      if (_isFinished) {
+        if (PhotonNetwork.connected)
+          PhotonNetwork.JoinRoom("Lobby");
+        else
         PhotonNetwork.ConnectUsingSettings(_gameVersion);
+      }
     }
 
     private void InitAlivePlayerCount() {
@@ -85,16 +96,19 @@ namespace Bunashibu.Kikan {
 
     private void ShowWin() {
       Debug.Log("Win");
+      _isFinished = true;
       ReturnToLobby();
     }
 
     private void ShowLose() {
       Debug.Log("Lose");
+      _isFinished = true;
       ReturnToLobby();
     }
 
     private void ShowDraw() {
       Debug.Log("Draw");
+      _isFinished = true;
       ReturnToLobby();
     }
 
@@ -105,6 +119,7 @@ namespace Bunashibu.Kikan {
       });
     }
 
+    private bool _isFinished = false;
     private readonly string _gameVersion = "1.0b1";
     private TimePanel _timePanel;
     private TrackCamera _camera;
