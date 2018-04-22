@@ -24117,7 +24117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timePanel: {fileID: 422559152}
-  _time: 120
+  _time: 10
   _rotateSpeed: 30
   _judger: {fileID: 114188553657627926, guid: 3c7daadc1b98cef4696201250e17cc3d, type: 2}
   _camera: {fileID: 1357867647}

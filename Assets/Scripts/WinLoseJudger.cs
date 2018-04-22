@@ -21,6 +21,10 @@ namespace Bunashibu.Kikan {
       _timePanel = timePanel;
     }
 
+    public void SetCamera(TrackCamera camera) {
+      _camera = camera;
+    }
+
     public override void OnPhotonCustomRoomPropertiesChanged(Hashtable props) {
       int[] alivePlayerCount = props["AlivePlayerCount"] as int[];
       int redCount = alivePlayerCount[0];
@@ -35,6 +39,31 @@ namespace Bunashibu.Kikan {
         ShowLose();
       else
         ShowWin();
+    }
+
+    public override void OnConnectedToMaster() {
+      Debug.Log("XXXXXX OnConnectedToMaster() was called");
+      PhotonNetwork.JoinRoom("Lobby");
+    }
+
+    public override void OnPhotonJoinRoomFailed(object[] codeAndMsg) {
+      Debug.Log("XXXXXX Failed to Join Room!");
+      RoomOptions roomOptions = new RoomOptions();
+      roomOptions.MaxPlayers = (byte)20;
+
+      PhotonNetwork.JoinOrCreateRoom("Lobby", roomOptions, null);
+    }
+
+    public override void OnJoinedRoom() {
+      Debug.Log("XXXXXX Joined Room!");
+      SceneChanger.Instance.ChangeScene("Lobby");
+    }
+
+    public override void OnLeftRoom() {
+      if (PhotonNetwork.connected)
+        PhotonNetwork.JoinRoom("Lobby");
+      else
+        PhotonNetwork.ConnectUsingSettings(_gameVersion);
     }
 
     private void InitAlivePlayerCount() {
@@ -56,17 +85,29 @@ namespace Bunashibu.Kikan {
 
     private void ShowWin() {
       Debug.Log("Win");
+      ReturnToLobby();
     }
 
     private void ShowLose() {
       Debug.Log("Lose");
+      ReturnToLobby();
     }
 
     private void ShowDraw() {
       Debug.Log("Draw");
+      ReturnToLobby();
     }
 
+    private void ReturnToLobby() {
+      MonoUtility.Instance.DelaySec(10.0f, () => {
+        PhotonNetwork.LeaveRoom();
+        _camera.DisableTracking();
+      });
+    }
+
+    private readonly string _gameVersion = "1.0b1";
     private TimePanel _timePanel;
+    private TrackCamera _camera;
   }
 }
 

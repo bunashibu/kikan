@@ -25,7 +25,7 @@ namespace Bunashibu.Kikan {
 
         list.Remove(player.NickName);
 
-        var props = new Hashtable() {{"Applying", list.ToArray()}};
+        var props = new Hashtable() {{ "Applying", list.ToArray() }};
         PhotonNetwork.room.SetCustomProperties(props);
 
         photonView.RPC("UpdateNameBoard", PhotonTargets.All);
@@ -39,10 +39,11 @@ namespace Bunashibu.Kikan {
         if (_isMaster) {
           RoomOptions roomOptions = new RoomOptions();
           roomOptions.MaxPlayers = (byte)_matchNum;
-          roomOptions.CustomRoomProperties = new Hashtable() { {"PlayerNum", _matchNum} };
+          roomOptions.CustomRoomProperties = new Hashtable() {{ "PlayerNum", _matchNum }};
 
           PhotonNetwork.CreateRoom(_roomName, roomOptions, null);
-        } else
+        }
+        else
           PhotonNetwork.JoinRoom(_roomName);
       }
     }
@@ -82,7 +83,7 @@ namespace Bunashibu.Kikan {
 
         list.Add(player.NickName);
 
-        var props = new Hashtable() {{"Applying", list.ToArray()}};
+        var props = new Hashtable() {{ "Applying", list.ToArray() }};
         PhotonNetwork.room.SetCustomProperties(props);
 
         photonView.RPC("UpdateNameBoard", PhotonTargets.All);
@@ -95,7 +96,7 @@ namespace Bunashibu.Kikan {
           if (tmp != null)
             roomNum = (int)tmp;
 
-          props = new Hashtable() {{"Playing", roomNum + 1}};
+          props = new Hashtable() {{ "Playing", roomNum + 1 }};
           PhotonNetwork.room.SetCustomProperties(props);
 
           var roomName = "Battle" + roomNum.ToString();
@@ -138,7 +139,7 @@ namespace Bunashibu.Kikan {
 
         for (int i=0; i<list.Count; ++i) {
           if (list[i] == PhotonNetwork.player.NickName) {
-            var props = new Hashtable() {{"Team", team[i]}};
+            var props = new Hashtable() {{ "Team", team[i] }};
             PhotonNetwork.player.SetCustomProperties(props);
             break;
           }

@@ -21,6 +21,7 @@ namespace Bunashibu.Kikan {
 
           var judger = Instantiate(_judger).GetComponent<WinLoseJudger>() as WinLoseJudger;
           judger.SetTimePanel(_timePanel);
+          judger.SetCamera(_camera);
         }
       }
     }
