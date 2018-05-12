@@ -487,7 +487,6 @@ MonoBehaviour:
   _logLevel: 2
   _controlPanel: {fileID: 430293236}
   _progressLabel: {fileID: 657363901}
-  _sceneChanger: {fileID: 1840587643}
   _maxPlayers: 20
   _nextSceneName: Lobby
 --- !u!1 &657363901
@@ -1084,9 +1083,3 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1596380048}
---- !u!114 &1840587643 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114201912717962208, guid: 3fa86e80004eedc4aabb12025be27c51,
-    type: 2}
-  m_PrefabInternal: {fileID: 437751000}
-  m_Script: {fileID: 11500000, guid: a2813ea23643df04697b196db9bcde49, type: 3}

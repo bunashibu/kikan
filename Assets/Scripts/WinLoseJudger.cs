@@ -25,6 +25,10 @@ namespace Bunashibu.Kikan {
       _camera = camera;
     }
 
+    public void SetCanvas(Canvas canvas) {
+      _canvas = canvas;
+    }
+
     public override void OnPhotonCustomRoomPropertiesChanged(Hashtable props) {
       if (_isFinished)
         return;
@@ -95,34 +99,43 @@ namespace Bunashibu.Kikan {
     }
 
     private void ShowWin() {
-      Debug.Log("Win");
-      _isFinished = true;
-      ReturnToLobby();
+      var result = Instantiate(_winObj);
+      ResultProcess(result);
     }
 
     private void ShowLose() {
-      Debug.Log("Lose");
-      _isFinished = true;
-      ReturnToLobby();
+      var result = Instantiate(_loseObj);
+      ResultProcess(result);
     }
 
     private void ShowDraw() {
-      Debug.Log("Draw");
-      _isFinished = true;
-      ReturnToLobby();
+      var result = Instantiate(_drawObj);
+      ResultProcess(result);
     }
 
-    private void ReturnToLobby() {
+    private void ResultProcess(GameObject result) {
+      _isFinished = true;
+
+      result.transform.SetParent(_canvas.transform, false);
+
+      MonoUtility.Instance.DelaySec(3.0f, () => {
+        Destroy(result);
+      });
+
       MonoUtility.Instance.DelaySec(10.0f, () => {
         PhotonNetwork.LeaveRoom();
         _camera.DisableTracking();
       });
     }
 
+    [SerializeField] private GameObject _winObj;
+    [SerializeField] private GameObject _loseObj;
+    [SerializeField] private GameObject _drawObj;
     private bool _isFinished = false;
     private readonly string _gameVersion = "1.0b1";
     private TimePanel _timePanel;
     private TrackCamera _camera;
+    private Canvas _canvas;
   }
 }
 

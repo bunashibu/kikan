@@ -22,6 +22,7 @@ namespace Bunashibu.Kikan {
           var judger = Instantiate(_judger).GetComponent<WinLoseJudger>() as WinLoseJudger;
           judger.SetTimePanel(_timePanel);
           judger.SetCamera(_camera);
+          judger.SetCanvas(_canvas);
         }
       }
     }
@@ -107,6 +108,9 @@ namespace Bunashibu.Kikan {
 
     [Space(10)]
     [SerializeField] private TrackCamera _camera;
+
+    [Space(10)]
+    [SerializeField] private Canvas _canvas;
 
     private Quaternion _destRotation;
     private bool _isRotating;

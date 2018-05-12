@@ -51,3 +51,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89501b8369a96a14e9982e153b2e79ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _winObj: {fileID: 1229353653367644, guid: 0940d6c9853115c418383b139e2e0644, type: 2}
+  _loseObj: {fileID: 1592723409780908, guid: a092e9a6c9e9a8043bdaebad333d12cb, type: 2}
+  _drawObj: {fileID: 1118007436052200, guid: 1b9942035c0fd004daca995afae0b788, type: 2}
