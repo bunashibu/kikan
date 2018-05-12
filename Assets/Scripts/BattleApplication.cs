@@ -19,17 +19,13 @@ namespace Bunashibu.Kikan {
     }
 
     public override void OnPhotonPlayerDisconnected(PhotonPlayer player) {
-      if (_isMaster) {
-        var playerNames = PhotonNetwork.room.CustomProperties["Applying"] as string[];
-        var list = MonoUtility.ToList<string>(playerNames);
+      if (_isMaster)
+        RemovePlayer(player);
+    }
 
-        list.Remove(player.NickName);
-
-        var props = new Hashtable() {{ "Applying", list.ToArray() }};
-        PhotonNetwork.room.SetCustomProperties(props);
-
-        photonView.RPC("UpdateNameBoard", PhotonTargets.All);
-      }
+    public override void OnMasterClientSwitched(PhotonPlayer newMasterClient) {
+      if (PhotonNetwork.player == newMasterClient)
+        _isMaster = true;
     }
 
     public override void OnConnectedToMaster() {
@@ -188,6 +184,18 @@ namespace Bunashibu.Kikan {
       }
 
       return list.ToArray();
+    }
+
+    private void RemovePlayer(PhotonPlayer player) {
+      var playerNames = PhotonNetwork.room.CustomProperties["Applying"] as string[];
+      var list = MonoUtility.ToList<string>(playerNames);
+
+      list.Remove(player.NickName);
+
+      var props = new Hashtable() {{ "Applying", list.ToArray() }};
+      PhotonNetwork.room.SetCustomProperties(props);
+
+      photonView.RPC("UpdateNameBoard", PhotonTargets.All);
     }
 
     [SerializeField] private GameObject _apply;
