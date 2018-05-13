@@ -49,15 +49,12 @@ namespace Bunashibu.Kikan {
     }
 
     public override void OnConnectedToMaster() {
-      if (_isFinished) {
-        Debug.Log("XXXXXX OnConnectedToMaster() was called");
+      if (_isFinished)
         PhotonNetwork.JoinRoom("Lobby");
-      }
     }
 
     public override void OnPhotonJoinRoomFailed(object[] codeAndMsg) {
       if (_isFinished) {
-        Debug.Log("XXXXXX Failed to Join Room!");
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.MaxPlayers = (byte)20;
 
@@ -66,10 +63,8 @@ namespace Bunashibu.Kikan {
     }
 
     public override void OnJoinedRoom() {
-      if (_isFinished) {
-        Debug.Log("XXXXXX Joined Room!");
+      if (_isFinished)
         SceneChanger.Instance.ChangeScene("Lobby");
-      }
     }
 
     public override void OnLeftRoom() {
@@ -77,7 +72,7 @@ namespace Bunashibu.Kikan {
         if (PhotonNetwork.connected)
           PhotonNetwork.JoinRoom("Lobby");
         else
-        PhotonNetwork.ConnectUsingSettings(_gameVersion);
+        PhotonNetwork.ConnectUsingSettings(GameData.Instance.GameVersion);
       }
     }
 
@@ -132,7 +127,6 @@ namespace Bunashibu.Kikan {
     [SerializeField] private GameObject _loseObj;
     [SerializeField] private GameObject _drawObj;
     private bool _isFinished = false;
-    private readonly string _gameVersion = "1.0b1";
     private TimePanel _timePanel;
     private TrackCamera _camera;
     private Canvas _canvas;

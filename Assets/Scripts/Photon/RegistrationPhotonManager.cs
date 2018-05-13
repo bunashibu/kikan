@@ -27,7 +27,7 @@ namespace Bunashibu.Kikan {
       if (PhotonNetwork.connected)
         PhotonNetwork.JoinRoom("Lobby");
       else
-        PhotonNetwork.ConnectUsingSettings(_gameVersion);
+        PhotonNetwork.ConnectUsingSettings(GameData.Instance.GameVersion);
     }
 
     public override void OnConnectedToMaster() {
@@ -57,7 +57,6 @@ namespace Bunashibu.Kikan {
     [SerializeField] private byte _maxPlayers;
     [SerializeField] private string _nextSceneName;
     private bool _isConnecting;
-    private readonly string _gameVersion = "1.0b1";
   }
 }
 
