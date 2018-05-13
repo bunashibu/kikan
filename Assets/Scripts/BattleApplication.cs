@@ -24,23 +24,21 @@ namespace Bunashibu.Kikan {
     }
 
     public override void OnMasterClientSwitched(PhotonPlayer newMasterClient) {
+      if (_isApplying) return;
+
       if (PhotonNetwork.player == newMasterClient)
         _isMaster = true;
+      else
+        _isMaster = false;
     }
 
     public override void OnConnectedToMaster() {
       if (_isApplying) {
-        Debug.Log("OnConnectedToMaster() BA was called");
+        RoomOptions roomOptions = new RoomOptions();
+        roomOptions.MaxPlayers = (byte)_matchNum;
+        roomOptions.CustomRoomProperties = new Hashtable() {{ "PlayerNum", _matchNum }};
 
-        if (_isMaster) {
-          RoomOptions roomOptions = new RoomOptions();
-          roomOptions.MaxPlayers = (byte)_matchNum;
-          roomOptions.CustomRoomProperties = new Hashtable() {{ "PlayerNum", _matchNum }};
-
-          PhotonNetwork.CreateRoom(_roomName, roomOptions, null);
-        }
-        else
-          PhotonNetwork.JoinRoom(_roomName);
+        PhotonNetwork.JoinOrCreateRoom(_roomName, roomOptions, null);
       }
     }
 
@@ -141,6 +139,7 @@ namespace Bunashibu.Kikan {
           }
         }
 
+        RemovePlayer(PhotonNetwork.player);
         CountDown(_countDown);
       }
     }
