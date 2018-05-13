@@ -82,6 +82,8 @@ namespace Bunashibu.Kikan {
       _player.Rigid.simulated = true;
       _player.Observer.SyncRigidSimulated();
 
+      _player.BodyCollider.enabled = true;
+
       _player.Character.enabled = true;
       _player.Weapon.SkillInstantiator.enabled = true;
 

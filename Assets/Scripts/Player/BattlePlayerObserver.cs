@@ -63,6 +63,10 @@ namespace Bunashibu.Kikan {
       _player.PhotonView.RPC("SyncRigidSimulatedRPC", PhotonTargets.Others, _player.Rigid.simulated);
     }
 
+    public void SyncBodyCollider() {
+      _player.PhotonView.RPC("SyncBodyColliderRPC", PhotonTargets.Others, _player.BodyCollider.enabled);
+    }
+
     /* Hp RPC */
     [PunRPC]
     private void SyncHpRPC(int cur, int max) {
@@ -110,6 +114,11 @@ namespace Bunashibu.Kikan {
     [PunRPC]
     private void SyncRigidSimulatedRPC(bool flag) {
       _player.Rigid.simulated = flag;
+    }
+
+    [PunRPC]
+    private void SyncBodyColliderRPC(bool flag) {
+      _player.BodyCollider.enabled = flag;
     }
 
     private void ForceSync(string key, Action action) {

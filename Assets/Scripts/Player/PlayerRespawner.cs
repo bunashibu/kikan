@@ -14,6 +14,7 @@ namespace Bunashibu.Kikan {
         gameObject.transform.position = pos;
 
         _player.BodyCollider.enabled = true;
+        _player.Observer.SyncBodyCollider();
 
         _player.Hp.FullRecover();
         _player.Observer.SyncCurHp();
