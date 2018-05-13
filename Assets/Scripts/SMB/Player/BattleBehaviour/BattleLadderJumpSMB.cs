@@ -15,6 +15,7 @@ namespace Bunashibu.Kikan {
       if (_player.PhotonView.isMine) {
         if ( _player.Hp.Cur <= 0                           ) { _player.StateTransfer.TransitTo( "Die"  , animator ); return; }
         if ( _player.BuffState.Stun                        ) { _player.StateTransfer.TransitTo( "Stun" , animator ); return; }
+        if ( ShouldTransitToSkill()                        ) { _player.StateTransfer.TransitTo( "Skill", animator ); return; }
         if ( _player.State.Air && !_player.State.Ladder    ) { _player.StateTransfer.TransitTo( "Fall" , animator ); return; }
         if ( _player.State.Ground && !_player.State.Ladder ) { _player.StateTransfer.TransitTo( "Idle" , animator ); return; }
       }
@@ -38,6 +39,17 @@ namespace Bunashibu.Kikan {
       }
 
       _player.Movement.LadderJump();
+    }
+
+    private bool ShouldTransitToSkill() {
+      bool SkillFlag = ( _player.SkillInfo.GetState ( SkillName.X     ) == SkillState.Using ) ||
+                       ( _player.SkillInfo.GetState ( SkillName.Shift ) == SkillState.Using ) ||
+                       ( _player.SkillInfo.GetState ( SkillName.Z     ) == SkillState.Using ) ||
+                       ( _player.SkillInfo.GetState ( SkillName.Ctrl  ) == SkillState.Using ) ||
+                       ( _player.SkillInfo.GetState ( SkillName.Space ) == SkillState.Using ) ||
+                       ( _player.SkillInfo.GetState ( SkillName.Alt   ) == SkillState.Using );
+
+      return SkillFlag;
     }
 
     private BattlePlayer _player;
