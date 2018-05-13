@@ -558,7 +558,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _jobName: Manji
-  _keys: 78000000300100007a000000320100002000000034010000
+  _keysList:
+  - keys: 78000000
+  - keys: 300100002f010000
+  - keys: 7a000000
+  - keys: 3201000031010000
+  - keys: 20000000
+  - keys: 3401000033010000
   _names: 000000000100000002000000030000000400000005000000
   _skillCT:
   - 0.5

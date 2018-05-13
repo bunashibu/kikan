@@ -14,18 +14,20 @@ namespace Bunashibu.Kikan {
       if (!photonView.isMine || _player.Hp.Cur <= 0 || _player.State.Rigor || !IsCorrectAnimationState() || _player.BuffState.Stun)
         return;
 
-      for (int i=0; i<_keys.Length; ++i) {
+      for (int i=0; i<_keysList.Count; ++i) {
         if (_player.Level.Lv < _requireLv[i])
           continue;
 
         if (_isDisabled[i] && (_player.Level.Lv == _requireLv[i]))
           EnableSkill(i);
 
-        if (_canUseList[i] && Input.GetKey(_keys[i])) {
-          InstantiateSkill(i);
-          StartCT(i);
-          UpdateCT(i);
-          break;
+        for (int k=0; k<_keysList[i].keys.Count; ++k) {
+          if (_canUseList[i] && Input.GetKey(_keysList[i].keys[k])) {
+            InstantiateSkill(i);
+            StartCT(i);
+            UpdateCT(i);
+            break;
+          }
         }
       }
     }
@@ -35,7 +37,7 @@ namespace Bunashibu.Kikan {
     }
 
     public void ResetAllCT() {
-      for (int i=0; i<_keys.Length; ++i) {
+      for (int i=0; i<_keysList.Count; ++i) {
         _canUseList[i] = true;
         _player.SkillInfo.SetState(_names[i], SkillState.Ready);
         _player.State.Rigor = false;
@@ -111,7 +113,7 @@ namespace Bunashibu.Kikan {
     }
 
     [SerializeField] private string _jobName;
-    [SerializeField] private KeyCode[] _keys;
+    [SerializeField] private List<KeyList> _keysList;
     [SerializeField] private SkillName[] _names;
     [SerializeField] private float[] _skillCT;
     [SerializeField] private float[] _rigorCT;
@@ -122,6 +124,11 @@ namespace Bunashibu.Kikan {
     private List<SkillPanelUnit> _panelUnitList;
     private List<bool> _canUseList;
     private List<bool> _isDisabled;
+  }
+
+  [System.SerializableAttribute]
+  public class KeyList {
+    public List<KeyCode> keys;
   }
 }
 
