@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Assertions;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 namespace Bunashibu.Kikan {
   public class BattleApplication : Photon.PunBehaviour {
     void Start() {
-      if (PhotonNetwork.player.IsMasterClient)
-        _isMaster = true;
-
       _isApplying = false;
       _apply.SetActive(true);
       _nameBoard.SetActive(false);
@@ -19,17 +17,11 @@ namespace Bunashibu.Kikan {
     }
 
     public override void OnPhotonPlayerDisconnected(PhotonPlayer player) {
-      if (_isMaster)
-        RemovePlayer(player);
-    }
+      var playerNames = PhotonNetwork.room.CustomProperties["Applying"] as string[];
+      var list = MonoUtility.ToList<string>(playerNames);
 
-    public override void OnMasterClientSwitched(PhotonPlayer newMasterClient) {
-      if (_isApplying) return;
-
-      if (PhotonNetwork.player == newMasterClient)
-        _isMaster = true;
-      else
-        _isMaster = false;
+      if (list.Contains(player.NickName))
+        RemoveApplyingPlayer(player);
     }
 
     public override void OnConnectedToMaster() {
@@ -59,6 +51,10 @@ namespace Bunashibu.Kikan {
       }
     }
 
+    public override void OnPhotonCustomRoomPropertiesChanged(Hashtable props) {
+      UpdateNameBoard();
+    }
+
     public void Apply() {
       _isApplying = true;
       _apply.SetActive(false);
@@ -71,48 +67,32 @@ namespace Bunashibu.Kikan {
 
     [PunRPC]
     public void Approve(PhotonPlayer player) {
-      if (_isMaster) {
-        var playerNames = PhotonNetwork.room.CustomProperties["Applying"] as string[];
-        var list = MonoUtility.ToList<string>(playerNames);
+      Assert.IsTrue(PhotonNetwork.isMasterClient);
 
-        list.Add(player.NickName);
-
-        var props = new Hashtable() {{ "Applying", list.ToArray() }};
-        PhotonNetwork.room.SetCustomProperties(props);
-
-        photonView.RPC("UpdateNameBoard", PhotonTargets.All);
-
-        if (list.Count == _matchNum) {
-          Debug.Log("Matching is done. Prepareing to start game...");
-
-          var tmp = PhotonNetwork.room.CustomProperties["Playing"];
-          int roomNum = 0;
-          if (tmp != null)
-            roomNum = (int)tmp;
-
-          props = new Hashtable() {{ "Playing", roomNum + 1 }};
-          PhotonNetwork.room.SetCustomProperties(props);
-
-          var roomName = "Battle" + roomNum.ToString();
-
-          int[] team = TeamMaker();
-          photonView.RPC("StartBattle", PhotonTargets.AllViaServer, roomName, team);
-        }
-      }
-    }
-
-    [PunRPC]
-    public void UpdateNameBoard() {
       var playerNames = PhotonNetwork.room.CustomProperties["Applying"] as string[];
       var list = MonoUtility.ToList<string>(playerNames);
 
-      int length = list.Count;
+      list.Add(player.NickName);
 
-      for (int i=0; i<length; ++i)
-        _nameList[i].text = list[i];
+      var props = new Hashtable() {{ "Applying", list.ToArray() }};
+      PhotonNetwork.room.SetCustomProperties(props);
 
-      for (int i=length; i<_matchNum; ++i)
-        _nameList[i].text = "";
+      if (list.Count == _matchNum) {
+        Debug.Log("Matching is done. Prepareing to start game...");
+
+        var tmp = PhotonNetwork.room.CustomProperties["Playing"];
+        int roomNum = 0;
+        if (tmp != null)
+          roomNum = (int)tmp;
+
+        props = new Hashtable() {{ "Playing", roomNum + 1 }};
+        PhotonNetwork.room.SetCustomProperties(props);
+
+        var roomName = "Battle" + roomNum.ToString();
+
+        int[] team = TeamMaker();
+        photonView.RPC("StartBattle", PhotonTargets.AllViaServer, roomName, team);
+      }
     }
 
     [PunRPC]
@@ -139,7 +119,6 @@ namespace Bunashibu.Kikan {
           }
         }
 
-        RemovePlayer(PhotonNetwork.player);
         CountDown(_countDown);
       }
     }
@@ -185,7 +164,20 @@ namespace Bunashibu.Kikan {
       return list.ToArray();
     }
 
-    private void RemovePlayer(PhotonPlayer player) {
+    private void UpdateNameBoard() {
+      var playerNames = PhotonNetwork.room.CustomProperties["Applying"] as string[];
+      var list = MonoUtility.ToList<string>(playerNames);
+
+      int length = list.Count;
+
+      for (int i=0; i<length; ++i)
+        _nameList[i].text = list[i];
+
+      for (int i=length; i<_matchNum; ++i)
+        _nameList[i].text = "";
+    }
+
+    private void RemoveApplyingPlayer(PhotonPlayer player) {
       var playerNames = PhotonNetwork.room.CustomProperties["Applying"] as string[];
       var list = MonoUtility.ToList<string>(playerNames);
 
@@ -193,8 +185,6 @@ namespace Bunashibu.Kikan {
 
       var props = new Hashtable() {{ "Applying", list.ToArray() }};
       PhotonNetwork.room.SetCustomProperties(props);
-
-      photonView.RPC("UpdateNameBoard", PhotonTargets.All);
     }
 
     [SerializeField] private GameObject _apply;
@@ -206,7 +196,6 @@ namespace Bunashibu.Kikan {
     [SerializeField] private List<Text> _nameList;
     [SerializeField] private int _matchNum;
     [SerializeField] private int _countDown; // Debug
-    private bool _isMaster;
     private bool _isApplying;
     private string _roomName;
   }

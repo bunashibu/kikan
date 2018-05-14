@@ -1309,7 +1309,7 @@ MonoBehaviour:
   - {fileID: 1391082512}
   - {fileID: 1500038433}
   _matchNum: 4
-  _countDown: 1
+  _countDown: 3
 --- !u!114 &1096165165
 MonoBehaviour:
   m_ObjectHideFlags: 0
