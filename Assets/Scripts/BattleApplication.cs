@@ -11,6 +11,7 @@ namespace Bunashibu.Kikan {
     void Start() {
       _isApplying = false;
       _apply.SetActive(true);
+      _cancel.SetActive(false);
       _nameBoard.SetActive(false);
       _progressLabel.SetActive(false);
       _startPanel.SetActive(false);
@@ -58,6 +59,7 @@ namespace Bunashibu.Kikan {
     public void Apply() {
       _isApplying = true;
       _apply.SetActive(false);
+      _cancel.SetActive(true);
       _nameBoard.SetActive(true);
       _progressLabel.SetActive(true);
 
@@ -136,6 +138,17 @@ namespace Bunashibu.Kikan {
       });
     }
 
+    public void Cancel() {
+      RemoveApplyingPlayer(PhotonNetwork.player);
+
+      _isApplying = false;
+      _apply.SetActive(true);
+      _cancel.SetActive(false);
+      _nameBoard.SetActive(false);
+      _progressLabel.SetActive(false);
+      _startPanel.SetActive(false);
+    }
+
     private int[] TeamMaker() {
       var list = new List<int>();
       int half = 1;
@@ -188,6 +201,7 @@ namespace Bunashibu.Kikan {
     }
 
     [SerializeField] private GameObject _apply;
+    [SerializeField] private GameObject _cancel;
     [SerializeField] private GameObject _nameBoard;
     [SerializeField] private GameObject _progressLabel;
     [SerializeField] private GameObject _startPanel;
