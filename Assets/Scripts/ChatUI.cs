@@ -19,6 +19,8 @@ namespace Bunashibu.Kikan {
       if (this.AlignBottom) {
         this.GuiRect.y = Screen.height - this.GuiRect.height;
       }
+
+      scrollPos.y = Mathf.Infinity;
     }
 
     public void OnGUI() {
