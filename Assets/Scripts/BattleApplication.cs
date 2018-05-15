@@ -37,8 +37,6 @@ namespace Bunashibu.Kikan {
 
     public override void OnPhotonJoinRoomFailed(object[] codeAndMsg) {
       if (_isApplying) {
-        Debug.Log("OnPhotonJoinRoomFailed() BA was called");
-
         MonoUtility.Instance.DelaySec(1.0f, () => {
           PhotonNetwork.JoinRoom(_roomName);
         });
@@ -46,10 +44,8 @@ namespace Bunashibu.Kikan {
     }
 
     public override void OnJoinedRoom() {
-      if (_isApplying) {
-        Debug.Log("OnJoinedRoom() BA was called");
+      if (_isApplying)
         SceneChanger.Instance.ChangeScene("Battle");
-      }
     }
 
     public override void OnPhotonCustomRoomPropertiesChanged(Hashtable props) {
@@ -209,7 +205,7 @@ namespace Bunashibu.Kikan {
     [SerializeField] private Text _CountDown;
     [SerializeField] private List<Text> _nameList;
     [SerializeField] private int _matchNum;
-    [SerializeField] private int _countDown; // Debug
+    [SerializeField] private int _countDown;
     private bool _isApplying;
     private string _roomName;
   }
