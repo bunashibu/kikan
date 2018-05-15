@@ -48,9 +48,11 @@ namespace Bunashibu.Kikan {
         SceneChanger.Instance.ChangeScene("Battle");
     }
 
+    /*
     public override void OnPhotonCustomRoomPropertiesChanged(Hashtable props) {
       UpdateNameBoard();
     }
+    */
 
     public void Apply() {
       _isApplying = true;

@@ -25,6 +25,8 @@ namespace Bunashibu.Kikan {
         _launcher.StartBattle(_matchCount[applyType]);
     }
 
+    public Dictionary<ApplyType, int> MatchCount => _matchCount;
+
     private void Add(PhotonPlayer player, ApplyType applyType) {
       string propKey = "Applying" + applyType;
 
