@@ -7,7 +7,7 @@ using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 namespace Bunashibu.Kikan {
   public class BattleLauncher : Photon.MonoBehaviour {
-    public void StartBattle() {
+    public void StartBattle(int matchCount) {
       var tmp = PhotonNetwork.room.CustomProperties["Playing"];
       int roomNum = 0;
       if (tmp != null)

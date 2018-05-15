@@ -1844,6 +1844,7 @@ GameObject:
   - component: {fileID: 1096165167}
   - component: {fileID: 1096165164}
   - component: {fileID: 1096165168}
+  - component: {fileID: 1096165172}
   - component: {fileID: 1096165170}
   - component: {fileID: 1096165171}
   - component: {fileID: 1096165169}
@@ -2005,7 +2006,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _launcher: {fileID: 1096165169}
-  _matchNumList: 01000000020000000400000006000000
 --- !u!114 &1096165171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2022,6 +2022,19 @@ MonoBehaviour:
   _nameBoard: {fileID: 118429741}
   _progressLabel: {fileID: 1068346827}
   _startPanel: {fileID: 1971941290}
+--- !u!114 &1096165172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1096165162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af0af4cb3eb7b6f459f5d3637c502d7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _applier: {fileID: 1096165168}
+  _cancelButton: {fileID: 1377578373}
 --- !u!1 &1172300853
 GameObject:
   m_ObjectHideFlags: 0

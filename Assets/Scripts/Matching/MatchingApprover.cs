@@ -19,13 +19,13 @@ namespace Bunashibu.Kikan {
     public void Approve(PhotonPlayer player, ApplyType applyType) {
       Assert.IsTrue(PhotonNetwork.isMasterClient);
 
-      AddPlayer(player, applyType);
+      Add(player, applyType);
 
       if (_applyingCount == _matchCount[applyType])
-        _launcher.StartBattle();
+        _launcher.StartBattle(_matchCount[applyType]);
     }
 
-    private void AddPlayer(PhotonPlayer player, ApplyType applyType) {
+    private void Add(PhotonPlayer player, ApplyType applyType) {
       string propKey = "Applying" + applyType;
 
       var playerNameAry  = PhotonNetwork.room.CustomProperties[propKey] as string[];

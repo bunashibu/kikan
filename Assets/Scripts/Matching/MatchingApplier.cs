@@ -12,11 +12,15 @@ namespace Bunashibu.Kikan {
       _applyButtonList[3].onClick.AddListener( () => Apply(ApplyType.VS3)      );
     }
 
-    public void Apply(ApplyType applyType) {
+    public ApplyType CurApplyingType => _curApplyingType;
+
+    private void Apply(ApplyType applyType) {
+      _curApplyingType = applyType;
       photonView.RPC("Approve", PhotonTargets.MasterClient, PhotonNetwork.player, applyType);
     }
 
     [SerializeField] private List<Button> _applyButtonList;
+    private ApplyType _curApplyingType;
   }
 
   public enum ApplyType {
