@@ -2034,6 +2034,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _applier: {fileID: 1096165168}
+  _board: {fileID: 1096165171}
   _cancelButton: {fileID: 1377578373}
 --- !u!1 &1172300853
 GameObject:

@@ -5,6 +5,10 @@ using UnityEngine;
 namespace Bunashibu.Kikan {
   public class MatchingBoard : MonoBehaviour {
     void Start() {
+      SetApplyMode();
+    }
+
+    public void SetApplyMode() {
       _isApplying = false;
       _apply.SetActive(true);
       _cancel.SetActive(false);

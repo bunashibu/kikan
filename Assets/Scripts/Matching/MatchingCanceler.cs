@@ -12,6 +12,7 @@ namespace Bunashibu.Kikan {
 
     private void Cancel() {
       RemoveApplyingPlayer();
+      _board.SetApplyMode();
     }
 
     private void RemoveApplyingPlayer() {
@@ -27,6 +28,7 @@ namespace Bunashibu.Kikan {
     }
 
     [SerializeField] private MatchingApplier _applier;
+    [SerializeField] private MatchingBoard _board;
     [SerializeField] private Button _cancelButton;
   }
 }
