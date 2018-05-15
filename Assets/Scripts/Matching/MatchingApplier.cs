@@ -15,10 +15,12 @@ namespace Bunashibu.Kikan {
     public ApplyType CurApplyingType => _curApplyingType;
 
     private void Apply(ApplyType applyType) {
+      _board.SetMatchWaitMode();
       _curApplyingType = applyType;
       photonView.RPC("Approve", PhotonTargets.MasterClient, PhotonNetwork.player, applyType);
     }
 
+    [SerializeField] private MatchingBoard _board;
     [SerializeField] private List<Button> _applyButtonList;
     private ApplyType _curApplyingType;
   }

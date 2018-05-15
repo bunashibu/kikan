@@ -11,8 +11,8 @@ namespace Bunashibu.Kikan {
     }
 
     private void Cancel() {
-      RemoveApplyingPlayer();
       _board.SetApplyMode();
+      RemoveApplyingPlayer();
     }
 
     private void RemoveApplyingPlayer() {
