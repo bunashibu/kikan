@@ -59,8 +59,7 @@ namespace Bunashibu.Kikan {
       _nameBoard.SetActive(true);
       _progressLabel.SetActive(true);
 
-      var player = PhotonNetwork.player;
-      photonView.RPC("Approve", PhotonTargets.MasterClient, player);
+      photonView.RPC("Approve", PhotonTargets.MasterClient, PhotonNetwork.player);
     }
 
     [PunRPC]

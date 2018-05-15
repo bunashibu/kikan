@@ -1012,15 +1012,15 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1096165164}
-        m_MethodName: Apply
-        m_Mode: 1
+      - m_Target: {fileID: 0}
+        m_MethodName: 
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: 3vs3
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -1208,15 +1208,15 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1096165164}
-        m_MethodName: Apply
-        m_Mode: 1
+      - m_Target: {fileID: 0}
+        m_MethodName: 
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: 1vs1
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -1560,7 +1560,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 854746600}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: 
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Practice
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &854746600
@@ -1830,10 +1841,14 @@ GameObject:
   - component: {fileID: 1096165163}
   - component: {fileID: 1096165166}
   - component: {fileID: 1096165165}
-  - component: {fileID: 1096165164}
   - component: {fileID: 1096165167}
+  - component: {fileID: 1096165164}
+  - component: {fileID: 1096165168}
+  - component: {fileID: 1096165170}
+  - component: {fileID: 1096165171}
+  - component: {fileID: 1096165169}
   m_Layer: 5
-  m_Name: BattleApplication
+  m_Name: BattleMatching
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1948,6 +1963,65 @@ MonoBehaviour:
   instantiationId: 3
   currentMasterID: -1
   isRuntimeInstantiated: 0
+--- !u!114 &1096165168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1096165162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aaaab49cd9909b47a3d59be0aefd7dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _applyButtonList:
+  - {fileID: 854746599}
+  - {fileID: 609158762}
+  - {fileID: 1817048254}
+  - {fileID: 480747004}
+--- !u!114 &1096165169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1096165162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dc9ae2745a853f4f967e174a057d10a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _matchNum: 0
+  _countDown: 0
+  _CountDown: {fileID: 0}
+--- !u!114 &1096165170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1096165162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa0782f2a8a78484f9255b9eb300e5e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _launcher: {fileID: 1096165169}
+  _matchNumList: 01000000020000000400000006000000
+--- !u!114 &1096165171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1096165162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eec7fbef7dc83f488139e01ce4ccfc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _apply: {fileID: 1338706678}
+  _cancel: {fileID: 1377578371}
+  _nameBoard: {fileID: 118429741}
+  _progressLabel: {fileID: 1068346827}
+  _startPanel: {fileID: 1971941290}
 --- !u!1 &1172300853
 GameObject:
   m_ObjectHideFlags: 0
@@ -2903,15 +2977,15 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1096165164}
-        m_MethodName: Apply
-        m_Mode: 1
+      - m_Target: {fileID: 0}
+        m_MethodName: 
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: 2vs2
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
