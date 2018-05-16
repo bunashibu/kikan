@@ -18,14 +18,6 @@ namespace Bunashibu.Kikan {
       photonView.RPC("ApproveRPC", PhotonTargets.MasterClient, PhotonNetwork.player, applyType);
     }
 
-    [PunRPC]
-    public void GetApplyingTicketRPC(int playerID, ApplyType applyType) {
-      if (PhotonNetwork.player.ID == playerID) {
-        var props = new Hashtable() {{ "ApplyingType", (int)applyType }};
-        PhotonNetwork.player.SetCustomProperties(props);
-      }
-    }
-
     [SerializeField] private MatchingBoard _board;
     [SerializeField] private List<Button> _applyButtonList;
   }

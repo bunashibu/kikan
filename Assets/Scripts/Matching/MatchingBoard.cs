@@ -39,8 +39,8 @@ namespace Bunashibu.Kikan {
     }
 
     private void UpdateNameBoard() {
-      var applyingType = (int)PhotonNetwork.player.CustomProperties["ApplyingType"];
-      string propKey = "Applying" + applyingType.ToString();
+      var applyingTicket = (int)PhotonNetwork.player.CustomProperties["ApplyingTicket"];
+      string propKey = "Applying" + applyingTicket.ToString();
 
       var playerNameAry  = PhotonNetwork.room.CustomProperties[propKey] as string[];
       var playerNameList = MonoUtility.ToList<string>(playerNameAry);
@@ -48,7 +48,7 @@ namespace Bunashibu.Kikan {
       for (int i=0; i<playerNameList.Count; ++i)
         _boardNameList[i].text = playerNameList[i];
 
-      int matchCount = _approver.MatchCount[(ApplyType)applyingType];
+      int matchCount = _mediator.MatchCount[(ApplyType)applyingTicket];
       for (int i=playerNameList.Count; i<matchCount; ++i)
         _boardNameList[i].text = "";
     }
@@ -59,7 +59,7 @@ namespace Bunashibu.Kikan {
     [SerializeField] private GameObject _progressLabel;
     [SerializeField] private GameObject _startPanel;
     [SerializeField] private List<Text> _boardNameList;
-    [SerializeField] private MatchingApprover _approver;
+    [SerializeField] private MatchingMediator _mediator;
     private bool _isApplying;
   }
 }
