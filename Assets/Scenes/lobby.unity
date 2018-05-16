@@ -1992,7 +1992,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dc9ae2745a853f4f967e174a057d10a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _matchNum: 0
+  _mediator: {fileID: 1096165170}
   _countDown: 0
   _CountDown: {fileID: 0}
 --- !u!114 &1096165170
@@ -2006,6 +2006,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa0782f2a8a78484f9255b9eb300e5e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _board: {fileID: 1096165171}
   _launcher: {fileID: 1096165169}
 --- !u!114 &1096165171
 MonoBehaviour:

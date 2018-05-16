@@ -44,14 +44,14 @@ namespace Bunashibu.Kikan {
     private void GiveApplyingTicket(Applicant applicant) {
       Assert.IsTrue(PhotonNetwork.isMasterClient);
 
-      var props = new Hashtable() {{ "ApplyingTicket", (int)applicant.applyType }};
+      var props = new Hashtable() {{ "ApplyingTicket", applicant.applyTicket }};
       applicant.player.SetCustomProperties(props);
     }
 
     private void Add(Applicant applicant) {
       Assert.IsTrue(PhotonNetwork.isMasterClient);
 
-      string propKey = "Applying" + applicant.applyType;
+      string propKey = "Applying" + applicant.applyTicket;
       var updateType = CustomPropertyUpdateType.Add;
 
       UpdateRoomCustomProperties(updateType, propKey, applicant.player.NickName);
@@ -60,6 +60,9 @@ namespace Bunashibu.Kikan {
     [PunRPC]
     public void ApprovedRPC(PhotonPlayer approvedPlayer) {
       _pendingList.Where(applicant => applicant.player != approvedPlayer);
+
+      if (PhotonNetwork.player == approvedPlayer)
+        _board.SetMatchWaitingMode();
     }
 
     [PunRPC]
@@ -88,7 +91,7 @@ namespace Bunashibu.Kikan {
     private void Remove(Applicant applicant) {
       Assert.IsTrue(PhotonNetwork.isMasterClient);
 
-      string propKey = "Applying" + applicant.applyType;
+      string propKey = "Applying" + applicant.applyTicket;
       var updateType = CustomPropertyUpdateType.Remove;
 
       UpdateRoomCustomProperties(updateType, propKey, applicant.player.NickName);
@@ -102,13 +105,12 @@ namespace Bunashibu.Kikan {
       var playerNameAry  = PhotonNetwork.room.CustomProperties[propKey] as string[];
       var playerNameList = MonoUtility.ToList<string>(playerNameAry);
 
-      if (playerNameList.Contains(propValue)) {
-        Debug.Log("Already exists");
-        return;
-      }
-
       switch (updateType) {
         case CustomPropertyUpdateType.Add:
+          if (playerNameList.Contains(propValue)) {
+            Debug.Log("Already exists");
+            return;
+          }
           playerNameList.Add(propValue);
           break;
         case CustomPropertyUpdateType.Remove:
@@ -128,6 +130,7 @@ namespace Bunashibu.Kikan {
       Remove
     }
 
+    [SerializeField] private MatchingBoard _board;
     [SerializeField] private BattleLauncher _launcher;
     private Dictionary<ApplyType, int> _matchCount;
     private List<Applicant> _pendingList;
@@ -137,6 +140,7 @@ namespace Bunashibu.Kikan {
   public class Applicant {
     public PhotonPlayer player;
     public ApplyType applyType;
+    public int applyTicket => (int)applyType;
   }
 }
 

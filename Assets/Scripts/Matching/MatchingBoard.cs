@@ -36,6 +36,8 @@ namespace Bunashibu.Kikan {
       _progressLabel.SetActive(true);
 
       _apply.SetActive(false);
+
+      UpdateNameBoard();
     }
 
     private void UpdateNameBoard() {
