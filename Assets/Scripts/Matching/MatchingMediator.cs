@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
@@ -11,62 +12,100 @@ namespace Bunashibu.Kikan {
         { ApplyType.Practice, 1 },
         { ApplyType.VS1,      2 },
         { ApplyType.VS2,      4 },
-        { ApplyType.VS3,      6 },
+        { ApplyType.VS3,      6 }
       };
+      _pendingList = new List<Applicant>();
     }
 
     [PunRPC]
-    public void ApproveRPC(PhotonPlayer player, ApplyType applyType) {
-      Assert.IsTrue(PhotonNetwork.isMasterClient);
+    public void ApproveRequestRPC(PhotonPlayer player, ApplyType applyType) {
+      var applicant = new Applicant() {
+        player = player,
+        applyType = applyType
+      };
+      _pendingList.Add(applicant);
 
-      Add(player, applyType);
-      GiveApplyingTicket(player, applyType);
-
-      if (_applyingCount == _matchCount[applyType])
-        _launcher.StartBattle(_matchCount[applyType]);
+      if (PhotonNetwork.isMasterClient)
+        Approve(applicant);
     }
 
-    private void GiveApplyingTicket(PhotonPlayer player, ApplyType applyType) {
+    private void Approve(Applicant applicant) {
       Assert.IsTrue(PhotonNetwork.isMasterClient);
 
-      var props = new Hashtable() {{ "ApplyingTicket", (int)applyType }};
-      player.SetCustomProperties(props);
+      GiveApplyingTicket(applicant);
+      Add(applicant);
+
+      photonView.RPC("ApprovedRPC", PhotonTargets.All, applicant.player);
+
+      if (_approvedApplicantCount == _matchCount[applicant.applyType])
+        _launcher.StartBattle(_matchCount[applicant.applyType]);
     }
 
-    private void Add(PhotonPlayer player, ApplyType applyType) {
-      string propKey = "Applying" + applyType;
+    private void GiveApplyingTicket(Applicant applicant) {
+      Assert.IsTrue(PhotonNetwork.isMasterClient);
+
+      var props = new Hashtable() {{ "ApplyingTicket", (int)applicant.applyType }};
+      applicant.player.SetCustomProperties(props);
+    }
+
+    private void Add(Applicant applicant) {
+      Assert.IsTrue(PhotonNetwork.isMasterClient);
+
+      string propKey = "Applying" + applicant.applyType;
       var updateType = CustomPropertyUpdateType.Add;
 
-      UpdateRoomCustomProperties(updateType, propKey, player.NickName);
+      UpdateRoomCustomProperties(updateType, propKey, applicant.player.NickName);
     }
 
     [PunRPC]
-    public void CancelRPC(PhotonPlayer player) {
+    public void ApprovedRPC(PhotonPlayer approvedPlayer) {
+      _pendingList.Where(applicant => applicant.player != approvedPlayer);
+    }
+
+    [PunRPC]
+    public void CancelRequestRPC(PhotonPlayer player) {
+      var cancelApplicant = _pendingList.Where(applicant => applicant.player == player).First();
+      _pendingList.Remove(cancelApplicant);
+
+      if (PhotonNetwork.isMasterClient)
+        Cancel(cancelApplicant);
+    }
+
+    private void Cancel(Applicant applicant) {
       Assert.IsTrue(PhotonNetwork.isMasterClient);
 
-      var applyingTicket = (int)player.CustomProperties["ApplyingTicket"];
-
-      Remove(player, (ApplyType)applyingTicket);
-      DeleteApplyingTicket(player);
+      DeleteApplyingTicket(applicant);
+      Remove(applicant);
     }
 
-    private void DeleteApplyingTicket(PhotonPlayer player) {
+    private void DeleteApplyingTicket(Applicant applicant) {
+      Assert.IsTrue(PhotonNetwork.isMasterClient);
+
       var props = new Hashtable() {{ "ApplyingTicket", "" }};
-      player.SetCustomProperties(props);
+      applicant.player.SetCustomProperties(props);
     }
 
-    private void Remove(PhotonPlayer player, ApplyType applyType) {
-      string propKey = "Applying" + applyType;
+    private void Remove(Applicant applicant) {
+      Assert.IsTrue(PhotonNetwork.isMasterClient);
+
+      string propKey = "Applying" + applicant.applyType;
       var updateType = CustomPropertyUpdateType.Remove;
 
-      UpdateRoomCustomProperties(updateType, propKey, player.NickName);
+      UpdateRoomCustomProperties(updateType, propKey, applicant.player.NickName);
     }
 
     // NOTE: This method is not for general purpose.
     // I probably think something like that CustomPropety-Manager-Class should be created.
     private void UpdateRoomCustomProperties(CustomPropertyUpdateType updateType, string propKey, string propValue) {
+      Assert.IsTrue(PhotonNetwork.isMasterClient);
+
       var playerNameAry  = PhotonNetwork.room.CustomProperties[propKey] as string[];
       var playerNameList = MonoUtility.ToList<string>(playerNameAry);
+
+      if (playerNameList.Contains(propValue)) {
+        Debug.Log("Already exists");
+        return;
+      }
 
       switch (updateType) {
         case CustomPropertyUpdateType.Add:
@@ -76,7 +115,7 @@ namespace Bunashibu.Kikan {
           playerNameList.Remove(propValue);
           break;
       }
-      _applyingCount = playerNameList.Count;
+      _approvedApplicantCount = playerNameList.Count;
 
       var props = new Hashtable() {{ propKey, playerNameList.ToArray() }};
       PhotonNetwork.room.SetCustomProperties(props);
@@ -90,8 +129,14 @@ namespace Bunashibu.Kikan {
     }
 
     [SerializeField] private BattleLauncher _launcher;
-    [SerializeField] private Dictionary<ApplyType, int> _matchCount;
-    private int _applyingCount;
+    private Dictionary<ApplyType, int> _matchCount;
+    private List<Applicant> _pendingList;
+    private int _approvedApplicantCount;
+  }
+
+  public class Applicant {
+    public PhotonPlayer player;
+    public ApplyType applyType;
   }
 }
 

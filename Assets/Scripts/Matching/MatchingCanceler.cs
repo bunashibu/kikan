@@ -12,7 +12,7 @@ namespace Bunashibu.Kikan {
 
     private void Cancel() {
       _board.SetApplyMode();
-      photonView.RPC("CancelRPC", PhotonTargets.MasterClient, PhotonNetwork.player);
+      photonView.RPC("CancelRequestRPC", PhotonTargets.All, PhotonNetwork.player);
     }
 
     public override void OnPhotonPlayerDisconnected(PhotonPlayer player) {

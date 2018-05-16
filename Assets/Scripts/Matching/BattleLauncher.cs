@@ -17,8 +17,8 @@ namespace Bunashibu.Kikan {
       PhotonNetwork.room.SetCustomProperties(props);
 
       var roomName = "Battle" + roomNum.ToString();
+      int[] team = TeamMaker(matchCount);
 
-      int[] team = TeamMaker();
       photonView.RPC("StartBattleRPC", PhotonTargets.AllViaServer, roomName, team);
     }
 
@@ -65,18 +65,18 @@ namespace Bunashibu.Kikan {
       });
     }
 
-    private int[] TeamMaker() {
+    private int[] TeamMaker(int matchCount) {
       var list = new List<int>();
       int half = 1;
 
-      if (_matchNum > 2) {
-        half = _matchNum / 2;
+      if (matchCount > 2) {
+        half = matchCount / 2;
 
-        if (_matchNum % 2 != 0)
+        if (matchCount % 2 != 0)
           half += 1;
       }
 
-      for (int i=0; i<_matchNum; ++i) {
+      for (int i=0; i<matchCount; ++i) {
         var num0 = list.Where(x => x == 0).Count();
         var num1 = list.Where(x => x == 1).Count();
 
@@ -93,7 +93,7 @@ namespace Bunashibu.Kikan {
       return list.ToArray();
     }
 
-    [SerializeField] private int _matchNum;
+    [SerializeField] private MatchingMediator _mediator;
     [SerializeField] private int _countDown;
     [SerializeField] private Text _CountDown;
     private bool _isApplying;
