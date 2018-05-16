@@ -25,7 +25,11 @@ namespace Bunashibu.Kikan {
       _startPanel.SetActive(false);
     }
 
-    public void SetMatchWaitMode() {
+    public void SetApproveWaitingMode() {
+      _apply.SetActive(false);
+    }
+
+    public void SetMatchWaitingMode() {
       _isApplying = true;
       _cancel.SetActive(true);
       _nameBoard.SetActive(true);
@@ -35,7 +39,8 @@ namespace Bunashibu.Kikan {
     }
 
     private void UpdateNameBoard() {
-      string propKey = "Applying" + _applier.CurApplyingType;
+      var applyingType = (int)PhotonNetwork.player.CustomProperties["ApplyingType"];
+      string propKey = "Applying" + applyingType.ToString();
 
       var playerNameAry  = PhotonNetwork.room.CustomProperties[propKey] as string[];
       var playerNameList = MonoUtility.ToList<string>(playerNameAry);
@@ -43,7 +48,7 @@ namespace Bunashibu.Kikan {
       for (int i=0; i<playerNameList.Count; ++i)
         _boardNameList[i].text = playerNameList[i];
 
-      int matchCount = _approver.MatchCount[_applier.CurApplyingType];
+      int matchCount = _approver.MatchCount[(ApplyType)applyingType];
       for (int i=playerNameList.Count; i<matchCount; ++i)
         _boardNameList[i].text = "";
     }
@@ -54,7 +59,6 @@ namespace Bunashibu.Kikan {
     [SerializeField] private GameObject _progressLabel;
     [SerializeField] private GameObject _startPanel;
     [SerializeField] private List<Text> _boardNameList;
-    [SerializeField] private MatchingApplier _applier;
     [SerializeField] private MatchingApprover _approver;
     private bool _isApplying;
   }

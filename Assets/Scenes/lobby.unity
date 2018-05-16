@@ -1975,6 +1975,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aaaab49cd9909b47a3d59be0aefd7dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _board: {fileID: 1096165171}
   _applyButtonList:
   - {fileID: 854746599}
   - {fileID: 609158762}
@@ -2022,6 +2023,9 @@ MonoBehaviour:
   _nameBoard: {fileID: 118429741}
   _progressLabel: {fileID: 1068346827}
   _startPanel: {fileID: 1971941290}
+  _boardNameList: []
+  _applier: {fileID: 1096165168}
+  _approver: {fileID: 1096165170}
 --- !u!114 &1096165172
 MonoBehaviour:
   m_ObjectHideFlags: 0

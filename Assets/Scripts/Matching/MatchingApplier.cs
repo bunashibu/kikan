@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 namespace Bunashibu.Kikan {
   public class MatchingApplier : Photon.MonoBehaviour {
@@ -12,24 +13,28 @@ namespace Bunashibu.Kikan {
       _applyButtonList[3].onClick.AddListener( () => Apply(ApplyType.VS3)      );
     }
 
-    public ApplyType CurApplyingType => _curApplyingType;
-
     private void Apply(ApplyType applyType) {
-      _board.SetMatchWaitMode();
-      _curApplyingType = applyType;
-      photonView.RPC("Approve", PhotonTargets.MasterClient, PhotonNetwork.player, applyType);
+      _board.SetApproveWaitingMode();
+      photonView.RPC("ApproveRPC", PhotonTargets.MasterClient, PhotonNetwork.player, applyType);
+    }
+
+    [PunRPC]
+    public void GetApplyingTicketRPC(int playerID, ApplyType applyType) {
+      if (PhotonNetwork.player.ID == playerID) {
+        var props = new Hashtable() {{ "ApplyingType", (int)applyType }};
+        PhotonNetwork.player.SetCustomProperties(props);
+      }
     }
 
     [SerializeField] private MatchingBoard _board;
     [SerializeField] private List<Button> _applyButtonList;
-    private ApplyType _curApplyingType;
   }
 
   public enum ApplyType {
-    Practice,
-    VS1,
-    VS2,
-    VS3
+    Practice = 0,
+    VS1 = 1,
+    VS2 = 2,
+    VS3 = 3
   }
 }
 

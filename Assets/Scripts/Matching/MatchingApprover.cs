@@ -16,16 +16,15 @@ namespace Bunashibu.Kikan {
     }
 
     [PunRPC]
-    public void Approve(PhotonPlayer player, ApplyType applyType) {
+    public void ApproveRPC(PhotonPlayer player, ApplyType applyType) {
       Assert.IsTrue(PhotonNetwork.isMasterClient);
 
       Add(player, applyType);
+      photonView.RPC("GetApplyingTicketRPC", PhotonTargets.All, player.ID, applyType);
 
       if (_applyingCount == _matchCount[applyType])
         _launcher.StartBattle(_matchCount[applyType]);
     }
-
-    public Dictionary<ApplyType, int> MatchCount => _matchCount;
 
     private void Add(PhotonPlayer player, ApplyType applyType) {
       string propKey = "Applying" + applyType;
@@ -39,6 +38,8 @@ namespace Bunashibu.Kikan {
       var props = new Hashtable() {{ propKey, playerNameList.ToArray() }};
       PhotonNetwork.room.SetCustomProperties(props);
     }
+
+    public Dictionary<ApplyType, int> MatchCount => _matchCount;
 
     [SerializeField] private BattleLauncher _launcher;
     [SerializeField] private Dictionary<ApplyType, int> _matchCount;
