@@ -14,7 +14,6 @@ namespace Bunashibu.Kikan {
         { ApplyType.VS2,      4 },
         { ApplyType.VS3,      6 }
       };
-      _pendingList = new List<Applicant>();
     }
 
     [PunRPC]
@@ -23,7 +22,6 @@ namespace Bunashibu.Kikan {
         player = player,
         applyType = applyType
       };
-      _pendingList.Add(applicant);
 
       if (PhotonNetwork.isMasterClient)
         Approve(applicant);
@@ -44,14 +42,14 @@ namespace Bunashibu.Kikan {
     private void GiveApplyingTicket(Applicant applicant) {
       Assert.IsTrue(PhotonNetwork.isMasterClient);
 
-      var props = new Hashtable() {{ "ApplyingTicket", applicant.applyTicket }};
+      var props = new Hashtable() {{ "ApplyingTicket", applicant.applyingTicket }};
       applicant.player.SetCustomProperties(props);
     }
 
     private void Add(Applicant applicant) {
       Assert.IsTrue(PhotonNetwork.isMasterClient);
 
-      string propKey = "Applying" + applicant.applyTicket;
+      string propKey = "Applying" + applicant.applyingTicket;
       var updateType = CustomPropertyUpdateType.Add;
 
       UpdateRoomCustomProperties(updateType, propKey, applicant.player.NickName);
@@ -59,19 +57,19 @@ namespace Bunashibu.Kikan {
 
     [PunRPC]
     public void ApprovedRPC(PhotonPlayer approvedPlayer) {
-      _pendingList.Where(applicant => applicant.player != approvedPlayer);
-
       if (PhotonNetwork.player == approvedPlayer)
         _board.SetMatchWaitingMode();
     }
 
     [PunRPC]
     public void CancelRequestRPC(PhotonPlayer player) {
-      var cancelApplicant = _pendingList.Where(applicant => applicant.player == player).First();
-      _pendingList.Remove(cancelApplicant);
+      var applicant = new Applicant() {
+        player = player,
+        applyType = (ApplyType)player.CustomProperties["ApplyingTicket"]
+      };
 
       if (PhotonNetwork.isMasterClient)
-        Cancel(cancelApplicant);
+        Cancel(applicant);
     }
 
     private void Cancel(Applicant applicant) {
@@ -91,7 +89,7 @@ namespace Bunashibu.Kikan {
     private void Remove(Applicant applicant) {
       Assert.IsTrue(PhotonNetwork.isMasterClient);
 
-      string propKey = "Applying" + applicant.applyTicket;
+      string propKey = "Applying" + applicant.applyingTicket;
       var updateType = CustomPropertyUpdateType.Remove;
 
       UpdateRoomCustomProperties(updateType, propKey, applicant.player.NickName);
@@ -133,14 +131,13 @@ namespace Bunashibu.Kikan {
     [SerializeField] private MatchingBoard _board;
     [SerializeField] private BattleLauncher _launcher;
     private Dictionary<ApplyType, int> _matchCount;
-    private List<Applicant> _pendingList;
     private int _approvedApplicantCount;
   }
 
   public class Applicant {
     public PhotonPlayer player;
     public ApplyType applyType;
-    public int applyTicket => (int)applyType;
+    public int applyingTicket => (int)applyType;
   }
 }
 
