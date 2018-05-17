@@ -27,6 +27,14 @@ namespace Bunashibu.Kikan {
       _apply.SetActive(false);
     }
 
+    public void SetStartBattleMode() {
+      _startPanel.SetActive(true);
+
+      _nameBoard.SetActive(false);
+      _progressLabel.SetActive(false);
+      //_logout.SetActive(false);
+    }
+
     public void UpdateNameBoard() {
       var applyType = (ApplyType)PhotonNetwork.player.CustomProperties["ApplyingTicket"];
       var playerList = _mediator.ApplicantList[applyType];

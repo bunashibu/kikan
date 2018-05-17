@@ -1884,7 +1884,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1096165162}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a6bb08f93fe6e543ac00ed0043580a1, type: 3}
   m_Name: 
@@ -1992,9 +1992,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dc9ae2745a853f4f967e174a057d10a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _board: {fileID: 1096165171}
   _mediator: {fileID: 1096165170}
-  _countDown: 0
-  _CountDown: {fileID: 0}
+  _countDown: 3
+  _CountDown: {fileID: 1172300855}
 --- !u!114 &1096165170
 MonoBehaviour:
   m_ObjectHideFlags: 0

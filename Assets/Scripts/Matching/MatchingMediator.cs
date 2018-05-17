@@ -32,7 +32,7 @@ namespace Bunashibu.Kikan {
       photonView.RPC("SyncOneApplicantListRPC", PhotonTargets.All, _applicantList[applyType].ToArray(), applyType);
 
       if (_applicantList[applyType].Count == _matchCount[applyType])
-        _launcher.StartBattle(_matchCount[applyType]);
+        _launcher.StartBattle(applyType);
     }
 
     private void GiveApplyingTicket(PhotonPlayer player, ApplyType applyType) {

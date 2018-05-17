@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Assertions;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 namespace Bunashibu.Kikan {
-  public class BattleLauncher : Photon.MonoBehaviour {
-    public void StartBattle(int matchCount) {
+  public class BattleLauncher : Photon.PunBehaviour {
+    public void StartBattle(ApplyType applyType) {
+      Assert.IsTrue(PhotonNetwork.isMasterClient);
+
       var tmp = PhotonNetwork.room.CustomProperties["Playing"];
       int roomNum = 0;
       if (tmp != null)
@@ -17,52 +20,9 @@ namespace Bunashibu.Kikan {
       PhotonNetwork.room.SetCustomProperties(props);
 
       var roomName = "Battle" + roomNum.ToString();
-      int[] team = TeamMaker(matchCount);
+      int[] team = TeamMaker(_mediator.MatchCount[applyType]);
 
-      photonView.RPC("StartBattleRPC", PhotonTargets.AllViaServer, roomName, team);
-    }
-
-    [PunRPC]
-    public void StartBattleRPC(string roomName, int[] team) {
-      if (_isApplying) {
-        /*
-        _nameBoard.SetActive(false);
-        _progressLabel.SetActive(false);
-        _logout.SetActive(false);
-        _startPanel.SetActive(true);
-        */
-
-        _roomName = roomName;
-
-        foreach (var x in team)
-          Debug.Log(x);
-
-        var playerNames = PhotonNetwork.room.CustomProperties["Applying"] as string[];
-        var list = MonoUtility.ToList<string>(playerNames);
-
-        for (int i=0; i<list.Count; ++i) {
-          if (list[i] == PhotonNetwork.player.NickName) {
-            var props = new Hashtable() {{ "Team", team[i] }};
-            PhotonNetwork.player.SetCustomProperties(props);
-            break;
-          }
-        }
-
-        CountDown(_countDown);
-      }
-    }
-
-    private void CountDown(int cnt) {
-      _CountDown.text = cnt.ToString();
-
-      MonoUtility.Instance.DelaySec(1.0f, () => {
-        cnt -= 1;
-
-        if (cnt <= 0)
-          PhotonNetwork.LeaveRoom();
-        else
-          CountDown(cnt);
-      });
+      photonView.RPC("StartBattleRPC", PhotonTargets.AllViaServer, roomName, team, applyType);
     }
 
     private int[] TeamMaker(int matchCount) {
@@ -93,6 +53,72 @@ namespace Bunashibu.Kikan {
       return list.ToArray();
     }
 
+    [PunRPC]
+    public void StartBattleRPC(string roomName, int[] team, ApplyType applyType) {
+      var applyingTicket = PhotonNetwork.player.CustomProperties["ApplyingTicket"];
+      if (applyingTicket == null)
+        return;
+
+      if ((ApplyType)applyingTicket == applyType)
+        _isApplying = true;
+
+      if (_isApplying) {
+        _board.SetStartBattleMode();
+        _roomName = roomName;
+
+        var playerList = _mediator.ApplicantList[applyType];
+
+        for (int i=0; i<playerList.Count; ++i) {
+          if (playerList[i] == PhotonNetwork.player) {
+            var props = new Hashtable() {{ "Team", team[i] }};
+            PhotonNetwork.player.SetCustomProperties(props);
+            break;
+          }
+        }
+
+        CountDown(_countDown);
+      }
+    }
+
+    private void CountDown(int cnt) {
+      _CountDown.text = cnt.ToString();
+
+      MonoUtility.Instance.DelaySec(1.0f, () => {
+        cnt -= 1;
+
+        if (cnt <= 0)
+          PhotonNetwork.LeaveRoom();
+        else
+          CountDown(cnt);
+      });
+    }
+
+    public override void OnConnectedToMaster() {
+      if (_isApplying) {
+        var applyType = (ApplyType)PhotonNetwork.player.CustomProperties["ApplyingTicket"];
+
+        RoomOptions roomOptions = new RoomOptions();
+        roomOptions.MaxPlayers = (byte)_mediator.MatchCount[applyType];
+        roomOptions.CustomRoomProperties = new Hashtable() {{ "PlayerNum", _mediator.MatchCount[applyType] }};
+
+        PhotonNetwork.JoinOrCreateRoom(_roomName, roomOptions, null);
+      }
+    }
+
+    public override void OnPhotonJoinRoomFailed(object[] codeAndMsg) {
+      if (_isApplying) {
+        MonoUtility.Instance.DelaySec(1.0f, () => {
+          PhotonNetwork.JoinRoom(_roomName);
+        });
+      }
+    }
+
+    public override void OnJoinedRoom() {
+      if (_isApplying)
+        SceneChanger.Instance.ChangeScene("Battle");
+    }
+
+    [SerializeField] private MatchingBoard _board;
     [SerializeField] private MatchingMediator _mediator;
     [SerializeField] private int _countDown;
     [SerializeField] private Text _CountDown;
