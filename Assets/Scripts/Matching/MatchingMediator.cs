@@ -51,14 +51,14 @@ namespace Bunashibu.Kikan {
 
       photonView.RPC("SyncOneApplicantListRPC", PhotonTargets.All, _applicantList[applyType].ToArray(), applyType);
 
-      DeleteApplyingTicket();
+      DeleteApplyingTicket(player);
     }
 
-    private void DeleteApplyingTicket() {
+    private void DeleteApplyingTicket(PhotonPlayer player) {
       Assert.IsTrue(PhotonNetwork.isMasterClient);
 
       var props = new Hashtable() {{ "ApplyingTicket", "" }};
-      PhotonNetwork.player.SetCustomProperties(props);
+      player.SetCustomProperties(props);
     }
 
     public override void OnPhotonPlayerConnected(PhotonPlayer player) {
@@ -88,6 +88,14 @@ namespace Bunashibu.Kikan {
 
       if (_applicantList[applyType].Contains(PhotonNetwork.player))
         _board.UpdateNameBoard();
+    }
+
+    [PunRPC]
+    public void MatchingDoneRPC(ApplyType applyType) {
+      Assert.IsTrue(PhotonNetwork.isMasterClient);
+
+      _applicantList[applyType] = new List<PhotonPlayer>();
+      photonView.RPC("SyncOneApplicantListRPC", PhotonTargets.All, _applicantList[applyType].ToArray(), applyType);
     }
 
     public Dictionary<ApplyType, int> MatchCount => _matchCount;

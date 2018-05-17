@@ -59,8 +59,10 @@ namespace Bunashibu.Kikan {
       if (applyingTicket == null)
         return;
 
-      if ((ApplyType)applyingTicket == applyType)
+      if ((ApplyType)applyingTicket == applyType) {
+        UseApplyingTicket(applyType);
         _isApplying = true;
+      }
 
       if (_isApplying) {
         _board.SetStartBattleMode();
@@ -70,6 +72,10 @@ namespace Bunashibu.Kikan {
 
         for (int i=0; i<playerList.Count; ++i) {
           if (playerList[i] == PhotonNetwork.player) {
+
+            if (i == 0)
+              photonView.RPC("MatchingDoneRPC", PhotonTargets.MasterClient, applyType);
+
             var props = new Hashtable() {{ "Team", team[i] }};
             PhotonNetwork.player.SetCustomProperties(props);
             break;
@@ -78,6 +84,13 @@ namespace Bunashibu.Kikan {
 
         CountDown(_countDown);
       }
+    }
+
+    private void UseApplyingTicket(ApplyType applyType) {
+      _applyType = applyType;
+
+      var props = new Hashtable() {{ "ApplyingTicket", "" }};
+      PhotonNetwork.player.SetCustomProperties(props);
     }
 
     private void CountDown(int cnt) {
@@ -95,11 +108,9 @@ namespace Bunashibu.Kikan {
 
     public override void OnConnectedToMaster() {
       if (_isApplying) {
-        var applyType = (ApplyType)PhotonNetwork.player.CustomProperties["ApplyingTicket"];
-
         RoomOptions roomOptions = new RoomOptions();
-        roomOptions.MaxPlayers = (byte)_mediator.MatchCount[applyType];
-        roomOptions.CustomRoomProperties = new Hashtable() {{ "PlayerNum", _mediator.MatchCount[applyType] }};
+        roomOptions.MaxPlayers = (byte)_mediator.MatchCount[_applyType];
+        roomOptions.CustomRoomProperties = new Hashtable() {{ "PlayerNum", _mediator.MatchCount[_applyType] }};
 
         PhotonNetwork.JoinOrCreateRoom(_roomName, roomOptions, null);
       }
@@ -122,6 +133,7 @@ namespace Bunashibu.Kikan {
     [SerializeField] private MatchingMediator _mediator;
     [SerializeField] private int _countDown;
     [SerializeField] private Text _CountDown;
+    private ApplyType _applyType;
     private bool _isApplying;
     private string _roomName;
   }
