@@ -12,17 +12,7 @@ namespace Bunashibu.Kikan {
 
     private void Cancel() {
       _board.SetApplyMode();
-      photonView.RPC("CancelRequestRPC", PhotonTargets.All, PhotonNetwork.player);
-    }
-
-    public override void OnPhotonPlayerDisconnected(PhotonPlayer player) {
-      var playerNames = PhotonNetwork.room.CustomProperties["Applying"] as string[];
-      var list = MonoUtility.ToList<string>(playerNames);
-
-      /*
-      if (list.Contains(player.NickName))
-        RemoveApplyingPlayer(player);
-        */
+      photonView.RPC("CancelRPC", PhotonTargets.All, PhotonNetwork.player);
     }
 
     [SerializeField] private MatchingBoard _board;

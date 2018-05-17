@@ -14,8 +14,8 @@ namespace Bunashibu.Kikan {
     }
 
     private void Apply(ApplyType applyType) {
-      _board.SetApproveWaitingMode();
-      photonView.RPC("ApproveRequestRPC", PhotonTargets.All, PhotonNetwork.player, applyType);
+      _board.SetMatchWaitingMode();
+      photonView.RPC("ApproveRPC", PhotonTargets.All, PhotonNetwork.player, applyType);
     }
 
     [SerializeField] private MatchingBoard _board;
