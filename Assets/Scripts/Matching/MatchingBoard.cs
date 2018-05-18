@@ -47,6 +47,11 @@ namespace Bunashibu.Kikan {
         _boardNameList[i].text = "";
     }
 
+    public void CleanNameBoard() {
+      for (int i=0; i<_mediator.MatchCount[ApplyType.VS3]; ++i)
+        _boardNameList[i].text = "";
+    }
+
     [SerializeField] private GameObject _apply;
     [SerializeField] private GameObject _cancel;
     [SerializeField] private GameObject _nameBoard;
