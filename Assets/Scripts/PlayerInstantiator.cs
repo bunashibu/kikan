@@ -10,7 +10,6 @@ namespace Bunashibu.Kikan {
         _initialCameraPosition.x *= -1;
 
       _trackCamera.SetPosition(_initialCameraPosition);
-      //Destroy(gameObject, 10.0f);
     }
 
     public void InstantiatePlayer(string jobName) {
