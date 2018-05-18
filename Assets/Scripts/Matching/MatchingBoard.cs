@@ -30,9 +30,9 @@ namespace Bunashibu.Kikan {
     public void SetStartBattleMode() {
       _startPanel.SetActive(true);
 
+      _cancel.SetActive(false);
       _nameBoard.SetActive(false);
       _progressLabel.SetActive(false);
-      //_logout.SetActive(false);
     }
 
     public void UpdateNameBoard() {
