@@ -56,8 +56,8 @@ namespace Bunashibu.Kikan {
     [PunRPC]
     public void StartBattleRPC(string roomName, int[] team, ApplyType applyType) {
       var applyingTicket = PhotonNetwork.player.CustomProperties["ApplyingTicket"];
-      if (applyingTicket == null)
-        return;
+      if (applyingTicket == null) return;
+      if (applyingTicket == "")   return;
 
       if ((ApplyType)applyingTicket == applyType) {
         UseApplyingTicket(applyType);

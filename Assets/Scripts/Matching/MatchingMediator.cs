@@ -72,8 +72,8 @@ namespace Bunashibu.Kikan {
     public override void OnPhotonPlayerDisconnected(PhotonPlayer player) {
       if (PhotonNetwork.isMasterClient) {
         var tmp = player.CustomProperties["ApplyingTicket"];
-        if (tmp == null)
-          return;
+        if (tmp == null) return;
+        if (tmp == "")   return;
 
         var applyType = (ApplyType)tmp;
         _applicantList[applyType].Remove(player);
