@@ -50,6 +50,8 @@ namespace Bunashibu.Kikan {
       InitPlayerGold();
       InitPlayerStatus(jobStatus);
       InitPlayerMovement(jobStatus);
+
+      _trackCamera.SetTrackTarget(_player.gameObject);
     }
 
     private void SetViewID() {
@@ -60,8 +62,6 @@ namespace Bunashibu.Kikan {
     }
 
     private void InitPlayerTeam() {
-      _trackCamera.SetTrackTarget(_player.gameObject);
-
       int team = (int)PhotonNetwork.player.CustomProperties["Team"];
 
       if (team == 0)
