@@ -6,12 +6,7 @@ using UnityEngine.UI;
 namespace Bunashibu.Kikan {
   public class JobPanel : Photon.PunBehaviour {
     void Start() {
-      DisableAllButtons();
-      UpdateMatchPlayerCount();
-    }
-
-    public override void OnPhotonPlayerConnected(PhotonPlayer player) {
-      UpdateMatchPlayerCount();
+      EnableAllButtons();
     }
 
     public void Pick(int n) {
@@ -23,13 +18,6 @@ namespace Bunashibu.Kikan {
 
       Destroy(gameObject);
       Destroy(_playerInstantiator.gameObject);
-    }
-
-    private void UpdateMatchPlayerCount() {
-      int matchPlayerCount = (int)PhotonNetwork.room.CustomProperties["PlayerNum"];
-
-      if (PhotonNetwork.room.playerCount == matchPlayerCount)
-        EnableAllButtons();
     }
 
     private void EnableAllButtons() {

@@ -5,25 +5,25 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace Bunashibu.Kikan {
-  public class KillDeathPanel : Photon.MonoBehaviour {
-    void Update() {
-      if (_initFlag) {
-        int playerNum = PhotonNetwork.playerList.Length;
-        int roomPlayerNum =(int)PhotonNetwork.room.CustomProperties["PlayerNum"];
-
-        if (playerNum == roomPlayerNum) {
-          Init();
-          _initFlag = false;
-        }
-      }
+  public class KillDeathPanel : Photon.PunBehaviour {
+    void Start() {
+      _playerCellInfo = new Dictionary<PhotonPlayer, CellInfo>();
+      UpdatePlayerCell();
     }
 
-    private void Init() {
-      _teamTable = new Dictionary<PhotonPlayer, int[]>();
+    public override void OnPhotonPlayerConnected(PhotonPlayer player) {
+      UpdatePlayerCell();
+    }
 
+    public override void OnPhotonPlayerDisconnected(PhotonPlayer player) {
+      //UpdatePlayerCell();
+    }
+
+    private void UpdatePlayerCell() {
       int index = 0;
-      int blueIndex = 0;
       int redIndex = 0;
+      int blueIndex = 0;
+
       foreach (var player in PhotonNetwork.playerList) {
         int team = (int)player.CustomProperties["Team"];
 
@@ -35,38 +35,12 @@ namespace Bunashibu.Kikan {
           ++blueIndex;
         }
 
-        _teamTable[player] = new int[] { team, index };
-
+        _playerCellInfo[player] = new CellInfo() {
+          team = team,
+          index = index
+        };
         _teamPanels[team].UpdateNameView(player.NickName, index);
       }
-    }
-
-    [PunRPC]
-    private void SyncKDPanelName(PhotonPlayer player) {
-      int team = (int)_teamTable[player][0];
-      int index = (int)_teamTable[player][1];
-      _teamPanels[team].UpdateNameView(player.NickName, index);
-    }
-
-    [PunRPC]
-    private void SyncKDPanelLv(int lv, PhotonPlayer player) {
-      int team = (int)_teamTable[player][0];
-      int index = (int)_teamTable[player][1];
-      _teamPanels[team].UpdateLvView(lv, index);
-    }
-
-    [PunRPC]
-    private void SyncKDPanelKill(int kill, PhotonPlayer player) {
-      int team = (int)_teamTable[player][0];
-      int index = (int)_teamTable[player][1];
-      _teamPanels[team].UpdateKillView(kill, index);
-    }
-
-    [PunRPC]
-    private void SyncKDPanelDeath(int death, PhotonPlayer player) {
-      int team = (int)_teamTable[player][0];
-      int index = (int)_teamTable[player][1];
-      _teamPanels[team].UpdateDeathView(death, index);
     }
 
     public void UpdateNameView(PhotonPlayer player) {
@@ -85,9 +59,41 @@ namespace Bunashibu.Kikan {
       photonView.RPC("SyncKDPanelDeath", PhotonTargets.All, death, player);
     }
 
+    [PunRPC]
+    private void SyncKDPanelName(PhotonPlayer player) {
+      int team = _playerCellInfo[player].team;
+      int index = _playerCellInfo[player].index;
+      _teamPanels[team].UpdateNameView(player.NickName, index);
+    }
+
+    [PunRPC]
+    private void SyncKDPanelLv(int lv, PhotonPlayer player) {
+      int team = _playerCellInfo[player].team;
+      int index = _playerCellInfo[player].index;
+      _teamPanels[team].UpdateLvView(lv, index);
+    }
+
+    [PunRPC]
+    private void SyncKDPanelKill(int kill, PhotonPlayer player) {
+      int team = _playerCellInfo[player].team;
+      int index = _playerCellInfo[player].index;
+      _teamPanels[team].UpdateKillView(kill, index);
+    }
+
+    [PunRPC]
+    private void SyncKDPanelDeath(int death, PhotonPlayer player) {
+      int team = _playerCellInfo[player].team;
+      int index = _playerCellInfo[player].index;
+      _teamPanels[team].UpdateDeathView(death, index);
+    }
+
     [SerializeField] private KillDeathTeamPanel[] _teamPanels;
-    private Dictionary<PhotonPlayer, int[]> _teamTable;
-    private bool _initFlag = true;
+    private Dictionary<PhotonPlayer, CellInfo> _playerCellInfo;
+  }
+
+  public class CellInfo {
+    public int team;
+    public int index;
   }
 }
 
