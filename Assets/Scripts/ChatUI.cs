@@ -29,10 +29,7 @@ namespace Bunashibu.Kikan {
 
       if (Event.current.type == EventType.KeyDown && (Event.current.keyCode == KeyCode.KeypadEnter || Event.current.keyCode == KeyCode.Return)) {
         if (!string.IsNullOrEmpty(this.inputLine)) {
-          int speakerViewID = (int)PhotonNetwork.player.CustomProperties["ViewID"];
-          this.photonView.RPC("Chat", PhotonTargets.All, this.inputLine, speakerViewID);
-          this.inputLine = "";
-          GUI.FocusControl("");
+          SendProcess();
           return; // printing the now modified list would result in an error. to avoid this, we just skip this single frame
         }
         else {
@@ -55,19 +52,27 @@ namespace Bunashibu.Kikan {
       GUILayout.BeginHorizontal();
       GUI.SetNextControlName("ChatInput");
       inputLine = GUILayout.TextField(inputLine);
-      if (GUILayout.Button("Send", GUILayout.ExpandWidth(false))) {
-        int speakerViewID = (int)PhotonNetwork.player.CustomProperties["ViewID"];
-        this.photonView.RPC("Chat", PhotonTargets.All, this.inputLine, speakerViewID);
-
-        this.inputLine = "";
-        GUI.FocusControl("");
-      }
+      if (GUILayout.Button("Send", GUILayout.ExpandWidth(false)))
+        SendProcess();
       GUILayout.EndHorizontal();
       GUILayout.EndArea();
     }
 
+    private void SendProcess() {
+      this.photonView.RPC("Chat", PhotonTargets.All, this.inputLine);
+
+      var tmp = PhotonNetwork.player.CustomProperties["ViewID"];
+      if (tmp != null) {
+        int speakerViewID = (int)tmp;
+        this.photonView.RPC("UpdatePopupRemark", PhotonTargets.All, PhotonNetwork.player.NickName, this.inputLine, speakerViewID);
+      }
+
+      this.inputLine = "";
+      GUI.FocusControl("");
+    }
+
     [PunRPC]
-    public void Chat(string newLine, int viewID, PhotonMessageInfo mi) {
+    public void Chat(string newLine, PhotonMessageInfo mi) {
       string senderName = "anonymous";
 
       if (mi.sender != null) {
@@ -79,8 +84,6 @@ namespace Bunashibu.Kikan {
 
       messages.Add(senderName +": " + newLine);
       scrollPos.y = Mathf.Infinity;
-
-      UpdatePopupRemark(senderName, newLine, viewID);
     }
 
     public void AddLine(string newLine) {
@@ -90,8 +93,17 @@ namespace Bunashibu.Kikan {
       messages.Add(newLine);
     }
 
+    [PunRPC]
     private void UpdatePopupRemark(string senderName, string message, int viewID) {
-      var speaker = PhotonView.Find(viewID).gameObject.GetComponent<ISpeaker>();
+      var view = PhotonView.Find(viewID);
+      if (view == null) return;
+
+      var speakerObj = view.gameObject;
+      if (speakerObj == null) return;
+
+      var speaker = speakerObj.GetComponent<ISpeaker>();
+      if (speaker == null) return;
+
       speaker.PopupRemark.Set(senderName + " : " + message, viewID);
     }
   }
