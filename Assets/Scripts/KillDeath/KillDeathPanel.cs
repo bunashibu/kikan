@@ -8,38 +8,48 @@ namespace Bunashibu.Kikan {
   public class KillDeathPanel : Photon.PunBehaviour {
     void Start() {
       _playerCellInfo = new Dictionary<PhotonPlayer, CellInfo>();
-      UpdatePlayerCell();
+      UpdatePanel();
     }
 
     public override void OnPhotonPlayerConnected(PhotonPlayer player) {
-      UpdatePlayerCell();
+      UpdatePanel();
     }
 
     public override void OnPhotonPlayerDisconnected(PhotonPlayer player) {
-      //UpdatePlayerCell();
+      UpdatePanel();
     }
 
-    private void UpdatePlayerCell() {
-      int index = 0;
-      int redIndex = 0;
-      int blueIndex = 0;
+    private void UpdatePanel() {
+      var redPlayerList = GetTeamPlayerList(0);
+      UpdateTeamPanel(0, redPlayerList);
+
+      var bluePlayerList = GetTeamPlayerList(1);
+      UpdateTeamPanel(1, bluePlayerList);
+    }
+
+    private List<PhotonPlayer> GetTeamPlayerList(int targetTeam) {
+      var playerList = new List<PhotonPlayer>();
 
       foreach (var player in PhotonNetwork.playerList) {
         int team = (int)player.CustomProperties["Team"];
 
-        if (team == 0) {
-          index = redIndex;
-          ++redIndex;
-        } else if (team == 1) {
-          index = blueIndex;
-          ++blueIndex;
-        }
+        if (team == targetTeam)
+          playerList.Add(player);
+      }
 
+      return playerList;
+    }
+
+    private void UpdateTeamPanel(int team, List<PhotonPlayer> playerList) {
+      int index = 0;
+      foreach (var player in playerList) {
         _playerCellInfo[player] = new CellInfo() {
           team = team,
           index = index
         };
+
         _teamPanels[team].UpdateNameView(player.NickName, index);
+        ++index;
       }
     }
 
