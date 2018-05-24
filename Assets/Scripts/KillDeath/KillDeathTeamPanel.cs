@@ -19,11 +19,6 @@ namespace Bunashibu.Kikan {
         _lvText[i] = texts[1];
         _killText[i] = texts[2];
         _deathText[i] = texts[3];
-
-        _nameText[i].text = "";
-        _lvText[i].text = " 1";
-        _killText[i].text = " 0";
-        _deathText[i].text = " 0";
       }
     }
 
@@ -44,6 +39,12 @@ namespace Bunashibu.Kikan {
     }
 
     private void UpdateText(ref Text text, int n) {
+      // -1 is not intuitive...
+      if (n == -1) {
+        text.text = "";
+        return;
+      }
+
       string indent = (n < 10) ? " " : "";
       text.text = indent + n;
     }

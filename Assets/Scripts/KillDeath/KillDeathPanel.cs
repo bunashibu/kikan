@@ -19,7 +19,7 @@ namespace Bunashibu.Kikan {
       UpdatePanel();
     }
 
-    private void UpdatePanel() {
+    public void UpdatePanel() {
       var redPlayerList = GetTeamPlayerList(0);
       UpdateTeamPanel(0, redPlayerList);
 
@@ -42,6 +42,7 @@ namespace Bunashibu.Kikan {
 
     private void UpdateTeamPanel(int team, List<PhotonPlayer> playerList) {
       int index = 0;
+
       foreach (var player in playerList) {
         _playerCellInfo[player] = new CellInfo() {
           team = team,
@@ -49,7 +50,26 @@ namespace Bunashibu.Kikan {
         };
 
         _teamPanels[team].UpdateNameView(player.NickName, index);
+
+        int viewID = (int)player.CustomProperties["ViewID"];
+        var view = PhotonView.Find(viewID);
+
+        if (view != null) {
+          var battlePlayer = view.gameObject.GetComponent<BattlePlayer>();
+
+          _teamPanels[team].UpdateLvView(battlePlayer.Level.Lv, index);
+          _teamPanels[team].UpdateKillView(battlePlayer.KillDeath.KillCount, index);
+          _teamPanels[team].UpdateDeathView(battlePlayer.KillDeath.DeathCount, index);
+        }
+
         ++index;
+      }
+
+      for (int i = index; i < 3; ++i) {
+        _teamPanels[team].UpdateNameView("", i);
+        _teamPanels[team].UpdateLvView(-1, i);
+        _teamPanels[team].UpdateKillView(-1, i);
+        _teamPanels[team].UpdateDeathView(-1, i);
       }
     }
 
