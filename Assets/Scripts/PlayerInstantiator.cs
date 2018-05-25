@@ -98,10 +98,6 @@ namespace Bunashibu.Kikan {
     }
 
     private void InitPlayerKillDeath() {
-      _kdPanel.UpdateLvView(1);
-      _kdPanel.UpdateKillView(0, PhotonNetwork.player);
-      _kdPanel.UpdateDeathView(0, PhotonNetwork.player);
-
       var playerKDRec = _player.KillDeath;
       playerKDRec.Init(_kdPanel);
     }
