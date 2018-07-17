@@ -10,8 +10,9 @@ namespace Bunashibu.Kikan {
         return;
       }
 
+      int playerTeam = (int)_player.PhotonView.owner.CustomProperties["Team"];
       int clientTeam = (int)PhotonNetwork.player.CustomProperties["Team"];
-      if (_player.PlayerInfo.Team == clientTeam)
+      if (playerTeam == clientTeam)
         _renderer.color = new Color(1.0f, 0.45f, 0.0f, 1.0f); // Orange
       else
         _renderer.color = Color.red;
