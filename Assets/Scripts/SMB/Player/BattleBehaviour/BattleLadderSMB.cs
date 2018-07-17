@@ -20,9 +20,9 @@ namespace Bunashibu.Kikan {
         if ( _player.Hp.Cur <= 0    ) { _player.StateTransfer.TransitTo( "Die" , animator ); return; }
         if ( _player.BuffState.Stun ) { _player.StateTransfer.TransitTo( "Stun", animator ); return; }
 
-        if ( ShouldTransitToLadderJump() ) { _player.StateTransfer.TransitTo ( "LadderJump" , animator ) ; return; }
-        if ( ShouldTransitToIdle()       ) { _player.StateTransfer.TransitTo ( "Idle"       , animator ) ; return; }
-        if ( ShouldTransitToFall()       ) { _player.StateTransfer.TransitTo ( "Fall"       , animator ) ; return; }
+        if ( ShouldTransitToLadderJump() ) { TransitToLadderJump(animator);                               return; }
+        if ( ShouldTransitToIdle()       ) { _player.StateTransfer.TransitTo ( "Idle"       , animator ); return; }
+        if ( ShouldTransitToFall()       ) { _player.StateTransfer.TransitTo ( "Fall"       , animator ); return; }
       }
     }
 
@@ -54,6 +54,34 @@ namespace Bunashibu.Kikan {
 
     private bool ShouldTransitToFall() {
       return _player.State.Air && !_player.State.Ladder;
+    }
+
+    private void TransitToLadderJump(Animator animator) {
+      LadderJump();
+      _player.StateTransfer.TransitTo ("LadderJump", animator);
+    }
+
+    private void LadderJump() {
+      _player.Rigid.isKinematic = false;
+      _player.FootCollider.isTrigger = false;
+
+      bool OnlyLeftKeyDown = Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow);
+      if (OnlyLeftKeyDown) {
+        _player.Movement.GroundMoveLeft();
+
+        foreach (var sprite in _player.Renderers)
+          sprite.flipX = false;
+      }
+
+      bool OnlyRightKeyDown = Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow);
+      if (OnlyRightKeyDown) {
+        _player.Movement.GroundMoveRight();
+
+        foreach (var sprite in _player.Renderers)
+          sprite.flipX = true;
+      }
+
+      _player.Movement.LadderJump();
     }
 
     private BattlePlayer _player;

@@ -12,7 +12,7 @@ namespace Bunashibu.Kikan {
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
       if (_player.PhotonView.isMine) {
         if ( ShouldTransitToSkill()      ) { _player.StateTransfer.TransitTo( "Skill"      , animator ); return; }
-        if ( ShouldTransitToClimb()      ) { _player.StateTransfer.TransitTo( "Climb"      , animator ); return; }
+        if ( ShouldTransitToLadder()     ) { _player.StateTransfer.TransitTo( "Ladder"     , animator ); return; }
         if ( ShouldTransitToWalk()       ) { _player.StateTransfer.TransitTo( "Walk"       , animator ); return; }
         if ( ShouldTransitToLieDown()    ) { _player.StateTransfer.TransitTo( "LieDown"    , animator ); return; }
         if ( ShouldTransitToGroundJump() ) { _player.StateTransfer.TransitTo( "GroundJump" , animator ); return; }
@@ -28,13 +28,13 @@ namespace Bunashibu.Kikan {
       return SkillFlag;
     }
 
-    private bool ShouldTransitToClimb() {
+    private bool ShouldTransitToLadder() {
       bool OnlyUpKeyDown   = Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow);
       bool OnlyDownKeyDown = Input.GetKey(KeyCode.DownArrow) && !Input.GetKey(KeyCode.UpArrow);
-      bool ClimbFlag       = ( OnlyUpKeyDown   && !_player.State.LadderTopEdge    ) ||
+      bool LadderFlag       = ( OnlyUpKeyDown   && !_player.State.LadderTopEdge    ) ||
                              ( OnlyDownKeyDown && !_player.State.LadderBottomEdge );
 
-      return _player.State.Ladder && ClimbFlag;
+      return _player.State.Ladder && LadderFlag;
     }
 
     private bool ShouldTransitToWalk() {

@@ -14,7 +14,7 @@ namespace Bunashibu.Kikan {
         GroundMove();
 
         if ( ShouldTransitToSkill()        ) { _player.StateTransfer.TransitTo( "Skill"        , animator ); return; }
-        if ( ShouldTransitToClimb()        ) { _player.StateTransfer.TransitTo( "Climb"        , animator ); return; }
+        if ( ShouldTransitToLadder()       ) { _player.StateTransfer.TransitTo( "Ladder"       , animator ); return; }
         if ( ShouldTransitToStepDownJump() ) { _player.StateTransfer.TransitTo( "StepDownJump" , animator ); return; }
         if ( ShouldTransitToGroundJump()   ) { _player.StateTransfer.TransitTo( "GroundJump"   , animator ); return; }
         if ( ShouldTransitToIdle()         ) { _player.StateTransfer.TransitTo( "Idle"         , animator ); return; }
@@ -49,13 +49,13 @@ namespace Bunashibu.Kikan {
       return SkillFlag;
     }
 
-    private bool ShouldTransitToClimb() {
+    private bool ShouldTransitToLadder() {
       bool OnlyUpKeyDown   = Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow);
       bool OnlyDownKeyDown = Input.GetKey(KeyCode.DownArrow) && !Input.GetKey(KeyCode.UpArrow);
-      bool ClimbFlag       = ( OnlyUpKeyDown   && !_player.State.LadderTopEdge    ) ||
+      bool LadderFlag       = ( OnlyUpKeyDown   && !_player.State.LadderTopEdge    ) ||
                              ( OnlyDownKeyDown && !_player.State.LadderBottomEdge );
 
-      return _player.State.Ladder && ClimbFlag;
+      return _player.State.Ladder && LadderFlag;
     }
 
     private bool ShouldTransitToStepDownJump() {
