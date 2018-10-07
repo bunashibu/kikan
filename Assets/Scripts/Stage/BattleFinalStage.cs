@@ -95,6 +95,10 @@ namespace Bunashibu.Kikan {
       _player.BuffState.Reset();
 
       _player.Weapon.SkillInstantiator.ResetAllCT();
+
+      MonoUtility.Instance.DelaySec(2.0f, () => {
+        _player.PopupRemark.gameObject.SetActive(false);
+      });
     }
 
     [SerializeField] private TimePanel _timePanel;
