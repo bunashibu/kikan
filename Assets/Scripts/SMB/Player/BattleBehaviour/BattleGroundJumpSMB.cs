@@ -10,6 +10,7 @@ namespace Bunashibu.Kikan {
 
       _isAlreadyJumped = false;
       _player.Movement.GroundJump();
+      ApplyInertia();
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
@@ -25,6 +26,16 @@ namespace Bunashibu.Kikan {
         if ( ShouldTransitToLadder() ) { _player.StateTransfer.TransitTo( "Ladder" , animator ); return; }
         if ( ShouldTransitToFall()   ) { _player.StateTransfer.TransitTo( "Fall"   , animator ); return; }
       }
+    }
+
+    private void ApplyInertia() {
+      bool OnlyLeftKeyDown = Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow);
+      if (OnlyLeftKeyDown && _player.Renderers[0].flipX == false)
+        _player.Movement.GroundMoveLeft(0);
+
+      bool OnlyRightKeyDown = Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow);
+      if (OnlyRightKeyDown && _player.Renderers[0].flipX == true)
+        _player.Movement.GroundMoveRight(0);
     }
 
     private void AirMove() {
