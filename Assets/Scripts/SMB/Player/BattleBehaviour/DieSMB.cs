@@ -12,6 +12,7 @@ namespace Bunashibu.Kikan {
         _respawner  = animator.GetComponent<PlayerRespawner>();
       }
 
+      _player.AudioSource.PlayOneShot(_clip, 0.5f);
       _player.BodyCollider.enabled = false;
 
       if (!_player.PhotonView.isMine)
@@ -35,6 +36,7 @@ namespace Bunashibu.Kikan {
       }
     }
 
+    [SerializeField] private AudioClip _clip;
     private BattlePlayer _player;
     private PlayerRespawner _respawner;
   }

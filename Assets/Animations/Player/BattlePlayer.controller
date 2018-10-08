@@ -239,6 +239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4181dece088980149bf1a5ac093c6318, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _clip: {fileID: 8300000, guid: 51ca6d9c797c10c48ba30ed07de6ff13, type: 3}
 --- !u!206 &206993257315475172
 BlendTree:
   m_ObjectHideFlags: 1
