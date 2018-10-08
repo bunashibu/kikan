@@ -9,6 +9,7 @@ namespace Bunashibu.Kikan {
         _player = animator.GetComponent<LobbyPlayer>();
 
       _player.Movement.GroundJump();
+      _player.AudioSource.PlayOneShot(_clip, 0.5f);
       ApplyInertia();
     }
 
@@ -37,6 +38,7 @@ namespace Bunashibu.Kikan {
       return SkillFlag;
     }
 
+    [SerializeField] private AudioClip _clip;
     private LobbyPlayer _player;
   }
 }

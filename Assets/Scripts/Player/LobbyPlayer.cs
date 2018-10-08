@@ -12,21 +12,22 @@ namespace Bunashibu.Kikan {
       StateTransfer = new StateTransfer(_initState, _animator);
       SkillInfo     = new SkillInfo();
 
-      Movement.SetMoveForce(4.0f);
-      Movement.SetJumpForce(400.0f);
+      if (PhotonView.owner != PhotonNetwork.player)
+        _audioListener.enabled = false;
     }
 
     void FixedUpdate() {
       Movement.FixedUpdate(_rigid, _trans);
     }
 
-    public Character2D      Character      { get { return _character;      } }
-    public PhotonView       PhotonView     { get { return _photonView;     } }
-    public Transform        Transform      { get { return transform;       } }
-    public SpriteRenderer[] Renderers      { get { return _renderers;      } }
-    public Rigidbody2D      Rigid          { get { return _rigid;          } }
-    public Collider2D       BodyCollider   { get { return _bodyCollider;   } }
-    public Collider2D       FootCollider   { get { return _footCollider;   } }
+    public Character2D      Character      { get { return _character;    } }
+    public PhotonView       PhotonView     { get { return _photonView;   } }
+    public Transform        Transform      { get { return transform;     } }
+    public SpriteRenderer[] Renderers      { get { return _renderers;    } }
+    public Rigidbody2D      Rigid          { get { return _rigid;        } }
+    public Collider2D       BodyCollider   { get { return _bodyCollider; } }
+    public Collider2D       FootCollider   { get { return _footCollider; } }
+    public AudioSource      AudioSource    { get { return _audioSource;  } }
 
     public LobbyPlayerObserver Observer    { get { return _observer; } }
     public PopupRemark         PopupRemark { get { return _popupRemark; } }
@@ -46,6 +47,8 @@ namespace Bunashibu.Kikan {
     [SerializeField] private Collider2D       _ladderCollider;
     [SerializeField] private Collider2D       _footCollider;
     [SerializeField] private Animator         _animator;
+    [SerializeField] private AudioSource      _audioSource;
+    [SerializeField] private AudioListener    _audioListener;
 
     [SerializeField] private LobbyPlayerObserver _observer;
     [SerializeField] private PopupRemark _popupRemark;
