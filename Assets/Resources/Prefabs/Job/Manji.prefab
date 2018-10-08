@@ -129,6 +129,7 @@ GameObject:
   - component: {fileID: 114969582724046644}
   - component: {fileID: 114172174937367482}
   - component: {fileID: 114366189920182386}
+  - component: {fileID: 114204508672984674}
   m_Layer: 9
   m_Name: Manji
   m_TagString: Player
@@ -835,6 +836,26 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 
+--- !u!114 &114204508672984674
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1222958424102090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0250d1e25b396f48b731f19f24c618d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioSource: {fileID: 82231778003753978}
+  _clipList:
+  - {fileID: 8300000, guid: f7dabdf4fa8a42241b6503a0a20b7ff2, type: 3}
+  - {fileID: 8300000, guid: 51ca6d9c797c10c48ba30ed07de6ff13, type: 3}
+  - {fileID: 8300000, guid: 47399db2c40ee444a8f308ac4ffaf436, type: 3}
+  _keyList:
+  - Jump
+  - Die
+  - Kill1
 --- !u!114 &114283101673446462
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -941,10 +962,10 @@ MonoBehaviour:
   _ladderCollider: {fileID: 61122694268143702}
   _footCollider: {fileID: 68468833431425482}
   _animator: {fileID: 95930055764971676}
-  _audioSource: {fileID: 82231778003753978}
   _audioListener: {fileID: 81230608130289834}
   _observer: {fileID: 114610620364185106}
   _numberPopupEnvironment: {fileID: 114366189920182386}
+  _audioEnvironment: {fileID: 114204508672984674}
   _hpTable: {fileID: 11400000, guid: 1e81de872edf78241a359a3838a6f3b8, type: 2}
   _worldHpBar: {fileID: 114283101673446462}
   _nextExp: {fileID: 114762156422380140}

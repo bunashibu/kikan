@@ -10,6 +10,8 @@ namespace Bunashibu.Kikan {
 
       skillUser.KillDeath.RecordKill();
       skillUser.KillDeath.UpdateKillView();
+
+      skillUser.Observer.SyncKillSE();
     }
   }
 }

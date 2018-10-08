@@ -29,11 +29,11 @@ namespace Bunashibu.Kikan {
     public Collider2D       BodyCollider { get { return _bodyCollider; } }
     public Collider2D       FootCollider { get { return _footCollider; } }
     public Animator         Animator     { get { return _animator;     } }
-    public AudioSource      AudioSource  { get { return _audioSource;  } }
 
     public BattlePlayerObserver Observer { get { return _observer; } }
 
     public NumberPopupEnvironment NumberPopupEnvironment { get { return _numberPopupEnvironment; } }
+    public AudioEnvironment AudioEnvironment { get { return _audioEnvironment; } }
 
     public BattlePlayerMovement Movement      { get; private set; }
     public CharacterState       State         { get; private set; }
@@ -77,7 +77,6 @@ namespace Bunashibu.Kikan {
     [SerializeField] private Collider2D       _ladderCollider;
     [SerializeField] private Collider2D       _footCollider;
     [SerializeField] private Animator         _animator;
-    [SerializeField] private AudioSource      _audioSource;
     [SerializeField] private AudioListener    _audioListener;
 
     [Header("Observer")]
@@ -85,6 +84,7 @@ namespace Bunashibu.Kikan {
 
     [Header("Environment")]
     [SerializeField] private NumberPopupEnvironment _numberPopupEnvironment;
+    [SerializeField] private AudioEnvironment _audioEnvironment;
 
     [Header("Data")]
     [SerializeField] private DataTable _hpTable;

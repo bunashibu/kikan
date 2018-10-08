@@ -67,6 +67,10 @@ namespace Bunashibu.Kikan {
       _player.PhotonView.RPC("SyncBodyColliderRPC", PhotonTargets.Others, _player.BodyCollider.enabled);
     }
 
+    public void SyncKillSE() {
+      _player.PhotonView.RPC("SyncKillSERPC", PhotonTargets.All);
+    }
+
     /* Hp RPC */
     [PunRPC]
     private void SyncHpRPC(int cur, int max) {
@@ -119,6 +123,12 @@ namespace Bunashibu.Kikan {
     [PunRPC]
     private void SyncBodyColliderRPC(bool flag) {
       _player.BodyCollider.enabled = flag;
+    }
+
+    [PunRPC]
+    private void SyncKillSERPC() {
+      if (_player.PhotonView.isMine)
+        _player.AudioEnvironment.PlayOneShot("Kill1");
     }
 
     private void ForceSync(string key, Action action) {

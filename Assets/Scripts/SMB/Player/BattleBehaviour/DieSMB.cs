@@ -12,12 +12,12 @@ namespace Bunashibu.Kikan {
         _respawner  = animator.GetComponent<PlayerRespawner>();
       }
 
-      _player.AudioSource.PlayOneShot(_clip, 0.5f);
       _player.BodyCollider.enabled = false;
 
       if (!_player.PhotonView.isMine)
         return;
 
+      _player.AudioEnvironment.PlayOneShot("Die", 0.5f);
       SkillReference.Instance.DeleteAll();
 
       if (StageReference.Instance.StageData.Name == "Battle") {
@@ -36,7 +36,6 @@ namespace Bunashibu.Kikan {
       }
     }
 
-    [SerializeField] private AudioClip _clip;
     private BattlePlayer _player;
     private PlayerRespawner _respawner;
   }
