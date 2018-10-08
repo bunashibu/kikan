@@ -21,9 +21,9 @@ GameObject:
   - component: {fileID: 4937947451910622}
   - component: {fileID: 212983584169762956}
   - component: {fileID: 95827078314061834}
+  - component: {fileID: 82015855900904960}
   - component: {fileID: 114416673927128190}
   - component: {fileID: 114599721077657952}
-  - component: {fileID: 82015855900904960}
   m_Layer: 0
   m_Name: Core2LevelUpEffect
   m_TagString: Untagged
@@ -55,7 +55,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 2759b5028b91add4885f1d0d6da7bebe, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.35
   m_Pitch: 1
   Loop: 0
   Mute: 0
