@@ -11,6 +11,7 @@ namespace Bunashibu.Kikan {
       InitFlag();
       _player.FootCollider.isTrigger = true;
       _player.Movement.StepDownJump();
+      _player.AudioSource.PlayOneShot(_clip, 0.5f);
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
@@ -37,6 +38,7 @@ namespace Bunashibu.Kikan {
         _fallFlag = true;
     }
 
+    [SerializeField] private AudioClip _clip;
     private LobbyPlayer _player;
     private bool _isAlreadyJumped;
     private bool _fallFlag;

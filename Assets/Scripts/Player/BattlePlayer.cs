@@ -13,19 +13,23 @@ namespace Bunashibu.Kikan {
       StateTransfer = new StateTransfer(_initState, _animator);
       SkillInfo     = new SkillInfo();
       PlayerInfo    = new PlayerInfo(this);
+
+      if (PhotonView.owner != PhotonNetwork.player)
+        _audioListener.enabled = false;
     }
 
     void FixedUpdate() {
       Movement.FixedUpdate(_rigid, transform);
     }
 
-    public PhotonView       PhotonView   { get { return _photonView;     } }
-    public Transform        Transform    { get { return transform;       } }
-    public SpriteRenderer[] Renderers    { get { return _renderers;      } }
-    public Rigidbody2D      Rigid        { get { return _rigid;          } }
-    public Collider2D       BodyCollider { get { return _bodyCollider;   } }
-    public Collider2D       FootCollider { get { return _footCollider;   } }
-    public Animator         Animator     { get { return _animator;       } }
+    public PhotonView       PhotonView   { get { return _photonView;   } }
+    public Transform        Transform    { get { return transform;     } }
+    public SpriteRenderer[] Renderers    { get { return _renderers;    } }
+    public Rigidbody2D      Rigid        { get { return _rigid;        } }
+    public Collider2D       BodyCollider { get { return _bodyCollider; } }
+    public Collider2D       FootCollider { get { return _footCollider; } }
+    public Animator         Animator     { get { return _animator;     } }
+    public AudioSource      AudioSource  { get { return _audioSource;  } }
 
     public BattlePlayerObserver Observer { get { return _observer; } }
 
@@ -73,6 +77,8 @@ namespace Bunashibu.Kikan {
     [SerializeField] private Collider2D       _ladderCollider;
     [SerializeField] private Collider2D       _footCollider;
     [SerializeField] private Animator         _animator;
+    [SerializeField] private AudioSource      _audioSource;
+    [SerializeField] private AudioListener    _audioListener;
 
     [Header("Observer")]
     [SerializeField] private BattlePlayerObserver _observer;

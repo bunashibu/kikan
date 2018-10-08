@@ -10,6 +10,7 @@ namespace Bunashibu.Kikan {
 
       _isAlreadyJumped = false;
       _player.Movement.GroundJump();
+      _player.AudioSource.PlayOneShot(_clip, 0.5f);
       ApplyInertia();
     }
 
@@ -83,6 +84,7 @@ namespace Bunashibu.Kikan {
       return false;
     }
 
+    [SerializeField] private AudioClip _clip;
     private BattlePlayer _player;
     private bool _isAlreadyJumped;
   }
