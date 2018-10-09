@@ -5,6 +5,9 @@ using UnityEngine;
 namespace Bunashibu.Kikan {
   public class PlayerPortal : MonoBehaviour {
     void OnTriggerStay2D(Collider2D collider) {
+      if (!_player.PhotonView.isMine)
+        return;
+
       GameObject target = collider.gameObject;
 
       if (target.layer == LayerMask.NameToLayer(_portalLayerName)) {
