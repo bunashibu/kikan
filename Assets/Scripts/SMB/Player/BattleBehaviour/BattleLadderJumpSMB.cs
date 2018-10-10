@@ -8,7 +8,7 @@ namespace Bunashibu.Kikan {
       if (_player == null)
         _player = animator.GetComponent<BattlePlayer>();
 
-      _player.AudioEnvironment.PlayOneShot("Jump", 0.5f);
+      _player.AudioEnvironment.PlayOneShot("Jump");
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
