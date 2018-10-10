@@ -15,7 +15,7 @@ namespace Bunashibu.Kikan {
     }
 
     private void AdjustBoundary() {
-      if (Cur <= Min)
+      if (Cur < Min)
         Cur = Min;
       if (Cur > Max)
         Cur = Max;
