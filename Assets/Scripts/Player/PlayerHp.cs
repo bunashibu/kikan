@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Assertions;
 
 namespace Bunashibu.Kikan {
-  public class PlayerHp : Hp {
+  public class PlayerHp {
     public PlayerHp(BattlePlayer player, DataTable hpTable, Bar worldBar) {
       _player = player;
       _hpTable = hpTable;
@@ -17,13 +17,13 @@ namespace Bunashibu.Kikan {
         _worldBar.gameObject.SetActive(false);
     }
 
-    public override void Add(int quantity) {
-      base.Add(quantity);
+    public void Add(int quantity) {
+      //base.Add(quantity);
       _player.Observer.SyncCurHp();
     }
 
-    public override void Subtract(int quantity) {
-      base.Subtract(quantity);
+    public void Subtract(int quantity) {
+      //base.Subtract(quantity);
       _player.Observer.SyncCurHp();
     }
 
@@ -72,6 +72,10 @@ namespace Bunashibu.Kikan {
       else
         _worldBar.UpdateView(Cur, Max);
     }
+
+    public int Cur { get; protected set; }
+    public int Min { get { return 0; }   }
+    public int Max { get; protected set; }
 
     private BattlePlayer _player;
     private DataTable _hpTable;

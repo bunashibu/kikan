@@ -29,5 +29,10 @@ namespace Bunashibu.Kikan {
     Player,
     Enemy
   }
+
+  public enum Notification {
+    HpAdd,
+    HpSubtract
+  }
 }
 

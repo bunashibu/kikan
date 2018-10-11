@@ -3,15 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
-  public abstract class Hp : IGauge<int> {
-    public virtual void Add(int quantity) {
-      Cur += quantity;
-      AdjustBoundary();
+  public class Hp : Gauge<int> {
+    public Hp(List<IObserver> observerList) {
+      Notifier = new Notifier(observerList);
     }
 
-    public virtual void Subtract(int quantity) {
+    public override void Add(int quantity) {
+      Cur += quantity;
+      AdjustBoundary();
+
+      Notifier.Notify(Notification.HpAdd, Cur, Max);
+    }
+
+    public override void Subtract(int quantity) {
       Cur -= quantity;
       AdjustBoundary();
+
+      Notifier.Notify(Notification.HpSubtract, Cur, Max);
     }
 
     private void AdjustBoundary() {
@@ -21,9 +29,16 @@ namespace Bunashibu.Kikan {
         Cur = Max;
     }
 
-    public int Cur { get; protected set; }
-    public int Min { get { return 0; }   }
-    public int Max { get; protected set; }
+    public Notifier Notifier { get; private set; }
+
+    public void UpdateView() {}
+    public void FullRecover() {}
+    public void AttachHudBar(Bar hudBar) {}
+    public void UpdateMaxHp() {}
+    public void ForceSync(int cur, int max) {}
+    public void ForceSyncCur(int cur) {}
+    public void ForceSyncMax(int max) {}
+    public void ForceSyncUpdateView() {}
   }
 }
 

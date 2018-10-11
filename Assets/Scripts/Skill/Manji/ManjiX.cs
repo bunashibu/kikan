@@ -20,6 +20,10 @@ namespace Bunashibu.Kikan {
       if (targetObj == _skillUserObj)
         return;
 
+      if (targetObj.tag == "Player" || targetObj.tag == "Enemy") {
+        //Notify(SKILL_HIT_EVENT);
+      }
+
       if (targetObj.tag == "Player")
         ProceedAttackToPlayer(targetObj);
 

@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace Bunashibu.Kikan {
-  public class RatioBar : Bar {
+  public abstract class RatioBar : Bar {
     public override void UpdateView(int cur, int max) {
       double ratio = (double)cur / max * 100.0;
       double percent = Math.Round(ratio, 2);

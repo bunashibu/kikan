@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Assertions;
 
 namespace Bunashibu.Kikan {
-  public class EnemyHp : Hp {
+  public class EnemyHp {
     public EnemyHp(Enemy enemy, PlainBar bar, int maxHp) {
       _enemy = enemy;
       _bar = bar;
@@ -14,13 +14,13 @@ namespace Bunashibu.Kikan {
       Cur = Max;
     }
 
-    public override void Add(int quantity) {
-      base.Add(quantity);
+    public void Add(int quantity) {
+      //base.Add(quantity);
       _enemy.Observer.SyncCurHp();
     }
 
-    public override void Subtract(int quantity) {
-      base.Subtract(quantity);
+    public void Subtract(int quantity) {
+      //base.Subtract(quantity);
       _enemy.Observer.SyncCurHp();
     }
 
@@ -50,6 +50,10 @@ namespace Bunashibu.Kikan {
         });
       }
     }
+
+    public int Cur { get; protected set; }
+    public int Min { get { return 0; }   }
+    public int Max { get; protected set; }
 
     private Enemy _enemy;
     private PlainBar _bar;
