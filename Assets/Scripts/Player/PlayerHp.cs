@@ -67,10 +67,12 @@ namespace Bunashibu.Kikan {
     public void ForceSyncUpdateView() {
       Assert.IsTrue(_player.Observer.ShouldSync("UpdateHpView"));
 
+      /*
       if (_player.PhotonView.isMine)
         _hudBar.UpdateView(Cur, Max);
       else
         _worldBar.UpdateView(Cur, Max);
+      */
     }
 
     public int Cur { get; protected set; }

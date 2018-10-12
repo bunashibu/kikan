@@ -14,8 +14,10 @@ namespace Bunashibu.Kikan {
 
     [PunRPC]
     private void SyncExpUpdate() {
+      /*
       if (photonView.isMine)
         _hudBar.UpdateView(Cur, Max);
+      */
     }
 
     public void UpdateView() {

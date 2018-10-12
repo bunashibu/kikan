@@ -20,7 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 224000012194547662}
   - component: {fileID: 114000011064403330}
-  - component: {fileID: 114121173858193014}
+  - component: {fileID: 114093315263801166}
+  - component: {fileID: 114432320637988176}
   m_Layer: 5
   m_Name: HUDHpBar
   m_TagString: Untagged
@@ -229,7 +230,7 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114121173858193014
+--- !u!114 &114093315263801166
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -237,7 +238,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000010453162056}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3002d142040ad9348b22eb788c7ebd5a, type: 3}
+  m_Script: {fileID: 11500000, guid: 53dcc97b86005d94893c7ca7448e91c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114432320637988176
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010453162056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06923dfa63f46cb4b9d75dca1e805f4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _text: {fileID: 114000011392376546}

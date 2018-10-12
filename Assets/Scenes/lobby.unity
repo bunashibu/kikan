@@ -2191,7 +2191,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _board: {fileID: 1096165171}
   _mediator: {fileID: 1096165170}
-  _countDown: 3
+  _countDown: 1
   _CountDown: {fileID: 1172300855}
 --- !u!114 &1096165170
 MonoBehaviour:
