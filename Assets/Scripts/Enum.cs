@@ -33,7 +33,8 @@ namespace Bunashibu.Kikan {
   public enum Notification {
     HpInit,
     HpAdd,
-    HpSubtract
+    HpSubtract,
+    ExpAdd
   }
 }
 

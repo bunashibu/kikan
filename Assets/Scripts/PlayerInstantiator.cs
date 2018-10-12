@@ -24,7 +24,7 @@ namespace Bunashibu.Kikan {
     }
 
     public void InstantiateHudObjects(Canvas canvas, SkillPanel skillPanel) {
-      _hpBar = Instantiate(_hpBar) as HpBar;
+      _hpBar = Instantiate(_hpBar) as Bar;
       _hpBar.transform.SetParent(canvas.transform, false);
 
       _expBar = Instantiate(_expBar) as Bar;
@@ -125,7 +125,7 @@ namespace Bunashibu.Kikan {
       _player.Movement.SetJumpForce(jobStatus.Jmp);
     }
 
-    [SerializeField] private HpBar _hpBar;
+    [SerializeField] private Bar _hpBar;
     [SerializeField] private Bar _expBar;
     [SerializeField] private LevelPanel _lvPanel;
     [SerializeField] private KillDeathPanel _kdPanel;
