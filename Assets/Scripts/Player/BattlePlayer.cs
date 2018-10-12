@@ -17,7 +17,6 @@ namespace Bunashibu.Kikan {
       _hpTable.Notifier.Add(Hp);
 
       Notifier      = new Notifier(Hp, _hpTable);
-      Notifier.Notify(Notification.PlayerInstantiated);
 
       if (PhotonView.owner != PhotonNetwork.player)
         _audioListener.enabled = false;

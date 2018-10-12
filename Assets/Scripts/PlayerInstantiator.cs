@@ -51,6 +51,10 @@ namespace Bunashibu.Kikan {
       InitPlayerStatus(jobStatus);
       InitPlayerMovement(jobStatus);
 
+      MonoUtility.Instance.DelayOneFrame(() => {
+        _player.Notifier.Notify(Notification.PlayerInstantiated);
+      });
+
       _trackCamera.SetTrackTarget(_player.gameObject);
     }
 
