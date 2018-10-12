@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
-  public class Hp : Gauge<int> {
-    public Hp(List<IObserver> observerList) {
-      Notifier = new Notifier(observerList);
+  public class Hp : Gauge<int>, IObserver {
+    public Hp(params IObserver[] observers) {
+      Notifier = new Notifier(observers);
+      Notifier.Notify(Notification.HpInit);
     }
 
     public override void Add(int quantity) {
@@ -27,6 +28,18 @@ namespace Bunashibu.Kikan {
         Cur = Min;
       if (Cur > Max)
         Cur = Max;
+    }
+
+    public void OnNotify(Notification notification, object[] args) {
+      switch (notification) {
+        case Notification.HpInit:
+          Cur = (int)args[0];
+          Min = 0;
+          Max = (int)args[0];
+          break;
+        default:
+          break;
+      }
     }
 
     public Notifier Notifier { get; private set; }

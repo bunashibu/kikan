@@ -87,8 +87,8 @@ namespace Bunashibu.Kikan {
     [SerializeField] private AudioEnvironment _audioEnvironment;
 
     [Header("Data")]
-    [SerializeField] private DataTable _hpTable;
-    [SerializeField] private Bar       _worldHpBar;
+    [SerializeField] private HpTable _hpTable;
+    [SerializeField] private Bar     _worldHpBar;
 
     // Consider
     [Header("Sync On Their Own")]

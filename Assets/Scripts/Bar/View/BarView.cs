@@ -1,14 +1,15 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 namespace Bunashibu.Kikan {
-  public abstract class Bar : MonoBehaviour {
+  public abstract class BarView : MonoBehaviour {
     void Start() {
       _slider = GetComponent<Slider>();
     }
 
-    public abstract void UpdateView(int cur, int max); // To be protected
+    public abstract void UpdateView(int cur, int max);
 
     protected virtual void Animate(int cur, int max) {
       if (cur == 0) {

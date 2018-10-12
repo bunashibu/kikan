@@ -4,10 +4,12 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   public class Notifier {
-    public Notifier(List<IObserver> observerList) {
+    public Notifier() {
       _observerList = new List<IObserver>();
+    }
 
-      foreach (IObserver observer in observerList)
+    public Notifier(IObserver[] observers) : this() {
+      foreach (IObserver observer in observers)
         Add(observer);
     }
 

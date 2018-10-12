@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224000012194547662}
   - component: {fileID: 114000011064403330}
-  - component: {fileID: 114000012113145708}
+  - component: {fileID: 114121173858193014}
   m_Layer: 5
   m_Name: HUDHpBar
   m_TagString: Untagged
@@ -202,18 +202,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114000012113145708
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010453162056}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4550976638acefb4bb60df91820be76d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _text: {fileID: 114000011392376546}
 --- !u!114 &114000014012399386
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -241,6 +229,18 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114121173858193014
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010453162056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3002d142040ad9348b22eb788c7ebd5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _text: {fileID: 114000011392376546}
 --- !u!222 &222000010311118792
 CanvasRenderer:
   m_ObjectHideFlags: 1

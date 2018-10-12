@@ -3,21 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
-  public class HpPlainBar : PlainBar{
-    public override void OnNotify(Notification notification, object[] args) {
+  public class HpBar : MonoBehaviour, IObserver {
+    public void OnNotify(Notification notification, object[] args) {
       switch (notification) {
         case Notification.HpAdd:
-          UpdateView((int)args[0], (int)args[1]); // cur, max
+          _view.UpdateView((int)args[0], (int)args[1]); // cur, max
           break;
-
         case Notification.HpSubtract:
-          UpdateView((int)args[0], (int)args[1]); // cur, max
+          _view.UpdateView((int)args[0], (int)args[1]); // cur, max
           break;
-
         default:
           break;
       }
     }
+
+    [SerializeField] private BarView _view;
   }
 }
 

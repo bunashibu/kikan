@@ -24159,8 +24159,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 034ead08f5956f2408c59f4d0bca0638, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hpBar: {fileID: 114000012113145708, guid: 39b62fe9619e9e44b99229f851890bf7, type: 2}
-  _expBar: {fileID: 114591676240663140, guid: 1dcf407e0a853d440845ca486f8e6523, type: 2}
+  _hpBar: {fileID: 114121173858193014, guid: 39b62fe9619e9e44b99229f851890bf7, type: 2}
+  _expBar: {fileID: 0}
   _lvPanel: {fileID: 114578394497458258, guid: d354bc829ce1fa644b2a1f50e3fc1af9, type: 2}
   _kdPanel: {fileID: 1953781252}
   _corePanel: {fileID: 1331817296}
