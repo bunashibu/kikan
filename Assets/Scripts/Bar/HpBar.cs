@@ -6,10 +6,7 @@ namespace Bunashibu.Kikan {
   public class HpBar : Bar {
     public override void OnNotify(Notification notification, object[] args) {
       switch (notification) {
-        case Notification.HpAdd:
-          _view.UpdateView((int)args[0], (int)args[1]); // cur, max
-          break;
-        case Notification.HpSubtract:
+        case Notification.HpUpdated:
           _view.UpdateView((int)args[0], (int)args[1]); // cur, max
           break;
         default:

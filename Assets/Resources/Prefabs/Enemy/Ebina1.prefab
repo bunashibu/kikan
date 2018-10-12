@@ -542,7 +542,7 @@ MonoBehaviour:
   _killExp: 60
   _killGold: 90
   _ai: {fileID: 114497347247726722}
-  _hpBar: {fileID: 0}
+  _hpBar: {fileID: 114065065712931694}
   _enemyData: {fileID: 11400000, guid: ad7d9cd9e2012634281799d0b5c51d08, type: 2}
 --- !u!114 &114546151287562746
 MonoBehaviour:

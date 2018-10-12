@@ -14,6 +14,11 @@ namespace Bunashibu.Kikan {
       SkillInfo     = new SkillInfo();
       PlayerInfo    = new PlayerInfo(this);
 
+      _hpTable.Notifier.Add(Hp);
+
+      Notifier      = new Notifier(Hp, _hpTable);
+      Notifier.Notify(Notification.PlayerInstantiated);
+
       if (PhotonView.owner != PhotonNetwork.player)
         _audioListener.enabled = false;
     }
@@ -42,6 +47,8 @@ namespace Bunashibu.Kikan {
     public StateTransfer        StateTransfer { get; private set; }
     public SkillInfo            SkillInfo     { get; private set; }
     public PlayerInfo           PlayerInfo    { get; private set; }
+
+    public Notifier             Notifier      { get; private set; }
 
     public int KillExp  { get { return _killExpTable.Data[Level.Lv - 1];  } }
     public int KillGold { get { return _killGoldTable.Data[Level.Lv - 1]; } }

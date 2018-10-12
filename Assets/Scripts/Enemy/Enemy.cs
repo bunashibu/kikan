@@ -68,7 +68,7 @@ namespace Bunashibu.Kikan {
     [SerializeField] private MonoBehaviour _ai;
 
     [Header("Hp")]
-    [SerializeField] private PlainBar _hpBar;
+    [SerializeField] private Bar _hpBar;
 
     [Header("Data")]
     [SerializeField] private EnemyData _enemyData;

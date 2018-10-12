@@ -31,10 +31,10 @@ namespace Bunashibu.Kikan {
   }
 
   public enum Notification {
-    HpInit,
-    HpAdd,
-    HpSubtract,
-    ExpAdd
+    PlayerInstantiated,
+    GiveInitialHp,
+    HpUpdated,
+    ExpUpdated
   }
 }
 

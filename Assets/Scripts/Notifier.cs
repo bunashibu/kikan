@@ -8,7 +8,7 @@ namespace Bunashibu.Kikan {
       _observerList = new List<IObserver>();
     }
 
-    public Notifier(IObserver[] observers) : this() {
+    public Notifier(params IObserver[] observers) : this() {
       foreach (IObserver observer in observers)
         Add(observer);
     }

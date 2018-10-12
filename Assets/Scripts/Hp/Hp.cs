@@ -3,24 +3,37 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
-  public class Hp : Gauge<int>, IObserver {
+  public class Hp : Gauge<int> {
     public Hp(params IObserver[] observers) {
       Notifier = new Notifier(observers);
-      Notifier.Notify(Notification.HpInit);
     }
 
-    public override void Add(int quantity) {
+    public override void OnNotify(Notification notification, object[] args) {
+      switch (notification) {
+        case Notification.GiveInitialHp:
+          Cur = (int)args[0];
+          Min = 0;
+          Max = (int)args[0];
+
+          Notifier.Notify(Notification.HpUpdated, Cur, Max);
+          break;
+        default:
+          break;
+      }
+    }
+
+    public override void Add(int quantity) { // to be protected
       Cur += quantity;
       AdjustBoundary();
 
-      Notifier.Notify(Notification.HpAdd, Cur, Max);
+      Notifier.Notify(Notification.HpUpdated, Cur, Max);
     }
 
-    public override void Subtract(int quantity) {
+    public override void Subtract(int quantity) { // to be protected
       Cur -= quantity;
       AdjustBoundary();
 
-      Notifier.Notify(Notification.HpSubtract, Cur, Max);
+      Notifier.Notify(Notification.HpUpdated, Cur, Max);
     }
 
     private void AdjustBoundary() {
@@ -28,18 +41,6 @@ namespace Bunashibu.Kikan {
         Cur = Min;
       if (Cur > Max)
         Cur = Max;
-    }
-
-    public void OnNotify(Notification notification, object[] args) {
-      switch (notification) {
-        case Notification.HpInit:
-          Cur = (int)args[0];
-          Min = 0;
-          Max = (int)args[0];
-          break;
-        default:
-          break;
-      }
     }
 
     public Notifier Notifier { get; private set; }

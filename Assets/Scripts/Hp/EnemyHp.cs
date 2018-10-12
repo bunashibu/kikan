@@ -6,7 +6,7 @@ using UnityEngine.Assertions;
 
 namespace Bunashibu.Kikan {
   public class EnemyHp {
-    public EnemyHp(Enemy enemy, PlainBar bar, int maxHp) {
+    public EnemyHp(Enemy enemy, Bar bar, int maxHp) {
       _enemy = enemy;
       _bar = bar;
 
@@ -40,6 +40,7 @@ namespace Bunashibu.Kikan {
     public void ForceSyncUpdateView(PhotonPlayer skillOwner) {
       Assert.IsTrue(_enemy.Observer.ShouldSync("UpdateHpView"));
 
+      /*
       if (skillOwner == PhotonNetwork.player) {
         _bar.gameObject.SetActive(true);
         _bar.UpdateView(Cur, Max);
@@ -49,6 +50,7 @@ namespace Bunashibu.Kikan {
             _bar.gameObject.SetActive(false);
         });
       }
+      */
     }
 
     public int Cur { get; protected set; }
@@ -56,7 +58,7 @@ namespace Bunashibu.Kikan {
     public int Max { get; protected set; }
 
     private Enemy _enemy;
-    private PlainBar _bar;
+    private Bar _bar;
   }
 }
 
