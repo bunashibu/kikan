@@ -5,32 +5,18 @@ using UnityEngine;
 namespace Bunashibu.Kikan {
   public class ManjiX : Skill {
     void Awake() {
-      _rewardGetter      = new RewardGetter();
-      _targetRistrictor  = new TargetRistrictor(_targetNum, _dupHitNum);
-      _killDeathRecorder = new KillDeathRecorder();
-      _powerCalculator   = new PowerCalculator();
-      _damageCalculator  = new DamageCalculator();
+      _targetChecker    = new TargetChecker(_skillUserObj);
+      _damageCalculater = new DamageCalculator(_increasePercent, _maxDeviation);
+      _notifier         = new Notifier();
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
-      if (!PhotonNetwork.isMasterClient)
-        return;
-
-      var targetObj = collider.gameObject;
-      if (targetObj == _skillUserObj)
-        return;
-
-      if (targetObj.tag == "Player" || targetObj.tag == "Enemy") {
-        //Notify(SKILL_HIT_EVENT);
-      }
-
-      if (targetObj.tag == "Player")
-        ProceedAttackToPlayer(targetObj);
-
-      if (targetObj.tag == "Enemy")
-        ProceedAttackToEnemy(targetObj);
+      if (PhotonNetwork.isMasterClient && _targetChecker.IsAttackTarget(collider))
+        _notifier.Notify(Notification.HitSkill, collider);
     }
 
+/*
+comment {
     private void ProceedAttackToPlayer(GameObject targetObj) {
       var target = targetObj.GetComponent<BattlePlayer>();
       var skillUser = _skillUserObj.GetComponent<BattlePlayer>();
@@ -104,20 +90,20 @@ namespace Bunashibu.Kikan {
       _rewardGetter.SetRewardReceiver(skillUser);
       _rewardGetter.GetRewardFrom(target);
     }
+}
+*/
 
-    [Header("PowerSettings")]
-    [SerializeField] private int _skillPower;
+    [Header("PowerSettings (%)")]
+    [SerializeField] private int _increasePercent;
     [SerializeField] private int _maxDeviation;
 
     [Header("TargetSettings")]
     [SerializeField] private int _targetNum;
     [SerializeField] private int _dupHitNum;
 
-    private RewardGetter      _rewardGetter;
-    private TargetRistrictor  _targetRistrictor;
-    private KillDeathRecorder _killDeathRecorder;
-    private PowerCalculator   _powerCalculator;
-    private DamageCalculator  _damageCalculator;
+    private TargetChecker    _targetChecker;
+    private DamageCalculator _damageCalculator;
+    private Notifier         _notifier;
   }
 }
 

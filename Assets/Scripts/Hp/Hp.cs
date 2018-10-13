@@ -25,15 +25,11 @@ namespace Bunashibu.Kikan {
     public override void Add(int quantity) { // to be protected
       Cur += quantity;
       AdjustBoundary();
-
-      Notifier.Notify(Notification.HpUpdated, Cur, Max);
     }
 
     public override void Subtract(int quantity) { // to be protected
       Cur -= quantity;
       AdjustBoundary();
-
-      Notifier.Notify(Notification.HpUpdated, Cur, Max);
     }
 
     private void AdjustBoundary() {
