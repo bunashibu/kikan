@@ -1,22 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace Bunashibu.Kikan {
   public class DamageCalculator : IListener {
-    public DamageCalculator(int increasePercent, int maxDeviation) {
-      _increasePercent = increasePercent;
-      _maxDeviation    = maxDeviation;
-    }
-
     public void OnNotify(Notification notification, object[] args) {
       if (notification == Notification.HitSkill) {
-        var target = ((Collider2D)args[0]).gameObject.GetComponent<IBattle>();
+        Assert.IsTrue(args.Length == 3);
 
-        CalculateCritical(target.Critical);
-        CalculateDamage(target.Power);
+        var attacker   = ((GameObject)args[0]).GetComponent<IAttacker>();
+        var attackInfo = (AttackInfo)args[2];
 
-        targetNotifier.Notify(Notification.TakeDamage, _isCritical, _damage);
+        CalculateCritical(attacker.Critical + attackInfo.CriticalPercent);
+        CalculateDamage(attacker.Power, attackInfo.DamagePercent, attackInfo.MaxDeviation);
+
+        var taker = ((Collider2D)args[1]).gameObject.GetComponent<INotifier>();
+        taker.Notifier.Notify(Notification.TakeDamage, _isCritical, _damage);
       }
     }
 
@@ -29,20 +29,17 @@ namespace Bunashibu.Kikan {
         _isCritical = false;
     }
 
-    private void CalculateDamage(int basePower) {
-      int deviation = (int)((Random.value - 0.5) * 2 * _maxDeviation);
+    private void CalculateDamage(int basePower, int damagePercent, int maxDeviation) {
+      int deviation = (int)((Random.value - 0.5) * 2 * maxDeviation);
 
-      _damage = (int)((basePower * _increasePercent / 100.0) + deviation);
+      _damage = (int)((basePower * damagePercent / 100.0) + deviation);
 
       if (_isCritical)
         _damage *= 2;
     }
 
-    private int _increasePercent;
-    private int _maxDeviation;
-
-    private int _isCritical;
-    private int _damage;
+    private bool _isCritical;
+    private int  _damage;
   }
 }
 

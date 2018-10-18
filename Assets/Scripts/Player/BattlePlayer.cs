@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   [RequireComponent(typeof(BattlePlayerObserver))]
-  public class BattlePlayer : MonoBehaviour, ICharacter, IBattle, ISpeaker {
+  public class BattlePlayer : MonoBehaviour, ICharacter, IBattle, IAttacker, INotifier, ISpeaker {
     void Awake() {
       Movement      = new BattlePlayerMovement(_core);
       State         = new CharacterState(_ladderCollider, _footCollider);
@@ -50,6 +50,9 @@ namespace Bunashibu.Kikan {
 
     public int KillExp  { get { return _killExpTable.Data[Level.Lv - 1];  } }
     public int KillGold { get { return _killGoldTable.Data[Level.Lv - 1]; } }
+
+    public int Power    { get { return Status.Atk;    } }
+    public int Critical { get { return Core.Critical; } }
 
     public NameBackground NameBackground { get { return _nameBackground; } }
     public PopupRemark    PopupRemark    { get { return _popupRemark;    } }

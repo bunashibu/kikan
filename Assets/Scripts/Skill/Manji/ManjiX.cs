@@ -5,14 +5,13 @@ using UnityEngine;
 namespace Bunashibu.Kikan {
   public class ManjiX : Skill {
     void Awake() {
-      _targetChecker    = new TargetChecker(_skillUserObj);
-      _damageCalculater = new DamageCalculator(_increasePercent, _maxDeviation);
-      _notifier         = new Notifier();
+      _targetChecker = new TargetChecker(_skillUserObj);
+      _notifier      = new Notifier(DamageCalculator);
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
       if (PhotonNetwork.isMasterClient && _targetChecker.IsAttackTarget(collider))
-        _notifier.Notify(Notification.HitSkill, collider);
+        _notifier.Notify(Notification.HitSkill, _skillUserObj, collider, _attackInfo);
     }
 
 /*
@@ -93,16 +92,13 @@ comment {
 }
 */
 
-    [Header("PowerSettings (%)")]
-    [SerializeField] private int _increasePercent;
-    [SerializeField] private int _maxDeviation;
+    [SerializeField] private AttackInfo _attackInfo;
 
     [Header("TargetSettings")]
     [SerializeField] private int _targetNum;
     [SerializeField] private int _dupHitNum;
 
     private TargetChecker    _targetChecker;
-    private DamageCalculator _damageCalculator;
     private Notifier         _notifier;
   }
 }
