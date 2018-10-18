@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   public class Hp : Gauge<int> {
-    public Hp(params IObserver[] observers) {
-      Notifier = new Notifier(observers);
+    public Hp(params IListener[] listeners) {
+      Notifier = new Notifier(listeners);
     }
 
     public override void OnNotify(Notification notification, object[] args) {

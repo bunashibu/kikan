@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
-  public class DamageCalculator : IObserver {
+  public class DamageCalculator : IListener {
     public DamageCalculator(int increasePercent, int maxDeviation) {
       _increasePercent = increasePercent;
       _maxDeviation    = maxDeviation;

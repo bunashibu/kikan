@@ -5,24 +5,24 @@ using UnityEngine;
 namespace Bunashibu.Kikan {
   public class Notifier {
     public Notifier() {
-      _observerList = new List<IObserver>();
+      _listenerList = new List<IListener>();
     }
 
-    public Notifier(params IObserver[] observers) : this() {
-      foreach (IObserver observer in observers)
-        Add(observer);
+    public Notifier(params IListener[] listeners) : this() {
+      foreach (IListener listener in listeners)
+        Add(listener);
     }
 
     public void Notify(Notification notification, params object[] args) {
-      foreach (IObserver observer in _observerList)
-        observer.OnNotify(notification, args);
+      foreach (IListener listener in _listenerList)
+        listener.OnNotify(notification, args);
     }
 
-    public void Add(IObserver observer) {
-      _observerList.Add(observer);
+    public void Add(IListener listener) {
+      _listenerList.Add(listener);
     }
 
-    private List<IObserver> _observerList;
+    private List<IListener> _listenerList;
   }
 }
 

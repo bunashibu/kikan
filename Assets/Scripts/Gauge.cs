@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
-  public abstract class Gauge<T> : IObserver {
+  public abstract class Gauge<T> : IListener {
     public abstract void OnNotify(Notification notification, object[] args);
 
     public abstract void Add(T quantity);

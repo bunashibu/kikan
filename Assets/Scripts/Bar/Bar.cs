@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   [RequireComponent(typeof(BarView))]
-  public abstract class Bar : MonoBehaviour, IObserver {
+  public abstract class Bar : MonoBehaviour, IListener {
     void Start() {
       _view = GetComponent<BarView>();
     }

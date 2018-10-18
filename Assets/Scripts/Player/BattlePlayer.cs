@@ -13,10 +13,9 @@ namespace Bunashibu.Kikan {
       StateTransfer = new StateTransfer(_initState, _animator);
       SkillInfo     = new SkillInfo();
       PlayerInfo    = new PlayerInfo(this);
+      Notifier      = new Notifier(Hp, _hpTable);
 
       _hpTable.Notifier.Add(Hp);
-
-      Notifier      = new Notifier(Hp, _hpTable);
 
       if (PhotonView.owner != PhotonNetwork.player)
         _audioListener.enabled = false;

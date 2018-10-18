@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   [CreateAssetMenu]
-  public class DataTable : ScriptableObject, IObserver {
+  public class DataTable : ScriptableObject, IListener {
     public DataTable() {
       Notifier = new Notifier();
     }
