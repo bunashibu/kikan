@@ -6,12 +6,18 @@ namespace Bunashibu.Kikan {
   public class ManjiX : Skill {
     void Awake() {
       _targetChecker = new TargetChecker(_skillUserObj);
-      _notifier      = new Notifier(DamageCalculator);
+      _notifier      = new Notifier();
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
-      if (PhotonNetwork.isMasterClient && _targetChecker.IsAttackTarget(collider))
-        _notifier.Notify(Notification.HitSkill, _skillUserObj, collider, _attackInfo);
+      if (PhotonNetwork.isMasterClient && _targetChecker.IsAttackTarget(collider)) {
+        DamageCalculator.Calculate(_skillUserObj, _attackInfo);
+
+        var target = collider.gameObject.GetComponent<INotifier>();
+        _notifier.Add(target);
+
+        _notifier.Notify(Notification.TakeDamage, DamageCalculator.IsCritical, DamageCalculator.Damage, attacker);
+      }
     }
 
 /*
