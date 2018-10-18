@@ -41,7 +41,7 @@ namespace Bunashibu.Kikan {
     public Notifier Notifier { get; private set; }
 
     public int Cur { get; protected set; }
-    public int Min { get { return 0; }
+    public int Min { get { return 0; }   }
     public int Max { get; protected set; }
 
     public void UpdateView() {}
