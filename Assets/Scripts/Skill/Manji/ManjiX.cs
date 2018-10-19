@@ -12,8 +12,9 @@ namespace Bunashibu.Kikan {
       if (PhotonNetwork.isMasterClient && _targetChecker.IsAttackTarget(collider)) {
         DamageCalculator.Calculate(_skillUserObj, _attackInfo);
 
-        var target = collider.gameObject.GetComponent<INotifier>();
-        target.Notifier.Notify(Notification.TakeDamage, DamageCalculator.IsCritical, DamageCalculator.Damage, _skillUserObj);
+        var skillUser = _skillUserObj.GetComponent<INotifier>().Notifier;
+        var target    = collider.gameObject.GetComponent<INotifier>().Notifier;
+        target.Notify(Notification.TakeDamage, DamageCalculator.Damage, DamageCalculator.IsCritical, skillUser);
       }
     }
 

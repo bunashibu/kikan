@@ -38,7 +38,9 @@ namespace Bunashibu.Kikan {
     ExpUpdated,
 
     HitSkill,
-    TakeDamage
+    TakeDamage,
+
+    Died
   }
 }
 

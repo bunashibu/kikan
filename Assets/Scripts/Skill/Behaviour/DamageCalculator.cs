@@ -29,8 +29,8 @@ namespace Bunashibu.Kikan {
         Damage *= 2;
     }
 
-    public static bool IsCritical { get; private set; }
     public static int  Damage     { get; private set; }
+    public static bool IsCritical { get; private set; }
   }
 }
 

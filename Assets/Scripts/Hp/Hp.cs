@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace Bunashibu.Kikan {
   public class Hp : IListener {
@@ -11,10 +12,27 @@ namespace Bunashibu.Kikan {
     public void OnNotify(Notification notification, object[] args) {
       switch (notification) {
         case Notification.GiveInitialHp:
+          Assert.IsTrue(args.Length == 1);
+
           Cur = (int)args[0];
           Max = (int)args[0];
 
           Notifier.Notify(Notification.HpUpdated, Cur, Max);
+          break;
+        case Notification.TakeDamage:
+          Assert.IsTrue(args.Length == 3);
+
+          int damage = (int)args[0];
+          Cur.Subtract(damage);
+
+          Notifier.Notify(Notification.HpUpdated, Cur, Max);
+
+          if (Cur == Min) {
+            var attacker = (Notifier)args[2];
+
+            Notifier.Notify(Notification.Died, attacker);
+          }
+
           break;
         default:
           break;
