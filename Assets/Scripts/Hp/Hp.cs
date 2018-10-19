@@ -45,6 +45,7 @@ namespace Bunashibu.Kikan {
     public int Max { get; protected set; }
 
     public void UpdateView() {}
+    public void UpdateView(PhotonPlayer skillOwner) {}
     public void FullRecover() {}
     public void AttachHudBar(Bar hudBar) {}
     public void UpdateMaxHp() {}
@@ -52,6 +53,7 @@ namespace Bunashibu.Kikan {
     public void ForceSyncCur(int cur) {}
     public void ForceSyncMax(int max) {}
     public void ForceSyncUpdateView() {}
+    public void ForceSyncUpdateView(PhotonPlayer skillOwner) {}
   }
 }
 

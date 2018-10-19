@@ -5,12 +5,15 @@ using System.Collections;
 namespace Bunashibu.Kikan {
   [RequireComponent(typeof(Character2D))]
   [RequireComponent(typeof(EnemyObserver))]
-  public class Enemy : MonoBehaviour, ICharacter, IBattle {
+  public class Enemy : MonoBehaviour, ICharacter, IBattle, INotifier {
     void Awake() {
       State         = new CharacterState(_ladderCollider, _footCollider);
       BuffState     = new BuffState(Observer);
       StateTransfer = new StateTransfer(_initState, _animator);
-      Hp            = new EnemyHp(this, _hpBar, _enemyData.Life);
+      Hp            = new Hp(_hpBar);
+      Notifier      = new Notifier(Hp);
+
+      Notifier.Notify(Notification.GiveInitialHp, _enemyData.Life);
     }
 
     public void AttachPopulationObserver(EnemyPopulationObserver populationObserver) {
@@ -32,6 +35,8 @@ namespace Bunashibu.Kikan {
     // Environment
     public NumberPopupEnvironment NumberPopupEnvironment { get { return _numberPopupEnvironment; } }
 
+    public Notifier Notifier { get; private set; }
+
     // tmp
     public MonoBehaviour AI { get { return _ai; } }
 
@@ -39,7 +44,7 @@ namespace Bunashibu.Kikan {
     public CharacterState State         { get; private set; }
     public BuffState      BuffState     { get; private set; }
     public StateTransfer  StateTransfer { get; private set; }
-    public EnemyHp        Hp            { get; private set; }
+    public Hp             Hp            { get; private set; }
 
     public int KillExp  { get { return _killExp;  } }
     public int KillGold { get { return _killGold; } }
