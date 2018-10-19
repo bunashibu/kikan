@@ -51,7 +51,13 @@ namespace Bunashibu.Kikan {
     public int KillExp  { get { return _killExpTable.Data[Level.Lv - 1];  } }
     public int KillGold { get { return _killGoldTable.Data[Level.Lv - 1]; } }
 
-    public int Power    { get { return Status.Atk;    } }
+    public int Power    {
+      get {
+        double ratio = (double)((Core.Attack + 100) / 100.0);
+
+        return (int)(Status.Atk * Status.MulCorrectionAtk * ratio);
+      }
+    }
     public int Critical { get { return Core.Critical; } }
 
     public NameBackground NameBackground { get { return _nameBackground; } }

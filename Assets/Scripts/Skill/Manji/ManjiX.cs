@@ -6,7 +6,6 @@ namespace Bunashibu.Kikan {
   public class ManjiX : Skill {
     void Awake() {
       _targetChecker = new TargetChecker(_skillUserObj);
-      _notifier      = new Notifier();
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
@@ -14,9 +13,7 @@ namespace Bunashibu.Kikan {
         DamageCalculator.Calculate(_skillUserObj, _attackInfo);
 
         var target = collider.gameObject.GetComponent<INotifier>();
-        _notifier.Add(target);
-
-        _notifier.Notify(Notification.TakeDamage, DamageCalculator.IsCritical, DamageCalculator.Damage, attacker);
+        target.Notifier.Notify(Notification.TakeDamage, DamageCalculator.IsCritical, DamageCalculator.Damage, _skillUserObj);
       }
     }
 
@@ -105,7 +102,6 @@ comment {
     [SerializeField] private int _dupHitNum;
 
     private TargetChecker    _targetChecker;
-    private Notifier         _notifier;
   }
 }
 

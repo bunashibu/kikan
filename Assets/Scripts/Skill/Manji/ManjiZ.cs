@@ -9,7 +9,6 @@ namespace Bunashibu.Kikan {
       _targetRistrictor  = new TargetRistrictor(_targetNum, _dupHitNum);
       _killDeathRecorder = new KillDeathRecorder();
       _powerCalculator   = new PowerCalculator();
-      _damageCalculator  = new DamageCalculator();
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
@@ -34,7 +33,7 @@ namespace Bunashibu.Kikan {
       if (IsCorrectAttackPlayer(target, skillUser)) {
         DamageToPlayer(target, skillUser);
         target.BuffState.ToBeStun(_stunSec);
-        target.NumberPopupEnvironment.Popup(_damageCalculator.Damage, _damageCalculator.IsCritical, skillUser.DamageSkin.Id, PopupType.Player);
+        target.NumberPopupEnvironment.Popup(DamageCalculator.Damage, DamageCalculator.IsCritical, skillUser.DamageSkin.Id, PopupType.Player);
 
         if (target.Hp.Cur <= 0)
           ProceedPlayerDeath(target, skillUser);
@@ -48,7 +47,7 @@ namespace Bunashibu.Kikan {
       if (IsCorrectAttackEnemy(target)) {
         DamageToEnemy(target, skillUser);
         target.BuffState.ToBeStun(_stunSec);
-        target.NumberPopupEnvironment.Popup(_damageCalculator.Damage, _damageCalculator.IsCritical, skillUser.DamageSkin.Id, PopupType.Enemy);
+        target.NumberPopupEnvironment.Popup(DamageCalculator.Damage, DamageCalculator.IsCritical, skillUser.DamageSkin.Id, PopupType.Enemy);
 
         if (target.Hp.Cur <= 0)
           ProceedEnemyDeath(target, skillUser);
@@ -72,22 +71,16 @@ namespace Bunashibu.Kikan {
     }
 
     private void DamageToPlayer(BattlePlayer target, BattlePlayer skillUser) {
-      int playerPower = _powerCalculator.CalculatePlayerPower(skillUser);
-      int attackPower = (int)(playerPower * (_skillPower / 100.0));
+      DamageCalculator.Calculate(_skillUserObj, _attackInfo);
 
-      int damage = _damageCalculator.CalculateDamage(attackPower, _maxDeviation, skillUser.Core.Critical);
-
-      target.Hp.Subtract(damage);
+      target.Hp.Subtract(DamageCalculator.Damage);
       target.Hp.UpdateView();
     }
 
     private void DamageToEnemy(Enemy target, BattlePlayer skillUser) {
-      int playerPower = _powerCalculator.CalculatePlayerPower(skillUser);
-      int attackPower = (int)(playerPower * (_skillPower / 100.0));
+      DamageCalculator.Calculate(_skillUserObj, _attackInfo);
 
-      int damage = _damageCalculator.CalculateDamage(attackPower, _maxDeviation, skillUser.Core.Critical);
-
-      target.Hp.Subtract(damage);
+      target.Hp.Subtract(DamageCalculator.Damage);
       target.Hp.UpdateView(skillUser.PhotonView.owner);
     }
 
@@ -103,9 +96,7 @@ namespace Bunashibu.Kikan {
       _rewardGetter.GetRewardFrom(target);
     }
 
-    [Header("PowerSettings")]
-    [SerializeField] private int _skillPower;
-    [SerializeField] private int _maxDeviation;
+    [SerializeField] private AttackInfo _attackInfo;
 
     [Header("TargetSettings")]
     [SerializeField] private int _targetNum;
@@ -118,7 +109,6 @@ namespace Bunashibu.Kikan {
     private TargetRistrictor  _targetRistrictor;
     private KillDeathRecorder _killDeathRecorder;
     private PowerCalculator   _powerCalculator;
-    private DamageCalculator  _damageCalculator;
   }
 }
 
