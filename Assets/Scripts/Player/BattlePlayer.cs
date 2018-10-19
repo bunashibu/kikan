@@ -11,12 +11,14 @@ namespace Bunashibu.Kikan {
       Movement      = new BattlePlayerMovement(_core);
       State         = new CharacterState(_ladderCollider, _footCollider);
       BuffState     = new BuffState(Observer);
-      Hp            = new Hp(_worldHpBar, Mediator);
+      Hp            = new Hp();
       StateTransfer = new StateTransfer(_initState, _animator);
       SkillInfo     = new SkillInfo();
       PlayerInfo    = new PlayerInfo(this);
 
-      //_hpTable.Notifier.Add(Hp);
+      Hp.Notifier.Add(_worldHpBar);
+
+      Mediator.Notifier.Add(Hp);
 
       if (PhotonView.owner != PhotonNetwork.player)
         _audioListener.enabled = false;
@@ -39,7 +41,7 @@ namespace Bunashibu.Kikan {
     public NumberPopupEnvironment NumberPopupEnvironment { get { return _numberPopupEnvironment; } }
     public AudioEnvironment       AudioEnvironment       { get { return _audioEnvironment;       } }
 
-    public IListener            Mediator      { get; private set; }
+    public IResponder           Mediator      { get; private set; }
 
     public BattlePlayerMovement Movement      { get; private set; }
     public CharacterState       State         { get; private set; }

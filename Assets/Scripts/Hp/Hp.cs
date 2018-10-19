@@ -5,8 +5,8 @@ using UnityEngine.Assertions;
 
 namespace Bunashibu.Kikan {
   public class Hp : IListener {
-    public Hp(params IListener[] listeners) {
-      Notifier = new Notifier(listeners);
+    public Hp() {
+      Notifier = new Notifier();
     }
 
     public void OnNotify(Notification notification, object[] args) {
@@ -26,12 +26,6 @@ namespace Bunashibu.Kikan {
           Subtract(damage);
 
           Notifier.Notify(Notification.HpUpdated, Cur, Max);
-
-          if (Cur == Min) {
-            var attacker = (Notifier)args[2];
-
-            Notifier.Notify(Notification.Died, attacker);
-          }
 
           break;
         default:

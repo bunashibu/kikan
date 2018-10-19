@@ -11,8 +11,11 @@ namespace Bunashibu.Kikan {
       State         = new CharacterState(_ladderCollider, _footCollider);
       BuffState     = new BuffState(Observer);
       StateTransfer = new StateTransfer(_initState, _animator);
-      Hp            = new Hp(_hpBar);
-      //Notifier      = new Notifier(Hp);
+      Hp            = new Hp();
+
+      Hp.Notifier.Add(_hpBar);
+
+      Mediator.Notifier.Add(Hp);
 
       //Notifier.Notify(Notification.GiveInitialHp, _enemyData.Life);
     }
@@ -36,7 +39,7 @@ namespace Bunashibu.Kikan {
     // Environment
     public NumberPopupEnvironment NumberPopupEnvironment { get { return _numberPopupEnvironment; } }
 
-    public IListener Mediator { get; private set; }
+    public IResponder Mediator { get; private set; }
 
     // tmp
     public MonoBehaviour AI { get { return _ai; } }

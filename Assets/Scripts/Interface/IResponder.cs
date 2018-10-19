@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
-  public interface IMediator {
-    IResponder Mediator { get; }
+  public interface IResponder : IListener {
+    Notifier Notifier { get; }
   }
 }
 
