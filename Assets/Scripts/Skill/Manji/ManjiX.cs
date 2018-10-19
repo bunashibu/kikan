@@ -5,11 +5,11 @@ using UnityEngine;
 namespace Bunashibu.Kikan {
   public class ManjiX : Skill {
     void Awake() {
-      _targetChecker = new TargetChecker(_skillUserObj, _targetNum);
+      _targetChecker = new TargetChecker(_targetNum);
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
-      if (PhotonNetwork.isMasterClient && _targetChecker.IsAttackTarget(collider)) {
+      if (PhotonNetwork.isMasterClient && _targetChecker.IsAttackTarget(collider, _skillUserObj)) {
         DamageCalculator.Calculate(_skillUserObj, _attackInfo);
 
         var target   = collider.gameObject.GetComponent<IMediator>();

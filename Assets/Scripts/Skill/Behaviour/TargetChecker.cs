@@ -4,20 +4,19 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   public class TargetChecker {
-    public TargetChecker(GameObject skillUserObj, int targetNum, int dupHitNum = 0) {
+    public TargetChecker(int targetNum, int dupHitNum = 0) {
       _targetRistrictor = new TargetRistrictor(targetNum, dupHitNum);
-      _skillUserObj     = skillUserObj;
     }
 
-    public bool IsAttackTarget(Collider2D collider) {
+    public bool IsAttackTarget(Collider2D collider, GameObject skillUserObj) {
       var targetObj = collider.gameObject;
 
-      if (targetObj == _skillUserObj)
+      if (targetObj == skillUserObj)
         return false;
 
       switch (targetObj.tag) {
         case "Player":
-          if (IsDupHit(targetObj) || IsSameTeam(targetObj))
+          if (IsDupHit(targetObj) || IsSameTeam(targetObj, skillUserObj))
             return false;
 
           break;
@@ -39,13 +38,12 @@ namespace Bunashibu.Kikan {
       return _targetRistrictor.ShouldRistrict(target);
     }
 
-    private bool IsSameTeam(GameObject targetObj) {
+    private bool IsSameTeam(GameObject targetObj, GameObject skillUserObj) {
     // target.PlayerInfo.Team == skillUser.PlayerInfo.Team)
       return false;
     }
 
     private TargetRistrictor _targetRistrictor;
-    private GameObject       _skillUserObj;
   }
 }
 
