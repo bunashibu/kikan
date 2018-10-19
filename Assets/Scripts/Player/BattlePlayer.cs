@@ -9,11 +9,12 @@ namespace Bunashibu.Kikan {
       Movement      = new BattlePlayerMovement(_core);
       State         = new CharacterState(_ladderCollider, _footCollider);
       BuffState     = new BuffState(Observer);
-      Hp            = new Hp(_worldHpBar);
+      Listener      = new PlayerListener(this);
+      Notifier      = new Notifier(Listener);
+      Hp            = new Hp(_worldHpBar, Listener);
       StateTransfer = new StateTransfer(_initState, _animator);
       SkillInfo     = new SkillInfo();
       PlayerInfo    = new PlayerInfo(this);
-      Notifier      = new Notifier(Hp, _hpTable);
 
       _hpTable.Notifier.Add(Hp);
 
@@ -46,6 +47,7 @@ namespace Bunashibu.Kikan {
     public SkillInfo            SkillInfo     { get; private set; }
     public PlayerInfo           PlayerInfo    { get; private set; }
 
+    public PlayerListener       Listener      { get; private set; }
     public Notifier             Notifier      { get; private set; }
 
     public int KillExp  { get { return _killExpTable.Data[Level.Lv - 1];  } }

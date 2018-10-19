@@ -23,7 +23,7 @@ namespace Bunashibu.Kikan {
           Assert.IsTrue(args.Length == 3);
 
           int damage = (int)args[0];
-          Cur.Subtract(damage);
+          Subtract(damage);
 
           Notifier.Notify(Notification.HpUpdated, Cur, Max);
 

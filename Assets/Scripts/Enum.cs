@@ -40,7 +40,8 @@ namespace Bunashibu.Kikan {
     HitSkill,
     TakeDamage,
 
-    Died
+    Died,
+    GetKillReward
   }
 }
 
