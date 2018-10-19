@@ -5,7 +5,6 @@ using UnityEngine;
 namespace Bunashibu.Kikan {
   public class ManjiX : Skill {
     void Awake() {
-      _notifier      = new Notifier();
       _targetChecker = new TargetChecker(_skillUserObj, _targetNum);
     }
 
@@ -13,11 +12,10 @@ namespace Bunashibu.Kikan {
       if (PhotonNetwork.isMasterClient && _targetChecker.IsAttackTarget(collider)) {
         DamageCalculator.Calculate(_skillUserObj, _attackInfo);
 
-        var target = collider.gameObject.GetComponent<IMediator>();
-        _notifier.Add(target.Listener);
+        var target   = collider.gameObject.GetComponent<IMediator>();
+        var notifier = new Notifier(target.Mediator);
 
-        var skillUser = _skillUserObj.GetComponent<IMediator>();
-        _notifier.Notify(Notification.TakeDamage, DamageCalculator.Damage, DamageCalculator.IsCritical, skillUser.Listener);
+        notifier.Notify(Notification.TakeDamage, DamageCalculator.Damage, DamageCalculator.IsCritical, _skillUserObj);
       }
     }
 
@@ -102,7 +100,6 @@ comment {
     [SerializeField] AttackInfo _attackInfo;
     [SerializeField] private int _targetNum;
 
-    private Notifier      _notifier;
     private TargetChecker _targetChecker;
   }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   public interface IMediator {
-    IListener Listener { get; }
+    IListener Mediator { get; }
   }
 }
 

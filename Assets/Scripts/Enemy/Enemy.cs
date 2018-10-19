@@ -7,7 +7,7 @@ namespace Bunashibu.Kikan {
   [RequireComponent(typeof(EnemyObserver))]
   public class Enemy : MonoBehaviour, ICharacter, IBattle, IMediator {
     void Awake() {
-      Listener      = new EnemyListener(this);
+      Mediator      = new EnemyMediator(this);
       State         = new CharacterState(_ladderCollider, _footCollider);
       BuffState     = new BuffState(Observer);
       StateTransfer = new StateTransfer(_initState, _animator);
@@ -36,7 +36,7 @@ namespace Bunashibu.Kikan {
     // Environment
     public NumberPopupEnvironment NumberPopupEnvironment { get { return _numberPopupEnvironment; } }
 
-    public IListener Listener { get; private set; }
+    public IListener Mediator { get; private set; }
 
     // tmp
     public MonoBehaviour AI { get { return _ai; } }

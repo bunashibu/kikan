@@ -6,11 +6,11 @@ namespace Bunashibu.Kikan {
   [RequireComponent(typeof(BattlePlayerObserver))]
   public class BattlePlayer : MonoBehaviour, ICharacter, IBattle, IAttacker, IMediator, ISpeaker {
     void Awake() {
-      Listener      = new PlayerListener(this);
+      Mediator      = new PlayerMediator(this);
       Movement      = new BattlePlayerMovement(_core);
       State         = new CharacterState(_ladderCollider, _footCollider);
       BuffState     = new BuffState(Observer);
-      Hp            = new Hp(_worldHpBar, Listener);
+      Hp            = new Hp(_worldHpBar, Mediator);
       StateTransfer = new StateTransfer(_initState, _animator);
       SkillInfo     = new SkillInfo();
       PlayerInfo    = new PlayerInfo(this);
@@ -38,7 +38,7 @@ namespace Bunashibu.Kikan {
     public NumberPopupEnvironment NumberPopupEnvironment { get { return _numberPopupEnvironment; } }
     public AudioEnvironment       AudioEnvironment       { get { return _audioEnvironment;       } }
 
-    public IListener            Listener      { get; private set; }
+    public IListener            Mediator      { get; private set; }
 
     public BattlePlayerMovement Movement      { get; private set; }
     public CharacterState       State         { get; private set; }

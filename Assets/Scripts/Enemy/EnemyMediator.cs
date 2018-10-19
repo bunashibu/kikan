@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
-  public class EnemyListener : IListener {
-    public EnemyListener(Enemy enemy) {
+  public class EnemyMediator : IListener {
+    public EnemyMediator(Enemy enemy) {
       _enemy = enemy;
     }
 
