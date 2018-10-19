@@ -6,17 +6,8 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   [CreateAssetMenu]
-  public class DataTable : ScriptableObject, IListener {
-    public DataTable() {
-      Notifier = new Notifier();
-    }
-
-    // to be abstract
-    public virtual void OnNotify(Notification notification, object[] args) {}
-
-    public Notifier Notifier { get; private set; }
-
-    public ReadOnlyCollection<int> Data { // doesn't need?
+  public class DataTable : ScriptableObject {
+    public ReadOnlyCollection<int> Data {
       get {
         return Array.AsReadOnly(_table);
       }

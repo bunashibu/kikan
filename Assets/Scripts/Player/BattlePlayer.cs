@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
@@ -15,7 +16,7 @@ namespace Bunashibu.Kikan {
       SkillInfo     = new SkillInfo();
       PlayerInfo    = new PlayerInfo(this);
 
-      _hpTable.Notifier.Add(Hp);
+      //_hpTable.Notifier.Add(Hp);
 
       if (PhotonView.owner != PhotonNetwork.player)
         _audioListener.enabled = false;
@@ -68,6 +69,8 @@ namespace Bunashibu.Kikan {
     //
     // Consider
     //
+    public ReadOnlyCollection<int> HpTable { get { return _hpTable.Data; } }
+
     public PlayerNextExp   NextExp   { get { return _nextExp;   } }
     public PlayerLevel     Level     { get { return _level;     } }
     public PlayerGold      Gold      { get { return _gold;      } }
@@ -101,8 +104,8 @@ namespace Bunashibu.Kikan {
     [SerializeField] private AudioEnvironment _audioEnvironment;
 
     [Header("Data")]
-    [SerializeField] private HpTable _hpTable;
-    [SerializeField] private Bar     _worldHpBar;
+    [SerializeField] private DataTable _hpTable;
+    [SerializeField] private Bar       _worldHpBar;
 
     // Consider
     [Header("Sync On Their Own")]

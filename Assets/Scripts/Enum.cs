@@ -32,7 +32,7 @@ namespace Bunashibu.Kikan {
 
   public enum Notification {
     PlayerInstantiated,
-    GiveInitialHp,
+    InitializeHp,
 
     HpUpdated,
     ExpUpdated,

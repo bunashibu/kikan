@@ -978,7 +978,7 @@ MonoBehaviour:
   _observer: {fileID: 114610620364185106}
   _numberPopupEnvironment: {fileID: 114366189920182386}
   _audioEnvironment: {fileID: 114204508672984674}
-  _hpTable: {fileID: 11400000, guid: 29c1c6724b27f3a4696f091741536774, type: 2}
+  _hpTable: {fileID: 11400000, guid: 1e81de872edf78241a359a3838a6f3b8, type: 2}
   _worldHpBar: {fileID: 114301068641892260}
   _nextExp: {fileID: 114762156422380140}
   _level: {fileID: 114438636751118534}

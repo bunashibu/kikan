@@ -11,7 +11,7 @@ namespace Bunashibu.Kikan {
 
     public void OnNotify(Notification notification, object[] args) {
       switch (notification) {
-        case Notification.GiveInitialHp:
+        case Notification.InitializeHp:
           Assert.IsTrue(args.Length == 1);
 
           Cur = (int)args[0];
