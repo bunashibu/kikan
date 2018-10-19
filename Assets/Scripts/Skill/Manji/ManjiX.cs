@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Bunashibu.Kikan {
   public class ManjiX : Skill {
     void Awake() {
-      _targetChecker = new TargetChecker(_skillUserObj);
+      _targetChecker = new TargetChecker(_skillUserObj, _targetNum);
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
@@ -96,10 +96,7 @@ comment {
 */
 
     [SerializeField] private AttackInfo _attackInfo;
-
-    [Header("TargetSettings")]
     [SerializeField] private int _targetNum;
-    [SerializeField] private int _dupHitNum;
 
     private TargetChecker    _targetChecker;
   }
