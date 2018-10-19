@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace Bunashibu.Kikan {
   public abstract class BarView : MonoBehaviour {
-    void Start() {
+    void Awake() {
       _slider = GetComponent<Slider>();
     }
 

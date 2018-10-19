@@ -11,8 +11,8 @@ namespace Bunashibu.Kikan {
       MonoUtility.Instance.DelaySec(1.0f, () => { //DEBUG
         ActivatePlayer();
 
-        Destroy(gameObject);
         Destroy(_playerInstantiator);
+        Destroy(gameObject);
       });
     }
 
