@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Assertions;
 
 namespace Bunashibu.Kikan {
-  public class Hp : IListener {
+  public class Hp : IResponder {
     public Hp() {
       Notifier = new Notifier();
     }
@@ -18,6 +18,7 @@ namespace Bunashibu.Kikan {
           Max = (int)args[0];
 
           Notifier.Notify(Notification.HpUpdated, Cur, Max);
+
           break;
         case Notification.TakeDamage:
           Assert.IsTrue(args.Length == 3);
