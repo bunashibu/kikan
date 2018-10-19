@@ -4,13 +4,12 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   [RequireComponent(typeof(BattlePlayerObserver))]
-  public class BattlePlayer : MonoBehaviour, ICharacter, IBattle, IAttacker, INotifier, ISpeaker {
+  public class BattlePlayer : MonoBehaviour, ICharacter, IBattle, IAttacker, IMediator, ISpeaker {
     void Awake() {
+      Listener      = new PlayerListener(this);
       Movement      = new BattlePlayerMovement(_core);
       State         = new CharacterState(_ladderCollider, _footCollider);
       BuffState     = new BuffState(Observer);
-      Listener      = new PlayerListener(this);
-      Notifier      = new Notifier(Listener);
       Hp            = new Hp(_worldHpBar, Listener);
       StateTransfer = new StateTransfer(_initState, _animator);
       SkillInfo     = new SkillInfo();
@@ -37,7 +36,9 @@ namespace Bunashibu.Kikan {
     public BattlePlayerObserver Observer { get { return _observer; } }
 
     public NumberPopupEnvironment NumberPopupEnvironment { get { return _numberPopupEnvironment; } }
-    public AudioEnvironment AudioEnvironment { get { return _audioEnvironment; } }
+    public AudioEnvironment       AudioEnvironment       { get { return _audioEnvironment;       } }
+
+    public IListener            Listener      { get; private set; }
 
     public BattlePlayerMovement Movement      { get; private set; }
     public CharacterState       State         { get; private set; }
@@ -46,9 +47,6 @@ namespace Bunashibu.Kikan {
     public StateTransfer        StateTransfer { get; private set; }
     public SkillInfo            SkillInfo     { get; private set; }
     public PlayerInfo           PlayerInfo    { get; private set; }
-
-    public PlayerListener       Listener      { get; private set; }
-    public Notifier             Notifier      { get; private set; }
 
     public int KillExp  { get { return _killExpTable.Data[Level.Lv - 1];  } }
     public int KillGold { get { return _killGoldTable.Data[Level.Lv - 1]; } }

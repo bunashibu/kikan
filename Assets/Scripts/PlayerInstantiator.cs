@@ -52,7 +52,7 @@ namespace Bunashibu.Kikan {
       InitPlayerMovement(jobStatus);
 
       MonoUtility.Instance.DelayOneFrame(() => {
-        _player.Notifier.Notify(Notification.PlayerInstantiated);
+        //_player.Notifier.Notify(Notification.PlayerInstantiated);
       });
 
       _trackCamera.SetTrackTarget(_player.gameObject);
