@@ -1,5 +1,9 @@
 # kikan - 2D Multiplayer Online PvP Game
 
+<img src="https://i.imgur.com/sW76rPM.png" width="300"> <img src="https://i.imgur.com/wxfBHpf.png" width="300">  
+
+[See gif here](https://imgur.com/CDTef55)  
+
 ### What is kikan?
 
 *kikan* is a 2D multiplayer online pvp game inspired from *The Legends Return*
