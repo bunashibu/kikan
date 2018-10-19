@@ -1,38 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Assertions;
 
 namespace Bunashibu.Kikan {
-  public class Hp : IResponder {
+  public abstract class Hp : IResponder {
     public Hp() {
       Notifier = new Notifier();
     }
 
-    public void OnNotify(Notification notification, object[] args) {
-      switch (notification) {
-        case Notification.InitializeHp:
-          Assert.IsTrue(args.Length == 1);
-
-          Cur = (int)args[0];
-          Max = (int)args[0];
-
-          Notifier.Notify(Notification.HpUpdated, Cur, Max);
-
-          break;
-        case Notification.TakeDamage:
-          Assert.IsTrue(args.Length == 3);
-
-          int damage = (int)args[0];
-          Subtract(damage);
-
-          Notifier.Notify(Notification.HpUpdated, Cur, Max);
-
-          break;
-        default:
-          break;
-      }
-    }
+    public abstract void OnNotify(Notification notification, object[] args);
 
     public void Add(int quantity) { // to be protected
       Cur += quantity;
