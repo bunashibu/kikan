@@ -195,10 +195,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 576a704c8596dab4a86c29e2195e628d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _skillPower: 100
-  _maxDeviation: 10
+  _attackInfo:
+    _damagePercent: 100
+    _maxDeviation: 10
+    _criticalPercent: 0
   _targetNum: 3
-  _dupHitNum: 0
 --- !u!114 &114241741538194156
 MonoBehaviour:
   m_ObjectHideFlags: 1

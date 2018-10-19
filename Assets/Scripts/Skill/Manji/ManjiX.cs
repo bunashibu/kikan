@@ -95,7 +95,7 @@ comment {
 }
 */
 
-    [SerializeField] private AttackInfo _attackInfo;
+    [SerializeField] AttackInfo _attackInfo;
     [SerializeField] private int _targetNum;
 
     private TargetChecker    _targetChecker;

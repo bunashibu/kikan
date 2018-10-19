@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
+  [System.Serializable]
   public class AttackInfo {
     public int DamagePercent   { get { return _damagePercent;   } }
     public int MaxDeviation    { get { return _maxDeviation;    } }

@@ -37,6 +37,7 @@ namespace Bunashibu.Kikan {
       if (_targetDictionary[target] < _dupHitNum) {
         _targetDictionary[target] += 1;
         return false;
+
       } else {
         return true;
       }
