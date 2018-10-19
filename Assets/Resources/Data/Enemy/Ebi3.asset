@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Ebi3
   m_EditorClassIdentifier: 
   _id: 2
-  _life: 3000
+  _hp: 3000
   _atk: 0
   _dfn: 0
   _spd: 0

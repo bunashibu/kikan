@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Ebina3
   m_EditorClassIdentifier: 
   _id: 5
-  _life: 8500
+  _hp: 8500
   _atk: 0
   _dfn: 0
   _spd: 0

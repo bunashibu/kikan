@@ -16,8 +16,6 @@ namespace Bunashibu.Kikan {
       Hp.Notifier.Add(_hpBar);
 
       Mediator.Notifier.Add(Hp);
-
-      //Notifier.Notify(Notification.GiveInitialHp, _enemyData.Life);
     }
 
     public void AttachPopulationObserver(EnemyPopulationObserver populationObserver) {
@@ -43,6 +41,8 @@ namespace Bunashibu.Kikan {
 
     // tmp
     public MonoBehaviour AI { get { return _ai; } }
+
+    public EnemyData Data { get { return _enemyData; } }
 
     // Enemy
     public CharacterState State         { get; private set; }

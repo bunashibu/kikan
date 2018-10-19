@@ -8,8 +8,8 @@ namespace Bunashibu.Kikan {
       get { return _id; }
     }
 
-    public int Life {
-      get { return _life; }
+    public int Hp {
+      get { return _hp; }
     }
 
     public int Atk {
@@ -29,7 +29,7 @@ namespace Bunashibu.Kikan {
     }
 
     [SerializeField] private int _id;
-    [SerializeField] private int _life;
+    [SerializeField] private int _hp;
     [SerializeField] private int _atk;
     [SerializeField] private int _dfn;
     [SerializeField] private int _spd;
