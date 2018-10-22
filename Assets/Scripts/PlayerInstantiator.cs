@@ -52,7 +52,7 @@ namespace Bunashibu.Kikan {
       InitPlayerMovement(jobStatus);
 
       var notifier = new Notifier(_player.Mediator.OnNotify);
-      notifier.Send(Notification.PlayerInstantiated);
+      notifier.Notify(Notification.PlayerInstantiated);
 
       _trackCamera.SetTrackTarget(_player.gameObject);
     }

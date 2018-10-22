@@ -15,7 +15,7 @@ namespace Bunashibu.Kikan {
         var target   = collider.gameObject.GetComponent<IMediator>();
         var notifier = new Notifier(target.Mediator.OnNotify);
 
-        notifier.Send(Notification.TakeDamage, DamageCalculator.Damage, DamageCalculator.IsCritical, _skillUserObj);
+        notifier.Notify(Notification.TakeDamage, DamageCalculator.Damage, DamageCalculator.IsCritical, _skillUserObj);
       }
     }
 

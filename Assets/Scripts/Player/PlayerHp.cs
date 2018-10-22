@@ -13,7 +13,7 @@ namespace Bunashibu.Kikan {
           Cur = (int)args[0];
           Max = (int)args[0];
 
-          Notifier.Send(Notification.HpUpdated, Cur, Max);
+          Notifier.Notify(Notification.HpUpdated, Cur, Max);
 
           break;
         case Notification.TakeDamage:
@@ -22,7 +22,7 @@ namespace Bunashibu.Kikan {
           int damage = (int)args[0];
           Subtract(damage);
 
-          Notifier.Send(Notification.HpUpdated, Cur, Max);
+          Notifier.Notify(Notification.HpUpdated, Cur, Max);
 
           break;
         default:
