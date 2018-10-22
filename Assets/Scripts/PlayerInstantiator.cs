@@ -51,8 +51,8 @@ namespace Bunashibu.Kikan {
       InitPlayerStatus(jobStatus);
       InitPlayerMovement(jobStatus);
 
-      var notifier = new Notifier(_player.Mediator);
-      notifier.Notify(Notification.PlayerInstantiated);
+      var notifier = new Notifier(_player.Mediator.OnNotify);
+      notifier.Send(Notification.PlayerInstantiated);
 
       _trackCamera.SetTrackTarget(_player.gameObject);
     }
@@ -83,7 +83,7 @@ namespace Bunashibu.Kikan {
     }
 
     private void InitPlayerHp() {
-      _player.Hp.Notifier.Add(_hpBar);
+      _player.Hp.Notifier.Add(_hpBar.OnNotify);
       /*
       _player.Hp.AttachHudBar(_hpBar);
       _player.Hp.UpdateView();

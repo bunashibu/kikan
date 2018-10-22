@@ -16,9 +16,9 @@ namespace Bunashibu.Kikan {
       SkillInfo     = new SkillInfo();
       PlayerInfo    = new PlayerInfo(this);
 
-      Hp.Notifier.Add(_worldHpBar);
+      Hp.Notifier.Add(_worldHpBar.OnNotify);
 
-      Mediator.Notifier.Add(Hp);
+      Mediator.Notifier.Add(Hp.OnNotify);
 
       if (PhotonView.owner != PhotonNetwork.player)
         _audioListener.enabled = false;

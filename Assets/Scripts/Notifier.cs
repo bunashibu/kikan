@@ -1,28 +1,29 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
   public class Notifier {
     public Notifier() {
-      _listenerList = new List<IListener>();
+      _receiveList = new List<Action<Notification, object[]>>();
     }
 
-    public Notifier(params IListener[] listeners) : this() {
-      foreach (IListener listener in listeners)
-        Add(listener);
+    public Notifier(params Action<Notification, object[]>[] receives) : this() {
+      foreach (var receive in receives)
+        Add(receive);
     }
 
-    public void Notify(Notification notification, params object[] args) {
-      foreach (IListener listener in _listenerList)
-        listener.OnNotify(notification, args);
+    public void Send(Notification notification, params object[] args) {
+      foreach (var receive in _receiveList)
+        receive(notification, args);
     }
 
-    public void Add(IListener listener) {
-      _listenerList.Add(listener);
+    public void Add(Action<Notification, object[]> receive) {
+      _receiveList.Add(receive);
     }
 
-    private List<IListener> _listenerList;
+    private List<Action<Notification, object[]>> _receiveList;
   }
 }
 

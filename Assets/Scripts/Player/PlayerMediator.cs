@@ -15,16 +15,16 @@ namespace Bunashibu.Kikan {
         case Notification.PlayerInstantiated:
           Assert.IsTrue(args.Length == 0);
 
-          Notifier.Notify(Notification.InitializeHp, _player.HpTable[0]);
+          Notifier.Send(Notification.InitializeHp, _player.HpTable[0]);
 
           break;
         case Notification.TakeDamage:
           Assert.IsTrue(args.Length == 3);
 
-          Notifier.Notify(Notification.TakeDamage, args[0], args[1], args[2]);
+          Notifier.Send(Notification.TakeDamage, args[0], args[1], args[2]);
 
           if (_player.Hp.Cur == _player.Hp.Min)
-            Notifier.Notify(Notification.Died, args[2]);
+            Notifier.Send(Notification.Died, args[2]);
 
           break;
           /*

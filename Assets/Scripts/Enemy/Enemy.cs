@@ -13,9 +13,9 @@ namespace Bunashibu.Kikan {
       StateTransfer = new StateTransfer(_initState, _animator);
       Hp            = new EnemyHp();
 
-      Hp.Notifier.Add(_hpBar);
+      Hp.Notifier.Add(_hpBar.OnNotify);
 
-      Mediator.Notifier.Add(Hp);
+      Mediator.Notifier.Add(Hp.OnNotify);
     }
 
     public void AttachPopulationObserver(EnemyPopulationObserver populationObserver) {

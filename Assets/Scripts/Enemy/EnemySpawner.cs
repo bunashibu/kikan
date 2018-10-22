@@ -24,8 +24,8 @@ namespace Bunashibu.Kikan {
       var enemy    = enemyObj.GetComponent<Enemy>();
       enemy.AttachPopulationObserver(populationObserver);
 
-      var notifier = new Notifier(enemy.Mediator);
-      notifier.Notify(Notification.EnemyInstantiated);
+      var notifier = new Notifier(enemy.Mediator.OnNotify);
+      notifier.Send(Notification.EnemyInstantiated);
     }
 
     private int GetRandomIndex() {
