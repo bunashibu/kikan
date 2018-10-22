@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
-  public abstract class Hp : IResponder {
+  public abstract class Hp {
     public Hp() {
       Notifier = new Notifier();
     }
