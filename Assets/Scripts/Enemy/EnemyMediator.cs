@@ -18,6 +18,12 @@ namespace Bunashibu.Kikan {
           Notifier.Notify(Notification.InitializeHp, _enemy.Data.Hp);
 
           break;
+        case Notification.TakeDamage:
+          Assert.IsTrue(args.Length == 3);
+
+          Notifier.Notify(Notification.TakeDamage, args[0], args[1], args[2]);
+
+          break;
         default:
           break;
       }

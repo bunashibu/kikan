@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 224723387398219764}
   - component: {fileID: 114801569890023076}
   - component: {fileID: 114506551791554032}
-  - component: {fileID: 114472920458201526}
+  - component: {fileID: 114800464945753612}
   m_Layer: 14
   m_Name: HpBar
   m_TagString: Untagged
@@ -525,17 +525,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &114472920458201526
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1479549428306542}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8eb2b80d2499bc4fbd438c44843bd5a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114473484767149178
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -644,6 +633,18 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114800464945753612
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1479549428306542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ab8a19f21eb686448d64eb7b9abe6b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _displayTimeSec: 5
 --- !u!114 &114801569890023076
 MonoBehaviour:
   m_ObjectHideFlags: 1

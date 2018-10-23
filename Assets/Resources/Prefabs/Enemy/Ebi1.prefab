@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 224000281118999460}
   - component: {fileID: 114457991243999366}
   - component: {fileID: 114362580331401900}
-  - component: {fileID: 114611973045714088}
+  - component: {fileID: 114150662780611818}
   m_Layer: 14
   m_Name: HpBar
   m_TagString: Untagged
@@ -353,6 +353,18 @@ MonoBehaviour:
   _ai: {fileID: 114050103650658040}
   _hpBar: {fileID: 114362580331401900}
   _enemyData: {fileID: 11400000, guid: dea86f677fe12af4aa2f5d458e4eb166, type: 2}
+--- !u!114 &114150662780611818
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1616503251083484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ab8a19f21eb686448d64eb7b9abe6b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _displayTimeSec: 5
 --- !u!114 &114171747980572188
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -590,17 +602,6 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
---- !u!114 &114611973045714088
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1616503251083484}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8eb2b80d2499bc4fbd438c44843bd5a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114619733655389790
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 224504055570192026}
   - component: {fileID: 114131655490488238}
   - component: {fileID: 114065065712931694}
-  - component: {fileID: 114155520694014816}
+  - component: {fileID: 114877389074265294}
   m_Layer: 14
   m_Name: HpBar
   m_TagString: Untagged
@@ -386,17 +386,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 1
---- !u!114 &114155520694014816
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1201233878545500}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8eb2b80d2499bc4fbd438c44843bd5a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114213958790206684
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -707,6 +696,18 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
+--- !u!114 &114877389074265294
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1201233878545500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ab8a19f21eb686448d64eb7b9abe6b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _displayTimeSec: 5
 --- !u!114 &114995646370320484
 MonoBehaviour:
   m_ObjectHideFlags: 1
