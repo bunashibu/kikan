@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace Bunashibu.Kikan {
   public static class DamageCalculator {
     public static void Calculate(GameObject attackerObj, AttackInfo attackInfo) {
       var attacker = attackerObj.GetComponent<IAttacker>();
+      Assert.IsNotNull(attacker);
 
       CalculateCritical(attacker.Critical + attackInfo.CriticalPercent);
       CalculateDamage(attacker.Power, attackInfo.DamagePercent, attackInfo.MaxDeviation);

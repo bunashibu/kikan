@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace Bunashibu.Kikan {
   public class TargetChecker {
@@ -33,14 +34,18 @@ namespace Bunashibu.Kikan {
     }
 
     private bool IsDupHit(GameObject targetObj) {
-      IBattle target = targetObj.GetComponent<IBattle>();
+      var target = targetObj.GetComponent<IBattle>();
+      Assert.IsNotNull(target);
 
       return _targetRistrictor.ShouldRistrict(target);
     }
 
     private bool IsSameTeam(GameObject targetObj, GameObject skillUserObj) {
-      var target    = targetObj.GetComponent<BattlePlayer>();
+      var target = targetObj.GetComponent<BattlePlayer>();
+      Assert.IsNotNull(target);
+
       var skillUser = skillUserObj.GetComponent<BattlePlayer>();
+      Assert.IsNotNull(skillUser);
 
       return (target.PlayerInfo.Team == skillUser.PlayerInfo.Team);
     }
