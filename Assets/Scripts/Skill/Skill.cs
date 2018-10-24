@@ -9,6 +9,7 @@ namespace Bunashibu.Kikan {
     protected void SyncInit(bool flipX, int viewID) {
       gameObject.GetComponent<SpriteRenderer>().flipX = flipX;
       _skillUserObj = PhotonView.Find(viewID).gameObject;
+      _skillUserViewID = viewID;
     }
 
     public void Init(bool flipX, int viewID) {
@@ -18,6 +19,7 @@ namespace Bunashibu.Kikan {
     }
 
     protected GameObject _skillUserObj;
+    protected int _skillUserViewID;
   }
 }
 

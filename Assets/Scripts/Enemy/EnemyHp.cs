@@ -19,7 +19,7 @@ namespace Bunashibu.Kikan {
         case Notification.TakeDamage:
           Assert.IsTrue(args.Length == 3);
 
-          int damage = (int)args[0];
+          int damage = (int)args[1];
           Subtract(damage);
 
           Notifier.Notify(Notification.HpUpdated, Cur, Max);

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   [RequireComponent(typeof(BattlePlayerObserver))]
-  public class BattlePlayer : MonoBehaviour, ICharacter, IBattle, IAttacker, IMediator, ISpeaker {
+  public class BattlePlayer : MonoBehaviour, ICharacter, IBattle, IAttacker, IMediator, ISpeaker, IPhoton {
     void Awake() {
       Mediator      = new PlayerMediator(this);
       Movement      = new BattlePlayerMovement(_core);
