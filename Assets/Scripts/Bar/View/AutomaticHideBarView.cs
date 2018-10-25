@@ -19,6 +19,9 @@ namespace Bunashibu.Kikan {
     }
 
     void OnDestroy() {
+      if (Application.isEditor)
+        return;
+
       MonoUtility.Instance.Stop("HideBar" + _id);
     }
 
