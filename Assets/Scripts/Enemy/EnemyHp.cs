@@ -20,7 +20,9 @@ namespace Bunashibu.Kikan {
           int damage = (int)args[1];
           Subtract(damage);
 
-          Notifier.Notify(Notification.HpUpdated, Cur, Max);
+          var attacker = (IBattle)args[0];
+          if (attacker.PhotonView.isMine)
+            Notifier.Notify(Notification.HpUpdated, Cur, Max);
 
           break;
         default:

@@ -16,6 +16,9 @@ namespace Bunashibu.Kikan {
       Hp.Notifier.Add(_hpBar.OnNotify);
 
       Mediator.Notifier.Add(Hp.OnNotify);
+
+      var notifier = new Notifier(Mediator.OnNotify);
+      notifier.Notify(Notification.EnemyInstantiated);
     }
 
     public void AttachPopulationObserver(EnemyPopulationObserver populationObserver) {
