@@ -16,12 +16,22 @@ namespace Bunashibu.Kikan {
       SkillInfo     = new SkillInfo();
       PlayerInfo    = new PlayerInfo(this);
 
-      Hp.Notifier.Add(_worldHpBar.OnNotify);
-
       Mediator.Notifier.Add(Hp.OnNotify);
+    }
 
-      if (PhotonView.owner != PhotonNetwork.player)
+    void Start() {
+      if (PhotonView.owner != PhotonNetwork.player) {
         _audioListener.enabled = false;
+
+        Hp.Notifier.Add(_worldHpBar.OnNotify);
+
+        var notifier = new Notifier(Mediator.OnNotify);
+        notifier.Notify(Notification.PlayerInstantiated);
+      }
+      else {
+        _worldHpBar.gameObject.SetActive(false);
+      }
+
     }
 
     void FixedUpdate() {

@@ -18,7 +18,7 @@ namespace Bunashibu.Kikan {
     }
 
     public void SyncAttack(int attackerViewID, int targetViewID, int damage, bool isCritical) {
-      Assert.IsTrue(photonView.isMine);
+      Assert.IsTrue(PhotonNetwork.isMasterClient);
 
       photonView.RPC("SyncAttackRPC", PhotonTargets.All, attackerViewID, targetViewID, damage, isCritical);
     }
