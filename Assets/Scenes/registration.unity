@@ -707,7 +707,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4684f0c75349504088f118247c4132e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _logLevel: 2
+  _logLevel: 1
   _controlPanel: {fileID: 430293236}
   _progressLabel: {fileID: 657363901}
   _maxPlayers: 20

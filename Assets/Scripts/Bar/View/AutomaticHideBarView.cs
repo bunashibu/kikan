@@ -4,7 +4,9 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   public class AutomaticHideBarView : BarView {
-    void Start() {
+    void Awake() {
+      base.Awake();
+
       gameObject.SetActive(false);
       _id = gameObject.GetInstanceID().ToString();
     }

@@ -5,7 +5,10 @@ using UnityEngine.UI;
 
 namespace Bunashibu.Kikan {
   public abstract class BarView : MonoBehaviour {
-    void Awake() {
+    // Awake() "MUST BE CALLED" if inherited class override it.
+    // note: Overriding Awake() is automatically done by just write "void Awake()".
+    //       so, be aware that it doesn't require "override modifier".
+    protected void Awake() {
       _slider = GetComponent<Slider>();
     }
 

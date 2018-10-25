@@ -13,8 +13,6 @@ namespace Bunashibu.Kikan {
           Cur = (int)args[0];
           Max = (int)args[0];
 
-          Notifier.Notify(Notification.HpUpdated, Cur, Max);
-
           break;
         case Notification.TakeDamage:
           Assert.IsTrue(args.Length == 3);
