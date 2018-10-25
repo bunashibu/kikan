@@ -16,8 +16,10 @@ namespace Bunashibu.Kikan {
       if (tmp != null)
         roomNum = (int)tmp;
 
+      /*
       var props = new Hashtable() {{ "Playing", roomNum + 1 }};
       PhotonNetwork.room.SetCustomProperties(props);
+      */
 
       var roomName = "Battle" + roomNum.ToString();
       int[] team = TeamMaker(_mediator.MatchCount[applyType]);

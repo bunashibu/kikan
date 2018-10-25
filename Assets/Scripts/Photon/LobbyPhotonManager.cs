@@ -6,14 +6,8 @@ using UnityEngine.SceneManagement;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 namespace Bunashibu.Kikan {
+  // Useless
   public class LobbyPhotonManager : Photon.PunBehaviour {
-    void Start() {
-      var currentScene = SceneManager.GetSceneByName("Lobby");
-      MonoUtility.Instance.DelayUntil(() => currentScene == SceneManager.GetActiveScene(), () => {
-        InstantiatePlayer();
-      });
-    }
-
     public override void OnPhotonPlayerConnected(PhotonPlayer other) {
       Debug.Log("OnPhotonPlayerConnected() was called" + other.NickName);
     }
@@ -35,20 +29,6 @@ namespace Bunashibu.Kikan {
       _logoutFlag = true;
       _nextSceneName = "Registration";
       PhotonNetwork.LeaveRoom();
-    }
-
-    private void InstantiatePlayer() {
-      var player = PhotonNetwork.Instantiate("Prefabs/Job/Common", new Vector3(0, 0, 0), Quaternion.identity, 0).GetComponent<LobbyPlayer>() as LobbyPlayer;
-      player.Movement.SetMoveForce(4.0f);
-      player.Movement.SetJumpForce(400.0f);
-      SetViewID(player);
-    }
-
-    private void SetViewID(LobbyPlayer player) {
-      var viewID = player.PhotonView.viewID;
-
-      var props = new Hashtable() {{"ViewID", viewID}};
-      PhotonNetwork.player.SetCustomProperties(props);
     }
 
     [SerializeField] private SceneChanger _sceneChanger;

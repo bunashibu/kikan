@@ -9,6 +9,10 @@ namespace Bunashibu.Kikan {
 
       SceneManager.LoadScene(nextSceneName, LoadSceneMode.Single);
 
+      SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
       PhotonNetwork.isMessageQueueRunning = true;
     }
   }
