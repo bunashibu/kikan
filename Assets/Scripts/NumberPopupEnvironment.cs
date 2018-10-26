@@ -12,15 +12,15 @@ namespace Bunashibu.Kikan {
         case Notification.TakeDamage:
           Assert.IsTrue(args.Length == 4);
 
-          var skinId = ((IBattle)args[0]).DamageSkinId;
           int damage = (int)args[1];
           bool isCritical = (bool)args[2];
 
+          int skinId = ((GameObject)args[0]).GetComponent<IBattle>().DamageSkinId;
+
           var taker = (IBattle)args[3];
           var takerObj = ((MonoBehaviour)taker).gameObject;
-          bool isTakerMe = (takerObj.tag == "Player") && (taker.PhotonView.owner == PhotonNetwork.player);
 
-          if (isTakerMe)
+          if (takerObj.tag == "Player" && taker.PhotonView.owner == PhotonNetwork.player)
             Popup(NumberPopupType.Take, damage, takerObj);
           else if (isCritical)
             Popup(NumberPopupType.Critical, damage, takerObj, skinId);

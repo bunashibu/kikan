@@ -20,7 +20,9 @@ namespace Bunashibu.Kikan {
           int damage = (int)args[1];
           Subtract(damage);
 
-          var attacker = (IBattle)args[0];
+          var attacker = ((GameObject)args[0]).GetComponent<IBattle>();
+          Assert.IsNotNull(attacker);
+
           if (attacker.PhotonView.isMine)
             Notifier.Notify(Notification.HpUpdated, Cur, Max);
 
