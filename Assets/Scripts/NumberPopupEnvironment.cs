@@ -21,11 +21,11 @@ namespace Bunashibu.Kikan {
           bool isTakerMe = (takerObj.tag == "Player") && (taker.PhotonView.owner == PhotonNetwork.player);
 
           if (isTakerMe)
-            Popup(NumberPopupType.Take, damage);
+            Popup(NumberPopupType.Take, damage, takerObj);
           else if (isCritical)
-            Popup(NumberPopupType.Critical, damage, skinId);
+            Popup(NumberPopupType.Critical, damage, takerObj, skinId);
           else
-            Popup(NumberPopupType.Hit, damage, skinId);
+            Popup(NumberPopupType.Hit, damage, takerObj, skinId);
 
           break;
         default:
@@ -72,14 +72,15 @@ namespace Bunashibu.Kikan {
     }
 
     //private void Popup(int number, int skinId, DamageType type) {
-    private void Popup(NumberPopupType popupType, int number, int skinId = 0) {
+    private void Popup(NumberPopupType popupType, int number, GameObject takerObj, int skinId = 0) {
       // INFO: e.g. number = 8351 -> "8351" -> ['8','3','5','1'] -> indices = [8, 3, 5, 1]
       var indices = number.ToString().ToCharArray().Select(x => Convert.ToInt32(x.ToString()));
 
+      var posOffsetY = takerObj.GetComponent<SpriteRenderer>().bounds.extents.y + 0.2f;
       int i = 0;
       foreach(int index in indices) {
-        var numberObj = Instantiate(_numberPref, transform.position, Quaternion.identity);
-        numberObj.transform.Translate(i * 0.3f, 1.0f, 0.0f);
+        var numberObj = Instantiate(_numberPref, takerObj.transform.position, Quaternion.identity);
+        numberObj.transform.Translate(i * 0.3f, posOffsetY, 0.0f);
         ++i;
 
         var renderer = numberObj.GetComponent<SpriteRenderer>();
@@ -111,7 +112,7 @@ namespace Bunashibu.Kikan {
 
     [SerializeField] private GameObject _numberPref;
     [SerializeField] private AllSkinData _allSkinData;
-    private int _existCount = 0;
+    private static int _existCount = 0;
   }
 }
 

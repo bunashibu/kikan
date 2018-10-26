@@ -49,7 +49,6 @@ GameObject:
   - component: {fileID: 114365063050791810}
   - component: {fileID: 114773863746440152}
   - component: {fileID: 114528999332835868}
-  - component: {fileID: 114025303238458048}
   - component: {fileID: 114101790809312124}
   m_Layer: 14
   m_Name: Ebina3
@@ -300,20 +299,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114025303238458048
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1431167582857956}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 794664095fb228546a6ea130b5e55c57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _numberPref: {fileID: 1578667973928876, guid: 1f1ce531c544f5e41bdee5db83607926,
-    type: 2}
-  _allSkinData: {fileID: 11400000, guid: f0bd4ccd89724744b805577e3ded0629, type: 2}
 --- !u!114 &114081049803159860
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -537,7 +522,7 @@ MonoBehaviour:
   _footCollider: {fileID: 68419726855110774}
   _animator: {fileID: 95025594965853702}
   _observer: {fileID: 114081049803159860}
-  _numberPopupEnvironment: {fileID: 114025303238458048}
+  _numberPopupEnvironment: {fileID: 0}
   _killExp: 257
   _killGold: 390
   _ai: {fileID: 114365063050791810}

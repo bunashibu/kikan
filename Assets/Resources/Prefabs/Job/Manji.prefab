@@ -128,7 +128,6 @@ GameObject:
   - component: {fileID: 114454518508664006}
   - component: {fileID: 114969582724046644}
   - component: {fileID: 114172174937367482}
-  - component: {fileID: 114366189920182386}
   - component: {fileID: 114204508672984674}
   m_Layer: 9
   m_Name: Manji
@@ -976,7 +975,7 @@ MonoBehaviour:
   _animator: {fileID: 95930055764971676}
   _audioListener: {fileID: 81230608130289834}
   _observer: {fileID: 114610620364185106}
-  _numberPopupEnvironment: {fileID: 114366189920182386}
+  _numberPopupEnvironment: {fileID: 0}
   _audioEnvironment: {fileID: 114204508672984674}
   _hpTable: {fileID: 11400000, guid: 1e81de872edf78241a359a3838a6f3b8, type: 2}
   _worldHpBar: {fileID: 114301068641892260}
@@ -1045,20 +1044,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _renderer: {fileID: 212620572494064958}
   _anim: {fileID: 95722833264577094}
---- !u!114 &114366189920182386
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1222958424102090}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 794664095fb228546a6ea130b5e55c57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _numberPref: {fileID: 1578667973928876, guid: 1f1ce531c544f5e41bdee5db83607926,
-    type: 2}
-  _allSkinData: {fileID: 11400000, guid: f0bd4ccd89724744b805577e3ded0629, type: 2}
 --- !u!114 &114381345544009090
 MonoBehaviour:
   m_ObjectHideFlags: 1

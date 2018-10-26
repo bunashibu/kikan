@@ -151,7 +151,6 @@ GameObject:
   - component: {fileID: 114497347247726722}
   - component: {fileID: 114714408207554070}
   - component: {fileID: 114254446825988984}
-  - component: {fileID: 114213958790206684}
   - component: {fileID: 114995646370320484}
   m_Layer: 14
   m_Name: Ebina1
@@ -386,20 +385,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 1
---- !u!114 &114213958790206684
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1863352739844968}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 794664095fb228546a6ea130b5e55c57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _numberPref: {fileID: 1578667973928876, guid: 1f1ce531c544f5e41bdee5db83607926,
-    type: 2}
-  _allSkinData: {fileID: 11400000, guid: f0bd4ccd89724744b805577e3ded0629, type: 2}
 --- !u!114 &114250008314664460
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -527,7 +512,7 @@ MonoBehaviour:
   _footCollider: {fileID: 68181835577372384}
   _animator: {fileID: 95176159232201240}
   _observer: {fileID: 114818716500960406}
-  _numberPopupEnvironment: {fileID: 114213958790206684}
+  _numberPopupEnvironment: {fileID: 0}
   _killExp: 60
   _killGold: 90
   _ai: {fileID: 114497347247726722}

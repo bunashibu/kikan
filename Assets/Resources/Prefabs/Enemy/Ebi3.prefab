@@ -119,7 +119,6 @@ GameObject:
   - component: {fileID: 114902433932136736}
   - component: {fileID: 114488161082227096}
   - component: {fileID: 114091100350679866}
-  - component: {fileID: 114578083511921350}
   m_Layer: 14
   m_Name: Ebi3
   m_TagString: Enemy
@@ -342,7 +341,7 @@ MonoBehaviour:
   _footCollider: {fileID: 68349326319741498}
   _animator: {fileID: 95544879572805180}
   _observer: {fileID: 114019153247748766}
-  _numberPopupEnvironment: {fileID: 114578083511921350}
+  _numberPopupEnvironment: {fileID: 0}
   _killExp: 200
   _killGold: 300
   _ai: {fileID: 114902433932136736}
@@ -545,20 +544,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114578083511921350
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1724285303401134}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 794664095fb228546a6ea130b5e55c57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _numberPref: {fileID: 1578667973928876, guid: 1f1ce531c544f5e41bdee5db83607926,
-    type: 2}
-  _allSkinData: {fileID: 11400000, guid: f0bd4ccd89724744b805577e3ded0629, type: 2}
 --- !u!114 &114646018489984510
 MonoBehaviour:
   m_ObjectHideFlags: 1

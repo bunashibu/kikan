@@ -31,7 +31,6 @@ GameObject:
   - component: {fileID: 114050103650658040}
   - component: {fileID: 114112488513267606}
   - component: {fileID: 114399664780219442}
-  - component: {fileID: 114174430385108528}
   - component: {fileID: 114962318167475646}
   m_Layer: 14
   m_Name: Ebi1
@@ -347,7 +346,7 @@ MonoBehaviour:
   _footCollider: {fileID: 68476616686179164}
   _animator: {fileID: 95534193194726840}
   _observer: {fileID: 114408830905809988}
-  _numberPopupEnvironment: {fileID: 114174430385108528}
+  _numberPopupEnvironment: {fileID: 0}
   _killExp: 30
   _killGold: 45
   _ai: {fileID: 114050103650658040}
@@ -392,20 +391,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 1
---- !u!114 &114174430385108528
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1025727651334796}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 794664095fb228546a6ea130b5e55c57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _numberPref: {fileID: 1578667973928876, guid: 1f1ce531c544f5e41bdee5db83607926,
-    type: 2}
-  _allSkinData: {fileID: 11400000, guid: f0bd4ccd89724744b805577e3ded0629, type: 2}
 --- !u!114 &114362580331401900
 MonoBehaviour:
   m_ObjectHideFlags: 1
