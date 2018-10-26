@@ -33,81 +33,52 @@ namespace Bunashibu.Kikan {
       }
     }
 
-    public void Popup(int damage, bool isCritical, int skinId, PopupType popupType) {
-      /*
-      switch (popupType) {
-        case PopupType.Player:
-          photonView.RPC("SyncPlayerPopup", PhotonTargets.All, damage, isCritical, skinId);
-          break;
-        case PopupType.Enemy:
-          photonView.RPC("SyncEnemyPopup", PhotonTargets.All, damage, isCritical, skinId);
-          break;
-      }
-      */
-    }
+    private void Popup(NumberPopupType popupType, int damage, GameObject takerObj, int skinId = 0) {
+      float posOffsetY = takerObj.GetComponent<SpriteRenderer>().bounds.extents.y + 0.2f;
 
-    [PunRPC]
-    private void SyncPlayerPopup(int damage, bool isCritical, int skinId) {
-      /*
-      if (photonView.owner == PhotonNetwork.player) {
-        Popup(damage, skinId, DamageType.Take);
-        return;
+      // INFO: e.g. damage = 8351 -> "8351" -> ['8','3','5','1'] -> indices = [8, 3, 5, 1]
+      var numbers = damage.ToString().ToCharArray().Select(x => Convert.ToInt32(x.ToString()));
+
+      foreach (var prop in numbers.Select((number, i) => new { number, i })) {
+        var numberObj = InstantiatePopupNumber(posOffsetY, takerObj, prop.i);
+        SetSprite(popupType, numberObj, prop.number, skinId, prop.i);
       }
 
-      if (isCritical)
-        Popup(damage, skinId, DamageType.Critical);
-      else
-        Popup(damage, skinId, DamageType.Hit);
-        */
-    }
-
-    [PunRPC]
-    private void SyncEnemyPopup(int damage, bool isCritical, int skinId) {
-      /*
-      if (isCritical)
-        Popup(damage, skinId, DamageType.Critical);
-      else
-        Popup(damage, skinId, DamageType.Hit);
-        */
-    }
-
-    //private void Popup(int number, int skinId, DamageType type) {
-    private void Popup(NumberPopupType popupType, int number, GameObject takerObj, int skinId = 0) {
-      // INFO: e.g. number = 8351 -> "8351" -> ['8','3','5','1'] -> indices = [8, 3, 5, 1]
-      var indices = number.ToString().ToCharArray().Select(x => Convert.ToInt32(x.ToString()));
-
-      var posOffsetY = takerObj.GetComponent<SpriteRenderer>().bounds.extents.y + 0.2f;
-      int i = 0;
-      foreach(int index in indices) {
-        var numberObj = Instantiate(_numberPref, takerObj.transform.position, Quaternion.identity);
-        numberObj.transform.Translate(i * 0.3f, posOffsetY, 0.0f);
-        ++i;
-
-        var renderer = numberObj.GetComponent<SpriteRenderer>();
-
-        switch (popupType) {
-          case NumberPopupType.Hit:
-            renderer.sprite = _allSkinData.GetSkin(skinId).Hit[index];
-            break;
-          case NumberPopupType.Critical:
-            renderer.sprite = _allSkinData.GetSkin(skinId).Critical[index];
-            break;
-          case NumberPopupType.Take:
-            renderer.sprite = _allSkinData.GetSkin(skinId).Take[index];
-            break;
-          case NumberPopupType.Heal:
-            renderer.sprite = _allSkinData.GetSkin(skinId).Heal[index];
-            break;
-        }
-
-        renderer.sortingOrder = i + _existCount;
-      }
-
-      _existCount += indices.Count();
+      _existCount += numbers.Count();
 
       // To Avoid Overflow
       if (_existCount > 1000000000)
         _existCount = 0;
+    }
+
+    private GameObject InstantiatePopupNumber(float posOffsetY, GameObject takerObj, int i) {
+      var numberObj = Instantiate(_numberPref, takerObj.transform.position, Quaternion.identity);
+      numberObj.transform.Translate(i * 0.3f, posOffsetY, 0.0f);
+
+      return numberObj;
+    }
+
+    private void SetSprite(NumberPopupType popupType, GameObject numberObj, int index, int skinId, int i) {
+      var renderer = numberObj.GetComponent<SpriteRenderer>();
+
+      switch (popupType) {
+        case NumberPopupType.Hit:
+          renderer.sprite = _allSkinData.GetSkin(skinId).Hit[index];
+          break;
+        case NumberPopupType.Critical:
+          renderer.sprite = _allSkinData.GetSkin(skinId).Critical[index];
+          break;
+        case NumberPopupType.Take:
+          renderer.sprite = _allSkinData.GetSkin(skinId).Take[index];
+          break;
+        case NumberPopupType.Heal:
+          renderer.sprite = _allSkinData.GetSkin(skinId).Heal[index];
+          break;
+        default:
+          break;
+      }
+
+      renderer.sortingOrder = i + _existCount;
     }
 
     [SerializeField] private GameObject _numberPref;
