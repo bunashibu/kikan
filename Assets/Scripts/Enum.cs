@@ -18,6 +18,7 @@ namespace Bunashibu.Kikan {
     Used
   }
 
+  // Obsolete
   public enum DamageType {
     Hit,
     Critical,
@@ -25,9 +26,17 @@ namespace Bunashibu.Kikan {
     Heal
   }
 
+  // Obsolete
   public enum PopupType {
     Player,
     Enemy
+  }
+
+  public enum NumberPopupType {
+    Hit,
+    Critical,
+    Take,
+    Heal
   }
 
   public enum Notification {
@@ -39,6 +48,7 @@ namespace Bunashibu.Kikan {
     ExpUpdated,
 
     TakeDamage,
+    TakeCriticalDamage,
 
     Died,
     GetKillReward

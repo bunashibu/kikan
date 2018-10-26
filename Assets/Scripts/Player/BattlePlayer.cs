@@ -4,6 +4,8 @@ using System.Collections.ObjectModel;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
+  // BattlePlayer will be merged with LobbyPlayer.
+  // and will be renamed to Player.
   [RequireComponent(typeof(BattlePlayerObserver))]
   public class BattlePlayer : MonoBehaviour, ICharacter, IBattle, IAttacker, IMediator, ISpeaker, IPhoton {
     void Awake() {
@@ -16,22 +18,26 @@ namespace Bunashibu.Kikan {
       SkillInfo     = new SkillInfo();
       PlayerInfo    = new PlayerInfo(this);
 
-      Mediator.Notifier.Add(Hp.OnNotify);
+      if (StageReference.Instance.StageData.Name == "Battle") {
+        Mediator.Notifier.Add(Hp.OnNotify);
+        Mediator.Notifier.Add(NumberPopupEnvironment.Instance.OnNotify); // NumberPopupEnvironment exists "Battle" global space.
+      }
     }
 
     void Start() {
       if (PhotonView.owner != PhotonNetwork.player) {
         _audioListener.enabled = false;
 
-        Hp.Notifier.Add(_worldHpBar.OnNotify);
+        if (StageReference.Instance.StageData.Name == "Battle") {
+          Hp.Notifier.Add(_worldHpBar.OnNotify);
 
-        var notifier = new Notifier(Mediator.OnNotify);
-        notifier.Notify(Notification.PlayerInstantiated);
+          var notifier = new Notifier(Mediator.OnNotify);
+          notifier.Notify(Notification.PlayerInstantiated);
+        }
       }
       else {
         _worldHpBar.gameObject.SetActive(false);
       }
-
     }
 
     void FixedUpdate() {
@@ -63,6 +69,7 @@ namespace Bunashibu.Kikan {
 
     public int KillExp  { get { return _killExpTable.Data[Level.Lv - 1];  } }
     public int KillGold { get { return _killGoldTable.Data[Level.Lv - 1]; } }
+    public int DamageSkinId { get { return 0; } }
 
     public int Power    {
       get {

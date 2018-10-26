@@ -17,7 +17,7 @@ namespace Bunashibu.Kikan {
 
           break;
         case Notification.TakeDamage:
-          Assert.IsTrue(args.Length == 3);
+          Assert.IsTrue(args.Length == 4);
 
           int damage = (int)args[1];
           Subtract(damage);

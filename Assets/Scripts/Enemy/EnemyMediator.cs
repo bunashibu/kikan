@@ -21,7 +21,7 @@ namespace Bunashibu.Kikan {
         case Notification.TakeDamage:
           Assert.IsTrue(args.Length == 3);
 
-          Notifier.Notify(Notification.TakeDamage, args[0], args[1], args[2]);
+          Notifier.Notify(Notification.TakeDamage, args[0], args[1], args[2], _enemy);
 
           break;
         default:

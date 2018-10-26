@@ -16,6 +16,7 @@ namespace Bunashibu.Kikan {
       Hp.Notifier.Add(_hpBar.OnNotify);
 
       Mediator.Notifier.Add(Hp.OnNotify);
+      Mediator.Notifier.Add(NumberPopupEnvironment.Instance.OnNotify); // NumberPopupEnvironment exists "Battle" global space.
 
       var notifier = new Notifier(Mediator.OnNotify);
       notifier.Notify(Notification.EnemyInstantiated);
@@ -55,6 +56,7 @@ namespace Bunashibu.Kikan {
 
     public int KillExp  { get { return _killExp;  } }
     public int KillGold { get { return _killGold; } }
+    public int DamageSkinId { get { return 0; } }
 
     [Header("Unity/Photon Components")]
     [SerializeField] private PhotonView     _photonView;

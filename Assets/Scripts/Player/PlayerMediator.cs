@@ -21,28 +21,12 @@ namespace Bunashibu.Kikan {
         case Notification.TakeDamage:
           Assert.IsTrue(args.Length == 3);
 
-          Notifier.Notify(Notification.TakeDamage, args[0], args[1], args[2]);
+          Notifier.Notify(Notification.TakeDamage, args[0], args[1], args[2], _player);
 
           if (_player.Hp.Cur == _player.Hp.Min)
-            Notifier.Notify(Notification.Died, args[2]);
+            Notifier.Notify(Notification.Died, args[0]);
 
           break;
-          /*
-        case Notification.Died:
-          Assert.IsTrue(args.Length == 1);
-
-          var attacker = (Notifier)args[0];
-          attacker.Notify(Notification.GetKillReward, _player.KillExp, _player.KillGold);
-
-          break;
-        case Notification.GetKillReward:
-          Assert.IsTrue(args.Length == 2);
-
-          // Increase Exp
-          // Increase Gold
-
-          break;
-          */
         default:
           break;
       }

@@ -3,10 +3,38 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace Bunashibu.Kikan {
-  public class NumberPopupEnvironment : Photon.MonoBehaviour {
+  public class NumberPopupEnvironment : SingletonMonoBehaviour<NumberPopupEnvironment> {
+    public void OnNotify(Notification notification, object[] args) {
+      switch (notification) {
+        case Notification.TakeDamage:
+          Assert.IsTrue(args.Length == 4);
+
+          var skinId = ((IBattle)args[0]).DamageSkinId;
+          int damage = (int)args[1];
+          bool isCritical = (bool)args[2];
+
+          var taker = (IBattle)args[3];
+          var takerObj = ((MonoBehaviour)taker).gameObject;
+          bool isTakerMe = (takerObj.tag == "Player") && (taker.PhotonView.owner == PhotonNetwork.player);
+
+          if (isTakerMe)
+            Popup(NumberPopupType.Take, damage);
+          else if (isCritical)
+            Popup(NumberPopupType.Critical, damage, skinId);
+          else
+            Popup(NumberPopupType.Hit, damage, skinId);
+
+          break;
+        default:
+          break;
+      }
+    }
+
     public void Popup(int damage, bool isCritical, int skinId, PopupType popupType) {
+      /*
       switch (popupType) {
         case PopupType.Player:
           photonView.RPC("SyncPlayerPopup", PhotonTargets.All, damage, isCritical, skinId);
@@ -15,10 +43,12 @@ namespace Bunashibu.Kikan {
           photonView.RPC("SyncEnemyPopup", PhotonTargets.All, damage, isCritical, skinId);
           break;
       }
+      */
     }
 
     [PunRPC]
     private void SyncPlayerPopup(int damage, bool isCritical, int skinId) {
+      /*
       if (photonView.owner == PhotonNetwork.player) {
         Popup(damage, skinId, DamageType.Take);
         return;
@@ -28,17 +58,21 @@ namespace Bunashibu.Kikan {
         Popup(damage, skinId, DamageType.Critical);
       else
         Popup(damage, skinId, DamageType.Hit);
+        */
     }
 
     [PunRPC]
     private void SyncEnemyPopup(int damage, bool isCritical, int skinId) {
+      /*
       if (isCritical)
         Popup(damage, skinId, DamageType.Critical);
       else
         Popup(damage, skinId, DamageType.Hit);
+        */
     }
 
-    private void Popup(int number, int skinId, DamageType type) {
+    //private void Popup(int number, int skinId, DamageType type) {
+    private void Popup(NumberPopupType popupType, int number, int skinId = 0) {
       // INFO: e.g. number = 8351 -> "8351" -> ['8','3','5','1'] -> indices = [8, 3, 5, 1]
       var indices = number.ToString().ToCharArray().Select(x => Convert.ToInt32(x.ToString()));
 
@@ -50,17 +84,17 @@ namespace Bunashibu.Kikan {
 
         var renderer = numberObj.GetComponent<SpriteRenderer>();
 
-        switch (type) {
-          case DamageType.Hit:
+        switch (popupType) {
+          case NumberPopupType.Hit:
             renderer.sprite = _allSkinData.GetSkin(skinId).Hit[index];
             break;
-          case DamageType.Critical:
+          case NumberPopupType.Critical:
             renderer.sprite = _allSkinData.GetSkin(skinId).Critical[index];
             break;
-          case DamageType.Take:
+          case NumberPopupType.Take:
             renderer.sprite = _allSkinData.GetSkin(skinId).Take[index];
             break;
-          case DamageType.Heal:
+          case NumberPopupType.Heal:
             renderer.sprite = _allSkinData.GetSkin(skinId).Heal[index];
             break;
         }
