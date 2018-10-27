@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   public interface IRewardTaker : IMediator {
-    List<IRewardTaker> Teammates { get; }
+    List<IBattle> Teammates { get; }
   }
 }
 

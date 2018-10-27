@@ -7,10 +7,10 @@ namespace Bunashibu.Kikan {
   // PLAN: BattlePlayer will be merged with LobbyPlayer.
   //       and will be renamed to Player.
   [RequireComponent(typeof(BattlePlayerObserver))]
-  public class BattlePlayer : MonoBehaviour, ICharacter, IBattle, IAttacker, ISpeaker, IRewardTaker {
+  public class BattlePlayer : MonoBehaviour, ICharacter, IBattle, IRewardTaker, ISpeaker {
     void Awake() {
       _mediator     = new PlayerMediator(this);
-      Teammates     = new List<IRewardTaker>();
+      Teammates     = new List<IBattle>();
       Movement      = new BattlePlayerMovement(_core);
       State         = new CharacterState(_ladderCollider, _footCollider);
       BuffState     = new BuffState(Observer);
@@ -62,7 +62,7 @@ namespace Bunashibu.Kikan {
 
     public AudioEnvironment     AudioEnvironment { get { return _audioEnvironment; } }
 
-    public List<IRewardTaker>   Teammates     { get; private set; }
+    public List<IBattle>        Teammates     { get; private set; }
 
     public BattlePlayerMovement Movement      { get; private set; }
     public CharacterState       State         { get; private set; }

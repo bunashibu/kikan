@@ -54,9 +54,11 @@ namespace Bunashibu.Kikan {
     public StateTransfer  StateTransfer { get; private set; }
     public EnemyHp        Hp            { get; private set; }
 
-    public int KillExp  { get { return _killExp;  } }
-    public int KillGold { get { return _killGold; } }
-    public int DamageSkinId { get { return 0; } }
+    public int KillExp      => _killExp;
+    public int KillGold     => _killGold;
+    public int DamageSkinId => 0;
+    public int Power        => 0;
+    public int Critical     => 0;
 
     [Header("Unity/Photon Components")]
     [SerializeField] private PhotonView     _photonView;

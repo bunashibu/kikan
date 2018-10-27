@@ -20,6 +20,8 @@ namespace Bunashibu.Kikan {
       Movement.FixedUpdate(_rigid, _trans);
     }
 
+    public void OnNotify(Notification notification, object[] args) {}
+
     public Character2D      Character      { get { return _character;    } }
     public PhotonView       PhotonView     { get { return _photonView;   } }
     public Transform        Transform      { get { return transform;     } }

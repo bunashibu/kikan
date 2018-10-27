@@ -4,9 +4,11 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   public interface IBattle : IMediator {
-    int KillExp { get; }
-    int KillGold { get; }
+    int KillExp      { get; }
+    int KillGold     { get; }
     int DamageSkinId { get; }
+    int Power        { get; }
+    int Critical     { get; }
   }
 }
 
