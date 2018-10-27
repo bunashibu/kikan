@@ -23,6 +23,10 @@ namespace Bunashibu.Kikan {
       _onNotifyList.Add(onNotify);
     }
 
+    public void RemoveAll() {
+      _onNotifyList = new List<Action<Notification, object[]>>();
+    }
+
     private List<Action<Notification, object[]>> _onNotifyList;
   }
 }

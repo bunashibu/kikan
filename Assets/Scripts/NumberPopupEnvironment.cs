@@ -17,15 +17,15 @@ namespace Bunashibu.Kikan {
 
           int skinId = ((GameObject)args[0]).GetComponent<IBattle>().DamageSkinId;
 
-          var taker = (IBattle)args[3];
-          var takerObj = ((MonoBehaviour)taker).gameObject;
+          var damageTaker = (IBattle)args[3];
+          var damageTakerObj = ((MonoBehaviour)damageTaker).gameObject;
 
-          if (takerObj.tag == "Player" && taker.PhotonView.owner == PhotonNetwork.player)
-            Popup(NumberPopupType.Take, damage, takerObj);
+          if (damageTakerObj.tag == "Player" && damageTaker.PhotonView.owner == PhotonNetwork.player)
+            Popup(NumberPopupType.Take, damage, damageTakerObj);
           else if (isCritical)
-            Popup(NumberPopupType.Critical, damage, takerObj, skinId);
+            Popup(NumberPopupType.Critical, damage, damageTakerObj, skinId);
           else
-            Popup(NumberPopupType.Hit, damage, takerObj, skinId);
+            Popup(NumberPopupType.Hit, damage, damageTakerObj, skinId);
 
           break;
         default:
@@ -33,14 +33,14 @@ namespace Bunashibu.Kikan {
       }
     }
 
-    private void Popup(NumberPopupType popupType, int damage, GameObject takerObj, int skinId = 0) {
-      float posOffsetY = takerObj.GetComponent<SpriteRenderer>().bounds.extents.y + 0.2f;
+    private void Popup(NumberPopupType popupType, int damage, GameObject damageTakerObj, int skinId = 0) {
+      float posOffsetY = damageTakerObj.GetComponent<SpriteRenderer>().bounds.extents.y + 0.2f;
 
       // INFO: e.g. damage = 8351 -> "8351" -> ['8','3','5','1'] -> indices = [8, 3, 5, 1]
       var numbers = damage.ToString().ToCharArray().Select(x => Convert.ToInt32(x.ToString()));
 
       foreach (var prop in numbers.Select((number, i) => new { number, i })) {
-        var numberObj = InstantiatePopupNumber(posOffsetY, takerObj, prop.i);
+        var numberObj = InstantiatePopupNumber(posOffsetY, damageTakerObj, prop.i);
         SetSprite(popupType, numberObj, prop.number, skinId, prop.i);
       }
 
@@ -51,8 +51,8 @@ namespace Bunashibu.Kikan {
         _existCount = 0;
     }
 
-    private GameObject InstantiatePopupNumber(float posOffsetY, GameObject takerObj, int i) {
-      var numberObj = Instantiate(_numberPref, takerObj.transform.position, Quaternion.identity);
+    private GameObject InstantiatePopupNumber(float posOffsetY, GameObject damageTakerObj, int i) {
+      var numberObj = Instantiate(_numberPref, damageTakerObj.transform.position, Quaternion.identity);
       numberObj.transform.Translate(i * 0.3f, posOffsetY, 0.0f);
 
       return numberObj;

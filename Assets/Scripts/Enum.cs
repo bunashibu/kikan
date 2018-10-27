@@ -50,7 +50,7 @@ namespace Bunashibu.Kikan {
     TakeDamage,
     TakeCriticalDamage,
 
-    Died,
+    Killed,
     GetKillReward
   }
 }

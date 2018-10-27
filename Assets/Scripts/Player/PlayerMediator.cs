@@ -24,7 +24,7 @@ namespace Bunashibu.Kikan {
           Notifier.Notify(Notification.TakeDamage, args[0], args[1], args[2], _player);
 
           if (_player.Hp.Cur == _player.Hp.Min)
-            Notifier.Notify(Notification.Died, args[0]);
+            Notifier.Notify(Notification.Killed, args[0], _player);
 
           break;
         default:

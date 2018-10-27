@@ -4,10 +4,10 @@ using System.Collections.ObjectModel;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
-  // BattlePlayer will be merged with LobbyPlayer.
-  // and will be renamed to Player.
+  // PLAN: BattlePlayer will be merged with LobbyPlayer.
+  //       and will be renamed to Player.
   [RequireComponent(typeof(BattlePlayerObserver))]
-  public class BattlePlayer : MonoBehaviour, ICharacter, IBattle, IAttacker, IMediator, ISpeaker, IPhoton {
+  public class BattlePlayer : MonoBehaviour, ICharacter, IBattle, IAttacker, ISpeaker, IRewardTaker {
     void Awake() {
       Mediator      = new PlayerMediator(this);
       Movement      = new BattlePlayerMovement(_core);
@@ -20,20 +20,21 @@ namespace Bunashibu.Kikan {
 
       if (StageReference.Instance.StageData.Name == "Battle") {
         Mediator.Notifier.Add(Hp.OnNotify);
-        Mediator.Notifier.Add(NumberPopupEnvironment.Instance.OnNotify); // NumberPopupEnvironment exists "Battle" global space.
+        // NOTE: Below environments exist in "Battle" global space
+        Mediator.Notifier.Add(NumberPopupEnvironment.Instance.OnNotify);
+        Mediator.Notifier.Add(KillRewardEnvironment.Instance.OnNotify);
       }
     }
 
-    void Start() {
+    void Start() { // CLEAN
       if (PhotonView.owner != PhotonNetwork.player) {
         _audioListener.enabled = false;
 
-        if (StageReference.Instance.StageData.Name == "Battle") {
+        if (StageReference.Instance.StageData.Name == "Battle")
           Hp.Notifier.Add(_worldHpBar.OnNotify);
 
-          var notifier = new Notifier(Mediator.OnNotify);
-          notifier.Notify(Notification.PlayerInstantiated);
-        }
+        var notifier = new Notifier(Mediator.OnNotify);
+        notifier.Notify(Notification.PlayerInstantiated);
       }
       else {
         _worldHpBar.gameObject.SetActive(false);
@@ -54,10 +55,10 @@ namespace Bunashibu.Kikan {
 
     public BattlePlayerObserver Observer { get { return _observer; } }
 
-    public NumberPopupEnvironment NumberPopupEnvironment { get { return _numberPopupEnvironment; } }
-    public AudioEnvironment       AudioEnvironment       { get { return _audioEnvironment;       } }
+    public AudioEnvironment     AudioEnvironment { get { return _audioEnvironment; } }
 
     public IResponder           Mediator      { get; private set; }
+    public List<IRewardTaker>   Teammates     { get; private set; }
 
     public BattlePlayerMovement Movement      { get; private set; }
     public CharacterState       State         { get; private set; }
@@ -119,7 +120,6 @@ namespace Bunashibu.Kikan {
     [SerializeField] private BattlePlayerObserver _observer;
 
     [Header("Environment")]
-    [SerializeField] private NumberPopupEnvironment _numberPopupEnvironment;
     [SerializeField] private AudioEnvironment _audioEnvironment;
 
     [Header("Data")]

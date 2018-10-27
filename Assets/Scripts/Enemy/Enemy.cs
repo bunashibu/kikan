@@ -5,7 +5,7 @@ using System.Collections;
 namespace Bunashibu.Kikan {
   [RequireComponent(typeof(Character2D))]
   [RequireComponent(typeof(EnemyObserver))]
-  public class Enemy : MonoBehaviour, ICharacter, IBattle, IMediator, IPhoton {
+  public class Enemy : MonoBehaviour, ICharacter, IBattle {
     void Awake() {
       Mediator      = new EnemyMediator(this);
       State         = new CharacterState(_ladderCollider, _footCollider);
@@ -16,7 +16,8 @@ namespace Bunashibu.Kikan {
       Hp.Notifier.Add(_hpBar.OnNotify);
 
       Mediator.Notifier.Add(Hp.OnNotify);
-      Mediator.Notifier.Add(NumberPopupEnvironment.Instance.OnNotify); // NumberPopupEnvironment exists "Battle" global space.
+      Mediator.Notifier.Add(NumberPopupEnvironment.Instance.OnNotify);
+      Mediator.Notifier.Add(KillRewardEnvironment.Instance.OnNotify);
 
       var notifier = new Notifier(Mediator.OnNotify);
       notifier.Notify(Notification.EnemyInstantiated);
@@ -37,9 +38,6 @@ namespace Bunashibu.Kikan {
     // Observer
     public EnemyObserver           Observer           { get { return _observer; } }
     public EnemyPopulationObserver PopulationObserver { get; private set; }
-
-    // Environment
-    public NumberPopupEnvironment NumberPopupEnvironment { get { return _numberPopupEnvironment; } }
 
     public IResponder Mediator { get; private set; }
 
@@ -69,9 +67,6 @@ namespace Bunashibu.Kikan {
 
     [Header("Observer")]
     [SerializeField] private EnemyObserver _observer;
-
-    [Header("Environment")]
-    [SerializeField] private NumberPopupEnvironment _numberPopupEnvironment;
 
     [Header("Kill Reward")]
     [SerializeField] private int _killExp;
