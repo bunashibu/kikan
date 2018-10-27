@@ -84,11 +84,6 @@ namespace Bunashibu.Kikan {
 
     private void InitPlayerHp() {
       _player.Hp.Notifier.Add(_hpBar.OnNotify);
-      /*
-      _player.Hp.AttachHudBar(_hpBar);
-      _player.Hp.UpdateView();
-      _player.Observer.SyncUpdateHpView();
-      */
     }
 
     private void InitPlayerExp() {

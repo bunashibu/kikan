@@ -10,6 +10,7 @@ namespace Bunashibu.Kikan {
   public class BattlePlayer : MonoBehaviour, ICharacter, IBattle, IAttacker, ISpeaker, IRewardTaker {
     void Awake() {
       Mediator      = new PlayerMediator(this);
+      Teammates     = new List<IRewardTaker>();
       Movement      = new BattlePlayerMovement(_core);
       State         = new CharacterState(_ladderCollider, _footCollider);
       BuffState     = new BuffState(Observer);
@@ -68,18 +69,14 @@ namespace Bunashibu.Kikan {
     public SkillInfo            SkillInfo     { get; private set; }
     public PlayerInfo           PlayerInfo    { get; private set; }
 
-    public int KillExp  { get { return _killExpTable.Data[Level.Lv - 1];  } }
-    public int KillGold { get { return _killGoldTable.Data[Level.Lv - 1]; } }
-    public int DamageSkinId { get { return 0; } }
+    public int KillExp      => _killExpTable.Data[Level.Lv - 1];
+    public int KillGold     => _killGoldTable.Data[Level.Lv - 1];
+    public int DamageSkinId => 0;
+    public int Power        { get { double ratio = (double)((Core.Attack + 100) / 100.0);
+                                    return (int)(Status.Atk * Status.MulCorrectionAtk * ratio); } }
+    public int Critical     => Core.Critical;
 
-    public int Power    {
-      get {
-        double ratio = (double)((Core.Attack + 100) / 100.0);
-
-        return (int)(Status.Atk * Status.MulCorrectionAtk * ratio);
-      }
-    }
-    public int Critical { get { return Core.Critical; } }
+    public ReadOnlyCollection<int> HpTable => _hpTable.Data;
 
     public NameBackground NameBackground { get { return _nameBackground; } }
     public PopupRemark    PopupRemark    { get { return _popupRemark;    } }
@@ -89,8 +86,6 @@ namespace Bunashibu.Kikan {
     //
     // Consider
     //
-    public ReadOnlyCollection<int> HpTable { get { return _hpTable.Data; } }
-
     public PlayerNextExp   NextExp   { get { return _nextExp;   } }
     public PlayerLevel     Level     { get { return _level;     } }
     public PlayerGold      Gold      { get { return _gold;      } }
