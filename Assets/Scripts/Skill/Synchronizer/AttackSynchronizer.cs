@@ -13,7 +13,7 @@ namespace Bunashibu.Kikan {
       var target = PhotonView.Find(targetViewID).gameObject.GetComponent<IMediator>();
       Assert.IsNotNull(target);
 
-      var notifier = new Notifier(target.Mediator.OnNotify);
+      var notifier = new Notifier(target.OnNotify);
       notifier.Notify(Notification.TakeDamage, attacker, damage, isCritical);
     }
 

@@ -9,7 +9,7 @@ namespace Bunashibu.Kikan {
   [RequireComponent(typeof(BattlePlayerObserver))]
   public class BattlePlayer : MonoBehaviour, ICharacter, IBattle, IAttacker, ISpeaker, IRewardTaker {
     void Awake() {
-      Mediator      = new PlayerMediator(this);
+      _mediator     = new PlayerMediator(this);
       Teammates     = new List<IRewardTaker>();
       Movement      = new BattlePlayerMovement(_core);
       State         = new CharacterState(_ladderCollider, _footCollider);
@@ -20,10 +20,10 @@ namespace Bunashibu.Kikan {
       PlayerInfo    = new PlayerInfo(this);
 
       if (StageReference.Instance.StageData.Name == "Battle") {
-        Mediator.Notifier.Add(Hp.OnNotify);
+        _mediator.Notifier.Add(Hp.OnNotify);
         // NOTE: Below environments exist in "Battle" global space
-        Mediator.Notifier.Add(NumberPopupEnvironment.Instance.OnNotify);
-        Mediator.Notifier.Add(KillRewardEnvironment.Instance.OnNotify);
+        _mediator.Notifier.Add(NumberPopupEnvironment.Instance.OnNotify);
+        _mediator.Notifier.Add(KillRewardEnvironment.Instance.OnNotify);
       }
     }
 
@@ -34,7 +34,7 @@ namespace Bunashibu.Kikan {
         if (StageReference.Instance.StageData.Name == "Battle")
           Hp.Notifier.Add(_worldHpBar.OnNotify);
 
-        var notifier = new Notifier(Mediator.OnNotify);
+        var notifier = new Notifier(_mediator.OnNotify);
         notifier.Notify(Notification.PlayerInstantiated);
       }
       else {
@@ -44,6 +44,10 @@ namespace Bunashibu.Kikan {
 
     void FixedUpdate() {
       Movement.FixedUpdate(_rigid, transform);
+    }
+
+    public void OnNotify(Notification notification, object[] args) {
+      _mediator.OnNotify(notification, args);
     }
 
     public PhotonView       PhotonView   { get { return _photonView;   } }
@@ -58,7 +62,6 @@ namespace Bunashibu.Kikan {
 
     public AudioEnvironment     AudioEnvironment { get { return _audioEnvironment; } }
 
-    public IResponder           Mediator      { get; private set; }
     public List<IRewardTaker>   Teammates     { get; private set; }
 
     public BattlePlayerMovement Movement      { get; private set; }
@@ -148,6 +151,7 @@ namespace Bunashibu.Kikan {
     [SerializeField] private Weapon _weapon;
 
     private static readonly string _initState = "Idle";
+    private PlayerMediator _mediator;
   }
 }
 

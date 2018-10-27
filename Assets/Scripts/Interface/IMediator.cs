@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   public interface IMediator {
-    IResponder Mediator { get; }
+    void OnNotify(Notification notification, object[] args);
   }
 }
 

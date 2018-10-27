@@ -51,7 +51,7 @@ namespace Bunashibu.Kikan {
       InitPlayerStatus(jobStatus);
       InitPlayerMovement(jobStatus);
 
-      var notifier = new Notifier(_player.Mediator.OnNotify);
+      var notifier = new Notifier(_player.OnNotify);
       notifier.Notify(Notification.PlayerInstantiated);
 
       _trackCamera.SetTrackTarget(_player.gameObject);

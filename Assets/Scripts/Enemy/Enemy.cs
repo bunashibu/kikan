@@ -7,7 +7,7 @@ namespace Bunashibu.Kikan {
   [RequireComponent(typeof(EnemyObserver))]
   public class Enemy : MonoBehaviour, ICharacter, IBattle {
     void Awake() {
-      Mediator      = new EnemyMediator(this);
+      _mediator     = new EnemyMediator(this);
       State         = new CharacterState(_ladderCollider, _footCollider);
       BuffState     = new BuffState(Observer);
       StateTransfer = new StateTransfer(_initState, _animator);
@@ -15,12 +15,16 @@ namespace Bunashibu.Kikan {
 
       Hp.Notifier.Add(_hpBar.OnNotify);
 
-      Mediator.Notifier.Add(Hp.OnNotify);
-      Mediator.Notifier.Add(NumberPopupEnvironment.Instance.OnNotify);
-      Mediator.Notifier.Add(KillRewardEnvironment.Instance.OnNotify);
+      _mediator.Notifier.Add(Hp.OnNotify);
+      _mediator.Notifier.Add(NumberPopupEnvironment.Instance.OnNotify);
+      _mediator.Notifier.Add(KillRewardEnvironment.Instance.OnNotify);
 
-      var notifier = new Notifier(Mediator.OnNotify);
+      var notifier = new Notifier(_mediator.OnNotify);
       notifier.Notify(Notification.EnemyInstantiated);
+    }
+
+    public void OnNotify(Notification notification, object[] args) {
+      _mediator.OnNotify(notification, args);
     }
 
     public void AttachPopulationObserver(EnemyPopulationObserver populationObserver) {
@@ -38,8 +42,6 @@ namespace Bunashibu.Kikan {
     // Observer
     public EnemyObserver           Observer           { get { return _observer; } }
     public EnemyPopulationObserver PopulationObserver { get; private set; }
-
-    public IResponder Mediator { get; private set; }
 
     // tmp
     public MonoBehaviour AI { get { return _ai; } }
@@ -83,6 +85,7 @@ namespace Bunashibu.Kikan {
     [SerializeField] private EnemyData _enemyData;
 
     private static readonly string _initState = "Idle";
+    private EnemyMediator _mediator;
   }
 }
 
