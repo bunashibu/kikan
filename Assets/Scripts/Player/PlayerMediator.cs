@@ -27,6 +27,18 @@ namespace Bunashibu.Kikan {
             Notifier.Notify(Notification.Killed, args[0], _player);
 
           break;
+        case Notification.GetKillReward:
+          Assert.IsTrue(args.Length == 2);
+
+          var killReward = (KillReward)args[0];
+          var rewardTaker = (IRewardTaker)args[1];
+
+          if (rewardTaker.PhotonView.isMine)
+            Notifier.Notify(Notification.GetKillReward, killReward.MainExp, killReward.MainGold);
+          else
+            Notifier.Notify(Notification.GetKillReward, killReward.SubExp, killReward.SubGold);
+
+          break;
         default:
           break;
       }

@@ -21,7 +21,7 @@ namespace Bunashibu.Kikan {
         rewardTaker.Teammates.ForEach(teammate => _notifier.Add(teammate.OnNotify) );
 
         var killedOne = (IBattle)args[1];
-        _notifier.Notify(Notification.GetKillReward, GetKillRewardFrom(killedOne, 0));
+        _notifier.Notify(Notification.GetKillReward, GetKillRewardFrom(killedOne, rewardTaker.Teammates.Count), rewardTaker);
 
         _notifier.RemoveAll();
       }
