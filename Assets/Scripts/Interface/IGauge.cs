@@ -2,6 +2,7 @@
 using System.Collections;
 
 namespace Bunashibu.Kikan {
+  // Obsolete
   public interface IGauge<T> {
     T Cur { get; }
     T Min { get; }

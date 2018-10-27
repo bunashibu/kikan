@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Assertions;
 
 namespace Bunashibu.Kikan {
-  public class EnemyMediator : IMediator {
+  public class EnemyMediator {
     public EnemyMediator(Enemy enemy) {
       Notifier = new Notifier();
       _enemy = enemy;
