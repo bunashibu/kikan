@@ -5,10 +5,8 @@ using UnityEngine;
 namespace Bunashibu.Kikan {
   public class ManjiZ : Skill {
     void Awake() {
-      _rewardGetter      = new RewardGetter();
       _targetRistrictor  = new TargetRistrictor(_targetNum, _dupHitNum);
       _killDeathRecorder = new KillDeathRecorder();
-      _powerCalculator   = new PowerCalculator();
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
@@ -85,15 +83,10 @@ namespace Bunashibu.Kikan {
     }
 
     private void ProceedPlayerDeath(BattlePlayer target, BattlePlayer skillUser) {
-      _rewardGetter.SetRewardReceiver(skillUser);
-      _rewardGetter.GetRewardFrom(target);
-
       _killDeathRecorder.RecordKillDeath(target, skillUser);
     }
 
     private void ProceedEnemyDeath(Enemy target, BattlePlayer skillUser) {
-      _rewardGetter.SetRewardReceiver(skillUser);
-      _rewardGetter.GetRewardFrom(target);
     }
 
     [SerializeField] private AttackInfo _attackInfo;
@@ -105,10 +98,8 @@ namespace Bunashibu.Kikan {
     [Space(10)]
     [SerializeField] private float _stunSec;
 
-    private RewardGetter      _rewardGetter;
     private TargetRistrictor  _targetRistrictor;
     private KillDeathRecorder _killDeathRecorder;
-    private PowerCalculator   _powerCalculator;
   }
 }
 
