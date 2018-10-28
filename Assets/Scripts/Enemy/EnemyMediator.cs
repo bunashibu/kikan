@@ -9,7 +9,7 @@ namespace Bunashibu.Kikan {
       _enemy = enemy;
     }
 
-    public void OnNotify(Notification notification, object[] args) {
+    public override void OnNotify(Notification notification, object[] args) {
       switch (notification) {
         case Notification.EnemyInstantiated:
           Assert.IsTrue(args.Length == 0);

@@ -9,7 +9,7 @@ namespace Bunashibu.Kikan {
       _player = player;
     }
 
-    public void OnNotify(Notification notification, object[] args) {
+    public override void OnNotify(Notification notification, object[] args) {
       switch (notification) {
         case Notification.PlayerInstantiated:
           Assert.IsTrue(args.Length == 0);

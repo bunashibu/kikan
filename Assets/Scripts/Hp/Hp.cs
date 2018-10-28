@@ -3,13 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
-  public abstract class Hp {
-    public Hp() {
-      Notifier = new Notifier();
-    }
-
-    public abstract void OnNotify(Notification notification, object[] args);
-
+  public abstract class Hp : Duplexer {
     public void Add(int quantity) { // to be protected
       Cur += quantity;
       AdjustBoundary();
@@ -26,8 +20,6 @@ namespace Bunashibu.Kikan {
       if (Cur > Max)
         Cur = Max;
     }
-
-    public Notifier Notifier { get; private set; }
 
     public int Cur { get; protected set; }
     public int Min { get { return 0; }   }

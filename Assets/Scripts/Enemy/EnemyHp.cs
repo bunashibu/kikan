@@ -24,7 +24,7 @@ namespace Bunashibu.Kikan {
           Assert.IsNotNull(attacker);
 
           if (attacker.PhotonView.isMine)
-            Notifier.Notify(Notification.HpUpdated, Cur, Max);
+            _notifier.Notify(Notification.HpUpdated, Cur, Max);
 
           break;
         default:

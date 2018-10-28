@@ -13,7 +13,7 @@ namespace Bunashibu.Kikan {
       StateTransfer = new StateTransfer(_initState, _animator);
       Hp            = new EnemyHp();
 
-      Hp.Notifier.AddListener(_hpBar.OnNotify);
+      Hp.AddListener(_hpBar.OnNotify);
 
       _mediator.AddListener(Hp.OnNotify);
       _mediator.AddListener(NumberPopupEnvironment.Instance.OnNotify);

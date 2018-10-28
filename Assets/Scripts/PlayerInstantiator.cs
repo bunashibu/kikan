@@ -83,7 +83,7 @@ namespace Bunashibu.Kikan {
     }
 
     private void InitPlayerHp() {
-      _player.Hp.Notifier.AddListener(_hpBar.OnNotify);
+      _player.Hp.AddListener(_hpBar.OnNotify);
     }
 
     private void InitPlayerExp() {

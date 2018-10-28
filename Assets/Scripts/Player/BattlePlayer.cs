@@ -32,7 +32,7 @@ namespace Bunashibu.Kikan {
         _audioListener.enabled = false;
 
         if (StageReference.Instance.StageData.Name == "Battle")
-          Hp.Notifier.AddListener(_worldHpBar.OnNotify);
+          Hp.AddListener(_worldHpBar.OnNotify);
 
         var notifier = new Notifier(_mediator.OnNotify);
         notifier.Notify(Notification.PlayerInstantiated);
