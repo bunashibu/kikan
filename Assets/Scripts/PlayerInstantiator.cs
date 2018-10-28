@@ -42,9 +42,10 @@ namespace Bunashibu.Kikan {
       SetViewID();
 
       InitPlayerTeam();
-      InitPlayerHp();
-      InitPlayerExp();
-      InitPlayerLv();
+      _player.Hp.AddListener(_hpBar.OnNotify);
+      _player.Exp.AddListener(_expBar.OnNotify);
+      _player.Level.AddListener(_lvPanel.OnNotify);
+      //_player.Level.AddListener(_kdPanel.OnNotify);
       InitPlayerKillDeath();
       InitPlayerCore();
       InitPlayerGold();
@@ -80,22 +81,6 @@ namespace Bunashibu.Kikan {
         else if (team == 1)
           sprite.flipX = true;
       }
-    }
-
-    private void InitPlayerHp() {
-      _player.Hp.AddListener(_hpBar.OnNotify);
-    }
-
-    private void InitPlayerExp() {
-      _player.Exp.AddListener(_expBar.OnNotify);
-    }
-
-    private void InitPlayerLv() {
-      /*
-      var playerLv = _player.Level;
-      playerLv.Init(_lvPanel, _kdPanel);
-      playerLv.UpdateView();
-      */
     }
 
     private void InitPlayerKillDeath() {
