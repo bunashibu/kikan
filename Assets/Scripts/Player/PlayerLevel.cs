@@ -4,46 +4,29 @@ using UnityEngine;
 using UnityEngine.Assertions;
 
 namespace Bunashibu.Kikan {
-  public class PlayerLevel : Level {
-    public void Init(LevelPanel lvPanel, KillDeathPanel kdPanel) {
-      Assert.IsTrue(photonView.isMine);
+  public class PlayerLevel : Gauge {
+    public override void OnNotify(Notification notification, object[] args) {
+      switch (notification) {
+        case Notification.Initialize:
+          Assert.IsTrue(args.Length == 3);
 
-      int initialLv = 1;
-      Init(initialLv);
+          Cur = 1;
 
-      _lvPanel = lvPanel;
-      _kdPanel = kdPanel;
-    }
+          int maxLevel = (int)args[2];
+          Max = maxLevel;
 
-    public void UpdateView() {
-      Assert.IsTrue(photonView.isMine);
+          break;
+        case Notification.ExpIsMax:
+          Assert.IsTrue(args.Length == 0);
 
-      _lvPanel.UpdateView(Lv);
-      _kdPanel.UpdateLvView(Lv);
-    }
+          Add(1);
+          _notifier.Notify(Notification.LevelUp, Cur);
 
-    public override void LvUp() {
-      base.LvUp();
-
-      if (photonView.isMine) {
-        UpdateView();
-
-        _player.Hp.UpdateMaxHp();
-        _player.Observer.SyncMaxHp();
-
-        _player.Hp.UpdateView();
-        _player.Observer.SyncUpdateHpView();
-
-        _player.Status.IncreaseAtk(Lv);
-
-        _playerHealer.UpdateMaxHealQuantity();
+          break;
+        default:
+          break;
       }
     }
-
-    [SerializeField] private BattlePlayer _player;
-    [SerializeField] private PlayerAutomaticHealer _playerHealer;
-    private LevelPanel _lvPanel;
-    private KillDeathPanel _kdPanel;
   }
 }
 

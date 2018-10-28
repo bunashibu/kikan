@@ -22,7 +22,7 @@ namespace Bunashibu.Kikan {
       Assert.IsTrue(photonView.isMine);
 
       double ratio = (double)(_player.Core.Heal / 100.0);
-      HealQuantity = (int)(_healTable.Data[_player.Level.Lv - 1] * ratio);
+      HealQuantity = (int)(_healTable.Data[_player.Level.Cur - 1] * ratio);
     }
 
     private void AutomaticHeal() {

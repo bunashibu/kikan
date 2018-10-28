@@ -8,7 +8,7 @@ namespace Bunashibu.Kikan {
     public override void OnNotify(Notification notification, object[] args) {
       switch (notification) {
         case Notification.Initialize:
-          Assert.IsTrue(args.Length == 2);
+          Assert.IsTrue(args.Length == 3);
 
           int initialMaxExp = (int)args[1];
           Cur = 0;
@@ -27,9 +27,9 @@ namespace Bunashibu.Kikan {
 
           break;
         case Notification.LevelUp:
-          Assert.IsTrue(args.Length == 1);
+          Assert.IsTrue(args.Length == 2);
 
-          int maxExp = (int)args[0];
+          int maxExp = (int)args[1];
           Cur = 0;
           Max = maxExp;
 

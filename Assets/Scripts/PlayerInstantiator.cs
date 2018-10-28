@@ -15,7 +15,7 @@ namespace Bunashibu.Kikan {
     public void InstantiatePlayer(string jobName) {
       var pos = StageReference.Instance.StageData.RespawnPosition;
 
-      // INFO: Team 0 is Red(Right), Team 1 is Blue(Left)
+      // NOTE: Team 0 is Red(Right), Team 1 is Blue(Left)
       if ((int)PhotonNetwork.player.CustomProperties["Team"] == 1)
         pos.x *= -1;
 
@@ -91,9 +91,11 @@ namespace Bunashibu.Kikan {
     }
 
     private void InitPlayerLv() {
+      /*
       var playerLv = _player.Level;
       playerLv.Init(_lvPanel, _kdPanel);
       playerLv.UpdateView();
+      */
     }
 
     private void InitPlayerKillDeath() {

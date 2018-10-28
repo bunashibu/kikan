@@ -8,7 +8,7 @@ namespace Bunashibu.Kikan {
     public override void OnNotify(Notification notification, object[] args) {
       switch (notification) {
         case Notification.Initialize:
-          Assert.IsTrue(args.Length == 2);
+          Assert.IsTrue(args.Length == 3);
 
           int initialHp = (int)args[0];
           Cur = initialHp;
@@ -22,6 +22,15 @@ namespace Bunashibu.Kikan {
 
           int damage = (int)args[1];
           Subtract(damage);
+
+          _notifier.Notify(Notification.HpUpdated, Cur, Max);
+
+          break;
+        case Notification.LevelUp:
+          Assert.IsTrue(args.Length == 2);
+
+          int maxHp = (int)args[0];
+          Max = maxHp;
 
           _notifier.Notify(Notification.HpUpdated, Cur, Max);
 

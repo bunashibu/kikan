@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Bunashibu.Kikan {
   public class PlayerRespawner : MonoBehaviour {
     public void Respawn(Action ActTransition) {
-      MonoUtility.Instance.DelaySec((float)_player.Level.Lv, () => {
+      MonoUtility.Instance.DelaySec((float)_player.Level.Cur, () => {
         var pos = StageReference.Instance.StageData.RespawnPosition;
         if ((int)PhotonNetwork.player.CustomProperties["Team"] == 1)
           pos.x *= -1;

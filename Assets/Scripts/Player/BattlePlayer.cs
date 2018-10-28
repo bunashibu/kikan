@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace Bunashibu.Kikan {
   // PLAN: BattlePlayer will be merged with LobbyPlayer.
@@ -9,6 +10,11 @@ namespace Bunashibu.Kikan {
   [RequireComponent(typeof(BattlePlayerObserver))]
   public class BattlePlayer : MonoBehaviour, ICharacter, IBattle, IRewardTaker, ISpeaker {
     void Awake() {
+      Assert.IsTrue(_killExpTable.Data.Count  == MaxLevel);
+      Assert.IsTrue(_killGoldTable.Data.Count == MaxLevel);
+      Assert.IsTrue(_hpTable.Data.Count       == MaxLevel);
+      Assert.IsTrue(_expTable.Data.Count      == MaxLevel);
+
       _mediator     = new PlayerMediator(this);
       Teammates     = new List<IBattle>();
       Movement      = new BattlePlayerMovement(_core);
@@ -16,6 +22,7 @@ namespace Bunashibu.Kikan {
       BuffState     = new BuffState(Observer);
       Hp            = new PlayerHp();
       Exp           = new PlayerExp();
+      Level         = new PlayerLevel();
       StateTransfer = new StateTransfer(_initState, _animator);
       SkillInfo     = new SkillInfo();
       PlayerInfo    = new PlayerInfo(this);
@@ -23,10 +30,11 @@ namespace Bunashibu.Kikan {
       if (StageReference.Instance.StageData.Name == "Battle") {
         _mediator.AddListener(Hp.OnNotify);
         _mediator.AddListener(Exp.OnNotify);
-        //_mediator.AddListener(Level.OnNotify);
+        _mediator.AddListener(Level.OnNotify);
         // NOTE: Below environments exist in "Battle" global space
         _mediator.AddListener(NumberPopupEnvironment.Instance.OnNotify);
         _mediator.AddListener(KillRewardEnvironment.Instance.OnNotify);
+        Level.AddListener(_mediator.OnNotify);
       }
     }
 
@@ -72,12 +80,14 @@ namespace Bunashibu.Kikan {
     public BuffState            BuffState     { get; private set; }
     public PlayerHp             Hp            { get; private set; }
     public PlayerExp            Exp           { get; private set; }
+    public PlayerLevel          Level         { get; private set; }
     public StateTransfer        StateTransfer { get; private set; }
     public SkillInfo            SkillInfo     { get; private set; }
     public PlayerInfo           PlayerInfo    { get; private set; }
 
-    public int KillExp      => _killExpTable.Data[Level.Lv - 1];
-    public int KillGold     => _killGoldTable.Data[Level.Lv - 1];
+    public int MaxLevel     => 15;
+    public int KillExp      => _killExpTable.Data[Level.Cur - 1];
+    public int KillGold     => _killGoldTable.Data[Level.Cur - 1];
     public int DamageSkinId => 0;
     public int Power        { get { double ratio = (double)((Core.Attack + 100) / 100.0);
                                     return (int)(Status.Atk * Status.MulCorrectionAtk * ratio); } }
@@ -94,7 +104,6 @@ namespace Bunashibu.Kikan {
     //
     // Consider
     //
-    public PlayerLevel     Level     { get { return _level;     } }
     public PlayerGold      Gold      { get { return _gold;      } }
     public PlayerKillDeath KillDeath { get { return _killDeath; } }
     public PlayerCore      Core      { get { return _core;      } }
@@ -127,18 +136,16 @@ namespace Bunashibu.Kikan {
     [Header("Data")]
     [SerializeField] private DataTable _hpTable;
     [SerializeField] private DataTable _expTable;
+    [SerializeField] private DataTable _killExpTable;
+    [SerializeField] private DataTable _killGoldTable;
+
     [SerializeField] private Bar       _worldHpBar;
 
     // Consider
     [Header("Sync On Their Own")]
-    [SerializeField] private PlayerLevel     _level;
     [SerializeField] private PlayerGold      _gold;
     [SerializeField] private PlayerKillDeath _killDeath;
     [SerializeField] private PlayerCore      _core;
-
-    [Header("Kill Reward")]
-    [SerializeField] private DataTable _killExpTable;
-    [SerializeField] private DataTable _killGoldTable;
 
     [Header("Canvas")]
     [SerializeField] private NameBackground _nameBackground;

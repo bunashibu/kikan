@@ -26,7 +26,7 @@ namespace Bunashibu.Kikan {
 
       float statusRatio = 1.3f;
       float powerRatio = 1.5f;
-      if (skillUser.Level.Lv >= 11)
+      if (skillUser.Level.Cur >= 11)
         statusRatio = 1.6f;
         powerRatio = 2.0f;
 
