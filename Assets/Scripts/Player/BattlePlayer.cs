@@ -15,7 +15,7 @@ namespace Bunashibu.Kikan {
       State         = new CharacterState(_ladderCollider, _footCollider);
       BuffState     = new BuffState(Observer);
       Hp            = new PlayerHp();
-      Exp           = new Exp();
+      Exp           = new PlayerExp();
       StateTransfer = new StateTransfer(_initState, _animator);
       SkillInfo     = new SkillInfo();
       PlayerInfo    = new PlayerInfo(this);
@@ -70,7 +70,7 @@ namespace Bunashibu.Kikan {
     public CharacterState       State         { get; private set; }
     public BuffState            BuffState     { get; private set; }
     public PlayerHp             Hp            { get; private set; }
-    public Exp                  Exp           { get; private set; }
+    public PlayerExp            Exp           { get; private set; }
     public StateTransfer        StateTransfer { get; private set; }
     public SkillInfo            SkillInfo     { get; private set; }
     public PlayerInfo           PlayerInfo    { get; private set; }

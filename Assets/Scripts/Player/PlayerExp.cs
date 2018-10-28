@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Assertions;
 
 namespace Bunashibu.Kikan {
-  public class Exp : Gauge {
+  public class PlayerExp : Gauge {
     public override void OnNotify(Notification notification, object[] args) {
       switch (notification) {
         case Notification.Initialize:
