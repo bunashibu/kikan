@@ -23,6 +23,7 @@ namespace Bunashibu.Kikan {
       if (StageReference.Instance.StageData.Name == "Battle") {
         _mediator.AddListener(Hp.OnNotify);
         _mediator.AddListener(Exp.OnNotify);
+        //_mediator.AddListener(Level.OnNotify);
         // NOTE: Below environments exist in "Battle" global space
         _mediator.AddListener(NumberPopupEnvironment.Instance.OnNotify);
         _mediator.AddListener(KillRewardEnvironment.Instance.OnNotify);
@@ -93,7 +94,6 @@ namespace Bunashibu.Kikan {
     //
     // Consider
     //
-    public PlayerNextExp   NextExp   { get { return _nextExp;   } }
     public PlayerLevel     Level     { get { return _level;     } }
     public PlayerGold      Gold      { get { return _gold;      } }
     public PlayerKillDeath KillDeath { get { return _killDeath; } }
@@ -131,7 +131,6 @@ namespace Bunashibu.Kikan {
 
     // Consider
     [Header("Sync On Their Own")]
-    [SerializeField] private PlayerNextExp   _nextExp;
     [SerializeField] private PlayerLevel     _level;
     [SerializeField] private PlayerGold      _gold;
     [SerializeField] private PlayerKillDeath _killDeath;
