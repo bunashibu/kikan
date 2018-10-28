@@ -32,6 +32,7 @@ namespace Bunashibu.Kikan {
 
     HpUpdated,
     ExpUpdated,
+    GoldUpdated,
 
     TakeDamage,
 

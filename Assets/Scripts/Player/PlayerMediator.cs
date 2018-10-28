@@ -14,7 +14,7 @@ namespace Bunashibu.Kikan {
         case Notification.PlayerInstantiated:
           Assert.IsTrue(args.Length == 0);
 
-          _notifier.Notify(Notification.Initialize, _player.HpTable[0], _player.ExpTable[0], _player.MaxLevel);
+          _notifier.Notify(Notification.Initialize, _player.HpTable[0], _player.ExpTable[0], _player.MaxLevel, _player.MaxGold);
 
           break;
         case Notification.TakeDamage:

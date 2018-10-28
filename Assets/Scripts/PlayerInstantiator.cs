@@ -46,9 +46,9 @@ namespace Bunashibu.Kikan {
       _player.Exp.AddListener(_expBar.OnNotify);
       _player.Level.AddListener(_lvPanel.OnNotify);
       //_player.Level.AddListener(_kdPanel.OnNotify);
+      _player.Gold.AddListener(_goldPanel.OnNotify);
       InitPlayerKillDeath();
       InitPlayerCore();
-      InitPlayerGold();
       InitPlayerStatus(jobStatus);
       InitPlayerMovement(jobStatus);
 
@@ -91,11 +91,6 @@ namespace Bunashibu.Kikan {
     private void InitPlayerCore() {
       var playerCore = _player.Core;
       playerCore.Init(_corePanel);
-    }
-
-    private void InitPlayerGold() {
-      var playerGold = _player.Gold;
-      playerGold.Init(_goldPanel);
     }
 
     private void InitPlayerStatus(JobStatus jobStatus) {

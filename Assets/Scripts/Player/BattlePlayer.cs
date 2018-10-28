@@ -23,6 +23,7 @@ namespace Bunashibu.Kikan {
       Hp            = new PlayerHp();
       Exp           = new PlayerExp();
       Level         = new PlayerLevel();
+      Gold          = new PlayerGold();
       StateTransfer = new StateTransfer(_initState, _animator);
       SkillInfo     = new SkillInfo();
       PlayerInfo    = new PlayerInfo(this);
@@ -31,6 +32,7 @@ namespace Bunashibu.Kikan {
         _mediator.AddListener(Hp.OnNotify);
         _mediator.AddListener(Exp.OnNotify);
         _mediator.AddListener(Level.OnNotify);
+        _mediator.AddListener(Gold.OnNotify);
         // NOTE: Below environments exist in "Battle" global space
         _mediator.AddListener(NumberPopupEnvironment.Instance.OnNotify);
         _mediator.AddListener(KillRewardEnvironment.Instance.OnNotify);
@@ -81,11 +83,13 @@ namespace Bunashibu.Kikan {
     public PlayerHp             Hp            { get; private set; }
     public PlayerExp            Exp           { get; private set; }
     public PlayerLevel          Level         { get; private set; }
+    public PlayerGold           Gold          { get; private set; }
     public StateTransfer        StateTransfer { get; private set; }
     public SkillInfo            SkillInfo     { get; private set; }
     public PlayerInfo           PlayerInfo    { get; private set; }
 
     public int MaxLevel     => 15;
+    public int MaxGold      => 99999;
     public int KillExp      => _killExpTable.Data[Level.Cur - 1];
     public int KillGold     => _killGoldTable.Data[Level.Cur - 1];
     public int DamageSkinId => 0;
@@ -104,7 +108,6 @@ namespace Bunashibu.Kikan {
     //
     // Consider
     //
-    public PlayerGold      Gold      { get { return _gold;      } }
     public PlayerKillDeath KillDeath { get { return _killDeath; } }
     public PlayerCore      Core      { get { return _core;      } }
 
@@ -143,7 +146,6 @@ namespace Bunashibu.Kikan {
 
     // Consider
     [Header("Sync On Their Own")]
-    [SerializeField] private PlayerGold      _gold;
     [SerializeField] private PlayerKillDeath _killDeath;
     [SerializeField] private PlayerCore      _core;
 

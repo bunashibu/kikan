@@ -36,8 +36,10 @@ namespace Bunashibu.Kikan {
           return;
         }
 
+        /*
         _player.Gold.Subtract(_coreList[i].Gold);
         _player.Gold.UpdateView();
+        */
 
         _coreList[i].LvUp();
         photonView.RPC("SyncCoreLvUp", PhotonTargets.Others, i);
