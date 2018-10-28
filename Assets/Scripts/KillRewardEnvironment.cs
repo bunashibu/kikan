@@ -17,13 +17,13 @@ namespace Bunashibu.Kikan {
         var rewardTaker = ((GameObject)args[0]).GetComponent<IRewardTaker>();
         Assert.IsNotNull(rewardTaker);
 
-        _notifier.Add(rewardTaker.OnNotify);
-        rewardTaker.Teammates.ForEach(teammate => _notifier.Add(teammate.OnNotify) );
+        _notifier.AddListener(rewardTaker.OnNotify);
+        rewardTaker.Teammates.ForEach(teammate => _notifier.AddListener(teammate.OnNotify) );
 
         var killedOne = (IBattle)args[1];
         _notifier.Notify(Notification.GetKillReward, GetKillRewardFrom(killedOne, rewardTaker.Teammates.Count), rewardTaker);
 
-        _notifier.RemoveAll();
+        _notifier.RemoveAllListeners();
       }
     }
 

@@ -4,9 +4,8 @@ using UnityEngine;
 using UnityEngine.Assertions;
 
 namespace Bunashibu.Kikan {
-  public class EnemyMediator {
+  public class EnemyMediator : Mediator {
     public EnemyMediator(Enemy enemy) {
-      Notifier = new Notifier();
       _enemy = enemy;
     }
 
@@ -15,24 +14,22 @@ namespace Bunashibu.Kikan {
         case Notification.EnemyInstantiated:
           Assert.IsTrue(args.Length == 0);
 
-          Notifier.Notify(Notification.InitializeHp, _enemy.Data.Hp);
+          _notifier.Notify(Notification.InitializeHp, _enemy.Data.Hp);
 
           break;
         case Notification.TakeDamage:
           Assert.IsTrue(args.Length == 3);
 
-          Notifier.Notify(Notification.TakeDamage, args[0], args[1], args[2], _enemy);
+          _notifier.Notify(Notification.TakeDamage, args[0], args[1], args[2], _enemy);
 
           if (_enemy.Hp.Cur == _enemy.Hp.Min)
-            Notifier.Notify(Notification.Killed, args[0], _enemy);
+            _notifier.Notify(Notification.Killed, args[0], _enemy);
 
           break;
         default:
           break;
       }
     }
-
-    public Notifier Notifier { get; private set; }
 
     private Enemy _enemy;
   }

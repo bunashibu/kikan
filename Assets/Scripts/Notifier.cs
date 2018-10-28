@@ -11,7 +11,7 @@ namespace Bunashibu.Kikan {
 
     public Notifier(params Action<Notification, object[]>[] onNotifyList) : this() {
       foreach (var onNotify in onNotifyList)
-        Add(onNotify);
+        AddListener(onNotify);
     }
 
     public void Notify(Notification notification, params object[] args) {
@@ -19,11 +19,11 @@ namespace Bunashibu.Kikan {
         onNotify(notification, args);
     }
 
-    public void Add(Action<Notification, object[]> onNotify) {
+    public void AddListener(Action<Notification, object[]> onNotify) {
       _onNotifyList.Add(onNotify);
     }
 
-    public void RemoveAll() {
+    public void RemoveAllListeners() {
       _onNotifyList = new List<Action<Notification, object[]>>();
     }
 

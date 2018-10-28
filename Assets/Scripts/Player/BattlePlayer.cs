@@ -20,10 +20,10 @@ namespace Bunashibu.Kikan {
       PlayerInfo    = new PlayerInfo(this);
 
       if (StageReference.Instance.StageData.Name == "Battle") {
-        _mediator.Notifier.Add(Hp.OnNotify);
+        _mediator.AddListener(Hp.OnNotify);
         // NOTE: Below environments exist in "Battle" global space
-        _mediator.Notifier.Add(NumberPopupEnvironment.Instance.OnNotify);
-        _mediator.Notifier.Add(KillRewardEnvironment.Instance.OnNotify);
+        _mediator.AddListener(NumberPopupEnvironment.Instance.OnNotify);
+        _mediator.AddListener(KillRewardEnvironment.Instance.OnNotify);
       }
     }
 
@@ -32,7 +32,7 @@ namespace Bunashibu.Kikan {
         _audioListener.enabled = false;
 
         if (StageReference.Instance.StageData.Name == "Battle")
-          Hp.Notifier.Add(_worldHpBar.OnNotify);
+          Hp.Notifier.AddListener(_worldHpBar.OnNotify);
 
         var notifier = new Notifier(_mediator.OnNotify);
         notifier.Notify(Notification.PlayerInstantiated);

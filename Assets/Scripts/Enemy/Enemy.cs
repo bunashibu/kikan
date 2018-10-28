@@ -13,11 +13,11 @@ namespace Bunashibu.Kikan {
       StateTransfer = new StateTransfer(_initState, _animator);
       Hp            = new EnemyHp();
 
-      Hp.Notifier.Add(_hpBar.OnNotify);
+      Hp.Notifier.AddListener(_hpBar.OnNotify);
 
-      _mediator.Notifier.Add(Hp.OnNotify);
-      _mediator.Notifier.Add(NumberPopupEnvironment.Instance.OnNotify);
-      _mediator.Notifier.Add(KillRewardEnvironment.Instance.OnNotify);
+      _mediator.AddListener(Hp.OnNotify);
+      _mediator.AddListener(NumberPopupEnvironment.Instance.OnNotify);
+      _mediator.AddListener(KillRewardEnvironment.Instance.OnNotify);
 
       var notifier = new Notifier(_mediator.OnNotify);
       notifier.Notify(Notification.EnemyInstantiated);
