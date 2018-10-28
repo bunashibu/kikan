@@ -11,7 +11,7 @@ namespace Bunashibu.Kikan {
       var skillUser = _skillUserObj.GetComponent<BattlePlayer>();
 
       int addition = skillUser.Level.Lv * 50 + (int)(Random.value * 100);
-      skillUser.Hp.Add(2000 + addition);
+      //skillUser.Hp.Add(2000 + addition);
       skillUser.Hp.UpdateView();
     }
   }

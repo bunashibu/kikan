@@ -42,16 +42,16 @@ namespace Bunashibu.Kikan {
   public enum Notification {
     PlayerInstantiated,
     EnemyInstantiated,
-    InitializeHp,
+    Initialize,
 
     HpUpdated,
     ExpUpdated,
 
     TakeDamage,
-    TakeCriticalDamage,
 
     Killed,
-    GetKillReward
+    GetKillReward,
+    LevelUp
   }
 }
 

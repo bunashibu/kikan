@@ -35,7 +35,7 @@ namespace Bunashibu.Kikan {
 
         if (_player.Hp.Cur <= 0 ) return;
 
-        _player.Hp.Add(HealQuantity);
+        //_player.Hp.Add(HealQuantity);
         _player.Observer.SyncCurHp();
 
         _player.Hp.UpdateView();

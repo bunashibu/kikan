@@ -177,14 +177,14 @@ namespace Bunashibu.Kikan {
     private void DamageToPlayer(BattlePlayer target, BattlePlayer skillUser) {
       DamageCalculator.Calculate(_skillUserObj, _attackInfo);
 
-      target.Hp.Subtract(DamageCalculator.Damage);
+      //target.Hp.Subtract(DamageCalculator.Damage);
       target.Hp.UpdateView();
     }
 
     private void DamageToEnemy(Enemy target, BattlePlayer skillUser) {
       DamageCalculator.Calculate(_skillUserObj, _attackInfo);
 
-      target.Hp.Subtract(DamageCalculator.Damage);
+      //target.Hp.Subtract(DamageCalculator.Damage);
       target.Hp.UpdateView(skillUser.PhotonView.owner);
     }
 

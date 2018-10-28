@@ -18,8 +18,8 @@ namespace Bunashibu.Kikan {
         return;
 
       var damage = _baseDamage + (int)(Random.value * _positiveDeviation);
-      target.Hp.Subtract(damage);
-      target.Hp.UpdateView();
+      //target.Hp.Subtract(damage);
+      //target.Hp.UpdateView();
       //target.NumberPopupEnvironment.Popup(damage, false, target.DamageSkin.Id, PopupType.Player);
 
       target.State.Invincible = true;

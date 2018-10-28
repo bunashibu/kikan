@@ -15,6 +15,7 @@ namespace Bunashibu.Kikan {
       State         = new CharacterState(_ladderCollider, _footCollider);
       BuffState     = new BuffState(Observer);
       Hp            = new PlayerHp();
+      Exp           = new Exp();
       StateTransfer = new StateTransfer(_initState, _animator);
       SkillInfo     = new SkillInfo();
       PlayerInfo    = new PlayerInfo(this);
@@ -68,6 +69,7 @@ namespace Bunashibu.Kikan {
     public CharacterState       State         { get; private set; }
     public BuffState            BuffState     { get; private set; }
     public PlayerHp             Hp            { get; private set; }
+    public Exp                  Exp           { get; private set; }
     public StateTransfer        StateTransfer { get; private set; }
     public SkillInfo            SkillInfo     { get; private set; }
     public PlayerInfo           PlayerInfo    { get; private set; }
@@ -79,7 +81,8 @@ namespace Bunashibu.Kikan {
                                     return (int)(Status.Atk * Status.MulCorrectionAtk * ratio); } }
     public int Critical     => Core.Critical;
 
-    public ReadOnlyCollection<int> HpTable => _hpTable.Data;
+    public ReadOnlyCollection<int> HpTable  => _hpTable.Data;
+    public ReadOnlyCollection<int> ExpTable => _expTable.Data;
 
     public NameBackground NameBackground { get { return _nameBackground; } }
     public PopupRemark    PopupRemark    { get { return _popupRemark;    } }
@@ -122,6 +125,7 @@ namespace Bunashibu.Kikan {
 
     [Header("Data")]
     [SerializeField] private DataTable _hpTable;
+    [SerializeField] private DataTable _expTable;
     [SerializeField] private Bar       _worldHpBar;
 
     // Consider

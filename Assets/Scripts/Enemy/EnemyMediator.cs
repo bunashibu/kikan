@@ -14,7 +14,7 @@ namespace Bunashibu.Kikan {
         case Notification.EnemyInstantiated:
           Assert.IsTrue(args.Length == 0);
 
-          _notifier.Notify(Notification.InitializeHp, _enemy.Data.Hp);
+          _notifier.Notify(Notification.Initialize, _enemy.Data.Hp);
 
           break;
         case Notification.TakeDamage:

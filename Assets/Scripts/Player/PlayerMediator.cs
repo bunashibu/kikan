@@ -14,7 +14,7 @@ namespace Bunashibu.Kikan {
         case Notification.PlayerInstantiated:
           Assert.IsTrue(args.Length == 0);
 
-          _notifier.Notify(Notification.InitializeHp, _player.HpTable[0]);
+          _notifier.Notify(Notification.Initialize, _player.HpTable[0], _player.ExpTable[0]);
 
           break;
         case Notification.TakeDamage:
@@ -36,6 +36,9 @@ namespace Bunashibu.Kikan {
             _notifier.Notify(Notification.GetKillReward, killReward.MainExp, killReward.MainGold);
           else
             _notifier.Notify(Notification.GetKillReward, killReward.SubExp, killReward.SubGold);
+
+          if (_player.Exp.Cur == _player.Exp.Max)
+            _notifier.Notify(Notification.LevelUp);
 
           break;
         default:

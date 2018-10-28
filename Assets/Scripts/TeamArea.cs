@@ -26,7 +26,7 @@ namespace Bunashibu.Kikan {
 
         target.State.Invincible = true;
         MonoUtility.Instance.DelaySec(2.0f, () => { target.State.Invincible = false; } );
-        target.Hp.Subtract(_damage);
+        //target.Hp.Subtract(_damage);
         //target.NumberPopupEnvironment.Popup(_damage, false, target.DamageSkin.Id, PopupType.Player);
       }
 

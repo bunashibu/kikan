@@ -4,14 +4,15 @@ using UnityEngine;
 using UnityEngine.Assertions;
 
 namespace Bunashibu.Kikan {
-  public class PlayerHp : Hp {
+  public class PlayerHp : Gauge {
     public override void OnNotify(Notification notification, object[] args) {
       switch (notification) {
-        case Notification.InitializeHp:
-          Assert.IsTrue(args.Length == 1);
+        case Notification.Initialize:
+          Assert.IsTrue(args.Length == 2);
 
-          Cur = (int)args[0];
-          Max = (int)args[0];
+          int initialHp = (int)args[0];
+          Cur = initialHp;
+          Max = initialHp;
 
           _notifier.Notify(Notification.HpUpdated, Cur, Max);
 
@@ -29,6 +30,18 @@ namespace Bunashibu.Kikan {
           break;
       }
     }
+
+    // NOTE: Obsolete methods. Just exists because of backward compatibilty.
+    public void UpdateView() {}
+    public void UpdateView(PhotonPlayer skillOwner) {}
+    public void FullRecover() {}
+    public void AttachHudBar(Bar hudBar) {}
+    public void UpdateMaxHp() {}
+    public void ForceSync(int cur, int max) {}
+    public void ForceSyncCur(int cur) {}
+    public void ForceSyncMax(int max) {}
+    public void ForceSyncUpdateView() {}
+    public void ForceSyncUpdateView(PhotonPlayer skillOwner) {}
   }
 }
 
