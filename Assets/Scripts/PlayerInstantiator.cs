@@ -87,9 +87,7 @@ namespace Bunashibu.Kikan {
     }
 
     private void InitPlayerExp() {
-      var playerNextExp = _player.NextExp;
-      playerNextExp.Init(_expBar);
-      playerNextExp.UpdateView();
+      _player.Exp.AddListener(_expBar.OnNotify);
     }
 
     private void InitPlayerLv() {

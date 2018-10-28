@@ -38,7 +38,7 @@ namespace Bunashibu.Kikan {
             _notifier.Notify(Notification.GetKillReward, killReward.SubExp, killReward.SubGold);
 
           if (_player.Exp.Cur == _player.Exp.Max)
-            _notifier.Notify(Notification.LevelUp);
+            _notifier.Notify(Notification.ExpIsMax);
 
           break;
         default:

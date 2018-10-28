@@ -51,6 +51,7 @@ namespace Bunashibu.Kikan {
 
     Killed,
     GetKillReward,
+    ExpIsMax,
     LevelUp
   }
 }

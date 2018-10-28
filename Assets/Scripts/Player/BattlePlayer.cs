@@ -22,6 +22,7 @@ namespace Bunashibu.Kikan {
 
       if (StageReference.Instance.StageData.Name == "Battle") {
         _mediator.AddListener(Hp.OnNotify);
+        _mediator.AddListener(Exp.OnNotify);
         // NOTE: Below environments exist in "Battle" global space
         _mediator.AddListener(NumberPopupEnvironment.Instance.OnNotify);
         _mediator.AddListener(KillRewardEnvironment.Instance.OnNotify);
