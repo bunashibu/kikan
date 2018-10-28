@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
-  public class Mediator {
-    public Mediator() {
+  public class Duplexer {
+    public Duplexer() {
       _notifier = new Notifier();
     }
 

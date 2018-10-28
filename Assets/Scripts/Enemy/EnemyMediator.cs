@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Assertions;
 
 namespace Bunashibu.Kikan {
-  public class EnemyMediator : Mediator {
+  public class EnemyMediator : Duplexer {
     public EnemyMediator(Enemy enemy) {
       _enemy = enemy;
     }
