@@ -10,7 +10,7 @@ namespace Bunashibu.Kikan {
       var attacker = PhotonView.Find(attackerViewID).gameObject;
       Assert.IsNotNull(attacker);
 
-      var target = PhotonView.Find(targetViewID).gameObject.GetComponent<IMediator>();
+      var target = PhotonView.Find(targetViewID).gameObject.GetComponent<IMediatorAdaptor>();
       Assert.IsNotNull(target);
 
       var notifier = new Notifier(target.OnNotify);

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
-  public interface ICharacter : IMediator {
+  public interface ICharacter {
     Transform      Transform    { get; }
     Rigidbody2D    Rigid        { get; }
     Collider2D     BodyCollider { get; }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
-  public interface IRewardTaker : IMediator {
+  public interface IRewardTaker : IMediatorAdaptor {
     List<IBattle> Teammates { get; }
   }
 }
