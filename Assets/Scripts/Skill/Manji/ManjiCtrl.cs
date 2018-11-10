@@ -7,7 +7,6 @@ namespace Bunashibu.Kikan {
   public class ManjiCtrl : Skill {
     void Awake() {
       _targetRistrictor  = new TargetRistrictor(_targetNum, _dupHitNum);
-      _killDeathRecorder = new KillDeathRecorder();
     }
 
     void Start() {
@@ -189,7 +188,6 @@ namespace Bunashibu.Kikan {
     }
 
     private void ProceedPlayerDeath(BattlePlayer target, BattlePlayer skillUser) {
-      _killDeathRecorder.RecordKillDeath(target, skillUser);
     }
 
     private void ProceedEnemyDeath(Enemy target, BattlePlayer skillUser) {
@@ -207,7 +205,6 @@ namespace Bunashibu.Kikan {
     private float _moveDistance = 3;
 
     private TargetRistrictor  _targetRistrictor;
-    private KillDeathRecorder _killDeathRecorder;
   }
 }
 

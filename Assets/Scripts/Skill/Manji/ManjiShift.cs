@@ -6,7 +6,6 @@ namespace Bunashibu.Kikan {
   public class ManjiShift : Skill {
     void Awake() {
       _targetRistrictor  = new TargetRistrictor(_targetNum, _dupHitNum);
-      _killDeathRecorder = new KillDeathRecorder();
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
@@ -81,7 +80,6 @@ namespace Bunashibu.Kikan {
     }
 
     private void ProceedPlayerDeath(BattlePlayer target, BattlePlayer skillUser) {
-      _killDeathRecorder.RecordKillDeath(target, skillUser);
     }
 
     private void ProceedEnemyDeath(Enemy target, BattlePlayer skillUser) {
@@ -94,7 +92,6 @@ namespace Bunashibu.Kikan {
     [SerializeField] private int _dupHitNum;
 
     private TargetRistrictor  _targetRistrictor;
-    private KillDeathRecorder _killDeathRecorder;
   }
 }
 
