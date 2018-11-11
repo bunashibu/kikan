@@ -46,8 +46,10 @@ namespace Bunashibu.Kikan {
 
         Level.AddListener(_mediator.OnNotify);
 
-        if (PhotonView.isMine)
+        if (PhotonView.isMine) {
           _worldHpBar.gameObject.SetActive(false);
+          CameraInitializer.Instance.RegisterToTrackTarget(gameObject);
+        }
         else {
           Hp.AddListener(_worldHpBar.OnNotify);
           _audioListener.enabled = false;
@@ -57,7 +59,6 @@ namespace Bunashibu.Kikan {
 
     void Start() {
       PlayerInitializer.Instance.Initialize(this);
-      CameraInitializer.Instance.RegisterToTrackTarget(gameObject);
     }
 
     void FixedUpdate() {
