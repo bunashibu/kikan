@@ -31,6 +31,7 @@ namespace Bunashibu.Kikan {
       SkillInfo     = new SkillInfo();
       PlayerInfo    = new PlayerInfo(this);
 
+      RxHp       = new IntReactiveGauge(0);
       KillCount  = new ReactiveProperty<int>(0);
       DeathCount = new ReactiveProperty<int>(0);
 
@@ -105,6 +106,7 @@ namespace Bunashibu.Kikan {
                                     return (int)(Status.Atk * Status.MulCorrectionAtk * ratio); } }
     public int Critical     => Core.Critical;
 
+    public IntReactiveGauge      RxHp       { get; private set; }
     public ReactiveProperty<int> KillCount  { get; private set; }
     public ReactiveProperty<int> DeathCount { get; private set; }
 

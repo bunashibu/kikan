@@ -74,22 +74,22 @@ namespace Bunashibu.Kikan {
     /* Hp RPC */
     [PunRPC]
     private void SyncHpRPC(int cur, int max) {
-      ForceSync("Hp", () => _player.Hp.ForceSync(cur, max));
+      //ForceSync("Hp", () => _player.Hp.ForceSync(cur, max));
     }
 
     [PunRPC]
     private void SyncCurHpRPC(int cur) {
-      ForceSync("CurHp", () => _player.Hp.ForceSyncCur(cur));
+      //ForceSync("CurHp", () => _player.Hp.ForceSyncCur(cur));
     }
 
     [PunRPC]
     private void SyncMaxHpRPC(int max) {
-      ForceSync("MaxHp", () => _player.Hp.ForceSyncMax(max));
+      //ForceSync("MaxHp", () => _player.Hp.ForceSyncMax(max));
     }
 
     [PunRPC]
     private void SyncUpdateHpViewRPC() {
-      ForceSync("UpdateHpView", () => _player.Hp.ForceSyncUpdateView());
+      //ForceSync("UpdateHpView", () => _player.Hp.ForceSyncUpdateView());
     }
 
     /* Team RPC */

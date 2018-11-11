@@ -11,7 +11,7 @@ namespace Bunashibu.Kikan {
 
     void Update() {
       if (photonView.isMine) {
-        bool isInjured = (_player.Hp.Cur < _player.Hp.Max);
+        bool isInjured = (_player.Hp.Cur< _player.Hp.Max);
 
         if (isInjured)
           AutomaticHeal();
@@ -38,7 +38,7 @@ namespace Bunashibu.Kikan {
         //_player.Hp.Add(HealQuantity);
         _player.Observer.SyncCurHp();
 
-        _player.Hp.UpdateView();
+        //_player.Hp.UpdateView();
         _player.Observer.SyncUpdateHpView();
       });
     }
