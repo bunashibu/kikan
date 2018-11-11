@@ -10,8 +10,12 @@ namespace Bunashibu.Kikan {
     public void Initialize(BattlePlayer player) {
       SetViewID(player);
 
-      player.KillCount.Subscribe(killCount => _kdPanel.UpdateKill(killCount, player.PhotonView.owner));
-      player.DeathCount.Subscribe(deathCount => _kdPanel.UpdateDeath(deathCount, player.PhotonView.owner));
+      player.KillCount
+        .Subscribe(killCount => _kdPanel.UpdateKill(killCount, player.PhotonView.owner))
+        .AddTo(_kdPanel.gameObject);
+      player.DeathCount
+        .Subscribe(deathCount => _kdPanel.UpdateDeath(deathCount, player.PhotonView.owner))
+        .AddTo(_kdPanel.gameObject);
 
       InitPlayerTeam(player);
       player.Core.Init(_corePanel);

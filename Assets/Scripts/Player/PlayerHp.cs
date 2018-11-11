@@ -43,7 +43,7 @@ namespace Bunashibu.Kikan {
     // NOTE: Obsolete methods. Just exists because of backward compatibilty.
     public void UpdateView() {}
     public void UpdateView(PhotonPlayer skillOwner) {}
-    public void FullRecover() {}
+    public void FullRecover() { Cur = Max; }
     public void AttachHudBar(Bar hudBar) {}
     public void UpdateMaxHp() {}
     public void ForceSync(int cur, int max) {}
