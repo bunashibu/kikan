@@ -19,6 +19,18 @@ namespace Bunashibu.Kikan {
       //UpdatePlayerCell();
     }
 
+    public void UpdateKill(int killCount, PhotonPlayer player) {
+      int team = _playerCellInfo[player].team;
+      int index = _playerCellInfo[player].index;
+      _teamPanels[team].UpdateKillView(killCount, index);
+    }
+
+    public void UpdateDeath(int deathCount, PhotonPlayer player) {
+      int team = _playerCellInfo[player].team;
+      int index = _playerCellInfo[player].index;
+      _teamPanels[team].UpdateDeathView(deathCount, index);
+    }
+
     private void UpdatePlayerCell() {
       int index = 0;
       int redIndex = 0;

@@ -4,14 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace Bunashibu.Kikan {
-  public class JobPanel : Photon.PunBehaviour {
+  public class JobPanel : MonoBehaviour {
     void Start() {
       EnableAllButtons();
 
       MonoUtility.Instance.DelaySec(1.0f, () => { //DEBUG
         ActivatePlayer();
 
-        Destroy(_playerInstantiator);
         Destroy(gameObject);
       });
     }
@@ -30,9 +29,8 @@ namespace Bunashibu.Kikan {
       if (_index == -1)
         RandomPick();
 
-      _playerInstantiator.InstantiatePlayer(_jobs[_index].name);
-      _playerInstantiator.InstantiateHudObjects(_canvas, _skillPanelList[_index]);
-      _playerInstantiator.InitAll(_jobStatus[_index]);
+      _instantiator.InstantiatePlayer(_jobs[_index].name);
+      _instantiator.InstantiateHudObjects(_canvas, _skillPanelList[_index]);
     }
 
     private void EnableAllButtons() {
@@ -45,11 +43,10 @@ namespace Bunashibu.Kikan {
         button.interactable = false;
     }
 
-    [SerializeField] private PlayerInstantiator _playerInstantiator;
+    [SerializeField] private StartUpInstantiator _instantiator;
     [SerializeField] private Canvas _canvas;
     [SerializeField] private GameObject[] _jobs;
     [SerializeField] private Button[] _buttons;
-    [SerializeField] private JobStatus[] _jobStatus;
     [SerializeField] private List<SkillPanel> _skillPanelList;
     private int _index = -1;
   }

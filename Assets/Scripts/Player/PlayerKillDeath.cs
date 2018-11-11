@@ -4,31 +4,25 @@ using UnityEngine;
 using UnityEngine.Assertions;
 
 namespace Bunashibu.Kikan {
-  public class PlayerKillDeath : KillDeath {
-    [PunRPC]
-    private void SyncKillDeathInit(int kdViewID) {
-      var kdPanel = PhotonView.Find(kdViewID).gameObject.GetComponent<KillDeathPanel>();
-      _kdPanel = kdPanel;
+  public class PlayerKillDeath : Duplexer {
+    public PlayerKillDeath() {
+      KillCount  = 0;
+      DeathCount = 0;
     }
 
-    public void Init(KillDeathPanel kdPanel) {
-      Assert.IsTrue(photonView.isMine);
+    public override void OnNotify(Notification notification, object[] args) {
+      switch (notification) {
+        case Notification.GetKillReward:
+          Assert.IsTrue(args.Length == 2);
 
-      Init();
-
-      var kdViewID = kdPanel.GetComponent<PhotonView>().viewID;
-      photonView.RPC("SyncKillDeathInit", PhotonTargets.All, kdViewID);
+          break;
+        default:
+          break;;
+      }
     }
 
-    public void UpdateKillView() {
-      _kdPanel.UpdateKillView(KillCount, photonView.owner);
-    }
-
-    public void UpdateDeathView() {
-      _kdPanel.UpdateDeathView(DeathCount, photonView.owner);
-    }
-
-    private KillDeathPanel _kdPanel;
+    public int KillCount  { get; private set; }
+    public int DeathCount { get; private set; }
   }
 }
 

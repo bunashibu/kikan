@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UniRx;
 
 namespace Bunashibu.Kikan {
   // PLAN: BattlePlayer will be merged with LobbyPlayer.
@@ -24,18 +25,25 @@ namespace Bunashibu.Kikan {
       Exp           = new PlayerExp();
       Level         = new PlayerLevel();
       Gold          = new PlayerGold();
+      KillDeath     = new PlayerKillDeath();
       StateTransfer = new StateTransfer(_initState, _animator);
       SkillInfo     = new SkillInfo();
       PlayerInfo    = new PlayerInfo(this);
+
+      KillCount  = new ReactiveProperty<int>(0);
+      DeathCount = new ReactiveProperty<int>(0);
 
       if (StageReference.Instance.StageData.Name == "Battle") {
         _mediator.AddListener(Hp.OnNotify);
         _mediator.AddListener(Exp.OnNotify);
         _mediator.AddListener(Level.OnNotify);
         _mediator.AddListener(Gold.OnNotify);
+        _mediator.AddListener(KillDeath.OnNotify);
+
         // NOTE: Below environments exist in "Battle" global space
         _mediator.AddListener(NumberPopupEnvironment.Instance.OnNotify);
         _mediator.AddListener(KillRewardEnvironment.Instance.OnNotify);
+
         Level.AddListener(_mediator.OnNotify);
       }
     }
@@ -84,6 +92,7 @@ namespace Bunashibu.Kikan {
     public PlayerExp            Exp           { get; private set; }
     public PlayerLevel          Level         { get; private set; }
     public PlayerGold           Gold          { get; private set; }
+    public PlayerKillDeath      KillDeath     { get; private set; }
     public StateTransfer        StateTransfer { get; private set; }
     public SkillInfo            SkillInfo     { get; private set; }
     public PlayerInfo           PlayerInfo    { get; private set; }
@@ -97,6 +106,9 @@ namespace Bunashibu.Kikan {
                                     return (int)(Status.Atk * Status.MulCorrectionAtk * ratio); } }
     public int Critical     => Core.Critical;
 
+    public ReactiveProperty<int> KillCount  { get; private set; }
+    public ReactiveProperty<int> DeathCount { get; private set; }
+
     public ReadOnlyCollection<int> HpTable  => _hpTable.Data;
     public ReadOnlyCollection<int> ExpTable => _expTable.Data;
 
@@ -105,20 +117,12 @@ namespace Bunashibu.Kikan {
 
     public Character2D    Character { get { return _character; } }
 
-    //
-    // Consider
-    //
-    public PlayerKillDeath KillDeath { get { return _killDeath; } }
     public PlayerCore      Core      { get { return _core;      } }
 
     public PlayerStatus    Status     { get { return _status;     } }
     public DamageSkin      DamageSkin { get { return _damageSkin; } }
 
     public Weapon          Weapon { get { return _weapon; } }
-
-    // portal
-    // respawner
-    // automatic healer
 
     [Header("Unity/Photon Components")]
     [SerializeField] private PhotonView       _photonView;
@@ -144,9 +148,8 @@ namespace Bunashibu.Kikan {
 
     [SerializeField] private Bar       _worldHpBar;
 
-    // Consider
+    // Obsolete
     [Header("Sync On Their Own")]
-    [SerializeField] private PlayerKillDeath _killDeath;
     [SerializeField] private PlayerCore      _core;
 
     [Header("Canvas")]
