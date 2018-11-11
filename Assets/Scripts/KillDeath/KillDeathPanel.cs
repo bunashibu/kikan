@@ -42,7 +42,8 @@ namespace Bunashibu.Kikan {
         if (team == 0) {
           index = redIndex;
           ++redIndex;
-        } else if (team == 1) {
+        }
+        else if (team == 1) {
           index = blueIndex;
           ++blueIndex;
         }

@@ -10,7 +10,8 @@ namespace Bunashibu.Kikan {
         stream.SendNext(_anim.GetBool("X"));
         stream.SendNext(_anim.GetBool("Shift"));
         stream.SendNext(_anim.GetBool("Z"));
-      } else {
+      }
+      else {
         _renderer.flipX = (bool)stream.ReceiveNext();
         _anim.SetBool("X", (bool)stream.ReceiveNext());
         _anim.SetBool("Shift", (bool)stream.ReceiveNext());

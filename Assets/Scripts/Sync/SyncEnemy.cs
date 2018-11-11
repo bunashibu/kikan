@@ -9,7 +9,8 @@ namespace Bunashibu.Kikan {
         stream.SendNext(_renderer.flipX);
         stream.SendNext(_anim.GetBool("Idle"));
         stream.SendNext(_anim.GetBool("Die"));
-      } else {
+      }
+      else {
         _renderer.flipX = (bool)stream.ReceiveNext();
         _anim.SetBool("Idle", (bool)stream.ReceiveNext());
         _anim.SetBool("Die", (bool)stream.ReceiveNext());

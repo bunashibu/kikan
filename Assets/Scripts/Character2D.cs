@@ -33,11 +33,13 @@ namespace Bunashibu.Kikan {
           float sign = Mathf.Sign(hitGround.normal.x);
           _character.State.GroundLeft  = (sign == 1 ) ? true : false;
           _character.State.GroundRight = (sign == -1) ? true : false;
-        } else {
+        }
+        else {
           _character.State.GroundLeft  = false;
           _character.State.GroundRight = false;
         }
-      } else {
+      }
+      else {
         _character.State.GroundAngle = 0;
         _character.State.GroundLeft  = false;
         _character.State.GroundRight = false;

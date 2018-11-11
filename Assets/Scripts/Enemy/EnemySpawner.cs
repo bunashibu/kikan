@@ -30,9 +30,9 @@ namespace Bunashibu.Kikan {
       var threshold = Random.value;
 
       _spawnRatio.Aggregate((probability, x) => {
-        if (probability > threshold) {
+        if (probability > threshold)
           return probability;
-        } else {
+        else {
           index += 1;
           return probability + x;
         }

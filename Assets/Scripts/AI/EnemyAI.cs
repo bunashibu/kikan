@@ -42,7 +42,8 @@ namespace Bunashibu.Kikan {
         if (_strategy == "MoveLeft") {
           degAngle *= _enemy.State.GroundLeft ? 1 : -1;
           _movement.GroundMoveLeft(degAngle);
-        } else if (_strategy == "MoveRight") {
+        }
+        else if (_strategy == "MoveRight") {
           degAngle *= _enemy.State.GroundRight ? 1 : -1;
           _movement.GroundMoveRight(degAngle);
         }
@@ -57,10 +58,12 @@ namespace Bunashibu.Kikan {
       if (rand < 0.4) {
         _strategy = "MoveRight";
         _enemy.Renderer.flipX = true;
-      } else if (rand < 0.8) {
+      }
+      else if (rand < 0.8) {
         _strategy = "MoveLeft";
         _enemy.Renderer.flipX = false;
-      } else
+      }
+      else
         _strategy = "Stay";
     }
 

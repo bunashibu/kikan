@@ -15,7 +15,8 @@ namespace Bunashibu.Kikan {
         stream.SendNext(_anim.GetBool("GroundJump" ));
         stream.SendNext(_anim.GetBool("LadderJump" ));
         stream.SendNext(_anim.GetBool("Skill"      ));
-      } else {
+      }
+      else {
         _renderer.flipX = (bool)stream.ReceiveNext();
         _anim.SetBool("Idle"       , (bool)stream.ReceiveNext());
         _anim.SetBool("Fall"       , (bool)stream.ReceiveNext());

@@ -13,12 +13,13 @@ namespace Bunashibu.Kikan {
       if (name == "RED") {
         ColorName = name;
         _image.color = Color.HSVToRGB(0.0f, 183.0f/ 255.0f, 1.0f);
-      } else if (name == "BLUE") {
+      }
+      else if (name == "BLUE") {
         ColorName = name;
         _image.color = Color.HSVToRGB(217.0f / 359.0f, 183.0f / 255.0f, 1.0f);
-      } else {
-        Debug.Log("Color Error in NameBackground");
       }
+      else
+        Debug.Log("Color Error in NameBackground");
     }
 
     public string ColorName { get; private set; }

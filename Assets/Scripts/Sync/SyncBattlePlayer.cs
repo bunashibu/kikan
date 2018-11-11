@@ -20,7 +20,8 @@ namespace Bunashibu.Kikan {
         stream.SendNext(_player.Animator.GetBool("Skill"      ));
         stream.SendNext(_player.Animator.GetBool("Die"        ));
         stream.SendNext(_player.Animator.GetBool("Stun"       ));
-      } else {
+      }
+      else {
         _player.Rigid.position = (Vector2)stream.ReceiveNext();
         _player.Rigid.velocity = (Vector2)stream.ReceiveNext();
 

@@ -37,10 +37,9 @@ namespace Bunashibu.Kikan {
       if (_targetDictionary[target] < _dupHitNum) {
         _targetDictionary[target] += 1;
         return false;
-
-      } else {
-        return true;
       }
+      else
+        return true;
     }
 
     private Dictionary<IBattle, int> _targetDictionary;
