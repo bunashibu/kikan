@@ -6,17 +6,8 @@ using Hashtable = ExitGames.Client.Photon.Hashtable;
 using UniRx;
 
 namespace Bunashibu.Kikan {
-  public class PlayerInitializer : Photon.PunBehaviour {
-    public override void OnPhotonInstantiate(PhotonMessageInfo info) {
-      var instantiatedObj = PhotonView.Find(info.photonView.viewID).gameObject;
-
-      if (instantiatedObj.tag == "Player") {
-        var player = instantiatedObj.GetComponent<BattlePlayer>();
-        Initialize(player);
-      }
-    }
-
-    private void Initialize(BattlePlayer player) {
+  public class PlayerInitializer : SingletonMonoBehaviour<PlayerInitializer> {
+    public void Initialize(BattlePlayer player) {
       SetViewID(player);
 
       player.KillCount.Subscribe(killCount => _kdPanel.UpdateKill(killCount, player.PhotonView.owner));
@@ -24,11 +15,8 @@ namespace Bunashibu.Kikan {
 
       InitPlayerTeam(player);
       player.Core.Init(_corePanel);
-      //InitPlayerStatus(jobStatus);
-      //InitPlayerMovement(jobStatus);
-
-      var notifier = new Notifier(player.OnNotify);
-      notifier.Notify(Notification.PlayerInstantiated);
+      player.Movement.SetMoveForce(player.Status.Spd);
+      player.Movement.SetJumpForce(player.Status.Jmp);
 
       if (player.PhotonView.isMine) {
         Assert.IsNotNull(_instantiator.HpBar);
@@ -40,6 +28,9 @@ namespace Bunashibu.Kikan {
         player.Level.AddListener(_instantiator.LvPanel.OnNotify);
         player.Gold.AddListener(_goldPanel.OnNotify);
       }
+
+      var notifier = new Notifier(player.OnNotify);
+      notifier.Notify(Notification.PlayerInstantiated);
     }
 
     private void SetViewID(BattlePlayer player) {
@@ -67,25 +58,10 @@ namespace Bunashibu.Kikan {
       }
     }
 
-    private void InitPlayerStatus(JobStatus jobStatus) {
-      /*
-      var status = player.Status;
-      status.Init(jobStatus);
-      */
-    }
-
-    private void InitPlayerMovement(JobStatus jobStatus) {
-      /*
-      player.Movement.SetMoveForce(jobStatus.Spd);
-      player.Movement.SetJumpForce(jobStatus.Jmp);
-      */
-    }
-
     [SerializeField] private StartUpInstantiator _instantiator;
     [SerializeField] private KillDeathPanel _kdPanel;
     [SerializeField] private CorePanel _corePanel;
     [SerializeField] private GoldPanel _goldPanel;
-    [SerializeField] private JobStatus[] _jobStatus;
   }
 }
 

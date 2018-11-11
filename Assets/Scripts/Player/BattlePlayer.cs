@@ -26,6 +26,7 @@ namespace Bunashibu.Kikan {
       Level         = new PlayerLevel();
       Gold          = new PlayerGold();
       KillDeath     = new PlayerKillDeath();
+      Status        = new PlayerStatus(_jobStatus);
       StateTransfer = new StateTransfer(_initState, _animator);
       SkillInfo     = new SkillInfo();
       PlayerInfo    = new PlayerInfo(this);
@@ -38,29 +39,25 @@ namespace Bunashibu.Kikan {
         _mediator.AddListener(Exp.OnNotify);
         _mediator.AddListener(Level.OnNotify);
         _mediator.AddListener(Gold.OnNotify);
-        _mediator.AddListener(KillDeath.OnNotify);
 
         // NOTE: Below environments exist in "Battle" global space
         _mediator.AddListener(NumberPopupEnvironment.Instance.OnNotify);
         _mediator.AddListener(KillRewardEnvironment.Instance.OnNotify);
 
         Level.AddListener(_mediator.OnNotify);
+
+        if (PhotonView.isMine)
+          _worldHpBar.gameObject.SetActive(false);
+        else {
+          Hp.AddListener(_worldHpBar.OnNotify);
+          _audioListener.enabled = false;
+        }
       }
     }
 
-    void Start() { // CLEAN
-      if (PhotonView.owner != PhotonNetwork.player) {
-        _audioListener.enabled = false;
-
-        if (StageReference.Instance.StageData.Name == "Battle")
-          Hp.AddListener(_worldHpBar.OnNotify);
-
-        var notifier = new Notifier(_mediator.OnNotify);
-        notifier.Notify(Notification.PlayerInstantiated);
-      }
-      else {
-        _worldHpBar.gameObject.SetActive(false);
-      }
+    void Start() {
+      PlayerInitializer.Instance.Initialize(this);
+      CameraInitializer.Instance.RegisterToTrackTarget(gameObject);
     }
 
     void FixedUpdate() {
@@ -93,6 +90,7 @@ namespace Bunashibu.Kikan {
     public PlayerLevel          Level         { get; private set; }
     public PlayerGold           Gold          { get; private set; }
     public PlayerKillDeath      KillDeath     { get; private set; }
+    public PlayerStatus         Status        { get; private set; }
     public StateTransfer        StateTransfer { get; private set; }
     public SkillInfo            SkillInfo     { get; private set; }
     public PlayerInfo           PlayerInfo    { get; private set; }
@@ -119,7 +117,6 @@ namespace Bunashibu.Kikan {
 
     public PlayerCore      Core      { get { return _core;      } }
 
-    public PlayerStatus    Status     { get { return _status;     } }
     public DamageSkin      DamageSkin { get { return _damageSkin; } }
 
     public Weapon          Weapon { get { return _weapon; } }
@@ -146,11 +143,11 @@ namespace Bunashibu.Kikan {
     [SerializeField] private DataTable _killExpTable;
     [SerializeField] private DataTable _killGoldTable;
 
-    [SerializeField] private Bar       _worldHpBar;
+    [SerializeField] private Bar _worldHpBar;
 
     // Obsolete
     [Header("Sync On Their Own")]
-    [SerializeField] private PlayerCore      _core;
+    [SerializeField] private PlayerCore _core;
 
     [Header("Canvas")]
     [SerializeField] private NameBackground _nameBackground;
@@ -160,11 +157,11 @@ namespace Bunashibu.Kikan {
     [SerializeField] private Character2D _character;
 
     [Space(10)]
-    [SerializeField] private PlayerStatus _status;
-    [SerializeField] private DamageSkin   _damageSkin;
+    [SerializeField] private DamageSkin _damageSkin;
 
     [Space(10)]
-    [SerializeField] private Weapon _weapon;
+    [SerializeField] private JobStatus _jobStatus;
+    [SerializeField] private Weapon    _weapon;
 
     private static readonly string _initState = "Idle";
     private PlayerMediator _mediator;

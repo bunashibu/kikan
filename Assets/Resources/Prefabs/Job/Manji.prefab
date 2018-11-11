@@ -116,7 +116,6 @@ GameObject:
   - component: {fileID: 114800105221254742}
   - component: {fileID: 114409857702172010}
   - component: {fileID: 114386384119735554}
-  - component: {fileID: 114037318656622916}
   - component: {fileID: 114732547741241738}
   - component: {fileID: 114685664338584306}
   - component: {fileID: 114346652777482960}
@@ -627,17 +626,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _instantiator: {fileID: 114047511076577264}
---- !u!114 &114037318656622916
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1222958424102090}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc09d9ceceb3ec244a161bcb2c3bd07f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114037969435547560
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -977,13 +965,12 @@ MonoBehaviour:
   _killExpTable: {fileID: 11400000, guid: 791597593be91a545b78b225c074d878, type: 2}
   _killGoldTable: {fileID: 11400000, guid: 08f3819bcd389ae498dddc20a49a3239, type: 2}
   _worldHpBar: {fileID: 114301068641892260}
-  _killDeath: {fileID: 0}
   _core: {fileID: 114454518508664006}
   _nameBackground: {fileID: 114037969435547560}
   _popupRemark: {fileID: 114350780653676318}
   _character: {fileID: 114386384119735554}
-  _status: {fileID: 114037318656622916}
   _damageSkin: {fileID: 11400000, guid: 950c137ab9585e94aaf57f5f836cecd9, type: 2}
+  _jobStatus: {fileID: 11400000, guid: d4901d621e93d784fb9bb619c9dff702, type: 2}
   _weapon: {fileID: 114020719393736472}
 --- !u!114 &114350780653676318
 MonoBehaviour:

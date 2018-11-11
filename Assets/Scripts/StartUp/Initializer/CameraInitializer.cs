@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
-  public class CameraInitializer : MonoBehaviour {
+  public class CameraInitializer : SingletonMonoBehaviour<CameraInitializer> {
     void Awake() {
       SetCameraPosition();
-      //_trackCamera.SetTrackTarget(_player.gameObject);
+    }
+
+    public void RegisterToTrackTarget(GameObject obj) {
+      _trackCamera.SetTrackTarget(obj);
     }
 
     private void SetCameraPosition() {
