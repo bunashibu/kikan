@@ -27,7 +27,7 @@ namespace Bunashibu.Kikan {
         Assert.IsNotNull(_instantiator.ExpBar);
         Assert.IsNotNull(_instantiator.LvPanel);
 
-        player.Hp.AddListener(_instantiator.HpBar.OnNotify);
+        //player.Hp.AddListener(_instantiator.HpBar.OnNotify);
         player.Exp.AddListener(_instantiator.ExpBar.OnNotify);
         player.Level.AddListener(_instantiator.LvPanel.OnNotify);
         player.Gold.AddListener(_goldPanel.OnNotify);

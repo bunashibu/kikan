@@ -30,7 +30,7 @@ namespace Bunashibu.Kikan {
         //target.NumberPopupEnvironment.Popup(_damage, false, target.DamageSkin.Id, PopupType.Player);
       }
 
-      target.Hp.UpdateView();
+      //target.Hp.UpdateView();
     }
 
     [SerializeField] private int _team;

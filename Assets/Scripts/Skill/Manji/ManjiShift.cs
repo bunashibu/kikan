@@ -31,7 +31,7 @@ namespace Bunashibu.Kikan {
         DamageToPlayer(target, skillUser);
         //target.NumberPopupEnvironment.Popup(DamageCalculator.Damage, DamageCalculator.IsCritical, skillUser.DamageSkin.Id, PopupType.Player);
 
-        if (target.Hp.Cur <= 0)
+        if (target.Hp.Cur.Value <= 0)
           ProceedPlayerDeath(target, skillUser);
       }
     }
@@ -69,7 +69,7 @@ namespace Bunashibu.Kikan {
       DamageCalculator.Calculate(_skillUserObj, _attackInfo);
 
       //target.Hp.Subtract(DamageCalculator.Damage);
-      target.Hp.UpdateView();
+      //target.Hp.UpdateView();
     }
 
     private void DamageToEnemy(Enemy target, BattlePlayer skillUser) {

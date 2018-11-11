@@ -21,7 +21,7 @@ namespace Bunashibu.Kikan {
       Movement      = new BattlePlayerMovement(_core);
       State         = new CharacterState(_ladderCollider, _footCollider);
       BuffState     = new BuffState(Observer);
-      Hp            = new PlayerHp();
+      //Hp            = new PlayerHp();
       Exp           = new PlayerExp();
       Level         = new PlayerLevel();
       Gold          = new PlayerGold();
@@ -31,12 +31,12 @@ namespace Bunashibu.Kikan {
       SkillInfo     = new SkillInfo();
       PlayerInfo    = new PlayerInfo(this);
 
-      RxHp       = new IntReactiveGauge(0);
+      Hp         = new Hp(HpTable[0]);
       KillCount  = new ReactiveProperty<int>(0);
       DeathCount = new ReactiveProperty<int>(0);
 
       if (StageReference.Instance.StageData.Name == "Battle") {
-        _mediator.AddListener(Hp.OnNotify);
+        //_mediator.AddListener(Hp.OnNotify);
         _mediator.AddListener(Exp.OnNotify);
         _mediator.AddListener(Level.OnNotify);
         _mediator.AddListener(Gold.OnNotify);
@@ -52,7 +52,7 @@ namespace Bunashibu.Kikan {
           CameraInitializer.Instance.RegisterToTrackTarget(gameObject);
         }
         else {
-          Hp.AddListener(_worldHpBar.OnNotify);
+          //Hp.AddListener(_worldHpBar.OnNotify);
           _audioListener.enabled = false;
         }
       }
@@ -87,7 +87,7 @@ namespace Bunashibu.Kikan {
     public BattlePlayerMovement Movement      { get; private set; }
     public CharacterState       State         { get; private set; }
     public BuffState            BuffState     { get; private set; }
-    public PlayerHp             Hp            { get; private set; }
+    //public PlayerHp             Hp            { get; private set; }
     public PlayerExp            Exp           { get; private set; }
     public PlayerLevel          Level         { get; private set; }
     public PlayerGold           Gold          { get; private set; }
@@ -106,7 +106,7 @@ namespace Bunashibu.Kikan {
                                     return (int)(Status.Atk * Status.MulCorrectionAtk * ratio); } }
     public int Critical     => Core.Critical;
 
-    public IntReactiveGauge      RxHp       { get; private set; }
+    public Hp                    Hp         { get; private set; }
     public ReactiveProperty<int> KillCount  { get; private set; }
     public ReactiveProperty<int> DeathCount { get; private set; }
 

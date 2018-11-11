@@ -19,7 +19,7 @@ namespace Bunashibu.Kikan {
         _player.Hp.FullRecover();
         _player.Observer.SyncCurHp();
 
-        _player.Hp.UpdateView();
+        //_player.Hp.UpdateView();
         _player.Observer.SyncUpdateHpView();
 
         _player.BuffState.Reset();

@@ -11,12 +11,6 @@ namespace Bunashibu.Kikan {
       _max = new IntReactiveProperty();
     }
 
-    public IntReactiveGauge(int initialValue) : this() {
-      _cur.Value = initialValue;
-      _min.Value = initialValue;
-      _max.Value = initialValue;
-    }
-
     public void Add(int quantity) {
       _cur.Value += quantity;
       AdjustBoundary();
@@ -38,9 +32,9 @@ namespace Bunashibu.Kikan {
     public IReadOnlyReactiveProperty<int> Min => _min;
     public IReadOnlyReactiveProperty<int> Max => _max;
 
-    public IntReactiveProperty _cur { get; private set; }
-    public IntReactiveProperty _min { get; private set; }
-    public IntReactiveProperty _max { get; private set; }
+    public IntReactiveProperty _cur { get; protected set; }
+    public IntReactiveProperty _min { get; protected set; }
+    public IntReactiveProperty _max { get; protected set; }
   }
 }
 

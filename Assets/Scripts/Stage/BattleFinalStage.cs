@@ -90,7 +90,7 @@ namespace Bunashibu.Kikan {
       _player.StateTransfer.TransitTo("Idle", _player.Animator);
 
       _player.Hp.FullRecover();
-      _player.Hp.UpdateView();
+      //_player.Hp.UpdateView();
 
       _player.BuffState.Reset();
 

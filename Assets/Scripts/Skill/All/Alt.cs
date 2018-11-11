@@ -12,7 +12,7 @@ namespace Bunashibu.Kikan {
 
       int addition = skillUser.Level.Cur * 50 + (int)(Random.value * 100);
       //skillUser.Hp.Add(2000 + addition);
-      skillUser.Hp.UpdateView();
+      //skillUser.Hp.UpdateView();
     }
   }
 }

@@ -50,10 +50,10 @@ namespace Bunashibu.Kikan {
 
         // Hp Core
         if (i == 1) {
-          _player.Hp.UpdateMaxHp();
+          //_player.Hp.UpdateMaxHp();
           _player.Observer.SyncMaxHp();
 
-          _player.Hp.UpdateView();
+          //_player.Hp.UpdateView();
           _player.Observer.SyncUpdateHpView();
         }
 
