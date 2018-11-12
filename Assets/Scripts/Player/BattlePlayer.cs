@@ -83,7 +83,6 @@ namespace Bunashibu.Kikan {
     public BattlePlayerMovement Movement      { get; private set; }
     public CharacterState       State         { get; private set; }
     public BuffState            BuffState     { get; private set; }
-    //public PlayerHp             Hp            { get; private set; }
     public PlayerExp            Exp           { get; private set; }
     public PlayerLevel          Level         { get; private set; }
     public PlayerGold           Gold          { get; private set; }

@@ -14,8 +14,6 @@ namespace Bunashibu.Kikan {
       StateTransfer = new StateTransfer(_initState, _animator);
       Hp            = new Hp(_enemyData.Hp);
 
-      //Hp.AddListener(_hpBar.OnNotify);
-
       //_mediator.AddListener(Hp.OnNotify);
       //_mediator.AddListener(NumberPopupEnvironment.Instance.OnNotify);
       //_mediator.AddListener(KillRewardEnvironment.Instance.OnNotify);
@@ -29,6 +27,8 @@ namespace Bunashibu.Kikan {
         OnAttacked = BattleEnvironment.OnAttacked(this, NumberPopupEnvironment.Instance.PopupNumber);
         OnKilled   = BattleEnvironment.OnKilled(this, KillRewardEnvironment.GetRewardFrom, KillRewardEnvironment.GiveRewardTo);
       }
+
+      EnemyInitializer.Instance.Initialize(this);
     }
 
     public void OnNotify(Notification notification, object[] args) {
@@ -57,15 +57,17 @@ namespace Bunashibu.Kikan {
     public List<IBattle>           Teammates     { get; private set; }
 
     // tmp
-    public MonoBehaviour AI { get { return _ai; } }
+    public MonoBehaviour AI => _ai;
 
-    public EnemyData Data { get { return _enemyData; } }
+    public EnemyData Data => _enemyData;
 
     // Enemy
     public CharacterState State         { get; private set; }
     public BuffState      BuffState     { get; private set; }
     public StateTransfer  StateTransfer { get; private set; }
     public Hp             Hp            { get; private set; }
+
+    public Bar            WorldHpBar     => _worldHpBar;
 
     public int    KillExp      => _killExp;
     public int    KillGold     => _killGold;
@@ -95,7 +97,7 @@ namespace Bunashibu.Kikan {
     [SerializeField] private MonoBehaviour _ai;
 
     [Header("Hp")]
-    [SerializeField] private Bar _hpBar;
+    [SerializeField] private Bar _worldHpBar;
 
     [Header("Data")]
     [SerializeField] private EnemyData _enemyData;

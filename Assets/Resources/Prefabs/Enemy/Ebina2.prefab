@@ -543,11 +543,10 @@ MonoBehaviour:
   _footCollider: {fileID: 68485607988968956}
   _animator: {fileID: 95930281650531378}
   _observer: {fileID: 114097011667932240}
-  _numberPopupEnvironment: {fileID: 0}
   _killExp: 144
   _killGold: 210
   _ai: {fileID: 114908752689618040}
-  _hpBar: {fileID: 114037160981840974}
+  _worldHpBar: {fileID: 114037160981840974}
   _enemyData: {fileID: 11400000, guid: c1db8da72cb694145be7a5480d39416c, type: 2}
 --- !u!114 &114763814780166250
 MonoBehaviour:
