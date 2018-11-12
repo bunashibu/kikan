@@ -25,7 +25,8 @@ GameObject:
   - component: {fileID: 82226157793250556}
   - component: {fileID: 114603389603180056}
   - component: {fileID: 114760928928043728}
-  - component: {fileID: 114000010207159786}
+  - component: {fileID: 114637634063776546}
+  - component: {fileID: 114015069728121616}
   m_Layer: 18
   m_Name: Shift
   m_TagString: Untagged
@@ -184,7 +185,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114000010207159786
+--- !u!114 &114015069728121616
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -192,15 +193,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000011631667192}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac5c1da9781c95047a7862decb13aa3c, type: 3}
+  m_Script: {fileID: 11500000, guid: 2ab71a1e4ecf26c46bbee47397f910f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _attackInfo:
-    _damagePercent: 250
-    _maxDeviation: 10
-    _criticalPercent: 0
-  _targetNum: 6
-  _dupHitNum: 0
 --- !u!114 &114603389603180056
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -227,6 +222,22 @@ MonoBehaviour:
   instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
+--- !u!114 &114637634063776546
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011631667192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac5c1da9781c95047a7862decb13aa3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _attackInfo:
+    _damagePercent: 250
+    _maxDeviation: 10
+    _criticalPercent: 0
+  _targetNum: 6
 --- !u!114 &114760928928043728
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Assertions;
 
 namespace Bunashibu.Kikan {
+  [RequireComponent(typeof(AttackSynchronizer))]
   public class ManjiX : Skill {
     void Awake() {
       _synchronizer = GetComponent<AttackSynchronizer>();

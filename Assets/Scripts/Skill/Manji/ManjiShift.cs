@@ -1,97 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace Bunashibu.Kikan {
+  [RequireComponent(typeof(AttackSynchronizer))]
   public class ManjiShift : Skill {
     void Awake() {
-      _targetRistrictor  = new TargetRistrictor(_targetNum, _dupHitNum);
+      _synchronizer = GetComponent<AttackSynchronizer>();
+      _targetChecker = new TargetChecker(_targetNum);
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
-      if (!PhotonNetwork.isMasterClient)
-        return;
+      if (PhotonNetwork.isMasterClient && _targetChecker.IsAttackTarget(collider, _skillUserObj)) {
+        DamageCalculator.Calculate(_skillUserObj, _attackInfo);
 
-      var targetObj = collider.gameObject;
-      if (targetObj == _skillUserObj)
-        return;
+        var target = collider.gameObject.GetComponent<IPhoton>();
+        Assert.IsNotNull(target);
 
-      if (targetObj.tag == "Player")
-        ProceedAttackToPlayer(targetObj);
-
-      if (targetObj.tag == "Enemy")
-        ProceedAttackToEnemy(targetObj);
-    }
-
-    private void ProceedAttackToPlayer(GameObject targetObj) {
-      var target = targetObj.GetComponent<BattlePlayer>();
-      var skillUser = _skillUserObj.GetComponent<BattlePlayer>();
-
-      if (IsCorrectAttackPlayer(target, skillUser)) {
-        DamageToPlayer(target, skillUser);
-        //target.NumberPopupEnvironment.Popup(DamageCalculator.Damage, DamageCalculator.IsCritical, skillUser.DamageSkin.Id, PopupType.Player);
-
-        if (target.Hp.Cur.Value <= 0)
-          ProceedPlayerDeath(target, skillUser);
+        _synchronizer.SyncAttack(_skillUserViewID, target.PhotonView.viewID, DamageCalculator.Damage, DamageCalculator.IsCritical);
       }
-    }
-
-    private void ProceedAttackToEnemy(GameObject targetObj) {
-      var target = targetObj.GetComponent<Enemy>();
-      var skillUser = _skillUserObj.GetComponent<BattlePlayer>();
-
-      if (IsCorrectAttackEnemy(target)) {
-        DamageToEnemy(target, skillUser);
-        //target.NumberPopupEnvironment.Popup(DamageCalculator.Damage, DamageCalculator.IsCritical, skillUser.DamageSkin.Id, PopupType.Enemy);
-
-        if (target.Hp.Cur.Value <= 0)
-          ProceedEnemyDeath(target, skillUser);
-      }
-    }
-
-    private bool IsCorrectAttackPlayer(BattlePlayer target, BattlePlayer skillUser) {
-      if (target.PlayerInfo.Team == skillUser.PlayerInfo.Team)
-        return false;
-      if (_targetRistrictor.ShouldRistrict(target))
-        return false;
-
-      return true;
-    }
-
-    private bool IsCorrectAttackEnemy(Enemy target) {
-      if (_targetRistrictor.ShouldRistrict(target))
-        return false;
-
-      return true;
-    }
-
-    private void DamageToPlayer(BattlePlayer target, BattlePlayer skillUser) {
-      DamageCalculator.Calculate(_skillUserObj, _attackInfo);
-
-      //target.Hp.Subtract(DamageCalculator.Damage);
-      //target.Hp.UpdateView();
-    }
-
-    private void DamageToEnemy(Enemy target, BattlePlayer skillUser) {
-      DamageCalculator.Calculate(_skillUserObj, _attackInfo);
-
-      //target.Hp.Subtract(DamageCalculator.Damage);
-      //target.Hp.UpdateView(skillUser.PhotonView.owner);
-    }
-
-    private void ProceedPlayerDeath(BattlePlayer target, BattlePlayer skillUser) {
-    }
-
-    private void ProceedEnemyDeath(Enemy target, BattlePlayer skillUser) {
     }
 
     [SerializeField] private AttackInfo _attackInfo;
-
-    [Header("TargetSettings")]
     [SerializeField] private int _targetNum;
-    [SerializeField] private int _dupHitNum;
 
-    private TargetRistrictor  _targetRistrictor;
+    private AttackSynchronizer _synchronizer;
+    private TargetChecker _targetChecker;
   }
 }
 
