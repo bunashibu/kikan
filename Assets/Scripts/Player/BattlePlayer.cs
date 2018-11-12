@@ -22,7 +22,6 @@ namespace Bunashibu.Kikan {
       Movement      = new BattlePlayerMovement(_core);
       State         = new CharacterState(_ladderCollider, _footCollider);
       BuffState     = new BuffState(Observer);
-      //Hp            = new PlayerHp();
       Exp           = new PlayerExp();
       Level         = new PlayerLevel();
       Gold          = new PlayerGold();
@@ -42,7 +41,6 @@ namespace Bunashibu.Kikan {
         OnAttacked = BattleEnvironment.OnAttacked(this, NumberPopupEnvironment.Instance.PopupNumber);
         OnKilled   = BattleEnvironment.OnKilled(this, KillRewardEnvironment.GetRewardFrom, KillRewardEnvironment.GiveRewardTo);
 
-        //_mediator.AddListener(Hp.OnNotify);
         _mediator.AddListener(Exp.OnNotify);
         _mediator.AddListener(Level.OnNotify);
         _mediator.AddListener(Gold.OnNotify);

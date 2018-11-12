@@ -12,7 +12,7 @@ namespace Bunashibu.Kikan {
       State         = new CharacterState(_ladderCollider, _footCollider);
       BuffState     = new BuffState(Observer);
       StateTransfer = new StateTransfer(_initState, _animator);
-      //Hp            = new EnemyHp();
+      Hp            = new Hp(_enemyData.Hp);
 
       //Hp.AddListener(_hpBar.OnNotify);
 
@@ -65,7 +65,6 @@ namespace Bunashibu.Kikan {
     public CharacterState State         { get; private set; }
     public BuffState      BuffState     { get; private set; }
     public StateTransfer  StateTransfer { get; private set; }
-    //public EnemyHp        Hp            { get; private set; }
     public Hp             Hp            { get; private set; }
 
     public int    KillExp      => _killExp;
