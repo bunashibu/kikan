@@ -9,6 +9,10 @@ namespace Bunashibu.Kikan {
       _min.Value = initialLevel;
       _max.Value = maxLevel;
     }
+
+    public void LevelUp() {
+      Add(1);
+    }
   }
 }
 

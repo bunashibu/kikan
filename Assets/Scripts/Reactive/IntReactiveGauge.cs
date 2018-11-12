@@ -12,20 +12,17 @@ namespace Bunashibu.Kikan {
     }
 
     public void Add(int quantity) {
-      _cur.Value += quantity;
-      AdjustBoundary();
+      if (_cur.Value + quantity >= _max.Value)
+        _cur.Value = _max.Value;
+      else
+        _cur.Value += quantity;
     }
 
     public void Subtract(int quantity) {
-      _cur.Value -= quantity;
-      AdjustBoundary();
-    }
-
-    private void AdjustBoundary() {
-      if (_cur.Value < _min.Value)
+      if (_cur.Value - quantity <= _min.Value)
         _cur.Value = _min.Value;
-      if (_cur.Value > _max.Value)
-        _cur.Value = _max.Value;
+      else
+        _cur.Value -= quantity;
     }
 
     public IReadOnlyReactiveProperty<int> Cur => _cur;

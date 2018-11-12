@@ -26,7 +26,17 @@ namespace Bunashibu.Kikan {
     private void AllInitialize(BattlePlayer player) {
       player.Hp.Cur
         .Where(cur => (cur <= 0))
-        .Subscribe(_ => player.StateTransfer.TransitTo("Die", player.Animator));
+        .Subscribe(_ => player.StateTransfer.TransitTo("Die", player.Animator))
+        .AddTo(player.gameObject);
+
+      player.Exp.Cur
+        .Where(cur => (cur == player.Exp.Max.Value))
+        .Subscribe(_ => player.Level.LevelUp())
+        .AddTo(player.gameObject);
+
+      player.Level.Cur
+        .Subscribe(_ => player.Exp.Update(player.ExpTable[player.Level.Cur.Value - 1]))
+        .AddTo(player.gameObject);
 
       player.KillCount
         .Subscribe(killCount => _kdPanel.UpdateKill(killCount, player.PhotonView.owner))
@@ -43,19 +53,19 @@ namespace Bunashibu.Kikan {
       Assert.IsNotNull(_instantiator.LvPanel);
 
       player.Hp.Cur
-        .Subscribe(cur => _instantiator.HpBar.UpdateView(cur, player.Hp.Max.Value))
+        .Subscribe(_ => _instantiator.HpBar.UpdateView(player.Hp.Cur.Value, player.Hp.Max.Value))
         .AddTo(_instantiator.HpBar);
 
       player.Hp.Max
-        .Subscribe(max => _instantiator.HpBar.UpdateView(player.Hp.Cur.Value, max))
+        .Subscribe(_ => _instantiator.HpBar.UpdateView(player.Hp.Cur.Value, player.Hp.Max.Value))
         .AddTo(_instantiator.HpBar);
 
       player.Exp.Cur
-        .Subscribe(cur => _instantiator.ExpBar.UpdateView(cur, player.Exp.Max.Value))
+        .Subscribe(_ => _instantiator.ExpBar.UpdateView(player.Exp.Cur.Value, player.Exp.Max.Value))
         .AddTo(_instantiator.ExpBar);
 
       player.Exp.Max
-        .Subscribe(max => _instantiator.ExpBar.UpdateView(player.Exp.Cur.Value, max))
+        .Subscribe(_ => _instantiator.ExpBar.UpdateView(player.Exp.Cur.Value, player.Exp.Max.Value))
         .AddTo(_instantiator.ExpBar);
 
       player.Level.Cur
