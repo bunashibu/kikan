@@ -45,7 +45,7 @@ namespace Bunashibu.Kikan {
         player.Gold.AddListener(_goldPanel.OnNotify);
 
         player.WorldHpBar.gameObject.SetActive(false);
-        CameraInitializer.Instance.RegisterToTrackTarget(gameObject);
+        CameraInitializer.Instance.RegisterToTrackTarget(player.gameObject);
       }
       else {
         player.Hp.Cur

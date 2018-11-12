@@ -35,7 +35,9 @@ namespace Bunashibu.Kikan {
       Hp         = new Hp(HpTable[0]);
       KillCount  = new ReactiveProperty<int>(0);
       DeathCount = new ReactiveProperty<int>(0);
+    }
 
+    void Start() {
       if (StageReference.Instance.StageData.Name == "Battle") {
         OnAttacked = BattleEnvironment.OnAttacked(this, NumberPopupEnvironment.Instance.PopupNumber);
         OnKilled   = BattleEnvironment.OnKilled(this, KillRewardEnvironment.GetRewardFrom, KillRewardEnvironment.GiveRewardTo);
@@ -51,9 +53,7 @@ namespace Bunashibu.Kikan {
 
         Level.AddListener(_mediator.OnNotify);
       }
-    }
 
-    void Start() {
       PlayerInitializer.Instance.Initialize(this);
     }
 

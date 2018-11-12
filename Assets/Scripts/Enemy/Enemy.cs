@@ -16,17 +16,19 @@ namespace Bunashibu.Kikan {
 
       //Hp.AddListener(_hpBar.OnNotify);
 
-      if (StageReference.Instance.StageData.Name == "Battle") {
-        OnAttacked = BattleEnvironment.OnAttacked(this, NumberPopupEnvironment.Instance.PopupNumber);
-        OnKilled   = BattleEnvironment.OnKilled(this, KillRewardEnvironment.GetRewardFrom, KillRewardEnvironment.GiveRewardTo);
-      }
-
       //_mediator.AddListener(Hp.OnNotify);
       //_mediator.AddListener(NumberPopupEnvironment.Instance.OnNotify);
       //_mediator.AddListener(KillRewardEnvironment.Instance.OnNotify);
 
       var notifier = new Notifier(_mediator.OnNotify);
       notifier.Notify(Notification.EnemyInstantiated);
+    }
+
+    void Start() {
+      if (StageReference.Instance.StageData.Name == "Battle") {
+        OnAttacked = BattleEnvironment.OnAttacked(this, NumberPopupEnvironment.Instance.PopupNumber);
+        OnKilled   = BattleEnvironment.OnKilled(this, KillRewardEnvironment.GetRewardFrom, KillRewardEnvironment.GiveRewardTo);
+      }
     }
 
     public void OnNotify(Notification notification, object[] args) {
