@@ -30,7 +30,7 @@ namespace Bunashibu.Kikan {
           return;
         }
 
-        bool notEnoughGold = (_player.Gold.Cur < _coreList[i].Gold);
+        bool notEnoughGold = (_player.Gold.Cur.Value < _coreList[i].Gold);
         if (notEnoughGold) {
           Debug.Log("You don't have enough gold");
           return;

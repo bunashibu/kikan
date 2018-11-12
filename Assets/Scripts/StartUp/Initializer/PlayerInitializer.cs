@@ -49,8 +49,12 @@ namespace Bunashibu.Kikan {
           .AddTo(_instantiator.ExpBar);
 
         player.Level.Cur
-          .Subscribe(cur => _instantiator.LvPanel.UpdateView(player.Level.Cur.Value))
+          .Subscribe(cur => _instantiator.LvPanel.UpdateView(cur))
           .AddTo(_instantiator.LvPanel);
+
+        player.Gold.Cur
+          .Subscribe(cur => _goldPanel.UpdateView(cur))
+          .AddTo(_goldPanel);
 
         player.WorldHpBar.gameObject.SetActive(false);
         CameraInitializer.Instance.RegisterToTrackTarget(player.gameObject);
