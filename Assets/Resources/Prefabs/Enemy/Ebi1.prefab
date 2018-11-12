@@ -116,7 +116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224000281118999460}
   - component: {fileID: 114457991243999366}
-  - component: {fileID: 114362580331401900}
+  - component: {fileID: 114910362398058522}
   - component: {fileID: 114150662780611818}
   m_Layer: 14
   m_Name: HpBar
@@ -349,7 +349,7 @@ MonoBehaviour:
   _killExp: 30
   _killGold: 45
   _ai: {fileID: 114050103650658040}
-  _worldHpBar: {fileID: 114362580331401900}
+  _worldHpBar: {fileID: 114910362398058522}
   _enemyData: {fileID: 11400000, guid: dea86f677fe12af4aa2f5d458e4eb166, type: 2}
 --- !u!114 &114150662780611818
 MonoBehaviour:
@@ -390,17 +390,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 1
---- !u!114 &114362580331401900
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1616503251083484}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53dcc97b86005d94893c7ca7448e91c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114399664780219442
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -692,6 +681,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114910362398058522
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1616503251083484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0328eeec483cc9b4388597d1007c8615, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114962318167475646
 MonoBehaviour:
   m_ObjectHideFlags: 1

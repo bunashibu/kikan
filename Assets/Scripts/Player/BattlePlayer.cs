@@ -21,7 +21,6 @@ namespace Bunashibu.Kikan {
       Movement      = new BattlePlayerMovement(_core);
       State         = new CharacterState(_ladderCollider, _footCollider);
       BuffState     = new BuffState(Observer);
-      KillDeath     = new PlayerKillDeath();
       Status        = new PlayerStatus(_jobStatus);
       StateTransfer = new StateTransfer(_initState, _animator);
       SkillInfo     = new SkillInfo();
@@ -68,7 +67,6 @@ namespace Bunashibu.Kikan {
     public BattlePlayerMovement Movement      { get; private set; }
     public CharacterState       State         { get; private set; }
     public BuffState            BuffState     { get; private set; }
-    public PlayerKillDeath      KillDeath     { get; private set; }
     public PlayerStatus         Status        { get; private set; }
     public StateTransfer        StateTransfer { get; private set; }
     public SkillInfo            SkillInfo     { get; private set; }
