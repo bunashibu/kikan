@@ -25,14 +25,14 @@ namespace Bunashibu.Kikan {
       return killReward;
     }
 
-    public static void GiveRewardTo(IRewardTaker rewardTaker, KillReward killReward) {
-      /*
-      _notifier.AddListener(rewardTaker.OnNotify);
-      rewardTaker.Teammates.ForEach(teammate => _notifier.AddListener(teammate.OnNotify) );
+    public static void GiveRewardTo(IPlayer player, KillReward killReward) {
+      player.Exp.Add(killReward.MainExp);
+      player.Gold.Add(killReward.MainGold);
 
-      _notifier.Notify(Notification.GetKillReward, killReward, rewardTaker);
-      _notifier.RemoveAllListeners();
-      */
+      foreach (var teammate in player.Teammates) {
+        teammate.Exp.Add(killReward.SubExp);
+        teammate.Gold.Add(killReward.SubGold);
+      }
     }
   }
 

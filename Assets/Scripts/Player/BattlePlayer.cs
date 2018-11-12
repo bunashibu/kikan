@@ -10,14 +10,14 @@ namespace Bunashibu.Kikan {
   // PLAN: BattlePlayer will be merged with LobbyPlayer.
   //       and will be renamed to Player.
   [RequireComponent(typeof(BattlePlayerObserver))]
-  public class BattlePlayer : MonoBehaviour, ICharacter, IBattle, IRewardTaker, IKillDeathCounter, ISpeaker {
+  public class BattlePlayer : MonoBehaviour, IPlayer {
     void Awake() {
       Assert.IsTrue(_killExpTable.Data.Count  == MaxLevel);
       Assert.IsTrue(_killGoldTable.Data.Count == MaxLevel);
       Assert.IsTrue(_hpTable.Data.Count       == MaxLevel);
       Assert.IsTrue(_expTable.Data.Count      == MaxLevel);
 
-      Teammates     = new List<IBattle>();
+      Teammates     = new List<IPlayer>();
       Movement      = new BattlePlayerMovement(_core);
       State         = new CharacterState(_ladderCollider, _footCollider);
       BuffState     = new BuffState(Observer);
@@ -63,7 +63,7 @@ namespace Bunashibu.Kikan {
 
     public AudioEnvironment     AudioEnvironment => _audioEnvironment;
 
-    public List<IBattle>        Teammates     { get; private set; }
+    public List<IPlayer>        Teammates     { get; private set; }
 
     public BattlePlayerMovement Movement      { get; private set; }
     public CharacterState       State         { get; private set; }

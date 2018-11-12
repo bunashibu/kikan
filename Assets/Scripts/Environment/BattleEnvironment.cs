@@ -18,23 +18,20 @@ namespace Bunashibu.Kikan {
       return onAttacked;
     }
 
-    public static Action<IBattle> OnKilled(IBattle target, Func<IBattle, int, KillReward> GetRewardFrom, Action<IRewardTaker, KillReward> GiveRewardTo) {
+    public static Action<IBattle> OnKilled(IBattle target, Func<IBattle, int, KillReward> GetRewardFrom, Action<IPlayer, KillReward> GiveRewardTo) {
       Action<IBattle> onKilled = (attacker) => {
         if (attacker.Tag == "Player") {
-          var rewardTaker = attacker.gameObject.GetComponent<IRewardTaker>();
-          Assert.IsNotNull(rewardTaker);
+          var killPlayer = attacker.gameObject.GetComponent<IPlayer>();
+          Assert.IsNotNull(killPlayer);
 
-          GiveRewardTo(rewardTaker, GetRewardFrom(target, rewardTaker.Teammates.Count));
+          GiveRewardTo(killPlayer, GetRewardFrom(target, killPlayer.Teammates.Count));
 
           if (target.Tag == "Player") {
-            var killCounter  = attacker.gameObject.GetComponent<IKillDeathCounter>();
-            var deathCounter = target.gameObject.GetComponent<IKillDeathCounter>();
+            var deathPlayer = target.gameObject.GetComponent<IPlayer>();
+            Assert.IsNotNull(deathPlayer);
 
-            Assert.IsNotNull(killCounter);
-            Assert.IsNotNull(deathCounter);
-
-            killCounter.KillCount.Value += 1;
-            deathCounter.DeathCount.Value += 1;
+            killPlayer.KillCount.Value += 1;
+            deathPlayer.DeathCount.Value += 1;
           }
         }
       };
