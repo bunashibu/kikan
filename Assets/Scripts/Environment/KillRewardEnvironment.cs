@@ -4,8 +4,7 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   public static class KillRewardEnvironment {
-    public static KillReward GetRewardFrom(IBattle target) {
-      int teamSize = target.Teammates.Count;
+    public static KillReward GetRewardFrom(IBattle target, int teamSize) {
       double rewardRatio = 1;
 
       if (teamSize == 1)
@@ -26,7 +25,7 @@ namespace Bunashibu.Kikan {
       return killReward;
     }
 
-    public static void GiveRewardTo(IBattle rewardTaker, KillReward killReward) {
+    public static void GiveRewardTo(IRewardTaker rewardTaker, KillReward killReward) {
       /*
       _notifier.AddListener(rewardTaker.OnNotify);
       rewardTaker.Teammates.ForEach(teammate => _notifier.AddListener(teammate.OnNotify) );

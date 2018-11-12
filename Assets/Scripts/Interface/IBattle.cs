@@ -5,9 +5,7 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   public interface IBattle : IPhoton {
-    Hp            Hp        { get; }
-    List<IBattle> Teammates { get; }
-
+    Hp  Hp           { get; }
     int KillExp      { get; }
     int KillGold     { get; }
     int DamageSkinId { get; }

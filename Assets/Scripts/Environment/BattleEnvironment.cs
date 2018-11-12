@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace Bunashibu.Kikan {
   public static class BattleEnvironment {
@@ -17,16 +18,23 @@ namespace Bunashibu.Kikan {
       return onAttacked;
     }
 
-    public static Action<IBattle> OnKilled(IBattle target, Func<IBattle, KillReward> GetRewardFrom, Action<IBattle, KillReward> GiveRewardTo) {
+    public static Action<IBattle> OnKilled(IBattle target, Func<IBattle, int, KillReward> GetRewardFrom, Action<IRewardTaker, KillReward> GiveRewardTo) {
       Action<IBattle> onKilled = (attacker) => {
         if (attacker.Tag == "Player") {
-          GiveRewardTo(attacker, GetRewardFrom(target));
+          var rewardTaker = attacker.gameObject.GetComponent<IRewardTaker>();
+          Assert.IsNotNull(rewardTaker);
+
+          GiveRewardTo(rewardTaker, GetRewardFrom(target, rewardTaker.Teammates.Count));
 
           if (target.Tag == "Player") {
-            /*
-            attacker.KillCount.Value += 1
-            target.DeathCount.Value += 1;
-            */
+            var killCounter  = attacker.gameObject.GetComponent<IKillDeathCounter>();
+            var deathCounter = target.gameObject.GetComponent<IKillDeathCounter>();
+
+            Assert.IsNotNull(killCounter);
+            Assert.IsNotNull(deathCounter);
+
+            killCounter.KillCount.Value += 1;
+            deathCounter.DeathCount.Value += 1;
           }
         }
       };

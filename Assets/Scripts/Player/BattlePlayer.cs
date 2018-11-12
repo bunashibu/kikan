@@ -10,7 +10,7 @@ namespace Bunashibu.Kikan {
   // PLAN: BattlePlayer will be merged with LobbyPlayer.
   //       and will be renamed to Player.
   [RequireComponent(typeof(BattlePlayerObserver))]
-  public class BattlePlayer : MonoBehaviour, ICharacter, IBattle, ISpeaker {
+  public class BattlePlayer : MonoBehaviour, ICharacter, IBattle, IRewardTaker, IKillDeathCounter, ISpeaker {
     void Awake() {
       Assert.IsTrue(_killExpTable.Data.Count  == MaxLevel);
       Assert.IsTrue(_killGoldTable.Data.Count == MaxLevel);

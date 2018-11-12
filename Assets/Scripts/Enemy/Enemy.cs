@@ -42,8 +42,6 @@ namespace Bunashibu.Kikan {
     public EnemyObserver           Observer           { get { return _observer; } }
     public EnemyPopulationObserver PopulationObserver { get; private set; }
 
-    public List<IBattle>           Teammates     { get; private set; }
-
     // tmp
     public MonoBehaviour AI => _ai;
 

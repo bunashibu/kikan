@@ -10,6 +10,20 @@ namespace Bunashibu.Kikan {
     public void Initialize(BattlePlayer player) {
       SetViewID(player);
 
+      AllInitialize(player);
+
+      if (player.PhotonView.isMine)
+        ClientInitialize(player);
+      else
+        OtherClientInitialize(player);
+
+      InitPlayerTeam(player);
+      player.Core.Init(_corePanel);
+      player.Movement.SetMoveForce(player.Status.Spd);
+      player.Movement.SetJumpForce(player.Status.Jmp);
+    }
+
+    private void AllInitialize(BattlePlayer player) {
       player.Hp.Cur
         .Where(cur => (cur <= 0))
         .Subscribe(_ => player.StateTransfer.TransitTo("Die", player.Animator));
@@ -21,55 +35,51 @@ namespace Bunashibu.Kikan {
       player.DeathCount
         .Subscribe(deathCount => _kdPanel.UpdateDeath(deathCount, player.PhotonView.owner))
         .AddTo(_kdPanel.gameObject);
+    }
 
-      InitPlayerTeam(player);
-      player.Core.Init(_corePanel);
-      player.Movement.SetMoveForce(player.Status.Spd);
-      player.Movement.SetJumpForce(player.Status.Jmp);
+    private void ClientInitialize(BattlePlayer player) {
+      Assert.IsNotNull(_instantiator.HpBar);
+      Assert.IsNotNull(_instantiator.ExpBar);
+      Assert.IsNotNull(_instantiator.LvPanel);
 
-      if (player.PhotonView.isMine) {
-        Assert.IsNotNull(_instantiator.HpBar);
-        Assert.IsNotNull(_instantiator.ExpBar);
-        Assert.IsNotNull(_instantiator.LvPanel);
+      player.Hp.Cur
+        .Subscribe(cur => _instantiator.HpBar.UpdateView(cur, player.Hp.Max.Value))
+        .AddTo(_instantiator.HpBar);
 
-        player.Hp.Cur
-          .Subscribe(cur => _instantiator.HpBar.UpdateView(cur, player.Hp.Max.Value))
-          .AddTo(_instantiator.HpBar);
+      player.Hp.Max
+        .Subscribe(max => _instantiator.HpBar.UpdateView(player.Hp.Cur.Value, max))
+        .AddTo(_instantiator.HpBar);
 
-        player.Hp.Max
-          .Subscribe(max => _instantiator.HpBar.UpdateView(player.Hp.Cur.Value, max))
-          .AddTo(_instantiator.HpBar);
+      player.Exp.Cur
+        .Subscribe(cur => _instantiator.ExpBar.UpdateView(cur, player.Exp.Max.Value))
+        .AddTo(_instantiator.ExpBar);
 
-        player.Exp.Cur
-          .Subscribe(cur => _instantiator.ExpBar.UpdateView(cur, player.Exp.Max.Value))
-          .AddTo(_instantiator.ExpBar);
+      player.Exp.Max
+        .Subscribe(max => _instantiator.ExpBar.UpdateView(player.Exp.Cur.Value, max))
+        .AddTo(_instantiator.ExpBar);
 
-        player.Exp.Max
-          .Subscribe(max => _instantiator.ExpBar.UpdateView(player.Exp.Cur.Value, max))
-          .AddTo(_instantiator.ExpBar);
+      player.Level.Cur
+        .Subscribe(cur => _instantiator.LvPanel.UpdateView(cur))
+        .AddTo(_instantiator.LvPanel);
 
-        player.Level.Cur
-          .Subscribe(cur => _instantiator.LvPanel.UpdateView(cur))
-          .AddTo(_instantiator.LvPanel);
+      player.Gold.Cur
+        .Subscribe(cur => _goldPanel.UpdateView(cur))
+        .AddTo(_goldPanel);
 
-        player.Gold.Cur
-          .Subscribe(cur => _goldPanel.UpdateView(cur))
-          .AddTo(_goldPanel);
+      player.WorldHpBar.gameObject.SetActive(false);
+      CameraInitializer.Instance.RegisterToTrackTarget(player.gameObject);
+    }
 
-        player.WorldHpBar.gameObject.SetActive(false);
-        CameraInitializer.Instance.RegisterToTrackTarget(player.gameObject);
-      }
-      else {
-        player.Hp.Cur
-          .Subscribe(cur => player.WorldHpBar.UpdateView(cur, player.Hp.Max.Value))
-          .AddTo(player.WorldHpBar);
+    private void OtherClientInitialize(BattlePlayer player) {
+      player.Hp.Cur
+        .Subscribe(cur => player.WorldHpBar.UpdateView(cur, player.Hp.Max.Value))
+        .AddTo(player.WorldHpBar);
 
-        player.Hp.Max
-          .Subscribe(max => player.WorldHpBar.UpdateView(player.Hp.Cur.Value, max))
-          .AddTo(player.WorldHpBar);
+      player.Hp.Max
+        .Subscribe(max => player.WorldHpBar.UpdateView(player.Hp.Cur.Value, max))
+        .AddTo(player.WorldHpBar);
 
-        //_audioListener.enabled = false;
-      }
+      //_audioListener.enabled = false;
     }
 
     private void SetViewID(BattlePlayer player) {
