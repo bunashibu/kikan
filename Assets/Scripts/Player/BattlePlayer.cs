@@ -21,7 +21,6 @@ namespace Bunashibu.Kikan {
       Movement      = new BattlePlayerMovement(_core);
       State         = new CharacterState(_ladderCollider, _footCollider);
       BuffState     = new BuffState(Observer);
-      Exp           = new PlayerExp();
       Level         = new PlayerLevel();
       Gold          = new PlayerGold();
       KillDeath     = new PlayerKillDeath();
@@ -31,6 +30,7 @@ namespace Bunashibu.Kikan {
       PlayerInfo    = new PlayerInfo(this);
 
       Hp         = new Hp(HpTable[0]);
+      Exp        = new Exp(ExpTable[0]);
       KillCount  = new ReactiveProperty<int>(0);
       DeathCount = new ReactiveProperty<int>(0);
     }
@@ -68,7 +68,6 @@ namespace Bunashibu.Kikan {
     public BattlePlayerMovement Movement      { get; private set; }
     public CharacterState       State         { get; private set; }
     public BuffState            BuffState     { get; private set; }
-    public PlayerExp            Exp           { get; private set; }
     public PlayerLevel          Level         { get; private set; }
     public PlayerGold           Gold          { get; private set; }
     public PlayerKillDeath      KillDeath     { get; private set; }
@@ -88,6 +87,7 @@ namespace Bunashibu.Kikan {
     public string Tag          => gameObject.tag;
 
     public Hp                    Hp         { get; private set; }
+    public Exp                   Exp        { get; private set; }
     public ReactiveProperty<int> KillCount  { get; private set; }
     public ReactiveProperty<int> DeathCount { get; private set; }
 
