@@ -8,18 +8,10 @@ namespace Bunashibu.Kikan {
   [RequireComponent(typeof(EnemyObserver))]
   public class Enemy : MonoBehaviour, ICharacter, IBattle {
     void Awake() {
-      _mediator     = new EnemyMediator(this);
       State         = new CharacterState(_ladderCollider, _footCollider);
       BuffState     = new BuffState(Observer);
       StateTransfer = new StateTransfer(_initState, _animator);
       Hp            = new Hp(_enemyData.Hp);
-
-      //_mediator.AddListener(Hp.OnNotify);
-      //_mediator.AddListener(NumberPopupEnvironment.Instance.OnNotify);
-      //_mediator.AddListener(KillRewardEnvironment.Instance.OnNotify);
-
-      var notifier = new Notifier(_mediator.OnNotify);
-      notifier.Notify(Notification.EnemyInstantiated);
     }
 
     void Start() {
@@ -29,10 +21,6 @@ namespace Bunashibu.Kikan {
       }
 
       EnemyInitializer.Instance.Initialize(this);
-    }
-
-    public void OnNotify(Notification notification, object[] args) {
-      _mediator.OnNotify(notification, args);
     }
 
     public void AttachPopulationObserver(EnemyPopulationObserver populationObserver) {
@@ -103,7 +91,6 @@ namespace Bunashibu.Kikan {
     [SerializeField] private EnemyData _enemyData;
 
     private static readonly string _initState = "Idle";
-    private EnemyMediator _mediator;
   }
 }
 

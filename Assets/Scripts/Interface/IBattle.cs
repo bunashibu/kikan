@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
-  public interface IBattle : IMediatorAdaptor {
+  public interface IBattle : IPhoton {
     Hp            Hp        { get; }
     List<IBattle> Teammates { get; }
 

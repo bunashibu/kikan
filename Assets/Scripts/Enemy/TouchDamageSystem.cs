@@ -20,10 +20,8 @@ namespace Bunashibu.Kikan {
       var damage = _baseDamage + (int)(Random.value * _positiveDeviation);
 
       //tmp
-      var attacker = gameObject;
-      var notifier = new Notifier();
-      notifier.AddListener(target.OnNotify);
-      notifier.Notify(Notification.TakeDamage, attacker, damage, false);
+      var attacker = GetComponent<IBattle>();
+      target.OnAttacked(attacker, damage, false);
 
       target.State.Invincible = true;
       MonoUtility.Instance.DelaySec(2.0f, () => { target.State.Invincible = false; } );

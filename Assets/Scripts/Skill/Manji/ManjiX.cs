@@ -14,7 +14,7 @@ namespace Bunashibu.Kikan {
       if (PhotonNetwork.isMasterClient && _targetChecker.IsAttackTarget(collider, _skillUserObj)) {
         DamageCalculator.Calculate(_skillUserObj, _attackInfo);
 
-        var target = collider.gameObject.GetComponent<IMediatorAdaptor>();
+        var target = collider.gameObject.GetComponent<IPhoton>();
         Assert.IsNotNull(target);
 
         _synchronizer.SyncAttack(_skillUserViewID, target.PhotonView.viewID, DamageCalculator.Damage, DamageCalculator.IsCritical);

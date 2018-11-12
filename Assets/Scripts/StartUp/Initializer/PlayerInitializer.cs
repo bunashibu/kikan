@@ -40,10 +40,6 @@ namespace Bunashibu.Kikan {
           .Subscribe(max => _instantiator.HpBar.UpdateView(player.Hp.Cur.Value, max))
           .AddTo(_instantiator.HpBar);
 
-        player.Exp.AddListener(_instantiator.ExpBar.OnNotify);
-        player.Level.AddListener(_instantiator.LvPanel.OnNotify);
-        player.Gold.AddListener(_goldPanel.OnNotify);
-
         player.WorldHpBar.gameObject.SetActive(false);
         CameraInitializer.Instance.RegisterToTrackTarget(player.gameObject);
       }
@@ -58,9 +54,6 @@ namespace Bunashibu.Kikan {
 
         //_audioListener.enabled = false;
       }
-
-      var notifier = new Notifier(player.OnNotify);
-      notifier.Notify(Notification.PlayerInstantiated);
     }
 
     private void SetViewID(BattlePlayer player) {

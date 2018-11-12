@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
-  public interface IMediatorAdaptor {
-    void OnNotify(Notification notification, object[] args);
+  public interface IPhoton {
     PhotonView PhotonView { get; }
   }
 }

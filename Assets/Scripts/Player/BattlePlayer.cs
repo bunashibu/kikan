@@ -17,7 +17,6 @@ namespace Bunashibu.Kikan {
       Assert.IsTrue(_hpTable.Data.Count       == MaxLevel);
       Assert.IsTrue(_expTable.Data.Count      == MaxLevel);
 
-      _mediator     = new PlayerMediator(this);
       Teammates     = new List<IBattle>();
       Movement      = new BattlePlayerMovement(_core);
       State         = new CharacterState(_ladderCollider, _footCollider);
@@ -40,16 +39,6 @@ namespace Bunashibu.Kikan {
       if (StageReference.Instance.StageData.Name == "Battle") {
         OnAttacked = BattleEnvironment.OnAttacked(this, NumberPopupEnvironment.Instance.PopupNumber);
         OnKilled   = BattleEnvironment.OnKilled(this, KillRewardEnvironment.GetRewardFrom, KillRewardEnvironment.GiveRewardTo);
-
-        _mediator.AddListener(Exp.OnNotify);
-        _mediator.AddListener(Level.OnNotify);
-        _mediator.AddListener(Gold.OnNotify);
-
-        // NOTE: Below environments exist in "Battle" global space
-        //_mediator.AddListener(NumberPopupEnvironment.Instance.OnNotify);
-        //_mediator.AddListener(KillRewardEnvironment.Instance.OnNotify);
-
-        Level.AddListener(_mediator.OnNotify);
       }
 
       PlayerInitializer.Instance.Initialize(this);
@@ -57,10 +46,6 @@ namespace Bunashibu.Kikan {
 
     void FixedUpdate() {
       Movement.FixedUpdate(_rigid, transform);
-    }
-
-    public void OnNotify(Notification notification, object[] args) {
-      _mediator.OnNotify(notification, args);
     }
 
     public Action<IBattle, int, bool> OnAttacked { get; private set; }
@@ -113,13 +98,11 @@ namespace Bunashibu.Kikan {
     public PopupRemark    PopupRemark    => _popupRemark;
     public Bar            WorldHpBar     => _worldHpBar;
 
-    public Character2D    Character { get { return _character; } }
-
-    public PlayerCore      Core      { get { return _core;      } }
-
-    public DamageSkin      DamageSkin { get { return _damageSkin; } }
-
-    public Weapon          Weapon { get { return _weapon; } }
+    // tmp
+    public Character2D Character  => _character;
+    public PlayerCore  Core       => _core;
+    public DamageSkin  DamageSkin => _damageSkin;
+    public Weapon      Weapon     => _weapon;
 
     [Header("Unity/Photon Components")]
     [SerializeField] private PhotonView       _photonView;
@@ -163,7 +146,6 @@ namespace Bunashibu.Kikan {
     [SerializeField] private Weapon    _weapon;
 
     private static readonly string _initState = "Idle";
-    private PlayerMediator _mediator;
   }
 }
 
