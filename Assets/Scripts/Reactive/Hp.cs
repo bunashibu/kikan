@@ -14,6 +14,10 @@ namespace Bunashibu.Kikan {
     public void FullRecover() {
       _cur.Value = _max.Value;
     }
+
+    public void Update(int maxHp) {
+      _max.Value = maxHp;
+    }
   }
 }
 

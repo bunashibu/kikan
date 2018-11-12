@@ -35,6 +35,10 @@ namespace Bunashibu.Kikan {
         .AddTo(player.gameObject);
 
       player.Level.Cur
+        .Subscribe(_ => player.Hp.Update(player.HpTable[player.Level.Cur.Value - 1]))
+        .AddTo(player.gameObject);
+
+      player.Level.Cur
         .Subscribe(_ => player.Exp.Update(player.ExpTable[player.Level.Cur.Value - 1]))
         .AddTo(player.gameObject);
 
