@@ -48,6 +48,10 @@ namespace Bunashibu.Kikan {
           .Subscribe(max => _instantiator.ExpBar.UpdateView(player.Exp.Cur.Value, max))
           .AddTo(_instantiator.ExpBar);
 
+        player.Level.Cur
+          .Subscribe(cur => _instantiator.LvPanel.UpdateView(player.Level.Cur.Value))
+          .AddTo(_instantiator.LvPanel);
+
         player.WorldHpBar.gameObject.SetActive(false);
         CameraInitializer.Instance.RegisterToTrackTarget(player.gameObject);
       }

@@ -22,7 +22,7 @@ namespace Bunashibu.Kikan {
       Assert.IsTrue(photonView.isMine);
 
       double ratio = (double)(_player.Core.Heal / 100.0);
-      HealQuantity = (int)(_healTable.Data[_player.Level.Cur - 1] * ratio);
+      HealQuantity = (int)(_healTable.Data[_player.Level.Cur.Value - 1] * ratio);
     }
 
     private void AutomaticHeal() {
@@ -36,10 +36,10 @@ namespace Bunashibu.Kikan {
         if (_player.Hp.Cur.Value <= 0 ) return;
 
         //_player.Hp.Add(HealQuantity);
-        _player.Observer.SyncCurHp();
+        //_player.Observer.SyncCurHp();
 
         //_player.Hp.UpdateView();
-        _player.Observer.SyncUpdateHpView();
+        //_player.Observer.SyncUpdateHpView();
       });
     }
 

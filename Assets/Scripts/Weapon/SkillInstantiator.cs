@@ -15,10 +15,10 @@ namespace Bunashibu.Kikan {
         return;
 
       for (int i=0; i<_keysList.Count; ++i) {
-        if (_player.Level.Cur < _requireLv[i])
+        if (_player.Level.Cur.Value < _requireLv[i])
           continue;
 
-        if (_isDisabled[i] && (_player.Level.Cur == _requireLv[i]))
+        if (_isDisabled[i] && (_player.Level.Cur.Value == _requireLv[i]))
           EnableSkill(i);
 
         for (int k=0; k<_keysList[i].keys.Count; ++k) {

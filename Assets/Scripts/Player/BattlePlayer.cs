@@ -21,7 +21,6 @@ namespace Bunashibu.Kikan {
       Movement      = new BattlePlayerMovement(_core);
       State         = new CharacterState(_ladderCollider, _footCollider);
       BuffState     = new BuffState(Observer);
-      Level         = new PlayerLevel();
       Gold          = new PlayerGold();
       KillDeath     = new PlayerKillDeath();
       Status        = new PlayerStatus(_jobStatus);
@@ -31,6 +30,7 @@ namespace Bunashibu.Kikan {
 
       Hp         = new Hp(HpTable[0]);
       Exp        = new Exp(ExpTable[0]);
+      Level      = new Level(1, MaxLevel);
       KillCount  = new ReactiveProperty<int>(0);
       DeathCount = new ReactiveProperty<int>(0);
     }
@@ -68,7 +68,6 @@ namespace Bunashibu.Kikan {
     public BattlePlayerMovement Movement      { get; private set; }
     public CharacterState       State         { get; private set; }
     public BuffState            BuffState     { get; private set; }
-    public PlayerLevel          Level         { get; private set; }
     public PlayerGold           Gold          { get; private set; }
     public PlayerKillDeath      KillDeath     { get; private set; }
     public PlayerStatus         Status        { get; private set; }
@@ -78,8 +77,8 @@ namespace Bunashibu.Kikan {
 
     public int    MaxLevel     => 15;
     public int    MaxGold      => 99999;
-    public int    KillExp      => _killExpTable.Data[Level.Cur - 1];
-    public int    KillGold     => _killGoldTable.Data[Level.Cur - 1];
+    public int    KillExp      => _killExpTable.Data[Level.Cur.Value - 1];
+    public int    KillGold     => _killGoldTable.Data[Level.Cur.Value - 1];
     public int    DamageSkinId => 0;
     public int    Power        { get { double ratio = (double)((Core.Attack + 100) / 100.0);
                                        return (int)(Status.Atk * Status.MulCorrectionAtk * ratio); } }
@@ -88,6 +87,7 @@ namespace Bunashibu.Kikan {
 
     public Hp                    Hp         { get; private set; }
     public Exp                   Exp        { get; private set; }
+    public Level                 Level      { get; private set; }
     public ReactiveProperty<int> KillCount  { get; private set; }
     public ReactiveProperty<int> DeathCount { get; private set; }
 

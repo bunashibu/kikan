@@ -5,10 +5,10 @@ using UniRx;
 
 namespace Bunashibu.Kikan {
   public class Hp : IntReactiveGauge {
-    public Hp(int initialValue) {
-      _cur.Value = initialValue;
+    public Hp(int initialHp) {
+      _cur.Value = initialHp;
       _min.Value = 0;
-      _max.Value = initialValue;
+      _max.Value = initialHp;
     }
 
     public void FullRecover() {

@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   public class Exp : IntReactiveGauge {
-    public Exp(int initialValue) {
+    public Exp(int initialNeedExp) {
       _cur.Value = 0;
       _min.Value = 0;
-      _max.Value = initialValue;
+      _max.Value = initialNeedExp;
     }
   }
 }
