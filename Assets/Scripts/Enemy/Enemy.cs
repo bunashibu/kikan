@@ -1,6 +1,7 @@
-﻿using UnityEngine;
-using System;
+﻿using System;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Bunashibu.Kikan {
   [RequireComponent(typeof(Character2D))]
@@ -11,13 +12,18 @@ namespace Bunashibu.Kikan {
       State         = new CharacterState(_ladderCollider, _footCollider);
       BuffState     = new BuffState(Observer);
       StateTransfer = new StateTransfer(_initState, _animator);
-      Hp            = new EnemyHp();
+      //Hp            = new EnemyHp();
 
-      Hp.AddListener(_hpBar.OnNotify);
+      //Hp.AddListener(_hpBar.OnNotify);
 
-      _mediator.AddListener(Hp.OnNotify);
-      _mediator.AddListener(NumberPopupEnvironment.Instance.OnNotify);
-      _mediator.AddListener(KillRewardEnvironment.Instance.OnNotify);
+      if (StageReference.Instance.StageData.Name == "Battle") {
+        OnAttacked = BattleEnvironment.OnAttacked(this, NumberPopupEnvironment.Instance.PopupNumber);
+        OnKilled   = BattleEnvironment.OnKilled(this, KillRewardEnvironment.GetRewardFrom, KillRewardEnvironment.GiveRewardTo);
+      }
+
+      //_mediator.AddListener(Hp.OnNotify);
+      //_mediator.AddListener(NumberPopupEnvironment.Instance.OnNotify);
+      //_mediator.AddListener(KillRewardEnvironment.Instance.OnNotify);
 
       var notifier = new Notifier(_mediator.OnNotify);
       notifier.Notify(Notification.EnemyInstantiated);
@@ -31,17 +37,22 @@ namespace Bunashibu.Kikan {
       PopulationObserver = populationObserver;
     }
 
+    public Action<IBattle, int, bool> OnAttacked { get; private set; }
+    public Action<IBattle>            OnKilled   { get; private set; }
+
     // Unity
-    public PhotonView     PhotonView   { get { return _photonView;     } }
-    public Transform      Transform    { get { return transform;       } }
-    public SpriteRenderer Renderer     { get { return _spriteRenderer; } }
-    public Rigidbody2D    Rigid        { get { return _rigid;          } }
-    public Collider2D     BodyCollider { get { return _bodyCollider;   } }
-    public Collider2D     FootCollider { get { return _footCollider;   } }
+    public PhotonView     PhotonView   => _photonView;
+    public Transform      Transform    => transform;
+    public SpriteRenderer Renderer     => _spriteRenderer;
+    public Rigidbody2D    Rigid        => _rigid;
+    public Collider2D     BodyCollider => _bodyCollider;
+    public Collider2D     FootCollider => _footCollider;
 
     // Observer
     public EnemyObserver           Observer           { get { return _observer; } }
     public EnemyPopulationObserver PopulationObserver { get; private set; }
+
+    public List<IBattle>           Teammates     { get; private set; }
 
     // tmp
     public MonoBehaviour AI { get { return _ai; } }
@@ -52,13 +63,15 @@ namespace Bunashibu.Kikan {
     public CharacterState State         { get; private set; }
     public BuffState      BuffState     { get; private set; }
     public StateTransfer  StateTransfer { get; private set; }
-    public EnemyHp        Hp            { get; private set; }
+    //public EnemyHp        Hp            { get; private set; }
+    public Hp             Hp            { get; private set; }
 
-    public int KillExp      => _killExp;
-    public int KillGold     => _killGold;
-    public int DamageSkinId => 0;
-    public int Power        => 0;
-    public int Critical     => 0;
+    public int    KillExp      => _killExp;
+    public int    KillGold     => _killGold;
+    public int    DamageSkinId => 0;
+    public int    Power        => 0;
+    public int    Critical     => 0;
+    public string Tag          => gameObject.tag;
 
     [Header("Unity/Photon Components")]
     [SerializeField] private PhotonView     _photonView;

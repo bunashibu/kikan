@@ -3,37 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Assertions;
 
 namespace Bunashibu.Kikan {
   public class NumberPopupEnvironment : SingletonMonoBehaviour<NumberPopupEnvironment> {
-    public void OnNotify(Notification notification, object[] args) {
-      switch (notification) {
-        case Notification.TakeDamage:
-          Assert.IsTrue(args.Length == 4);
+    public void PopupNumber(int damage, bool isCritical, IBattle attacker, IBattle damageTaker) {
+      int skinId = attacker.DamageSkinId;
+      var damageTakerObj = ((MonoBehaviour)damageTaker).gameObject;
 
-          int damage = (int)args[1];
-          bool isCritical = (bool)args[2];
-
-          int skinId = ((GameObject)args[0]).GetComponent<IBattle>().DamageSkinId;
-
-          var damageTaker = (IBattle)args[3];
-          var damageTakerObj = ((MonoBehaviour)damageTaker).gameObject;
-
-          if (damageTakerObj.tag == "Player" && damageTaker.PhotonView.owner == PhotonNetwork.player)
-            Popup(NumberPopupType.Take, damage, damageTakerObj);
-          else if (isCritical)
-            Popup(NumberPopupType.Critical, damage, damageTakerObj, skinId);
-          else
-            Popup(NumberPopupType.Hit, damage, damageTakerObj, skinId);
-
-          break;
-        default:
-          break;
-      }
+      if (damageTakerObj.tag == "Player" && damageTaker.PhotonView.owner == PhotonNetwork.player)
+        PopupNumberByType(NumberPopupType.Take, damage, damageTakerObj);
+      else if (isCritical)
+        PopupNumberByType(NumberPopupType.Critical, damage, damageTakerObj, skinId);
+      else
+        PopupNumberByType(NumberPopupType.Hit, damage, damageTakerObj, skinId);
     }
 
-    private void Popup(NumberPopupType popupType, int damage, GameObject damageTakerObj, int skinId = 0) {
+    private void PopupNumberByType(NumberPopupType popupType, int damage, GameObject damageTakerObj, int skinId = 0) {
       float posOffsetY = damageTakerObj.GetComponent<SpriteRenderer>().bounds.extents.y + 0.2f;
 
       // INFO: e.g. damage = 8351 -> "8351" -> ['8','3','5','1'] -> indices = [8, 3, 5, 1]

@@ -46,7 +46,7 @@ namespace Bunashibu.Kikan {
         target.BuffState.ToBeStun(_stunSec);
         //target.NumberPopupEnvironment.Popup(DamageCalculator.Damage, DamageCalculator.IsCritical, skillUser.DamageSkin.Id, PopupType.Enemy);
 
-        if (target.Hp.Cur <= 0)
+        if (target.Hp.Cur.Value <= 0)
           ProceedEnemyDeath(target, skillUser);
       }
     }

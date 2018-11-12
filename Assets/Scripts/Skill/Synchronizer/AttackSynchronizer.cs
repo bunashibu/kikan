@@ -7,14 +7,13 @@ namespace Bunashibu.Kikan {
   public class AttackSynchronizer : Photon.MonoBehaviour {
     [PunRPC]
     private void SyncAttackRPC(int attackerViewID, int targetViewID, int damage, bool isCritical) {
-      var attacker = PhotonView.Find(attackerViewID).gameObject;
-      Assert.IsNotNull(attacker);
+      var attacker = PhotonView.Find(attackerViewID).gameObject.GetComponent<IBattle>();
+      var target = PhotonView.Find(targetViewID).gameObject.GetComponent<IBattle>();
 
-      var target = PhotonView.Find(targetViewID).gameObject.GetComponent<IMediatorAdaptor>();
+      Assert.IsNotNull(attacker);
       Assert.IsNotNull(target);
 
-      var notifier = new Notifier(target.OnNotify);
-      notifier.Notify(Notification.TakeDamage, attacker, damage, isCritical);
+      target.OnAttacked(attacker, damage, isCritical);
     }
 
     public void SyncAttack(int attackerViewID, int targetViewID, int damage, bool isCritical) {

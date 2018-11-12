@@ -152,8 +152,10 @@ namespace Bunashibu.Kikan {
         DamageToEnemy(target, skillUser);
         //target.NumberPopupEnvironment.Popup(DamageCalculator.Damage, DamageCalculator.IsCritical, skillUser.DamageSkin.Id, PopupType.Enemy);
 
+        /*
         if (target.Hp.Cur <= 0)
           ProceedEnemyDeath(target, skillUser);
+          */
       }
     }
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
-  public class PopupNumber : MonoBehaviour {
+  public class NumberPrefab : MonoBehaviour {
     void Start() {
       Destroy(gameObject, 1.0f);
       _subtractColor = new Color(0, 0, 0, 0.025f);

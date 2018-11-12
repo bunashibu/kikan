@@ -10,9 +10,14 @@ namespace Bunashibu.Kikan {
     public void Initialize(BattlePlayer player) {
       SetViewID(player);
 
+      player.Hp.Cur
+        .Where(cur => (cur <= 0))
+        .Subscribe(_ => player.StateTransfer.TransitTo("Die", player.Animator));
+
       player.KillCount
         .Subscribe(killCount => _kdPanel.UpdateKill(killCount, player.PhotonView.owner))
         .AddTo(_kdPanel.gameObject);
+
       player.DeathCount
         .Subscribe(deathCount => _kdPanel.UpdateDeath(deathCount, player.PhotonView.owner))
         .AddTo(_kdPanel.gameObject);
@@ -27,10 +32,31 @@ namespace Bunashibu.Kikan {
         Assert.IsNotNull(_instantiator.ExpBar);
         Assert.IsNotNull(_instantiator.LvPanel);
 
-        //player.Hp.AddListener(_instantiator.HpBar.OnNotify);
+        player.Hp.Cur
+          .Subscribe(cur => _instantiator.HpBar.UpdateView(cur, player.Hp.Max.Value))
+          .AddTo(_instantiator.HpBar);
+
+        player.Hp.Max
+          .Subscribe(max => _instantiator.HpBar.UpdateView(player.Hp.Cur.Value, max))
+          .AddTo(_instantiator.HpBar);
+
         player.Exp.AddListener(_instantiator.ExpBar.OnNotify);
         player.Level.AddListener(_instantiator.LvPanel.OnNotify);
         player.Gold.AddListener(_goldPanel.OnNotify);
+
+        player.WorldHpBar.gameObject.SetActive(false);
+        CameraInitializer.Instance.RegisterToTrackTarget(gameObject);
+      }
+      else {
+        player.Hp.Cur
+          .Subscribe(cur => player.WorldHpBar.UpdateView(cur, player.Hp.Max.Value))
+          .AddTo(player.WorldHpBar);
+
+        player.Hp.Max
+          .Subscribe(max => player.WorldHpBar.UpdateView(player.Hp.Cur.Value, max))
+          .AddTo(player.WorldHpBar);
+
+        //_audioListener.enabled = false;
       }
 
       var notifier = new Notifier(player.OnNotify);

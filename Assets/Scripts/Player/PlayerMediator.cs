@@ -22,7 +22,7 @@ namespace Bunashibu.Kikan {
 
           _notifier.Notify(Notification.TakeDamage, args[0], args[1], args[2], _player);
 
-          if (_player.Hp.Cur == _player.Hp.Min)
+          if (_player.Hp.Cur.Value == _player.Hp.Min.Value)
             _notifier.Notify(Notification.Killed, args[0], _player);
 
           break;
@@ -30,7 +30,7 @@ namespace Bunashibu.Kikan {
           Assert.IsTrue(args.Length == 2);
 
           var killReward = (KillReward)args[0];
-          var rewardTaker = (IRewardTaker)args[1];
+          var rewardTaker = (IBattle)args[1];
 
           if (rewardTaker.PhotonView.isMine)
             _notifier.Notify(Notification.GetKillReward, killReward.MainExp, killReward.MainGold);

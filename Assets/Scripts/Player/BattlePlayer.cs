@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UnityEngine;
@@ -9,7 +10,7 @@ namespace Bunashibu.Kikan {
   // PLAN: BattlePlayer will be merged with LobbyPlayer.
   //       and will be renamed to Player.
   [RequireComponent(typeof(BattlePlayerObserver))]
-  public class BattlePlayer : MonoBehaviour, ICharacter, IBattle, IRewardTaker, ISpeaker {
+  public class BattlePlayer : MonoBehaviour, ICharacter, IBattle, ISpeaker {
     void Awake() {
       Assert.IsTrue(_killExpTable.Data.Count  == MaxLevel);
       Assert.IsTrue(_killGoldTable.Data.Count == MaxLevel);
@@ -36,25 +37,19 @@ namespace Bunashibu.Kikan {
       DeathCount = new ReactiveProperty<int>(0);
 
       if (StageReference.Instance.StageData.Name == "Battle") {
+        OnAttacked = BattleEnvironment.OnAttacked(this, NumberPopupEnvironment.Instance.PopupNumber);
+        OnKilled   = BattleEnvironment.OnKilled(this, KillRewardEnvironment.GetRewardFrom, KillRewardEnvironment.GiveRewardTo);
+
         //_mediator.AddListener(Hp.OnNotify);
         _mediator.AddListener(Exp.OnNotify);
         _mediator.AddListener(Level.OnNotify);
         _mediator.AddListener(Gold.OnNotify);
 
         // NOTE: Below environments exist in "Battle" global space
-        _mediator.AddListener(NumberPopupEnvironment.Instance.OnNotify);
-        _mediator.AddListener(KillRewardEnvironment.Instance.OnNotify);
+        //_mediator.AddListener(NumberPopupEnvironment.Instance.OnNotify);
+        //_mediator.AddListener(KillRewardEnvironment.Instance.OnNotify);
 
         Level.AddListener(_mediator.OnNotify);
-
-        if (PhotonView.isMine) {
-          _worldHpBar.gameObject.SetActive(false);
-          CameraInitializer.Instance.RegisterToTrackTarget(gameObject);
-        }
-        else {
-          //Hp.AddListener(_worldHpBar.OnNotify);
-          _audioListener.enabled = false;
-        }
       }
     }
 
@@ -70,17 +65,20 @@ namespace Bunashibu.Kikan {
       _mediator.OnNotify(notification, args);
     }
 
-    public PhotonView       PhotonView   { get { return _photonView;   } }
-    public Transform        Transform    { get { return transform;     } }
-    public SpriteRenderer[] Renderers    { get { return _renderers;    } }
-    public Rigidbody2D      Rigid        { get { return _rigid;        } }
-    public Collider2D       BodyCollider { get { return _bodyCollider; } }
-    public Collider2D       FootCollider { get { return _footCollider; } }
-    public Animator         Animator     { get { return _animator;     } }
+    public Action<IBattle, int, bool> OnAttacked { get; private set; }
+    public Action<IBattle>            OnKilled   { get; private set; }
 
-    public BattlePlayerObserver Observer { get { return _observer; } }
+    public PhotonView       PhotonView   => _photonView;
+    public Transform        Transform    => transform;
+    public SpriteRenderer[] Renderers    => _renderers;
+    public Rigidbody2D      Rigid        => _rigid;
+    public Collider2D       BodyCollider => _bodyCollider;
+    public Collider2D       FootCollider => _footCollider;
+    public Animator         Animator     => _animator;
 
-    public AudioEnvironment     AudioEnvironment { get { return _audioEnvironment; } }
+    public BattlePlayerObserver Observer => _observer;
+
+    public AudioEnvironment     AudioEnvironment => _audioEnvironment;
 
     public List<IBattle>        Teammates     { get; private set; }
 
@@ -97,14 +95,15 @@ namespace Bunashibu.Kikan {
     public SkillInfo            SkillInfo     { get; private set; }
     public PlayerInfo           PlayerInfo    { get; private set; }
 
-    public int MaxLevel     => 15;
-    public int MaxGold      => 99999;
-    public int KillExp      => _killExpTable.Data[Level.Cur - 1];
-    public int KillGold     => _killGoldTable.Data[Level.Cur - 1];
-    public int DamageSkinId => 0;
-    public int Power        { get { double ratio = (double)((Core.Attack + 100) / 100.0);
-                                    return (int)(Status.Atk * Status.MulCorrectionAtk * ratio); } }
-    public int Critical     => Core.Critical;
+    public int    MaxLevel     => 15;
+    public int    MaxGold      => 99999;
+    public int    KillExp      => _killExpTable.Data[Level.Cur - 1];
+    public int    KillGold     => _killGoldTable.Data[Level.Cur - 1];
+    public int    DamageSkinId => 0;
+    public int    Power        { get { double ratio = (double)((Core.Attack + 100) / 100.0);
+                                       return (int)(Status.Atk * Status.MulCorrectionAtk * ratio); } }
+    public int    Critical     => Core.Critical;
+    public string Tag          => gameObject.tag;
 
     public Hp                    Hp         { get; private set; }
     public ReactiveProperty<int> KillCount  { get; private set; }
@@ -113,8 +112,9 @@ namespace Bunashibu.Kikan {
     public ReadOnlyCollection<int> HpTable  => _hpTable.Data;
     public ReadOnlyCollection<int> ExpTable => _expTable.Data;
 
-    public NameBackground NameBackground { get { return _nameBackground; } }
-    public PopupRemark    PopupRemark    { get { return _popupRemark;    } }
+    public NameBackground NameBackground => _nameBackground;
+    public PopupRemark    PopupRemark    => _popupRemark;
+    public Bar            WorldHpBar     => _worldHpBar;
 
     public Character2D    Character { get { return _character; } }
 
@@ -146,8 +146,6 @@ namespace Bunashibu.Kikan {
     [SerializeField] private DataTable _killExpTable;
     [SerializeField] private DataTable _killGoldTable;
 
-    [SerializeField] private Bar _worldHpBar;
-
     // Obsolete
     [Header("Sync On Their Own")]
     [SerializeField] private PlayerCore _core;
@@ -155,6 +153,7 @@ namespace Bunashibu.Kikan {
     [Header("Canvas")]
     [SerializeField] private NameBackground _nameBackground;
     [SerializeField] private PopupRemark    _popupRemark;
+    [SerializeField] private Bar            _worldHpBar;
 
     [Space(10)]
     [SerializeField] private Character2D _character;

@@ -38,12 +38,12 @@ namespace Bunashibu.Kikan {
 
     [PunRPC]
     private void SyncCurHpRPC(int cur) {
-      ForceSync("CurHp", () => _enemy.Hp.ForceSyncCur(cur));
+      //ForceSync("CurHp", () => _enemy.Hp.ForceSyncCur(cur));
     }
 
     [PunRPC]
     private void SyncUpdateHpViewRPC(PhotonPlayer skillOwner) {
-      ForceSync("UpdateHpView", () => _enemy.Hp.ForceSyncUpdateView(skillOwner));
+      //ForceSync("UpdateHpView", () => _enemy.Hp.ForceSyncUpdateView(skillOwner));
     }
 
     [PunRPC]
