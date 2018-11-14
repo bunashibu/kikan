@@ -3,21 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
-  public class LobbyStepDownJumpSMB : StateMachineBehaviour {
+  public class PlayerStepDownJumpSMB : StateMachineBehaviour {
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
       if (_player == null)
-        _player = animator.GetComponent<LobbyPlayer>();
+        _player = animator.GetComponent<BattlePlayer>();
 
       InitFlag();
       _player.FootCollider.isTrigger = true;
       _player.Movement.StepDownJump();
-      _player.AudioSource.PlayOneShot(_clip, 0.5f);
+      _player.AudioEnvironment.PlayOneShot("Jump");
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
       if (_player.PhotonView.isMine) {
         UpdateFlag();
-        if ( _player.State.Air && _fallFlag ) { _player.StateTransfer.TransitTo( "Fall" , animator ); return; }
+
+        if ( _player.Hp.Cur.Value <= 0    ) { _player.StateTransfer.TransitTo( "Die" , animator ); return; }
+        if ( _player.BuffState.Stun ) { _player.StateTransfer.TransitTo( "Stun", animator ); return; }
+        if ( _fallFlag              ) { _player.StateTransfer.TransitTo( "Fall", animator ); return; }
+        if (!_player.FootCollider.isTrigger) { _player.StateTransfer.TransitTo( "Idle", animator ); return; }
       }
     }
 
@@ -27,20 +31,24 @@ namespace Bunashibu.Kikan {
 
     private void InitFlag() {
       _isAlreadyJumped = false;
+      _isPassedGround = false;
       _fallFlag = false;
     }
 
     private void UpdateFlag() {
-      if (_player.State.Air)
+      if (LocationJudger.IsAir(_player.FootCollider))
         _isAlreadyJumped = true;
 
-      if (_player.State.Ground && _isAlreadyJumped)
+      if (LocationJudger.IsGround(_player.FootCollider) && _isAlreadyJumped)
+        _isPassedGround = true;
+
+      if (LocationJudger.IsAir(_player.FootCollider) && _isPassedGround)
         _fallFlag = true;
     }
 
-    [SerializeField] private AudioClip _clip;
-    private LobbyPlayer _player;
+    private BattlePlayer _player;
     private bool _isAlreadyJumped;
+    private bool _isPassedGround;
     private bool _fallFlag;
   }
 }

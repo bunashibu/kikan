@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
-  public class BattleFallSMB : StateMachineBehaviour {
+  public class PlayerIdleSMB : StateMachineBehaviour {
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
       if (_player == null)
         _player = animator.GetComponent<BattlePlayer>();
@@ -11,35 +11,14 @@ namespace Bunashibu.Kikan {
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
       if (_player.PhotonView.isMine) {
-        if (!_player.State.Rigor)
-          AirMove();
-
         if ( _player.Hp.Cur.Value <= 0         ) { _player.StateTransfer.TransitTo( "Die"        , animator ); return; }
         if ( _player.BuffState.Stun      ) { _player.StateTransfer.TransitTo( "Stun"       , animator ); return; }
         if ( ShouldTransitToSkill()      ) { _player.StateTransfer.TransitTo( "Skill"      , animator ); return; }
         if ( ShouldTransitToLadder()     ) { _player.StateTransfer.TransitTo( "Ladder"     , animator ); return; }
+        if ( ShouldTransitToWalk()       ) { _player.StateTransfer.TransitTo( "Walk"       , animator ); return; }
         if ( ShouldTransitToLieDown()    ) { _player.StateTransfer.TransitTo( "LieDown"    , animator ); return; }
         if ( ShouldTransitToGroundJump() ) { _player.StateTransfer.TransitTo( "GroundJump" , animator ); return; }
-        if ( ShouldTransitToWalk()       ) { _player.StateTransfer.TransitTo( "Walk"       , animator ); return; }
-        if ( ShouldTransitToIdle()       ) { _player.StateTransfer.TransitTo( "Idle"       , animator ); return; }
-      }
-    }
-
-    private void AirMove() {
-      bool OnlyLeftKeyDown = Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow);
-      if (OnlyLeftKeyDown) {
-        _player.Movement.AirMoveLeft();
-
-        foreach (var sprite in _player.Renderers)
-          sprite.flipX = false;
-      }
-
-      bool OnlyRightKeyDown = Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow);
-      if (OnlyRightKeyDown) {
-        _player.Movement.AirMoveRight();
-
-        foreach (var sprite in _player.Renderers)
-          sprite.flipX = true;
+        if ( LocationJudger.IsAir(_player.FootCollider) ) { _player.StateTransfer.TransitTo( "Fall"       , animator ); return; }
       }
     }
 
@@ -73,17 +52,13 @@ namespace Bunashibu.Kikan {
 
     private bool ShouldTransitToLieDown() {
       bool OnlyDownKeyDown = Input.GetKey(KeyCode.DownArrow) && !Input.GetKey(KeyCode.UpArrow);
-      bool LieDownFlag     = OnlyDownKeyDown && !_player.State.LadderTopEdge;
+      bool LieDownFlag     = OnlyDownKeyDown && (!_player.State.Ladder || (_player.State.LadderBottomEdge && LocationJudger.IsGround(_player.FootCollider)));
 
       return LocationJudger.IsGround(_player.FootCollider) && LieDownFlag;
     }
 
     private bool ShouldTransitToGroundJump() {
       return LocationJudger.IsGround(_player.FootCollider) && Input.GetButton("Jump");
-    }
-
-    private bool ShouldTransitToIdle() {
-      return LocationJudger.IsGround(_player.FootCollider);
     }
 
     private BattlePlayer _player;

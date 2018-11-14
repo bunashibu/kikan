@@ -5,7 +5,7 @@ using UnityEngine;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 namespace Bunashibu.Kikan {
-  public class DieSMB : StateMachineBehaviour {
+  public class PlayerDieSMB : StateMachineBehaviour {
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
       if (_player == null) {
         _player     = animator.GetComponent<BattlePlayer>();
