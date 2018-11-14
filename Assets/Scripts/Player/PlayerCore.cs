@@ -108,7 +108,7 @@ namespace Bunashibu.Kikan {
       _coreList[index].LvUp();
     }
 
-    [SerializeField] private BattlePlayer _player;
+    [SerializeField] private Player _player;
     [SerializeField] private PlayerAutomaticHealer _playerHealer;
     [SerializeField] private List<Core> _coreList;
     [SerializeField] private List<GameObject> _effectList;

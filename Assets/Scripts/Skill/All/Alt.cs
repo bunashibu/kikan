@@ -8,7 +8,7 @@ namespace Bunashibu.Kikan {
       if (!photonView.isMine)
         return;
 
-      var skillUser = _skillUserObj.GetComponent<BattlePlayer>();
+      var skillUser = _skillUserObj.GetComponent<Player>();
 
       int addition = skillUser.Level.Cur.Value * 50 + (int)(Random.value * 100);
       skillUser.Hp.Add(2000 + addition);

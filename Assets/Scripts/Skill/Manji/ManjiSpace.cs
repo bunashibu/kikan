@@ -22,7 +22,7 @@ namespace Bunashibu.Kikan {
     }
 
     private void EnhanceStatus() {
-      var skillUser = _skillUserObj.GetComponent<BattlePlayer>();
+      var skillUser = _skillUserObj.GetComponent<Player>();
 
       float statusRatio = 1.3f;
       float powerRatio = 1.5f;
@@ -46,7 +46,7 @@ namespace Bunashibu.Kikan {
     }
 
     private void InstantiateBuff() {
-      var skillUser = _skillUserObj.GetComponent<BattlePlayer>();
+      var skillUser = _skillUserObj.GetComponent<Player>();
 
       var buff = PhotonNetwork.Instantiate("Prefabs/Skill/Manji/SpaceBuff", Vector3.zero, Quaternion.identity, 0).GetComponent<ManjiSpaceBuff>() as ManjiSpaceBuff;
       buff.ParentSetter.SetParent(skillUser.PhotonView.viewID);

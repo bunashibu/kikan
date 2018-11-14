@@ -5,7 +5,7 @@ using UnityEngine.Assertions;
 
 namespace Bunashibu.Kikan {
   public class PlayerInfo {
-    public PlayerInfo(BattlePlayer player) {
+    public PlayerInfo(Player player) {
       _player = player;
       _team = (int)PhotonNetwork.player.CustomProperties["Team"];
     }
@@ -25,7 +25,7 @@ namespace Bunashibu.Kikan {
       _team = team;
     }
 
-    private BattlePlayer _player;
+    private Player _player;
     private int _team;
   }
 }

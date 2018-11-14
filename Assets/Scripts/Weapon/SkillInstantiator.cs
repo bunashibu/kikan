@@ -120,7 +120,7 @@ namespace Bunashibu.Kikan {
     [SerializeField] private Vector3[] _appearOffset;
     [SerializeField] private int[] _requireLv;
     [SerializeField] private SpriteRenderer _renderer;
-    [SerializeField] private BattlePlayer _player;
+    [SerializeField] private Player _player;
     private List<SkillPanelUnit> _panelUnitList;
     private List<bool> _canUseList;
     private List<bool> _isDisabled;

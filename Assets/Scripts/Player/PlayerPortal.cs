@@ -18,7 +18,7 @@ namespace Bunashibu.Kikan {
     }
 
     [SerializeField] private string _portalLayerName;
-    [SerializeField] private BattlePlayer _player;
+    [SerializeField] private Player _player;
   }
 }
 

@@ -39,7 +39,7 @@ namespace Bunashibu.Kikan {
       });
     }
 
-    [SerializeField] private BattlePlayer _player;
+    [SerializeField] private Player _player;
     [SerializeField] private DataTable _healTable;
     public int HealQuantity { get; private set; }
 

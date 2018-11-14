@@ -6,7 +6,7 @@ namespace Bunashibu.Kikan {
   public class PlayerLadderSMB : StateMachineBehaviour {
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
       if (_player == null)
-        _player = animator.GetComponent<BattlePlayer>();
+        _player = animator.GetComponent<Player>();
 
       _player.Rigid.isKinematic = true;
       _player.Rigid.velocity = new Vector2(0.0f, 0.0f);
@@ -84,7 +84,7 @@ namespace Bunashibu.Kikan {
       _player.Movement.LadderJump();
     }
 
-    private BattlePlayer _player;
+    private Player _player;
   }
 }
 

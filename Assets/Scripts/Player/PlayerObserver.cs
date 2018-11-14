@@ -5,7 +5,8 @@ using UnityEngine;
 using UnityEngine.Assertions;
 
 namespace Bunashibu.Kikan {
-  public class BattlePlayerObserver : MonoBehaviour, IBuffObserver {
+  // Obsolete
+  public class PlayerObserver : MonoBehaviour, IBuffObserver {
     void Awake() {
       _shouldSync = new Dictionary<string, bool>();
 
@@ -137,7 +138,7 @@ namespace Bunashibu.Kikan {
       _shouldSync[key] = false;
     }
 
-    [SerializeField] private BattlePlayer _player;
+    [SerializeField] private Player _player;
     private Dictionary<string, bool> _shouldSync;
   }
 }

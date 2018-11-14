@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
-  public class SyncBattlePlayer : MonoBehaviour {
+  public class SyncPlayer : MonoBehaviour {
     void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
       if (stream.isWriting) {
         stream.SendNext((Vector2)_player.Rigid.position);
@@ -44,7 +44,7 @@ namespace Bunashibu.Kikan {
       }
     }
 
-    [SerializeField] private BattlePlayer _player;
+    [SerializeField] private Player _player;
   }
 }
 

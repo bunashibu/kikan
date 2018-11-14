@@ -6,7 +6,7 @@ namespace Bunashibu.Kikan {
   public class PlayerLadderJumpSMB : StateMachineBehaviour {
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
       if (_player == null)
-        _player = animator.GetComponent<BattlePlayer>();
+        _player = animator.GetComponent<Player>();
 
       _player.AudioEnvironment.PlayOneShot("Jump");
     }
@@ -32,7 +32,7 @@ namespace Bunashibu.Kikan {
       return SkillFlag;
     }
 
-    private BattlePlayer _player;
+    private Player _player;
   }
 }
 

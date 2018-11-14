@@ -28,7 +28,7 @@ namespace Bunashibu.Kikan {
       });
     }
 
-    [SerializeField] private BattlePlayer _player;
+    [SerializeField] private Player _player;
   }
 }
 

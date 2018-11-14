@@ -11,7 +11,7 @@ namespace Bunashibu.Kikan {
       if ((int)PhotonNetwork.player.CustomProperties["Team"] == 1)
         pos.x *= -1;
 
-      _player = PhotonNetwork.Instantiate("Prefabs/Job/" + jobName, pos, Quaternion.identity, 0).GetComponent<BattlePlayer>();
+      _player = PhotonNetwork.Instantiate("Prefabs/Job/" + jobName, pos, Quaternion.identity, 0).GetComponent<Player>();
       _player.Observer.SyncTeam();
     }
 
@@ -38,7 +38,7 @@ namespace Bunashibu.Kikan {
     [SerializeField] private Bar _hpBar;
     [SerializeField] private Bar _expBar;
     [SerializeField] private LevelPanel _lvPanel;
-    private BattlePlayer _player;
+    private Player _player;
   }
 }
 

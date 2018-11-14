@@ -7,7 +7,7 @@ using UniRx;
 
 namespace Bunashibu.Kikan {
   public class PlayerInitializer : SingletonMonoBehaviour<PlayerInitializer> {
-    public void Initialize(BattlePlayer player) {
+    public void Initialize(Player player) {
       SetViewID(player);
 
       AllPlayerInitialize(player);
@@ -23,7 +23,7 @@ namespace Bunashibu.Kikan {
       player.Movement.SetJumpForce(player.Status.Jmp);
     }
 
-    private void AllPlayerInitialize(BattlePlayer player) {
+    private void AllPlayerInitialize(Player player) {
       player.Hp.Cur
         .Where(cur => (cur <= 0))
         .Subscribe(_ => player.StateTransfer.TransitTo("Die", player.Animator))
@@ -51,7 +51,7 @@ namespace Bunashibu.Kikan {
         .AddTo(_kdPanel.gameObject);
     }
 
-    private void PlayerOwnerInitialize(BattlePlayer player) {
+    private void PlayerOwnerInitialize(Player player) {
       Assert.IsNotNull(_instantiator.HpBar);
       Assert.IsNotNull(_instantiator.ExpBar);
       Assert.IsNotNull(_instantiator.LvPanel);
@@ -84,7 +84,7 @@ namespace Bunashibu.Kikan {
       CameraInitializer.Instance.RegisterToTrackTarget(player.gameObject);
     }
 
-    private void NonPlayerOwnerInitialize(BattlePlayer player) {
+    private void NonPlayerOwnerInitialize(Player player) {
       player.Hp.Cur
         .Subscribe(_ => player.WorldHpBar.UpdateView(player.Hp.Cur.Value, player.Hp.Max.Value))
         .AddTo(player.WorldHpBar);
@@ -96,14 +96,14 @@ namespace Bunashibu.Kikan {
       //_audioListener.enabled = false;
     }
 
-    private void SetViewID(BattlePlayer player) {
+    private void SetViewID(Player player) {
       var viewID = player.PhotonView.viewID;
 
       var props = new Hashtable() {{"ViewID", viewID}};
       PhotonNetwork.player.SetCustomProperties(props);
     }
 
-    private void InitPlayerTeam(BattlePlayer player) {
+    private void InitPlayerTeam(Player player) {
       int team = (int)PhotonNetwork.player.CustomProperties["Team"];
 
       if (team == 0)

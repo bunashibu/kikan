@@ -18,7 +18,7 @@ namespace Bunashibu.Kikan {
         _renderer.color = Color.red;
     }
 
-    [SerializeField] private BattlePlayer _player;
+    [SerializeField] private Player _player;
     [SerializeField] private SpriteRenderer _renderer;
   }
 }

@@ -41,10 +41,10 @@ namespace Bunashibu.Kikan {
     }
 
     private bool IsSameTeam(GameObject targetObj, GameObject skillUserObj) {
-      var target = targetObj.GetComponent<BattlePlayer>();
+      var target = targetObj.GetComponent<Player>();
       Assert.IsNotNull(target);
 
-      var skillUser = skillUserObj.GetComponent<BattlePlayer>();
+      var skillUser = skillUserObj.GetComponent<Player>();
       Assert.IsNotNull(skillUser);
 
       return (target.PlayerInfo.Team == skillUser.PlayerInfo.Team);

@@ -30,7 +30,7 @@ namespace Bunashibu.Kikan {
     }
 
     private void TranslateSkillUser() {
-      var skillUser = _skillUserObj.GetComponent<BattlePlayer>();
+      var skillUser = _skillUserObj.GetComponent<Player>();
       skillUser.FootCollider.isTrigger = false;
 
       if (Input.GetKey(KeyCode.UpArrow))
@@ -45,7 +45,7 @@ namespace Bunashibu.Kikan {
 
     [PunRPC]
     private void TranslateHorizontally(Vector2 direction) {
-      var skillUser = _skillUserObj.GetComponent<BattlePlayer>();
+      var skillUser = _skillUserObj.GetComponent<Player>();
       var halfCharaHeight = skillUser.BodyCollider.bounds.size.y / 2;
 
       Vector2 moveVector = direction * _moveDistance;
@@ -76,7 +76,7 @@ namespace Bunashibu.Kikan {
 
     [PunRPC]
     private void TranslateVertically(Vector2 direction) {
-      var skillUser = _skillUserObj.GetComponent<BattlePlayer>();
+      var skillUser = _skillUserObj.GetComponent<Player>();
 
       if (skillUser.State.CanNotDownGround && (direction.y == -1))
         return;
@@ -132,8 +132,8 @@ namespace Bunashibu.Kikan {
     }
 
     private void ProceedAttackToPlayer(GameObject targetObj) {
-      var target = targetObj.GetComponent<BattlePlayer>();
-      var skillUser = _skillUserObj.GetComponent<BattlePlayer>();
+      var target = targetObj.GetComponent<Player>();
+      var skillUser = _skillUserObj.GetComponent<Player>();
 
       if (IsCorrectAttackPlayer(target, skillUser)) {
         DamageToPlayer(target, skillUser);
@@ -146,7 +146,7 @@ namespace Bunashibu.Kikan {
 
     private void ProceedAttackToEnemy(GameObject targetObj) {
       var target = targetObj.GetComponent<Enemy>();
-      var skillUser = _skillUserObj.GetComponent<BattlePlayer>();
+      var skillUser = _skillUserObj.GetComponent<Player>();
 
       if (IsCorrectAttackEnemy(target)) {
         DamageToEnemy(target, skillUser);
@@ -159,7 +159,7 @@ namespace Bunashibu.Kikan {
       }
     }
 
-    private bool IsCorrectAttackPlayer(BattlePlayer target, BattlePlayer skillUser) {
+    private bool IsCorrectAttackPlayer(Player target, Player skillUser) {
       if (target.PlayerInfo.Team == skillUser.PlayerInfo.Team)
         return false;
       if (_targetRistrictor.ShouldRistrict(target))
@@ -175,24 +175,24 @@ namespace Bunashibu.Kikan {
       return true;
     }
 
-    private void DamageToPlayer(BattlePlayer target, BattlePlayer skillUser) {
+    private void DamageToPlayer(Player target, Player skillUser) {
       DamageCalculator.Calculate(_skillUserObj, _attackInfo);
 
       //target.Hp.Subtract(DamageCalculator.Damage);
       //target.Hp.UpdateView();
     }
 
-    private void DamageToEnemy(Enemy target, BattlePlayer skillUser) {
+    private void DamageToEnemy(Enemy target, Player skillUser) {
       DamageCalculator.Calculate(_skillUserObj, _attackInfo);
 
       //target.Hp.Subtract(DamageCalculator.Damage);
       //target.Hp.UpdateView(skillUser.PhotonView.owner);
     }
 
-    private void ProceedPlayerDeath(BattlePlayer target, BattlePlayer skillUser) {
+    private void ProceedPlayerDeath(Player target, Player skillUser) {
     }
 
-    private void ProceedEnemyDeath(Enemy target, BattlePlayer skillUser) {
+    private void ProceedEnemyDeath(Enemy target, Player skillUser) {
     }
 
     [SerializeField] private AttackInfo _attackInfo;

@@ -6,7 +6,7 @@ namespace Bunashibu.Kikan {
   public class PlayerGroundJumpSMB : StateMachineBehaviour {
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
       if (_player == null)
-        _player = animator.GetComponent<BattlePlayer>();
+        _player = animator.GetComponent<Player>();
 
       _isAlreadyJumped = false;
       _player.Movement.GroundJump();
@@ -84,7 +84,7 @@ namespace Bunashibu.Kikan {
       return false;
     }
 
-    private BattlePlayer _player;
+    private Player _player;
     private bool _isAlreadyJumped;
   }
 }

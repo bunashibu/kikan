@@ -9,7 +9,7 @@ namespace Bunashibu.Kikan {
       if (targetObj.tag != "Player")
         return;
 
-      var target = targetObj.GetComponent<BattlePlayer>();
+      var target = targetObj.GetComponent<Player>();
 
       if (!target.PhotonView.isMine)
         return;

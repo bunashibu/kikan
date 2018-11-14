@@ -8,7 +8,7 @@ namespace Bunashibu.Kikan {
   public class PlayerDieSMB : StateMachineBehaviour {
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
       if (_player == null) {
-        _player     = animator.GetComponent<BattlePlayer>();
+        _player     = animator.GetComponent<Player>();
         _respawner  = animator.GetComponent<PlayerRespawner>();
       }
 
@@ -36,7 +36,7 @@ namespace Bunashibu.Kikan {
       }
     }
 
-    private BattlePlayer _player;
+    private Player _player;
     private PlayerRespawner _respawner;
   }
 }

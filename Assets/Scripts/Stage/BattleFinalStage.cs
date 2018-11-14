@@ -31,7 +31,7 @@ namespace Bunashibu.Kikan {
       gameObject.SetActive(true);
 
       int viewID = (int)PhotonNetwork.player.CustomProperties["ViewID"];
-      _player = PhotonView.Find(viewID).GetComponent<BattlePlayer>() as BattlePlayer;
+      _player = PhotonView.Find(viewID).GetComponent<Player>() as Player;
 
       _player.Rigid.velocity = Vector3.zero;
       _player.Rigid.simulated = false;
@@ -120,7 +120,7 @@ namespace Bunashibu.Kikan {
 
     private Quaternion _destRotation;
     private bool _isRotating;
-    private BattlePlayer _player;
+    private Player _player;
     private QuadraticEaseInOut _easing;
     private QuadraticEaseInOut _easingCamera;
   }

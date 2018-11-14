@@ -7,10 +7,7 @@ using UnityEngine.Assertions;
 using UniRx;
 
 namespace Bunashibu.Kikan {
-  // PLAN: BattlePlayer will be merged with LobbyPlayer.
-  //       and will be renamed to Player.
-  [RequireComponent(typeof(BattlePlayerObserver))]
-  public class BattlePlayer : MonoBehaviour, IPlayer {
+  public class Player : MonoBehaviour, IPlayer {
     void Awake() {
       Assert.IsTrue(_killExpTable.Data.Count  == MaxLevel);
       Assert.IsTrue(_killGoldTable.Data.Count == MaxLevel);
@@ -58,7 +55,7 @@ namespace Bunashibu.Kikan {
     public Collider2D       FootCollider => _footCollider;
     public Animator         Animator     => _animator;
 
-    public BattlePlayerObserver Observer => _observer;
+    public PlayerObserver Observer => _observer;
 
     public AudioEnvironment     AudioEnvironment => _audioEnvironment;
 
@@ -113,7 +110,7 @@ namespace Bunashibu.Kikan {
     [SerializeField] private AudioListener    _audioListener;
 
     [Header("Observer")]
-    [SerializeField] private BattlePlayerObserver _observer;
+    [SerializeField] private PlayerObserver _observer;
 
     [Header("Environment")]
     [SerializeField] private AudioEnvironment _audioEnvironment;

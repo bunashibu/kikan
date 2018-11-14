@@ -6,7 +6,7 @@ namespace Bunashibu.Kikan {
   public class PlayerWalkSMB : StateMachineBehaviour {
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
       if (_player == null)
-        _player = animator.GetComponent<BattlePlayer>();
+        _player = animator.GetComponent<Player>();
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
@@ -91,7 +91,7 @@ namespace Bunashibu.Kikan {
       return LocationJudger.IsAir(_player.FootCollider) && (_player.Rigid.velocity.y < 0);
     }
 
-    private BattlePlayer _player;
+    private Player _player;
   }
 }
 

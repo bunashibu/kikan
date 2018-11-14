@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   public class Portal : MonoBehaviour {
-    public void Enter(BattlePlayer target) {
+    public void Enter(Player target) {
       target.transform.position = _exit.transform.position;
       target.Rigid.velocity = new Vector2(0, 0);
     }

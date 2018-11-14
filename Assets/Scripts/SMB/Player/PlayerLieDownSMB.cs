@@ -6,7 +6,7 @@ namespace Bunashibu.Kikan {
   public class PlayerLieDownSMB : StateMachineBehaviour {
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
       if (_player == null)
-        _player = animator.GetComponent<BattlePlayer>();
+        _player = animator.GetComponent<Player>();
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
@@ -51,7 +51,7 @@ namespace Bunashibu.Kikan {
       return LocationJudger.IsGround(_player.FootCollider) && (DownKeyUp || UpKeyDown);
     }
 
-    private BattlePlayer _player;
+    private Player _player;
   }
 }
 

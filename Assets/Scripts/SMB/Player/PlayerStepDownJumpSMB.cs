@@ -6,7 +6,7 @@ namespace Bunashibu.Kikan {
   public class PlayerStepDownJumpSMB : StateMachineBehaviour {
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
       if (_player == null)
-        _player = animator.GetComponent<BattlePlayer>();
+        _player = animator.GetComponent<Player>();
 
       InitFlag();
       _player.FootCollider.isTrigger = true;
@@ -46,7 +46,7 @@ namespace Bunashibu.Kikan {
         _fallFlag = true;
     }
 
-    private BattlePlayer _player;
+    private Player _player;
     private bool _isAlreadyJumped;
     private bool _isPassedGround;
     private bool _fallFlag;
