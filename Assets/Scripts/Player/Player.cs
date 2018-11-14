@@ -15,7 +15,7 @@ namespace Bunashibu.Kikan {
       Assert.IsTrue(_expTable.Data.Count      == MaxLevel);
 
       Teammates     = new List<IPlayer>();
-      Movement      = new BattlePlayerMovement(_core);
+      Movement      = new PlayerMovement(_core);
       State         = new CharacterState(_ladderCollider, _footCollider);
       BuffState     = new BuffState(Observer);
       Status        = new PlayerStatus(_jobStatus);
@@ -61,7 +61,7 @@ namespace Bunashibu.Kikan {
 
     public List<IPlayer>        Teammates     { get; private set; }
 
-    public BattlePlayerMovement Movement      { get; private set; }
+    public PlayerMovement       Movement      { get; private set; }
     public CharacterState       State         { get; private set; }
     public BuffState            BuffState     { get; private set; }
     public PlayerStatus         Status        { get; private set; }

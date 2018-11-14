@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
-  public class BattlePlayerMovement {
-    public BattlePlayerMovement(PlayerCore core) {
+  public class PlayerMovement {
+    public PlayerMovement(PlayerCore core) {
       _core = core;
 
       _coreAirMove    = new CoreAirMove();
