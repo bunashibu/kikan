@@ -9,11 +9,6 @@ using UniRx;
 namespace Bunashibu.Kikan {
   public class Player : MonoBehaviour, IPlayer {
     void Awake() {
-      Assert.IsTrue(_killExpTable.Data.Count  == MaxLevel);
-      Assert.IsTrue(_killGoldTable.Data.Count == MaxLevel);
-      Assert.IsTrue(_hpTable.Data.Count       == MaxLevel);
-      Assert.IsTrue(_expTable.Data.Count      == MaxLevel);
-
       Teammates     = new List<IPlayer>();
       Movement      = new PlayerMovement(_core);
       State         = new CharacterState(_ladderCollider, _footCollider);
@@ -33,6 +28,11 @@ namespace Bunashibu.Kikan {
 
     void Start() {
       if (StageReference.Instance.StageData.Name == "Battle") {
+        Assert.IsTrue(_killExpTable.Data.Count  == MaxLevel);
+        Assert.IsTrue(_killGoldTable.Data.Count == MaxLevel);
+        Assert.IsTrue(_hpTable.Data.Count       == MaxLevel);
+        Assert.IsTrue(_expTable.Data.Count      == MaxLevel);
+
         OnAttacked = BattleEnvironment.OnAttacked(this, NumberPopupEnvironment.Instance.PopupNumber);
         OnKilled   = BattleEnvironment.OnKilled(this, KillRewardEnvironment.GetRewardFrom, KillRewardEnvironment.GiveRewardTo);
       }
