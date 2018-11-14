@@ -14,13 +14,13 @@ namespace Bunashibu.Kikan {
     }
 
     private void InstantiatePlayer() {
-      var player = PhotonNetwork.Instantiate("Prefabs/Job/Common", new Vector3(0, 0, 0), Quaternion.identity, 0).GetComponent<LobbyPlayer>() as LobbyPlayer;
+      var player = PhotonNetwork.Instantiate("Prefabs/Job/Common", new Vector3(0, 0, 0), Quaternion.identity, 0).GetComponent<BattlePlayer>() as BattlePlayer;
       player.Movement.SetMoveForce(4.0f);
       player.Movement.SetJumpForce(400.0f);
       SetViewID(player);
     }
 
-    private void SetViewID(LobbyPlayer player) {
+    private void SetViewID(BattlePlayer player) {
       var viewID = player.PhotonView.viewID;
 
       var props = new Hashtable() {{"ViewID", viewID}};
