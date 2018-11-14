@@ -52,7 +52,7 @@ namespace Bunashibu.Kikan {
       Vector2 footOrigin = new Vector2(skillUser.Transform.position.x, skillUser.Transform.position.y - halfCharaHeight);
 
       Vector2 rayOrigin = footOrigin + moveVector;
-      if (skillUser.State.Air)
+      if (LocationJudger.IsAir(skillUser.FootCollider))
         rayOrigin += new Vector2(0, halfCharaHeight * 2);
 
       RaycastHit2D hitGround = Physics2D.Raycast(rayOrigin, Vector2.down, halfCharaHeight * 2, _groundLayer);

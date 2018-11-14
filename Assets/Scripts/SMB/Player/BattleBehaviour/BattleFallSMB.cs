@@ -68,22 +68,22 @@ namespace Bunashibu.Kikan {
       bool OnlyRightKeyDown = Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow);
       bool WalkFlag         = OnlyLeftKeyDown || OnlyRightKeyDown;
 
-      return _player.State.Ground && WalkFlag;
+      return LocationJudger.IsGround(_player.FootCollider) && WalkFlag;
     }
 
     private bool ShouldTransitToLieDown() {
       bool OnlyDownKeyDown = Input.GetKey(KeyCode.DownArrow) && !Input.GetKey(KeyCode.UpArrow);
       bool LieDownFlag     = OnlyDownKeyDown && !_player.State.LadderTopEdge;
 
-      return _player.State.Ground && LieDownFlag;
+      return LocationJudger.IsGround(_player.FootCollider) && LieDownFlag;
     }
 
     private bool ShouldTransitToGroundJump() {
-      return _player.State.Ground && Input.GetButton("Jump");
+      return LocationJudger.IsGround(_player.FootCollider) && Input.GetButton("Jump");
     }
 
     private bool ShouldTransitToIdle() {
-      return _player.State.Ground;
+      return LocationJudger.IsGround(_player.FootCollider);
     }
 
     private BattlePlayer _player;

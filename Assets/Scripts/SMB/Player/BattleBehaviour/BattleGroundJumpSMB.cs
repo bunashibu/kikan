@@ -16,7 +16,7 @@ namespace Bunashibu.Kikan {
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
       if (_player.PhotonView.isMine) {
-        if (_player.State.Air)
+        if (LocationJudger.IsAir(_player.FootCollider))
           _isAlreadyJumped = true;
 
         AirMove();

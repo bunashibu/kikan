@@ -23,7 +23,7 @@ namespace Bunashibu.Kikan {
       float rayLength = 0.1f + Mathf.Abs(_character.Rigid.velocity.y) * Time.deltaTime;
       RaycastHit2D hitGround = Physics2D.Raycast(footRayOrigin, Vector2.down, rayLength, _groundMask);
 
-      if (_character.State.Ground) {
+      if (LocationJudger.IsGround(_character.FootCollider)) {
         float degAngle = Vector2.Angle(hitGround.normal, Vector2.up);
         if (degAngle == 90)
           degAngle = 0;

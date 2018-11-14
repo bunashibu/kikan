@@ -20,9 +20,9 @@ namespace Bunashibu.Kikan {
     public bool GroundLeft  { get; set; }
     public bool GroundRight { get; set; }
 
-    public bool Ground           => _footCollider.IsTouchingLayers(_groundLayer) || CanNotDownGround;
+    //public bool Ground           => _footCollider.IsTouchingLayers(_groundLayer) || CanNotDownGround;
     public bool CanNotDownGround => _footCollider.IsTouchingLayers(_canNotDownGroundLayer);
-    public bool Air              => !Ground;
+    //public bool Air              => !Ground;
     public bool Ladder           => _ladderCollider.IsTouchingLayers(_ladderLayer);
     public bool LadderTopEdge    => _footCollider.IsTouchingLayers(_ladderTopEdgeLayer);
     public bool LadderBottomEdge => _ladderCollider.IsTouchingLayers(_ladderBottomEdgeLayer);

@@ -18,7 +18,7 @@ namespace Bunashibu.Kikan {
         if ( ShouldTransitToWalk()       ) { _player.StateTransfer.TransitTo( "Walk"       , animator ); return; }
         if ( ShouldTransitToLieDown()    ) { _player.StateTransfer.TransitTo( "LieDown"    , animator ); return; }
         if ( ShouldTransitToGroundJump() ) { _player.StateTransfer.TransitTo( "GroundJump" , animator ); return; }
-        if ( _player.State.Air           ) { _player.StateTransfer.TransitTo( "Fall"       , animator ); return; }
+        if ( LocationJudger.IsAir(_player.FootCollider) ) { _player.StateTransfer.TransitTo( "Fall"       , animator ); return; }
       }
     }
 
@@ -47,18 +47,18 @@ namespace Bunashibu.Kikan {
       bool OnlyRightKeyDown = Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow);
       bool WalkFlag         = OnlyLeftKeyDown || OnlyRightKeyDown;
 
-      return _player.State.Ground && WalkFlag;
+      return LocationJudger.IsGround(_player.FootCollider) && WalkFlag;
     }
 
     private bool ShouldTransitToLieDown() {
       bool OnlyDownKeyDown = Input.GetKey(KeyCode.DownArrow) && !Input.GetKey(KeyCode.UpArrow);
-      bool LieDownFlag     = OnlyDownKeyDown && (!_player.State.Ladder || (_player.State.LadderBottomEdge && _player.State.Ground));
+      bool LieDownFlag     = OnlyDownKeyDown && (!_player.State.Ladder || (_player.State.LadderBottomEdge && LocationJudger.IsGround(_player.FootCollider)));
 
-      return _player.State.Ground && LieDownFlag;
+      return LocationJudger.IsGround(_player.FootCollider) && LieDownFlag;
     }
 
     private bool ShouldTransitToGroundJump() {
-      return _player.State.Ground && Input.GetButton("Jump");
+      return LocationJudger.IsGround(_player.FootCollider) && Input.GetButton("Jump");
     }
 
     private BattlePlayer _player;

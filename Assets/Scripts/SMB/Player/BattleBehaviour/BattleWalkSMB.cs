@@ -72,11 +72,11 @@ namespace Bunashibu.Kikan {
     private bool ShouldTransitToStepDownJump() {
       bool OnlyDownKeyDown = Input.GetKey(KeyCode.DownArrow) && !Input.GetKey(KeyCode.UpArrow);
 
-      return !_player.State.CanNotDownGround && _player.State.Ground && OnlyDownKeyDown && Input.GetButton("Jump");
+      return !_player.State.CanNotDownGround && LocationJudger.IsGround(_player.FootCollider) && OnlyDownKeyDown && Input.GetButton("Jump");
     }
 
     private bool ShouldTransitToGroundJump() {
-      return _player.State.Ground && Input.GetButton("Jump");
+      return LocationJudger.IsGround(_player.FootCollider) && Input.GetButton("Jump");
     }
 
     private bool ShouldTransitToIdle() {
@@ -84,11 +84,11 @@ namespace Bunashibu.Kikan {
       bool OnlyRightKeyDown = Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow);
       bool IdleFlag = !OnlyLeftKeyDown && !OnlyRightKeyDown;
 
-      return _player.State.Ground && IdleFlag;
+      return LocationJudger.IsGround(_player.FootCollider) && IdleFlag;
     }
 
     private bool ShouldTransitToFall() {
-      return _player.State.Air && (_player.Rigid.velocity.y < 0);
+      return LocationJudger.IsAir(_player.FootCollider) && (_player.Rigid.velocity.y < 0);
     }
 
     private BattlePlayer _player;
