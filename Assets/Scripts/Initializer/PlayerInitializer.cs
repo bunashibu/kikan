@@ -10,12 +10,12 @@ namespace Bunashibu.Kikan {
     public void Initialize(BattlePlayer player) {
       SetViewID(player);
 
-      AllInitialize(player);
+      AllPlayerInitialize(player);
 
       if (player.PhotonView.isMine)
-        ClientInitialize(player);
+        PlayerOwnerInitialize(player);
       else
-        OtherClientInitialize(player);
+        NonPlayerOwnerInitialize(player);
 
       InitPlayerTeam(player);
       player.Core.Init(_corePanel);
@@ -23,7 +23,7 @@ namespace Bunashibu.Kikan {
       player.Movement.SetJumpForce(player.Status.Jmp);
     }
 
-    private void AllInitialize(BattlePlayer player) {
+    private void AllPlayerInitialize(BattlePlayer player) {
       player.Hp.Cur
         .Where(cur => (cur <= 0))
         .Subscribe(_ => player.StateTransfer.TransitTo("Die", player.Animator))
@@ -51,7 +51,7 @@ namespace Bunashibu.Kikan {
         .AddTo(_kdPanel.gameObject);
     }
 
-    private void ClientInitialize(BattlePlayer player) {
+    private void PlayerOwnerInitialize(BattlePlayer player) {
       Assert.IsNotNull(_instantiator.HpBar);
       Assert.IsNotNull(_instantiator.ExpBar);
       Assert.IsNotNull(_instantiator.LvPanel);
@@ -84,7 +84,7 @@ namespace Bunashibu.Kikan {
       CameraInitializer.Instance.RegisterToTrackTarget(player.gameObject);
     }
 
-    private void OtherClientInitialize(BattlePlayer player) {
+    private void NonPlayerOwnerInitialize(BattlePlayer player) {
       player.Hp.Cur
         .Subscribe(cur => player.WorldHpBar.UpdateView(cur, player.Hp.Max.Value))
         .AddTo(player.WorldHpBar);

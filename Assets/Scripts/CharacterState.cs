@@ -1,5 +1,6 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Bunashibu.Kikan {
   public class CharacterState {
@@ -19,15 +20,15 @@ namespace Bunashibu.Kikan {
     public bool GroundLeft  { get; set; }
     public bool GroundRight { get; set; }
 
-    public bool Ground           { get { return _footCollider.IsTouchingLayers(_groundLayer) || CanNotDownGround; } }
-    public bool CanNotDownGround { get { return _footCollider.IsTouchingLayers(_canNotDownGroundLayer);           } }
-    public bool Air              { get { return !Ground;                                                          } }
-    public bool Ladder           { get { return _ladderCollider.IsTouchingLayers(_ladderLayer);                   } }
-    public bool LadderTopEdge    { get { return _footCollider.IsTouchingLayers(_ladderTopEdgeLayer);              } }
-    public bool LadderBottomEdge { get { return _ladderCollider.IsTouchingLayers(_ladderBottomEdgeLayer);         } }
-    public bool Portal           { get { return _ladderCollider.IsTouchingLayers(_portalLayer);                   } }
+    public bool Ground           => _footCollider.IsTouchingLayers(_groundLayer) || CanNotDownGround;
+    public bool CanNotDownGround => _footCollider.IsTouchingLayers(_canNotDownGroundLayer);
+    public bool Air              => !Ground;
+    public bool Ladder           => _ladderCollider.IsTouchingLayers(_ladderLayer);
+    public bool LadderTopEdge    => _footCollider.IsTouchingLayers(_ladderTopEdgeLayer);
+    public bool LadderBottomEdge => _ladderCollider.IsTouchingLayers(_ladderBottomEdgeLayer);
+    public bool Portal           => _ladderCollider.IsTouchingLayers(_portalLayer);
 
-    public bool Rigor { get; set; }
+    public bool Rigor      { get; set; }
     public bool Invincible { get; set; }
 
     private Collider2D _ladderCollider;
