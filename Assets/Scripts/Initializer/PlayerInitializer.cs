@@ -86,11 +86,11 @@ namespace Bunashibu.Kikan {
 
     private void NonPlayerOwnerInitialize(BattlePlayer player) {
       player.Hp.Cur
-        .Subscribe(cur => player.WorldHpBar.UpdateView(cur, player.Hp.Max.Value))
+        .Subscribe(_ => player.WorldHpBar.UpdateView(player.Hp.Cur.Value, player.Hp.Max.Value))
         .AddTo(player.WorldHpBar);
 
       player.Hp.Max
-        .Subscribe(max => player.WorldHpBar.UpdateView(player.Hp.Cur.Value, max))
+        .Subscribe(_ => player.WorldHpBar.UpdateView(player.Hp.Cur.Value, player.Hp.Max.Value))
         .AddTo(player.WorldHpBar);
 
       //_audioListener.enabled = false;
