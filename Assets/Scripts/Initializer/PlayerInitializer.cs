@@ -42,6 +42,10 @@ namespace Bunashibu.Kikan {
         .Subscribe(_ => player.Exp.Update(player.ExpTable[player.Level.Cur.Value - 1]))
         .AddTo(player.gameObject);
 
+      player.Level.Cur
+        .Subscribe(_ => _kdPanel.UpdateLevel(player.Level.Cur.Value, player.PhotonView.owner))
+        .AddTo(player.gameObject);
+
       player.KillCount
         .Subscribe(killCount => _kdPanel.UpdateKill(killCount, player.PhotonView.owner))
         .AddTo(_kdPanel.gameObject);
