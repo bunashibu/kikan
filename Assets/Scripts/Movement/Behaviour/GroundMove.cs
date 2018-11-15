@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,12 +7,28 @@ namespace Bunashibu.Kikan {
   public class GroundMove {
     public void FixedUpdate(Rigidbody2D rigid) {
       if (_actFlag) {
-        rigid.velocity = new Vector2(0, 0);
-        rigid.AddForce(_direction * _force, ForceMode2D.Impulse);
-
-        _actFlag = false;
-        _direction.x = 0;
+        ActuallyMove(rigid, () => {
+          rigid.AddForce(_direction * _force, ForceMode2D.Impulse);
+        });
       }
+    }
+
+    public void FixedUpdate(Rigidbody2D rigid, PlayerCore core) {
+      if (_actFlag) {
+        ActuallyMove(rigid, () => {
+          float ratio = (float)((core.Speed + 100) / 100.0);
+          rigid.AddForce(_direction * _force * ratio, ForceMode2D.Impulse);
+        });
+      }
+    }
+
+    private void ActuallyMove(Rigidbody2D rigid, Action action) {
+      rigid.velocity = new Vector2(0, 0); // like Aizen
+
+      action();
+
+      _actFlag = false;
+      _direction.x = 0;
     }
 
     public void SetForce(float force) {

@@ -9,39 +9,47 @@ using UniRx;
 namespace Bunashibu.Kikan {
   public class Player : MonoBehaviour, IPlayer {
     void Awake() {
-      Teammates     = new List<IPlayer>();
-      Movement      = new PlayerMovement(_core);
       State         = new CharacterState(_ladderCollider, _footCollider);
-      BuffState     = new BuffState(Observer);
-      Status        = new PlayerStatus(_jobStatus);
       StateTransfer = new StateTransfer(_initState, _animator);
-      SkillInfo     = new SkillInfo();
-      PlayerInfo    = new PlayerInfo(this);
-
-      Hp         = new Hp(HpTable[0]);
-      Exp        = new Exp(ExpTable[0]);
-      Level      = new Level(1, MaxLevel);
-      Gold       = new Gold(0, MaxGold);
-      KillCount  = new ReactiveProperty<int>(0);
-      DeathCount = new ReactiveProperty<int>(0);
     }
 
     void Start() {
+      if (StageReference.Instance.StageData.Name == "Lobby") {
+        Movement = new PlayerMovement(_rigid, transform);
+        // tmp
+        Movement.SetMoveForce(4.0f);
+        Movement.SetJumpForce(400.0f);
+      }
+
       if (StageReference.Instance.StageData.Name == "Battle") {
         Assert.IsTrue(_killExpTable.Data.Count  == MaxLevel);
         Assert.IsTrue(_killGoldTable.Data.Count == MaxLevel);
         Assert.IsTrue(_hpTable.Data.Count       == MaxLevel);
         Assert.IsTrue(_expTable.Data.Count      == MaxLevel);
 
+        Movement   = new PlayerMovement(_rigid, transform, _core);
+        Teammates  = new List<IPlayer>();
+        BuffState  = new BuffState(Observer);
+        Status     = new PlayerStatus(_jobStatus);
+        SkillInfo  = new SkillInfo();
+        PlayerInfo = new PlayerInfo(this);
+
+        Hp         = new Hp(HpTable[0]);
+        Exp        = new Exp(ExpTable[0]);
+        Level      = new Level(1, MaxLevel);
+        Gold       = new Gold(0, MaxGold);
+        KillCount  = new ReactiveProperty<int>(0);
+        DeathCount = new ReactiveProperty<int>(0);
+
         OnAttacked = BattleEnvironment.OnAttacked(this, NumberPopupEnvironment.Instance.PopupNumber);
         OnKilled   = BattleEnvironment.OnKilled(this, KillRewardEnvironment.GetRewardFrom, KillRewardEnvironment.GiveRewardTo);
-      }
 
-      PlayerInitializer.Instance.Initialize(this);
+        PlayerInitializer.Instance.Initialize(this);
+      }
     }
 
     void FixedUpdate() {
-      Movement.FixedUpdate(_rigid, transform);
+      Movement.FixedUpdate();
     }
 
     public Action<IBattle, int, bool> OnAttacked { get; private set; }
@@ -57,17 +65,17 @@ namespace Bunashibu.Kikan {
 
     public PlayerObserver Observer => _observer;
 
-    public AudioEnvironment     AudioEnvironment => _audioEnvironment;
+    public AudioEnvironment AudioEnvironment => _audioEnvironment;
 
-    public List<IPlayer>        Teammates     { get; private set; }
+    public List<IPlayer>  Teammates     { get; private set; }
 
-    public PlayerMovement       Movement      { get; private set; }
-    public CharacterState       State         { get; private set; }
-    public BuffState            BuffState     { get; private set; }
-    public PlayerStatus         Status        { get; private set; }
-    public StateTransfer        StateTransfer { get; private set; }
-    public SkillInfo            SkillInfo     { get; private set; }
-    public PlayerInfo           PlayerInfo    { get; private set; }
+    public PlayerMovement Movement      { get; private set; }
+    public CharacterState State         { get; private set; }
+    public BuffState      BuffState     { get; private set; }
+    public PlayerStatus   Status        { get; private set; }
+    public StateTransfer  StateTransfer { get; private set; }
+    public SkillInfo      SkillInfo     { get; private set; }
+    public PlayerInfo     PlayerInfo    { get; private set; }
 
     public int    MaxLevel     => 15;
     public int    MaxGold      => 99999;

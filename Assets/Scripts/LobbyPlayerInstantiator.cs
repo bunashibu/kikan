@@ -15,8 +15,6 @@ namespace Bunashibu.Kikan {
 
     private void InstantiatePlayer() {
       var player = PhotonNetwork.Instantiate("Prefabs/Job/Common", new Vector3(0, 0, 0), Quaternion.identity, 0).GetComponent<Player>() as Player;
-      player.Movement.SetMoveForce(4.0f);
-      player.Movement.SetJumpForce(400.0f);
       SetViewID(player);
     }
 

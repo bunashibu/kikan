@@ -4,45 +4,62 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   public class PlayerMovement {
-    public PlayerMovement(PlayerCore core) {
+    public PlayerMovement() {
+      _airMove      = new AirMove();
+      _groundMove   = new GroundMove();
+      _ladderMove   = new LadderMove();
+
+      _groundJump   = new GroundJump();
+      _ladderJump   = new LadderJump();
+      _stepDownJump = new StepDownJump();
+
+      _lieDown      = new LieDown();
+    }
+
+    public PlayerMovement(Rigidbody2D rigid, Transform trans) : this() {
+      _rigid = rigid;
+      _trans = trans;
+    }
+
+    public PlayerMovement(Rigidbody2D rigid, Transform trans, PlayerCore core) : this(rigid, trans) {
       _core = core;
-
-      _coreAirMove    = new CoreAirMove();
-      _coreGroundMove = new CoreGroundMove();
-      _ladderMove     = new LadderMove();
-
-      _coreGroundJump = new CoreGroundJump();
-      _coreLadderJump  = new CoreLadderJump();
-      _stepDownJump   = new StepDownJump();
-
-      _lieDown        = new LieDown();
     }
 
     // INFO: Must be called in MonoBehaviour-FixedUpdate()
-    public void FixedUpdate(Rigidbody2D rigid, Transform trans) {
-      _coreAirMove.FixedUpdate(rigid, _core);
-      _coreGroundMove.FixedUpdate(rigid, _core);
-      _ladderMove.FixedUpdate(trans);
+    public void FixedUpdate() {
+      if (_core == null) {
+        _airMove.FixedUpdate(_rigid);
+        _groundMove.FixedUpdate(_rigid);
 
-      _coreGroundJump.FixedUpdate(rigid, _core);
-      _coreLadderJump.FixedUpdate(rigid, _core);
-      _stepDownJump.FixedUpdate(rigid);
+        _groundJump.FixedUpdate(_rigid);
+        _ladderJump.FixedUpdate(_rigid);
+      }
+      else {
+        _airMove.FixedUpdate(_rigid, _core);
+        _groundMove.FixedUpdate(_rigid, _core);
+
+        _groundJump.FixedUpdate(_rigid, _core);
+        _ladderJump.FixedUpdate(_rigid, _core);
+      }
+
+      _ladderMove.FixedUpdate(_trans);
+      _stepDownJump.FixedUpdate(_rigid);
     }
 
     public void AirMoveLeft() {
-      _coreAirMove.MoveLeft();
+      _airMove.MoveLeft();
     }
 
     public void AirMoveRight() {
-      _coreAirMove.MoveRight();
+      _airMove.MoveRight();
     }
 
     public void GroundMoveLeft(float degAngle = 0) {
-      _coreGroundMove.MoveLeft(degAngle);
+      _groundMove.MoveLeft(degAngle);
     }
 
     public void GroundMoveRight(float degAngle = 0) {
-      _coreGroundMove.MoveRight(degAngle);
+      _groundMove.MoveRight(degAngle);
     }
 
     public void LadderMoveUp() {
@@ -54,11 +71,11 @@ namespace Bunashibu.Kikan {
     }
 
     public void GroundJump() {
-      _coreGroundJump.Jump();
+      _groundJump.Jump();
     }
 
     public void LadderJump() {
-      _coreLadderJump.JumpOff();
+      _ladderJump.JumpOff();
     }
 
     public void StepDownJump() {
@@ -74,21 +91,23 @@ namespace Bunashibu.Kikan {
     }
 
     public void SetMoveForce(float force) {
-      _coreGroundMove.SetForce(force);
+      _groundMove.SetForce(force);
     }
 
     public void SetJumpForce(float force) {
-      _coreGroundJump.SetForce(force);
+      _groundJump.SetForce(force);
     }
 
-    private PlayerCore _core;
+    private Rigidbody2D _rigid;
+    private Transform   _trans;
+    private PlayerCore  _core;
 
-    private CoreAirMove _coreAirMove;
-    private CoreGroundMove _coreGroundMove;
+    private AirMove    _airMove;
+    private GroundMove _groundMove;
     private LadderMove _ladderMove;
 
-    private CoreGroundJump _coreGroundJump;
-    private CoreLadderJump _coreLadderJump;
+    private GroundJump   _groundJump;
+    private LadderJump   _ladderJump;
     private StepDownJump _stepDownJump;
 
     private LieDown _lieDown;
