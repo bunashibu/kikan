@@ -12,8 +12,8 @@ namespace Bunashibu.Kikan {
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
       if (_player.PhotonView.isMine) {
         if (!_player.BuffState.Stun) {
-          if ( LocationJudger.IsGround(_player.FootCollider) ) { _player.StateTransfer.TransitTo( "Idle" , animator ); return; }
-          if ( LocationJudger.IsAir(_player.FootCollider)    ) { _player.StateTransfer.TransitTo( "Fall" , animator ); return; }
+          if ( _player.Location.IsGround ) { _player.StateTransfer.TransitTo( "Idle" , animator ); return; }
+          if ( _player.Location.IsAir    ) { _player.StateTransfer.TransitTo( "Fall" , animator ); return; }
         }
       }
     }

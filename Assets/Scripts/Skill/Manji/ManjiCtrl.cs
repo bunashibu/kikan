@@ -52,7 +52,7 @@ namespace Bunashibu.Kikan {
       Vector2 footOrigin = new Vector2(skillUser.Transform.position.x, skillUser.Transform.position.y - halfCharaHeight);
 
       Vector2 rayOrigin = footOrigin + moveVector;
-      if (LocationJudger.IsAir(skillUser.FootCollider))
+      if (skillUser.Location.IsAir)
         rayOrigin += new Vector2(0, halfCharaHeight * 2);
 
       RaycastHit2D hitGround = Physics2D.Raycast(rayOrigin, Vector2.down, halfCharaHeight * 2, _groundLayer);
@@ -78,7 +78,7 @@ namespace Bunashibu.Kikan {
     private void TranslateVertically(Vector2 direction) {
       var skillUser = _skillUserObj.GetComponent<Player>();
 
-      if (skillUser.State.CanNotDownGround && (direction.y == -1))
+      if (skillUser.Location.IsCanNotDownGround && (direction.y == -1))
         return;
 
       var halfCharaHeight = skillUser.BodyCollider.bounds.size.y / 2;

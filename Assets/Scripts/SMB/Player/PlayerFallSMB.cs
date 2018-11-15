@@ -56,10 +56,10 @@ namespace Bunashibu.Kikan {
     private bool ShouldTransitToLadder() {
       bool OnlyUpKeyDown   = Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow);
       bool OnlyDownKeyDown = Input.GetKey(KeyCode.DownArrow) && !Input.GetKey(KeyCode.UpArrow);
-      bool LadderFlag      = ( OnlyUpKeyDown   && !_player.State.LadderTopEdge    ) ||
-                             ( OnlyDownKeyDown && !_player.State.LadderBottomEdge );
+      bool LadderFlag      = ( OnlyUpKeyDown   && !_player.Location.IsLadderTopEdge) ||
+                             ( OnlyDownKeyDown && !_player.Location.IsLadderBottomEdge);
 
-      return _player.State.Ladder && LadderFlag;
+      return _player.Location.IsLadder && LadderFlag;
     }
 
     private bool ShouldTransitToWalk() {
@@ -67,22 +67,22 @@ namespace Bunashibu.Kikan {
       bool OnlyRightKeyDown = Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow);
       bool WalkFlag         = OnlyLeftKeyDown || OnlyRightKeyDown;
 
-      return LocationJudger.IsGround(_player.FootCollider) && WalkFlag;
+      return _player.Location.IsGround && WalkFlag;
     }
 
     private bool ShouldTransitToLieDown() {
       bool OnlyDownKeyDown = Input.GetKey(KeyCode.DownArrow) && !Input.GetKey(KeyCode.UpArrow);
-      bool LieDownFlag     = OnlyDownKeyDown && !_player.State.LadderTopEdge;
+      bool LieDownFlag     = OnlyDownKeyDown && !_player.Location.IsLadderTopEdge;
 
-      return LocationJudger.IsGround(_player.FootCollider) && LieDownFlag;
+      return _player.Location.IsGround && LieDownFlag;
     }
 
     private bool ShouldTransitToGroundJump() {
-      return LocationJudger.IsGround(_player.FootCollider) && Input.GetButton("Jump");
+      return _player.Location.IsGround && Input.GetButton("Jump");
     }
 
     private bool ShouldTransitToIdle() {
-      return LocationJudger.IsGround(_player.FootCollider);
+      return _player.Location.IsGround;
     }
 
     private Player _player;

@@ -38,7 +38,7 @@ namespace Bunashibu.Kikan {
 
       float degAngle = _enemy.State.GroundAngle;
 
-      if (LocationJudger.IsGround(_enemy.FootCollider)) {
+      if (_enemy.Location.IsGround) {
         if (_strategy == "MoveLeft") {
           degAngle *= _enemy.State.GroundLeft ? 1 : -1;
           _movement.GroundMoveLeft(degAngle);

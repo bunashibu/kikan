@@ -48,11 +48,11 @@ namespace Bunashibu.Kikan {
     }
 
     private bool ShouldTransitToIdle() {
-      return _player.State.LadderBottomEdge && LocationJudger.IsGround(_player.FootCollider);
+      return _player.Location.IsLadderBottomEdge && _player.Location.IsGround;
     }
 
     private bool ShouldTransitToFall() {
-      return LocationJudger.IsAir(_player.FootCollider) && !_player.State.Ladder;
+      return _player.Location.IsAir && !_player.Location.IsLadder;
     }
 
     private void TransitToLadderJump(Animator animator) {

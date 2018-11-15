@@ -9,8 +9,11 @@ using UniRx;
 namespace Bunashibu.Kikan {
   public class Player : MonoBehaviour, IPlayer {
     void Awake() {
-      State         = new CharacterState(_ladderCollider, _footCollider);
+      State         = new CharacterState();
       StateTransfer = new StateTransfer(_initState, _animator);
+      Location      = new LocationJudger();
+      Location.InitializeFootJudge(_footCollider);
+      Location.InitializeCenterJudge(_centerCollider);
     }
 
     void Start() {
@@ -55,13 +58,13 @@ namespace Bunashibu.Kikan {
     public Action<IBattle, int, bool> OnAttacked { get; private set; }
     public Action<IBattle>            OnKilled   { get; private set; }
 
-    public PhotonView       PhotonView   => _photonView;
-    public Transform        Transform    => transform;
-    public SpriteRenderer[] Renderers    => _renderers;
-    public Rigidbody2D      Rigid        => _rigid;
-    public Collider2D       BodyCollider => _bodyCollider;
-    public Collider2D       FootCollider => _footCollider;
-    public Animator         Animator     => _animator;
+    public PhotonView       PhotonView     => _photonView;
+    public Transform        Transform      => transform;
+    public SpriteRenderer[] Renderers      => _renderers;
+    public Rigidbody2D      Rigid          => _rigid;
+    public Collider2D       BodyCollider   => _bodyCollider;
+    public Collider2D       FootCollider   => _footCollider;
+    public Animator         Animator       => _animator;
 
     public PlayerObserver Observer => _observer;
 
@@ -97,6 +100,8 @@ namespace Bunashibu.Kikan {
     public ReadOnlyCollection<int> HpTable  => _hpTable.Data;
     public ReadOnlyCollection<int> ExpTable => _expTable.Data;
 
+    public IPlayerLocationJudger Location { get; private set; }
+
     public NameBackground NameBackground => _nameBackground;
     public PopupRemark    PopupRemark    => _popupRemark;
     public Bar            WorldHpBar     => _worldHpBar;
@@ -112,7 +117,7 @@ namespace Bunashibu.Kikan {
     [SerializeField] private SpriteRenderer[] _renderers;  // INFO: [PlayerSprite, WeaponSprite]
     [SerializeField] private Rigidbody2D      _rigid;
     [SerializeField] private Collider2D       _bodyCollider;
-    [SerializeField] private Collider2D       _ladderCollider;
+    [SerializeField] private Collider2D       _centerCollider;
     [SerializeField] private Collider2D       _footCollider;
     [SerializeField] private Animator         _animator;
     [SerializeField] private AudioListener    _audioListener;

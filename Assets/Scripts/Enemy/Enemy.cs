@@ -5,13 +5,14 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   [RequireComponent(typeof(Character2D))]
-  [RequireComponent(typeof(EnemyObserver))]
   public class Enemy : MonoBehaviour, ICharacter, IBattle {
     void Awake() {
-      State         = new CharacterState(_ladderCollider, _footCollider);
+      State         = new CharacterState();
       BuffState     = new BuffState(Observer);
       StateTransfer = new StateTransfer(_initState, _animator);
       Hp            = new Hp(_enemyData.Hp);
+      Location      = (IEnemyLocationJudger)new LocationJudger();
+      Location.InitializeFootJudge(_footCollider);
     }
 
     void Start() {
@@ -48,6 +49,8 @@ namespace Bunashibu.Kikan {
 
     public EnemyData Data => _enemyData;
 
+    public IEnemyLocationJudger Location;
+
     // Enemy
     public CharacterState State         { get; private set; }
     public BuffState      BuffState     { get; private set; }
@@ -68,7 +71,6 @@ namespace Bunashibu.Kikan {
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private Rigidbody2D    _rigid;
     [SerializeField] private Collider2D     _bodyCollider;
-    [SerializeField] private Collider2D     _ladderCollider;
     [SerializeField] private Collider2D     _footCollider;
     [SerializeField] private Animator       _animator;
 

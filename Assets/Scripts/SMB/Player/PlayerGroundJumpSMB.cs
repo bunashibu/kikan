@@ -16,7 +16,7 @@ namespace Bunashibu.Kikan {
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
       if (_player.PhotonView.isMine) {
-        if (LocationJudger.IsAir(_player.FootCollider))
+        if (_player.Location.IsAir)
           _isAlreadyJumped = true;
 
         AirMove();
@@ -70,10 +70,10 @@ namespace Bunashibu.Kikan {
     private bool ShouldTransitToLadder() {
       bool OnlyUpKeyDown   = Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow);
       bool OnlyDownKeyDown = Input.GetKey(KeyCode.DownArrow) && !Input.GetKey(KeyCode.UpArrow);
-      bool LadderFlag      = ( OnlyUpKeyDown   && !_player.State.LadderTopEdge    ) ||
-                             ( OnlyDownKeyDown && !_player.State.LadderBottomEdge );
+      bool LadderFlag      = ( OnlyUpKeyDown   && !_player.Location.IsLadderTopEdge) ||
+                             ( OnlyDownKeyDown && !_player.Location.IsLadderBottomEdge);
 
-      return _player.State.Ladder && LadderFlag;
+      return _player.Location.IsLadder && LadderFlag;
     }
 
     private bool ShouldTransitToFall() {

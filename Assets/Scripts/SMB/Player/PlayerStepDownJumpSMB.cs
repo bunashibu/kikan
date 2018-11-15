@@ -35,13 +35,13 @@ namespace Bunashibu.Kikan {
     }
 
     private void UpdateFlag() {
-      if (LocationJudger.IsAir(_player.FootCollider))
+      if (_player.Location.IsAir)
         _isAlreadyJumped = true;
 
-      if (LocationJudger.IsGround(_player.FootCollider) && _isAlreadyJumped)
+      if (_player.Location.IsGround && _isAlreadyJumped)
         _isPassedGround = true;
 
-      if (LocationJudger.IsAir(_player.FootCollider) && _isPassedGround)
+      if (_player.Location.IsAir && _isPassedGround)
         _fallFlag = true;
     }
 

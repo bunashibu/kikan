@@ -15,8 +15,8 @@ namespace Bunashibu.Kikan {
 
         if (!_player.State.Rigor) {
           if ( ShouldTransitToWalk()                         ) { _player.StateTransfer.TransitTo( "Walk" , animator ); return; }
-          if ( LocationJudger.IsGround(_player.FootCollider) ) { _player.StateTransfer.TransitTo( "Idle" , animator ); return; }
-          if ( LocationJudger.IsAir(_player.FootCollider)    ) { _player.StateTransfer.TransitTo( "Fall" , animator ); return; }
+          if ( _player.Location.IsGround ) { _player.StateTransfer.TransitTo( "Idle" , animator ); return; }
+          if ( _player.Location.IsAir    ) { _player.StateTransfer.TransitTo( "Fall" , animator ); return; }
         }
       }
     }
@@ -26,7 +26,7 @@ namespace Bunashibu.Kikan {
       bool OnlyRightKeyDown = Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow);
       bool WalkFlag         = OnlyLeftKeyDown || OnlyRightKeyDown;
 
-      return LocationJudger.IsGround(_player.FootCollider) && WalkFlag;
+      return _player.Location.IsGround && WalkFlag;
     }
 
     private Player _player;

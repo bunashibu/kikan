@@ -3,34 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
-  public static class LocationJudger {
-    public static bool IsGround(Collider2D collider) {
-      return collider.IsTouchingLayers(_groundLayer) || IsCanNotDownGround(collider);
+  public class LocationJudger : IPlayerLocationJudger, IEnemyLocationJudger {
+    public void InitializeFootJudge(Collider2D footCollider) {
+      _footCollider = footCollider;
     }
 
-    public static bool IsCanNotDownGround(Collider2D collider) {
-      return collider.IsTouchingLayers(_canNotDownGroundLayer);
+    public void InitializeCenterJudge(Collider2D centerCollider) {
+      _centerCollider = centerCollider;
     }
 
-    public static bool IsAir(Collider2D collider) {
-      return !IsGround(collider);
-    }
-
-    public static bool IsLadder(Collider2D collider) {
-      return collider.IsTouchingLayers(_ladderLayer);
-    }
-
-    public static bool IsLadderTopEdge(Collider2D collider) {
-      return collider.IsTouchingLayers(_ladderTopEdgeLayer);
-    }
-
-    public static bool IsLadderBottomEdge(Collider2D collider) {
-      return collider.IsTouchingLayers(_ladderBottomEdgeLayer);
-    }
-
-    public static bool IsPortal(Collider2D collider) {
-      return collider.IsTouchingLayers(_portalLayer);
-    }
+    public bool IsGround           => _footCollider.IsTouchingLayers(_groundLayer) || IsCanNotDownGround;
+    public bool IsCanNotDownGround => _footCollider.IsTouchingLayers(_canNotDownGroundLayer);
+    public bool IsAir              => !IsGround;
+    public bool IsLadder           => _centerCollider.IsTouchingLayers(_ladderLayer);
+    public bool IsLadderTopEdge    => _centerCollider.IsTouchingLayers(_ladderTopEdgeLayer);
+    public bool IsLadderBottomEdge => _centerCollider.IsTouchingLayers(_ladderBottomEdgeLayer);
+    public bool IsPortal           => _centerCollider.IsTouchingLayers(_portalLayer);
 
     private static readonly LayerMask _groundLayer           = LayerMask.GetMask("Ground");
     private static readonly LayerMask _canNotDownGroundLayer = LayerMask.GetMask("CanNotDownGround");
@@ -38,6 +26,9 @@ namespace Bunashibu.Kikan {
     private static readonly LayerMask _ladderTopEdgeLayer    = LayerMask.GetMask("LadderTopEdge");
     private static readonly LayerMask _ladderBottomEdgeLayer = LayerMask.GetMask("LadderBottomEdge");
     private static readonly LayerMask _portalLayer           = LayerMask.GetMask("Portal");
+
+    private Collider2D _footCollider;
+    private Collider2D _centerCollider;
   }
 }
 
