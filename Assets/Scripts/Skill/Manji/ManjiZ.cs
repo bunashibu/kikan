@@ -5,9 +5,11 @@ using UnityEngine.Assertions;
 
 namespace Bunashibu.Kikan {
   [RequireComponent(typeof(AttackSynchronizer))]
+  [RequireComponent(typeof(DebuffSynchronizer))]
   public class ManjiZ : Skill {
     void Awake() {
-      _synchronizer = GetComponent<AttackSynchronizer>();
+      _attackSynchronizer = GetComponent<AttackSynchronizer>();
+      _debuffSynchronizer = GetComponent<DebuffSynchronizer>();
       _targetChecker = new TargetChecker(_targetNum);
     }
 
@@ -18,8 +20,8 @@ namespace Bunashibu.Kikan {
         var target = collider.gameObject.GetComponent<IPhoton>();
         Assert.IsNotNull(target);
 
-        _synchronizer.SyncAttack(_skillUserViewID, target.PhotonView.viewID, DamageCalculator.Damage, DamageCalculator.IsCritical);
-        //target.BuffState.ToBeStun(_stunSec);
+        _attackSynchronizer.SyncAttack(_skillUserViewID, target.PhotonView.viewID, DamageCalculator.Damage, DamageCalculator.IsCritical);
+        _debuffSynchronizer.SyncDebuff(target.PhotonView.viewID, DebuffType.Stun);
       }
     }
 
@@ -27,7 +29,8 @@ namespace Bunashibu.Kikan {
     [SerializeField] private int _targetNum;
     [SerializeField] private float _stunSec;
 
-    private AttackSynchronizer _synchronizer;
+    private AttackSynchronizer _attackSynchronizer;
+    private DebuffSynchronizer _debuffSynchronizer;
     private TargetChecker _targetChecker;
   }
 }

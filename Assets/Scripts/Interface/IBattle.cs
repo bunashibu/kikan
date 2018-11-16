@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
+  // might fat
   public interface IBattle : IPhoton {
     Hp  Hp           { get; }
     int KillExp      { get; }
@@ -15,6 +16,9 @@ namespace Bunashibu.Kikan {
 
     Action<IBattle, int, bool> OnAttacked { get; }
     Action<IBattle>            OnKilled   { get; }
+    Action<DebuffType>         OnDebuffed { get; }
+
+    CharacterState State { get; } // tmp
   }
 }
 

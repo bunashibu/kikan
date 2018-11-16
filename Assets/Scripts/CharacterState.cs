@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
+  // tmp
   public class CharacterState {
     public float GroundAngle { get; set; }
     public bool GroundLeft  { get; set; }

@@ -35,6 +35,14 @@ namespace Bunashibu.Kikan {
 
       return onKilled;
     }
+
+    public static Action<DebuffType> OnDebuffed(IBattle target) {
+      Action<DebuffType> onDebuffed = (debuffType) => {
+        Debug.Log(debuffType);
+      };
+
+      return onDebuffed;
+    }
   }
 }
 

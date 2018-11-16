@@ -19,6 +19,7 @@ namespace Bunashibu.Kikan {
       if (StageReference.Instance.StageData.Name == "Battle") {
         OnAttacked = BattleEnvironment.OnAttacked(this, NumberPopupEnvironment.Instance.PopupNumber);
         OnKilled   = BattleEnvironment.OnKilled(this, KillRewardEnvironment.GetRewardFrom, KillRewardEnvironment.GiveRewardTo);
+        OnDebuffed = BattleEnvironment.OnDebuffed(this);
       }
 
       EnemyInitializer.Instance.Initialize(this);
@@ -30,6 +31,7 @@ namespace Bunashibu.Kikan {
 
     public Action<IBattle, int, bool> OnAttacked { get; private set; }
     public Action<IBattle>            OnKilled   { get; private set; }
+    public Action<DebuffType>         OnDebuffed { get; private set; }
 
     // Unity
     public PhotonView     PhotonView   => _photonView;

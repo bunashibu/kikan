@@ -25,21 +25,8 @@ namespace Bunashibu.Kikan {
     Heal
   }
 
-  public enum Notification {
-    PlayerInstantiated,
-    EnemyInstantiated,
-    Initialize,
-
-    HpUpdated,
-    ExpUpdated,
-    GoldUpdated,
-
-    TakeDamage,
-
-    Killed,
-    GetKillReward,
-    ExpIsMax,
-    LevelUp
+  public enum DebuffType {
+    Stun
   }
 }
 

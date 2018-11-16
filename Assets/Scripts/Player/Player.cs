@@ -46,6 +46,7 @@ namespace Bunashibu.Kikan {
 
         OnAttacked = BattleEnvironment.OnAttacked(this, NumberPopupEnvironment.Instance.PopupNumber);
         OnKilled   = BattleEnvironment.OnKilled(this, KillRewardEnvironment.GetRewardFrom, KillRewardEnvironment.GiveRewardTo);
+        OnDebuffed = BattleEnvironment.OnDebuffed(this);
 
         PlayerInitializer.Instance.Initialize(this);
       }
@@ -57,14 +58,15 @@ namespace Bunashibu.Kikan {
 
     public Action<IBattle, int, bool> OnAttacked { get; private set; }
     public Action<IBattle>            OnKilled   { get; private set; }
+    public Action<DebuffType>         OnDebuffed { get; private set; }
 
-    public PhotonView       PhotonView     => _photonView;
-    public Transform        Transform      => transform;
-    public SpriteRenderer[] Renderers      => _renderers;
-    public Rigidbody2D      Rigid          => _rigid;
-    public Collider2D       BodyCollider   => _bodyCollider;
-    public Collider2D       FootCollider   => _footCollider;
-    public Animator         Animator       => _animator;
+    public PhotonView       PhotonView   => _photonView;
+    public Transform        Transform    => transform;
+    public SpriteRenderer[] Renderers    => _renderers;
+    public Rigidbody2D      Rigid        => _rigid;
+    public Collider2D       BodyCollider => _bodyCollider;
+    public Collider2D       FootCollider => _footCollider;
+    public Animator         Animator     => _animator;
 
     public PlayerObserver Observer => _observer;
 
