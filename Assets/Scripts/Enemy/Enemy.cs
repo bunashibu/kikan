@@ -10,7 +10,7 @@ namespace Bunashibu.Kikan {
       State         = new CharacterState();
       StateTransfer = new StateTransfer(_initState, _animator);
       Hp            = new Hp(_enemyData.Hp);
-      Debuff        = new Debuff();
+      Debuff        = new Debuff(transform);
       Debuff.Register(DebuffType.Stun, _stunPrefab);
 
       Location      = new LocationJudger();

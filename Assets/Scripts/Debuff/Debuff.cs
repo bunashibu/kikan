@@ -5,9 +5,9 @@ using UniRx;
 
 namespace Bunashibu.Kikan {
   public class Debuff {
-    public Debuff() {
+    public Debuff(Transform parent) {
       _state = new ReactiveState<DebuffType>();
-      _effect = new DebuffEffect();
+      _effect = new DebuffEffect(parent);
     }
 
     public void Register(DebuffType key, GameObject effectPrefab) {

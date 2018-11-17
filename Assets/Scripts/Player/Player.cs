@@ -43,7 +43,7 @@ namespace Bunashibu.Kikan {
         Gold       = new Gold(0, MaxGold);
         KillCount  = new ReactiveProperty<int>(0);
         DeathCount = new ReactiveProperty<int>(0);
-        Debuff     = new Debuff();
+        Debuff     = new Debuff(transform);
         Debuff.Register(DebuffType.Stun, _stunPrefab);
 
         OnAttacked = BattleEnvironment.OnAttacked(this, NumberPopupEnvironment.Instance.PopupNumber);

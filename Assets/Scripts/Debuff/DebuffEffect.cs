@@ -4,7 +4,8 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   public class DebuffEffect {
-    public DebuffEffect() {
+    public DebuffEffect(Transform parent) {
+      _parent = parent;
       _effectPrefab = new Dictionary<DebuffType, GameObject>();
       _existEffect = new Dictionary<DebuffType, GameObject>();
     }
@@ -15,7 +16,7 @@ namespace Bunashibu.Kikan {
 
     public void Instantiate(DebuffType key) {
       if (_effectPrefab.ContainsKey(key))
-        _existEffect[key] = GameObject.Instantiate(_effectPrefab[key]);
+        _existEffect[key] = GameObject.Instantiate(_effectPrefab[key], _parent);
     }
 
     public void Destroy(DebuffType key) {
@@ -23,6 +24,7 @@ namespace Bunashibu.Kikan {
         GameObject.Destroy(_existEffect[key]);
     }
 
+    private Transform _parent;
     private Dictionary<DebuffType, GameObject> _effectPrefab;
     private Dictionary<DebuffType, GameObject> _existEffect;
   }
