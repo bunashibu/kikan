@@ -20,8 +20,10 @@ namespace Bunashibu.Kikan {
     }
 
     public void Destroy(DebuffType key) {
-      if (_existEffect.ContainsKey(key))
+      if (_existEffect.ContainsKey(key)) {
         GameObject.Destroy(_existEffect[key]);
+        _existEffect.Remove(key);
+      }
     }
 
     private Transform _parent;

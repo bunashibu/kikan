@@ -56,7 +56,14 @@ namespace Bunashibu.Kikan {
 
       player.Debuff.State
         .ObserveReplace()
-        .Subscribe(x => Debug.Log(x))
+        .Where(state => state.NewValue)
+        .Subscribe(state => player.Debuff.Instantiate(state.Key))
+        .AddTo(player.gameObject);
+
+      player.Debuff.State
+        .ObserveReplace()
+        .Where(state => !state.NewValue)
+        .Subscribe(state => player.Debuff.Destroy(state.Key))
         .AddTo(player.gameObject);
     }
 
