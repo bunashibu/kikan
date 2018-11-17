@@ -4,7 +4,7 @@ using UnityEngine;
 using UniRx;
 
 namespace Bunashibu.Kikan {
-  public interface IPlayer : ICharacter, IBattle, ISpeaker {
+  public interface IPlayer : ICharacter, IBattle, ISpeaker, IOnDebuffed {
     Exp           Exp       { get; }
     Gold          Gold      { get; }
     List<IPlayer> Teammates { get; }

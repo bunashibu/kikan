@@ -16,6 +16,7 @@ namespace Bunashibu.Kikan {
       Location.InitializeCenterJudge(_centerCollider);
     }
 
+    // THINK: coupling with global reference. to be a stream
     void Start() {
       if (StageReference.Instance.StageData.Name == "Lobby") {
         Movement = new PlayerMovement(_rigid, transform);
@@ -30,12 +31,13 @@ namespace Bunashibu.Kikan {
         Assert.IsTrue(_hpTable.Data.Count       == MaxLevel);
         Assert.IsTrue(_expTable.Data.Count      == MaxLevel);
 
-        Movement   = new PlayerMovement(_rigid, transform, _core);
-        Teammates  = new List<IPlayer>();
-        BuffState  = new BuffState(Observer);
-        Status     = new PlayerStatus(_jobStatus);
-        SkillInfo  = new SkillInfo();
-        PlayerInfo = new PlayerInfo(this);
+        Movement    = new PlayerMovement(_rigid, transform, _core);
+        Teammates   = new List<IPlayer>();
+        BuffState   = new BuffState(Observer);
+        Status      = new PlayerStatus(_jobStatus);
+        SkillInfo   = new SkillInfo();
+        PlayerInfo  = new PlayerInfo(this);
+        DebuffState = new DebuffState(DebuffType.Stun);
 
         Hp         = new Hp(HpTable[0]);
         Exp        = new Exp(ExpTable[0]);
@@ -58,7 +60,7 @@ namespace Bunashibu.Kikan {
 
     public Action<IBattle, int, bool> OnAttacked { get; private set; }
     public Action<IBattle>            OnKilled   { get; private set; }
-    public Action<DebuffType>         OnDebuffed { get; private set; }
+    public Action<DebuffType, float>  OnDebuffed { get; private set; }
 
     public PhotonView       PhotonView   => _photonView;
     public Transform        Transform    => transform;
@@ -75,12 +77,13 @@ namespace Bunashibu.Kikan {
     public List<IPlayer>  Teammates     { get; private set; }
 
     public PlayerMovement Movement      { get; private set; }
-    public CharacterState State         { get; private set; }
     public BuffState      BuffState     { get; private set; }
     public PlayerStatus   Status        { get; private set; }
     public StateTransfer  StateTransfer { get; private set; }
     public SkillInfo      SkillInfo     { get; private set; }
     public PlayerInfo     PlayerInfo    { get; private set; }
+    public DebuffState    DebuffState   { get; private set; }
+    public CharacterState State         { get; private set; }
 
     public int    MaxLevel     => 15;
     public int    MaxGold      => 99999;

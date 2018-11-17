@@ -21,7 +21,7 @@ namespace Bunashibu.Kikan {
         Assert.IsNotNull(target);
 
         _attackSynchronizer.SyncAttack(_skillUserViewID, target.PhotonView.viewID, DamageCalculator.Damage, DamageCalculator.IsCritical);
-        _debuffSynchronizer.SyncDebuff(target.PhotonView.viewID, DebuffType.Stun);
+        _debuffSynchronizer.SyncDebuff(target.PhotonView.viewID, DebuffType.Stun, _stunSec);
       }
     }
 

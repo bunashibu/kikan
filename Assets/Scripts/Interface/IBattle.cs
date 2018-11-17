@@ -16,9 +16,8 @@ namespace Bunashibu.Kikan {
 
     Action<IBattle, int, bool> OnAttacked { get; }
     Action<IBattle>            OnKilled   { get; }
-    Action<DebuffType>         OnDebuffed { get; }
 
-    CharacterState State { get; } // tmp
+    CharacterState State { get; }
   }
 }
 

@@ -5,13 +5,15 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   [RequireComponent(typeof(Character2D))]
-  public class Enemy : MonoBehaviour, ICharacter, IBattle {
+  public class Enemy : MonoBehaviour, ICharacter, IBattle, IOnDebuffed {
     void Awake() {
       State         = new CharacterState();
       BuffState     = new BuffState(Observer);
       StateTransfer = new StateTransfer(_initState, _animator);
       Hp            = new Hp(_enemyData.Hp);
-      Location      = (IEnemyLocationJudger)new LocationJudger();
+      DebuffState   = new DebuffState(DebuffType.Stun);
+
+      Location      = new LocationJudger();
       Location.InitializeFootJudge(_footCollider);
     }
 
@@ -31,7 +33,7 @@ namespace Bunashibu.Kikan {
 
     public Action<IBattle, int, bool> OnAttacked { get; private set; }
     public Action<IBattle>            OnKilled   { get; private set; }
-    public Action<DebuffType>         OnDebuffed { get; private set; }
+    public Action<DebuffType, float>  OnDebuffed { get; private set; }
 
     // Unity
     public PhotonView     PhotonView   => _photonView;
@@ -58,6 +60,7 @@ namespace Bunashibu.Kikan {
     public BuffState      BuffState     { get; private set; }
     public StateTransfer  StateTransfer { get; private set; }
     public Hp             Hp            { get; private set; }
+    public DebuffState    DebuffState   { get; private set; }
 
     public Bar            WorldHpBar     => _worldHpBar;
 
