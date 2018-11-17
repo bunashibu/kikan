@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 114528716700749216}
   - component: {fileID: 114684988666895266}
   - component: {fileID: 114247651202264512}
+  - component: {fileID: 114186756584085362}
   m_Layer: 18
   m_Name: Ctrl
   m_TagString: Untagged
@@ -184,6 +185,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114186756584085362
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1789209831172874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ab71a1e4ecf26c46bbee47397f910f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114247651202264512
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -200,7 +212,6 @@ MonoBehaviour:
     _maxDeviation: 10
     _criticalPercent: 0
   _targetNum: 6
-  _dupHitNum: 0
   _groundLayer:
     serializedVersion: 2
     m_Bits: 33024
