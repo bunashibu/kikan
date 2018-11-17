@@ -53,6 +53,11 @@ namespace Bunashibu.Kikan {
       player.DeathCount
         .Subscribe(deathCount => _kdPanel.UpdateDeath(deathCount, player.PhotonView.owner))
         .AddTo(_kdPanel.gameObject);
+
+      player.DebuffState.StateDictionary
+        .ObserveReplace()
+        .Subscribe(x => Debug.Log(x))
+        .AddTo(player.gameObject);
     }
 
     private void PlayerOwnerInitialize(Player player) {

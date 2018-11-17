@@ -11,7 +11,7 @@ namespace Bunashibu.Kikan {
       BuffState     = new BuffState(Observer);
       StateTransfer = new StateTransfer(_initState, _animator);
       Hp            = new Hp(_enemyData.Hp);
-      DebuffState   = new DebuffState(DebuffType.Stun);
+      DebuffState = new ReactiveState<DebuffType>(DebuffType.Stun);
 
       Location      = new LocationJudger();
       Location.InitializeFootJudge(_footCollider);
@@ -60,7 +60,8 @@ namespace Bunashibu.Kikan {
     public BuffState      BuffState     { get; private set; }
     public StateTransfer  StateTransfer { get; private set; }
     public Hp             Hp            { get; private set; }
-    public DebuffState    DebuffState   { get; private set; }
+
+    public ReactiveState<DebuffType> DebuffState { get; private set; }
 
     public Bar            WorldHpBar     => _worldHpBar;
 
