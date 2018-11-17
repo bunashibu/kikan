@@ -8,11 +8,10 @@ namespace Bunashibu.Kikan {
   public class Enemy : MonoBehaviour, ICharacter, IBattle, IOnDebuffed {
     void Awake() {
       State         = new CharacterState();
-      BuffState     = new BuffState(Observer);
       StateTransfer = new StateTransfer(_initState, _animator);
       Hp            = new Hp(_enemyData.Hp);
-
-      Debuff        = new Debuff(DebuffType.Stun);
+      Debuff        = new Debuff();
+      Debuff.Register(DebuffType.Stun, _stunPrefab);
 
       Location      = new LocationJudger();
       Location.InitializeFootJudge(_footCollider);
@@ -46,25 +45,20 @@ namespace Bunashibu.Kikan {
     public Animator       Animator     => _animator;
 
     // Observer
-    public EnemyObserver           Observer           { get { return _observer; } }
     public EnemyPopulationObserver PopulationObserver { get; private set; }
 
     // tmp
     public MonoBehaviour AI => _ai;
 
-    public EnemyData Data => _enemyData;
-
-    public IEnemyLocationJudger Location;
-
-    // Enemy
     public CharacterState State         { get; private set; }
-    public BuffState      BuffState     { get; private set; }
     public StateTransfer  StateTransfer { get; private set; }
     public Hp             Hp            { get; private set; }
-
     public Debuff         Debuff        { get; private set; }
 
-    public Bar            WorldHpBar     => _worldHpBar;
+    public IEnemyLocationJudger Location { get; private set; }
+
+    public Bar WorldHpBar => _worldHpBar;
+    public EnemyData Data => _enemyData;
 
     public int    KillExp      => _killExp;
     public int    KillGold     => _killGold;
@@ -81,12 +75,12 @@ namespace Bunashibu.Kikan {
     [SerializeField] private Collider2D     _footCollider;
     [SerializeField] private Animator       _animator;
 
-    [Header("Observer")]
-    [SerializeField] private EnemyObserver _observer;
-
     [Header("Kill Reward")]
     [SerializeField] private int _killExp;
     [SerializeField] private int _killGold;
+
+    [Header("Debuff")]
+    [SerializeField] private GameObject _stunPrefab;
 
     // tmp
     [Space(10)]

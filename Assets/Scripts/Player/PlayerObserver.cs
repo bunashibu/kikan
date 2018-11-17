@@ -6,7 +6,7 @@ using UnityEngine.Assertions;
 
 namespace Bunashibu.Kikan {
   // Obsolete
-  public class PlayerObserver : MonoBehaviour, IBuffObserver {
+  public class PlayerObserver : MonoBehaviour {
     void Awake() {
       _shouldSync = new Dictionary<string, bool>();
 
@@ -23,15 +23,6 @@ namespace Bunashibu.Kikan {
     /* Team */
     public void SyncTeam() {
       _player.PhotonView.RPC("SyncTeamRPC", PhotonTargets.Others, _player.PlayerInfo.Team);
-    }
-
-    /* Buff */
-    public void SyncBuff() {
-      _player.PhotonView.RPC("SyncBuffRPC", PhotonTargets.Others, _player.BuffState.Stun, _player.BuffState.Slow, _player.BuffState.Heavy);
-    }
-
-    public void SyncStun() {
-      _player.PhotonView.RPC("SyncStunRPC", PhotonTargets.Others, _player.BuffState.Stun);
     }
 
     /* Other */
@@ -55,17 +46,6 @@ namespace Bunashibu.Kikan {
     [PunRPC]
     private void SyncTeamRPC(int team) {
       ForceSync("Team", () => _player.PlayerInfo.ForceSync(team));
-    }
-
-    /* Buff RPC */
-    [PunRPC]
-    private void SyncBuffRPC(bool stun, bool slow, bool heavy) {
-      ForceSync("Buff", () => _player.BuffState.ForceSync(stun, slow, heavy));
-    }
-
-    [PunRPC]
-    private void SyncStunRPC(bool stun) {
-      ForceSync("BuffStun", () => _player.BuffState.ForceSyncStun(stun));
     }
 
     /* Other */

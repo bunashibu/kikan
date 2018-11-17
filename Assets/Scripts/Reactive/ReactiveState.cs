@@ -9,13 +9,8 @@ namespace Bunashibu.Kikan {
       _state = new ReactiveDictionary<T, bool>();
     }
 
-    public ReactiveState(params T[] keys) : this() {
-      Register(keys);
-    }
-
-    public void Register(params T[] keys) {
-      foreach (var key in keys)
-        _state[key] = false;
+    public void Register(T key) {
+      _state[key] = false;
     }
 
     public void Enable(T key) {

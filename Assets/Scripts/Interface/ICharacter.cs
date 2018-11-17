@@ -9,7 +9,6 @@ namespace Bunashibu.Kikan {
     //Collider2D     BodyCollider { get; }
     Collider2D     FootCollider { get; }
     //CharacterState State        { get; }
-    BuffState      BuffState    { get; }
   }
 }
 

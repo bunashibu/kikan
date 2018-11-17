@@ -92,7 +92,7 @@ namespace Bunashibu.Kikan {
       _player.Hp.FullRecover();
       //_player.Hp.UpdateView();
 
-      _player.BuffState.Reset();
+      //_player.BuffState.Reset();
 
       _player.Weapon.SkillInstantiator.ResetAllCT();
 

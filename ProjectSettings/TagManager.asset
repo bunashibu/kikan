@@ -69,10 +69,10 @@ TagManager:
   - name: Weapon
     uniqueID: 354386915
     locked: 0
-  - name: StateEffect
+  - name: Debuff
     uniqueID: 1802626207
     locked: 0
-  - name: CoreLevelUpEffect
+  - name: CoreLevelUp
     uniqueID: 2331558819
     locked: 0
   - name: Skill

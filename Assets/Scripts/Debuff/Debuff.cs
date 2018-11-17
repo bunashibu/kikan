@@ -10,8 +10,9 @@ namespace Bunashibu.Kikan {
       _effect = new DebuffEffect();
     }
 
-    public Debuff(params DebuffType[] keys) : this() {
-      _state.Register(keys);
+    public void Register(DebuffType key, GameObject effectPrefab) {
+      _state.Register(key);
+      _effect.Register(key, effectPrefab);
     }
 
     public void DurationEnable(DebuffType key, float duration) {

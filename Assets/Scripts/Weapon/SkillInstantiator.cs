@@ -11,7 +11,7 @@ namespace Bunashibu.Kikan {
     }
 
     void Update() {
-      if (!photonView.isMine || _player.Hp.Cur.Value <= 0 || _player.State.Rigor || !IsCorrectAnimationState() || _player.BuffState.Stun)
+      if (!photonView.isMine || _player.Hp.Cur.Value <= 0 || _player.State.Rigor || !IsCorrectAnimationState() || _player.Debuff.State[DebuffType.Stun])
         return;
 
       for (int i=0; i<_keysList.Count; ++i) {

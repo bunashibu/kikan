@@ -18,7 +18,7 @@ namespace Bunashibu.Kikan {
 
         _player.Hp.FullRecover();
 
-        _player.BuffState.Reset();
+        //_player.BuffState.Reset();
 
         ActTransition();
       });

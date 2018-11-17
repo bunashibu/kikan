@@ -33,7 +33,6 @@ namespace Bunashibu.Kikan {
 
         Movement    = new PlayerMovement(_rigid, transform, _core);
         Teammates   = new List<IPlayer>();
-        BuffState   = new BuffState(Observer);
         Status      = new PlayerStatus(_jobStatus);
         SkillInfo   = new SkillInfo();
         PlayerInfo  = new PlayerInfo(this);
@@ -44,7 +43,8 @@ namespace Bunashibu.Kikan {
         Gold       = new Gold(0, MaxGold);
         KillCount  = new ReactiveProperty<int>(0);
         DeathCount = new ReactiveProperty<int>(0);
-        Debuff     = new Debuff(DebuffType.Stun);
+        Debuff     = new Debuff();
+        Debuff.Register(DebuffType.Stun, _stunPrefab);
 
         OnAttacked = BattleEnvironment.OnAttacked(this, NumberPopupEnvironment.Instance.PopupNumber);
         OnKilled   = BattleEnvironment.OnKilled(this, KillRewardEnvironment.GetRewardFrom, KillRewardEnvironment.GiveRewardTo);
@@ -77,7 +77,6 @@ namespace Bunashibu.Kikan {
     public List<IPlayer>  Teammates     { get; private set; }
 
     public PlayerMovement Movement      { get; private set; }
-    public BuffState      BuffState     { get; private set; }
     public PlayerStatus   Status        { get; private set; }
     public StateTransfer  StateTransfer { get; private set; }
     public SkillInfo      SkillInfo     { get; private set; }
@@ -133,11 +132,16 @@ namespace Bunashibu.Kikan {
     [Header("Environment")]
     [SerializeField] private AudioEnvironment _audioEnvironment;
 
-    [Header("Data")]
+    [Header("Hp/Exp")]
     [SerializeField] private DataTable _hpTable;
     [SerializeField] private DataTable _expTable;
+
+    [Header("Kill Reward")]
     [SerializeField] private DataTable _killExpTable;
     [SerializeField] private DataTable _killGoldTable;
+
+    [Header("Debuff")]
+    [SerializeField] private GameObject _stunPrefab;
 
     // Obsolete
     [Header("Sync On Their Own")]
