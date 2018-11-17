@@ -6,39 +6,31 @@ using UniRx;
 namespace Bunashibu.Kikan {
   public class ReactiveState<T> {
     public ReactiveState() {
-      _stateDictionary = new ReactiveDictionary<T, bool>();
+      _state = new ReactiveDictionary<T, bool>();
     }
 
-    public ReactiveState(params T[] states) : this() {
-      Register(states);
+    public ReactiveState(params T[] keys) : this() {
+      Register(keys);
     }
 
-    public void Register(params T[] states) {
-      foreach (var state in states)
-        _stateDictionary[state] = false;
+    public void Register(params T[] keys) {
+      foreach (var key in keys)
+        _state[key] = false;
     }
 
-    public void DurationEnable(T state, float duration) {
-      Enable(state);
-
-      MonoUtility.Instance.DelaySec(duration, () => {
-        Disable(state);
-      });
+    public void Enable(T key) {
+      if (_state.ContainsKey(key))
+        _state[key] = true;
     }
 
-    public void Enable(T state) {
-      if (_stateDictionary.ContainsKey(state))
-        _stateDictionary[state] = true;
+    public void Disable(T key) {
+      if (_state.ContainsKey(key))
+        _state[key] = false;
     }
 
-    public void Disable(T state) {
-      if (_stateDictionary.ContainsKey(state))
-        _stateDictionary[state] = false;
-    }
+    public IReadOnlyReactiveDictionary<T, bool> State => _state;
 
-    public IReadOnlyReactiveDictionary<T, bool> StateDictionary => _stateDictionary;
-
-    private ReactiveDictionary<T, bool> _stateDictionary;
+    private ReactiveDictionary<T, bool> _state;
   }
 }
 

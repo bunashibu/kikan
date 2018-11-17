@@ -13,12 +13,19 @@ namespace Bunashibu.Kikan {
 
       enemy.Hp.Cur
         .SkipLatestValueOnSubscribe()
-        .Subscribe(cur => enemy.WorldHpBar.UpdateView(cur, enemy.Hp.Max.Value))
+        .Subscribe(_ => enemy.WorldHpBar.UpdateView(enemy.Hp.Cur.Value, enemy.Hp.Max.Value))
         .AddTo(enemy.WorldHpBar);
 
-      enemy.DebuffState.StateDictionary
+      enemy.Debuff.State
         .ObserveReplace()
-        .Subscribe(x => Debug.Log(x))
+        .Where(state => state.NewValue)
+        .Subscribe(state => enemy.Debuff.Instantiate(state.Key))
+        .AddTo(enemy.gameObject);
+
+      enemy.Debuff.State
+        .ObserveReplace()
+        .Where(state => !state.NewValue)
+        .Subscribe(state => enemy.Debuff.Destroy(state.Key))
         .AddTo(enemy.gameObject);
     }
   }

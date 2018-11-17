@@ -38,7 +38,7 @@ namespace Bunashibu.Kikan {
 
     public static Action<DebuffType, float> OnDebuffed(IOnDebuffed target) {
       Action<DebuffType, float> onDebuffed = (debuffType, duration) => {
-        target.DebuffState.DurationEnable(debuffType, duration);
+        target.Debuff.DurationEnable(debuffType, duration);
       };
 
       return onDebuffed;

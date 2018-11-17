@@ -38,13 +38,13 @@ namespace Bunashibu.Kikan {
         SkillInfo   = new SkillInfo();
         PlayerInfo  = new PlayerInfo(this);
 
-        Hp          = new Hp(HpTable[0]);
-        Exp         = new Exp(ExpTable[0]);
-        Level       = new Level(1, MaxLevel);
-        Gold        = new Gold(0, MaxGold);
-        KillCount   = new ReactiveProperty<int>(0);
-        DeathCount  = new ReactiveProperty<int>(0);
-        DebuffState = new ReactiveState<DebuffType>(DebuffType.Stun);
+        Hp         = new Hp(HpTable[0]);
+        Exp        = new Exp(ExpTable[0]);
+        Level      = new Level(1, MaxLevel);
+        Gold       = new Gold(0, MaxGold);
+        KillCount  = new ReactiveProperty<int>(0);
+        DeathCount = new ReactiveProperty<int>(0);
+        Debuff     = new Debuff(DebuffType.Stun);
 
         OnAttacked = BattleEnvironment.OnAttacked(this, NumberPopupEnvironment.Instance.PopupNumber);
         OnKilled   = BattleEnvironment.OnKilled(this, KillRewardEnvironment.GetRewardFrom, KillRewardEnvironment.GiveRewardTo);
@@ -94,13 +94,13 @@ namespace Bunashibu.Kikan {
     public int    Critical     => Core.Critical;
     public string Tag          => gameObject.tag;
 
-    public Hp                        Hp          { get; private set; }
-    public Exp                       Exp         { get; private set; }
-    public Level                     Level       { get; private set; }
-    public Gold                      Gold        { get; private set; }
-    public ReactiveProperty<int>     KillCount   { get; private set; }
-    public ReactiveProperty<int>     DeathCount  { get; private set; }
-    public ReactiveState<DebuffType> DebuffState { get; private set; }
+    public Hp                    Hp         { get; private set; }
+    public Exp                   Exp        { get; private set; }
+    public Level                 Level      { get; private set; }
+    public Gold                  Gold       { get; private set; }
+    public ReactiveProperty<int> KillCount  { get; private set; }
+    public ReactiveProperty<int> DeathCount { get; private set; }
+    public Debuff                Debuff     { get; private set; }
 
     public ReadOnlyCollection<int> HpTable  => _hpTable.Data;
     public ReadOnlyCollection<int> ExpTable => _expTable.Data;
