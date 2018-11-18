@@ -16,9 +16,9 @@ namespace Bunashibu.Kikan {
     public Core(ICorePlayer player) : this() {
       player.gameObject.UpdateAsObservable()
         .Where(_ => player.PhotonView.isMine)
-        .Subscribe(_ => Update(player) );
+        .Subscribe(_ => Update() );
 
-      _gold = player.Gold;
+      _player = player;
     }
 
     public void Register(CoreType type, CoreInfo info, GameObject effect) {
@@ -27,14 +27,14 @@ namespace Bunashibu.Kikan {
 
       _state.Level[type].Cur
         .SkipLatestValueOnSubscribe()
-        .Subscribe(_ => GameObject.Instantiate(effect) );
+        .Subscribe(_ => GameObject.Instantiate(effect, _player.transform) );
 
       _state.Level[type].Cur
         .SkipLatestValueOnSubscribe()
-        .Subscribe(level => _gold.Subtract(_info[type].Gold(level - 1)) );
+        .Subscribe(level => _player.Gold.Subtract(_info[type].Gold(level - 1)) );
     }
 
-    private void Update(ICorePlayer player) {
+    private void Update() {
       foreach (CoreType type in Enum.GetValues(typeof(CoreType))) {
         if (!Input.GetKeyDown(_info[type].Key))
           continue;
@@ -46,7 +46,7 @@ namespace Bunashibu.Kikan {
         if (isMaxLevel)
           return;
 
-        bool isNotEnoughGold = (player.CurGold < _info[type].Gold(_state.CurLevel(type)));
+        bool isNotEnoughGold = (_player.CurGold < _info[type].Gold(_state.CurLevel(type)));
         if (isNotEnoughGold)
           return;
 
@@ -63,7 +63,7 @@ namespace Bunashibu.Kikan {
 
     private Dictionary<CoreType, CoreInfo> _info;
     private CoreState _state;
-    private Gold _gold;
+    private ICorePlayer _player;
   }
 }
 
