@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
+using UniRx.Triggers;
 
 namespace Bunashibu.Kikan {
   public class PlayerMovement {
@@ -16,17 +18,12 @@ namespace Bunashibu.Kikan {
       _lieDown      = new LieDown();
     }
 
-    public PlayerMovement(Rigidbody2D rigid, Transform trans) : this() {
-      _rigid = rigid;
-      _trans = trans;
+    public PlayerMovement(GameObject obj) : this() {
+      obj.FixedUpdateAsObservable()
+        .Subscribe(_ => FixedUpdate() );
     }
 
-    public PlayerMovement(Rigidbody2D rigid, Transform trans, PlayerCore core) : this(rigid, trans) {
-      _core = core;
-    }
-
-    // INFO: Must be called in MonoBehaviour-FixedUpdate()
-    public void FixedUpdate() {
+    private void FixedUpdate() {
       if (_core == null) {
         _airMove.FixedUpdate(_rigid);
         _groundMove.FixedUpdate(_rigid);
@@ -44,6 +41,15 @@ namespace Bunashibu.Kikan {
 
       _ladderMove.FixedUpdate(_trans);
       _stepDownJump.FixedUpdate(_rigid);
+    }
+
+    public PlayerMovement(GameObject obj, Rigidbody2D rigid, Transform trans) : this(obj) {
+      _rigid = rigid;
+      _trans = trans;
+    }
+
+    public PlayerMovement(GameObject obj, Rigidbody2D rigid, Transform trans, Core core) : this(obj, rigid, trans) {
+      _core = core;
     }
 
     public void AirMoveLeft() {
@@ -100,7 +106,7 @@ namespace Bunashibu.Kikan {
 
     private Rigidbody2D _rigid;
     private Transform   _trans;
-    private PlayerCore  _core;
+    private Core        _core;
 
     private AirMove    _airMove;
     private GroundMove _groundMove;

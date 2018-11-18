@@ -19,7 +19,7 @@ namespace Bunashibu.Kikan {
     // THINK: coupling with global reference. to be a stream
     void Start() {
       if (StageReference.Instance.StageData.Name == "Lobby") {
-        Movement = new PlayerMovement(_rigid, transform);
+        Movement = new PlayerMovement(gameObject, _rigid, transform);
         // tmp
         Movement.SetMoveForce(4.0f);
         Movement.SetJumpForce(400.0f);
@@ -31,7 +31,7 @@ namespace Bunashibu.Kikan {
         Assert.IsTrue(_hpTable.Data.Count       == MaxLevel);
         Assert.IsTrue(_expTable.Data.Count      == MaxLevel);
 
-        Movement    = new PlayerMovement(_rigid, transform, _core);
+        Movement    = new PlayerMovement(gameObject, _rigid, transform, Core);
         Teammates   = new List<IPlayer>();
         Status      = new PlayerStatus(_jobStatus);
         SkillInfo   = new SkillInfo();
@@ -54,8 +54,6 @@ namespace Bunashibu.Kikan {
       }
     }
 
-    void FixedUpdate() {
-      Movement.FixedUpdate();
     }
 
     public Action<IBattle, int, bool> OnAttacked { get; private set; }
