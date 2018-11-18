@@ -7,7 +7,7 @@ using UnityEngine.Assertions;
 using UniRx;
 
 namespace Bunashibu.Kikan {
-  public class Player : MonoBehaviour, IPlayer {
+  public class Player : MonoBehaviour, IPlayer, IBattleMovementPlayer, ILobbyMovementPlayer {
     void Awake() {
       State         = new CharacterState();
       StateTransfer = new StateTransfer(_initState, _animator);
@@ -19,7 +19,7 @@ namespace Bunashibu.Kikan {
     // THINK: coupling with global reference. to be a stream
     void Start() {
       if (StageReference.Instance.StageData.Name == "Lobby") {
-        Movement = new PlayerMovement(gameObject, _rigid, transform);
+        Movement = new PlayerMovement((ILobbyMovementPlayer)this);
         // tmp
         Movement.SetMoveForce(4.0f);
         Movement.SetJumpForce(400.0f);
@@ -31,7 +31,7 @@ namespace Bunashibu.Kikan {
         Assert.IsTrue(_hpTable.Data.Count       == MaxLevel);
         Assert.IsTrue(_expTable.Data.Count      == MaxLevel);
 
-        Movement    = new PlayerMovement(gameObject, _rigid, transform, Core);
+        Movement    = new PlayerMovement((IBattleMovementPlayer)this);
         Teammates   = new List<IPlayer>();
         Status      = new PlayerStatus(_jobStatus);
         SkillInfo   = new SkillInfo();
