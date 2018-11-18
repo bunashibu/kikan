@@ -9,34 +9,34 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1916987343128250}
+  m_RootGameObject: {fileID: 1885069497722260}
   m_IsPrefabParent: 1
---- !u!1 &1916987343128250
+--- !u!1 &1885069497722260
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4113149586809066}
-  - component: {fileID: 212173368264447038}
-  - component: {fileID: 95679214943952842}
-  - component: {fileID: 82061544959743050}
-  - component: {fileID: 114836794171952550}
-  - component: {fileID: 114073500839680682}
+  - component: {fileID: 4186562459008548}
+  - component: {fileID: 212936183793345034}
+  - component: {fileID: 95039439242162630}
+  - component: {fileID: 82647246304158280}
+  - component: {fileID: 114125209655421942}
+  - component: {fileID: 114474019520893120}
   m_Layer: 0
-  m_Name: Core1LevelUp
+  m_Name: HpCoreEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4113149586809066
+--- !u!4 &4186562459008548
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1916987343128250}
+  m_GameObject: {fileID: 1885069497722260}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -44,12 +44,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &82061544959743050
+--- !u!82 &82647246304158280
 AudioSource:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1916987343128250}
+  m_GameObject: {fileID: 1885069497722260}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
@@ -139,13 +139,13 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!95 &95679214943952842
+--- !u!95 &95039439242162630
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1916987343128250}
+  m_GameObject: {fileID: 1885069497722260}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 30ba7a69f6dd93e4c89a342602e84307, type: 2}
@@ -157,12 +157,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114073500839680682
+--- !u!114 &114125209655421942
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1916987343128250}
+  m_GameObject: {fileID: 1885069497722260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04ad04637f1838e4c86e36376a9287ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114474019520893120
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1885069497722260}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
@@ -183,23 +194,12 @@ MonoBehaviour:
   instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
---- !u!114 &114836794171952550
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1916987343128250}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04ad04637f1838e4c86e36376a9287ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!212 &212173368264447038
+--- !u!212 &212936183793345034
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1916987343128250}
+  m_GameObject: {fileID: 1885069497722260}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0

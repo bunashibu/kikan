@@ -120,7 +120,6 @@ GameObject:
   - component: {fileID: 114685664338584306}
   - component: {fileID: 114346652777482960}
   - component: {fileID: 114610620364185106}
-  - component: {fileID: 114454518508664006}
   - component: {fileID: 114969582724046644}
   - component: {fileID: 114172174937367482}
   - component: {fileID: 114204508672984674}
@@ -916,7 +915,21 @@ MonoBehaviour:
   _killGoldTable: {fileID: 11400000, guid: 08f3819bcd389ae498dddc20a49a3239, type: 2}
   _stunPrefab: {fileID: 1315593712468704, guid: aa80d344b84021a47bb4c5b0d73b7fa2,
     type: 2}
-  _core: {fileID: 114454518508664006}
+  _speedCoreInfo: {fileID: 11400000, guid: ee538c803e6b7d34fb16311e882cd98d, type: 2}
+  _hpCoreInfo: {fileID: 11400000, guid: 22fc32fd35f8f3a43aac545cd5ffef2f, type: 2}
+  _attackCoreInfo: {fileID: 11400000, guid: 3802f8fc58bfd1846927a44ea5acbc56, type: 2}
+  _criticalCoreInfo: {fileID: 11400000, guid: 28e7ad9a253ab3642ab24ec5f77fbd6b, type: 2}
+  _healCoreInfo: {fileID: 11400000, guid: dfc62fce6272db8438d9dd234fe2c625, type: 2}
+  _speedCoreEffect: {fileID: 1721529067656870, guid: 226a74dc3b201ca48b7bd3f008312b86,
+    type: 2}
+  _hpCoreEffect: {fileID: 1885069497722260, guid: cac6c563b74281f4fb4611ed616642dd,
+    type: 2}
+  _attackCoreEffect: {fileID: 1392682898443052, guid: 668c8bb807e02f1409e0e6177b9f0801,
+    type: 2}
+  _criticalCoreEffect: {fileID: 1350029343786574, guid: d715035dfdfd2414cb4abdf41722e03e,
+    type: 2}
+  _healCoreEffect: {fileID: 1927017765232452, guid: 010a4889b2622374694da33b7bcba8b7,
+    type: 2}
   _nameBackground: {fileID: 114037969435547560}
   _popupRemark: {fileID: 114350780653676318}
   _worldHpBar: {fileID: 114301068641892260}
@@ -1128,31 +1141,6 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
---- !u!114 &114454518508664006
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1222958424102090}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0a6701f5a9991842b83a56beadd4fc7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _player: {fileID: 114346652777482960}
-  _playerHealer: {fileID: 114969582724046644}
-  _coreList:
-  - {fileID: 11400000, guid: ee538c803e6b7d34fb16311e882cd98d, type: 2}
-  - {fileID: 11400000, guid: 22fc32fd35f8f3a43aac545cd5ffef2f, type: 2}
-  - {fileID: 11400000, guid: 3802f8fc58bfd1846927a44ea5acbc56, type: 2}
-  - {fileID: 11400000, guid: 28e7ad9a253ab3642ab24ec5f77fbd6b, type: 2}
-  - {fileID: 11400000, guid: dfc62fce6272db8438d9dd234fe2c625, type: 2}
-  _effectList:
-  - {fileID: 1067555552168024, guid: 5c8bc8a25bd76314c9bceafda5b09894, type: 2}
-  - {fileID: 1916987343128250, guid: 9135c38be89692c4fab0c9b6a6380a9d, type: 2}
-  - {fileID: 1985060066465474, guid: 15e8b0d1aaa834a4eb1a0eb172e4a3ed, type: 2}
-  - {fileID: 1311186686051592, guid: 895d3fe456695124d85e55e0373c3f35, type: 2}
-  - {fileID: 1116784331983008, guid: 71d9069bd62d0ff47bc77f461d952710, type: 2}
 --- !u!114 &114572845960354168
 MonoBehaviour:
   m_ObjectHideFlags: 1

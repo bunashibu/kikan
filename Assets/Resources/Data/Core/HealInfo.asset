@@ -9,8 +9,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1abcd8b4a55234f4787c4ab3090684bc, type: 3}
-  m_Name: Critical
+  m_Name: HealInfo
   m_EditorClassIdentifier: 
-  _valueTable: {fileID: 11400000, guid: b252e294706f9cd478eadb7dd283a2d8, type: 2}
+  _valueTable: {fileID: 11400000, guid: e162280fb9020744c9e7c64e3ca12e1a, type: 2}
   _goldTable: {fileID: 11400000, guid: e7ad6da43f1788241b12faef88840e48, type: 2}
-  _keyCode: 101
+  _keyCode: 116
