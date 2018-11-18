@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
-  public interface IBattleMovementPlayer {
-    GameObject  gameObject { get; }
-    Transform   transform  { get; }
-    Rigidbody2D Rigid      { get; }
-    Core        Core       { get; }
+  public interface IBattleMovementPlayer : IMonoBehaviour {
+    Rigidbody2D Rigid { get; }
+    Core        Core  { get; }
   }
 }
 
