@@ -10,25 +10,25 @@ namespace Bunashibu.Kikan {
       _effect = new DebuffEffect(parent);
     }
 
-    public void Register(DebuffType key, GameObject effectPrefab) {
-      _state.Register(key);
-      _effect.Register(key, effectPrefab);
+    public void Register(DebuffType type, GameObject effect) {
+      _state.Register(type);
+      _effect.Register(type, effect);
     }
 
-    public void DurationEnable(DebuffType key, float duration) {
-      _state.Enable(key);
+    public void DurationEnable(DebuffType type, float duration) {
+      _state.Enable(type);
 
       MonoUtility.Instance.DelaySec(duration, () => {
-        _state.Disable(key);
+        _state.Disable(type);
       });
     }
 
-    public void Instantiate(DebuffType key) {
-      _effect.Instantiate(key);
+    public void Instantiate(DebuffType type) {
+      _effect.Instantiate(type);
     }
 
-    public void Destroy(DebuffType key) {
-      _effect.Destroy(key);
+    public void Destroy(DebuffType type) {
+      _effect.Destroy(type);
     }
 
     public IReadOnlyReactiveDictionary<DebuffType, bool> State => _state.State;
