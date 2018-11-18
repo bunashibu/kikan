@@ -54,14 +54,11 @@ namespace Bunashibu.Kikan {
       }
     }
 
-    }
-
     public Action<IBattle, int, bool> OnAttacked { get; private set; }
     public Action<IBattle>            OnKilled   { get; private set; }
     public Action<DebuffType, float>  OnDebuffed { get; private set; }
 
     public PhotonView       PhotonView   => _photonView;
-    public Transform        Transform    => transform;
     public SpriteRenderer[] Renderers    => _renderers;
     public Rigidbody2D      Rigid        => _rigid;
     public Collider2D       BodyCollider => _bodyCollider;

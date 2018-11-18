@@ -51,8 +51,8 @@ namespace Bunashibu.Kikan {
     }
 
     private bool IsOutOfArea() {
-      var x = _character.Transform.position.x;
-      var y = _character.Transform.position.y;
+      var x = _character.transform.position.x;
+      var y = _character.transform.position.y;
 
       if (x < StageReference.Instance.StageData.StageRect.xMin || StageReference.Instance.StageData.StageRect.xMax < x ||
           y < StageReference.Instance.StageData.StageRect.yMin || StageReference.Instance.StageData.StageRect.yMax < y)
@@ -62,7 +62,7 @@ namespace Bunashibu.Kikan {
     }
 
     private void AdjustPosition() {
-      _character.Transform.position = StageReference.Instance.StageData.ResetPosition;
+      _character.transform.position = StageReference.Instance.StageData.ResetPosition;
       _character.FootCollider.isTrigger = false;
     }
 

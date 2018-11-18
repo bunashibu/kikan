@@ -58,7 +58,7 @@ namespace Bunashibu.Kikan {
     }
 
     private void PrepareEasing() {
-      Vector3 startPosition = _player.Transform.position;
+      Vector3 startPosition = _player.transform.position;
       Vector3 startCameraPosition = _camera.transform.position;
       Vector3 gatherPosition = StageReference.Instance.StageData.RespawnPosition;
       if (_player.PlayerInfo.Team == 1)
@@ -74,7 +74,7 @@ namespace Bunashibu.Kikan {
     }
 
     private void GatherPlayer() {
-      _player.Transform.position = _easing.GetNextPosition();
+      _player.transform.position = _easing.GetNextPosition();
       _camera.transform.position = _easingCamera.GetNextPosition();
     }
 

@@ -45,12 +45,12 @@ namespace Bunashibu.Kikan {
     }
 
     public PlayerMovement(ILobbyMovementPlayer player) : this(player.gameObject) {
-      _trans = player.Transform;
+      _trans = player.transform;
       _rigid = player.Rigid;
     }
 
     public PlayerMovement(IBattleMovementPlayer player) : this(player.gameObject) {
-      _trans = player.Transform;
+      _trans = player.transform;
       _rigid = player.Rigid;
       _core  = player.Core;
     }

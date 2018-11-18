@@ -48,7 +48,7 @@ namespace Bunashibu.Kikan {
       var halfCharaHeight = skillUser.BodyCollider.bounds.size.y / 2;
 
       Vector2 moveVector = direction * _moveDistance;
-      Vector2 footOrigin = new Vector2(skillUser.Transform.position.x, skillUser.Transform.position.y - halfCharaHeight);
+      Vector2 footOrigin = new Vector2(skillUser.transform.position.x, skillUser.transform.position.y - halfCharaHeight);
 
       Vector2 rayOrigin = footOrigin + moveVector;
       if (skillUser.Location.IsAir)
@@ -61,14 +61,14 @@ namespace Bunashibu.Kikan {
       if (shouldMoveToGround)
         estimatedPosition = hitGround.point + new Vector2(0, halfCharaHeight);
       else
-        estimatedPosition = new Vector2(skillUser.Transform.position.x, skillUser.Transform.position.y) + moveVector;
+        estimatedPosition = new Vector2(skillUser.transform.position.x, skillUser.transform.position.y) + moveVector;
 
       if (IsOutOfArea(estimatedPosition)) {
         estimatedPosition.x = Mathf.Clamp(estimatedPosition.x, StageReference.Instance.StageData.StageRect.xMin, StageReference.Instance.StageData.StageRect.xMax);
         estimatedPosition.y = Mathf.Clamp(estimatedPosition.y, StageReference.Instance.StageData.StageRect.yMin, StageReference.Instance.StageData.StageRect.yMax);
       }
 
-      skillUser.Transform.position = estimatedPosition;
+      skillUser.transform.position = estimatedPosition;
 
       skillUser.Rigid.velocity = new Vector2(0, 0);
     }
@@ -89,7 +89,7 @@ namespace Bunashibu.Kikan {
       transform.Translate(-faceDirection, direction.y * 1.4f, 0.0f, Space.World);
 
       Vector2 moveVector = direction * _moveDistance;
-      Vector2 footOrigin = new Vector2(skillUser.Transform.position.x, skillUser.Transform.position.y - halfCharaHeight);
+      Vector2 footOrigin = new Vector2(skillUser.transform.position.x, skillUser.transform.position.y - halfCharaHeight);
 
       RaycastHit2D hitGround = new RaycastHit2D();
       if (direction == Vector2.up) {
@@ -107,14 +107,14 @@ namespace Bunashibu.Kikan {
       if (shouldMoveToGround)
         estimatedPosition = hitGround.point + new Vector2(0, halfCharaHeight);
       else
-        estimatedPosition = new Vector2(skillUser.Transform.position.x, skillUser.Transform.position.y) + moveVector;
+        estimatedPosition = new Vector2(skillUser.transform.position.x, skillUser.transform.position.y) + moveVector;
 
       if (IsOutOfArea(estimatedPosition)) {
         estimatedPosition.x = Mathf.Clamp(estimatedPosition.x, StageReference.Instance.StageData.StageRect.xMin, StageReference.Instance.StageData.StageRect.xMax);
         estimatedPosition.y = Mathf.Clamp(estimatedPosition.y, StageReference.Instance.StageData.StageRect.yMin, StageReference.Instance.StageData.StageRect.yMax);
       }
 
-      skillUser.Transform.position = estimatedPosition;
+      skillUser.transform.position = estimatedPosition;
 
       skillUser.Rigid.velocity = new Vector2(0, 0);
     }
