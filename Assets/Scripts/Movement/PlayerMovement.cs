@@ -6,7 +6,7 @@ using UniRx.Triggers;
 
 namespace Bunashibu.Kikan {
   public class PlayerMovement {
-    public PlayerMovement() {
+    private PlayerMovement() {
       _airMove      = new AirMove();
       _groundMove   = new GroundMove();
       _ladderMove   = new LadderMove();
@@ -18,7 +18,7 @@ namespace Bunashibu.Kikan {
       _lieDown      = new LieDown();
     }
 
-    public PlayerMovement(GameObject obj) : this() {
+    private PlayerMovement(GameObject obj) : this() {
       obj.FixedUpdateAsObservable()
         .Subscribe(_ => FixedUpdate() );
     }
