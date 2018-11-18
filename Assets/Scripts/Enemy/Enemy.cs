@@ -11,7 +11,7 @@ namespace Bunashibu.Kikan {
       StateTransfer = new StateTransfer(_initState, _animator);
       Hp            = new Hp(_enemyData.Hp);
       Debuff        = new Debuff(transform);
-      Debuff.Register(DebuffType.Stun, _stunPrefab);
+      Debuff.Register(DebuffType.Stun, _stunEffect);
 
       Location      = new LocationJudger();
       Location.InitializeFootJudge(_footCollider);
@@ -80,7 +80,7 @@ namespace Bunashibu.Kikan {
     [SerializeField] private int _killGold;
 
     [Header("Debuff")]
-    [SerializeField] private GameObject _stunPrefab;
+    [SerializeField] private GameObject _stunEffect;
 
     // tmp
     [Space(10)]

@@ -4,10 +4,8 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   public class CorePanel : MonoBehaviour {
-    public List<CoreChart> ChartList {
-      get {
-        return _chartList;
-      }
+    public void UpdateView(int index, int level) {
+      _chartList[index].UpdateView(level);
     }
 
     [SerializeField] private List<CoreChart> _chartList;

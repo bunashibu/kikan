@@ -45,7 +45,6 @@ GameObject:
   - component: {fileID: 114118438416948704}
   - component: {fileID: 114670189377734842}
   - component: {fileID: 114299864033631794}
-  - component: {fileID: 114081049803159860}
   - component: {fileID: 114365063050791810}
   - component: {fileID: 114773863746440152}
   - component: {fileID: 114528999332835868}
@@ -248,18 +247,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114081049803159860
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1431167582857956}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ab3f9d6fa8e9024a93d28a3c90ecda2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _enemy: {fileID: 114299864033631794}
 --- !u!114 &114101790809312124
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -471,7 +458,7 @@ MonoBehaviour:
   _animator: {fileID: 95025594965853702}
   _killExp: 257
   _killGold: 390
-  _stunPrefab: {fileID: 1315593712468704, guid: aa80d344b84021a47bb4c5b0d73b7fa2,
+  _stunEffect: {fileID: 1315593712468704, guid: aa80d344b84021a47bb4c5b0d73b7fa2,
     type: 2}
   _ai: {fileID: 114365063050791810}
   _worldHpBar: {fileID: 114810572376819308}

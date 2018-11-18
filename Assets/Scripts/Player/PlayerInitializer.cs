@@ -18,7 +18,7 @@ namespace Bunashibu.Kikan {
         NonPlayerOwnerInitialize(player);
 
       InitPlayerTeam(player);
-      player.Core.Init(_corePanel);
+      //player.Core.Init(_corePanel);
       player.Movement.SetMoveForce(player.Status.Spd);
       player.Movement.SetJumpForce(player.Status.Jmp);
     }

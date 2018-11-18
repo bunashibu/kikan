@@ -13,10 +13,10 @@ namespace Bunashibu.Kikan {
       }
     }
 
-    public void FixedUpdate(Rigidbody2D rigid, PlayerCore core) {
+    public void FixedUpdate(Rigidbody2D rigid, Core core) {
       if (_actFlag) {
         ActuallyMove(rigid, () => {
-          float ratio = (float)((core.Speed + 100) / 100.0);
+          float ratio = (float)((core.GetValue(CoreType.Speed) + 100) / 100.0);
           rigid.AddForce(_direction * _force * ratio, ForceMode2D.Impulse);
         });
       }

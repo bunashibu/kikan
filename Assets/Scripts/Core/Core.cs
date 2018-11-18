@@ -1,42 +1,69 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UniRx;
+using UniRx.Triggers;
 
 namespace Bunashibu.Kikan {
-  [CreateAssetMenu]
-  public class Core : ScriptableObject {
-    public void LvUp() {
-      _level += 1;
+  public class Core {
+    private Core() {
+      _info = new Dictionary<CoreType, CoreInfo>();
+      _state = new CoreState();
     }
 
-    public KeyCode Key {
-      get {
-        return _keyCode;
+    public Core(ICorePlayer player) : this() {
+      player.gameObject.UpdateAsObservable()
+        .Where(_ => player.PhotonView.isMine)
+        .Subscribe(_ => Update(player) );
+
+      _gold = player.Gold;
+    }
+
+    public void Register(CoreType type, CoreInfo info, GameObject effect) {
+      _info[type] = info;
+      _state.Register(type);
+
+      _state.Level[type].Cur
+        .SkipLatestValueOnSubscribe()
+        .Subscribe(_ => GameObject.Instantiate(effect) );
+
+      _state.Level[type].Cur
+        .SkipLatestValueOnSubscribe()
+        .Subscribe(level => _gold.Subtract(_info[type].Gold(level - 1)) );
+    }
+
+    private void Update(ICorePlayer player) {
+      foreach (CoreType type in Enum.GetValues(typeof(CoreType))) {
+        if (!Input.GetKeyDown(_info[type].Key))
+          continue;
+
+        if (_state.IsNeedReconfirm(type))
+          return;
+
+        bool isMaxLevel = (_state.CurLevel(type) == _state.MaxLevel(type));
+        if (isMaxLevel)
+          return;
+
+        bool isNotEnoughGold = (player.CurGold < _info[type].Gold(_state.CurLevel(type)));
+        if (isNotEnoughGold)
+          return;
+
+        _state.LevelUp(type);
       }
     }
 
-    public int Value {
-      get {
-        return _valueTable.Data[_level];
-      }
+    public int GetValue(CoreType type) {
+      if (_info.ContainsKey(type))
+        return _info[type].Value(_state.CurLevel(type));
+
+      return 0;
     }
 
-    public int Gold {
-      get {
-        return _goldTable.Data[_level];
-      }
-    }
-
-    public int Level {
-      get {
-        return _level;
-      }
-    }
-
-    [SerializeField] private DataTable _valueTable;
-    [SerializeField] private DataTable _goldTable;
-    [SerializeField] private KeyCode _keyCode;
-    private int _level = 0;
+    private Dictionary<CoreType, CoreInfo> _info;
+    private CoreState _state;
+    private Gold _gold;
   }
 }
 

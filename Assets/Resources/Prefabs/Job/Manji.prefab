@@ -913,7 +913,7 @@ MonoBehaviour:
   _expTable: {fileID: 11400000, guid: 6de611e43d011d34daf512c9b3c8779b, type: 2}
   _killExpTable: {fileID: 11400000, guid: 791597593be91a545b78b225c074d878, type: 2}
   _killGoldTable: {fileID: 11400000, guid: 08f3819bcd389ae498dddc20a49a3239, type: 2}
-  _stunPrefab: {fileID: 1315593712468704, guid: aa80d344b84021a47bb4c5b0d73b7fa2,
+  _stunEffect: {fileID: 1315593712468704, guid: aa80d344b84021a47bb4c5b0d73b7fa2,
     type: 2}
   _speedCoreInfo: {fileID: 11400000, guid: ee538c803e6b7d34fb16311e882cd98d, type: 2}
   _hpCoreInfo: {fileID: 11400000, guid: 22fc32fd35f8f3a43aac545cd5ffef2f, type: 2}

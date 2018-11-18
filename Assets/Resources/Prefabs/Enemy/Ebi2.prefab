@@ -128,7 +128,6 @@ GameObject:
   - component: {fileID: 114138649463684204}
   - component: {fileID: 114890502787428388}
   - component: {fileID: 114473484767149178}
-  - component: {fileID: 114647505048418210}
   - component: {fileID: 114093239695068668}
   - component: {fileID: 114598867193443742}
   - component: {fileID: 114269032304443802}
@@ -477,7 +476,7 @@ MonoBehaviour:
   _animator: {fileID: 95638647106221070}
   _killExp: 100
   _killGold: 150
-  _stunPrefab: {fileID: 1315593712468704, guid: aa80d344b84021a47bb4c5b0d73b7fa2,
+  _stunEffect: {fileID: 1315593712468704, guid: aa80d344b84021a47bb4c5b0d73b7fa2,
     type: 2}
   _ai: {fileID: 114093239695068668}
   _worldHpBar: {fileID: 114072369469390806}
@@ -495,18 +494,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _renderer: {fileID: 212714715507470616}
   _anim: {fileID: 95638647106221070}
---- !u!114 &114647505048418210
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1840522655557820}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ab3f9d6fa8e9024a93d28a3c90ecda2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _enemy: {fileID: 114473484767149178}
 --- !u!114 &114735934155668872
 MonoBehaviour:
   m_ObjectHideFlags: 1

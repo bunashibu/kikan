@@ -128,7 +128,6 @@ GameObject:
   - component: {fileID: 114835523119747108}
   - component: {fileID: 114548143779505394}
   - component: {fileID: 114530758793779156}
-  - component: {fileID: 114818716500960406}
   - component: {fileID: 114497347247726722}
   - component: {fileID: 114714408207554070}
   - component: {fileID: 114254446825988984}
@@ -449,7 +448,7 @@ MonoBehaviour:
   _animator: {fileID: 95176159232201240}
   _killExp: 60
   _killGold: 90
-  _stunPrefab: {fileID: 1315593712468704, guid: aa80d344b84021a47bb4c5b0d73b7fa2,
+  _stunEffect: {fileID: 1315593712468704, guid: aa80d344b84021a47bb4c5b0d73b7fa2,
     type: 2}
   _ai: {fileID: 114497347247726722}
   _worldHpBar: {fileID: 114065065712931694}
@@ -502,18 +501,6 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
---- !u!114 &114818716500960406
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1863352739844968}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ab3f9d6fa8e9024a93d28a3c90ecda2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _enemy: {fileID: 114530758793779156}
 --- !u!114 &114835523119747108
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -21,7 +21,7 @@ namespace Bunashibu.Kikan {
     public void UpdateMaxHealQuantity() {
       Assert.IsTrue(photonView.isMine);
 
-      double ratio = (double)(_player.Core.Heal / 100.0);
+      double ratio = (double)(_player.Core.GetValue(CoreType.Heal) / 100.0);
       HealQuantity = (int)(_healTable.Data[_player.Level.Cur.Value - 1] * ratio);
     }
 

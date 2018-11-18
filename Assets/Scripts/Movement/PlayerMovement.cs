@@ -20,8 +20,18 @@ namespace Bunashibu.Kikan {
 
     private PlayerMovement(GameObject playerObj) : this() {
       playerObj.FixedUpdateAsObservable()
-        .Subscribe(_ => FixedUpdate() )
-        .AddTo(playerObj);
+        .Subscribe(_ => FixedUpdate() );
+    }
+
+    public PlayerMovement(ILobbyMovementPlayer player) : this(player.gameObject) {
+      _trans = player.transform;
+      _rigid = player.Rigid;
+    }
+
+    public PlayerMovement(IBattleMovementPlayer player) : this(player.gameObject) {
+      _trans = player.transform;
+      _rigid = player.Rigid;
+      _core  = player.Core;
     }
 
     private void FixedUpdate() {
@@ -42,17 +52,6 @@ namespace Bunashibu.Kikan {
 
       _ladderMove.FixedUpdate(_trans);
       _stepDownJump.FixedUpdate(_rigid);
-    }
-
-    public PlayerMovement(ILobbyMovementPlayer player) : this(player.gameObject) {
-      _trans = player.transform;
-      _rigid = player.Rigid;
-    }
-
-    public PlayerMovement(IBattleMovementPlayer player) : this(player.gameObject) {
-      _trans = player.transform;
-      _rigid = player.Rigid;
-      _core  = player.Core;
     }
 
     public void AirMoveLeft() {

@@ -28,5 +28,13 @@ namespace Bunashibu.Kikan {
   public enum DebuffType {
     Stun
   }
+
+  public enum CoreType {
+    Speed,
+    Hp,
+    Attack,
+    Critical,
+    Heal
+  }
 }
 

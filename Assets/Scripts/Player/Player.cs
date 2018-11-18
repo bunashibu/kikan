@@ -7,7 +7,7 @@ using UnityEngine.Assertions;
 using UniRx;
 
 namespace Bunashibu.Kikan {
-  public class Player : MonoBehaviour, IPlayer, IBattleMovementPlayer, ILobbyMovementPlayer {
+  public class Player : MonoBehaviour, IPlayer, IBattleMovementPlayer, ILobbyMovementPlayer, ICorePlayer {
     void Awake() {
       State         = new CharacterState();
       StateTransfer = new StateTransfer(_initState, _animator);
@@ -31,11 +31,11 @@ namespace Bunashibu.Kikan {
         Assert.IsTrue(_hpTable.Data.Count       == MaxLevel);
         Assert.IsTrue(_expTable.Data.Count      == MaxLevel);
 
-        Movement    = new PlayerMovement((IBattleMovementPlayer)this);
-        Teammates   = new List<IPlayer>();
-        Status      = new PlayerStatus(_jobStatus);
-        SkillInfo   = new SkillInfo();
-        PlayerInfo  = new PlayerInfo(this);
+        Movement   = new PlayerMovement((IBattleMovementPlayer)this);
+        Teammates  = new List<IPlayer>();
+        Status     = new PlayerStatus(_jobStatus);
+        SkillInfo  = new SkillInfo();
+        PlayerInfo = new PlayerInfo(this);
 
         Hp         = new Hp(HpTable[0]);
         Exp        = new Exp(ExpTable[0]);
@@ -43,8 +43,16 @@ namespace Bunashibu.Kikan {
         Gold       = new Gold(0, MaxGold);
         KillCount  = new ReactiveProperty<int>(0);
         DeathCount = new ReactiveProperty<int>(0);
+
         Debuff     = new Debuff(transform);
-        Debuff.Register(DebuffType.Stun, _stunPrefab);
+        Debuff.Register(DebuffType.Stun, _stunEffect);
+
+        Core       = new Core((ICorePlayer)this);
+        Core.Register(CoreType.Speed,    _speedCoreInfo,    _speedCoreEffect   );
+        Core.Register(CoreType.Hp,       _hpCoreInfo,       _hpCoreEffect      );
+        Core.Register(CoreType.Attack,   _attackCoreInfo,   _attackCoreEffect  );
+        Core.Register(CoreType.Critical, _criticalCoreInfo, _criticalCoreEffect);
+        Core.Register(CoreType.Heal,     _healCoreInfo,     _healCoreEffect    );
 
         OnAttacked = BattleEnvironment.OnAttacked(this, NumberPopupEnvironment.Instance.PopupNumber);
         OnKilled   = BattleEnvironment.OnKilled(this, KillRewardEnvironment.GetRewardFrom, KillRewardEnvironment.GiveRewardTo);
@@ -83,9 +91,9 @@ namespace Bunashibu.Kikan {
     public int    KillExp      => _killExpTable.Data[Level.Cur.Value - 1];
     public int    KillGold     => _killGoldTable.Data[Level.Cur.Value - 1];
     public int    DamageSkinId => 0;
-    public int    Power        { get { double ratio = (double)((Core.Attack + 100) / 100.0);
+    public int    Power        { get { double ratio = (double)((Core.GetValue(CoreType.Attack) + 100) / 100.0);
                                        return (int)(Status.Atk * Status.MulCorrectionAtk * ratio); } }
-    public int    Critical     => Core.Critical;
+    public int    Critical     => Core.GetValue(CoreType.Critical);
     public string Tag          => gameObject.tag;
 
     public Hp                    Hp         { get; private set; }
@@ -95,6 +103,9 @@ namespace Bunashibu.Kikan {
     public ReactiveProperty<int> KillCount  { get; private set; }
     public ReactiveProperty<int> DeathCount { get; private set; }
     public Debuff                Debuff     { get; private set; }
+    public Core                  Core       { get; private set; }
+
+    public int CurGold => Gold.Cur.Value;
 
     public ReadOnlyCollection<int> HpTable  => _hpTable.Data;
     public ReadOnlyCollection<int> ExpTable => _expTable.Data;
@@ -107,7 +118,6 @@ namespace Bunashibu.Kikan {
 
     // tmp
     public Character2D Character  => _character;
-    public PlayerCore  Core       => _core;
     public DamageSkin  DamageSkin => _damageSkin;
     public Weapon      Weapon     => _weapon;
 
@@ -136,11 +146,21 @@ namespace Bunashibu.Kikan {
     [SerializeField] private DataTable _killGoldTable;
 
     [Header("Debuff")]
-    [SerializeField] private GameObject _stunPrefab;
+    [SerializeField] private GameObject _stunEffect;
 
-    // Obsolete
-    [Header("Sync On Their Own")]
-    [SerializeField] private PlayerCore _core;
+    [Header("CoreInfo")]
+    [SerializeField] private CoreInfo _speedCoreInfo;
+    [SerializeField] private CoreInfo _hpCoreInfo;
+    [SerializeField] private CoreInfo _attackCoreInfo;
+    [SerializeField] private CoreInfo _criticalCoreInfo;
+    [SerializeField] private CoreInfo _healCoreInfo;
+
+    [Header("CoreEffect")]
+    [SerializeField] private GameObject _speedCoreEffect;
+    [SerializeField] private GameObject _hpCoreEffect;
+    [SerializeField] private GameObject _attackCoreEffect;
+    [SerializeField] private GameObject _criticalCoreEffect;
+    [SerializeField] private GameObject _healCoreEffect;
 
     [Header("Canvas")]
     [SerializeField] private NameBackground _nameBackground;
