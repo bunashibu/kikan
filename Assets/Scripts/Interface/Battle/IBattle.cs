@@ -14,8 +14,8 @@ namespace Bunashibu.Kikan {
     int Critical     { get; }
     string Tag       { get; }
 
-    Action<IBattle, int, bool> OnAttacked { get; }
-    Action<IBattle>            OnKilled   { get; }
+    //Action<IBattle, int, bool> OnAttacked { get; }
+    //Action<IBattle>            OnKilled   { get; }
 
     CharacterState State { get; }
   }

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   [RequireComponent(typeof(Character2D))]
-  public class Enemy : MonoBehaviour, ICharacter, IBattle, IOnDebuffed {
+  public class Enemy : MonoBehaviour, ICharacter, IBattle, IOnDebuffed, IOnAttacked, IAttacker, IPhotonBehaviour {
     void Awake() {
       State         = new CharacterState();
       StateTransfer = new StateTransfer(_initState, _animator);
@@ -31,9 +31,9 @@ namespace Bunashibu.Kikan {
       PopulationObserver = populationObserver;
     }
 
-    public Action<IBattle, int, bool> OnAttacked { get; private set; }
-    public Action<IBattle>            OnKilled   { get; private set; }
-    public Action<DebuffType, float>  OnDebuffed { get; private set; }
+    public Action<IAttacker, int, bool> OnAttacked { get; private set; }
+    public Action<IAttacker>            OnKilled   { get; private set; }
+    public Action<DebuffType, float>    OnDebuffed { get; private set; }
 
     // Unity
     public PhotonView     PhotonView   => _photonView;

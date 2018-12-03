@@ -6,16 +6,15 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   public class NumberPopupEnvironment : SingletonMonoBehaviour<NumberPopupEnvironment> {
-    public void PopupNumber(int damage, bool isCritical, IBattle attacker, IBattle damageTaker) {
-      int skinId = attacker.DamageSkinId;
-      var damageTakerObj = ((MonoBehaviour)damageTaker).gameObject;
+    public void PopupNumber(int damage, bool isCritical, int skinId, IPhotonBehaviour damageTaker) {
+      bool isPhotonOwner = damageTaker.PhotonView.owner == PhotonNetwork.player;
 
-      if (damageTakerObj.tag == "Player" && damageTaker.PhotonView.owner == PhotonNetwork.player)
-        PopupNumberByType(NumberPopupType.Take, damage, damageTakerObj);
+      if (damageTaker is IPlayer && isPhotonOwner)
+        PopupNumberByType(NumberPopupType.Take, damage, damageTaker.gameObject);
       else if (isCritical)
-        PopupNumberByType(NumberPopupType.Critical, damage, damageTakerObj, skinId);
+        PopupNumberByType(NumberPopupType.Critical, damage, damageTaker.gameObject, skinId);
       else
-        PopupNumberByType(NumberPopupType.Hit, damage, damageTakerObj, skinId);
+        PopupNumberByType(NumberPopupType.Hit, damage, damageTaker.gameObject, skinId);
     }
 
     private void PopupNumberByType(NumberPopupType popupType, int damage, GameObject damageTakerObj, int skinId = 0) {

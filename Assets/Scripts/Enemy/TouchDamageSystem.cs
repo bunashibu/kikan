@@ -20,7 +20,7 @@ namespace Bunashibu.Kikan {
       var damage = _baseDamage + (int)(Random.value * _positiveDeviation);
 
       //tmp
-      var attacker = GetComponent<IBattle>();
+      var attacker = GetComponent<IAttacker>();
       target.OnAttacked(attacker, damage, false);
 
       target.State.Invincible = true;

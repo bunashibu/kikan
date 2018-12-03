@@ -4,11 +4,8 @@ using UnityEngine;
 using UniRx;
 
 namespace Bunashibu.Kikan {
-  public interface IPlayer : ICharacter, IBattle, ISpeaker, IOnDebuffed {
-    Exp           Exp       { get; }
-    Gold          Gold      { get; }
-    List<IPlayer> Teammates { get; }
-
+  // Obsolete
+  public interface IPlayer : ICharacter, IBattle, ISpeaker, IOnDebuffed, IPhotonBehaviour {
     ReactiveProperty<int> KillCount  { get; }
     ReactiveProperty<int> DeathCount { get; }
   }

@@ -7,7 +7,7 @@ using UnityEngine.Assertions;
 using UniRx;
 
 namespace Bunashibu.Kikan {
-  public class Player : MonoBehaviour, IPlayer, IBattleMovementPlayer, ILobbyMovementPlayer, ICorePlayer {
+  public class Player : MonoBehaviour, IPlayer, IBattleMovementPlayer, ILobbyMovementPlayer, ICorePlayer, IOnAttacked, IAttacker {
     void Awake() {
       State         = new CharacterState();
       StateTransfer = new StateTransfer(_initState, _animator);
@@ -32,7 +32,7 @@ namespace Bunashibu.Kikan {
         Assert.IsTrue(_expTable.Data.Count      == MaxLevel);
 
         Movement   = new PlayerMovement((IBattleMovementPlayer)this);
-        Teammates  = new List<IPlayer>();
+        Teammates  = new List<IKillRewardTaker>();
         Status     = new PlayerStatus(_jobStatus);
         SkillInfo  = new SkillInfo();
         PlayerInfo = new PlayerInfo(this);
@@ -62,9 +62,9 @@ namespace Bunashibu.Kikan {
       }
     }
 
-    public Action<IBattle, int, bool> OnAttacked { get; private set; }
-    public Action<IBattle>            OnKilled   { get; private set; }
-    public Action<DebuffType, float>  OnDebuffed { get; private set; }
+    public Action<IAttacker, int, bool> OnAttacked { get; private set; }
+    public Action<IAttacker>            OnKilled   { get; private set; }
+    public Action<DebuffType, float>    OnDebuffed { get; private set; }
 
     public PhotonView       PhotonView   => _photonView;
     public SpriteRenderer[] Renderers    => _renderers;
@@ -77,7 +77,7 @@ namespace Bunashibu.Kikan {
 
     public AudioEnvironment AudioEnvironment => _audioEnvironment;
 
-    public List<IPlayer>  Teammates     { get; private set; }
+    public List<IKillRewardTaker>  Teammates     { get; private set; }
 
     public PlayerMovement Movement      { get; private set; }
     public PlayerStatus   Status        { get; private set; }

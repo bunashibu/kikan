@@ -7,8 +7,8 @@ namespace Bunashibu.Kikan {
   public class AttackSynchronizer : Photon.MonoBehaviour {
     [PunRPC]
     private void SyncAttackRPC(int attackerViewID, int targetViewID, int damage, bool isCritical) {
-      var attacker = PhotonView.Find(attackerViewID).gameObject.GetComponent<IBattle>();
-      var target = PhotonView.Find(targetViewID).gameObject.GetComponent<IBattle>();
+      var attacker = PhotonView.Find(attackerViewID).gameObject.GetComponent<IAttacker>();
+      var target = PhotonView.Find(targetViewID).gameObject.GetComponent<IOnAttacked>();
 
       Assert.IsNotNull(attacker);
       Assert.IsNotNull(target);
