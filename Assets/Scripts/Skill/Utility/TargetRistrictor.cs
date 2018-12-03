@@ -6,13 +6,13 @@ using UnityEngine;
 namespace Bunashibu.Kikan {
   public class TargetRistrictor {
     public TargetRistrictor(int targetNum, int dupHitNum) {
-      _targetDictionary = new Dictionary<IBattle, int>();
+      _targetDictionary = new Dictionary<IOnAttacked, int>();
       _targetNum = targetNum;
       _dupHitNum = dupHitNum;
       _isMaxTargetHit = IsMaxTargetHit();
     }
 
-    public bool ShouldRistrict(IBattle target) {
+    public bool ShouldRistrict(IOnAttacked target) {
       return _isMaxTargetHit() || IsMaxDupHit(target);
     }
 
@@ -28,7 +28,7 @@ namespace Bunashibu.Kikan {
       };
     }
 
-    private bool IsMaxDupHit(IBattle target) {
+    private bool IsMaxDupHit(IOnAttacked target) {
       if (!_targetDictionary.ContainsKey(target)) {
         _targetDictionary[target] = 0;
         return false;
@@ -42,7 +42,7 @@ namespace Bunashibu.Kikan {
         return true;
     }
 
-    private Dictionary<IBattle, int> _targetDictionary;
+    private Dictionary<IOnAttacked, int> _targetDictionary;
     private Func<bool> _isMaxTargetHit;
     private int _targetNum;
     private int _dupHitNum;

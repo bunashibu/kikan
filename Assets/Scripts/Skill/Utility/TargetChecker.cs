@@ -34,7 +34,7 @@ namespace Bunashibu.Kikan {
     }
 
     private bool IsDupHit(GameObject targetObj) {
-      var target = targetObj.GetComponent<IBattle>();
+      var target = targetObj.GetComponent<IOnAttacked>();
       Assert.IsNotNull(target);
 
       return _targetRistrictor.ShouldRistrict(target);

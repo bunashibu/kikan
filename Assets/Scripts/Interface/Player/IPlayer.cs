@@ -5,7 +5,7 @@ using UniRx;
 
 namespace Bunashibu.Kikan {
   // Obsolete
-  public interface IPlayer : ICharacter, IBattle, ISpeaker, IOnDebuffed, IPhotonBehaviour {
+  public interface IPlayer : ICharacter, ISpeaker, IOnDebuffed, IPhotonBehaviour {
     ReactiveProperty<int> KillCount  { get; }
     ReactiveProperty<int> DeathCount { get; }
   }

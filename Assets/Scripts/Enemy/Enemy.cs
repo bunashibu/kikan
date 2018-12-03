@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   [RequireComponent(typeof(Character2D))]
-  public class Enemy : MonoBehaviour, ICharacter, IBattle, IOnDebuffed, IOnAttacked, IAttacker, IPhotonBehaviour {
+  public class Enemy : MonoBehaviour, ICharacter, IOnDebuffed, IOnAttacked, IAttacker, IPhotonBehaviour {
     void Awake() {
       State         = new CharacterState();
       StateTransfer = new StateTransfer(_initState, _animator);
