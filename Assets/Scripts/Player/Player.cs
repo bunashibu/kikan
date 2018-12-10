@@ -7,7 +7,7 @@ using UnityEngine.Assertions;
 using UniRx;
 
 namespace Bunashibu.Kikan {
-  public class Player : MonoBehaviour, IPlayer, IBattleMovementPlayer, ILobbyMovementPlayer, ICorePlayer, IOnAttacked, IAttacker {
+  public class Player : MonoBehaviour, IPhotonBehaviour, ICharacter, ISpeaker, IPlayer, IBattleMovementPlayer, ILobbyMovementPlayer, ICorePlayer, IAttacker, IOnAttacked, IOnDebuffed, IKillRewardTaker, IKillRewardGiver {
     void Awake() {
       State         = new CharacterState();
       StateTransfer = new StateTransfer(_initState, _animator);
@@ -73,7 +73,8 @@ namespace Bunashibu.Kikan {
     public Collider2D       FootCollider => _footCollider;
     public Animator         Animator     => _animator;
 
-    public PlayerObserver Observer => _observer;
+    public PlayerSynchronizer Synchronizer => _synchronizer;
+    public PlayerObserver     Observer     => _observer;
 
     public AudioEnvironment AudioEnvironment => _audioEnvironment;
 
@@ -94,7 +95,6 @@ namespace Bunashibu.Kikan {
     public int    Power        { get { double ratio = (double)((Core.GetValue(CoreType.Attack) + 100) / 100.0);
                                        return (int)(Status.Atk * Status.MulCorrectionAtk * ratio); } }
     public int    Critical     => Core.GetValue(CoreType.Critical);
-    public string Tag          => gameObject.tag;
 
     public Hp                    Hp         { get; private set; }
     public Exp                   Exp        { get; private set; }
@@ -104,8 +104,6 @@ namespace Bunashibu.Kikan {
     public ReactiveProperty<int> DeathCount { get; private set; }
     public Debuff                Debuff     { get; private set; }
     public Core                  Core       { get; private set; }
-
-    public int CurGold => Gold.Cur.Value;
 
     public ReadOnlyCollection<int> HpTable  => _hpTable.Data;
     public ReadOnlyCollection<int> ExpTable => _expTable.Data;
@@ -132,6 +130,7 @@ namespace Bunashibu.Kikan {
     [SerializeField] private AudioListener    _audioListener;
 
     [Header("Observer")]
+    [SerializeField] private PlayerSynchronizer _synchronizer;
     [SerializeField] private PlayerObserver _observer;
 
     [Header("Environment")]

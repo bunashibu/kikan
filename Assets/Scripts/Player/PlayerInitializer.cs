@@ -65,6 +65,20 @@ namespace Bunashibu.Kikan {
         .Where(state => !state.NewValue)
         .Subscribe(state => player.Debuff.Destroy(state.Key))
         .AddTo(player.gameObject);
+
+      player.Synchronizer.OnCoreLevelUpped
+        .Subscribe(type => player.Gold.Subtract(player.Core.RequiredGold(type)) )
+        .AddTo(player.gameObject);
+
+      player.Synchronizer.OnCoreLevelUpped
+        .Subscribe(type => player.Core.LevelUp(type) )
+        .AddTo(player.gameObject);
+
+      player.Synchronizer.OnCoreLevelUpped
+        .Subscribe(type => player.Core.Instantiate(type, player.transform) )
+        .AddTo(player.gameObject);
+
+      // Core Panel Update
     }
 
     private void PlayerOwnerInitialize(Player player) {

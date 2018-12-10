@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
-  public interface ICorePlayer : IMonoBehaviour, IPhoton {
+  public interface ICorePlayer : IPhotonBehaviour {
     Core Core { get; }
     Gold Gold { get; }
-    int CurGold { get; }
+    PlayerSynchronizer Synchronizer { get; }
   }
 }
 
