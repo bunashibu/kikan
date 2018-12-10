@@ -18,7 +18,6 @@ namespace Bunashibu.Kikan {
         NonPlayerOwnerInitialize(player);
 
       InitPlayerTeam(player);
-      //player.Core.Init(_corePanel);
       player.Movement.SetMoveForce(player.Status.Spd);
       player.Movement.SetJumpForce(player.Status.Jmp);
     }
@@ -77,8 +76,6 @@ namespace Bunashibu.Kikan {
       player.Synchronizer.OnCoreLevelUpped
         .Subscribe(type => player.Core.Instantiate(type, player.transform) )
         .AddTo(player.gameObject);
-
-      // Core Panel Update
     }
 
     private void PlayerOwnerInitialize(Player player) {
@@ -109,6 +106,10 @@ namespace Bunashibu.Kikan {
       player.Gold.Cur
         .Subscribe(cur => _goldPanel.UpdateView(cur))
         .AddTo(_goldPanel);
+
+      player.Synchronizer.OnCoreLevelUpped
+        .Subscribe(type => _corePanel.UpdateView(type, player.Core.CurLevel(type)) )
+        .AddTo(_corePanel);
 
       player.WorldHpBar.gameObject.SetActive(false);
       CameraInitializer.Instance.RegisterToTrackTarget(player.gameObject);

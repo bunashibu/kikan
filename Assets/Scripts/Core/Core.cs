@@ -62,6 +62,10 @@ namespace Bunashibu.Kikan {
       return -1;
     }
 
+    public int CurLevel(CoreType type) {
+      return _state.CurLevel(type);
+    }
+
     public int RequiredGold(CoreType type) {
       if (_info.ContainsKey(type))
         return _info[type].Gold(_state.CurLevel(type));

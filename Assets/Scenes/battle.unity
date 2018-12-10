@@ -17777,7 +17777,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6fe73ec0a98a7347ac58e95025f5182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _chartList:
+  _chart:
   - {fileID: 1306506652}
   - {fileID: 307851255}
   - {fileID: 1281273984}
