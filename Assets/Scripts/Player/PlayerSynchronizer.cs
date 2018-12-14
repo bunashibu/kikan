@@ -24,7 +24,6 @@ namespace Bunashibu.Kikan {
 
     public IObservable<CoreType> OnCoreLevelUpped => _coreSubject;
 
-    [SerializeField] private Player _player;
     private Subject<CoreType> _coreSubject;
   }
 }
