@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 namespace Bunashibu.Kikan {
   public class AutomaticHideBarView : BarView {
@@ -21,10 +22,8 @@ namespace Bunashibu.Kikan {
     }
 
     void OnDestroy() {
-      if (Application.isEditor)
-        return;
-
-      MonoUtility.Instance.Stop("HideBar" + _id);
+      if (MonoUtility.Instance != null)
+        MonoUtility.Instance.Stop("HideBar" + _id);
     }
 
     [SerializeField] private float _displayTimeSec;
