@@ -29,6 +29,7 @@ GameObject:
   - component: {fileID: 114710117432744930}
   - component: {fileID: 114311064836627604}
   - component: {fileID: 114576948781715758}
+  - component: {fileID: 114979274991845116}
   m_Layer: 9
   m_Name: Common
   m_TagString: Player
@@ -719,13 +720,24 @@ MonoBehaviour:
   _footCollider: {fileID: 68799707592216154}
   _animator: {fileID: 95000010494430044}
   _audioListener: {fileID: 81115379672945162}
+  _synchronizer: {fileID: 0}
   _observer: {fileID: 0}
-  _audioEnvironment: {fileID: 0}
+  _audioEnvironment: {fileID: 114979274991845116}
   _hpTable: {fileID: 0}
   _expTable: {fileID: 0}
   _killExpTable: {fileID: 0}
   _killGoldTable: {fileID: 0}
-  _core: {fileID: 0}
+  _stunEffect: {fileID: 0}
+  _speedCoreInfo: {fileID: 0}
+  _hpCoreInfo: {fileID: 0}
+  _attackCoreInfo: {fileID: 0}
+  _criticalCoreInfo: {fileID: 0}
+  _healCoreInfo: {fileID: 0}
+  _speedCoreEffect: {fileID: 0}
+  _hpCoreEffect: {fileID: 0}
+  _attackCoreEffect: {fileID: 0}
+  _criticalCoreEffect: {fileID: 0}
+  _healCoreEffect: {fileID: 0}
   _nameBackground: {fileID: 0}
   _popupRemark: {fileID: 0}
   _worldHpBar: {fileID: 0}
@@ -928,6 +940,26 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 
+--- !u!114 &114979274991845116
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011996982660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0250d1e25b396f48b731f19f24c618d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioSource: {fileID: 82498472121998358}
+  _clipList:
+  - {fileID: 8300000, guid: f7dabdf4fa8a42241b6503a0a20b7ff2, type: 3}
+  - {fileID: 8300000, guid: 51ca6d9c797c10c48ba30ed07de6ff13, type: 3}
+  - {fileID: 8300000, guid: 47399db2c40ee444a8f308ac4ffaf436, type: 3}
+  _keyList:
+  - Jump
+  - Die
+  - Kill1
 --- !u!212 &212000013636046964
 SpriteRenderer:
   m_ObjectHideFlags: 1

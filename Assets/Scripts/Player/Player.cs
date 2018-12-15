@@ -23,6 +23,7 @@ namespace Bunashibu.Kikan {
         // tmp
         Movement.SetMoveForce(4.0f);
         Movement.SetJumpForce(400.0f);
+        Movement.SetMaxFallVelocity(-11.0f);
       }
 
       if (StageReference.Instance.StageData.Name == "Battle") {
@@ -32,6 +33,8 @@ namespace Bunashibu.Kikan {
         Assert.IsTrue(_expTable.Data.Count      == MaxLevel);
 
         Movement   = new PlayerMovement((IBattleMovementPlayer)this);
+        Movement.SetMaxFallVelocity(-11.0f);
+
         Teammates  = new List<IKillRewardTaker>();
         Status     = new PlayerStatus(_jobStatus);
         SkillInfo  = new SkillInfo();
@@ -78,7 +81,7 @@ namespace Bunashibu.Kikan {
 
     public AudioEnvironment AudioEnvironment => _audioEnvironment;
 
-    public List<IKillRewardTaker>  Teammates     { get; private set; }
+    public List<IKillRewardTaker> Teammates { get; private set; }
 
     public PlayerMovement Movement      { get; private set; }
     public PlayerStatus   Status        { get; private set; }
@@ -87,14 +90,14 @@ namespace Bunashibu.Kikan {
     public PlayerInfo     PlayerInfo    { get; private set; }
     public CharacterState State         { get; private set; }
 
-    public int    MaxLevel     => 15;
-    public int    MaxGold      => 99999;
-    public int    KillExp      => _killExpTable.Data[Level.Cur.Value - 1];
-    public int    KillGold     => _killGoldTable.Data[Level.Cur.Value - 1];
-    public int    DamageSkinId => 0;
-    public int    Power        { get { double ratio = (double)((Core.GetValue(CoreType.Attack) + 100) / 100.0);
+    public int MaxLevel     => 15;
+    public int MaxGold      => 99999;
+    public int KillExp      => _killExpTable.Data[Level.Cur.Value - 1];
+    public int KillGold     => _killGoldTable.Data[Level.Cur.Value - 1];
+    public int DamageSkinId => 0;
+    public int Power        { get { double ratio = (double)((Core.GetValue(CoreType.Attack) + 100) / 100.0);
                                        return (int)(Status.Atk * Status.MulCorrectionAtk * ratio); } }
-    public int    Critical     => Core.GetValue(CoreType.Critical);
+    public int Critical     => Core.GetValue(CoreType.Critical);
 
     public Hp                    Hp         { get; private set; }
     public Exp                   Exp        { get; private set; }

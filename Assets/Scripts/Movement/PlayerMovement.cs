@@ -52,6 +52,13 @@ namespace Bunashibu.Kikan {
 
       _ladderMove.FixedUpdate(_trans);
       _stepDownJump.FixedUpdate(_rigid);
+
+      RestrictFallVelocity();
+    }
+
+    private void RestrictFallVelocity() {
+      if (_rigid.velocity.y < _maxFallVelocity)
+        _rigid.velocity = new Vector2(_rigid.velocity.x, _maxFallVelocity);
     }
 
     public void AirMoveLeft() {
@@ -106,6 +113,10 @@ namespace Bunashibu.Kikan {
       _groundJump.SetForce(force);
     }
 
+    public void SetMaxFallVelocity(float maxFallVelocity) {
+      _maxFallVelocity = maxFallVelocity;
+    }
+
     private Transform   _trans;
     private Rigidbody2D _rigid;
     private Core        _core;
@@ -119,6 +130,8 @@ namespace Bunashibu.Kikan {
     private StepDownJump _stepDownJump;
 
     private LieDown _lieDown;
+
+    private float _maxFallVelocity;
   }
 }
 

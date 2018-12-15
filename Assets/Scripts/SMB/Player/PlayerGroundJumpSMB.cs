@@ -10,7 +10,7 @@ namespace Bunashibu.Kikan {
 
       _isAlreadyJumped = false;
       _player.Movement.GroundJump();
-      //_player.AudioEnvironment.PlayOneShot("Jump");
+      _player.AudioEnvironment.PlayOneShot("Jump");
       ApplyInertia();
     }
 
