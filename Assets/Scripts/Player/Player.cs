@@ -24,6 +24,9 @@ namespace Bunashibu.Kikan {
         Movement.SetMoveForce(4.0f);
         Movement.SetJumpForce(400.0f);
         Movement.SetMaxFallVelocity(-11.0f);
+
+        // tmp
+        SkillInfo  = new SkillInfo();
       }
 
       if (StageReference.Instance.StageData.Name == "Battle") {
