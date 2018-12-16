@@ -81,6 +81,21 @@ namespace Bunashibu.Kikan {
         .Subscribe(quantity => player.Hp.Add(quantity))
         .AddTo(player.gameObject);
 
+      player.Synchronizer.OnRespawned
+        .Subscribe(viewID => {
+          var pos = StageReference.Instance.StageData.RespawnPosition;
+          if (player.PlayerInfo.Team == 1)
+            pos.x *= -1;
+
+          player.transform.position = pos;
+          player.BodyCollider.enabled = true;
+          player.Hp.FullRecover();
+          //player.BuffState.Reset();
+
+          player.StateTransfer.TransitTo("Idle", player.Animator);
+        })
+        .AddTo(player.gameObject);
+
       InitPlayerTeam(player);
     }
 

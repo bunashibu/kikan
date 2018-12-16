@@ -10,6 +10,7 @@ namespace Bunashibu.Kikan {
     void Awake() {
       _coreSubject = new Subject<CoreType>();
       _autoHealSubject = new Subject<int>();
+      _respawnSubject = new Subject<int>();
     }
 
     [PunRPC]
@@ -34,11 +35,24 @@ namespace Bunashibu.Kikan {
       photonView.RPC("SyncAutoHealRPC", PhotonTargets.AllViaServer, quantity);
     }
 
+    [PunRPC]
+    private void SyncRespawnRPC(int viewID) {
+      _respawnSubject.OnNext(viewID);
+    }
+
+    public void SyncRespawn(int viewID) {
+      Assert.IsTrue(photonView.isMine);
+
+      photonView.RPC("SyncRespawnRPC", PhotonTargets.AllViaServer, viewID);
+    }
+
     public IObservable<CoreType> OnCoreLevelUpped => _coreSubject;
     public IObservable<int> OnAutoHealed => _autoHealSubject;
+    public IObservable<int> OnRespawned => _respawnSubject;
 
     private Subject<CoreType> _coreSubject;
     private Subject<int> _autoHealSubject;
+    private Subject<int> _respawnSubject;
   }
 }
 

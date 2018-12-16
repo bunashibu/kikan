@@ -25,9 +25,9 @@ GameObject:
   - component: {fileID: 95000010494430044}
   - component: {fileID: 82498472121998358}
   - component: {fileID: 81115379672945162}
-  - component: {fileID: 114465585547029610}
   - component: {fileID: 114710117432744930}
   - component: {fileID: 114311064836627604}
+  - component: {fileID: 114465585547029610}
   - component: {fileID: 114576948781715758}
   - component: {fileID: 114979274991845116}
   m_Layer: 9
@@ -724,6 +724,7 @@ MonoBehaviour:
   _audioEnvironment: {fileID: 114979274991845116}
   _hpTable: {fileID: 0}
   _expTable: {fileID: 0}
+  _autoHealTable: {fileID: 0}
   _killExpTable: {fileID: 0}
   _killGoldTable: {fileID: 0}
   _stunEffect: {fileID: 0}

@@ -7,10 +7,8 @@ using Hashtable = ExitGames.Client.Photon.Hashtable;
 namespace Bunashibu.Kikan {
   public class PlayerDieSMB : StateMachineBehaviour {
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-      if (_player == null) {
+      if (_player == null)
         _player     = animator.GetComponent<Player>();
-        _respawner  = animator.GetComponent<PlayerRespawner>();
-      }
 
       _player.BodyCollider.enabled = false;
 
@@ -21,8 +19,9 @@ namespace Bunashibu.Kikan {
       SkillReference.Instance.DeleteAll();
 
       if (StageReference.Instance.StageData.Name == "Battle") {
-        Action action = () => { _player.StateTransfer.TransitTo("Idle", animator); };
-        _respawner.Respawn(action);
+        MonoUtility.Instance.DelaySec((float)_player.Level.Cur.Value, () => {
+          _player.Synchronizer.SyncRespawn(_player.PhotonView.viewID);
+        });
       }
 
       if (StageReference.Instance.StageData.Name == "FinalBattle") {
@@ -37,7 +36,6 @@ namespace Bunashibu.Kikan {
     }
 
     private Player _player;
-    private PlayerRespawner _respawner;
   }
 }
 
