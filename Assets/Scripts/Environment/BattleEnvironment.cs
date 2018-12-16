@@ -5,8 +5,10 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   public static class BattleEnvironment {
-    public static Action<IAttacker, int, bool> OnAttacked(IOnAttacked target, Action<int, bool, int, IPhotonBehaviour> PopupNumber) {
-      Action<IAttacker, int, bool> onAttacked = (attacker, damage, isCritical) => {
+    public static Action<IAttacker, int, bool, HitEffectType> OnAttacked(IOnAttacked target,
+                                                                         Action<int, bool, int, IPhotonBehaviour> PopupNumber,
+                                                                         Action<HitEffectType, IPhotonBehaviour> PopupHitEffect) {
+      Action<IAttacker, int, bool, HitEffectType> onAttacked = (attacker, damage, isCritical, hitEffectType) => {
         target.Hp.Subtract(damage);
 
         int damageSkin = 0;
@@ -15,6 +17,7 @@ namespace Bunashibu.Kikan {
 
         if (target is IPhotonBehaviour) {
           var targetPhoton = (IPhotonBehaviour)target;
+          PopupHitEffect(hitEffectType, targetPhoton);
           PopupNumber(damage, isCritical, damageSkin, targetPhoton);
         }
 
@@ -25,7 +28,9 @@ namespace Bunashibu.Kikan {
       return onAttacked;
     }
 
-    public static Action<IAttacker> OnKilled(IOnAttacked target, Func<IKillRewardGiver, int, KillReward> GetRewardFrom, Action<IKillRewardTaker, KillReward> GiveRewardTo) {
+    public static Action<IAttacker> OnKilled(IOnAttacked target,
+                                             Func<IKillRewardGiver, int, KillReward> GetRewardFrom,
+                                             Action<IKillRewardTaker, KillReward> GiveRewardTo) {
       Action<IAttacker> onKilled = (attacker) => {
         if (attacker is IKillRewardTaker && target is IKillRewardGiver) {
           var taker = (IKillRewardTaker)attacker;

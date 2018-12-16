@@ -24,7 +24,7 @@ namespace Bunashibu.Kikan {
         var target = collider.gameObject.GetComponent<IPhoton>();
         Assert.IsNotNull(target);
 
-        _synchronizer.SyncAttack(_skillUserViewID, target.PhotonView.viewID, DamageCalculator.Damage, DamageCalculator.IsCritical);
+        _synchronizer.SyncAttack(_skillUserViewID, target.PhotonView.viewID, DamageCalculator.Damage, DamageCalculator.IsCritical, HitEffectType.Manji);
       }
     }
 

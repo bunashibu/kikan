@@ -18,6 +18,11 @@ namespace Bunashibu.Kikan {
     Used
   }
 
+  public enum HitEffectType {
+    None,
+    Manji
+  }
+
   public enum NumberPopupType {
     Hit,
     Critical,

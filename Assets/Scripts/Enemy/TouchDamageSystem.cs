@@ -21,7 +21,7 @@ namespace Bunashibu.Kikan {
 
       //tmp
       var attacker = GetComponent<IAttacker>();
-      target.OnAttacked(attacker, damage, false);
+      target.OnAttacked(attacker, damage, false, HitEffectType.None);
 
       target.State.Invincible = true;
       MonoUtility.Instance.DelaySec(2.0f, () => { target.State.Invincible = false; } );

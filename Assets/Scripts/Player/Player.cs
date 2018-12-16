@@ -60,7 +60,8 @@ namespace Bunashibu.Kikan {
         Core.Register(CoreType.Critical, _criticalCoreInfo, _criticalCoreEffect);
         Core.Register(CoreType.Heal,     _healCoreInfo,     _healCoreEffect    );
 
-        OnAttacked = BattleEnvironment.OnAttacked(this, NumberPopupEnvironment.Instance.PopupNumber);
+        OnAttacked = BattleEnvironment.OnAttacked(this, NumberPopupEnvironment.Instance.PopupNumber,
+                                                        HitEffectPopupEnvironment.Instance.PopupHitEffect);
         OnKilled   = BattleEnvironment.OnKilled(this, KillRewardEnvironment.GetRewardFrom, KillRewardEnvironment.GiveRewardTo);
         OnDebuffed = BattleEnvironment.OnDebuffed(this);
 
@@ -68,9 +69,9 @@ namespace Bunashibu.Kikan {
       }
     }
 
-    public Action<IAttacker, int, bool> OnAttacked { get; private set; }
-    public Action<IAttacker>            OnKilled   { get; private set; }
-    public Action<DebuffType, float>    OnDebuffed { get; private set; }
+    public Action<IAttacker, int, bool, HitEffectType> OnAttacked { get; private set; }
+    public Action<IAttacker>                           OnKilled   { get; private set; }
+    public Action<DebuffType, float>                   OnDebuffed { get; private set; }
 
     public PhotonView       PhotonView   => _photonView;
     public SpriteRenderer[] Renderers    => _renderers;
