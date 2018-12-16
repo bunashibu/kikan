@@ -12,7 +12,6 @@ namespace Bunashibu.Kikan {
         pos.x *= -1;
 
       _player = PhotonNetwork.Instantiate("Prefabs/Job/" + jobName, pos, Quaternion.identity, 0).GetComponent<Player>();
-      //_player.Observer.SyncTeam();
     }
 
     public void InstantiateHudObjects(Canvas canvas, SkillPanel skillPanel) {

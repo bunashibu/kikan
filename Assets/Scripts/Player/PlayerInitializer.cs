@@ -17,7 +17,6 @@ namespace Bunashibu.Kikan {
       else
         NonPlayerOwnerInitialize(player);
 
-      InitPlayerTeam(player);
       player.Movement.SetMoveForce(player.Status.Spd);
       player.Movement.SetJumpForce(player.Status.Jmp);
     }
@@ -76,6 +75,8 @@ namespace Bunashibu.Kikan {
       player.Synchronizer.OnCoreLevelUpped
         .Subscribe(type => player.Core.Instantiate(type, player.transform) )
         .AddTo(player.gameObject);
+
+      InitPlayerTeam(player);
     }
 
     private void PlayerOwnerInitialize(Player player) {
@@ -135,19 +136,15 @@ namespace Bunashibu.Kikan {
     }
 
     private void InitPlayerTeam(Player player) {
-      int team = (int)PhotonNetwork.player.CustomProperties["Team"];
-
-      if (team == 0)
+      if (player.PlayerInfo.Team == 0)
         player.NameBackground.SetColor("RED");
-      else if (team == 1)
+      else if (player.PlayerInfo.Team == 1)
         player.NameBackground.SetColor("BLUE");
 
-      player.Observer.SyncNameBackground();
-
       foreach (var sprite in player.Renderers) {
-        if (team == 0)
+        if (player.PlayerInfo.Team == 0)
           sprite.flipX = false;
-        else if (team == 1)
+        else if (player.PlayerInfo.Team == 1)
           sprite.flipX = true;
       }
     }
