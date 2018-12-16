@@ -10,8 +10,10 @@ namespace Bunashibu.Kikan {
 
       _isAlreadyJumped = false;
       _player.Movement.GroundJump();
-      _player.AudioEnvironment.PlayOneShot("Jump");
       ApplyInertia();
+
+      if (_player.PhotonView.isMine)
+        _player.AudioEnvironment.PlayOneShot("Jump");
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {

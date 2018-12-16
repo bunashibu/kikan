@@ -134,7 +134,6 @@ namespace Bunashibu.Kikan {
     [SerializeField] private Collider2D       _centerCollider;
     [SerializeField] private Collider2D       _footCollider;
     [SerializeField] private Animator         _animator;
-    [SerializeField] private AudioListener    _audioListener;
 
     [Header("Observer")]
     [SerializeField] private PlayerSynchronizer _synchronizer;

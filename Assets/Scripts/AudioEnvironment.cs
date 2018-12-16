@@ -9,7 +9,12 @@ namespace Bunashibu.Kikan {
       _audioSource.PlayOneShot(_clipList[index], vol);
     }
 
+    public void DisableListener() {
+      _audioListener.enabled = false;
+    }
+
     [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioListener _audioListener;
     [SerializeField] private List<AudioClip> _clipList;
     [SerializeField] private List<string> _keyList;
   }

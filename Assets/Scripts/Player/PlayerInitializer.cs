@@ -124,7 +124,7 @@ namespace Bunashibu.Kikan {
         .Subscribe(_ => player.WorldHpBar.UpdateView(player.Hp.Cur.Value, player.Hp.Max.Value))
         .AddTo(player.WorldHpBar);
 
-      //_audioListener.enabled = false;
+      player.AudioEnvironment.DisableListener();
     }
 
     private void SetViewID(Player player) {

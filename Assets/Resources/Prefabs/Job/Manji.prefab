@@ -782,6 +782,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 82231778003753978}
+  _audioListener: {fileID: 81230608130289834}
   _clipList:
   - {fileID: 8300000, guid: f7dabdf4fa8a42241b6503a0a20b7ff2, type: 3}
   - {fileID: 8300000, guid: 51ca6d9c797c10c48ba30ed07de6ff13, type: 3}
@@ -918,7 +919,6 @@ MonoBehaviour:
   _centerCollider: {fileID: 61122694268143702}
   _footCollider: {fileID: 68468833431425482}
   _animator: {fileID: 95930055764971676}
-  _audioListener: {fileID: 81230608130289834}
   _synchronizer: {fileID: 114286197929503364}
   _observer: {fileID: 114610620364185106}
   _audioEnvironment: {fileID: 114204508672984674}

@@ -11,7 +11,9 @@ namespace Bunashibu.Kikan {
       InitFlag();
       _player.FootCollider.isTrigger = true;
       _player.Movement.StepDownJump();
-      _player.AudioEnvironment.PlayOneShot("Jump");
+
+      if (_player.PhotonView.isMine)
+        _player.AudioEnvironment.PlayOneShot("Jump");
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
