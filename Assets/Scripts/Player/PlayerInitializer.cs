@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 using UniRx;
-using UniRx.Triggers;
 
 namespace Bunashibu.Kikan {
   public class PlayerInitializer : SingletonMonoBehaviour<PlayerInitializer> {
@@ -118,10 +117,10 @@ namespace Bunashibu.Kikan {
         .Subscribe(type => _corePanel.UpdateView(type, player.Core.CurLevel(type)) )
         .AddTo(_corePanel);
 
-      this.UpdateAsObservable()
-        .Where(_ => player.PhotonView.isMine)
-        .Where(_ => (player.Hp.Cur.Value < player.Hp.Max.Value) && (player.Hp.Cur.Value > 0))
-        .Sample(TimeSpan.FromMilliseconds(1000))
+      Observable
+        .Interval(TimeSpan.FromMilliseconds(1000))
+        .Where(_ => player.Hp.Cur.Value > 0)
+        .Where(_ => player.Hp.Cur.Value < player.Hp.Max.Value)
         .Subscribe(_ => player.Synchronizer.SyncAutoHeal(player.AutoHealQuantity) )
         .AddTo(player.gameObject);
 

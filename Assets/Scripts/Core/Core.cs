@@ -17,8 +17,7 @@ namespace Bunashibu.Kikan {
     public Core(ICorePlayer player) : this() {
       player.gameObject.UpdateAsObservable()
         .Where(_ => player.PhotonView.isMine)
-        .Subscribe(_ => Update(player) )
-        .AddTo(player.gameObject);
+        .Subscribe(_ => Update(player) );
     }
 
     public void Register(CoreType type, CoreInfo info, GameObject effect) {

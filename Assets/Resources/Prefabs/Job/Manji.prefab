@@ -121,7 +121,6 @@ GameObject:
   - component: {fileID: 114346652777482960}
   - component: {fileID: 114286197929503364}
   - component: {fileID: 114610620364185106}
-  - component: {fileID: 114969582724046644}
   - component: {fileID: 114172174937367482}
   - component: {fileID: 114204508672984674}
   m_Layer: 9
@@ -1279,19 +1278,6 @@ MonoBehaviour:
   instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
---- !u!114 &114969582724046644
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1222958424102090}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcc6930448e8461469ca8d8e20e511f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _player: {fileID: 114346652777482960}
-  _healTable: {fileID: 11400000, guid: 2af9baa41fbfe914b983bc901c00fe8a, type: 2}
 --- !u!114 &114976675510564106
 MonoBehaviour:
   m_ObjectHideFlags: 1
