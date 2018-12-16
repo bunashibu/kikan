@@ -34,7 +34,10 @@ namespace Bunashibu.Kikan {
         .AddTo(player.gameObject);
 
       player.Level.Cur
-        .Subscribe(_ => player.Hp.Update(player.HpTable[player.Level.Cur.Value - 1]))
+        .Subscribe(_ => {
+          int maxHp = (int)(player.HpTable[player.Level.Cur.Value - 1] * (1 + player.Core.GetValue(CoreType.Hp) / 100.0));
+          player.Hp.Update(maxHp);
+        })
         .AddTo(player.gameObject);
 
       player.Level.Cur
@@ -48,6 +51,13 @@ namespace Bunashibu.Kikan {
 
       player.Level.Cur
         .Subscribe(_ => _kdPanel.UpdateLevel(player.Level.Cur.Value, player.PhotonView.owner))
+        .AddTo(player.gameObject);
+
+      player.Core.State.Level[CoreType.Hp].Cur
+        .Subscribe(_ => {
+          int maxHp = (int)(player.HpTable[player.Level.Cur.Value - 1] * (1 + player.Core.GetValue(CoreType.Hp) / 100.0));
+          player.Hp.Update(maxHp);
+        })
         .AddTo(player.gameObject);
 
       player.KillCount

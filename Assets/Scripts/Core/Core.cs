@@ -72,6 +72,8 @@ namespace Bunashibu.Kikan {
       return -1;
     }
 
+    public CoreState State => _state;
+
     private Dictionary<CoreType, CoreInfo> _info;
     private Dictionary<CoreType, GameObject> _effect;
     private CoreState _state;
