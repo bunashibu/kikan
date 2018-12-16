@@ -30,6 +30,7 @@ GameObject:
   - component: {fileID: 114050103650658040}
   - component: {fileID: 114112488513267606}
   - component: {fileID: 114399664780219442}
+  - component: {fileID: 114038892728434358}
   - component: {fileID: 114962318167475646}
   m_Layer: 14
   m_Name: Ebi1
@@ -247,6 +248,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114038892728434358
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1025727651334796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ab71a1e4ecf26c46bbee47397f910f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114050103650658040
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 114365063050791810}
   - component: {fileID: 114773863746440152}
   - component: {fileID: 114528999332835868}
+  - component: {fileID: 114672789960166664}
   - component: {fileID: 114101790809312124}
   m_Layer: 14
   m_Name: Ebina3
@@ -515,6 +516,17 @@ MonoBehaviour:
   _groundMask:
     serializedVersion: 2
     m_Bits: 33024
+--- !u!114 &114672789960166664
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1431167582857956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ab71a1e4ecf26c46bbee47397f910f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114773863746440152
 MonoBehaviour:
   m_ObjectHideFlags: 1
