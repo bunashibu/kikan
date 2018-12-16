@@ -8,6 +8,7 @@ namespace Bunashibu.Kikan {
   public interface IPlayer {
     ReactiveProperty<int> KillCount  { get; }
     ReactiveProperty<int> DeathCount { get; }
+    AudioEnvironment AudioEnvironment { get; } // tmp
   }
 }
 
