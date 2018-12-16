@@ -924,6 +924,7 @@ MonoBehaviour:
   _audioEnvironment: {fileID: 114204508672984674}
   _hpTable: {fileID: 11400000, guid: 1e81de872edf78241a359a3838a6f3b8, type: 2}
   _expTable: {fileID: 11400000, guid: 6de611e43d011d34daf512c9b3c8779b, type: 2}
+  _autoHealTable: {fileID: 11400000, guid: 2af9baa41fbfe914b983bc901c00fe8a, type: 2}
   _killExpTable: {fileID: 11400000, guid: 791597593be91a545b78b225c074d878, type: 2}
   _killGoldTable: {fileID: 11400000, guid: 08f3819bcd389ae498dddc20a49a3239, type: 2}
   _stunEffect: {fileID: 1315593712468704, guid: aa80d344b84021a47bb4c5b0d73b7fa2,

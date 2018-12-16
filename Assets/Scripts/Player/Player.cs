@@ -94,14 +94,22 @@ namespace Bunashibu.Kikan {
     public PlayerInfo     PlayerInfo    { get; private set; }
     public CharacterState State         { get; private set; }
 
-    public int MaxLevel     => 15;
-    public int MaxGold      => 99999;
-    public int KillExp      => _killExpTable.Data[Level.Cur.Value - 1];
-    public int KillGold     => _killGoldTable.Data[Level.Cur.Value - 1];
-    public int DamageSkinId => 0;
-    public int Power        { get { double ratio = (double)((Core.GetValue(CoreType.Attack) + 100) / 100.0);
-                                       return (int)(Status.Atk * Status.MulCorrectionAtk * ratio); } }
-    public int Critical     => Core.GetValue(CoreType.Critical);
+    public int MaxLevel         => 15;
+    public int MaxGold          => 99999;
+    public int DamageSkinId     => 0;
+    public float HealInterval   => 1.0f;
+    public int KillExp          => _killExpTable.Data[Level.Cur.Value - 1];
+    public int KillGold         => _killGoldTable.Data[Level.Cur.Value - 1];
+    public int Critical         => Core.GetValue(CoreType.Critical);
+
+    public int Power { get {
+      double ratio = (double)((Core.GetValue(CoreType.Attack) + 100) / 100.0);
+      return (int)(Status.Atk * Status.MulCorrectionAtk * ratio);
+    } }
+    public int AutoHealQuantity { get {
+      double ratio = (double)(Core.GetValue(CoreType.Heal) / 100.0);
+      return (int)(_autoHealTable.Data[Level.Cur.Value - 1] * ratio);
+    } }
 
     public Hp                    Hp         { get; private set; }
     public Exp                   Exp        { get; private set; }
@@ -142,9 +150,10 @@ namespace Bunashibu.Kikan {
     [Header("Environment")]
     [SerializeField] private AudioEnvironment _audioEnvironment;
 
-    [Header("Hp/Exp")]
+    [Header("Hp/Exp/AutoHeal")]
     [SerializeField] private DataTable _hpTable;
     [SerializeField] private DataTable _expTable;
+    [SerializeField] private DataTable _autoHealTable;
 
     [Header("Kill Reward")]
     [SerializeField] private DataTable _killExpTable;
