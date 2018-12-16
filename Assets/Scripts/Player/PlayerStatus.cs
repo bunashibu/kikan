@@ -1,5 +1,6 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Bunashibu.Kikan {
   public class PlayerStatus {
@@ -13,8 +14,6 @@ namespace Bunashibu.Kikan {
       Spd = jobStatus.Spd;
       Jmp = jobStatus.Jmp;
       MulCorrectionAtk = 1.0f;
-
-      //photonView.RPC("SyncPlayerStatus", PhotonTargets.Others, Atk, Dfn, Spd, Jmp, MulCorrectionAtk);
     }
 
     public void IncreaseAtk(int level) {
@@ -22,8 +21,6 @@ namespace Bunashibu.Kikan {
         Atk += 16;
       else
         Atk += 32;
-
-      //photonView.RPC("SyncPlayerAtk", PhotonTargets.Others, Atk);
     }
 
     // Manji Space use this
@@ -42,27 +39,6 @@ namespace Bunashibu.Kikan {
     public int Spd { get; private set; }
     public int Jmp { get; private set; }
     public float MulCorrectionAtk { get; private set; }
-
-    /*
-    [PunRPC]
-    private void SyncPlayerStatus(int atk, int dfn, int spd, int jmp, float mulCorrectionAtk) {
-      Atk = atk;
-      Dfn = dfn;
-      Spd = spd;
-      Jmp = jmp;
-      MulCorrectionAtk = mulCorrectionAtk;
-    }
-
-    [PunRPC]
-    private void SyncPlayerAtk(int atk) {
-      Atk = atk;
-    }
-
-    [PunRPC]
-    private void SyncPlayerMulAtk(float mulCorrectionAtk) {
-      MulCorrectionAtk = mulCorrectionAtk;
-    }
-    */
   }
 }
 

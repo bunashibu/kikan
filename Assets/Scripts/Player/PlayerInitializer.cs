@@ -42,6 +42,11 @@ namespace Bunashibu.Kikan {
         .AddTo(player.gameObject);
 
       player.Level.Cur
+        .SkipLatestValueOnSubscribe()
+        .Subscribe(_ => player.Status.IncreaseAtk(player.Level.Cur.Value) )
+        .AddTo(player.gameObject);
+
+      player.Level.Cur
         .Subscribe(_ => _kdPanel.UpdateLevel(player.Level.Cur.Value, player.PhotonView.owner))
         .AddTo(player.gameObject);
 
