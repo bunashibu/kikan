@@ -11,4 +11,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8adbfcf8aa71b7c4b9f879d7ace3e2ea, type: 3}
   m_Name: HealValue
   m_EditorClassIdentifier: 
-  _table: 6400000096000000d20000001801000068010000c2010000
+  _table: 6400000078000000aa000000c80000002c010000a4010000
