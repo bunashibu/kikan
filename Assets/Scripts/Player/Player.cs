@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UniRx;
@@ -38,7 +39,7 @@ namespace Bunashibu.Kikan {
         Movement   = new PlayerMovement((IBattleMovementPlayer)this);
         Movement.SetMaxFallVelocity(-11.0f);
 
-        Teammates  = new List<IKillRewardTaker>();
+        Teammates  = new List<Player>();
         Status     = new PlayerStatus(_jobStatus);
         SkillInfo  = new SkillInfo();
         PlayerInfo = new PlayerInfo(this);
@@ -85,7 +86,8 @@ namespace Bunashibu.Kikan {
 
     public AudioEnvironment AudioEnvironment => _audioEnvironment;
 
-    public List<IKillRewardTaker> Teammates { get; private set; }
+    public List<Player> Teammates { get; private set; }
+    public List<IKillRewardTaker> RewardTeammates => Teammates.Select(player => (IKillRewardTaker)player).ToList();
 
     public PlayerMovement Movement      { get; private set; }
     public PlayerStatus   Status        { get; private set; }

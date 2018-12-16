@@ -29,7 +29,7 @@ namespace Bunashibu.Kikan {
       taker.Exp.Add(killReward.MainExp);
       taker.Gold.Add(killReward.MainGold);
 
-      foreach (var teammate in taker.Teammates) {
+      foreach (var teammate in taker.RewardTeammates) {
         teammate.Exp.Add(killReward.SubExp);
         teammate.Gold.Add(killReward.SubGold);
       }

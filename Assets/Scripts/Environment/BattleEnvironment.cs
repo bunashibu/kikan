@@ -36,7 +36,7 @@ namespace Bunashibu.Kikan {
           var taker = (IKillRewardTaker)attacker;
           var giver = (IKillRewardGiver)target;
 
-          GiveRewardTo(taker, GetRewardFrom(giver, taker.Teammates.Count));
+          GiveRewardTo(taker, GetRewardFrom(giver, taker.RewardTeammates.Count));
         }
 
         if (attacker is IPlayer && target is IPlayer) {

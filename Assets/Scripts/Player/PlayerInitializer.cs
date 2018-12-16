@@ -171,9 +171,7 @@ namespace Bunashibu.Kikan {
     }
 
     private void SetViewID(Player player) {
-      var viewID = player.PhotonView.viewID;
-
-      var props = new Hashtable() {{"ViewID", viewID}};
+      var props = new Hashtable() {{ "ViewID", player.PhotonView.viewID }};
       PhotonNetwork.player.SetCustomProperties(props);
     }
 
