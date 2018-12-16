@@ -16,7 +16,7 @@ namespace Bunashibu.Kikan {
     public void SyncDebuff(int targetViewID, DebuffType debuffType, float duration) {
       Assert.IsTrue(PhotonNetwork.isMasterClient);
 
-      photonView.RPC("SyncDebuffRPC", PhotonTargets.All, targetViewID, debuffType, duration);
+      photonView.RPC("SyncDebuffRPC", PhotonTargets.AllViaServer, targetViewID, debuffType, duration);
     }
   }
 }

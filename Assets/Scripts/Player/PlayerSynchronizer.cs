@@ -19,7 +19,7 @@ namespace Bunashibu.Kikan {
     public void SyncCoreLevelUp(CoreType type) {
       Assert.IsTrue(photonView.isMine);
 
-      photonView.RPC("SyncCoreLevelUpRPC", PhotonTargets.All, type);
+      photonView.RPC("SyncCoreLevelUpRPC", PhotonTargets.AllViaServer, type);
     }
 
     public IObservable<CoreType> OnCoreLevelUpped => _coreSubject;
