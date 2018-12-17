@@ -5,6 +5,16 @@ using UnityEngine.UI;
 
 namespace Bunashibu.Kikan {
   public class KillMessage : MonoBehaviour {
+    void Start() {
+      Destroy(gameObject, 6.0f);
+      _subtractColor = new Color(0, 0, 0, 0.0023f);
+    }
+
+    void Update() {
+      _killText.color = _killText.color - _subtractColor;
+      _messageText.color = _messageText.color - _subtractColor;
+    }
+
     public void SetKillPlayerName(string killPlayerName, bool isSameTeam) {
       _killText.text = "[" + killPlayerName + "]";
 
@@ -20,6 +30,7 @@ namespace Bunashibu.Kikan {
 
     [SerializeField] private Text _killText;
     [SerializeField] private Text _messageText;
+    private Color _subtractColor;
   }
 }
 
