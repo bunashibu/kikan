@@ -111,7 +111,8 @@ namespace Bunashibu.Kikan {
         })
         .AddTo(player.gameObject);
 
-      InitPlayerTeam(player);
+      InitNameBackground(player);
+      InitSpriteFlip(player);
     }
 
     private void PlayerOwnerInitialize(Player player) {
@@ -167,6 +168,11 @@ namespace Bunashibu.Kikan {
         .Subscribe(_ => player.WorldHpBar.UpdateView(player.Hp.Cur.Value, player.Hp.Max.Value))
         .AddTo(player.WorldHpBar);
 
+      int ownerTeam = (int)PhotonNetwork.player.CustomProperties["Team"];
+
+      if (player.PlayerInfo.Team == ownerTeam)
+        _teammateHpPanel.Register(player);
+
       player.AudioEnvironment.DisableListener();
     }
 
@@ -175,12 +181,14 @@ namespace Bunashibu.Kikan {
       PhotonNetwork.player.SetCustomProperties(props);
     }
 
-    private void InitPlayerTeam(Player player) {
+    private void InitNameBackground(Player player) {
       if (player.PlayerInfo.Team == 0)
         player.NameBackground.SetColor("RED");
       else if (player.PlayerInfo.Team == 1)
         player.NameBackground.SetColor("BLUE");
+    }
 
+    private void InitSpriteFlip(Player player) {
       foreach (var sprite in player.Renderers) {
         if (player.PlayerInfo.Team == 0)
           sprite.flipX = false;
@@ -193,6 +201,7 @@ namespace Bunashibu.Kikan {
     [SerializeField] private KillDeathPanel _kdPanel;
     [SerializeField] private CorePanel _corePanel;
     [SerializeField] private GoldPanel _goldPanel;
+    [SerializeField] private TeammateHpPanel _teammateHpPanel;
   }
 }
 
