@@ -111,16 +111,6 @@ namespace Bunashibu.Kikan {
         })
         .AddTo(player.gameObject);
 
-      player.Stream.OnKilledAndDied
-        .Subscribe(playerList => {
-          var killPlayer = playerList[0];
-          var deathPlayer = playerList[1];
-          bool isSameTeam = ((int)PhotonNetwork.player.CustomProperties["Team"] == killPlayer.PlayerInfo.Team) ? true : false;
-
-          _killMessagePanel.InstantiateMessage(killPlayer, deathPlayer, isSameTeam);
-        })
-        .AddTo(player.gameObject);
-
       InitNameBackground(player);
       InitSpriteFlip(player);
     }
@@ -163,6 +153,24 @@ namespace Bunashibu.Kikan {
         .Where(_ => player.Hp.Cur.Value > 0)
         .Where(_ => player.Hp.Cur.Value < player.Hp.Max.Value)
         .Subscribe(_ => player.Synchronizer.SyncAutoHeal(player.AutoHealQuantity) )
+        .AddTo(player.gameObject);
+
+      BattleStream.OnKilledAndDied
+        .Subscribe(playerList => {
+          var killPlayer = playerList[0];
+          var deathPlayer = playerList[1];
+          bool isSameTeam = ((int)PhotonNetwork.player.CustomProperties["Team"] == killPlayer.PlayerInfo.Team) ? true : false;
+
+          _killMessagePanel.InstantiateMessage(killPlayer, deathPlayer, isSameTeam);
+        })
+        .AddTo(player.gameObject);
+
+      player.Stream.OnDied
+        .Subscribe(_ => {
+          var respawnPanel = Instantiate(_respawnPanel, _canvas.transform).GetComponent<RespawnPanel>();
+          respawnPanel.SetRespawnTime(player.Level.Cur.Value);
+          respawnPanel.SetRespawnPlayer(player);
+        })
         .AddTo(player.gameObject);
 
       player.WorldHpBar.gameObject.SetActive(false);
@@ -208,11 +216,13 @@ namespace Bunashibu.Kikan {
     }
 
     [SerializeField] private StartUpInstantiator _instantiator;
+    [SerializeField] private Canvas _canvas;
     [SerializeField] private KillDeathPanel _kdPanel;
     [SerializeField] private CorePanel _corePanel;
     [SerializeField] private GoldPanel _goldPanel;
     [SerializeField] private TeammateHpPanel _teammateHpPanel;
     [SerializeField] private KillMessagePanel _killMessagePanel;
+    [SerializeField] private GameObject _respawnPanel;
   }
 }
 

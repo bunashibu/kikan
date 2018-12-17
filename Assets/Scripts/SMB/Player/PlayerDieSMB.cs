@@ -8,7 +8,7 @@ namespace Bunashibu.Kikan {
   public class PlayerDieSMB : StateMachineBehaviour {
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
       if (_player == null)
-        _player     = animator.GetComponent<Player>();
+        _player = animator.GetComponent<Player>();
 
       _player.BodyCollider.enabled = false;
 
@@ -18,11 +18,8 @@ namespace Bunashibu.Kikan {
       _player.AudioEnvironment.PlayOneShot("Die", 0.5f);
       SkillReference.Instance.DeleteAll();
 
-      if (StageReference.Instance.StageData.Name == "Battle") {
-        MonoUtility.Instance.DelaySec((float)_player.Level.Cur.Value, () => {
-          _player.Synchronizer.SyncRespawn(_player.PhotonView.viewID);
-        });
-      }
+      if (StageReference.Instance.StageData.Name == "Battle")
+        _player.Stream.OnNextDie(_player);
 
       if (StageReference.Instance.StageData.Name == "FinalBattle") {
         int[] alivePlayerCount = PhotonNetwork.room.CustomProperties["AlivePlayerCount"] as int[];
