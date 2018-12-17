@@ -11,6 +11,8 @@ namespace Bunashibu.Kikan {
       PhotonNetwork.automaticallySyncScene = true;
       PhotonNetwork.sendRate = 30;
       PhotonNetwork.sendRateOnSerialize = 30;
+
+      Screen.SetResolution(1366, 768, false);
     }
 
     void Start() {
