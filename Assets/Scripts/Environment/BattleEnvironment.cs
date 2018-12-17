@@ -11,12 +11,13 @@ namespace Bunashibu.Kikan {
       Action<IAttacker, int, bool, HitEffectType> onAttacked = (attacker, damage, isCritical, hitEffectType) => {
         target.Hp.Subtract(damage);
 
-        int damageSkin = 0;
-        if (attacker is IDamageSkin)
-          damageSkin = ((IDamageSkin)attacker).DamageSkinId;
-
         if (target is IPhotonBehaviour) {
           var targetPhoton = (IPhotonBehaviour)target;
+          int damageSkin = 0;
+
+          if (attacker is IDamageSkin)
+            damageSkin = ((IDamageSkin)attacker).DamageSkinId;
+
           PopupHitEffect(hitEffectType, targetPhoton);
           PopupNumber(damage, isCritical, damageSkin, targetPhoton);
         }

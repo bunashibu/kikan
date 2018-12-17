@@ -36,6 +36,9 @@ namespace Bunashibu.Kikan {
         Assert.IsTrue(_hpTable.Data.Count       == MaxLevel);
         Assert.IsTrue(_expTable.Data.Count      == MaxLevel);
 
+        Stream     = new PlayerStream();
+        Synchronizer.SetStream(Stream);
+
         Movement   = new PlayerMovement((IBattleMovementPlayer)this);
         Movement.SetMaxFallVelocity(-11.0f);
 
@@ -81,12 +84,13 @@ namespace Bunashibu.Kikan {
     public Collider2D       FootCollider => _footCollider;
     public Animator         Animator     => _animator;
 
-    public PlayerSynchronizer Synchronizer => _synchronizer;
-    public PlayerObserver     Observer     => _observer;
+    public PlayerStream             Stream       { get; private set; }
+    public PlayerStreamSynchronizer Synchronizer => _synchronizer;
+    public PlayerObserver           Observer     => _observer;
 
     public AudioEnvironment AudioEnvironment => _audioEnvironment;
 
-    public List<Player> Teammates { get; private set; }
+    public List<Player>           Teammates       { get; private set; }
     public List<IKillRewardTaker> RewardTeammates => Teammates.Select(player => (IKillRewardTaker)player).ToList();
 
     public PlayerMovement Movement      { get; private set; }
@@ -146,7 +150,7 @@ namespace Bunashibu.Kikan {
     [SerializeField] private Animator         _animator;
 
     [Header("Observer")]
-    [SerializeField] private PlayerSynchronizer _synchronizer;
+    [SerializeField] private PlayerStreamSynchronizer _synchronizer;
     [SerializeField] private PlayerObserver _observer;
 
     [Header("Environment")]

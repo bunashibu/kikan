@@ -6,7 +6,7 @@ namespace Bunashibu.Kikan {
   public interface ICorePlayer : IPhotonBehaviour {
     Core Core { get; }
     Gold Gold { get; }
-    PlayerSynchronizer Synchronizer { get; }
+    PlayerStreamSynchronizer Synchronizer { get; }
   }
 }
 

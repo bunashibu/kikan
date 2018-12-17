@@ -6,16 +6,14 @@ using UnityEngine.Assertions;
 using UniRx;
 
 namespace Bunashibu.Kikan {
-  public class PlayerSynchronizer : Photon.MonoBehaviour {
-    void Awake() {
-      _coreSubject = new Subject<CoreType>();
-      _autoHealSubject = new Subject<int>();
-      _respawnSubject = new Subject<int>();
+  public class PlayerStreamSynchronizer : Photon.MonoBehaviour {
+    public void SetStream(PlayerStream stream) {
+      _stream = stream;
     }
 
     [PunRPC]
     private void SyncCoreLevelUpRPC(CoreType type) {
-      _coreSubject.OnNext(type);
+      _stream.OnNextCore(type);
     }
 
     public void SyncCoreLevelUp(CoreType type) {
@@ -26,7 +24,7 @@ namespace Bunashibu.Kikan {
 
     [PunRPC]
     private void SyncAutoHealRPC(int quantity) {
-      _autoHealSubject.OnNext(quantity);
+      _stream.OnNextAutoHeal(quantity);
     }
 
     public void SyncAutoHeal(int quantity) {
@@ -37,7 +35,7 @@ namespace Bunashibu.Kikan {
 
     [PunRPC]
     private void SyncRespawnRPC(int viewID) {
-      _respawnSubject.OnNext(viewID);
+      _stream.OnNextRespawn(viewID);
     }
 
     public void SyncRespawn(int viewID) {
@@ -46,13 +44,7 @@ namespace Bunashibu.Kikan {
       photonView.RPC("SyncRespawnRPC", PhotonTargets.AllViaServer, viewID);
     }
 
-    public IObservable<CoreType> OnCoreLevelUpped => _coreSubject;
-    public IObservable<int> OnAutoHealed => _autoHealSubject;
-    public IObservable<int> OnRespawned => _respawnSubject;
-
-    private Subject<CoreType> _coreSubject;
-    private Subject<int> _autoHealSubject;
-    private Subject<int> _respawnSubject;
+    private PlayerStream _stream;
   }
 }
 

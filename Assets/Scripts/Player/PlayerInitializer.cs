@@ -80,23 +80,23 @@ namespace Bunashibu.Kikan {
         .Subscribe(state => player.Debuff.Destroy(state.Key))
         .AddTo(player.gameObject);
 
-      player.Synchronizer.OnCoreLevelUpped
+      player.Stream.OnCoreLevelUpped
         .Subscribe(type => player.Gold.Subtract(player.Core.RequiredGold(type)) )
         .AddTo(player.gameObject);
 
-      player.Synchronizer.OnCoreLevelUpped
+      player.Stream.OnCoreLevelUpped
         .Subscribe(type => player.Core.LevelUp(type) )
         .AddTo(player.gameObject);
 
-      player.Synchronizer.OnCoreLevelUpped
+      player.Stream.OnCoreLevelUpped
         .Subscribe(type => player.Core.Instantiate(type, player.transform) )
         .AddTo(player.gameObject);
 
-      player.Synchronizer.OnAutoHealed
+      player.Stream.OnAutoHealed
         .Subscribe(quantity => player.Hp.Add(quantity))
         .AddTo(player.gameObject);
 
-      player.Synchronizer.OnRespawned
+      player.Stream.OnRespawned
         .Subscribe(viewID => {
           var pos = StageReference.Instance.StageData.RespawnPosition;
           if (player.PlayerInfo.Team == 1)
@@ -143,7 +143,7 @@ namespace Bunashibu.Kikan {
         .Subscribe(cur => _goldPanel.UpdateView(cur))
         .AddTo(_goldPanel);
 
-      player.Synchronizer.OnCoreLevelUpped
+      player.Stream.OnCoreLevelUpped
         .Subscribe(type => _corePanel.UpdateView(type, player.Core.CurLevel(type)) )
         .AddTo(_corePanel);
 
