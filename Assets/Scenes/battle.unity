@@ -16645,10 +16645,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _instantiator: {fileID: 2072669552}
+  _canvas: {fileID: 375732893}
   _kdPanel: {fileID: 1953781252}
   _corePanel: {fileID: 1331817296}
   _goldPanel: {fileID: 889843195}
   _teammateHpPanel: {fileID: 843718237}
+  _killMessagePref: {fileID: 1857973263283006, guid: e517430dab6b44648a8ba34fecd73ca1,
+    type: 2}
 --- !u!114 &1301560812
 MonoBehaviour:
   m_ObjectHideFlags: 0

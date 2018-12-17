@@ -111,6 +111,19 @@ namespace Bunashibu.Kikan {
         })
         .AddTo(player.gameObject);
 
+      player.Stream.OnKilledAndDied
+        .Subscribe(playerList => {
+          var killPlayer = playerList[0];
+          var deathPlayer = playerList[1];
+
+          bool isSameTeam = ((int)PhotonNetwork.player.CustomProperties["Team"] == killPlayer.PlayerInfo.Team) ? true : false;
+          var killMessage = Instantiate(_killMessagePref, _canvas.transform).GetComponent<KillMessage>();
+
+          killMessage.SetKillPlayerName(killPlayer.PlayerInfo.Name, isSameTeam);
+          killMessage.SetDeathPlayerName(deathPlayer.PlayerInfo.Name);
+        })
+        .AddTo(player.gameObject);
+
       InitNameBackground(player);
       InitSpriteFlip(player);
     }
@@ -198,10 +211,12 @@ namespace Bunashibu.Kikan {
     }
 
     [SerializeField] private StartUpInstantiator _instantiator;
+    [SerializeField] private Canvas _canvas;
     [SerializeField] private KillDeathPanel _kdPanel;
     [SerializeField] private CorePanel _corePanel;
     [SerializeField] private GoldPanel _goldPanel;
     [SerializeField] private TeammateHpPanel _teammateHpPanel;
+    [SerializeField] private GameObject _killMessagePref;
   }
 }
 

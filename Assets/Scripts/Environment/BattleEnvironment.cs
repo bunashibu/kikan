@@ -40,14 +40,16 @@ namespace Bunashibu.Kikan {
           GiveRewardTo(taker, GetRewardFrom(giver, taker.RewardTeammates.Count));
         }
 
-        if (attacker is IPlayer && target is IPlayer) {
-          var killPlayer  = (IPlayer)attacker;
-          var deathPlayer = (IPlayer)target;
+        if (attacker is Player && target is Player) {
+          var killPlayer  = (Player)attacker;
+          var deathPlayer = (Player)target;
 
           killPlayer.KillCount.Value += 1;
           deathPlayer.DeathCount.Value += 1;
 
           killPlayer.AudioEnvironment.PlayOneShot("Kill1");
+          killPlayer.Stream.OnNextKill(killPlayer);
+          killPlayer.Stream.OnNextDie(deathPlayer);
         }
       };
 

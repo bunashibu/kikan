@@ -9,7 +9,7 @@ namespace Bunashibu.Kikan {
     public void PopupNumber(int damage, bool isCritical, int skinId, IPhotonBehaviour damageTaker) {
       bool isPhotonOwner = damageTaker.PhotonView.owner == PhotonNetwork.player;
 
-      if (damageTaker is IPlayer && isPhotonOwner)
+      if (damageTaker is Player && isPhotonOwner)
         PopupNumberByType(NumberPopupType.Take, damage, damageTaker.gameObject);
       else if (isCritical)
         PopupNumberByType(NumberPopupType.Critical, damage, damageTaker.gameObject, skinId);
