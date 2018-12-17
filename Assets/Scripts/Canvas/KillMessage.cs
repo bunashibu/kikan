@@ -6,7 +6,7 @@ using UnityEngine.UI;
 namespace Bunashibu.Kikan {
   public class KillMessage : MonoBehaviour {
     void Start() {
-      Destroy(gameObject, 6.0f);
+      Destroy(gameObject, 7.0f);
       _subtractColor = new Color(0, 0, 0, 0.0023f);
     }
 
