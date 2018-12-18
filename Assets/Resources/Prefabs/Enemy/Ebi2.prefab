@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 114598867193443742}
   - component: {fileID: 114269032304443802}
   - component: {fileID: 114880332462502260}
+  - component: {fileID: 114533232365473914}
   m_Layer: 14
   m_Name: Ebi2
   m_TagString: Enemy
@@ -482,6 +483,17 @@ MonoBehaviour:
   _ai: {fileID: 114093239695068668}
   _worldHpBar: {fileID: 114072369469390806}
   _enemyData: {fileID: 11400000, guid: e90419190c5a5e743b4697ff29e67ecb, type: 2}
+--- !u!114 &114533232365473914
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1840522655557820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19ba4b9454432e844a987a4a4a604d8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114598867193443742
 MonoBehaviour:
   m_ObjectHideFlags: 1

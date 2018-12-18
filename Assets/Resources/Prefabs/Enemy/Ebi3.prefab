@@ -100,6 +100,7 @@ GameObject:
   - component: {fileID: 114488161082227096}
   - component: {fileID: 114091100350679866}
   - component: {fileID: 114504372355722174}
+  - component: {fileID: 114110106678928214}
   m_Layer: 14
   m_Name: Ebi3
   m_TagString: Enemy
@@ -298,6 +299,17 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114110106678928214
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1724285303401134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19ba4b9454432e844a987a4a4a604d8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114304542590461192
 MonoBehaviour:
   m_ObjectHideFlags: 1

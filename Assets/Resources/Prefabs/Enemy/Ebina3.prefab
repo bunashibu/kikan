@@ -49,6 +49,7 @@ GameObject:
   - component: {fileID: 114773863746440152}
   - component: {fileID: 114528999332835868}
   - component: {fileID: 114672789960166664}
+  - component: {fileID: 114049035239765728}
   - component: {fileID: 114101790809312124}
   m_Layer: 14
   m_Name: Ebina3
@@ -248,6 +249,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114049035239765728
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1431167582857956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19ba4b9454432e844a987a4a4a604d8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114101790809312124
 MonoBehaviour:
   m_ObjectHideFlags: 1

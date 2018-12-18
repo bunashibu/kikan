@@ -31,6 +31,7 @@ GameObject:
   - component: {fileID: 114112488513267606}
   - component: {fileID: 114399664780219442}
   - component: {fileID: 114038892728434358}
+  - component: {fileID: 114131986705500426}
   - component: {fileID: 114962318167475646}
   m_Layer: 14
   m_Name: Ebi1
@@ -311,6 +312,17 @@ MonoBehaviour:
   _ai: {fileID: 114050103650658040}
   _worldHpBar: {fileID: 114910362398058522}
   _enemyData: {fileID: 11400000, guid: dea86f677fe12af4aa2f5d458e4eb166, type: 2}
+--- !u!114 &114131986705500426
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1025727651334796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19ba4b9454432e844a987a4a4a604d8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114150662780611818
 MonoBehaviour:
   m_ObjectHideFlags: 1

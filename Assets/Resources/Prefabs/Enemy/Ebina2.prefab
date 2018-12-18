@@ -114,6 +114,7 @@ GameObject:
   - component: {fileID: 114852238817608088}
   - component: {fileID: 114085026678872700}
   - component: {fileID: 114168451901485534}
+  - component: {fileID: 114277877701616302}
   m_Layer: 14
   m_Name: Ebina2
   m_TagString: Enemy
@@ -296,6 +297,17 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114277877701616302
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1710532356801888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19ba4b9454432e844a987a4a4a604d8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114556267328861274
 MonoBehaviour:
   m_ObjectHideFlags: 1
