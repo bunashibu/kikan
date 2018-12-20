@@ -269,6 +269,7 @@ MonoBehaviour:
   _stunEffect: {fileID: 1315593712468704, guid: aa80d344b84021a47bb4c5b0d73b7fa2,
     type: 2}
   _ai: {fileID: 114902433932136736}
+  _targetChaseSystem: {fileID: 114110106678928214}
   _worldHpBar: {fileID: 114913767221993678}
   _enemyData: {fileID: 11400000, guid: 513149fe49e253b45aeff8033e2a6e84, type: 2}
 --- !u!114 &114091100350679866

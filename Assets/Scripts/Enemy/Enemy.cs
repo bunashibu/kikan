@@ -7,6 +7,9 @@ namespace Bunashibu.Kikan {
   [RequireComponent(typeof(Character2D))]
   public class Enemy : MonoBehaviour, ICharacter, IOnDebuffed, IOnAttacked, IAttacker, IPhotonBehaviour, IKillRewardGiver {
     void Awake() {
+      Movement      = new EnemyMovement();
+      Movement.SetMoveForce(1.0f);
+      Movement.SetJumpForce(400.0f);
       State         = new CharacterState();
       StateTransfer = new StateTransfer(_initState, _animator);
       Hp            = new Hp(_enemyData.Hp);
@@ -40,12 +43,15 @@ namespace Bunashibu.Kikan {
     // tmp
     public MonoBehaviour AI => _ai;
 
+    public EnemyMovement  Movement      { get; private set; }
     public CharacterState State         { get; private set; }
     public StateTransfer  StateTransfer { get; private set; }
     public Hp             Hp            { get; private set; }
     public Debuff         Debuff        { get; private set; }
 
     public IEnemyLocationJudger Location { get; private set; }
+
+    public TargetChaseSystem TargetChaseSystem => _targetChaseSystem;
 
     public Bar WorldHpBar => _worldHpBar;
     public EnemyData Data => _enemyData;
@@ -55,7 +61,6 @@ namespace Bunashibu.Kikan {
     public int    DamageSkinId => 0;
     public int    Power        => 0;
     public int    Critical     => 0;
-    public string Tag          => gameObject.tag;
 
     [Header("Unity/Photon Components")]
     [SerializeField] private PhotonView     _photonView;
@@ -75,6 +80,8 @@ namespace Bunashibu.Kikan {
     // tmp
     [Space(10)]
     [SerializeField] private MonoBehaviour _ai;
+
+    [SerializeField] private TargetChaseSystem _targetChaseSystem;
 
     [Header("Hp")]
     [SerializeField] private Bar _worldHpBar;

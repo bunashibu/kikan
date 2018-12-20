@@ -5,20 +5,13 @@ using UnityEngine;
 namespace Bunashibu.Kikan {
   [RequireComponent(typeof(Enemy))]
   public class EnemyAI : MonoBehaviour {
-    void Awake() {
-      _movement = new EnemyMovement();
-
-      _movement.SetMoveForce(1.0f);
-      _movement.SetJumpForce(400.0f);
-    }
-
     void Update() {
-      if (_enemy.PhotonView.isMine)
+      if (_enemy.PhotonView.isMine && !_enemy.TargetChaseSystem.IsEnable)
         UpdateBehaviour();
     }
 
     void FixedUpdate() {
-      _movement.FixedUpdate(_enemy.Rigid);
+      _enemy.Movement.FixedUpdate(_enemy.Rigid);
     }
 
     private void UpdateBehaviour() {
@@ -43,11 +36,11 @@ namespace Bunashibu.Kikan {
       if (_enemy.Location.IsGround) {
         if (_strategy == "MoveLeft") {
           degAngle *= _enemy.State.GroundLeft ? 1 : -1;
-          _movement.GroundMoveLeft(degAngle);
+          _enemy.Movement.GroundMoveLeft(degAngle);
         }
         else if (_strategy == "MoveRight") {
           degAngle *= _enemy.State.GroundRight ? 1 : -1;
-          _movement.GroundMoveRight(degAngle);
+          _enemy.Movement.GroundMoveRight(degAngle);
         }
       }
 
@@ -71,7 +64,6 @@ namespace Bunashibu.Kikan {
     }
 
     [SerializeField] private Enemy _enemy;
-    private EnemyMovement _movement;
 
     public float debugAngle;
     public bool debugGroundLeft;

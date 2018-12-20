@@ -21,6 +21,11 @@ namespace Bunashibu.Kikan {
             NumberPopupEnvironment.Instance.PopupNumber(entity.Damage, entity.IsCritical, damageSkin, targetPhoton);
           }
 
+          if (entity.Target is Enemy) {
+            var enemy = (Enemy)entity.Target;
+            enemy.TargetChaseSystem.SetChaseTarget(entity.Attacker.transform);
+          }
+
           if (entity.Target.Hp.Cur.Value == entity.Target.Hp.Min.Value) {
             BattleStream.OnNextKill(entity.Attacker);
             BattleStream.OnNextDie(entity.Target);
