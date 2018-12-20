@@ -4,12 +4,10 @@ using UnityEngine;
 using UnityEngine.Assertions;
 
 namespace Bunashibu.Kikan {
-  [RequireComponent(typeof(AttackSynchronizer))]
-  [RequireComponent(typeof(DebuffSynchronizer))]
+  [RequireComponent(typeof(SkillSynchronizer))]
   public class ManjiZ : Skill {
     void Awake() {
-      _attackSynchronizer = GetComponent<AttackSynchronizer>();
-      _debuffSynchronizer = GetComponent<DebuffSynchronizer>();
+      _synchronizer = GetComponent<SkillSynchronizer>();
       _targetChecker = new TargetChecker(_targetNum);
     }
 
@@ -20,8 +18,8 @@ namespace Bunashibu.Kikan {
         var target = collider.gameObject.GetComponent<IPhoton>();
         Assert.IsNotNull(target);
 
-        _attackSynchronizer.SyncAttack(_skillUserViewID, target.PhotonView.viewID, DamageCalculator.Damage, DamageCalculator.IsCritical, HitEffectType.Manji);
-        _debuffSynchronizer.SyncDebuff(target.PhotonView.viewID, DebuffType.Stun, _stunSec);
+        _synchronizer.SyncAttack(_skillUserViewID, target.PhotonView.viewID, DamageCalculator.Damage, DamageCalculator.IsCritical, HitEffectType.Manji);
+        _synchronizer.SyncDebuff(target.PhotonView.viewID, DebuffType.Stun, _stunSec);
       }
     }
 
@@ -29,8 +27,7 @@ namespace Bunashibu.Kikan {
     [SerializeField] private int _targetNum;
     [SerializeField] private float _stunSec;
 
-    private AttackSynchronizer _attackSynchronizer;
-    private DebuffSynchronizer _debuffSynchronizer;
+    private SkillSynchronizer _synchronizer;
     private TargetChecker _targetChecker;
   }
 }

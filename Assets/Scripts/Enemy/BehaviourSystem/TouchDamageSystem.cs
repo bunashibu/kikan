@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
+  [RequireComponent(typeof(SkillSynchronizer))]
   public class TouchDamageSystem : MonoBehaviour {
     void Awake() {
-      _synchronizer = GetComponent<AttackSynchronizer>();
+      _synchronizer = GetComponent<SkillSynchronizer>();
     }
 
     void OnTriggerStay2D(Collider2D collider) {
@@ -30,7 +31,7 @@ namespace Bunashibu.Kikan {
 
     [SerializeField] private int _baseDamage;
     [SerializeField] private int _positiveDeviation;
-    private AttackSynchronizer _synchronizer;
+    private SkillSynchronizer _synchronizer;
   }
 }
 

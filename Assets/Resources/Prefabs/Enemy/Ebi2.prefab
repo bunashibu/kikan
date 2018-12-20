@@ -131,7 +131,6 @@ GameObject:
   - component: {fileID: 114093239695068668}
   - component: {fileID: 114598867193443742}
   - component: {fileID: 114269032304443802}
-  - component: {fileID: 114880332462502260}
   - component: {fileID: 114533232365473914}
   m_Layer: 14
   m_Name: Ebi2
@@ -588,17 +587,6 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &114880332462502260
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1840522655557820}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ab71a1e4ecf26c46bbee47397f910f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114890502787428388
 MonoBehaviour:
   m_ObjectHideFlags: 1

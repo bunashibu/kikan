@@ -5,10 +5,10 @@ using UnityEngine;
 using UnityEngine.Assertions;
 
 namespace Bunashibu.Kikan {
-  [RequireComponent(typeof(AttackSynchronizer))]
+  [RequireComponent(typeof(SkillSynchronizer))]
   public class ManjiCtrl : Skill {
     void Awake() {
-      _synchronizer = GetComponent<AttackSynchronizer>();
+      _synchronizer = GetComponent<SkillSynchronizer>();
       _targetChecker = new TargetChecker(_targetNum);
     }
 
@@ -134,7 +134,7 @@ namespace Bunashibu.Kikan {
     [SerializeField] private int _targetNum;
     [SerializeField] private LayerMask _groundLayer;
 
-    private AttackSynchronizer _synchronizer;
+    private SkillSynchronizer _synchronizer;
     private TargetChecker _targetChecker;
 
     private float _moveDistance = 3;

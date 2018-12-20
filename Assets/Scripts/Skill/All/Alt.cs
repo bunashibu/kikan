@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
+  [RequireComponent(typeof(SkillSynchronizer))]
   public class Alt : Skill {
     void Awake() {
-      _synchronizer = GetComponent<HealSynchronizer>();
+      _synchronizer = GetComponent<SkillSynchronizer>();
     }
 
     void Start() {
@@ -18,7 +19,7 @@ namespace Bunashibu.Kikan {
       _synchronizer.SyncHeal(_skillUserViewID, 2000 + addition);
     }
 
-    private HealSynchronizer _synchronizer;
+    private SkillSynchronizer _synchronizer;
   }
 }
 

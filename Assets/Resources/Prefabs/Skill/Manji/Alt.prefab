@@ -24,8 +24,8 @@ GameObject:
   - component: {fileID: 82666568829242398}
   - component: {fileID: 114271770588256020}
   - component: {fileID: 114488027884975668}
+  - component: {fileID: 114296736559435904}
   - component: {fileID: 114155593387623814}
-  - component: {fileID: 114770745790925886}
   m_Layer: 18
   m_Name: Alt
   m_TagString: Untagged
@@ -196,6 +196,17 @@ MonoBehaviour:
   instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
+--- !u!114 &114296736559435904
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1928466428407624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35c675ff03893fd4089b099279ed1c0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114488027884975668
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -273,17 +284,6 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
---- !u!114 &114770745790925886
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1928466428407624}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d328bf836d9f44045a138cec822148a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &212639532078758566
 SpriteRenderer:
   m_ObjectHideFlags: 1

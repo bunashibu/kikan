@@ -6,7 +6,7 @@ using UnityEngine.Assertions;
 using UniRx;
 
 namespace Bunashibu.Kikan {
-  public class PlayerStreamSynchronizer : Photon.MonoBehaviour {
+  public class PlayerSynchronizer : Photon.MonoBehaviour {
     public void SetStream(PlayerStream stream) {
       _stream = stream;
     }

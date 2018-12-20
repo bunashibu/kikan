@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.Assertions;
 
 namespace Bunashibu.Kikan {
-  [RequireComponent(typeof(AttackSynchronizer))]
+  [RequireComponent(typeof(SkillSynchronizer))]
   public class ManjiX : Skill {
     void Awake() {
-      _synchronizer = GetComponent<AttackSynchronizer>();
+      _synchronizer = GetComponent<SkillSynchronizer>();
       _targetChecker = new TargetChecker(_targetNum);
     }
 
@@ -25,7 +25,7 @@ namespace Bunashibu.Kikan {
     [SerializeField] private AttackInfo _attackInfo;
     [SerializeField] private int _targetNum;
 
-    private AttackSynchronizer _synchronizer;
+    private SkillSynchronizer _synchronizer;
     private TargetChecker _targetChecker;
   }
 }

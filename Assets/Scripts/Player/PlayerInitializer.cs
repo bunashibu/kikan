@@ -155,6 +155,7 @@ namespace Bunashibu.Kikan {
         .Subscribe(_ => player.Synchronizer.SyncAutoHeal(player.AutoHealQuantity) )
         .AddTo(player.gameObject);
 
+      // THINK: BattleStream and SkillStream probably should not be initialized here
       BattleStream.OnKilledAndDied
         .Subscribe(playerList => {
           var killPlayer = playerList[0];
@@ -164,6 +165,28 @@ namespace Bunashibu.Kikan {
           _killMessagePanel.InstantiateMessage(killPlayer, deathPlayer, isSameTeam);
         })
         .AddTo(player.gameObject);
+
+      SkillStream.OnAttacked
+        .Subscribe(entity => {
+          entity.Target.Hp.Subtract(entity.Damage);
+
+          if (entity.Target is IPhotonBehaviour) {
+            var targetPhoton = (IPhotonBehaviour)entity.Target;
+            int damageSkin = 0;
+
+            if (entity.Target is IDamageSkin)
+              damageSkin = ((IDamageSkin)entity.Attacker).DamageSkinId;
+
+            HitEffectPopupEnvironment.Instance.PopupHitEffect(entity.HitEffectType, targetPhoton);
+            NumberPopupEnvironment.Instance.PopupNumber(entity.Damage, entity.IsCritical, damageSkin, targetPhoton);
+          }
+
+          /*
+          if (entity.Target.Hp.Cur.Value == entity.Target.Hp.Min.Value)
+            target.OnKilled(attacker);
+            */
+        });
+
 
       player.Stream.OnDied
         .Subscribe(_ => {
