@@ -26,6 +26,16 @@ namespace Bunashibu.Kikan {
             BattleStream.OnNextDie(entity.Target);
           }
         });
+
+      SkillStream.OnDebuffed
+        .Subscribe(entity => {
+          entity.Target.Debuff.DurationEnable(entity.DebuffType, entity.Duration);
+        });
+
+      SkillStream.OnHealed
+        .Subscribe(entity => {
+          entity.Target.Hp.Add(entity.Quantity);
+        });
     }
   }
 }

@@ -5,7 +5,6 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   public interface IOnDebuffed {
-    Action<DebuffType, float> OnDebuffed { get; }
     Debuff Debuff { get; }
   }
 }
