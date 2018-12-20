@@ -155,39 +155,6 @@ namespace Bunashibu.Kikan {
         .Subscribe(_ => player.Synchronizer.SyncAutoHeal(player.AutoHealQuantity) )
         .AddTo(player.gameObject);
 
-      // THINK: BattleStream and SkillStream probably should not be initialized here
-      BattleStream.OnKilledAndDied
-        .Subscribe(playerList => {
-          var killPlayer = playerList[0];
-          var deathPlayer = playerList[1];
-          bool isSameTeam = ((int)PhotonNetwork.player.CustomProperties["Team"] == killPlayer.PlayerInfo.Team) ? true : false;
-
-          _killMessagePanel.InstantiateMessage(killPlayer, deathPlayer, isSameTeam);
-        })
-        .AddTo(player.gameObject);
-
-      SkillStream.OnAttacked
-        .Subscribe(entity => {
-          entity.Target.Hp.Subtract(entity.Damage);
-
-          if (entity.Target is IPhotonBehaviour) {
-            var targetPhoton = (IPhotonBehaviour)entity.Target;
-            int damageSkin = 0;
-
-            if (entity.Target is IDamageSkin)
-              damageSkin = ((IDamageSkin)entity.Attacker).DamageSkinId;
-
-            HitEffectPopupEnvironment.Instance.PopupHitEffect(entity.HitEffectType, targetPhoton);
-            NumberPopupEnvironment.Instance.PopupNumber(entity.Damage, entity.IsCritical, damageSkin, targetPhoton);
-          }
-
-          /*
-          if (entity.Target.Hp.Cur.Value == entity.Target.Hp.Min.Value)
-            target.OnKilled(attacker);
-            */
-        });
-
-
       player.Stream.OnDied
         .Subscribe(_ => {
           var respawnPanel = Instantiate(_respawnPanel, _canvas.transform).GetComponent<RespawnPanel>();
@@ -244,7 +211,6 @@ namespace Bunashibu.Kikan {
     [SerializeField] private CorePanel _corePanel;
     [SerializeField] private GoldPanel _goldPanel;
     [SerializeField] private TeammateHpPanel _teammateHpPanel;
-    [SerializeField] private KillMessagePanel _killMessagePanel;
     [SerializeField] private GameObject _respawnPanel;
   }
 }

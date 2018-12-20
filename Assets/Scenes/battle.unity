@@ -16598,6 +16598,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1301560809}
+  - component: {fileID: 1301560814}
+  - component: {fileID: 1301560813}
   - component: {fileID: 1301560810}
   - component: {fileID: 1301560811}
   - component: {fileID: 1301560812}
@@ -16651,7 +16653,6 @@ MonoBehaviour:
   _corePanel: {fileID: 1331817296}
   _goldPanel: {fileID: 889843195}
   _teammateHpPanel: {fileID: 843718237}
-  _killMessagePanel: {fileID: 2003749535}
   _respawnPanel: {fileID: 1349913076204336, guid: cf8d044c906a2764d95adfb6da53d86e,
     type: 2}
 --- !u!114 &1301560812
@@ -16665,6 +16666,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7cc4a229b4877b4eb82d54424ef1060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1301560813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1301560808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0885f5a3027f66419f4726ccb572f89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1301560814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1301560808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d78ea12d11510384d9feec5c60ec7ae2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _killMessagePanel: {fileID: 2003749535}
 --- !u!1 &1306506648
 GameObject:
   m_ObjectHideFlags: 0

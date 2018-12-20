@@ -48,8 +48,10 @@ namespace Bunashibu.Kikan {
           deathPlayer.DeathCount.Value += 1;
 
           killPlayer.AudioEnvironment.PlayOneShot("Kill1");
+          /*
           BattleStream.OnNextKill(killPlayer);
           BattleStream.OnNextDie(deathPlayer);
+          */
         }
       };
 

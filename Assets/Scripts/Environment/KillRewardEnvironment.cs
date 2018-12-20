@@ -36,11 +36,11 @@ namespace Bunashibu.Kikan {
     }
   }
 
-  public class KillReward {
-    public int MainExp  = 0;
-    public int MainGold = 0;
-    public int SubExp   = 0;
-    public int SubGold  = 0;
+  public struct KillReward {
+    public int MainExp;
+    public int MainGold;
+    public int SubExp;
+    public int SubGold;
   }
 }
 
