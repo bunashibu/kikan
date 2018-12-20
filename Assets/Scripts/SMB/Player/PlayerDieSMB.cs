@@ -18,9 +18,6 @@ namespace Bunashibu.Kikan {
       _player.AudioEnvironment.PlayOneShot("Die", 0.5f);
       SkillReference.Instance.DeleteAll();
 
-      if (StageReference.Instance.StageData.Name == "Battle")
-        _player.Stream.OnNextDie(_player);
-
       if (StageReference.Instance.StageData.Name == "FinalBattle") {
         int[] alivePlayerCount = PhotonNetwork.room.CustomProperties["AlivePlayerCount"] as int[];
         var list = MonoUtility.ToList<int>(alivePlayerCount);

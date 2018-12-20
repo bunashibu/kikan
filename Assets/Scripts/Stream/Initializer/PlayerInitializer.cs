@@ -155,14 +155,6 @@ namespace Bunashibu.Kikan {
         .Subscribe(_ => player.Synchronizer.SyncAutoHeal(player.AutoHealQuantity) )
         .AddTo(player.gameObject);
 
-      player.Stream.OnDied
-        .Subscribe(_ => {
-          var respawnPanel = Instantiate(_respawnPanel, _canvas.transform).GetComponent<RespawnPanel>();
-          respawnPanel.SetRespawnTime(player.Level.Cur.Value);
-          respawnPanel.SetRespawnPlayer(player);
-        })
-        .AddTo(player.gameObject);
-
       player.WorldHpBar.gameObject.SetActive(false);
       CameraInitializer.Instance.RegisterToTrackTarget(player.gameObject);
     }
@@ -206,12 +198,10 @@ namespace Bunashibu.Kikan {
     }
 
     [SerializeField] private StartUpInstantiator _instantiator;
-    [SerializeField] private Canvas _canvas;
     [SerializeField] private KillDeathPanel _kdPanel;
     [SerializeField] private CorePanel _corePanel;
     [SerializeField] private GoldPanel _goldPanel;
     [SerializeField] private TeammateHpPanel _teammateHpPanel;
-    [SerializeField] private GameObject _respawnPanel;
   }
 }
 

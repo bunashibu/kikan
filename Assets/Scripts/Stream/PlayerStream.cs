@@ -10,7 +10,6 @@ namespace Bunashibu.Kikan {
       _coreSubject = new Subject<CoreType>();
       _autoHealSubject = new Subject<int>();
       _respawnSubject = new Subject<int>();
-      _dieSubject = new Subject<Player>();
     }
 
     public void OnNextCore(CoreType type) {
@@ -25,19 +24,13 @@ namespace Bunashibu.Kikan {
       _respawnSubject.OnNext(viewID);
     }
 
-    public void OnNextDie(Player deathPlayer) {
-      _dieSubject.OnNext(deathPlayer);
-    }
-
     public IObservable<CoreType> OnCoreLevelUpped => _coreSubject;
     public IObservable<int> OnAutoHealed => _autoHealSubject;
     public IObservable<int> OnRespawned => _respawnSubject;
-    public IObservable<Player> OnDied => _dieSubject;
 
     private Subject<CoreType> _coreSubject;
     private Subject<int> _autoHealSubject;
     private Subject<int> _respawnSubject;
-    private Subject<Player> _dieSubject;
   }
 }
 

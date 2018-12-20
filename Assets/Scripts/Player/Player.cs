@@ -91,13 +91,13 @@ namespace Bunashibu.Kikan {
     public PlayerInfo     PlayerInfo    { get; private set; }
     public CharacterState State         { get; private set; }
 
-    public int MaxLevel         => 15;
-    public int MaxGold          => 99999;
-    public int DamageSkinId     => 0;
-    public float HealInterval   => 1.0f;
-    public int KillExp          => _killExpTable.Data[Level.Cur.Value - 1];
-    public int KillGold         => _killGoldTable.Data[Level.Cur.Value - 1];
-    public int Critical         => Core.GetValue(CoreType.Critical);
+    public int MaxLevel       => 15;
+    public int MaxGold        => 99999;
+    public int DamageSkinId   => 0;
+    public float HealInterval => 1.0f;
+    public int KillExp        => _killExpTable.Data[Level.Cur.Value - 1];
+    public int KillGold       => _killGoldTable.Data[Level.Cur.Value - 1];
+    public int Critical       => Core.GetValue(CoreType.Critical);
 
     public int Power { get {
       double ratio = (double)((Core.GetValue(CoreType.Attack) + 100) / 100.0);

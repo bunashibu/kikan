@@ -28,9 +28,24 @@ namespace Bunashibu.Kikan {
             _killMessagePanel.InstantiateMessage(killPlayer, deathPlayer, isSameTeam);
           }
         });
+
+      BattleStream.OnDied
+        .Subscribe(target => {
+          if (target is Player) {
+            var player = (Player)target;
+
+            if (player.PhotonView.isMine) {
+              var respawnPanel = Instantiate(_respawnPanel, _canvas.transform).GetComponent<RespawnPanel>();
+              respawnPanel.SetRespawnTime(player.Level.Cur.Value);
+              respawnPanel.SetRespawnPlayer(player);
+            }
+          }
+        });
     }
 
+    [SerializeField] private Canvas _canvas;
     [SerializeField] private KillMessagePanel _killMessagePanel;
+    [SerializeField] private GameObject _respawnPanel;
   }
 }
 

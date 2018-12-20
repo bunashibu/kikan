@@ -19,6 +19,7 @@ namespace Bunashibu.Kikan {
       _dieSubject.OnNext(target);
     }
 
+    public static IObservable<IOnAttacked> OnDied => _dieSubject;
     public static IObservable<KillDeathFlowEntity> OnKilledAndDied { get {
       return Observable.Zip(_killSubject, _dieSubject, (attacker, target) => new KillDeathFlowEntity(attacker, target));
     } }
