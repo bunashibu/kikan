@@ -739,7 +739,7 @@ MonoBehaviour:
   _criticalCoreEffect: {fileID: 0}
   _healCoreEffect: {fileID: 0}
   _nameBackground: {fileID: 0}
-  _popupRemark: {fileID: 0}
+  _popupRemark: {fileID: 114198838768080286}
   _worldHpBar: {fileID: 0}
   _character: {fileID: 114465585547029610}
   _damageSkin: {fileID: 0}
