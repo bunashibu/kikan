@@ -1581,7 +1581,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 92540857}
   m_OnClick:
     m_PersistentCalls:
@@ -3730,7 +3730,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u9B54\u6CD5\u4F7F\u3044"
+  m_Text: "\u9B54"
 --- !u!222 &336229293
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4579,6 +4579,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hitEffectPref:
   - {fileID: 1434783571646526, guid: 7cd6a0060876b9549a410273cf26bc7c, type: 2}
+  - {fileID: 1531882183751456, guid: 0fef1a4b52570344e9908954d8c89f59, type: 2}
 --- !u!1 &392012852
 GameObject:
   m_ObjectHideFlags: 0
@@ -20404,7 +20405,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1628920478
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20458,7 +20459,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1628920480}
   m_OnClick:
     m_PersistentCalls:
@@ -22340,12 +22341,13 @@ MonoBehaviour:
   _canvas: {fileID: 375732893}
   _jobs:
   - {fileID: 1222958424102090, guid: 86add1277fe664846b3404c1ba3d1a1d, type: 2}
-  - {fileID: 1459901079173184, guid: bcfba8b479c481c4f95e19e4005fa1ba, type: 2}
+  - {fileID: 1962928273671142, guid: 61da8da3f30ca3e4aa7a2179e7d5e32e, type: 2}
   _buttons:
   - {fileID: 502785835}
   - {fileID: 1628920479}
   - {fileID: 92540856}
   _skillPanelList:
+  - {fileID: 114676753519682904, guid: 62edf362464fdeb40b00bf4c6974958d, type: 2}
   - {fileID: 114676753519682904, guid: 62edf362464fdeb40b00bf4c6974958d, type: 2}
 --- !u!4 &1857252215
 Transform:

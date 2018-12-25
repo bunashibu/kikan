@@ -21,7 +21,7 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
---- !u!114 &114461901350347474
+--- !u!114 &114096016541105058
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -29,7 +29,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a75aa2a4823b9641a7ae71fc8283958, type: 3}
+  m_Script: {fileID: 11500000, guid: 1e4e7dcf805d4b04186fc602b56dc96d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1101 &1101013922220294976
@@ -65,7 +65,7 @@ AnimatorState:
   m_Transitions:
   - {fileID: 1101013922220294976}
   m_StateMachineBehaviours:
-  - {fileID: 114461901350347474}
+  - {fileID: 114096016541105058}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -73,11 +73,13 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: 0848b95135cd0b046885c99cb0d29784, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!1107 &1107817637481237578
 AnimatorStateMachine:
   serializedVersion: 5

@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 95265882628061898}
   - component: {fileID: 82374516042818076}
   m_Layer: 0
-  m_Name: HitX
+  m_Name: ManjiHit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

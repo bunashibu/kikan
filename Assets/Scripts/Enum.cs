@@ -20,7 +20,8 @@ namespace Bunashibu.Kikan {
 
   public enum HitEffectType {
     None,
-    Manji
+    Manji,
+    Magician
   }
 
   public enum NumberPopupType {

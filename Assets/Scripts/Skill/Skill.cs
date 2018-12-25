@@ -7,7 +7,10 @@ namespace Bunashibu.Kikan {
   public class Skill : Photon.MonoBehaviour {
     [PunRPC]
     protected void SyncInitRPC(bool flipX, int viewID) {
-      gameObject.GetComponent<SpriteRenderer>().flipX = flipX;
+      var renderer = gameObject.GetComponent<SpriteRenderer>();
+      if (renderer != null)
+        renderer.flipX = flipX;
+
       _skillUserObj = PhotonView.Find(viewID).gameObject;
       _skillUserViewID = viewID;
     }
