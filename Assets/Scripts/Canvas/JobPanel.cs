@@ -21,7 +21,7 @@ namespace Bunashibu.Kikan {
     }
 
     private void RandomPick() {
-      int n = (int)(Random.value * (_jobs.Length - 1));
+      int n = Random.Range(0, _jobs.Length);
       Pick(n);
     }
 
