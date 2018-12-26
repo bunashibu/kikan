@@ -258,6 +258,9 @@ MonoBehaviour:
     _maxDeviation: 13
     _criticalPercent: 0
   _targetNum: 1
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 16896
 --- !u!114 &114196859920293528
 MonoBehaviour:
   m_ObjectHideFlags: 1

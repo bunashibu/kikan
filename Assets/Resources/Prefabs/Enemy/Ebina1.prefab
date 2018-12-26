@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114131655490488238}
   - component: {fileID: 114065065712931694}
   - component: {fileID: 114877389074265294}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: HpBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 224802766746382872}
   - component: {fileID: 222582061104136052}
   - component: {fileID: 114415172306918722}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 224874800589711232}
   - component: {fileID: 222116660831801992}
   - component: {fileID: 114134023149177008}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4470318406791028}
   - component: {fileID: 68181835577372384}
-  m_Layer: 14
+  m_Layer: 19
   m_Name: FootCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 223032173142747386}
   - component: {fileID: 114807848221138116}
   - component: {fileID: 114280764907949714}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224764587539830644}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}

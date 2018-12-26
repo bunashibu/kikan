@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 224286638705543164}
   - component: {fileID: 222098583304579822}
   - component: {fileID: 114311280518605368}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 114020719393736472}
   - component: {fileID: 114047511076577264}
   - component: {fileID: 114365085813304948}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,7 +59,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4551016796272386}
   - component: {fileID: 61122694268143702}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: CenterCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77,7 +77,7 @@ GameObject:
   - component: {fileID: 222083849123062222}
   - component: {fileID: 114407046333056684}
   - component: {fileID: 114037969435547560}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224315681190365310}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,7 +157,7 @@ GameObject:
   - component: {fileID: 222857971801613822}
   - component: {fileID: 114768131671356324}
   - component: {fileID: 114387204245604278}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,7 +174,7 @@ GameObject:
   - component: {fileID: 224748533845205676}
   - component: {fileID: 222668923805223928}
   - component: {fileID: 114350780653676318}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: PopupRemark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,7 +191,7 @@ GameObject:
   - component: {fileID: 224684635037652156}
   - component: {fileID: 222449762650134822}
   - component: {fileID: 114976675510564106}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -209,7 +209,7 @@ GameObject:
   - component: {fileID: 114337886500200256}
   - component: {fileID: 114301068641892260}
   - component: {fileID: 114332064911271810}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: HpBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -228,7 +228,7 @@ GameObject:
   - component: {fileID: 114381345544009090}
   - component: {fileID: 114071637982662584}
   - component: {fileID: 222453168283641060}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -245,7 +245,7 @@ GameObject:
   - component: {fileID: 224575347047955270}
   - component: {fileID: 222110288575452678}
   - component: {fileID: 114178471444230750}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Message
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,7 +262,7 @@ GameObject:
   - component: {fileID: 224416624099084454}
   - component: {fileID: 222504276525974986}
   - component: {fileID: 114352227811687294}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -278,7 +278,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4183488024897370}
   - component: {fileID: 68468833431425482}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: FootCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
