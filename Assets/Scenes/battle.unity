@@ -22348,7 +22348,7 @@ MonoBehaviour:
   - {fileID: 92540856}
   _skillPanelList:
   - {fileID: 114676753519682904, guid: 62edf362464fdeb40b00bf4c6974958d, type: 2}
-  - {fileID: 114676753519682904, guid: 62edf362464fdeb40b00bf4c6974958d, type: 2}
+  - {fileID: 114665016936095242, guid: a04de3d511f2e454a96bb44bf6f203c4, type: 2}
 --- !u!4 &1857252215
 Transform:
   m_ObjectHideFlags: 0
