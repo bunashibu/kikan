@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   [RequireComponent(typeof(Character2D))]
-  public class Enemy : MonoBehaviour, ICharacter, IOnDebuffed, IOnAttacked, IAttacker, IPhotonBehaviour, IKillRewardGiver {
+  public class Enemy : MonoBehaviour, ICharacter, IOnDebuffed, IOnAttacked, IOnForced, IAttacker, IPhotonBehaviour, IKillRewardGiver {
     void Awake() {
       Movement      = new EnemyMovement();
       Movement.SetMoveForce(1.0f);

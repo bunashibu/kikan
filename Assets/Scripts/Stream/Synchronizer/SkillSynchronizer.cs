@@ -18,8 +18,6 @@ namespace Bunashibu.Kikan {
     }
 
     public void SyncAttack(int attackerViewID, int targetViewID, int damage, bool isCritical, HitEffectType hitEffectType) {
-      Assert.IsTrue(PhotonNetwork.isMasterClient);
-
       photonView.RPC("SyncAttackRPC", PhotonTargets.AllViaServer, attackerViewID, targetViewID, damage, isCritical, hitEffectType);
     }
 
@@ -33,8 +31,6 @@ namespace Bunashibu.Kikan {
     }
 
     public void SyncDebuff(int targetViewID, DebuffType debuffType, float duration) {
-      Assert.IsTrue(PhotonNetwork.isMasterClient);
-
       photonView.RPC("SyncDebuffRPC", PhotonTargets.AllViaServer, targetViewID, debuffType, duration);
     }
 
@@ -48,9 +44,20 @@ namespace Bunashibu.Kikan {
     }
 
     public void SyncHeal(int targetViewID, int quantity) {
-      Assert.IsTrue(photonView.isMine);
-
       photonView.RPC("SyncHealRPC", PhotonTargets.AllViaServer, targetViewID, quantity);
+    }
+
+    [PunRPC]
+    private void SyncForceRPC(int targetViewID, float force, Vector2 direction) {
+      var target = PhotonView.Find(targetViewID).gameObject.GetComponent<IOnForced>();
+      Assert.IsNotNull(target);
+
+      var flowEntity = new ForceFlowEntity(target, force, direction);
+      SkillStream.OnNextForce(flowEntity);
+    }
+
+    public void SyncForce(int targetViewID, float force, Vector2 direction) {
+      photonView.RPC("SyncForceRPC", PhotonTargets.AllViaServer, targetViewID, force, direction);
     }
   }
 }

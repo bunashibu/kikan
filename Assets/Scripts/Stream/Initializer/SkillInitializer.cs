@@ -41,6 +41,11 @@ namespace Bunashibu.Kikan {
         .Subscribe(entity => {
           entity.Target.Hp.Add(entity.Quantity);
         });
+
+      SkillStream.OnForced
+        .Subscribe(entity => {
+          entity.Target.Rigid.AddForce(entity.Direction * entity.Force, ForceMode2D.Impulse);
+        });
     }
   }
 }

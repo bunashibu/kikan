@@ -8,7 +8,7 @@ using UnityEngine.Assertions;
 using UniRx;
 
 namespace Bunashibu.Kikan {
-  public class Player : MonoBehaviour, IPhotonBehaviour, ICharacter, ISpeaker, IBattleMovementPlayer, ILobbyMovementPlayer, ICorePlayer, IAttacker, IOnAttacked, IOnDebuffed, IKillRewardTaker, IKillRewardGiver {
+  public class Player : MonoBehaviour, IPhotonBehaviour, ICharacter, ISpeaker, IBattleMovementPlayer, ILobbyMovementPlayer, ICorePlayer, IAttacker, IOnAttacked, IOnDebuffed, IOnForced, IKillRewardTaker, IKillRewardGiver {
     void Awake() {
       State         = new CharacterState();
       StateTransfer = new StateTransfer(_initState, _animator);
