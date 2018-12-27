@@ -33,21 +33,21 @@ namespace Bunashibu.Kikan {
       return true;
     }
 
+    public bool IsSameTeam(GameObject targetObj, GameObject skillUserObj) {
+      var target = targetObj.GetComponent<Player>();
+      var skillUser = skillUserObj.GetComponent<Player>();
+
+      if (target == null || skillUser == null)
+        return false;
+
+      return (target.PlayerInfo.Team == skillUser.PlayerInfo.Team);
+    }
+
     private bool IsDupHit(GameObject targetObj) {
       var target = targetObj.GetComponent<IOnAttacked>();
       Assert.IsNotNull(target);
 
       return _targetRistrictor.ShouldRistrict(target);
-    }
-
-    private bool IsSameTeam(GameObject targetObj, GameObject skillUserObj) {
-      var target = targetObj.GetComponent<Player>();
-      Assert.IsNotNull(target);
-
-      var skillUser = skillUserObj.GetComponent<Player>();
-      Assert.IsNotNull(skillUser);
-
-      return (target.PlayerInfo.Team == skillUser.PlayerInfo.Team);
     }
 
     private TargetRistrictor _targetRistrictor;

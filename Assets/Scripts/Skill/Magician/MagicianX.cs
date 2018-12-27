@@ -24,22 +24,25 @@ namespace Bunashibu.Kikan {
       if (!PhotonNetwork.isMasterClient)
         return;
 
-      Collider2D[] candidates = new Collider2D[32];
-      int count = _collider.OverlapCollider(_filter, candidates);
+      Collider2D[] colliders = new Collider2D[32];
+      int count = _collider.OverlapCollider(_filter, colliders);
 
       if (count == 0)
         return;
 
-      // Get the most nearest character's collider index
-      int index = candidates.Where(candidate => candidate != null)
-        .Select((candidate, i) =>
-          new {
-            Val = _collider.Distance(candidate).distance,
-            Index = i
-          })
-        .Aggregate((min, tmp) => (min.Val < tmp.Val) ? min : tmp).Index;
+      var candidates = colliders.Where(candidate => candidate != null)
+        .Where(candidate => !_targetChecker.IsSameTeam(candidate.gameObject, _skillUserObj));
 
-      var targetCollider = candidates[index];
+      if (candidates.Count() == 0)
+        return;
+
+      // Get the most nearest character's collider
+      var targetCollider = candidates.Select(candidate =>
+          new {
+            Candidate = candidate,
+            Distance = Vector3.Distance(candidate.transform.position, _skillUserObj.transform.position)
+          })
+        .Aggregate((min, tmp) => (min.Distance < tmp.Distance) ? min : tmp).Candidate;
 
       if (_targetChecker.IsAttackTarget(targetCollider, _skillUserObj)) {
         DamageCalculator.Calculate(_skillUserObj, _attackInfo);
