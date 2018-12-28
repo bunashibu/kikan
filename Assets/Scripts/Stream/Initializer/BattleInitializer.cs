@@ -22,7 +22,8 @@ namespace Bunashibu.Kikan {
             killPlayer.KillCount.Value += 1;
             deathPlayer.DeathCount.Value += 1;
 
-            killPlayer.AudioEnvironment.PlayOneShot("Kill1");
+            if (killPlayer.PhotonView.isMine)
+              killPlayer.AudioEnvironment.PlayOneShot("Kill1");
 
             bool isSameTeam = ((int)PhotonNetwork.player.CustomProperties["Team"] == killPlayer.PlayerInfo.Team) ? true : false;
             _killMessagePanel.InstantiateMessage(killPlayer, deathPlayer, isSameTeam);
