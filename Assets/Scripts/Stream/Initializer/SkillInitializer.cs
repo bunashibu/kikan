@@ -18,7 +18,7 @@ namespace Bunashibu.Kikan {
               damageSkin = ((IDamageSkin)entity.Attacker).DamageSkinId;
 
             HitEffectPopupEnvironment.Instance.PopupHitEffect(entity.HitEffectType, targetPhoton);
-            NumberPopupEnvironment.Instance.PopupNumber(entity.Damage, entity.IsCritical, damageSkin, targetPhoton);
+            NumberPopupEnvironment.Instance.PopupDamage(entity.Damage, entity.IsCritical, damageSkin, targetPhoton);
           }
 
           if (entity.Target is Enemy) {
@@ -40,6 +40,11 @@ namespace Bunashibu.Kikan {
       SkillStream.OnHealed
         .Subscribe(entity => {
           entity.Target.Hp.Add(entity.Quantity);
+
+          if (entity.Target is IPhotonBehaviour) {
+            var targetPhoton = (IPhotonBehaviour)entity.Target;
+            NumberPopupEnvironment.Instance.PopupHeal(entity.Quantity, targetPhoton);
+          }
         });
 
       SkillStream.OnForced
