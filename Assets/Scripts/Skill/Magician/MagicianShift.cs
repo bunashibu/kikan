@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Assertions;
 
 namespace Bunashibu.Kikan {
   [RequireComponent(typeof(SkillSynchronizer))]
@@ -13,11 +12,15 @@ namespace Bunashibu.Kikan {
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
-      if (PhotonNetwork.isMasterClient && _targetChecker.IsAttackTarget(collider, _skillUserObj)) {
-        DamageCalculator.Calculate(_skillUserObj, _attackInfo);
-
+      if (PhotonNetwork.isMasterClient) {
         var target = collider.gameObject.GetComponent<IPhoton>();
-        Assert.IsNotNull(target);
+
+        if (target == null)
+          return;
+        if (_targetChecker.IsSameTeam(collider.gameObject, _skillUserObj))
+          return;
+
+        DamageCalculator.Calculate(_skillUserObj, _attackInfo);
 
         var direction = _renderer.flipX ? Vector2.right : Vector2.left;
 

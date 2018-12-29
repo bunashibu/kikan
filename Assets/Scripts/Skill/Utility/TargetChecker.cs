@@ -5,32 +5,8 @@ using UnityEngine.Assertions;
 
 namespace Bunashibu.Kikan {
   public class TargetChecker {
-    public TargetChecker(int targetNum, int dupHitNum = 0) {
-      _targetRistrictor = new TargetRistrictor(targetNum, dupHitNum);
-    }
-
-    public bool IsAttackTarget(Collider2D collider, GameObject skillUserObj) {
-      var targetObj = collider.gameObject;
-
-      if (targetObj == skillUserObj)
-        return false;
-
-      switch (targetObj.tag) {
-        case "Player":
-          if (IsDupHit(targetObj) || IsSameTeam(targetObj, skillUserObj))
-            return false;
-
-          break;
-        case "Enemy":
-          if (IsDupHit(targetObj))
-            return false;
-
-          break;
-        default:
-          return false;
-      }
-
-      return true;
+    public TargetChecker(int maxSimulHit, int maxSustainHit = 0) {
+      _targetRistrictor = new TargetRistrictor(maxSimulHit, maxSustainHit);
     }
 
     public bool IsSameTeam(GameObject targetObj, GameObject skillUserObj) {
@@ -43,11 +19,25 @@ namespace Bunashibu.Kikan {
       return (target.PlayerInfo.Team == skillUser.PlayerInfo.Team);
     }
 
-    private bool IsDupHit(GameObject targetObj) {
+    public bool IsNotSameTeam(GameObject targetObj, GameObject skillUserObj) {
+      return !IsSameTeam(targetObj, skillUserObj);
+    }
+
+    public bool IsMaxSimulHit(GameObject targetObj) {
+      return false;
+    }
+
+    public bool IsMaxSustainHit(GameObject targetObj) {
       var target = targetObj.GetComponent<IOnAttacked>();
-      Assert.IsNotNull(target);
+
+      if (target == null)
+        return true;
 
       return _targetRistrictor.ShouldRistrict(target);
+    }
+
+    public bool IsNeedInterval(GameObject target) {
+      return false;
     }
 
     private TargetRistrictor _targetRistrictor;

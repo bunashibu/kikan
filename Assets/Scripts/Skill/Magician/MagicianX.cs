@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Assertions;
 
 namespace Bunashibu.Kikan {
   [RequireComponent(typeof(SkillSynchronizer))]
   public class MagicianX : Skill {
     void Awake() {
       _synchronizer = GetComponent<SkillSynchronizer>();
-      _targetChecker = new TargetChecker(_targetNum);
+      _targetChecker = new TargetChecker(_targetLimit);
 
       _collider = GetComponent<Collider2D>();
       _filter = new ContactFilter2D();
@@ -21,22 +20,31 @@ namespace Bunashibu.Kikan {
     }
 
     void Start() {
-      if (!PhotonNetwork.isMasterClient)
-        return;
+      if (PhotonNetwork.isMasterClient) {
+        var target = GetMostNearestTarget();
 
+        if (target == null)
+          return;
+
+        DamageCalculator.Calculate(_skillUserObj, _attackInfo);
+
+        _synchronizer.SyncAttack(_skillUserViewID, target.PhotonView.viewID, DamageCalculator.Damage, DamageCalculator.IsCritical, HitEffectType.Magician);
+      }
+    }
+
+    private IPhoton GetMostNearestTarget() {
       Collider2D[] colliders = new Collider2D[32];
-      int count = _collider.OverlapCollider(_filter, colliders);
+      int overlapCount = _collider.OverlapCollider(_filter, colliders);
 
-      if (count == 0)
-        return;
+      if (overlapCount == 0)
+        return null;
 
       var candidates = colliders.Where(candidate => candidate != null)
-        .Where(candidate => !_targetChecker.IsSameTeam(candidate.gameObject, _skillUserObj));
+        .Where(candidate => _targetChecker.IsNotSameTeam(candidate.gameObject, _skillUserObj));
 
       if (candidates.Count() == 0)
-        return;
+        return null;
 
-      // Get the most nearest character's collider
       var targetCollider = candidates.Select(candidate =>
           new {
             Candidate = candidate,
@@ -44,14 +52,9 @@ namespace Bunashibu.Kikan {
           })
         .Aggregate((min, tmp) => (min.Distance < tmp.Distance) ? min : tmp).Candidate;
 
-      if (_targetChecker.IsAttackTarget(targetCollider, _skillUserObj)) {
-        DamageCalculator.Calculate(_skillUserObj, _attackInfo);
+      var target = targetCollider.gameObject.GetComponent<IPhoton>();
 
-        var target = targetCollider.gameObject.GetComponent<IPhoton>();
-        Assert.IsNotNull(target);
-
-        _synchronizer.SyncAttack(_skillUserViewID, target.PhotonView.viewID, DamageCalculator.Damage, DamageCalculator.IsCritical, HitEffectType.Magician);
-      }
+      return target;
     }
 
     void OnDestroy() {
@@ -59,7 +62,7 @@ namespace Bunashibu.Kikan {
     }
 
     [SerializeField] private AttackInfo _attackInfo;
-    [SerializeField] private int _targetNum;
+    [SerializeField] private int _targetLimit;
     [SerializeField] private LayerMask _layerMask;
 
     private SkillSynchronizer _synchronizer;

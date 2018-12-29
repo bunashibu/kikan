@@ -5,36 +5,36 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   public class TargetRistrictor {
-    public TargetRistrictor(int targetNum, int dupHitNum) {
+    public TargetRistrictor(int maxTargetCount, int maxHitCount) {
       _targetDictionary = new Dictionary<IOnAttacked, int>();
-      _targetNum = targetNum;
-      _dupHitNum = dupHitNum;
-      _isMaxTargetHit = IsMaxTargetHit();
+      _maxTargetCount = maxTargetCount;
+      _maxHitCount = maxHitCount;
+      _isMaxTargetCount = IsMaxTargetCount();
     }
 
     public bool ShouldRistrict(IOnAttacked target) {
-      return _isMaxTargetHit() || IsMaxDupHit(target);
+      return _isMaxTargetCount() || IsMaxHitCount(target);
     }
 
-    private Func<bool> IsMaxTargetHit() {
+    private Func<bool> IsMaxTargetCount() {
       int i = 0;
 
       return () => {
         i += 1;
-        if (i > _targetNum)
+        if (i > _maxTargetCount)
           return true;
 
         return false;
       };
     }
 
-    private bool IsMaxDupHit(IOnAttacked target) {
+    private bool IsMaxHitCount(IOnAttacked target) {
       if (!_targetDictionary.ContainsKey(target)) {
         _targetDictionary[target] = 0;
         return false;
       }
 
-      if (_targetDictionary[target] < _dupHitNum) {
+      if (_targetDictionary[target] < _maxHitCount) {
         _targetDictionary[target] += 1;
         return false;
       }
@@ -43,9 +43,9 @@ namespace Bunashibu.Kikan {
     }
 
     private Dictionary<IOnAttacked, int> _targetDictionary;
-    private Func<bool> _isMaxTargetHit;
-    private int _targetNum;
-    private int _dupHitNum;
+    private Func<bool> _isMaxTargetCount;
+    private int _maxTargetCount;
+    private int _maxHitCount;
   }
 }
 

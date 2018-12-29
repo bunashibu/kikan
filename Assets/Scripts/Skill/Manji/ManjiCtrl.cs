@@ -18,7 +18,10 @@ namespace Bunashibu.Kikan {
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
-      if (PhotonNetwork.isMasterClient && _targetChecker.IsAttackTarget(collider, _skillUserObj)) {
+      if (PhotonNetwork.isMasterClient) {
+        if (_targetChecker.IsSameTeam(collider.gameObject, _skillUserObj))
+          return;
+
         DamageCalculator.Calculate(_skillUserObj, _attackInfo);
 
         var target = collider.gameObject.GetComponent<IPhoton>();
