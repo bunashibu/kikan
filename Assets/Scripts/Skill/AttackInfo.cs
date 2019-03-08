@@ -5,9 +5,9 @@ using UnityEngine;
 namespace Bunashibu.Kikan {
   [System.Serializable]
   public class AttackInfo {
-    public int DamagePercent   { get { return _damagePercent;   } }
-    public int MaxDeviation    { get { return _maxDeviation;    } }
-    public int CriticalPercent { get { return _criticalPercent; } }
+    public int DamagePercent   => _damagePercent;
+    public int MaxDeviation    => _maxDeviation;
+    public int CriticalPercent => _criticalPercent;
 
     [SerializeField] private int _damagePercent;
     [SerializeField] private int _maxDeviation;

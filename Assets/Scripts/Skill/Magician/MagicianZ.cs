@@ -7,30 +7,30 @@ namespace Bunashibu.Kikan {
   public class MagicianZ : Skill {
     void Awake() {
       _synchronizer = GetComponent<SkillSynchronizer>();
-      _targetChecker = new TargetChecker(_targetLimit, _dupHealLimit);
+      _hitRistrictor = new HitRistrictor(_hitInfo);
     }
 
     void OnTriggerStay2D(Collider2D collider) {
-      if (_targetChecker.IsSameTeam(collider.gameObject, _skillUserObj)) {
-        var target = collider.gameObject.GetComponent<IPhoton>();
+      var target = collider.gameObject.GetComponent<IPhoton>();
 
-        if (target == null)
+      if (target == null)
+        return;
+
+      if (target.PhotonView.isMine) {
+        if (TeamChecker.IsNotSameTeam(collider.gameObject, _skillUserObj))
           return;
-        if (_targetChecker.IsMaxSustainHit(collider.gameObject))
-          return;
-        if (_targetChecker.IsNeedInterval(collider.gameObject))
+        if (_hitRistrictor.ShouldRistrict(collider.gameObject))
           return;
 
         _synchronizer.SyncHeal(target.PhotonView.viewID, _quantity);
       }
     }
 
-    [SerializeField] private int _targetLimit;
-    [SerializeField] private int _dupHealLimit;
+    [SerializeField] private HitInfo _hitInfo;
     [SerializeField] private int _quantity;
 
     private SkillSynchronizer _synchronizer;
-    private TargetChecker _targetChecker;
+    private HitRistrictor _hitRistrictor;
   }
 }
 

@@ -7,7 +7,7 @@ namespace Bunashibu.Kikan {
   public class MagicianShift : Skill {
     void Awake() {
       _synchronizer = GetComponent<SkillSynchronizer>();
-      _targetChecker = new TargetChecker(_targetNum);
+      _hitRistrictor = new HitRistrictor(_hitInfo);
       _renderer = GetComponent<SpriteRenderer>();
     }
 
@@ -17,7 +17,9 @@ namespace Bunashibu.Kikan {
 
         if (target == null)
           return;
-        if (_targetChecker.IsSameTeam(collider.gameObject, _skillUserObj))
+        if (TeamChecker.IsSameTeam(collider.gameObject, _skillUserObj))
+          return;
+        if (_hitRistrictor.ShouldRistrict(collider.gameObject))
           return;
 
         DamageCalculator.Calculate(_skillUserObj, _attackInfo);
@@ -30,11 +32,11 @@ namespace Bunashibu.Kikan {
     }
 
     [SerializeField] private AttackInfo _attackInfo;
-    [SerializeField] private int _targetNum;
+    [SerializeField] private HitInfo _hitInfo;
     [SerializeField] private float _force;
 
     private SkillSynchronizer _synchronizer;
-    private TargetChecker _targetChecker;
+    private HitRistrictor _hitRistrictor;
     private SpriteRenderer _renderer;
   }
 }

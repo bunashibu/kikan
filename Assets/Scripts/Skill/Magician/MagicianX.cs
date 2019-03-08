@@ -8,7 +8,6 @@ namespace Bunashibu.Kikan {
   public class MagicianX : Skill {
     void Awake() {
       _synchronizer = GetComponent<SkillSynchronizer>();
-      _targetChecker = new TargetChecker(_targetLimit);
 
       _collider = GetComponent<Collider2D>();
       _filter = new ContactFilter2D();
@@ -40,7 +39,7 @@ namespace Bunashibu.Kikan {
         return null;
 
       var candidates = colliders.Where(candidate => candidate != null)
-        .Where(candidate => _targetChecker.IsNotSameTeam(candidate.gameObject, _skillUserObj));
+        .Where(candidate => TeamChecker.IsNotSameTeam(candidate.gameObject, _skillUserObj));
 
       if (candidates.Count() == 0)
         return null;
@@ -62,11 +61,10 @@ namespace Bunashibu.Kikan {
     }
 
     [SerializeField] private AttackInfo _attackInfo;
-    [SerializeField] private int _targetLimit;
+    [SerializeField] private HitInfo _hitInfo;
     [SerializeField] private LayerMask _layerMask;
 
     private SkillSynchronizer _synchronizer;
-    private TargetChecker _targetChecker;
 
     private Collider2D _collider;
     private ContactFilter2D _filter;

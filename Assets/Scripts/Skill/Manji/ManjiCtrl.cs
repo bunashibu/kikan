@@ -9,7 +9,6 @@ namespace Bunashibu.Kikan {
   public class ManjiCtrl : Skill {
     void Awake() {
       _synchronizer = GetComponent<SkillSynchronizer>();
-      _targetChecker = new TargetChecker(_targetNum);
     }
 
     void Start() {
@@ -19,7 +18,7 @@ namespace Bunashibu.Kikan {
 
     void OnTriggerEnter2D(Collider2D collider) {
       if (PhotonNetwork.isMasterClient) {
-        if (_targetChecker.IsSameTeam(collider.gameObject, _skillUserObj))
+        if (TeamChecker.IsSameTeam(collider.gameObject, _skillUserObj))
           return;
 
         DamageCalculator.Calculate(_skillUserObj, _attackInfo);
@@ -138,7 +137,6 @@ namespace Bunashibu.Kikan {
     [SerializeField] private LayerMask _groundLayer;
 
     private SkillSynchronizer _synchronizer;
-    private TargetChecker _targetChecker;
 
     private float _moveDistance = 3;
   }

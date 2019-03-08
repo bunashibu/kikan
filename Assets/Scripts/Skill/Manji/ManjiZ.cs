@@ -8,12 +8,11 @@ namespace Bunashibu.Kikan {
   public class ManjiZ : Skill {
     void Awake() {
       _synchronizer = GetComponent<SkillSynchronizer>();
-      _targetChecker = new TargetChecker(_targetNum);
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
       if (PhotonNetwork.isMasterClient) {
-        if (_targetChecker.IsSameTeam(collider.gameObject, _skillUserObj))
+        if (TeamChecker.IsSameTeam(collider.gameObject, _skillUserObj))
           return;
 
         DamageCalculator.Calculate(_skillUserObj, _attackInfo);
@@ -31,7 +30,6 @@ namespace Bunashibu.Kikan {
     [SerializeField] private float _stunSec;
 
     private SkillSynchronizer _synchronizer;
-    private TargetChecker _targetChecker;
   }
 }
 

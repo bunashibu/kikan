@@ -288,7 +288,10 @@ MonoBehaviour:
     _damagePercent: 250
     _maxDeviation: 13
     _criticalPercent: 0
-  _targetNum: 6
+  _hitInfo:
+    _maxTargetCount: 6
+    _maxHitCount: 1
+    _interval: 0
   _force: 7
 --- !u!114 &114863497027088446
 MonoBehaviour:
