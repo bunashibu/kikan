@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,7 +28,9 @@ namespace Bunashibu.Kikan {
     }
 
     private bool IsMaxTargetCount() {
-      return (_curState.Count >= _hitInfo.MaxTargetCount);
+      var curCount = _curState.Values.Where(state => Time.time - state.Timestamp < _hitInfo.Interval).Count();
+
+      return (curCount >= _hitInfo.MaxTargetCount);
     }
 
     private bool IsMaxHitCount(IOnAttacked target) {
