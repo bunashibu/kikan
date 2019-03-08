@@ -61,7 +61,6 @@ namespace Bunashibu.Kikan {
     }
 
     [SerializeField] private AttackInfo _attackInfo;
-    [SerializeField] private HitInfo _hitInfo;
     [SerializeField] private LayerMask _layerMask;
 
     private SkillSynchronizer _synchronizer;

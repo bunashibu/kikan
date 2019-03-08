@@ -314,7 +314,10 @@ MonoBehaviour:
     _damagePercent: 200
     _maxDeviation: 10
     _criticalPercent: 0
-  _targetNum: 1
+  _hitInfo:
+    _maxTargetCount: 1
+    _maxHitCount: 1
+    _interval: 0
   _stunSec: 1
 --- !u!212 &212014017042670366
 SpriteRenderer:
