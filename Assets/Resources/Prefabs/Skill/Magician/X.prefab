@@ -257,10 +257,6 @@ MonoBehaviour:
     _damagePercent: 100
     _maxDeviation: 13
     _criticalPercent: 0
-  _hitInfo:
-    _maxTargetCount: 1
-    _maxHitCount: 1
-    _interval: 0
   _layerMask:
     serializedVersion: 2
     m_Bits: 16896
