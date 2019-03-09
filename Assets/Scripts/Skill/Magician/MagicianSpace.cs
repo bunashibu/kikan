@@ -8,6 +8,14 @@ namespace Bunashibu.Kikan {
     void Awake() {
       _synchronizer = GetComponent<SkillSynchronizer>();
       _hitRistrictor = new HitRistrictor(_hitInfo);
+
+      _collider = GetComponent<BoxCollider2D>();
+      _timestamp = Time.time;
+    }
+
+    void Update() {
+      if (Time.time - _timestamp >= _collisionOccurenceTime)
+        _collider.enabled = true;
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
@@ -32,6 +40,10 @@ namespace Bunashibu.Kikan {
 
     private SkillSynchronizer _synchronizer;
     private HitRistrictor _hitRistrictor;
+
+    private BoxCollider2D _collider;
+    private float _timestamp;
+    private float _collisionOccurenceTime = 1.0f;
   }
 }
 
