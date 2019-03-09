@@ -4578,6 +4578,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hitEffectPref:
+  - {fileID: 1152468278750738, guid: ed9074072f1b32d4cb25e8c08d9ec8a6, type: 2}
   - {fileID: 1434783571646526, guid: 7cd6a0060876b9549a410273cf26bc7c, type: 2}
   - {fileID: 1531882183751456, guid: 0fef1a4b52570344e9908954d8c89f59, type: 2}
 --- !u!1 &392012852

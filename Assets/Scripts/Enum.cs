@@ -20,6 +20,7 @@ namespace Bunashibu.Kikan {
 
   public enum HitEffectType {
     None,
+    Heal,
     Manji,
     Magician
   }

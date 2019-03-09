@@ -43,6 +43,7 @@ namespace Bunashibu.Kikan {
 
           if (entity.Target is IPhotonBehaviour) {
             var targetPhoton = (IPhotonBehaviour)entity.Target;
+            HitEffectPopupEnvironment.Instance.PopupHitEffect(HitEffectType.Heal, targetPhoton);
             NumberPopupEnvironment.Instance.PopupHeal(entity.Quantity, targetPhoton);
           }
         });
