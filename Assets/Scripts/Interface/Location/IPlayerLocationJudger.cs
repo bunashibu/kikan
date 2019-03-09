@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
-  public interface IPlayerLocationJudger {
+  public interface IPlayerLocationJudger : IGroundLocationJudger {
     void InitializeFootJudge(Collider2D footCollider);
     void InitializeCenterJudge(Collider2D centerCollider);
 

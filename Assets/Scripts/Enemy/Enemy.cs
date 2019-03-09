@@ -16,8 +16,8 @@ namespace Bunashibu.Kikan {
       Debuff        = new Debuff(transform);
       Debuff.Register(DebuffType.Stun, _stunEffect);
 
-      Location      = new LocationJudger();
-      Location.InitializeFootJudge(_footCollider);
+      LocationJudger = new LocationJudger();
+      LocationJudger.InitializeFootJudge(_footCollider);
     }
 
     void Start() {
@@ -49,7 +49,8 @@ namespace Bunashibu.Kikan {
     public Hp             Hp            { get; private set; }
     public Debuff         Debuff        { get; private set; }
 
-    public IEnemyLocationJudger Location { get; private set; }
+    public LocationJudger       LocationJudger { get; private set; }
+    public IEnemyLocationJudger Location       => (IEnemyLocationJudger)LocationJudger;
 
     public TargetChaseSystem TargetChaseSystem => _targetChaseSystem;
 

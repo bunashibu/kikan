@@ -10,11 +10,11 @@ using UniRx;
 namespace Bunashibu.Kikan {
   public class Player : MonoBehaviour, IPhotonBehaviour, ICharacter, ISpeaker, IBattleMovementPlayer, ILobbyMovementPlayer, ICorePlayer, IAttacker, IOnAttacked, IOnDebuffed, IOnForced, IKillRewardTaker, IKillRewardGiver {
     void Awake() {
-      State         = new CharacterState();
-      StateTransfer = new StateTransfer(_initState, _animator);
-      Location      = new LocationJudger();
-      Location.InitializeFootJudge(_footCollider);
-      Location.InitializeCenterJudge(_centerCollider);
+      State          = new CharacterState();
+      StateTransfer  = new StateTransfer(_initState, _animator);
+      LocationJudger = new LocationJudger();
+      LocationJudger.InitializeFootJudge(_footCollider);
+      LocationJudger.InitializeCenterJudge(_centerCollider);
     }
 
     // THINK: coupling with global reference. to be a stream
@@ -120,7 +120,8 @@ namespace Bunashibu.Kikan {
     public ReadOnlyCollection<int> HpTable  => _hpTable.Data;
     public ReadOnlyCollection<int> ExpTable => _expTable.Data;
 
-    public IPlayerLocationJudger Location { get; private set; }
+    public LocationJudger        LocationJudger { get; private set; }
+    public IPlayerLocationJudger Location       => (IPlayerLocationJudger)LocationJudger;
 
     public NameBackground NameBackground => _nameBackground;
     public PopupRemark    PopupRemark    => _popupRemark;

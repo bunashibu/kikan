@@ -10,6 +10,10 @@ namespace Bunashibu.Kikan {
       _character = gameObject.GetComponent<ICharacter>();
     }
 
+    void Start() {
+      _location = (IGroundLocationJudger)_character.LocationJudger;
+    }
+
     void Update() {
       UpdateGroundRaycast();
 
@@ -23,8 +27,7 @@ namespace Bunashibu.Kikan {
       float rayLength = 0.1f + Mathf.Abs(_character.Rigid.velocity.y) * Time.deltaTime;
       RaycastHit2D hitGround = Physics2D.Raycast(footRayOrigin, Vector2.down, rayLength, _groundMask);
 
-      /*
-      if (_character.Location.IsGround) {
+      if (_location.IsGround) {
         float degAngle = Vector2.Angle(hitGround.normal, Vector2.up);
         if (degAngle == 90)
           degAngle = 0;
@@ -45,7 +48,6 @@ namespace Bunashibu.Kikan {
         _character.State.GroundLeft  = false;
         _character.State.GroundRight = false;
       }
-      */
 
       Debug.DrawRay(footRayOrigin, Vector2.down * rayLength, Color.red);
     }
@@ -68,6 +70,7 @@ namespace Bunashibu.Kikan {
 
     [SerializeField] private LayerMask _groundMask;
     private ICharacter _character;
+    private IGroundLocationJudger _location;
   }
 }
 
