@@ -28,7 +28,12 @@ namespace Bunashibu.Kikan {
     }
 
     private bool IsMaxTargetCount() {
-      var curCount = _curState.Values.Where(state => Time.time - state.Timestamp < _hitInfo.Interval).Count();
+      int curCount = 0;
+
+      if (_hitInfo.Interval == 0)
+        curCount = _curState.Count;
+      else
+        curCount = _curState.Values.Where(state => Time.time - state.Timestamp < _hitInfo.Interval).Count();
 
       return (curCount >= _hitInfo.MaxTargetCount);
     }
