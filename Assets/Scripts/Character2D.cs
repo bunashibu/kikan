@@ -17,7 +17,7 @@ namespace Bunashibu.Kikan {
     void Update() {
       UpdateGroundRaycast();
 
-      if (IsOutOfArea())
+      if (_character.PhotonView.isMine && IsOutOfArea())
         AdjustPosition();
     }
 

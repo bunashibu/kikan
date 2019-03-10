@@ -15,14 +15,10 @@ namespace Bunashibu.Kikan {
 
         if (transform.rotation == _destRotation) {
           _isRotating = false;
-          _timePanel.SetTime(_time);
-          _camera.EnableTracking();
-          ResetPlayerStatus();
 
-          var judger = Instantiate(_judger).GetComponent<WinLoseJudger>() as WinLoseJudger;
-          judger.SetTimePanel(_timePanel);
-          judger.SetCamera(_camera);
-          judger.SetCanvas(_canvas);
+          SetTimeAndCamera();
+          ResetPlayerStatus();
+          InstantiateWinLoseJudger();
         }
       }
     }
@@ -40,29 +36,33 @@ namespace Bunashibu.Kikan {
     }
 
     public void Prepare() {
-      PreparePlayerToMove();
+      PreparePlayerToGather();
       PrepareEasing();
-    }
-
-    private void PreparePlayerToMove() {
-      int viewID = (int)PhotonNetwork.player.CustomProperties["ViewID"];
-      _player = PhotonView.Find(viewID).GetComponent<Player>() as Player;
-
-      _player.Rigid.velocity = Vector3.zero;
-      _player.Rigid.simulated = false;
-      _player.Observer.SyncRigidSimulated();
-
-      _player.Character.enabled = false;
-      _player.Weapon.SkillInstantiator.enabled = false;
-
-      _camera.DisableTracking();
-      _camera.DisableRestrict();
 
       SkillReference.Instance.DeleteAll();
       MonoUtility.Instance.StopAll();
     }
 
+    private void PreparePlayerToGather() {
+      foreach (PhotonPlayer photonPlayer in PhotonNetwork.playerList) {
+        int viewID = (int)photonPlayer.CustomProperties["ViewID"];
+        var player = PhotonView.Find(viewID).GetComponent<Player>() as Player;
+
+        if (photonPlayer == PhotonNetwork.player)
+          _player = player;
+
+        player.Rigid.velocity = Vector3.zero;
+        player.Rigid.simulated = false;
+
+        player.Character.enabled = false;
+        player.Weapon.SkillInstantiator.enabled = false;
+      }
+    }
+
     private void PrepareEasing() {
+      _camera.DisableTracking();
+      _camera.DisableRestrict();
+
       Vector3 startPosition = _player.transform.position;
       Vector3 startCameraPosition = _camera.transform.position;
       Vector3 gatherPosition = StageReference.Instance.StageData.RespawnPosition;
@@ -83,27 +83,43 @@ namespace Bunashibu.Kikan {
       _camera.transform.position = _easingCamera.GetNextPosition();
     }
 
+    private void SetTimeAndCamera() {
+      _timePanel.SetTime(_time);
+      _camera.EnableTracking();
+    }
+
     private void ResetPlayerStatus() {
-      _player.Rigid.simulated = true;
-      _player.Observer.SyncRigidSimulated();
+      foreach (PhotonPlayer photonPlayer in PhotonNetwork.playerList) {
+        int viewID = (int)photonPlayer.CustomProperties["ViewID"];
+        var player = PhotonView.Find(viewID).GetComponent<Player>() as Player;
 
-      _player.BodyCollider.enabled = true;
+        player.Rigid.simulated = true;
 
-      _player.Character.enabled = true;
-      _player.Weapon.SkillInstantiator.enabled = true;
+        player.BodyCollider.enabled = true;
 
-      _player.StateTransfer.TransitTo("Idle", _player.Animator);
+        player.Character.enabled = true;
+        player.Weapon.SkillInstantiator.enabled = true;
 
-      _player.Hp.FullRecover();
-      //_player.Hp.UpdateView();
+        player.StateTransfer.TransitTo("Idle", player.Animator);
 
-      //_player.BuffState.Reset();
+        player.Hp.FullRecover();
+        //_player.Hp.UpdateView();
+
+        //_player.BuffState.Reset();
+      }
 
       _player.Weapon.SkillInstantiator.ResetAllCT();
 
       MonoUtility.Instance.DelaySec(2.0f, () => {
         _player.PopupRemark.gameObject.SetActive(false);
       });
+    }
+
+    private void InstantiateWinLoseJudger() {
+      var judger = Instantiate(_judger).GetComponent<WinLoseJudger>() as WinLoseJudger;
+      judger.SetTimePanel(_timePanel);
+      judger.SetCamera(_camera);
+      judger.SetCanvas(_canvas);
     }
 
     [SerializeField] private TimePanel _timePanel;
