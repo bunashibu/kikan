@@ -12,18 +12,18 @@ namespace Bunashibu.Kikan {
     }
 
     void Update() {
-      if (StageData.Name == "Battle")
-        UpdateStage();
+      if (StageData.Name == "Battle" && _timePanel.TimeSec <= 0) {
+        SwapStage();
+        _finalStage.Prepare();
+      }
     }
 
-    private void UpdateStage() {
-      if (_timePanel.TimeSec <= 0) {
-        StageData = Resources.Load("Data/StageData/FinalBattle") as StageData;
+    private void SwapStage() {
+      StageData = Resources.Load("Data/StageData/FinalBattle") as StageData;
 
-        _stage.StartRotation();
-        _finalStage.Emerge();
-        _finalStage.StartRotation();
-      }
+      _stage.StartRotation();
+      _finalStage.Emerge();
+      _finalStage.StartRotation();
     }
 
     public StageData StageData { get; private set; }

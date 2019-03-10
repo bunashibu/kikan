@@ -12,21 +12,13 @@ namespace Bunashibu.Kikan {
 
       _player.BodyCollider.enabled = false;
 
-      if (!_player.PhotonView.isMine)
-        return;
-
-      _player.AudioEnvironment.PlayOneShot("Die", 0.5f);
-      SkillReference.Instance.DeleteAll();
-
-      if (StageReference.Instance.StageData.Name == "FinalBattle") {
-        int[] alivePlayerCount = PhotonNetwork.room.CustomProperties["AlivePlayerCount"] as int[];
-        var list = MonoUtility.ToList<int>(alivePlayerCount);
-
-        list[_player.PlayerInfo.Team] -= 1;
-
-        var props = new Hashtable() {{ "AlivePlayerCount", list.ToArray() }};
-        PhotonNetwork.room.SetCustomProperties(props);
+      if (_player.PhotonView.isMine) {
+        _player.AudioEnvironment.PlayOneShot("Die", 0.5f);
+        SkillReference.Instance.DeleteAll();
       }
+
+      if (StageReference.Instance.StageData.Name == "FinalBattle")
+        WinLoseJudger.Instance.UpdateAlivePlayerCount(_player);
     }
 
     private Player _player;

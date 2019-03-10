@@ -21563,7 +21563,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timePanel: {fileID: 422559152}
-  _time: 420
+  _time: 5
   _rotateSpeed: 30
 --- !u!1 &1757445202
 GameObject:

@@ -1,79 +1,48 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 namespace Bunashibu.Kikan {
-  public class WinLoseJudger : Photon.PunBehaviour {
+  public class WinLoseJudger : SingletonMonoBehaviour<WinLoseJudger> {
     void Start() {
-      InitAlivePlayerCount();
-      MonoUtility.Instance.DelayUntil(() => _timePanel.TimeSec <= 0, () => {
-        int[] alivePlayerCount = PhotonNetwork.room.CustomProperties["AlivePlayerCount"] as int[];
-        int redCount = alivePlayerCount[0];
-        int blueCount = alivePlayerCount[1];
+      _photonView = GetComponent<PhotonView>();
 
-        if ( (redCount > 0) && (blueCount > 0) )
+      InitAlivePlayerCount();
+
+      MonoUtility.Instance.DelayUntil(() => _timePanel.TimeSec <= 0, () => {
+        if ( (_alivePlayerCount.Red > 0) && (_alivePlayerCount.Blue > 0) )
           ShowDraw();
       });
     }
 
-    public void SetTimePanel(TimePanel timePanel) {
-      _timePanel = timePanel;
-    }
-
-    public void SetCamera(TrackCamera camera) {
-      _camera = camera;
-    }
-
-    public void SetCanvas(Canvas canvas) {
-      _canvas = canvas;
-    }
-
-    public override void OnPhotonCustomRoomPropertiesChanged(Hashtable props) {
+    void Update() {
       if (_isFinished)
         return;
 
-      int[] alivePlayerCount = props["AlivePlayerCount"] as int[];
-      int redCount = alivePlayerCount[0];
-      int blueCount = alivePlayerCount[1];
+      if (_alivePlayerCount.Red == 0)
+        WinProcess(1);
 
-      if ( (redCount > 0) && (blueCount > 0) )
-        return;
+      if (_alivePlayerCount.Blue == 0)
+        WinProcess(0);
+    }
 
+    private void WinProcess(int winTeam) {
       int team = (int)PhotonNetwork.player.CustomProperties["Team"];
 
-      if ( (redCount == 0 && team == 0) || (blueCount == 0 && team == 1) )
-        ShowLose();
-      else
+      if (team == winTeam)
         ShowWin();
+      else
+        ShowLose();
+
+      _isFinished = true;
     }
 
-    public override void OnConnectedToMaster() {
-      if (_isFinished)
-        PhotonNetwork.JoinRoom("Lobby");
-    }
+    public void UpdateAlivePlayerCount(Player player) {
+      if (player.PlayerInfo.Team == 0)
+        _alivePlayerCount.Red -= 1;
 
-    public override void OnPhotonJoinRoomFailed(object[] codeAndMsg) {
-      if (_isFinished) {
-        RoomOptions roomOptions = new RoomOptions();
-        roomOptions.MaxPlayers = (byte)20;
-
-        PhotonNetwork.JoinOrCreateRoom("Lobby", roomOptions, null);
-      }
-    }
-
-    public override void OnJoinedRoom() {
-      if (_isFinished)
-        SceneChanger.Instance.ChangeScene("Lobby");
-    }
-
-    public override void OnLeftRoom() {
-      if (_isFinished) {
-        if (PhotonNetwork.connected)
-          PhotonNetwork.JoinRoom("Lobby");
-        else
-        PhotonNetwork.ConnectUsingSettings(GameData.Instance.GameVersion);
-      }
+      if (player.PlayerInfo.Team == 1)
+        _alivePlayerCount.Blue -= 1;
     }
 
     private void InitAlivePlayerCount() {
@@ -89,8 +58,34 @@ namespace Bunashibu.Kikan {
           blueCount += 1;
       }
 
-      var props = new Hashtable() {{ "AlivePlayerCount", new int[] {redCount, blueCount} }};
-      PhotonNetwork.room.SetCustomProperties(props);
+      _alivePlayerCount = new AlivePlayerCount(redCount, blueCount);
+    }
+
+    private void ResultProcess(GameObject result) {
+      Instantiate(_transporter);
+
+      result.transform.SetParent(_canvas.transform, false);
+
+      MonoUtility.Instance.DelaySec(3.0f, () => {
+        Destroy(result);
+      });
+
+      MonoUtility.Instance.DelaySec(10.0f, () => {
+        PhotonNetwork.LeaveRoom();
+        _camera.DisableTracking();
+      });
+    }
+
+    public void SetTimePanel(TimePanel timePanel) {
+      _timePanel = timePanel;
+    }
+
+    public void SetCamera(TrackCamera camera) {
+      _camera = camera;
+    }
+
+    public void SetCanvas(Canvas canvas) {
+      _canvas = canvas;
     }
 
     private void ShowWin() {
@@ -108,28 +103,29 @@ namespace Bunashibu.Kikan {
       ResultProcess(result);
     }
 
-    private void ResultProcess(GameObject result) {
-      _isFinished = true;
-
-      result.transform.SetParent(_canvas.transform, false);
-
-      MonoUtility.Instance.DelaySec(3.0f, () => {
-        Destroy(result);
-      });
-
-      MonoUtility.Instance.DelaySec(10.0f, () => {
-        PhotonNetwork.LeaveRoom();
-        _camera.DisableTracking();
-      });
-    }
-
     [SerializeField] private GameObject _winObj;
     [SerializeField] private GameObject _loseObj;
     [SerializeField] private GameObject _drawObj;
+    [SerializeField] private AfterFinalBatlleTransporter _transporter;
+
     private bool _isFinished = false;
-    private TimePanel _timePanel;
+
+    private PhotonView  _photonView;
+    private TimePanel   _timePanel;
     private TrackCamera _camera;
-    private Canvas _canvas;
+    private Canvas      _canvas;
+
+    private AlivePlayerCount _alivePlayerCount;
+  }
+
+  public class AlivePlayerCount {
+    public AlivePlayerCount(int red, int blue) {
+      Red = red;
+      Blue = blue;
+    }
+
+    public int Red;
+    public int Blue;
   }
 }
 

@@ -31,6 +31,7 @@ namespace Bunashibu.Kikan {
         });
 
       BattleStream.OnDied
+        .Where(_ => StageReference.Instance.StageData.Name == "Battle")
         .Subscribe(target => {
           if (target is Player) {
             var player = (Player)target;

@@ -29,7 +29,22 @@ namespace Bunashibu.Kikan {
 
     public void Emerge() {
       gameObject.SetActive(true);
+    }
 
+    public void Hide() {
+      gameObject.SetActive(false);
+    }
+
+    public void StartRotation() {
+      _isRotating = true;
+    }
+
+    public void Prepare() {
+      PreparePlayerToMove();
+      PrepareEasing();
+    }
+
+    private void PreparePlayerToMove() {
       int viewID = (int)PhotonNetwork.player.CustomProperties["ViewID"];
       _player = PhotonView.Find(viewID).GetComponent<Player>() as Player;
 
@@ -45,16 +60,6 @@ namespace Bunashibu.Kikan {
 
       SkillReference.Instance.DeleteAll();
       MonoUtility.Instance.StopAll();
-
-      PrepareEasing();
-    }
-
-    public void Hide() {
-      gameObject.SetActive(false);
-    }
-
-    public void StartRotation() {
-      _isRotating = true;
     }
 
     private void PrepareEasing() {
@@ -105,16 +110,13 @@ namespace Bunashibu.Kikan {
 
     [Header("Final Battle Time (Second)")]
     [SerializeField] private float _time;
-
     [Header("Rotation per second")]
     [SerializeField] private float _rotateSpeed;
 
     [Space(10)]
     [SerializeField] private WinLoseJudger _judger;
-
     [Space(10)]
     [SerializeField] private TrackCamera _camera;
-
     [Space(10)]
     [SerializeField] private Canvas _canvas;
 
