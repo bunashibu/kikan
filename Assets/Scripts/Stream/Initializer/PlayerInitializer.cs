@@ -9,8 +9,6 @@ using UniRx;
 namespace Bunashibu.Kikan {
   public class PlayerInitializer : SingletonMonoBehaviour<PlayerInitializer> {
     public void Initialize(Player player) {
-      SetViewID(player);
-
       AllPlayerInitialize(player);
 
       if (player.PhotonView.isMine)
@@ -119,6 +117,8 @@ namespace Bunashibu.Kikan {
       Assert.IsNotNull(_instantiator.HpBar);
       Assert.IsNotNull(_instantiator.ExpBar);
       Assert.IsNotNull(_instantiator.LvPanel);
+
+      SetViewID(player);
 
       player.Hp.Cur
         .Subscribe(_ => _instantiator.HpBar.UpdateView(player.Hp.Cur.Value, player.Hp.Max.Value))
