@@ -5,6 +5,10 @@ using UniRx;
 
 namespace Bunashibu.Kikan {
   public class SkillStreamBehaviour : SingletonMonoBehaviour<SkillStreamBehaviour> {
+    void Awake() {
+      _battleSynchronizer = GetComponent<BattleSynchronizer>();
+    }
+
     void Start() {
       SkillStream.OnAttacked
         .Subscribe(entity => {
@@ -19,16 +23,18 @@ namespace Bunashibu.Kikan {
 
             HitEffectPopupEnvironment.Instance.PopupHitEffect(entity.HitEffectType, targetPhoton);
             NumberPopupEnvironment.Instance.PopupDamage(entity.Damage, entity.IsCritical, damageSkin, targetPhoton);
+
+            bool isDead = entity.Target.Hp.Cur.Value == entity.Target.Hp.Min.Value;
+
+            if (targetPhoton.PhotonView.isMine && isDead) {
+              _battleSynchronizer.SyncKill(entity.Attacker);
+              _battleSynchronizer.SyncDie(entity.Target);
+            }
           }
 
           if (entity.Target is Enemy) {
             var enemy = (Enemy)entity.Target;
             enemy.TargetChaseSystem.SetChaseTarget(entity.Attacker.transform);
-          }
-
-          if (entity.Target.Hp.Cur.Value == entity.Target.Hp.Min.Value) {
-            BattleStream.OnNextKill(entity.Attacker);
-            BattleStream.OnNextDie(entity.Target);
           }
         });
 
@@ -53,6 +59,8 @@ namespace Bunashibu.Kikan {
           entity.Target.Rigid.AddForce(entity.Direction * entity.Force, ForceMode2D.Impulse);
         });
     }
+
+    private BattleSynchronizer _battleSynchronizer;
   }
 }
 

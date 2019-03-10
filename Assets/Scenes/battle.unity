@@ -16642,7 +16642,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1301560809}
+  - component: {fileID: 1301560815}
   - component: {fileID: 1301560814}
+  - component: {fileID: 1301560810}
   - component: {fileID: 1301560813}
   - component: {fileID: 1301560811}
   - component: {fileID: 1301560812}
@@ -16666,6 +16668,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1301560810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1301560808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16fc7625e323f854c9bfeb570538049a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1301560811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16719,6 +16732,32 @@ MonoBehaviour:
   _killMessagePanel: {fileID: 2003749535}
   _respawnPanel: {fileID: 1349913076204336, guid: cf8d044c906a2764d95adfb6da53d86e,
     type: 2}
+--- !u!114 &1301560815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1301560808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  OwnerShipWasTransfered: 0
+  prefixBackup: -1
+  synchronization: 0
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 0}
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 4
+  instantiationId: 4
+  currentMasterID: -1
+  isRuntimeInstantiated: 0
 --- !u!1 &1306506648
 GameObject:
   m_ObjectHideFlags: 0
@@ -21591,7 +21630,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timePanel: {fileID: 422559152}
-  _time: 5
+  _time: 300
   _rotateSpeed: 30
 --- !u!1 &1757445202
 GameObject:
