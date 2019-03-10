@@ -4,7 +4,7 @@ using UnityEngine;
 using UniRx;
 
 namespace Bunashibu.Kikan {
-  public class EnemyInitializer : SingletonMonoBehaviour<EnemyInitializer> {
+  public class EnemyStreamBehaviour : SingletonMonoBehaviour<EnemyStreamBehaviour> {
     public void Initialize(Enemy enemy) {
       enemy.Hp.Cur
         .Where(cur => (cur <= 0))

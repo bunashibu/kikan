@@ -7,7 +7,7 @@ using Hashtable = ExitGames.Client.Photon.Hashtable;
 using UniRx;
 
 namespace Bunashibu.Kikan {
-  public class PlayerInitializer : SingletonMonoBehaviour<PlayerInitializer> {
+  public class PlayerStreamBehaviour : SingletonMonoBehaviour<PlayerStreamBehaviour> {
     public void Initialize(Player player) {
       AllPlayerInitialize(player);
 

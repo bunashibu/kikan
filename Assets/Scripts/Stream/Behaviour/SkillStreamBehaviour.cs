@@ -4,7 +4,7 @@ using UnityEngine;
 using UniRx;
 
 namespace Bunashibu.Kikan {
-  public class SkillInitializer : SingletonMonoBehaviour<SkillInitializer> {
+  public class SkillStreamBehaviour : SingletonMonoBehaviour<SkillStreamBehaviour> {
     void Start() {
       SkillStream.OnAttacked
         .Subscribe(entity => {

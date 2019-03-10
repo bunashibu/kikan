@@ -21,7 +21,7 @@ namespace Bunashibu.Kikan {
     }
 
     void Start() {
-      EnemyInitializer.Instance.Initialize(this);
+      EnemyStreamBehaviour.Instance.Initialize(this);
     }
 
     public void AttachPopulationObserver(EnemyPopulationObserver populationObserver) {

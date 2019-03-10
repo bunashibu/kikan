@@ -4,7 +4,7 @@ using UnityEngine;
 using UniRx;
 
 namespace Bunashibu.Kikan {
-  public class BattleInitializer : SingletonMonoBehaviour<BattleInitializer> {
+  public class BattleStreamBehaviour : SingletonMonoBehaviour<BattleStreamBehaviour> {
     void Start() {
       BattleStream.OnKilledAndDied
         .Subscribe(entity => {

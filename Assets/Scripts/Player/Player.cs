@@ -64,7 +64,7 @@ namespace Bunashibu.Kikan {
         Core.Register(CoreType.Critical, _criticalCoreInfo, _criticalCoreEffect);
         Core.Register(CoreType.Heal,     _healCoreInfo,     _healCoreEffect    );
 
-        PlayerInitializer.Instance.Initialize(this);
+        PlayerStreamBehaviour.Instance.Initialize(this);
       }
     }
 
