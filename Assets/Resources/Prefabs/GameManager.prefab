@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 223802940380464672}
   - component: {fileID: 114832553751124554}
   - component: {fileID: 114653024927452350}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: FadeCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 224832024093580580}
   - component: {fileID: 222297380167699220}
   - component: {fileID: 114856171274013784}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: FadePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}

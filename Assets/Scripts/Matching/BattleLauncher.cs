@@ -127,7 +127,7 @@ namespace Bunashibu.Kikan {
     }
 
     public override void OnJoinedRoom() {
-      if (_isApplying && PhotonNetwork.isMasterClient)
+      if (_isApplying)
         SceneChanger.Instance.ChangeScene("Battle");
     }
 
