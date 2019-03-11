@@ -21,11 +21,6 @@ namespace Bunashibu.Kikan {
     }
 
     private void AllPlayerInitialize(Player player) {
-      player.Hp.Cur
-        .Where(cur => (cur <= 0))
-        .Subscribe(_ => player.StateTransfer.TransitTo("Die", player.Animator))
-        .AddTo(player.gameObject);
-
       player.Exp.Cur
         .Where(cur => (cur == player.Exp.Max.Value))
         .Subscribe(_ => player.Level.LevelUp())

@@ -36,12 +36,14 @@ namespace Bunashibu.Kikan {
             var enemy = (Enemy)entity.Target;
             enemy.TargetChaseSystem.SetChaseTarget(entity.Attacker.transform);
           }
-        });
+        })
+        .AddTo(gameObject);
 
       SkillStream.OnDebuffed
         .Subscribe(entity => {
           entity.Target.Debuff.DurationEnable(entity.DebuffType, entity.Duration);
-        });
+        })
+        .AddTo(gameObject);
 
       SkillStream.OnHealed
         .Subscribe(entity => {
@@ -52,17 +54,20 @@ namespace Bunashibu.Kikan {
             HitEffectPopupEnvironment.Instance.PopupHitEffect(HitEffectType.Heal, targetPhoton);
             NumberPopupEnvironment.Instance.PopupHeal(entity.Quantity, targetPhoton);
           }
-        });
+        })
+        .AddTo(gameObject);
 
       SkillStream.OnForced
         .Subscribe(entity => {
           entity.Target.Rigid.AddForce(entity.Direction * entity.Force, ForceMode2D.Impulse);
-        });
+        })
+        .AddTo(gameObject);
 
       SkillStream.OnStatusFixed
         .Subscribe(entity => {
           entity.Target.Status.SetFixAtk(entity.FixAtk);
-        });
+        })
+        .AddTo(gameObject);
     }
 
     private BattleSynchronizer _battleSynchronizer;

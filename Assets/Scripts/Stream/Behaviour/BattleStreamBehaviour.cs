@@ -28,15 +28,27 @@ namespace Bunashibu.Kikan {
             bool isSameTeam = ((int)PhotonNetwork.player.CustomProperties["Team"] == killPlayer.PlayerInfo.Team) ? true : false;
             _killMessagePanel.InstantiateMessage(killPlayer, deathPlayer, isSameTeam);
           }
-        });
+        })
+        .AddTo(gameObject);
+
+      BattleStream.OnDied
+        .Subscribe(target => {
+          // INFO: Force Kill in case desync occurs
+          if (target.Hp.Cur.Value > 0) {
+            target.Hp.Subtract(target.Hp.Max.Value);
+            Debug.Log("ForceKill!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+          }
+
+          if (target is Player) {
+            var player = (Player)target;
+            player.StateTransfer.TransitTo("Die", player.Animator);
+          }
+        })
+        .AddTo(gameObject);
 
       BattleStream.OnDied
         .Where(_ => StageReference.Instance.StageData.Name == "Battle")
         .Subscribe(target => {
-          // INFO: Force Kill in case desync occurs
-          if (target.Hp.Cur.Value > 0)
-            target.Hp.Subtract(target.Hp.Max.Value);
-
           if (target is Player) {
             var player = (Player)target;
 
@@ -46,7 +58,8 @@ namespace Bunashibu.Kikan {
               respawnPanel.SetRespawnPlayer(player);
             }
           }
-        });
+        })
+        .AddTo(gameObject);
     }
 
     [SerializeField] private Canvas _canvas;
