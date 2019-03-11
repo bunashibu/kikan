@@ -16,7 +16,7 @@ namespace Bunashibu.Kikan {
     }
 
     void Update() {
-      if (PhotonNetwork.isMasterClient)
+      if (photonView.isMine)
         transform.Translate(_moveDirection * _moveSpeed * Time.deltaTime);
     }
 

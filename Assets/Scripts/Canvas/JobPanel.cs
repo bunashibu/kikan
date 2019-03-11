@@ -8,7 +8,7 @@ namespace Bunashibu.Kikan {
     void Start() {
       EnableAllButtons();
 
-      MonoUtility.Instance.DelaySec(1.0f, () => { //DEBUG
+      MonoUtility.Instance.DelaySec(5.0f, () => {
         ActivatePlayer();
 
         Destroy(gameObject);
