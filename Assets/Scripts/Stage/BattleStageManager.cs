@@ -5,6 +5,7 @@ using UnityEngine;
 namespace Bunashibu.Kikan {
   public class BattleStageManager : SingletonMonoBehaviour<BattleStageManager>, IStageManager {
     void Awake() {
+      _photonView = GetComponent<PhotonView>();
       StageData = Resources.Load("Data/StageData/Battle") as StageData;
 
       _stage.Emerge();
@@ -12,10 +13,20 @@ namespace Bunashibu.Kikan {
     }
 
     void Update() {
-      if (StageData.Name == "Battle" && _timePanel.TimeSec <= 0) {
-        SwapStage();
-        _finalStage.Prepare();
-      }
+      if (PhotonNetwork.isMasterClient && StageData.Name == "Battle" && _timePanel.TimeSec <= 0)
+        SyncFinalMigration();
+    }
+
+    private void SyncFinalMigration() {
+      _photonView.RPC("SyncFinalMigrationRPC", PhotonTargets.AllViaServer);
+    }
+
+    [PunRPC]
+    private void SyncFinalMigrationRPC() {
+      SwapStage();
+      _timePanel.SetTime(0);
+      _timePanel.UpdateTimePanel();
+      _finalStage.Prepare();
     }
 
     private void SwapStage() {
@@ -31,6 +42,7 @@ namespace Bunashibu.Kikan {
     [SerializeField] private TimePanel _timePanel;
     [SerializeField] private BattleStage _stage;
     [SerializeField] private BattleFinalStage _finalStage;
+    private PhotonView _photonView;
   }
 }
 

@@ -13,13 +13,13 @@ namespace Bunashibu.Kikan {
       UpdateTimePanel();
     }
 
-    public int TimeSec { get { return (int)_time; } }
+    public int TimeSec => (int)_time;
 
     public void SetTime(float time) {
       _time = time;
     }
 
-    private void UpdateTimePanel() {
+    public void UpdateTimePanel() {
       var minSec = ConvertToMinSec((int)_time);
       int min = minSec[0];
       int sec = minSec[1];
