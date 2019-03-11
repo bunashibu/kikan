@@ -275,7 +275,6 @@ GameObject:
   - component: {fileID: 114886656614425094}
   - component: {fileID: 114383582609016130}
   - component: {fileID: 114234989891012664}
-  - component: {fileID: 114726089012511028}
   - component: {fileID: 114542911776344512}
   - component: {fileID: 114403121135484772}
   m_Layer: 9
@@ -768,7 +767,6 @@ MonoBehaviour:
   _footCollider: {fileID: 68843603207264146}
   _animator: {fileID: 95879485340875448}
   _synchronizer: {fileID: 114234989891012664}
-  _observer: {fileID: 114726089012511028}
   _audioEnvironment: {fileID: 114403121135484772}
   _hpTable: {fileID: 11400000, guid: 1ec16d6e69c4fca429522091e413cd48, type: 2}
   _expTable: {fileID: 11400000, guid: 6de611e43d011d34daf512c9b3c8779b, type: 2}
@@ -1115,18 +1113,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Name
---- !u!114 &114726089012511028
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1962928273671142}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78eb315df0929dd498a58368cb5991f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _player: {fileID: 114383582609016130}
 --- !u!114 &114737664183367142
 MonoBehaviour:
   m_ObjectHideFlags: 1

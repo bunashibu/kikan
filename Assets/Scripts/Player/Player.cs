@@ -78,7 +78,6 @@ namespace Bunashibu.Kikan {
 
     public PlayerStream       Stream       { get; private set; }
     public PlayerSynchronizer Synchronizer => _synchronizer;
-    public PlayerObserver     Observer     => _observer;
 
     public AudioEnvironment AudioEnvironment => _audioEnvironment;
 
@@ -142,9 +141,8 @@ namespace Bunashibu.Kikan {
     [SerializeField] private Collider2D       _footCollider;
     [SerializeField] private Animator         _animator;
 
-    [Header("Observer")]
+    [Header("Synchronizer")]
     [SerializeField] private PlayerSynchronizer _synchronizer;
-    [SerializeField] private PlayerObserver _observer;
 
     [Header("Environment")]
     [SerializeField] private AudioEnvironment _audioEnvironment;
