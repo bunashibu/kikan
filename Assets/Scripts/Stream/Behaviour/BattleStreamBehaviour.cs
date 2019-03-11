@@ -33,6 +33,10 @@ namespace Bunashibu.Kikan {
       BattleStream.OnDied
         .Where(_ => StageReference.Instance.StageData.Name == "Battle")
         .Subscribe(target => {
+          // INFO: Force Kill in case desync occurs
+          if (target.Hp.Cur.Value > 0)
+            target.Hp.Subtract(target.Hp.Max.Value);
+
           if (target is Player) {
             var player = (Player)target;
 
