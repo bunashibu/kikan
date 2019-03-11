@@ -145,7 +145,7 @@ namespace Bunashibu.Kikan {
     private bool _isRotating;
     private bool _isNotReady = true;
     private float _timestamp;
-    private float _prepareDuration = 5.0f;
+    private float _prepareDuration = 4.0f;
     private Player _player;
     private QuadraticEaseInOut _easing;
     private QuadraticEaseInOut _easingCamera;
