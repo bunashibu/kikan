@@ -1,32 +1,47 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace Bunashibu.Kikan {
   public class WinLoseJudger : SingletonMonoBehaviour<WinLoseJudger> {
     void Start() {
-      _photonView = GetComponent<PhotonView>();
+      if (PhotonNetwork.isMasterClient) {
+        _photonView = GetComponent<PhotonView>();
 
-      InitAlivePlayerCount();
+        InitAlivePlayerCount();
 
-      MonoUtility.Instance.DelayUntil(() => _timePanel.TimeSec <= 0, () => {
-        if ( (_alivePlayerCount.Red > 0) && (_alivePlayerCount.Blue > 0) )
-          ShowDraw();
-      });
+        MonoUtility.Instance.DelayUntil(() => _timePanel.TimeSec <= 0, () => {
+          if ( (_alivePlayerCount.Red > 0) && (_alivePlayerCount.Blue > 0) )
+            SyncDraw();
+        });
+      }
     }
 
     void Update() {
-      if (_isFinished)
-        return;
+      if (PhotonNetwork.isMasterClient) {
+        if (_isFinished)
+          return;
 
-      if (_alivePlayerCount.Red == 0)
-        WinProcess(1);
+        if (_alivePlayerCount.Red == 0)
+          SyncWinProcess(1);
 
-      if (_alivePlayerCount.Blue == 0)
-        WinProcess(0);
+        if (_alivePlayerCount.Blue == 0)
+          SyncWinProcess(0);
+      }
     }
 
-    private void WinProcess(int winTeam) {
+    [PunRPC]
+    private void SyncDrawRPC() {
+      ShowDraw();
+    }
+
+    private void SyncDraw() {
+      _photonView.RPC("SyncDrawRPC", PhotonTargets.AllViaServer);
+    }
+
+    [PunRPC]
+    private void SyncWinProcessRPC(int winTeam) {
       int team = (int)PhotonNetwork.player.CustomProperties["Team"];
 
       if (team == winTeam)
@@ -37,7 +52,13 @@ namespace Bunashibu.Kikan {
       _isFinished = true;
     }
 
+    private void SyncWinProcess(int winTeam) {
+      _photonView.RPC("SyncWinProcessRPC", PhotonTargets.AllViaServer, winTeam);
+    }
+
     public void UpdateAlivePlayerCount(Player player) {
+      Assert.IsTrue(PhotonNetwork.isMasterClient);
+
       if (player.PlayerInfo.Team == 0)
         _alivePlayerCount.Red -= 1;
 
@@ -46,6 +67,8 @@ namespace Bunashibu.Kikan {
     }
 
     private void InitAlivePlayerCount() {
+      Assert.IsTrue(PhotonNetwork.isMasterClient);
+
       int redCount = 0;
       int blueCount = 0;
 

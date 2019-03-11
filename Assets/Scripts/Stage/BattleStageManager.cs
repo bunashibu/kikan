@@ -17,16 +17,16 @@ namespace Bunashibu.Kikan {
         SyncFinalMigration();
     }
 
-    private void SyncFinalMigration() {
-      _photonView.RPC("SyncFinalMigrationRPC", PhotonTargets.AllViaServer);
-    }
-
     [PunRPC]
     private void SyncFinalMigrationRPC() {
       SwapStage();
       _timePanel.SetTime(0);
       _timePanel.UpdateTimePanel();
       _finalStage.Prepare();
+    }
+
+    private void SyncFinalMigration() {
+      _photonView.RPC("SyncFinalMigrationRPC", PhotonTargets.AllViaServer);
     }
 
     private void SwapStage() {

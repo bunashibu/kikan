@@ -17,7 +17,7 @@ namespace Bunashibu.Kikan {
         SkillReference.Instance.DeleteAll();
       }
 
-      if (StageReference.Instance.StageData.Name == "FinalBattle")
+      if (PhotonNetwork.isMasterClient && StageReference.Instance.StageData.Name == "FinalBattle")
         WinLoseJudger.Instance.UpdateAlivePlayerCount(_player);
     }
 
