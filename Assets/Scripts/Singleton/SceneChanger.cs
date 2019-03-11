@@ -6,7 +6,7 @@ using System.Collections;
 namespace Bunashibu.Kikan {
   public class SceneChanger : SingletonMonoBehaviour<SceneChanger> {
     void Awake() {
-      _alphaMask = new Color(0, 0, 0, 0.025f);
+      _alphaMask = new Color(0, 0, 0, 0.050f);
     }
 
     void Start() {

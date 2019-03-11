@@ -30,6 +30,7 @@ GameObject:
   - component: {fileID: 114465585547029610}
   - component: {fileID: 114576948781715758}
   - component: {fileID: 114979274991845116}
+  - component: {fileID: 114562558113216186}
   m_Layer: 9
   m_Name: Common
   m_TagString: Player
@@ -699,6 +700,18 @@ MonoBehaviour:
   _groundMask:
     serializedVersion: 2
     m_Bits: 33024
+--- !u!114 &114562558113216186
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011996982660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 695841a0dfeebc04ebc90201ce230af7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: 114576948781715758}
 --- !u!114 &114576948781715758
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -720,7 +733,6 @@ MonoBehaviour:
   _footCollider: {fileID: 68799707592216154}
   _animator: {fileID: 95000010494430044}
   _synchronizer: {fileID: 0}
-  _observer: {fileID: 0}
   _audioEnvironment: {fileID: 114979274991845116}
   _hpTable: {fileID: 0}
   _expTable: {fileID: 0}
@@ -853,7 +865,7 @@ MonoBehaviour:
   ownershipTransfer: 0
   ObservedComponents:
   - {fileID: 114311064836627604}
-  - {fileID: 0}
+  - {fileID: 114562558113216186}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
