@@ -27,6 +27,12 @@ namespace Bunashibu.Kikan {
       if (!this.IsVisible || !PhotonNetwork.inRoom)
         return;
 
+      if (Event.current.type == EventType.KeyDown && (Event.current.keyCode == KeyCode.LeftArrow || Event.current.keyCode == KeyCode.RightArrow)) {
+        if (string.IsNullOrEmpty(this.inputLine)) {
+          GUI.FocusControl("");
+        }
+      }
+
       if (Event.current.type == EventType.KeyDown && (Event.current.keyCode == KeyCode.KeypadEnter || Event.current.keyCode == KeyCode.Return)) {
         if (!string.IsNullOrEmpty(this.inputLine)) {
           SendProcess();
@@ -52,8 +58,10 @@ namespace Bunashibu.Kikan {
       GUILayout.BeginHorizontal();
       GUI.SetNextControlName("ChatInput");
       inputLine = GUILayout.TextField(inputLine);
+
       if (GUILayout.Button("Send", GUILayout.ExpandWidth(false)))
         SendProcess();
+
       GUILayout.EndHorizontal();
       GUILayout.EndArea();
     }
@@ -68,7 +76,7 @@ namespace Bunashibu.Kikan {
       }
 
       this.inputLine = "";
-      GUI.FocusControl("");
+      GUI.FocusControl("ChatInput");
     }
 
     [PunRPC]
