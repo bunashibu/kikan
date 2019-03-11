@@ -11,14 +11,19 @@ namespace Bunashibu.Kikan {
     void Update() {
       if (_isRotating) {
         Rotate();
-        GatherPlayer();
 
-        if (transform.rotation == _destRotation) {
+        if (transform.rotation == _destRotation)
           _isRotating = false;
+      }
 
+      if (_isNotReady) {
+        if (Time.time - _timestamp < _prepareDuration)
+          GatherPlayer();
+        else {
           SetTimeAndCamera();
           ResetPlayerStatus();
           InstantiateWinLoseJudger();
+          _isNotReady = false;
         }
       }
     }
@@ -33,6 +38,7 @@ namespace Bunashibu.Kikan {
 
     public void StartRotation() {
       _isRotating = true;
+      _timestamp = Time.time;
     }
 
     public void Prepare() {
@@ -69,8 +75,8 @@ namespace Bunashibu.Kikan {
       if (_player.PlayerInfo.Team == 1)
         gatherPosition.x *= -1;
 
-      _easing = new QuadraticEaseInOut(startPosition, gatherPosition, 3.0f);
-      _easingCamera = new QuadraticEaseInOut(startCameraPosition, gatherPosition + new Vector3(0, 0, _camera.OffsetZ), 3.0f);
+      _easing = new QuadraticEaseInOut(startPosition, gatherPosition, _prepareDuration);
+      _easingCamera = new QuadraticEaseInOut(startCameraPosition, gatherPosition + new Vector3(0, 0, _camera.OffsetZ), _prepareDuration);
     }
 
     private void Rotate() {
@@ -137,6 +143,9 @@ namespace Bunashibu.Kikan {
 
     private Quaternion _destRotation;
     private bool _isRotating;
+    private bool _isNotReady = true;
+    private float _timestamp;
+    private float _prepareDuration = 5.0f;
     private Player _player;
     private QuadraticEaseInOut _easing;
     private QuadraticEaseInOut _easingCamera;
