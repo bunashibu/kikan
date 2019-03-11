@@ -11,17 +11,7 @@ namespace Bunashibu.Kikan {
     public void StartBattle(ApplyType applyType) {
       Assert.IsTrue(PhotonNetwork.isMasterClient);
 
-      var tmp = PhotonNetwork.room.CustomProperties["Playing"];
-      int roomNum = 0;
-      if (tmp != null)
-        roomNum = (int)tmp;
-
-      /*
-      var props = new Hashtable() {{ "Playing", roomNum + 1 }};
-      PhotonNetwork.room.SetCustomProperties(props);
-      */
-
-      var roomName = "Battle" + roomNum.ToString();
+      var roomName = "Battle" + System.Guid.NewGuid();
       int[] team = TeamMaker(_mediator.MatchCount[applyType]);
 
       photonView.RPC("StartBattleRPC", PhotonTargets.AllViaServer, roomName, team, applyType);
