@@ -58,6 +58,11 @@ namespace Bunashibu.Kikan {
         .Subscribe(entity => {
           entity.Target.Rigid.AddForce(entity.Direction * entity.Force, ForceMode2D.Impulse);
         });
+
+      SkillStream.OnStatusFixed
+        .Subscribe(entity => {
+          entity.Target.Status.SetFixAtk(entity.FixAtk);
+        });
     }
 
     private BattleSynchronizer _battleSynchronizer;

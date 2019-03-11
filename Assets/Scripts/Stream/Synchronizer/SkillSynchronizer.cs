@@ -59,6 +59,19 @@ namespace Bunashibu.Kikan {
     public void SyncForce(int targetViewID, float force, Vector2 direction) {
       photonView.RPC("SyncForceRPC", PhotonTargets.AllViaServer, targetViewID, force, direction);
     }
+
+    [PunRPC]
+    private void SyncStatusRPC(int targetViewID, int fixAtk) {
+      var target = PhotonView.Find(targetViewID).gameObject.GetComponent<IStatus>();
+      Assert.IsNotNull(target);
+
+      var flowEntity = new StatusFlowEntity(target, fixAtk);
+      SkillStream.OnNextStatus(flowEntity);
+    }
+
+    public void SyncStatus(int targetViewID, int fixAtk) {
+      photonView.RPC("SyncStatusRPC", PhotonTargets.AllViaServer, targetViewID, fixAtk);
+    }
   }
 }
 

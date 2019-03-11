@@ -8,7 +8,7 @@ using UnityEngine.Assertions;
 using UniRx;
 
 namespace Bunashibu.Kikan {
-  public class Player : MonoBehaviour, IPhotonBehaviour, ICharacter, ISpeaker, IBattleMovementPlayer, ILobbyMovementPlayer, ICorePlayer, IAttacker, IOnAttacked, IOnDebuffed, IOnForced, IKillRewardTaker, IKillRewardGiver {
+  public class Player : MonoBehaviour, IPhotonBehaviour, ICharacter, ISpeaker, IBattleMovementPlayer, ILobbyMovementPlayer, ICorePlayer, IAttacker, IOnAttacked, IOnDebuffed, IOnForced, IStatus, IKillRewardTaker, IKillRewardGiver {
     void Awake() {
       State          = new CharacterState();
       StateTransfer  = new StateTransfer(_initState, _animator);
@@ -101,7 +101,7 @@ namespace Bunashibu.Kikan {
 
     public int Power { get {
       double ratio = (double)((Core.GetValue(CoreType.Attack) + 100) / 100.0);
-      return (int)(Status.Atk * Status.MulCorrectionAtk * ratio);
+      return (int)(Status.Atk * Status.FixAtk * ratio);
     } }
     public int AutoHealQuantity { get {
       double ratio = (double)(Core.GetValue(CoreType.Heal) / 100.0);

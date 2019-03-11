@@ -9,7 +9,7 @@ namespace Bunashibu.Kikan {
         SkillReference.Instance.Remove(this);
     }
 
-    public ParentSetter ParentSetter { get { return _parentSetter; } }
+    public ParentSetter ParentSetter => _parentSetter;
 
     [SerializeField] private ParentSetter _parentSetter;
   }

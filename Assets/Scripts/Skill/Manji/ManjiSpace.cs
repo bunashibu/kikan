@@ -33,13 +33,13 @@ namespace Bunashibu.Kikan {
       skillUser.Movement.SetMoveForce(skillUser.Status.Spd * statusRatio);
       skillUser.Movement.SetJumpForce(skillUser.Status.Jmp * statusRatio);
 
-      skillUser.Status.MultipleMulCorrectionAtk(powerRatio);
+      skillUser.Status.SetFixAtk(powerRatio);
 
       ResetStatus = () => {
         skillUser.Movement.SetMoveForce(skillUser.Status.Spd);
         skillUser.Movement.SetJumpForce(skillUser.Status.Jmp);
 
-        skillUser.Status.ResetMulCorrectionAtk();
+        skillUser.Status.SetFixAtk(1.0f);
       };
 
       SkillReference.Instance.Register(this, 20.0f, () => { PhotonNetwork.Destroy(gameObject); });

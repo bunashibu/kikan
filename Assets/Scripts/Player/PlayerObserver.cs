@@ -24,10 +24,6 @@ namespace Bunashibu.Kikan {
       _player.PhotonView.RPC("SyncNameBackgroundRPC", PhotonTargets.Others, _player.NameBackground.ColorName);
     }
 
-    public void SyncRigidSimulated() {
-      _player.PhotonView.RPC("SyncRigidSimulatedRPC", PhotonTargets.Others, _player.Rigid.simulated);
-    }
-
     public void SyncBodyCollider() {
       _player.PhotonView.RPC("SyncBodyColliderRPC", PhotonTargets.Others, _player.BodyCollider.enabled);
     }
@@ -40,11 +36,6 @@ namespace Bunashibu.Kikan {
     [PunRPC]
     private void SyncNameBackgroundRPC(string colorName) {
       _player.NameBackground.SetColor(colorName);
-    }
-
-    [PunRPC]
-    private void SyncRigidSimulatedRPC(bool flag) {
-      _player.Rigid.simulated = flag;
     }
 
     [PunRPC]

@@ -11,6 +11,7 @@ namespace Bunashibu.Kikan {
       _debuffSubject = new Subject<DebuffFlowEntity>();
       _healSubject = new Subject<HealFlowEntity>();
       _forceSubject = new Subject<ForceFlowEntity>();
+      _statusSubject = new Subject<StatusFlowEntity>();
     }
 
     public static void OnNextAttack(AttackFlowEntity attackFlowEntity) {
@@ -29,15 +30,21 @@ namespace Bunashibu.Kikan {
       _forceSubject.OnNext(forceFlowEntity);
     }
 
+    public static void OnNextStatus(StatusFlowEntity statusFlowEntity) {
+      _statusSubject.OnNext(statusFlowEntity);
+    }
+
     public static IObservable<AttackFlowEntity> OnAttacked => _attackSubject;
     public static IObservable<DebuffFlowEntity> OnDebuffed => _debuffSubject;
     public static IObservable<HealFlowEntity> OnHealed => _healSubject;
     public static IObservable<ForceFlowEntity> OnForced => _forceSubject;
+    public static IObservable<StatusFlowEntity> OnStatusFixed => _statusSubject;
 
     private static Subject<AttackFlowEntity> _attackSubject;
     private static Subject<DebuffFlowEntity> _debuffSubject;
     private static Subject<HealFlowEntity> _healSubject;
     private static Subject<ForceFlowEntity> _forceSubject;
+    private static Subject<StatusFlowEntity> _statusSubject;
   }
 
   public class AttackFlowEntity {
@@ -88,6 +95,16 @@ namespace Bunashibu.Kikan {
     public IOnForced Target    { get; private set; }
     public float     Force     { get; private set; }
     public Vector2   Direction { get; private set; }
+  }
+
+  public class StatusFlowEntity {
+    public StatusFlowEntity(IStatus target, int fixAtk) {
+      Target = target;
+      FixAtk = fixAtk;
+    }
+
+    public IStatus Target { get; private set; }
+    public int     FixAtk { get; private set; }
   }
 }
 
