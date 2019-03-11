@@ -17,11 +17,10 @@ namespace Bunashibu.Kikan {
       if (_player.PhotonView.isMine) {
         LadderMove();
 
-        //if ( _player.BuffState.Stun ) { _player.StateTransfer.TransitTo( "Stun", animator ); return; }
-
-        if ( ShouldTransitToLadderJump() ) { TransitToLadderJump(animator);                               return; }
-        if ( ShouldTransitToIdle()       ) { _player.StateTransfer.TransitTo ( "Idle"       , animator ); return; }
-        if ( ShouldTransitToFall()       ) { _player.StateTransfer.TransitTo ( "Fall"       , animator ); return; }
+        if ( _player.Debuff.State[DebuffType.Stun] ) { _player.StateTransfer.TransitTo( "Stun", animator ); return; }
+        if ( ShouldTransitToLadderJump() )           { TransitToLadderJump(animator);                       return; }
+        if ( ShouldTransitToIdle()       )           { _player.StateTransfer.TransitTo( "Idle", animator ); return; }
+        if ( ShouldTransitToFall()       )           { _player.StateTransfer.TransitTo( "Fall", animator ); return; }
       }
     }
 

@@ -11,13 +11,13 @@ namespace Bunashibu.Kikan {
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
       if (_player.PhotonView.isMine) {
-        //if ( _player.BuffState.Stun      ) { _player.StateTransfer.TransitTo( "Stun"       , animator ); return; }
-        if ( ShouldTransitToSkill()      ) { _player.StateTransfer.TransitTo( "Skill"      , animator ); return; }
-        if ( ShouldTransitToLadder()     ) { _player.StateTransfer.TransitTo( "Ladder"     , animator ); return; }
-        if ( ShouldTransitToWalk()       ) { _player.StateTransfer.TransitTo( "Walk"       , animator ); return; }
-        if ( ShouldTransitToLieDown()    ) { _player.StateTransfer.TransitTo( "LieDown"    , animator ); return; }
-        if ( ShouldTransitToGroundJump() ) { _player.StateTransfer.TransitTo( "GroundJump" , animator ); return; }
-        if ( _player.Location.IsAir      ) { _player.StateTransfer.TransitTo( "Fall"       , animator ); return; }
+        if ( _player.Debuff.State[DebuffType.Stun] ) { _player.StateTransfer.TransitTo( "Stun"       , animator ); return; }
+        if ( ShouldTransitToSkill()                ) { _player.StateTransfer.TransitTo( "Skill"      , animator ); return; }
+        if ( ShouldTransitToLadder()               ) { _player.StateTransfer.TransitTo( "Ladder"     , animator ); return; }
+        if ( ShouldTransitToWalk()                 ) { _player.StateTransfer.TransitTo( "Walk"       , animator ); return; }
+        if ( ShouldTransitToLieDown()              ) { _player.StateTransfer.TransitTo( "LieDown"    , animator ); return; }
+        if ( ShouldTransitToGroundJump()           ) { _player.StateTransfer.TransitTo( "GroundJump" , animator ); return; }
+        if ( _player.Location.IsAir                ) { _player.StateTransfer.TransitTo( "Fall"       , animator ); return; }
       }
     }
 

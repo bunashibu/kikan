@@ -15,11 +15,8 @@ namespace Bunashibu.Kikan {
     }
 
     private void UpdateBehaviour() {
-      // temporary
-      /*
-      if (_enemy.BuffState.Stun)
+      if ( _enemy.Debuff.State[DebuffType.Stun] )
         return;
-      */
 
       if (!_strategyFlag) {
         ConsiderStrategy();

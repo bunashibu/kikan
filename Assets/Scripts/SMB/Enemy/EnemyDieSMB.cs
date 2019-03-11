@@ -12,10 +12,7 @@ namespace Bunashibu.Kikan {
       _enemy.AI.enabled = false;
 
       // Probably this process should not be here...
-      if (StageReference.Instance.StageData.Name == "FinalBattle")
-        return;
-
-      if (PhotonNetwork.player.IsMasterClient)
+      if (PhotonNetwork.player.IsMasterClient && StageReference.Instance.StageData.Name == "Battle")
         _enemy.PopulationObserver.IntervalReplenishPopulation(_enemy);
     }
 

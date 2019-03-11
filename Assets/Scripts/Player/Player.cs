@@ -12,9 +12,13 @@ namespace Bunashibu.Kikan {
     void Awake() {
       State          = new CharacterState();
       StateTransfer  = new StateTransfer(_initState, _animator);
+
       LocationJudger = new LocationJudger();
       LocationJudger.InitializeFootJudge(_footCollider);
       LocationJudger.InitializeCenterJudge(_centerCollider);
+
+      Debuff         = new Debuff(transform);
+      Debuff.Register(DebuffType.Stun, _stunEffect);
     }
 
     // THINK: coupling with global reference. to be a stream
@@ -53,9 +57,6 @@ namespace Bunashibu.Kikan {
         Gold       = new Gold(0, MaxGold);
         KillCount  = new ReactiveProperty<int>(0);
         DeathCount = new ReactiveProperty<int>(0);
-
-        Debuff     = new Debuff(transform);
-        Debuff.Register(DebuffType.Stun, _stunEffect);
 
         Core       = new Core((ICorePlayer)this);
         Core.Register(CoreType.Speed,    _speedCoreInfo,    _speedCoreEffect   );

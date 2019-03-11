@@ -10,11 +10,9 @@ namespace Bunashibu.Kikan {
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-      if (PhotonNetwork.player.IsMasterClient) {
-        // Probably this process should not be here...
-        if (StageReference.Instance.StageData.Name != "Battle")
-          _enemy.StateTransfer.TransitTo("Die" , animator);
-      }
+      // Probably this process should not be here...
+      if (PhotonNetwork.player.IsMasterClient && StageReference.Instance.StageData.Name == "FinalBattle")
+        _enemy.StateTransfer.TransitTo("Die" , animator);
     }
 
     private Enemy _enemy;

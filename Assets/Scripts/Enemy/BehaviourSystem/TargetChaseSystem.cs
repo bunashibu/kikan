@@ -11,6 +11,9 @@ namespace Bunashibu.Kikan {
     }
 
     void Update() {
+      if ( _enemy.Debuff.State[DebuffType.Stun] )
+        return;
+
       if (!IsEnable)
         return;
 
