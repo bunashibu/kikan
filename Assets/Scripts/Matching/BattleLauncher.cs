@@ -99,7 +99,7 @@ namespace Bunashibu.Kikan {
         cnt -= 1;
 
         if (cnt <= 0)
-          PhotonNetwork.LeaveRoom();
+          SceneChanger.Instance.FadeOutAndLeaveRoom();
         else
           CountDown(cnt);
       });

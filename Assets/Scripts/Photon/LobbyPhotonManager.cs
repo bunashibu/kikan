@@ -28,7 +28,7 @@ namespace Bunashibu.Kikan {
       Debug.Log("Logout() was called");
       _logoutFlag = true;
       _nextSceneName = "Registration";
-      PhotonNetwork.LeaveRoom();
+      SceneChanger.Instance.FadeOutAndLeaveRoom();
     }
 
     [SerializeField] private SceneChanger _sceneChanger;
