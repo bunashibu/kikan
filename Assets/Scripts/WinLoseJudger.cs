@@ -89,7 +89,7 @@ namespace Bunashibu.Kikan {
 
       result.transform.SetParent(_canvas.transform, false);
 
-      MonoUtility.Instance.DelaySec(3.0f, () => {
+      MonoUtility.Instance.DelaySec(4.0f, () => {
         Destroy(result);
       });
 
