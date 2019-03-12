@@ -15719,7 +15719,8 @@ MonoBehaviour:
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 5
   instantiationId: 5
@@ -18686,7 +18687,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1446305613}
   - component: {fileID: 1446305615}
+  - component: {fileID: 1446305617}
   - component: {fileID: 1446305614}
+  - component: {fileID: 1446305616}
   m_Layer: 0
   m_Name: RedArea
   m_TagString: Untagged
@@ -18719,7 +18722,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _team: 0
-  _damage: 1000
+  _quantity: 1000
 --- !u!61 &1446305615
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -18745,6 +18748,43 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 14, y: 7}
   m_EdgeRadius: 0
+--- !u!114 &1446305616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1446305612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35c675ff03893fd4089b099279ed1c0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1446305617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1446305612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  OwnerShipWasTransfered: 0
+  prefixBackup: -1
+  synchronization: 0
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 0}
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 7
+  instantiationId: 7
+  currentMasterID: -1
+  isRuntimeInstantiated: 0
 --- !u!1 &1451137205
 GameObject:
   m_ObjectHideFlags: 0
@@ -21656,7 +21696,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timePanel: {fileID: 422559152}
-  _time: 30
+  _time: 300
   _rotateSpeed: 30
 --- !u!1 &1757445202
 GameObject:
@@ -25061,7 +25101,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2073973859}
   - component: {fileID: 2073973861}
+  - component: {fileID: 2073973863}
   - component: {fileID: 2073973860}
+  - component: {fileID: 2073973862}
   m_Layer: 0
   m_Name: BlueArea
   m_TagString: Untagged
@@ -25094,7 +25136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _team: 1
-  _damage: 1000
+  _quantity: 1000
 --- !u!61 &2073973861
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -25120,6 +25162,43 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 14, y: 7}
   m_EdgeRadius: 0
+--- !u!114 &2073973862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2073973858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35c675ff03893fd4089b099279ed1c0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2073973863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2073973858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  OwnerShipWasTransfered: 0
+  prefixBackup: -1
+  synchronization: 0
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 0}
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 6
+  instantiationId: 6
+  currentMasterID: -1
+  isRuntimeInstantiated: 0
 --- !u!1 &2089348208
 GameObject:
   m_ObjectHideFlags: 0

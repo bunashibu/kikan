@@ -34,10 +34,8 @@ namespace Bunashibu.Kikan {
       BattleStream.OnDied
         .Subscribe(target => {
           // INFO: Force Kill in case desync occurs
-          if (target.Hp.Cur.Value > 0) {
+          if (target.Hp.Cur.Value > 0)
             target.Hp.Subtract(target.Hp.Max.Value);
-            Debug.Log("ForceKill!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-          }
 
           if (target is Player) {
             var player = (Player)target;
