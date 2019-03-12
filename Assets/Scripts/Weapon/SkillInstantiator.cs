@@ -91,15 +91,13 @@ namespace Bunashibu.Kikan {
     }
 
     private void UpdateCT(int i) {
-      // temp
       if (i == 0)
         return;
 
-      MonoUtility.Instance.StoppableDelaySec(_skillCT[i] / 17.0f, "SkillPanelAlpha" + i.ToString(), () => {
+      MonoUtility.Instance.StoppableDelaySec(_skillCT[i] / 5.0f, "SkillPanelAlpha" + i.ToString(), () => {
         // Memo: AlphaMask height == 55.0
-        //       SkillPanel-Update-Count == 17.0
         var preSizeDelta = _panelUnitList[i].AlphaRectTransform.sizeDelta;
-        _panelUnitList[i].AlphaRectTransform.sizeDelta = new Vector2(preSizeDelta.x, preSizeDelta.y - (55.0f / 17.0f));
+        _panelUnitList[i].AlphaRectTransform.sizeDelta = new Vector2(preSizeDelta.x, preSizeDelta.y - (55.0f / 5.0f));
 
         if (!_canUseList[i])
           UpdateCT(i);
