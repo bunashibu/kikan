@@ -23,7 +23,11 @@ namespace Bunashibu.Kikan {
     private void AllPlayerInitialize(Player player) {
       player.Exp.Cur
         .Where(cur => (cur == player.Exp.Max.Value))
-        .Subscribe(_ => player.Level.LevelUp())
+        .Subscribe(_ => {
+          player.Level.LevelUp();
+          var levelUpEffect = Instantiate(_levelUpEffect) as GameObject;
+          levelUpEffect.transform.SetParent(player.transform, false);
+        })
         .AddTo(player.gameObject);
 
       player.Level.Cur
@@ -197,6 +201,7 @@ namespace Bunashibu.Kikan {
     [SerializeField] private CorePanel _corePanel;
     [SerializeField] private GoldPanel _goldPanel;
     [SerializeField] private TeammateHpPanel _teammateHpPanel;
+    [SerializeField] private GameObject _levelUpEffect;
   }
 }
 

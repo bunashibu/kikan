@@ -16722,6 +16722,8 @@ MonoBehaviour:
   _corePanel: {fileID: 1331817296}
   _goldPanel: {fileID: 889843195}
   _teammateHpPanel: {fileID: 843718237}
+  _levelUpEffect: {fileID: 1970226344511336, guid: dc15b4c698c39ae4187d4ef7289ac4d3,
+    type: 2}
 --- !u!114 &1301560812
 MonoBehaviour:
   m_ObjectHideFlags: 0

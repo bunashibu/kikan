@@ -63,6 +63,9 @@ TagManager:
   - name: SkillBuff
     uniqueID: 2919748849
     locked: 0
+  - name: LevelUp
+    uniqueID: 2326360921
+    locked: 0
   - name: Player
     uniqueID: 4205633467
     locked: 0
