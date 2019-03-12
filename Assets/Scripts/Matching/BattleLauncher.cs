@@ -8,6 +8,10 @@ using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 namespace Bunashibu.Kikan {
   public class BattleLauncher : Photon.PunBehaviour {
+    void Awake() {
+      _audioSource = GetComponent<AudioSource>();
+    }
+
     public void StartBattle(ApplyType applyType) {
       Assert.IsTrue(PhotonNetwork.isMasterClient);
 
@@ -47,6 +51,9 @@ namespace Bunashibu.Kikan {
 
     [PunRPC]
     public void StartBattleRPC(string roomName, int[] team, ApplyType applyType) {
+      if (applyType != ApplyType.Practice)
+        _audioSource.PlayOneShot(_matchingClip);
+
       var applyingTicket = PhotonNetwork.player.CustomProperties["ApplyingTicket"];
       if (applyingTicket == null) return;
       if (applyingTicket == "")   return;
@@ -125,9 +132,11 @@ namespace Bunashibu.Kikan {
     [SerializeField] private MatchingMediator _mediator;
     [SerializeField] private int _countDown;
     [SerializeField] private Text _CountDown;
+    [SerializeField] private AudioClip _matchingClip;
     private ApplyType _applyType;
     private bool _isApplying;
     private string _roomName;
+    private AudioSource _audioSource;
   }
 }
 
