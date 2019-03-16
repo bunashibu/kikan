@@ -32,6 +32,8 @@ namespace Bunashibu.Kikan {
         _buttons[_prePick].interactable = true;
         _buttons[_curPick].interactable = false;
       }
+
+      _description.UpdateLabel(n);
     }
 
     private void RandomPick() {
@@ -65,6 +67,7 @@ namespace Bunashibu.Kikan {
     [SerializeField] private StartUpInstantiator _instantiator;
     [SerializeField] private Canvas _canvas;
     [SerializeField] private Button _decideButton;
+    [SerializeField] private JobDescription _description;
     [SerializeField] private GameObject[] _jobs;
     [SerializeField] private Button[] _buttons;
 
