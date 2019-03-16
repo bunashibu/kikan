@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace Bunashibu.Kikan {
-  public class JobPanel : MonoBehaviour {
+  public class JobPanel : Photon.MonoBehaviour {
     void Awake() {
       _buttons[0].onClick.AddListener( () => Pick(0) );
       _buttons[1].onClick.AddListener( () => Pick(1) );
-      _decideButton.onClick.AddListener( () => Decide() );
+      _decideButton.onClick.AddListener( () => SyncDecide() );
       _selectTimePanel.SetTime(_selectTime);
       _selectTimePanel.SetView(TimeViewType.Sec);
     }
@@ -43,7 +43,15 @@ namespace Bunashibu.Kikan {
       Pick(n);
     }
 
-    private void Decide() {
+    [PunRPC]
+    private void SyncDecideRPC(int n, int team) {
+      if ((int)PhotonNetwork.player.CustomProperties["Team"] == team)
+        _decideMark[n].Put();
+    }
+
+    private void SyncDecide() {
+      int team = (int)PhotonNetwork.player.CustomProperties["Team"];
+      photonView.RPC("SyncDecideRPC", PhotonTargets.All, _curPick, team);
       _decideButton.interactable = false;
       DisableAllButtons();
     }
@@ -73,6 +81,7 @@ namespace Bunashibu.Kikan {
     [SerializeField] private TimePanel _selectTimePanel;
     [SerializeField] private GameObject[] _jobs;
     [SerializeField] private Button[] _buttons;
+    [SerializeField] private JobDecideMark[] _decideMark;
 
     // In order to avoid setting wrong index on inspector,
     // _skillPanelList is here. not in _instantiator.
