@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 namespace Bunashibu.Kikan {
   public class JobPanel : Photon.MonoBehaviour {
@@ -55,7 +56,6 @@ namespace Bunashibu.Kikan {
 
       int team = (int)PhotonNetwork.player.CustomProperties["Team"];
       photonView.RPC("SyncDecideRPC", PhotonTargets.All, _curPick, team);
-      _decideButton.interactable = false;
       DisableAllButtons();
     }
 
@@ -68,13 +68,23 @@ namespace Bunashibu.Kikan {
     }
 
     private void EnableAllButtons() {
-      foreach (Button button in _buttons)
+      foreach (Button button in _buttons) {
         button.interactable = true;
+        button.gameObject.GetComponent<EventTrigger>().enabled = true;
+      }
+
+      _decideButton.interactable = true;
+      _decideButton.gameObject.GetComponent<EventTrigger>().enabled = true;
     }
 
     private void DisableAllButtons() {
-      foreach (Button button in _buttons)
+      foreach (Button button in _buttons) {
         button.interactable = false;
+        button.gameObject.GetComponent<EventTrigger>().enabled = false;
+      }
+
+      _decideButton.interactable = false;
+      _decideButton.gameObject.GetComponent<EventTrigger>().enabled = false;
     }
 
     [SerializeField] private StartUpInstantiator _instantiator;
