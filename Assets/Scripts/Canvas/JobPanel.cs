@@ -9,12 +9,14 @@ namespace Bunashibu.Kikan {
       _buttons[0].onClick.AddListener( () => Pick(0) );
       _buttons[1].onClick.AddListener( () => Pick(1) );
       _decideButton.onClick.AddListener( () => Decide() );
+      _selectTimePanel.SetTime(_selectTime);
+      _selectTimePanel.SetView(TimeViewType.Sec);
     }
 
     void Start() {
       EnableAllButtons();
 
-      MonoUtility.Instance.DelaySec(_selectTime, () => {
+      MonoUtility.Instance.DelayUntil(() => _selectTimePanel.TimeSec <= 0, () => {
         ActivatePlayer();
 
         Destroy(gameObject);
@@ -68,6 +70,7 @@ namespace Bunashibu.Kikan {
     [SerializeField] private Canvas _canvas;
     [SerializeField] private Button _decideButton;
     [SerializeField] private JobDescription _description;
+    [SerializeField] private TimePanel _selectTimePanel;
     [SerializeField] private GameObject[] _jobs;
     [SerializeField] private Button[] _buttons;
 
