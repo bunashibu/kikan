@@ -8,6 +8,7 @@ namespace Bunashibu.Kikan {
     void Awake() {
       _buttons[0].onClick.AddListener( () => Pick(0) );
       _buttons[1].onClick.AddListener( () => Pick(1) );
+      _decideButton.onClick.AddListener( () => Decide() );
     }
 
     void Start() {
@@ -21,8 +22,16 @@ namespace Bunashibu.Kikan {
     }
 
     public void Pick(int n) {
-      _index = n;
-      DisableAllButtons();
+      if (_curPick == -1) {
+        _curPick = n;
+        _buttons[_curPick].interactable = false;
+      }
+      else {
+        _prePick = _curPick;
+        _curPick = n;
+        _buttons[_prePick].interactable = true;
+        _buttons[_curPick].interactable = false;
+      }
     }
 
     private void RandomPick() {
@@ -30,12 +39,17 @@ namespace Bunashibu.Kikan {
       Pick(n);
     }
 
+    private void Decide() {
+      _decideButton.interactable = false;
+      DisableAllButtons();
+    }
+
     private void ActivatePlayer() {
-      if (_index == -1)
+      if (_decideButton.interactable)
         RandomPick();
 
-      _instantiator.InstantiatePlayer(_jobs[_index].name);
-      _instantiator.InstantiateHudObjects(_canvas, _skillPanelList[_index]);
+      _instantiator.InstantiatePlayer(_jobs[_curPick].name);
+      _instantiator.InstantiateHudObjects(_canvas, _skillPanelList[_curPick]);
     }
 
     private void EnableAllButtons() {
@@ -50,13 +64,19 @@ namespace Bunashibu.Kikan {
 
     [SerializeField] private StartUpInstantiator _instantiator;
     [SerializeField] private Canvas _canvas;
+    [SerializeField] private Button _decideButton;
     [SerializeField] private GameObject[] _jobs;
     [SerializeField] private Button[] _buttons;
+
+    // In order to avoid setting wrong index on inspector,
+    // _skillPanelList is here. not in _instantiator.
     [SerializeField] private List<SkillPanel> _skillPanelList;
-    private int _index = -1;
 
     [Header("Job Select Time (Second)")]
     [SerializeField] private float _selectTime;
+
+    private int _prePick = -1;
+    private int _curPick = -1;
   }
 }
 

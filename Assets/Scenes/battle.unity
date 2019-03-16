@@ -4048,7 +4048,7 @@ GameObject:
   - component: {fileID: 372664142}
   - component: {fileID: 372664141}
   m_Layer: 5
-  m_Name: Decision
+  m_Name: Decide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23348,6 +23348,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _instantiator: {fileID: 2072669552}
   _canvas: {fileID: 375732893}
+  _decideButton: {fileID: 372664141}
   _jobs:
   - {fileID: 1222958424102090, guid: 86add1277fe664846b3404c1ba3d1a1d, type: 2}
   - {fileID: 1962928273671142, guid: 61da8da3f30ca3e4aa7a2179e7d5e32e, type: 2}
