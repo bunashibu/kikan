@@ -22,21 +22,21 @@ namespace Bunashibu.Kikan {
     }
 
     public void ChangeScene(string nextSceneName) {
+      PhotonNetwork.isMessageQueueRunning = false;
       _shouldFadeOut = true;
 
       MonoUtility.Instance.DelayUntil(() => _shouldFadeOut == false, () => {
-        PhotonNetwork.isMessageQueueRunning = false;
         SceneManager.LoadScene(nextSceneName, LoadSceneMode.Single);
         SceneManager.sceneLoaded += OnSceneLoaded;
       });
     }
 
     public void ChangeSceneWithSE(string nextSceneName, AudioSource source, AudioClip clip) {
+      PhotonNetwork.isMessageQueueRunning = false;
       _shouldFadeOut = true;
       source.PlayOneShot(clip);
 
       MonoUtility.Instance.DelayUntil(() => (_shouldFadeOut == false) && !source.isPlaying, () => {
-        PhotonNetwork.isMessageQueueRunning = false;
         SceneManager.LoadScene(nextSceneName, LoadSceneMode.Single);
         SceneManager.sceneLoaded += OnSceneLoaded;
       });
