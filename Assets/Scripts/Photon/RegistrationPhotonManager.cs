@@ -61,7 +61,7 @@ namespace Bunashibu.Kikan {
     public override void OnJoinedRoom() {
       Debug.Log("OnJoinedRoom() was called");
       _setPlayerName.SetName();
-      SceneChanger.Instance.ChangeScene(_nextSceneName);
+      SceneChanger.Instance.ChangeSceneWithSE(_nextSceneName, _source, _clip);
     }
 
     private void Disconnect() {
@@ -76,7 +76,11 @@ namespace Bunashibu.Kikan {
     [SerializeField] private GameObject _errorLabel;
     [SerializeField] private SetPlayerName _setPlayerName; // dirty
     [SerializeField] private byte _maxPlayers;
+
     [SerializeField] private string _nextSceneName;
+    [SerializeField] private AudioSource _source;
+    [SerializeField] private AudioClip _clip;
+
     private bool _isConnecting;
 
     private int _tryCount;

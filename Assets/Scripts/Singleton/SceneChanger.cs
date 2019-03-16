@@ -31,6 +31,17 @@ namespace Bunashibu.Kikan {
       });
     }
 
+    public void ChangeSceneWithSE(string nextSceneName, AudioSource source, AudioClip clip) {
+      _shouldFadeOut = true;
+      source.PlayOneShot(clip);
+
+      MonoUtility.Instance.DelayUntil(() => (_shouldFadeOut == false) && !source.isPlaying, () => {
+        PhotonNetwork.isMessageQueueRunning = false;
+        SceneManager.LoadScene(nextSceneName, LoadSceneMode.Single);
+        SceneManager.sceneLoaded += OnSceneLoaded;
+      });
+    }
+
     public void FadeOutAndLeaveRoom() {
       _shouldFadeOut = true;
       PhotonNetwork.LeaveRoom();
