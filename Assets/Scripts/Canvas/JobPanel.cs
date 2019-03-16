@@ -5,10 +5,15 @@ using UnityEngine.UI;
 
 namespace Bunashibu.Kikan {
   public class JobPanel : MonoBehaviour {
+    void Awake() {
+      _buttons[0].onClick.AddListener( () => Pick(0) );
+      _buttons[1].onClick.AddListener( () => Pick(1) );
+    }
+
     void Start() {
       EnableAllButtons();
 
-      MonoUtility.Instance.DelaySec(3.0f, () => {
+      MonoUtility.Instance.DelaySec(_selectTime, () => {
         ActivatePlayer();
 
         Destroy(gameObject);
@@ -49,6 +54,9 @@ namespace Bunashibu.Kikan {
     [SerializeField] private Button[] _buttons;
     [SerializeField] private List<SkillPanel> _skillPanelList;
     private int _index = -1;
+
+    [Header("Job Select Time (Second)")]
+    [SerializeField] private float _selectTime;
   }
 }
 
