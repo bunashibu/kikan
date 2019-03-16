@@ -50,6 +50,9 @@ namespace Bunashibu.Kikan {
     }
 
     private void SyncDecide() {
+      if (_curPick == -1)
+        return;
+
       int team = (int)PhotonNetwork.player.CustomProperties["Team"];
       photonView.RPC("SyncDecideRPC", PhotonTargets.All, _curPick, team);
       _decideButton.interactable = false;
