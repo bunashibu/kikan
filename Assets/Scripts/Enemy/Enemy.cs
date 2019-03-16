@@ -37,7 +37,6 @@ namespace Bunashibu.Kikan {
     public Collider2D     FootCollider => _footCollider;
     public Animator       Animator     => _animator;
 
-    // Observer
     public EnemyPopulationObserver PopulationObserver { get; private set; }
 
     // tmp
