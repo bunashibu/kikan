@@ -1,55 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
+using UniRx.Triggers;
 
 namespace Bunashibu.Kikan {
-  [RequireComponent(typeof(Rigidbody2D))]
-  [RequireComponent(typeof(Collider2D))]
-  public class Character2D : MonoBehaviour {
-    void Awake() {
-      _character = gameObject.GetComponent<ICharacter>();
+  public class Character2D {
+    public Character2D(ICharacter character) {
+      _character = character;
+      _character.gameObject.UpdateAsObservable()
+        .Subscribe(_ => Update() );
     }
 
-    void Start() {
-      _location = (IGroundLocationJudger)_character.LocationJudger;
-    }
-
-    void Update() {
-      UpdateGroundRaycast();
-
-      if (_character.PhotonView.isMine && IsOutOfArea())
+    private void Update() {
+      if (_character.PhotonView.isMine && IsOutOfArea() && _isEnabled)
         AdjustPosition();
     }
 
-    private void UpdateGroundRaycast() {
-      Vector2 footRayOrigin = new Vector2(_character.FootCollider.bounds.center.x, _character.FootCollider.bounds.min.y);
+    public void Enable() {
+      _isEnabled = true;
+    }
 
-      float rayLength = 0.1f + Mathf.Abs(_character.Rigid.velocity.y) * Time.deltaTime;
-      RaycastHit2D hitGround = Physics2D.Raycast(footRayOrigin, Vector2.down, rayLength, _groundMask);
-
-      if (_location.IsGround) {
-        float degAngle = Vector2.Angle(hitGround.normal, Vector2.up);
-        if (degAngle == 90)
-          degAngle = 0;
-        _character.State.GroundAngle = degAngle;
-
-        if (degAngle > 0 && degAngle < 90) {
-          float sign = Mathf.Sign(hitGround.normal.x);
-          _character.State.GroundLeft  = (sign == 1 ) ? true : false;
-          _character.State.GroundRight = (sign == -1) ? true : false;
-        }
-        else {
-          _character.State.GroundLeft  = false;
-          _character.State.GroundRight = false;
-        }
-      }
-      else {
-        _character.State.GroundAngle = 0;
-        _character.State.GroundLeft  = false;
-        _character.State.GroundRight = false;
-      }
-
-      Debug.DrawRay(footRayOrigin, Vector2.down * rayLength, Color.red);
+    public void Disable() {
+      _isEnabled = false;
     }
 
     private bool IsOutOfArea() {
@@ -68,9 +41,8 @@ namespace Bunashibu.Kikan {
       _character.FootCollider.isTrigger = false;
     }
 
-    [SerializeField] private LayerMask _groundMask;
     private ICharacter _character;
-    private IGroundLocationJudger _location;
+    private bool _isEnabled = true;
   }
 }
 

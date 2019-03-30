@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
-  public interface IEnemyLocationJudger : IGroundLocationJudger {
-    void InitializeFootJudge(Collider2D footCollider);
-
+  public interface IEnemyLocation : IGroundLocation {
+    void InitializeFoot(Collider2D footCollider);
     bool IsGround { get; }
   }
 }

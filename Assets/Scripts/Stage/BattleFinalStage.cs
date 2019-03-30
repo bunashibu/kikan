@@ -60,7 +60,7 @@ namespace Bunashibu.Kikan {
         player.Rigid.velocity = Vector3.zero;
         player.Rigid.simulated = false;
 
-        player.Character.enabled = false;
+        player.Character.Disable();
         player.Weapon.SkillInstantiator.enabled = false;
       }
     }
@@ -103,7 +103,7 @@ namespace Bunashibu.Kikan {
 
         player.BodyCollider.enabled = true;
 
-        player.Character.enabled = true;
+        player.Character.Enable();
         player.Weapon.SkillInstantiator.enabled = true;
 
         player.StateTransfer.TransitTo("Idle", player.Animator);

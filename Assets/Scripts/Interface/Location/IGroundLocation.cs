@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
-  public interface IGroundLocationJudger {
+  public interface IGroundLocation {
     bool IsGround { get; }
   }
 }

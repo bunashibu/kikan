@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
-  [RequireComponent(typeof(Character2D))]
   public class Enemy : MonoBehaviour, ICharacter, IOnDebuffed, IOnAttacked, IOnForced, IAttacker, IPhotonBehaviour, IKillRewardGiver {
     void Awake() {
       Movement      = new EnemyMovement();
@@ -16,8 +15,10 @@ namespace Bunashibu.Kikan {
       Debuff        = new Debuff(transform);
       Debuff.Register(DebuffType.Stun, _stunEffect);
 
-      LocationJudger = new LocationJudger();
-      LocationJudger.InitializeFootJudge(_footCollider);
+      Location      = (IEnemyLocation)new Location();
+      Location.InitializeFoot(_footCollider);
+
+      Character = new Character2D(this);
     }
 
     void Start() {
@@ -43,13 +44,13 @@ namespace Bunashibu.Kikan {
     public MonoBehaviour AI => _ai;
 
     public EnemyMovement  Movement      { get; private set; }
+    public Character2D    Character     { get; private set; }
     public CharacterState State         { get; private set; }
     public StateTransfer  StateTransfer { get; private set; }
     public Hp             Hp            { get; private set; }
     public Debuff         Debuff        { get; private set; }
 
-    public LocationJudger       LocationJudger { get; private set; }
-    public IEnemyLocationJudger Location       => (IEnemyLocationJudger)LocationJudger;
+    public IEnemyLocation Location { get; private set;}
 
     public TargetChaseSystem TargetChaseSystem => _targetChaseSystem;
 

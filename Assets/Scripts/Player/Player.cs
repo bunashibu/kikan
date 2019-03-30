@@ -13,12 +13,14 @@ namespace Bunashibu.Kikan {
       State          = new CharacterState();
       StateTransfer  = new StateTransfer(_initState, _animator);
 
-      LocationJudger = new LocationJudger();
-      LocationJudger.InitializeFootJudge(_footCollider);
-      LocationJudger.InitializeCenterJudge(_centerCollider);
+      Location       = (IPlayerLocation)new Location();
+      Location.InitializeFoot(_footCollider);
+      Location.InitializeCenter(_centerCollider);
 
       Debuff         = new Debuff(transform);
       Debuff.Register(DebuffType.Stun, _stunEffect);
+
+      Character = new Character2D(this);
     }
 
     // THINK: coupling with global reference. to be a stream
@@ -89,6 +91,7 @@ namespace Bunashibu.Kikan {
     public StateTransfer  StateTransfer { get; private set; }
     public SkillInfo      SkillInfo     { get; private set; }
     public PlayerInfo     PlayerInfo    { get; private set; }
+    public Character2D    Character     { get; private set; }
     public CharacterState State         { get; private set; }
 
     public int MaxLevel       => 15;
@@ -120,15 +123,13 @@ namespace Bunashibu.Kikan {
     public ReadOnlyCollection<int> HpTable  => _hpTable.Data;
     public ReadOnlyCollection<int> ExpTable => _expTable.Data;
 
-    public LocationJudger        LocationJudger { get; private set; }
-    public IPlayerLocationJudger Location       => (IPlayerLocationJudger)LocationJudger;
+    public IPlayerLocation Location { get; private set; }
 
     public NameBackground NameBackground => _nameBackground;
     public PopupRemark    PopupRemark    => _popupRemark;
     public Bar            WorldHpBar     => _worldHpBar;
 
     // tmp
-    public Character2D Character  => _character;
     public DamageSkin  DamageSkin => _damageSkin;
     public Weapon      Weapon     => _weapon;
 
@@ -177,9 +178,6 @@ namespace Bunashibu.Kikan {
     [SerializeField] private NameBackground _nameBackground;
     [SerializeField] private PopupRemark    _popupRemark;
     [SerializeField] private Bar            _worldHpBar;
-
-    [Space(10)]
-    [SerializeField] private Character2D _character;
 
     [Space(10)]
     [SerializeField] private DamageSkin _damageSkin;

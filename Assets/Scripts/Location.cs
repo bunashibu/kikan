@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
-  public class LocationJudger : IPlayerLocationJudger, IEnemyLocationJudger {
-    public void InitializeFootJudge(Collider2D footCollider) {
+  public class Location : IPlayerLocation, IEnemyLocation {
+    public void InitializeFoot(Collider2D footCollider) {
       _footCollider = footCollider;
     }
 
-    public void InitializeCenterJudge(Collider2D centerCollider) {
+    public void InitializeCenter(Collider2D centerCollider) {
       _centerCollider = centerCollider;
     }
 

@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
-  public interface IPlayerLocationJudger : IGroundLocationJudger {
-    void InitializeFootJudge(Collider2D footCollider);
-    void InitializeCenterJudge(Collider2D centerCollider);
-
+  public interface IPlayerLocation : IGroundLocation {
+    void InitializeFoot(Collider2D footCollider);
+    void InitializeCenter(Collider2D centerCollider);
     bool IsGround           { get; }
     bool IsCanNotDownGround { get; }
     bool IsAir              { get; }
