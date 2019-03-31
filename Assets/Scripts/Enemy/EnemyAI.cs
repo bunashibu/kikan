@@ -28,21 +28,21 @@ namespace Bunashibu.Kikan {
         _strategyFlag = true;
       }
 
-      float degAngle = _enemy.State.GroundAngle;
+      float degAngle = _enemy.Location.GroundAngle;
 
       if (_enemy.Location.IsGround) {
         if (_strategy == "MoveLeft") {
-          degAngle *= _enemy.State.GroundLeft ? 1 : -1;
+          degAngle *= _enemy.Location.IsLeftSlope ? 1 : -1;
           _enemy.Movement.GroundMoveLeft(degAngle);
         }
         else if (_strategy == "MoveRight") {
-          degAngle *= _enemy.State.GroundRight ? 1 : -1;
+          degAngle *= _enemy.Location.IsRightSlope ? 1 : -1;
           _enemy.Movement.GroundMoveRight(degAngle);
         }
       }
 
       debugAngle = degAngle;
-      debugGroundLeft = _enemy.State.GroundLeft;
+      debugGroundLeft = _enemy.Location.IsLeftSlope;
     }
 
     private void ConsiderStrategy() {

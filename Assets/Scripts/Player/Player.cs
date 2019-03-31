@@ -13,7 +13,7 @@ namespace Bunashibu.Kikan {
       State          = new CharacterState();
       StateTransfer  = new StateTransfer(_initState, _animator);
 
-      Location       = (IPlayerLocation)new Location();
+      Location       = (IPlayerLocation)new Location(this);
       Location.InitializeFoot(_footCollider);
       Location.InitializeCenter(_centerCollider);
 
@@ -123,7 +123,7 @@ namespace Bunashibu.Kikan {
     public ReadOnlyCollection<int> HpTable  => _hpTable.Data;
     public ReadOnlyCollection<int> ExpTable => _expTable.Data;
 
-    public IPlayerLocation Location { get; private set; }
+    public IPlayerLocation Location     { get; private set; }
 
     public NameBackground NameBackground => _nameBackground;
     public PopupRemark    PopupRemark    => _popupRemark;

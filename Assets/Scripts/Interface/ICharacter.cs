@@ -4,11 +4,10 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   public interface ICharacter : IPhotonBehaviour {
-    Transform      transform      { get; }
-    Rigidbody2D    Rigid          { get; }
-    Collider2D     BodyCollider   { get; }
-    Collider2D     FootCollider   { get; }
-    CharacterState State          { get; }
+    Transform   transform    { get; }
+    Rigidbody2D Rigid        { get; }
+    Collider2D  BodyCollider { get; }
+    Collider2D  FootCollider { get; }
   }
 }
 

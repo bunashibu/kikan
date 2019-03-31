@@ -46,7 +46,7 @@ namespace Bunashibu.Kikan {
     }
 
     private void Chase() {
-      float degAngle = _enemy.State.GroundAngle;
+      float degAngle = _enemy.Location.GroundAngle;
 
       if (_enemy.Location.IsGround) {
         if (_targetTrans.position.x < transform.position.x)
@@ -57,27 +57,27 @@ namespace Bunashibu.Kikan {
     }
 
     private void RushLeft() {
-      float degAngle = _enemy.State.GroundAngle;
+      float degAngle = _enemy.Location.GroundAngle;
 
       if (_enemy.Location.IsGround)
         ChaseLeft(degAngle);
     }
 
     private void RushRight() {
-      float degAngle = _enemy.State.GroundAngle;
+      float degAngle = _enemy.Location.GroundAngle;
 
       if (_enemy.Location.IsGround)
         ChaseRight(degAngle);
     }
 
     private void ChaseLeft(float degAngle) {
-      degAngle *= _enemy.State.GroundLeft ? 1 : -1;
+      degAngle *= _enemy.Location.IsLeftSlope ? 1 : -1;
       _enemy.Movement.GroundMoveLeft(degAngle);
       _enemy.Renderer.flipX = false;
     }
 
     private void ChaseRight(float degAngle) {
-      degAngle *= _enemy.State.GroundRight ? 1 : -1;
+      degAngle *= _enemy.Location.IsRightSlope ? 1 : -1;
       _enemy.Movement.GroundMoveRight(degAngle);
       _enemy.Renderer.flipX = true;
     }

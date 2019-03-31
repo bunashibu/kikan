@@ -28,8 +28,8 @@ namespace Bunashibu.Kikan {
       bool OnlyRightKeyDown = Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow);
 
       if (OnlyLeftKeyDown)  {
-        float degAngle = _player.State.GroundAngle;
-        degAngle *= _player.State.GroundLeft ? 1 : -1;
+        float degAngle = _player.Location.GroundAngle;
+        degAngle *= _player.Location.IsLeftSlope ? 1 : -1;
 
         _player.Movement.GroundMoveLeft(degAngle);
 
@@ -38,8 +38,8 @@ namespace Bunashibu.Kikan {
       }
 
       if (OnlyRightKeyDown) {
-        float degAngle = _player.State.GroundAngle;
-        degAngle *= _player.State.GroundRight ? 1 : -1;
+        float degAngle = _player.Location.GroundAngle;
+        degAngle *= _player.Location.IsRightSlope ? 1 : -1;
 
         _player.Movement.GroundMoveRight(degAngle);
 

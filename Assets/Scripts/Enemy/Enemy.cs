@@ -15,7 +15,7 @@ namespace Bunashibu.Kikan {
       Debuff        = new Debuff(transform);
       Debuff.Register(DebuffType.Stun, _stunEffect);
 
-      Location      = (IEnemyLocation)new Location();
+      Location      = (IEnemyLocation)new Location(this);
       Location.InitializeFoot(_footCollider);
 
       Character = new Character2D(this);
