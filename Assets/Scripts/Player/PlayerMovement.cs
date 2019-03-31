@@ -38,6 +38,7 @@ namespace Bunashibu.Kikan {
       if (_core == null) {
         _airMove.FixedUpdate(_rigid);
         _groundMove.FixedUpdate(_rigid);
+        _ladderMove.FixedUpdate(_trans);
 
         _groundJump.FixedUpdate(_rigid);
         _ladderJump.FixedUpdate(_rigid);
@@ -45,12 +46,12 @@ namespace Bunashibu.Kikan {
       else {
         _airMove.FixedUpdate(_rigid, _core);
         _groundMove.FixedUpdate(_rigid, _core);
+        _ladderMove.FixedUpdate(_trans, _core);
 
         _groundJump.FixedUpdate(_rigid, _core);
         _ladderJump.FixedUpdate(_rigid, _core);
       }
 
-      _ladderMove.FixedUpdate(_trans);
       _stepDownJump.FixedUpdate(_rigid);
 
       RestrictFallVelocity();
@@ -111,6 +112,10 @@ namespace Bunashibu.Kikan {
 
     public void SetJumpForce(float force) {
       _groundJump.SetForce(force);
+    }
+
+    public void SetLadderRatio(float ratio) {
+      _ladderMove.SetRatio(ratio);
     }
 
     public void SetMaxFallVelocity(float maxFallVelocity) {

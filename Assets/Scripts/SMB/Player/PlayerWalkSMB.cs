@@ -39,7 +39,6 @@ namespace Bunashibu.Kikan {
         else
           angle = _player.Location.GroundAngle;
 
-      Debug.Log(angle);
         _player.Movement.GroundMoveLeft(angle);
 
         foreach (var sprite in _player.Renderers)
@@ -58,7 +57,6 @@ namespace Bunashibu.Kikan {
         else
           angle = _player.Location.GroundAngle;
 
-      Debug.Log(angle);
         _player.Movement.GroundMoveRight(angle);
 
         foreach (var sprite in _player.Renderers)

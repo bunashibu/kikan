@@ -32,12 +32,14 @@ namespace Bunashibu.Kikan {
 
       skillUser.Movement.SetMoveForce(skillUser.Status.Spd * statusRatio);
       skillUser.Movement.SetJumpForce(skillUser.Status.Jmp * statusRatio);
+      skillUser.Movement.SetLadderRatio(statusRatio);
 
       skillUser.Status.SetFixAtk(powerRatio);
 
       ResetStatus = () => {
         skillUser.Movement.SetMoveForce(skillUser.Status.Spd);
         skillUser.Movement.SetJumpForce(skillUser.Status.Jmp);
+        skillUser.Movement.SetLadderRatio(1.0f);
 
         skillUser.Status.SetFixAtk(1.0f);
       };
