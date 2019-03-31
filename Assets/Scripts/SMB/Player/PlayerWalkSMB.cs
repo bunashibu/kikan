@@ -28,20 +28,38 @@ namespace Bunashibu.Kikan {
       bool OnlyRightKeyDown = Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow);
 
       if (OnlyLeftKeyDown)  {
-        float degAngle = _player.Location.GroundAngle;
-        degAngle *= _player.Location.IsLeftSlope ? 1 : -1;
+        float angle;
 
-        _player.Movement.GroundMoveLeft(degAngle);
+        if (_player.Location.IsLeftSlope)
+          angle = _player.Location.SlopeAngle;
+        else if (_player.Location.IsRightSlope)
+          angle = _player.Location.GroundAngle * -1;
+        else if (_player.Location.IsRightGround)
+          angle = _player.Location.GroundAngle * -1;
+        else
+          angle = _player.Location.GroundAngle;
+
+      Debug.Log(angle);
+        _player.Movement.GroundMoveLeft(angle);
 
         foreach (var sprite in _player.Renderers)
           sprite.flipX = false;
       }
 
       if (OnlyRightKeyDown) {
-        float degAngle = _player.Location.GroundAngle;
-        degAngle *= _player.Location.IsRightSlope ? 1 : -1;
+        float angle;
 
-        _player.Movement.GroundMoveRight(degAngle);
+        if (_player.Location.IsRightSlope)
+          angle = _player.Location.SlopeAngle;
+        else if (_player.Location.IsLeftSlope)
+          angle = _player.Location.GroundAngle * -1;
+        else if (_player.Location.IsLeftGround)
+          angle = _player.Location.GroundAngle * -1;
+        else
+          angle = _player.Location.GroundAngle;
+
+      Debug.Log(angle);
+        _player.Movement.GroundMoveRight(angle);
 
         foreach (var sprite in _player.Renderers)
           sprite.flipX = true;

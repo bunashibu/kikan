@@ -15,7 +15,10 @@ namespace Bunashibu.Kikan {
     bool IsPortal           { get; }
     bool IsLeftSlope        { get; }
     bool IsRightSlope       { get; }
+    bool IsLeftGround       { get; }
+    bool IsRightGround      { get; }
     float GroundAngle       { get; }
+    float SlopeAngle        { get; }
   }
 }
 
