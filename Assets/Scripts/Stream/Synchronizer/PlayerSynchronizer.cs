@@ -44,6 +44,17 @@ namespace Bunashibu.Kikan {
       photonView.RPC("SyncRespawnRPC", PhotonTargets.AllViaServer, viewID);
     }
 
+    [PunRPC]
+    private void SyncChairRPC(bool shouldSit) {
+      _stream.OnNextChair(shouldSit);
+    }
+
+    public void SyncChair(bool shouldSit) {
+      Assert.IsTrue(photonView.isMine);
+
+      photonView.RPC("SyncChairRPC", PhotonTargets.AllBuffered, shouldSit);
+    }
+
     private PlayerStream _stream;
   }
 }

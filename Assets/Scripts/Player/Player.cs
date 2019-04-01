@@ -10,32 +10,38 @@ using UniRx;
 namespace Bunashibu.Kikan {
   public class Player : MonoBehaviour, IPhotonBehaviour, ICharacter, ISpeaker, IBattleMovementPlayer, ILobbyMovementPlayer, ICorePlayer, IAttacker, IOnAttacked, IOnDebuffed, IOnForced, IStatus, IKillRewardTaker, IKillRewardGiver {
     void Awake() {
-      State          = new CharacterState();
-      StateTransfer  = new StateTransfer(_initState, _animator);
+      State         = new CharacterState();
+      StateTransfer = new StateTransfer(_initState, _animator);
 
-      Location       = (IPlayerLocation)new Location(this);
+      Location = (IPlayerLocation)new Location(this);
       Location.InitializeFoot(_footCollider);
       Location.InitializeCenter(_centerCollider);
 
-      Debuff         = new Debuff(transform);
+      Debuff = new Debuff(transform);
       Debuff.Register(DebuffType.Stun, _stunEffect);
 
+      Stream = new PlayerStream();
+      Synchronizer.SetStream(Stream);
+
       Character = new Character2D(this);
+
+      Stream.OnChair
+        .Subscribe(shouldSit => {
+          Chair.UpdateShouldSit(shouldSit);
+        })
+        .AddTo(gameObject);
     }
 
     // THINK: coupling with global reference. to be a stream
     void Start() {
       if (StageReference.Instance.StageData.Name == "Lobby") {
         Movement = new PlayerMovement((ILobbyMovementPlayer)this);
-        // tmp
         Movement.SetMoveForce(4.0f);
         Movement.SetJumpForce(400.0f);
         Movement.SetMaxFallVelocity(-11.0f);
 
-        // tmp
-        SkillInfo  = new SkillInfo();
-
-        _chair = new Chair(this);
+        SkillInfo = new SkillInfo();
+        Chair = new Chair(this);
       }
 
       if (StageReference.Instance.StageData.Name == "Battle") {
@@ -43,9 +49,6 @@ namespace Bunashibu.Kikan {
         Assert.IsTrue(_killGoldTable.Data.Count == MaxLevel);
         Assert.IsTrue(_hpTable.Data.Count       == MaxLevel);
         Assert.IsTrue(_expTable.Data.Count      == MaxLevel);
-
-        Stream     = new PlayerStream();
-        Synchronizer.SetStream(Stream);
 
         Movement   = new PlayerMovement((IBattleMovementPlayer)this);
         Movement.SetMaxFallVelocity(-11.0f);
@@ -131,6 +134,8 @@ namespace Bunashibu.Kikan {
     public PopupRemark    PopupRemark    => _popupRemark;
     public Bar            WorldHpBar     => _worldHpBar;
 
+    public Chair Chair { get; private set;}
+
     // tmp
     public DamageSkin  DamageSkin => _damageSkin;
     public Weapon      Weapon     => _weapon;
@@ -188,7 +193,6 @@ namespace Bunashibu.Kikan {
     [SerializeField] private JobStatus _jobStatus;
     [SerializeField] private Weapon    _weapon;
 
-    private Chair _chair;
     private static readonly string _initState = "Idle";
   }
 }
