@@ -19,6 +19,7 @@ namespace Bunashibu.Kikan {
 
         if ( _player.Debuff.State[DebuffType.Stun] ) { _player.StateTransfer.TransitTo( "Stun",       animator ); return; }
         if ( ShouldTransitToLadderWarp() )           { _player.StateTransfer.TransitTo( "LadderWarp", animator ); return; }
+        if ( ShouldTransitToLadderJump() )           { _player.StateTransfer.TransitTo( "LadderJump", animator ); return; }
         if ( ShouldTransitToIdle()       )           { _player.StateTransfer.TransitTo( "Idle",       animator ); return; }
         if ( ShouldTransitToFall()       )           { _player.StateTransfer.TransitTo( "Fall",       animator ); return; }
       }
@@ -42,9 +43,17 @@ namespace Bunashibu.Kikan {
     private bool ShouldTransitToLadderWarp() {
       bool OnlyLeftKeyDown  = Input.GetKey(KeyCode.LeftArrow)  && !Input.GetKey(KeyCode.RightArrow);
       bool OnlyRightKeyDown = Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow);
-      bool isReady = _player.BodyCollider.IsTouchingLayers(LayerMask.GetMask("LadderTopEdge"));
+      bool isTouched = _player.BodyCollider.IsTouchingLayers(LayerMask.GetMask("LadderTopEdge"));
 
-      return (OnlyLeftKeyDown || OnlyRightKeyDown) && Input.GetButton("Jump") && isReady;
+      return (OnlyLeftKeyDown || OnlyRightKeyDown) && Input.GetButton("Jump") && isTouched;
+    }
+
+    private bool ShouldTransitToLadderJump() {
+      bool OnlyLeftKeyDown  = Input.GetKey(KeyCode.LeftArrow)  && !Input.GetKey(KeyCode.RightArrow);
+      bool OnlyRightKeyDown = Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow);
+      bool isNotTouched = !_player.BodyCollider.IsTouchingLayers(LayerMask.GetMask("LadderTopEdge"));
+
+      return (OnlyLeftKeyDown || OnlyRightKeyDown) && Input.GetButton("Jump") && isNotTouched;
     }
 
     private bool ShouldTransitToIdle() {
