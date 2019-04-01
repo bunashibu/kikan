@@ -50,8 +50,16 @@ namespace Bunashibu.Kikan {
     public float OffsetZ { get { return _positionOffset.z; } }
 
     private void InterpolateTo(Vector3 destination) {
-      Vector3 interpolatedPosition = transform.position * _interpolateRatio + destination * (1.0f - _interpolateRatio);
-      transform.position = interpolatedPosition;
+      var distance = Vector3.Distance(transform.position, destination);
+
+      if (distance > _slowDistance)
+        transform.position = Interpolate(destination, _ratio);
+      else
+        transform.position = Interpolate(destination, _ratio + (_slowDistance - distance) * 0.01f);
+    }
+
+    private Vector3 Interpolate(Vector3 destination, float ratio) {
+      return transform.position * ratio + destination * (1.0f - ratio);
     }
 
     private void RestrictEdgeBehaviour() {
@@ -71,7 +79,8 @@ namespace Bunashibu.Kikan {
 
     [SerializeField] private Camera _camera;
     [SerializeField] private Vector3 _positionOffset;
-    [SerializeField] private float _interpolateRatio;
+    [SerializeField] private float _ratio;
+    private float _slowDistance = 7.0f;
     private bool _isTracking;
     private bool _shouldRestrict;
     private GameObject _trackObj;

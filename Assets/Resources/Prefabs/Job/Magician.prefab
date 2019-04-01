@@ -216,8 +216,8 @@ MonoBehaviour:
   - {fileID: 114626993203521800}
   - {fileID: 114183498227690234}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 2
-  instantiationId: 2
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114626993203521800
@@ -442,7 +442,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1795282007
-  m_SortingLayer: 16
+  m_SortingLayer: 17
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 220d5fe29442aa340b0c60a27fd7fa72, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1585,8 +1585,8 @@ MonoBehaviour:
   - {fileID: 114648278385727348}
   - {fileID: 114542911776344512}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 1
-  instantiationId: 1
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114648278385727348
