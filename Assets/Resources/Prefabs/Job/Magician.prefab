@@ -216,8 +216,8 @@ MonoBehaviour:
   - {fileID: 114626993203521800}
   - {fileID: 114183498227690234}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 2
+  instantiationId: 2
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114626993203521800
@@ -1436,7 +1436,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.8}
+  m_Size: {x: 0.5, y: 0.9}
   m_EdgeRadius: 0
 --- !u!95 &95879485340875448
 Animator:
@@ -1585,8 +1585,8 @@ MonoBehaviour:
   - {fileID: 114648278385727348}
   - {fileID: 114542911776344512}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 1
+  instantiationId: 1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114648278385727348
@@ -1729,7 +1729,6 @@ MonoBehaviour:
   _nameBackground: {fileID: 114077627308338738}
   _popupRemark: {fileID: 114869459474273918}
   _worldHpBar: {fileID: 114146344738928912}
-  _character: {fileID: 0}
   _damageSkin: {fileID: 11400000, guid: 950c137ab9585e94aaf57f5f836cecd9, type: 2}
   _jobStatus: {fileID: 11400000, guid: 04fff0473b3c2ca40b8cc82fcc70ad36, type: 2}
   _weapon: {fileID: 114596638383518480}

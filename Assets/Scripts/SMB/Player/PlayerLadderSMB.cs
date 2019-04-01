@@ -17,10 +17,10 @@ namespace Bunashibu.Kikan {
       if (_player.PhotonView.isMine) {
         LadderMove();
 
-        if ( _player.Debuff.State[DebuffType.Stun] ) { _player.StateTransfer.TransitTo( "Stun", animator ); return; }
-        if ( ShouldTransitToLadderJump() )           { TransitToLadderJump(animator);                       return; }
-        if ( ShouldTransitToIdle()       )           { _player.StateTransfer.TransitTo( "Idle", animator ); return; }
-        if ( ShouldTransitToFall()       )           { _player.StateTransfer.TransitTo( "Fall", animator ); return; }
+        if ( _player.Debuff.State[DebuffType.Stun] ) { _player.StateTransfer.TransitTo( "Stun",       animator ); return; }
+        if ( ShouldTransitToLadderWarp() )           { _player.StateTransfer.TransitTo( "LadderWarp", animator ); return; }
+        if ( ShouldTransitToIdle()       )           { _player.StateTransfer.TransitTo( "Idle",       animator ); return; }
+        if ( ShouldTransitToFall()       )           { _player.StateTransfer.TransitTo( "Fall",       animator ); return; }
       }
     }
 
@@ -39,11 +39,12 @@ namespace Bunashibu.Kikan {
         _player.Movement.LadderMoveDown();
     }
 
-    private bool ShouldTransitToLadderJump() {
+    private bool ShouldTransitToLadderWarp() {
       bool OnlyLeftKeyDown  = Input.GetKey(KeyCode.LeftArrow)  && !Input.GetKey(KeyCode.RightArrow);
       bool OnlyRightKeyDown = Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow);
+      bool isReady = _player.BodyCollider.IsTouchingLayers(LayerMask.GetMask("LadderTopEdge"));
 
-      return (OnlyLeftKeyDown || OnlyRightKeyDown) && Input.GetButton("Jump");
+      return (OnlyLeftKeyDown || OnlyRightKeyDown) && Input.GetButton("Jump") && isReady;
     }
 
     private bool ShouldTransitToIdle() {
@@ -52,34 +53,6 @@ namespace Bunashibu.Kikan {
 
     private bool ShouldTransitToFall() {
       return _player.Location.IsAir && !_player.Location.IsLadder;
-    }
-
-    private void TransitToLadderJump(Animator animator) {
-      LadderJump();
-      _player.StateTransfer.TransitTo ("LadderJump", animator);
-    }
-
-    private void LadderJump() {
-      _player.Rigid.isKinematic = false;
-      _player.FootCollider.isTrigger = false;
-
-      bool OnlyLeftKeyDown = Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow);
-      if (OnlyLeftKeyDown) {
-        _player.Movement.GroundMoveLeft();
-
-        foreach (var sprite in _player.Renderers)
-          sprite.flipX = false;
-      }
-
-      bool OnlyRightKeyDown = Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow);
-      if (OnlyRightKeyDown) {
-        _player.Movement.GroundMoveRight();
-
-        foreach (var sprite in _player.Renderers)
-          sprite.flipX = true;
-      }
-
-      _player.Movement.LadderJump();
     }
 
     private Player _player;
