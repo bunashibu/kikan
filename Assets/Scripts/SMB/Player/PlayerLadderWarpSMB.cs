@@ -20,6 +20,7 @@ namespace Bunashibu.Kikan {
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
       if (_player.PhotonView.isMine) {
         Move();
+        UpdateSprite();
 
         if (_isMoved) {
           if ( _player.Debuff.State[DebuffType.Stun] )                   { _player.StateTransfer.TransitTo( "Stun" , animator ); return; }
@@ -67,6 +68,20 @@ namespace Bunashibu.Kikan {
       }
 
       _easing = new QuadraticEaseInOut(_player.transform.position, destination, _duration);
+    }
+
+    private void UpdateSprite() {
+      bool OnlyLeftKeyDown = Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow);
+      if (OnlyLeftKeyDown) {
+        foreach (var sprite in _player.Renderers)
+          sprite.flipX = false;
+      }
+
+      bool OnlyRightKeyDown = Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow);
+      if (OnlyRightKeyDown) {
+        foreach (var sprite in _player.Renderers)
+          sprite.flipX = true;
+      }
     }
 
     private void Move() {
