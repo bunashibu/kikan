@@ -34,6 +34,8 @@ namespace Bunashibu.Kikan {
 
         // tmp
         SkillInfo  = new SkillInfo();
+
+        _chair = new Chair(this);
       }
 
       if (StageReference.Instance.StageData.Name == "Battle") {
@@ -186,6 +188,7 @@ namespace Bunashibu.Kikan {
     [SerializeField] private JobStatus _jobStatus;
     [SerializeField] private Weapon    _weapon;
 
+    private Chair _chair;
     private static readonly string _initState = "Idle";
   }
 }
