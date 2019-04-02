@@ -154,6 +154,7 @@ namespace Bunashibu.Kikan {
         .Subscribe(_ => player.Synchronizer.SyncAutoHeal(player.AutoHealQuantity) )
         .AddTo(player.gameObject);
 
+      _playerPanel.Register(player);
       player.WorldHpBar.gameObject.SetActive(false);
       CameraInitializer.Instance.RegisterToTrackTarget(player.gameObject);
     }
@@ -201,6 +202,7 @@ namespace Bunashibu.Kikan {
     [SerializeField] private CorePanel _corePanel;
     [SerializeField] private GoldPanel _goldPanel;
     [SerializeField] private TeammateHpPanel _teammateHpPanel;
+    [SerializeField] private PlayerPanel _playerPanel;
     [SerializeField] private GameObject _levelUpEffect;
   }
 }

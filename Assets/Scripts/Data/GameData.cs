@@ -6,7 +6,7 @@ namespace Bunashibu.Kikan {
   public class GameData : SingletonMonoBehaviour<GameData> {
     public string GameVersion { get { return _gameVersion; } }
 
-    private readonly string _gameVersion = "0.0.1";
+    private readonly string _gameVersion = "0.1.0dev";
   }
 }
 

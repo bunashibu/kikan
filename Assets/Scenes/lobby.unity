@@ -2675,6 +2675,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1728527394188518, guid: 248d3d80d001f1144b51b737c7b7340e, type: 3}
+      propertyPath: m_Name
+      value: ChatUI
+      objectReference: {fileID: 0}
     - target: {fileID: 4733332064185284, guid: 248d3d80d001f1144b51b737c7b7340e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2707,6 +2711,18 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 4733332064185284, guid: 248d3d80d001f1144b51b737c7b7340e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4733332064185284, guid: 248d3d80d001f1144b51b737c7b7340e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4733332064185284, guid: 248d3d80d001f1144b51b737c7b7340e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 114703579228180500, guid: 248d3d80d001f1144b51b737c7b7340e,
         type: 3}
       propertyPath: viewIdField
@@ -2716,11 +2732,6 @@ PrefabInstance:
         type: 3}
       propertyPath: instantiationId
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114114607588712458, guid: 248d3d80d001f1144b51b737c7b7340e,
-        type: 3}
-      propertyPath: AlignBottom
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 248d3d80d001f1144b51b737c7b7340e, type: 3}
