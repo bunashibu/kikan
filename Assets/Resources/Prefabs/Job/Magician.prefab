@@ -101,7 +101,6 @@ GameObject:
   - component: {fileID: 95863565720761398}
   - component: {fileID: 114797927543078298}
   - component: {fileID: 114626993203521800}
-  - component: {fileID: 114596638383518480}
   - component: {fileID: 114317704787535144}
   - component: {fileID: 114183498227690234}
   m_Layer: 0
@@ -216,8 +215,8 @@ MonoBehaviour:
   - {fileID: 114626993203521800}
   - {fileID: 114183498227690234}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 2
+  instantiationId: 2
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114626993203521800
@@ -298,19 +297,6 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
---- !u!114 &114596638383518480
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1090430321716052}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c259b507139f5b742b72fb52c8131e75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _instantiator: {fileID: 114317704787535144}
 --- !u!114 &114317704787535144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1586,8 +1572,8 @@ MonoBehaviour:
   - {fileID: 114648278385727348}
   - {fileID: 114542911776344512}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 1
+  instantiationId: 1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114648278385727348
@@ -1732,7 +1718,7 @@ MonoBehaviour:
   _worldHpBar: {fileID: 114146344738928912}
   _damageSkin: {fileID: 11400000, guid: 950c137ab9585e94aaf57f5f836cecd9, type: 2}
   _jobStatus: {fileID: 11400000, guid: 04fff0473b3c2ca40b8cc82fcc70ad36, type: 2}
-  _weapon: {fileID: 114596638383518480}
+  _weapon: {fileID: 114317704787535144}
 --- !u!114 &114234989891012664
 MonoBehaviour:
   m_ObjectHideFlags: 0

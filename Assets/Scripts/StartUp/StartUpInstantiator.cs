@@ -24,10 +24,9 @@ namespace Bunashibu.Kikan {
       _lvPanel = Instantiate(_lvPanel) as LevelPanel;
       _lvPanel.transform.SetParent(canvas.transform, false);
 
-      // PLAN: SkillPanel will be placed in Canvas initially.
       skillPanel = Instantiate(skillPanel) as SkillPanel;
       skillPanel.transform.SetParent(canvas.transform, false);
-      _player.Weapon.SkillInstantiator.AttachSkillPanel(skillPanel);
+      _player.Weapon.AttachSkillPanel(skillPanel);
     }
 
     public Bar        HpBar   => _hpBar;

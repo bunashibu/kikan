@@ -634,8 +634,8 @@ MonoBehaviour:
   - {fileID: 8237328947841633221}
   - {fileID: 8237988465659133205}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 1
+  instantiationId: 1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &8237328947841633221
@@ -780,7 +780,7 @@ MonoBehaviour:
   _worldHpBar: {fileID: 8237290526585940235}
   _damageSkin: {fileID: 11400000, guid: 950c137ab9585e94aaf57f5f836cecd9, type: 2}
   _jobStatus: {fileID: 11400000, guid: d0e72a0c7992d744ab48a1ae0c74172a, type: 2}
-  _weapon: {fileID: 8238136077143972279}
+  _weapon: {fileID: 8238075182875148639}
 --- !u!114 &8237275656846701611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1511,7 +1511,6 @@ GameObject:
   - component: {fileID: 5386703716031515595}
   - component: {fileID: 8237544711751976919}
   - component: {fileID: 8238148905891555187}
-  - component: {fileID: 8238136077143972279}
   - component: {fileID: 8238075182875148639}
   - component: {fileID: 8237336952678609115}
   m_Layer: 0
@@ -1626,8 +1625,8 @@ MonoBehaviour:
   - {fileID: 8238148905891555187}
   - {fileID: 8237336952678609115}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 2
+  instantiationId: 2
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &8238148905891555187
@@ -1708,19 +1707,6 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
---- !u!114 &8238136077143972279
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8342211117149193169}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c259b507139f5b742b72fb52c8131e75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _instantiator: {fileID: 8238075182875148639}
 --- !u!114 &8238075182875148639
 MonoBehaviour:
   m_ObjectHideFlags: 0

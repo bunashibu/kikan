@@ -61,7 +61,7 @@ namespace Bunashibu.Kikan {
         player.Rigid.simulated = false;
 
         player.Character.Disable();
-        player.Weapon.SkillInstantiator.enabled = false;
+        player.Weapon.DisableSkill();
       }
     }
 
@@ -104,7 +104,7 @@ namespace Bunashibu.Kikan {
         player.BodyCollider.enabled = true;
 
         player.Character.Enable();
-        player.Weapon.SkillInstantiator.enabled = true;
+        player.Weapon.EnableSkill();
 
         player.StateTransfer.TransitTo("Idle", player.Animator);
 
@@ -113,7 +113,7 @@ namespace Bunashibu.Kikan {
         //_player.BuffState.Reset();
       }
 
-      _player.Weapon.SkillInstantiator.ResetAllCT();
+      _player.Weapon.ResetAllCT();
 
       MonoUtility.Instance.DelaySec(2.0f, () => {
         _player.PopupRemark.gameObject.SetActive(false);
