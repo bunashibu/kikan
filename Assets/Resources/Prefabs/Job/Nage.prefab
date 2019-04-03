@@ -634,8 +634,8 @@ MonoBehaviour:
   - {fileID: 8237328947841633221}
   - {fileID: 8237988465659133205}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 1
+  instantiationId: 1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &8237328947841633221
@@ -775,7 +775,7 @@ MonoBehaviour:
     type: 3}
   _healCoreEffect: {fileID: 1927017765232452, guid: 010a4889b2622374694da33b7bcba8b7,
     type: 3}
-  _weapon: {fileID: 8238075182875148639}
+  _weapon: {fileID: 3332793363424560549}
   _nameBackground: {fileID: 8238082959616002311}
   _popupRemark: {fileID: 8237340239570811313}
   _worldHpBar: {fileID: 8237290526585940235}
@@ -1511,7 +1511,7 @@ GameObject:
   - component: {fileID: 5386703716031515595}
   - component: {fileID: 8237544711751976919}
   - component: {fileID: 8238148905891555187}
-  - component: {fileID: 8238075182875148639}
+  - component: {fileID: 3332793363424560549}
   - component: {fileID: 8237336952678609115}
   m_Layer: 0
   m_Name: Kote
@@ -1625,8 +1625,8 @@ MonoBehaviour:
   - {fileID: 8238148905891555187}
   - {fileID: 8237336952678609115}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 2
+  instantiationId: 2
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &8238148905891555187
@@ -1707,7 +1707,7 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
---- !u!114 &8238075182875148639
+--- !u!114 &3332793363424560549
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1716,10 +1716,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8342211117149193169}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bccb8b5e185356d4a8e7ab60c9cefd77, type: 3}
+  m_Script: {fileID: 11500000, guid: d143912226131674b81d9e46a3c7a722, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanInstantiate: 1
   _player: {fileID: 8237248150764393599}
   _jobName: Nage
   _keysList:
@@ -1734,10 +1733,10 @@ MonoBehaviour:
   _appearOffset:
   - {x: -0.4, y: -0.1, z: 0}
   - {x: -0.4, y: 0.1, z: 0}
-  - {x: -0.2, y: -0.1, z: 0}
-  - {x: -1.4, y: 0, z: 0}
-  - {x: 0, y: 1, z: 0}
-  - {x: 0, y: 1.5, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
   _skillCT:
   - 0.48
   - 12
@@ -1752,6 +1751,10 @@ MonoBehaviour:
   - 0.4
   - 0.3
   - 0.3
+  _gradeInfo:
+    _requireLv: 2
+    _index: 0
+    _after: 6
 --- !u!114 &8237336952678609115
 MonoBehaviour:
   m_ObjectHideFlags: 0

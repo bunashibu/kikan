@@ -56,6 +56,7 @@ namespace Bunashibu.Kikan {
 
     private void SetCoroutine(int i, Weapon weapon, Player player) {
       player.State.Rigor = true;
+
       MonoUtility.Instance.StoppableDelaySec(weapon.RigorCT[i], "PlayerStateRigor" + i.ToString(), () => {
         player.State.Rigor = false;
       });

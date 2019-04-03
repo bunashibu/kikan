@@ -9,7 +9,9 @@ namespace Bunashibu.Kikan {
     Z,
     Ctrl,
     Space,
-    Alt
+    Alt,
+
+    X2 // Nage
   }
 
   public enum SkillState {

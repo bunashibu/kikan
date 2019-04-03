@@ -5,8 +5,9 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   public class Weapon : MonoBehaviour {
-    void Awake() {
+    protected void Awake() {
       Stream = new WeaponStream();
+      CanInstantiate = true;
 
       _instantiator = new SkillInstantiator(this, _player);
       _ctManager = new SkillCTManager(this, _player);
@@ -33,6 +34,7 @@ namespace Bunashibu.Kikan {
     }
 
     public WeaponStream Stream { get; private set; }
+    public bool CanInstantiate { get; private set; }
 
     public string        JobName      => _jobName;
     public List<KeyList> KeysList     => _keysList;
@@ -42,12 +44,10 @@ namespace Bunashibu.Kikan {
     public float[]       SkillCT      => _skillCT;
     public float[]       RigorCT      => _rigorCT;
 
-    public bool CanInstantiate = true;
-
-    [SerializeField] private Player _player;
+    [SerializeField] protected Player _player;
     [SerializeField] private string _jobName;
     [SerializeField] private List<KeyList> _keysList;
-    [SerializeField] private SkillName[] _skillNames;
+    [SerializeField] protected SkillName[] _skillNames;
     [SerializeField] private int[] _requireLv;
     [SerializeField] private Vector3[] _appearOffset;
     [SerializeField] private float[] _skillCT;
