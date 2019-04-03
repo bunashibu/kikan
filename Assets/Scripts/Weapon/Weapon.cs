@@ -16,6 +16,22 @@ namespace Bunashibu.Kikan {
       return _ctManager.IsUsable(i);
     }
 
+    public void EnableInstantiate() {
+      CanInstantiate = true;
+    }
+
+    public void DisableInstantiate() {
+      CanInstantiate = false;
+    }
+
+    public void ResetAllCT() {
+      _ctManager.ResetAllCT();
+
+      _player.State.Rigor = false;
+      for (int i=0; i<_keysList.Count; ++i)
+        _player.SkillInfo.SetState(_skillNames[i], SkillState.Ready);
+    }
+
     public WeaponStream Stream { get; private set; }
 
     public string        JobName      => _jobName;
@@ -24,6 +40,8 @@ namespace Bunashibu.Kikan {
     public int[]         RequireLv    => _requireLv;
     public Vector3[]     AppearOffset => _appearOffset;
     public float[]       SkillCT      => _skillCT;
+
+    public bool CanInstantiate = true;
 
     [SerializeField] private Player _player;
     [SerializeField] private string _jobName;
@@ -37,38 +55,12 @@ namespace Bunashibu.Kikan {
     private SkillInstantiator _instantiator;
     private SkillCTManager _ctManager;
 
-    public void EnableSkill() {
-      this.enabled = true;
-    }
-
-    public void DisableSkill() {
-      this.enabled = false;
-    }
-
-    void Update() {
-      /*
-        if (_isDisabled[i] && (_player.Level.Cur.Value == _requireLv[i]))
-          EnableSkill(i);
-      */
-    }
-
-    public void ResetAllCT() {
-    }
+    /*
+      if (_isDisabled[i] && (_player.Level.Cur.Value == _requireLv[i]))
+        EnableSkill(i);
+    */
 
     /*
-    public void ResetAllCT() {
-      for (int i=0; i<_keysList.Count; ++i) {
-        _canUseList[i] = true;
-        _player.SkillInfo.SetState(_skillNames[i], SkillState.Ready);
-        _player.State.Rigor = false;
-
-        if (!_isDisabled[i]) {
-          var preSizeDelta = _panelUnitList[i].AlphaRectTransform.sizeDelta;
-          _panelUnitList[i].AlphaRectTransform.sizeDelta = new Vector2(preSizeDelta.x, 0);
-        }
-      }
-    }
-
     private void EnableSkill(int index) {
       var preSizeDelta = _panelUnitList[index].AlphaRectTransform.sizeDelta;
       _panelUnitList[index].AlphaRectTransform.sizeDelta = new Vector2(preSizeDelta.x, 0);

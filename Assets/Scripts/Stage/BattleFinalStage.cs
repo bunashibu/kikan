@@ -61,7 +61,7 @@ namespace Bunashibu.Kikan {
         player.Rigid.simulated = false;
 
         player.Character.Disable();
-        player.Weapon.DisableSkill();
+        player.Weapon.DisableInstantiate();
       }
     }
 
@@ -104,7 +104,7 @@ namespace Bunashibu.Kikan {
         player.BodyCollider.enabled = true;
 
         player.Character.Enable();
-        player.Weapon.EnableSkill();
+        player.Weapon.EnableInstantiate();
 
         player.StateTransfer.TransitTo("Idle", player.Animator);
 

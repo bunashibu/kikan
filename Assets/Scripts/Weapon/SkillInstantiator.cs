@@ -13,6 +13,7 @@ namespace Bunashibu.Kikan {
         .Where(_ => !player.State.Rigor                   )
         .Where(_ => IsCorrectAnimationState(player)       )
         .Where(_ => !player.Debuff.State[DebuffType.Stun] )
+        .Where(_ => weapon.CanInstantiate                 )
         .Subscribe(_ => {
           int index = GetSkillIndex(weapon, player);
 

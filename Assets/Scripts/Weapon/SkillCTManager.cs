@@ -34,22 +34,14 @@ namespace Bunashibu.Kikan {
       return (_curCT[i] == 0) ? true : false;
     }
 
+    public void ResetAllCT() {
+      for (var i=0; i < _curCT.Count; ++i)
+        _curCT[i] = 0;
+    }
+
     private List<float> _curCT;
 
     /*
-    public void ResetAllCT() {
-      for (int i=0; i<_keysList.Count; ++i) {
-        _canUseList[i] = true;
-        _player.SkillInfo.SetState(_skillNames[i], SkillState.Ready);
-        _player.State.Rigor = false;
-
-        if (!_isDisabled[i]) {
-          var preSizeDelta = _panelUnitList[i].AlphaRectTransform.sizeDelta;
-          _panelUnitList[i].AlphaRectTransform.sizeDelta = new Vector2(preSizeDelta.x, 0);
-        }
-      }
-    }
-
     private void StartCT(int i) {
       _canUseList[i] = false;
       MonoUtility.Instance.StoppableDelaySec(_skillCT[i], "SkillCanUse" + i.ToString(), () => {
