@@ -49,8 +49,22 @@ namespace Bunashibu.Kikan {
       var skill = PhotonNetwork.Instantiate(path, pos, Quaternion.identity, 0).GetComponent<Skill>();
       skill.SyncInit(player.Renderers[0].flipX, player.PhotonView.viewID);
 
+      SetCoroutine(i, weapon, player);
       SkillReference.Instance.Register(skill);
       weapon.Stream.OnNextInstantiate(i);
+    }
+
+    private void SetCoroutine(int i, Weapon weapon, Player player) {
+      player.SkillInfo.SetState(weapon.SkillNames[i], SkillState.Using);
+      MonoUtility.Instance.StoppableDelaySec(weapon.SkillCT[i], "SkillInfoState" + i.ToString(), () => {
+        player.SkillInfo.SetState(weapon.SkillNames[i], SkillState.Ready);
+      });
+
+      player.State.Rigor = true;
+      MonoUtility.Instance.StoppableDelaySec(weapon.RigorCT[i], "PlayerStateRigor" + i.ToString(), () => {
+        player.State.Rigor = false;
+        player.SkillInfo.SetState(weapon.SkillNames[i], SkillState.Used);
+      });
     }
 
     private bool IsCorrectAnimationState(Player player) {

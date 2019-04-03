@@ -40,30 +40,6 @@ namespace Bunashibu.Kikan {
     }
 
     private List<float> _curCT;
-
-    /*
-    private void StartCT(int i) {
-      _canUseList[i] = false;
-      MonoUtility.Instance.StoppableDelaySec(_skillCT[i], "SkillCanUse" + i.ToString(), () => {
-        _canUseList[i] = true;
-      });
-
-      // Ignore X Skill CT
-      if (i != 0)
-        _panelUnitList[i].AlphaRectTransform.sizeDelta = new Vector2(55.0f, 55.0f);
-
-      _player.SkillInfo.SetState(_skillNames[i], SkillState.Using);
-      MonoUtility.Instance.StoppableDelaySec(_skillCT[i], "SkillInfoState" + i.ToString(), () => {
-        _player.SkillInfo.SetState(_skillNames[i], SkillState.Ready);
-      });
-
-      _player.State.Rigor = true;
-      MonoUtility.Instance.StoppableDelaySec(_rigorCT[i], "PlayerStateRigor" + i.ToString(), () => {
-        _player.State.Rigor = false;
-        _player.SkillInfo.SetState(_skillNames[i], SkillState.Used);
-      });
-    }
-    */
   }
 }
 

@@ -40,6 +40,7 @@ namespace Bunashibu.Kikan {
     public int[]         RequireLv    => _requireLv;
     public Vector3[]     AppearOffset => _appearOffset;
     public float[]       SkillCT      => _skillCT;
+    public float[]       RigorCT      => _rigorCT;
 
     public bool CanInstantiate = true;
 
