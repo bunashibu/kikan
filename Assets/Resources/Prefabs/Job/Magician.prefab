@@ -215,8 +215,8 @@ MonoBehaviour:
   - {fileID: 114626993203521800}
   - {fileID: 114183498227690234}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 2
-  instantiationId: 2
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114626993203521800
@@ -309,6 +309,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bccb8b5e185356d4a8e7ab60c9cefd77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _player: {fileID: 114383582609016130}
   _jobName: Magician
   _keysList:
   - keys: 78000000
@@ -317,7 +318,15 @@ MonoBehaviour:
   - keys: 3201000031010000
   - keys: 20000000
   - keys: 3401000033010000
-  _names: 000000000100000002000000030000000400000005000000
+  _skillNames: 000000000100000002000000030000000400000005000000
+  _requireLv: 010000000300000005000000070000000800000001000000
+  _appearOffset:
+  - {x: -2.6, y: 0, z: 0}
+  - {x: -2, y: 0, z: 0}
+  - {x: -1, y: 0, z: 0}
+  - {x: -1.4, y: 0, z: 0}
+  - {x: -4.65, y: 2.9, z: 0}
+  - {x: 0, y: 1.5, z: 0}
   _skillCT:
   - 0.5
   - 6
@@ -332,16 +341,7 @@ MonoBehaviour:
   - 0.4
   - 0.3
   - 0.3
-  _appearOffset:
-  - {x: -2.6, y: 0, z: 0}
-  - {x: -2, y: 0, z: 0}
-  - {x: -1, y: 0, z: 0}
-  - {x: -1.4, y: 0, z: 0}
-  - {x: -4.65, y: 2.9, z: 0}
-  - {x: 0, y: 1.5, z: 0}
-  _requireLv: 010000000300000005000000070000000800000001000000
   _renderer: {fileID: 212508821171830732}
-  _player: {fileID: 114383582609016130}
 --- !u!114 &114183498227690234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1572,8 +1572,8 @@ MonoBehaviour:
   - {fileID: 114648278385727348}
   - {fileID: 114542911776344512}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 1
-  instantiationId: 1
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114648278385727348

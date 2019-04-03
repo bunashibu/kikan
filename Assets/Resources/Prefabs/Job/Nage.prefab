@@ -1719,6 +1719,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bccb8b5e185356d4a8e7ab60c9cefd77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _player: {fileID: 8237248150764393599}
   _jobName: Nage
   _keysList:
   - keys: 78000000
@@ -1727,7 +1728,15 @@ MonoBehaviour:
   - keys: 3201000031010000
   - keys: 20000000
   - keys: 3401000033010000
-  _names: 000000000100000002000000030000000400000005000000
+  _skillNames: 000000000100000002000000030000000400000005000000
+  _requireLv: 010000000300000005000000070000000900000001000000
+  _appearOffset:
+  - {x: -0.4, y: -0.1, z: 0}
+  - {x: -0.4, y: 0.1, z: 0}
+  - {x: -0.2, y: -0.1, z: 0}
+  - {x: -1.4, y: 0, z: 0}
+  - {x: 0, y: 1, z: 0}
+  - {x: 0, y: 1.5, z: 0}
   _skillCT:
   - 0.48
   - 12
@@ -1742,16 +1751,7 @@ MonoBehaviour:
   - 0.4
   - 0.3
   - 0.3
-  _appearOffset:
-  - {x: -0.4, y: -0.1, z: 0}
-  - {x: -0.4, y: 0.1, z: 0}
-  - {x: -0.2, y: -0.1, z: 0}
-  - {x: -1.4, y: 0, z: 0}
-  - {x: 0, y: 1, z: 0}
-  - {x: 0, y: 1.5, z: 0}
-  _requireLv: 010000000300000005000000070000000900000001000000
   _renderer: {fileID: 8157647751156495249}
-  _player: {fileID: 8237248150764393599}
 --- !u!114 &8237336952678609115
 MonoBehaviour:
   m_ObjectHideFlags: 0

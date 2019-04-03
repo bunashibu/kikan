@@ -8,11 +8,11 @@ namespace Bunashibu.Kikan {
   public class SkillInstantiator {
     public SkillInstantiator(Weapon weapon, Player player) {
       weapon.UpdateAsObservable()
-        .Where(_ => player.PhotonView.isMine             )
-        .Where(_ => player.Hp.Cur.Value > 0              )
-        .Where(_ => !player.State.Rigor                  )
-        .Where(_ => IsCorrectAnimationState(player)      )
-        .Where(_ => player.Debuff.State[DebuffType.Stun] )
+        .Where(_ => player.PhotonView.isMine              )
+        .Where(_ => player.Hp.Cur.Value > 0               )
+        .Where(_ => !player.State.Rigor                   )
+        .Where(_ => IsCorrectAnimationState(player)       )
+        .Where(_ => !player.Debuff.State[DebuffType.Stun] )
         .Subscribe(_ => {
           int index = GetSkillIndex(weapon, player);
 

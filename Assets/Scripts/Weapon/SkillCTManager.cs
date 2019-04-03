@@ -7,40 +7,35 @@ using UniRx.Triggers;
 namespace Bunashibu.Kikan {
   public class SkillCTManager {
     public SkillCTManager(Weapon weapon, Player player) {
-      InitializeCT(weapon);
+      _curCT = new List<float>{ 0, 0, 0, 0, 0, 0 };
 
       weapon.Stream.OnInstantiated
-        .Subscribe(i => CurCT[i].SetFullTime() );
+        .Subscribe(i => _curCT[i] = weapon.SkillCT[i] )
+        .AddTo(weapon.gameObject);
 
       weapon.UpdateAsObservable()
         .Where(_ => player.PhotonView.isMine )
-        .Subscribe(_ => UpdateCT() );
+        .Subscribe(_ => UpdateCT(weapon) );
     }
 
-    private void InitializeCT(Weapon weapon) {
-      CurCT = new List<CurSkillCT>();
+    private void UpdateCT(Weapon weapon) {
+      for (var i=0; i < _curCT.Count; ++i) {
+        _curCT[i] -= Time.deltaTime;
 
-      for (var i=0; i < weapon.SkillCT.Length; ++i)
-        CurCT.Add(new CurSkillCT(weapon.SkillCT[i]));
+        if (_curCT[i] < 0)
+          _curCT[i] = 0;
+
+        var flowEntity = new CurCTFlowEntity(i, _curCT[i]);
+        weapon.Stream.OnNextCurCT(flowEntity);
+      }
     }
 
-    private void UpdateCT() {
-      for (var i=0; i < CurCT.Count; ++i)
-        CurCT[i].Subtract(Time.deltaTime);
+    public bool IsUsable(int i) {
+      return (_curCT[i] == 0) ? true : false;
     }
 
-    public List<CurSkillCT> CurCT { get; private set; }
+    private List<float> _curCT;
 
-      /*
-      MonoUtility.Instance.StoppableDelaySec(_skillCT[i] / 5.0f, "SkillPanelAlpha" + i.ToString(), () => {
-        // Memo: AlphaMask height == 55.0
-        var preSizeDelta = _panelUnitList[i].AlphaRectTransform.sizeDelta;
-        _panelUnitList[i].AlphaRectTransform.sizeDelta = new Vector2(preSizeDelta.x, preSizeDelta.y - (55.0f / 5.0f));
-
-        if (!_canUseList[i])
-          UpdateCT(i);
-      });
-      */
     /*
     public void ResetAllCT() {
       for (int i=0; i<_keysList.Count; ++i) {
@@ -77,7 +72,6 @@ namespace Bunashibu.Kikan {
       });
     }
     */
-
   }
 }
 

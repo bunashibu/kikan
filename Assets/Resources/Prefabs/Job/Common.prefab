@@ -294,8 +294,8 @@ MonoBehaviour:
   - {fileID: 114311064836627604}
   - {fileID: 114562558113216186}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 2
+  instantiationId: 2
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114311064836627604
@@ -585,7 +585,6 @@ GameObject:
   - component: {fileID: 4616160121811102}
   - component: {fileID: 212642414779630898}
   - component: {fileID: 95669708981810512}
-  - component: {fileID: 114083002816734976}
   - component: {fileID: 114642343969648306}
   - component: {fileID: 114031079343608982}
   m_Layer: 0
@@ -676,27 +675,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114083002816734976
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1102636445822790}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bccb8b5e185356d4a8e7ab60c9cefd77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _jobName: Common
-  _keysList: []
-  _names: 
-  _skillCT: []
-  _rigorCT: []
-  _appearOffset: []
-  _requireLv: 
-  _renderer: {fileID: 212642414779630898}
-  _player: {fileID: 114576948781715758}
 --- !u!114 &114642343969648306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -720,8 +698,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114031079343608982}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 1
+  instantiationId: 1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114031079343608982

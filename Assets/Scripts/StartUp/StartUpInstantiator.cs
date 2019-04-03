@@ -26,7 +26,7 @@ namespace Bunashibu.Kikan {
 
       skillPanel = Instantiate(skillPanel) as SkillPanel;
       skillPanel.transform.SetParent(canvas.transform, false);
-      _player.Weapon.AttachSkillPanel(skillPanel);
+      skillPanel.Register(_player.Weapon);
     }
 
     public Bar        HpBar   => _hpBar;
