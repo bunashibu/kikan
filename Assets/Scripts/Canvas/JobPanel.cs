@@ -9,6 +9,7 @@ namespace Bunashibu.Kikan {
     void Awake() {
       _buttons[0].onClick.AddListener( () => Pick(0) );
       _buttons[1].onClick.AddListener( () => Pick(1) );
+      _buttons[2].onClick.AddListener( () => Pick(2) );
       _decideButton.onClick.AddListener( () => SyncDecide() );
       _selectTimePanel.SetTime(_selectTime);
       _selectTimePanel.SetView(TimeViewType.Sec);
