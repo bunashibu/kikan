@@ -4166,7 +4166,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _board: {fileID: 1096165171}
   _mediator: {fileID: 1096165170}
-  _countDown: 5
+  _countDown: 1
   _CountDown: {fileID: 1172300855}
   _matchingClip: {fileID: 8300000, guid: 3789db15445498e4cbc8a86bde6f7f98, type: 3}
 --- !u!114 &1096165170

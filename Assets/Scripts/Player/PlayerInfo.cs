@@ -22,6 +22,11 @@ namespace Bunashibu.Kikan {
         Job = "魔";
         return;
       }
+
+      if (Regex.IsMatch(name, "Nage")) {
+        Job = "投";
+        return;
+      }
     }
 
     public int    Team { get; private set; }
