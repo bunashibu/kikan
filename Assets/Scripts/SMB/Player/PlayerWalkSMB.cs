@@ -14,7 +14,7 @@ namespace Bunashibu.Kikan {
         GroundMove();
 
         if ( _player.Debuff.State[DebuffType.Stun] ) { _player.StateTransfer.TransitTo( "Stun"         , animator ); return; }
-        if ( ShouldTransitToSkill()        )         { _player.StateTransfer.TransitTo( "Skill"        , animator ); return; }
+        if ( _player.State.Rigor           )         { _player.StateTransfer.TransitTo( "Skill"        , animator ); return; }
         if ( ShouldTransitToLadder()       )         { _player.StateTransfer.TransitTo( "Ladder"       , animator ); return; }
         if ( ShouldTransitToStepDownJump() )         { _player.StateTransfer.TransitTo( "StepDownJump" , animator ); return; }
         if ( ShouldTransitToGroundJump()   )         { _player.StateTransfer.TransitTo( "GroundJump"   , animator ); return; }
@@ -62,17 +62,6 @@ namespace Bunashibu.Kikan {
         foreach (var sprite in _player.Renderers)
           sprite.flipX = true;
       }
-    }
-
-    private bool ShouldTransitToSkill() {
-      bool SkillFlag = ( _player.SkillInfo.GetState ( SkillName.X     ) == SkillState.Using ) ||
-                       ( _player.SkillInfo.GetState ( SkillName.Shift ) == SkillState.Using ) ||
-                       ( _player.SkillInfo.GetState ( SkillName.Z     ) == SkillState.Using ) ||
-                       ( _player.SkillInfo.GetState ( SkillName.Ctrl  ) == SkillState.Using ) ||
-                       ( _player.SkillInfo.GetState ( SkillName.Space ) == SkillState.Using ) ||
-                       ( _player.SkillInfo.GetState ( SkillName.Alt   ) == SkillState.Using );
-
-      return SkillFlag;
     }
 
     private bool ShouldTransitToLadder() {

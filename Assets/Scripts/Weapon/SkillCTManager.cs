@@ -28,9 +28,6 @@ namespace Bunashibu.Kikan {
         var flowEntity = new CurCTFlowEntity(i, _curCT[i]);
         weapon.Stream.OnNextCurCT(flowEntity);
       }
-
-      if (_curCT[0] > 0)
-        Debug.Log(_curCT[0]);
     }
 
     public bool IsUsable(int i) {

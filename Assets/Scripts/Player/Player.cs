@@ -40,7 +40,6 @@ namespace Bunashibu.Kikan {
         Movement.SetJumpForce(400.0f);
         Movement.SetMaxFallVelocity(-11.0f);
 
-        SkillInfo = new SkillInfo();
         Chair = new Chair(this);
       }
 
@@ -55,7 +54,6 @@ namespace Bunashibu.Kikan {
 
         Teammates  = new List<Player>();
         Status     = new PlayerStatus(_jobStatus);
-        SkillInfo  = new SkillInfo();
         PlayerInfo = new PlayerInfo(this);
 
         Hp         = new Hp(HpTable[0]);
@@ -94,7 +92,6 @@ namespace Bunashibu.Kikan {
     public PlayerMovement Movement      { get; private set; }
     public PlayerStatus   Status        { get; private set; }
     public StateTransfer  StateTransfer { get; private set; }
-    public SkillInfo      SkillInfo     { get; private set; }
     public PlayerInfo     PlayerInfo    { get; private set; }
     public Character2D    Character     { get; private set; }
     public CharacterState State         { get; private set; }

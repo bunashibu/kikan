@@ -106,6 +106,7 @@ namespace Bunashibu.Kikan {
         player.Character.Enable();
         player.Weapon.EnableInstantiate();
 
+        player.State.Rigor = false;
         player.StateTransfer.TransitTo("Idle", player.Animator);
 
         player.Hp.FullRecover();

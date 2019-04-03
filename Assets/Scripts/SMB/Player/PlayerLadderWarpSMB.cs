@@ -23,8 +23,8 @@ namespace Bunashibu.Kikan {
         UpdateSprite();
 
         if (_isMoved) {
-          if ( _player.Debuff.State[DebuffType.Stun] )                   { _player.StateTransfer.TransitTo( "Stun" , animator ); return; }
-          if ( ShouldTransitToSkill()                )                   { _player.StateTransfer.TransitTo( "Skill", animator ); return; }
+          if ( _player.Debuff.State[DebuffType.Stun] ) { _player.StateTransfer.TransitTo( "Stun"  , animator ); return; }
+          if ( _player.State.Rigor                   ) { _player.StateTransfer.TransitTo( "Skill" , animator ); return; }
           if ( _player.Location.IsAir    && !_player.Location.IsLadder ) { _player.StateTransfer.TransitTo( "Fall" , animator ); return; }
           if ( _player.Location.IsGround && !_player.Location.IsLadder ) { _player.StateTransfer.TransitTo( "Idle" , animator ); return; }
         }
@@ -86,17 +86,6 @@ namespace Bunashibu.Kikan {
 
     private void Move() {
       _player.transform.position = _easing.GetNextPosition();
-    }
-
-    private bool ShouldTransitToSkill() {
-      bool SkillFlag = ( _player.SkillInfo.GetState ( SkillName.X     ) == SkillState.Using ) ||
-                       ( _player.SkillInfo.GetState ( SkillName.Shift ) == SkillState.Using ) ||
-                       ( _player.SkillInfo.GetState ( SkillName.Z     ) == SkillState.Using ) ||
-                       ( _player.SkillInfo.GetState ( SkillName.Ctrl  ) == SkillState.Using ) ||
-                       ( _player.SkillInfo.GetState ( SkillName.Space ) == SkillState.Using ) ||
-                       ( _player.SkillInfo.GetState ( SkillName.Alt   ) == SkillState.Using );
-
-      return SkillFlag;
     }
 
     private Player _player;

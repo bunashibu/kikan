@@ -30,10 +30,6 @@ namespace Bunashibu.Kikan {
 
     public void ResetAllCT() {
       _ctManager.ResetAllCT();
-
-      _player.State.Rigor = false;
-      for (int i=0; i<_keysList.Count; ++i)
-        _player.SkillInfo.SetState(_skillNames[i], SkillState.Ready);
     }
 
     public WeaponStream Stream { get; private set; }
