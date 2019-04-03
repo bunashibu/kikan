@@ -215,8 +215,8 @@ MonoBehaviour:
   - {fileID: 114626993203521800}
   - {fileID: 114183498227690234}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 2
+  instantiationId: 2
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114626993203521800
@@ -309,6 +309,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bccb8b5e185356d4a8e7ab60c9cefd77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanInstantiate: 1
   _player: {fileID: 114383582609016130}
   _jobName: Magician
   _keysList:
@@ -341,7 +342,6 @@ MonoBehaviour:
   - 0.4
   - 0.3
   - 0.3
-  _renderer: {fileID: 212508821171830732}
 --- !u!114 &114183498227690234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1572,8 +1572,8 @@ MonoBehaviour:
   - {fileID: 114648278385727348}
   - {fileID: 114542911776344512}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 1
+  instantiationId: 1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114648278385727348
@@ -1713,12 +1713,12 @@ MonoBehaviour:
     type: 3}
   _healCoreEffect: {fileID: 1927017765232452, guid: 010a4889b2622374694da33b7bcba8b7,
     type: 3}
+  _weapon: {fileID: 114317704787535144}
   _nameBackground: {fileID: 114077627308338738}
   _popupRemark: {fileID: 114869459474273918}
   _worldHpBar: {fileID: 114146344738928912}
   _damageSkin: {fileID: 11400000, guid: 950c137ab9585e94aaf57f5f836cecd9, type: 2}
   _jobStatus: {fileID: 11400000, guid: 04fff0473b3c2ca40b8cc82fcc70ad36, type: 2}
-  _weapon: {fileID: 114317704787535144}
 --- !u!114 &114234989891012664
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -16,6 +16,10 @@ namespace Bunashibu.Kikan {
       return _ctManager.IsUsable(i);
     }
 
+    public bool IsReachedToRequireLv(int i) {
+      return _player.Level.Cur.Value >= _requireLv[i];
+    }
+
     public void EnableInstantiate() {
       CanInstantiate = true;
     }
@@ -55,19 +59,6 @@ namespace Bunashibu.Kikan {
 
     private SkillInstantiator _instantiator;
     private SkillCTManager _ctManager;
-
-    /*
-      if (_isDisabled[i] && (_player.Level.Cur.Value == _requireLv[i]))
-        EnableSkill(i);
-    */
-
-    /*
-    private void EnableSkill(int index) {
-      var preSizeDelta = _panelUnitList[index].AlphaRectTransform.sizeDelta;
-      _panelUnitList[index].AlphaRectTransform.sizeDelta = new Vector2(preSizeDelta.x, 0);
-      _isDisabled[index] = false;
-    }
-    */
   }
 
   [System.SerializableAttribute]

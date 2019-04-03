@@ -12,7 +12,8 @@ namespace Bunashibu.Kikan {
           if (entity.Index == 0) // Ignore X alpha mask
             return;
 
-          UpdateAlphaMask(entity.Index, entity.CurCT, weapon.SkillCT[entity.Index]);
+          if (weapon.IsReachedToRequireLv(entity.Index))
+            UpdateAlphaMask(entity.Index, entity.CurCT, weapon.SkillCT[entity.Index]);
         })
         .AddTo(weapon.gameObject);
     }

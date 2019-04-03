@@ -130,15 +130,15 @@ namespace Bunashibu.Kikan {
 
     public IPlayerLocation Location     { get; private set; }
 
+    public Weapon         Weapon         => _weapon;
+
     public NameBackground NameBackground => _nameBackground;
     public PopupRemark    PopupRemark    => _popupRemark;
     public Bar            WorldHpBar     => _worldHpBar;
 
-    public Chair Chair { get; private set;}
+    public DamageSkin     DamageSkin     => _damageSkin;
 
-    // tmp
-    public DamageSkin  DamageSkin => _damageSkin;
-    public Weapon      Weapon     => _weapon;
+    public Chair Chair { get; private set;}
 
     [Header("Unity/Photon Components")]
     [SerializeField] private PhotonView       _photonView;
@@ -181,6 +181,9 @@ namespace Bunashibu.Kikan {
     [SerializeField] private GameObject _criticalCoreEffect;
     [SerializeField] private GameObject _healCoreEffect;
 
+    [Space(10)]
+    [SerializeField] private Weapon    _weapon;
+
     [Header("Canvas")]
     [SerializeField] private NameBackground _nameBackground;
     [SerializeField] private PopupRemark    _popupRemark;
@@ -191,7 +194,6 @@ namespace Bunashibu.Kikan {
 
     [Space(10)]
     [SerializeField] private JobStatus _jobStatus;
-    [SerializeField] private Weapon    _weapon;
 
     private static readonly string _initState = "Idle";
   }

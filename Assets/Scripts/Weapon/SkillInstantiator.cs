@@ -55,15 +55,9 @@ namespace Bunashibu.Kikan {
     }
 
     private void SetCoroutine(int i, Weapon weapon, Player player) {
-      player.SkillInfo.SetState(weapon.SkillNames[i], SkillState.Using);
-      MonoUtility.Instance.StoppableDelaySec(weapon.SkillCT[i], "SkillInfoState" + i.ToString(), () => {
-        player.SkillInfo.SetState(weapon.SkillNames[i], SkillState.Ready);
-      });
-
       player.State.Rigor = true;
       MonoUtility.Instance.StoppableDelaySec(weapon.RigorCT[i], "PlayerStateRigor" + i.ToString(), () => {
         player.State.Rigor = false;
-        player.SkillInfo.SetState(weapon.SkillNames[i], SkillState.Used);
       });
     }
 

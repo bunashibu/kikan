@@ -201,8 +201,8 @@ MonoBehaviour:
   - {fileID: 114103916784843228}
   - {fileID: 114365085813304948}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 1
-  instantiationId: 1
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114103916784843228
@@ -295,6 +295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bccb8b5e185356d4a8e7ab60c9cefd77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanInstantiate: 1
   _player: {fileID: 114346652777482960}
   _jobName: Manji
   _keysList:
@@ -327,7 +328,6 @@ MonoBehaviour:
   - 0.4
   - 0.3
   - 0.3
-  _renderer: {fileID: 212620572494064958}
 --- !u!114 &114365085813304948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -819,8 +819,8 @@ MonoBehaviour:
   - {fileID: 114409857702172010}
   - {fileID: 114172174937367482}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 2
-  instantiationId: 2
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114409857702172010
@@ -960,12 +960,12 @@ MonoBehaviour:
     type: 3}
   _healCoreEffect: {fileID: 1927017765232452, guid: 010a4889b2622374694da33b7bcba8b7,
     type: 3}
+  _weapon: {fileID: 114047511076577264}
   _nameBackground: {fileID: 114037969435547560}
   _popupRemark: {fileID: 114350780653676318}
   _worldHpBar: {fileID: 114301068641892260}
   _damageSkin: {fileID: 11400000, guid: 950c137ab9585e94aaf57f5f836cecd9, type: 2}
   _jobStatus: {fileID: 11400000, guid: d4901d621e93d784fb9bb619c9dff702, type: 2}
-  _weapon: {fileID: 114047511076577264}
 --- !u!114 &114286197929503364
 MonoBehaviour:
   m_ObjectHideFlags: 0
