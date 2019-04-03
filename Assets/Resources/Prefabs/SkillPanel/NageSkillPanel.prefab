@@ -643,7 +643,7 @@ GameObject:
   - component: {fileID: 1806418687315865310}
   - component: {fileID: 1808292796094513210}
   - component: {fileID: 1988523404584966244}
-  - component: {fileID: 1988890363541362872}
+  - component: {fileID: 5349713524286048122}
   m_Layer: 5
   m_Name: NageSkillPanel
   m_TagString: Untagged
@@ -715,7 +715,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
---- !u!114 &1988890363541362872
+--- !u!114 &5349713524286048122
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -724,7 +724,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1876560759910292650}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7672da11e26692c4cac7556b8cfed941, type: 3}
+  m_Script: {fileID: 11500000, guid: 5d05adbbd21320c418d999ca994dbd46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _alphaRectTransform:
@@ -734,6 +734,7 @@ MonoBehaviour:
   - {fileID: 1806722375666071388}
   - {fileID: 1806166882973155620}
   - {fileID: 1807020206849274262}
+  _gradeAlphaRectTransform: {fileID: 3056799073078115675}
 --- !u!1 &1876568686163056002
 GameObject:
   m_ObjectHideFlags: 0
@@ -1493,7 +1494,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8272336143673179472
 RectTransform:
   m_ObjectHideFlags: 0

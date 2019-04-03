@@ -215,8 +215,8 @@ MonoBehaviour:
   - {fileID: 114626993203521800}
   - {fileID: 114183498227690234}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 2
-  instantiationId: 2
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114626993203521800
@@ -309,7 +309,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bccb8b5e185356d4a8e7ab60c9cefd77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanInstantiate: 1
   _player: {fileID: 114383582609016130}
   _jobName: Magician
   _keysList:
@@ -1572,8 +1571,8 @@ MonoBehaviour:
   - {fileID: 114648278385727348}
   - {fileID: 114542911776344512}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 1
-  instantiationId: 1
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114648278385727348

@@ -16,6 +16,7 @@ namespace Bunashibu.Kikan {
 
     private void ReplaceGradeSkill() {
       _skillNames[_gradeInfo.Index] = _gradeInfo.After;
+      Stream.OnNextGrade(_gradeInfo.Index);
     }
 
     [SerializeField] private GradeWeaponInfo _gradeInfo;

@@ -6,7 +6,7 @@ using UniRx;
 
 namespace Bunashibu.Kikan {
   public class SkillPanel : MonoBehaviour {
-    public void Register(Weapon weapon) {
+    public virtual void Register(Weapon weapon) {
       weapon.Stream.OnCurCT
         .Subscribe(entity => {
           if (entity.Index == 0) // Ignore X alpha mask
@@ -24,7 +24,7 @@ namespace Bunashibu.Kikan {
       _alphaRectTransform[i].sizeDelta = new Vector2(prevSizeDelta.x, 55.0f * (cur / max));
     }
 
-    [SerializeField] private List<RectTransform> _alphaRectTransform;
+    [SerializeField] protected List<RectTransform> _alphaRectTransform;
   }
 }
 
