@@ -5,7 +5,7 @@ using UnityEngine.Assertions;
 
 namespace Bunashibu.Kikan {
   [RequireComponent(typeof(SkillSynchronizer))]
-  public class NageShuriken : Skill {
+  public class NageX2 : Skill {
     void Awake() {
       _synchronizer = GetComponent<SkillSynchronizer>();
       _hitRistrictor = new HitRistrictor(_hitInfo);

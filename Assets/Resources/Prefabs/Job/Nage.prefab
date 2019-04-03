@@ -634,8 +634,8 @@ MonoBehaviour:
   - {fileID: 8237328947841633221}
   - {fileID: 8237988465659133205}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 1
-  instantiationId: 1
+  viewIdField: 8
+  instantiationId: 8
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &8237328947841633221
@@ -1508,7 +1508,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8343349636585937381}
   - component: {fileID: 8157647751156495249}
-  - component: {fileID: 8255866988134503657}
   - component: {fileID: 8237544711751976919}
   - component: {fileID: 8238148905891555187}
   - component: {fileID: 8238136077143972279}
@@ -1583,25 +1582,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &8255866988134503657
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8342211117149193169}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &8237544711751976919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1626,8 +1606,8 @@ MonoBehaviour:
   - {fileID: 8238148905891555187}
   - {fileID: 8237336952678609115}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 2
-  instantiationId: 2
+  viewIdField: 9
+  instantiationId: 9
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &8238148905891555187
@@ -1744,10 +1724,10 @@ MonoBehaviour:
   _names: 000000000100000002000000030000000400000005000000
   _skillCT:
   - 0.48
-  - 0.46
-  - 7
-  - 8
-  - 70
+  - 12
+  - 10
+  - 12
+  - 60
   - 60
   _rigorCT:
   - 0.3
@@ -1763,7 +1743,7 @@ MonoBehaviour:
   - {x: -1.4, y: 0, z: 0}
   - {x: 0, y: 1, z: 0}
   - {x: 0, y: 1.5, z: 0}
-  _requireLv: 010000000300000005000000070000000800000001000000
+  _requireLv: 010000000300000005000000070000000900000001000000
   _renderer: {fileID: 8157647751156495249}
   _player: {fileID: 8237248150764393599}
 --- !u!114 &8237336952678609115
@@ -1779,4 +1759,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _renderer: {fileID: 8157647751156495249}
-  _anim: {fileID: 8255866988134503657}
+  _anim: {fileID: 0}
