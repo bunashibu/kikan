@@ -10,11 +10,11 @@ namespace Bunashibu.Kikan {
       _synchronizer = GetComponent<SkillSynchronizer>();
       _hitRistrictor = new HitRistrictor(_hitInfo);
 
-      MonoUtility.Instance.DelaySec(_existTime, () => {
+      MonoUtility.Instance.StoppableDelaySec(_existTime, "NageXFalse" + GetInstanceID().ToString(), () => {
         gameObject.SetActive(false);
 
         // NOTE: Wait 5.0f in order to ensure value synchronization when hit at max range distance. See DestroySkillSelf note.
-        MonoUtility.Instance.DelaySec(5.0f, () => {
+        MonoUtility.Instance.StoppableDelaySec(5.0f, "NageXDestroy" + GetInstanceID().ToString(), () => {
           Destroy(gameObject);
         });
       });
