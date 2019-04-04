@@ -617,6 +617,8 @@ MonoBehaviour:
   _killGold: 210
   _stunEffect: {fileID: 1315593712468704, guid: aa80d344b84021a47bb4c5b0d73b7fa2,
     type: 3}
+  _heavyEffect: {fileID: 3230611741972420428, guid: 338b4b289c5cf35439055f225e11ac67,
+    type: 3}
   _ai: {fileID: 114908752689618040}
   _targetChaseSystem: {fileID: 114277877701616302}
   _worldHpBar: {fileID: 114037160981840974}

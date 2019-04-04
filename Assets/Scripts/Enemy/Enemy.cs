@@ -14,6 +14,7 @@ namespace Bunashibu.Kikan {
       Hp            = new Hp(_enemyData.Hp);
       Debuff        = new Debuff(transform);
       Debuff.Register(DebuffType.Stun, _stunEffect);
+      Debuff.Register(DebuffType.Heavy, _heavyEffect);
 
       Location      = (IEnemyLocation)new Location(this);
       Location.InitializeFoot(_footCollider);
@@ -77,6 +78,7 @@ namespace Bunashibu.Kikan {
 
     [Header("Debuff")]
     [SerializeField] private GameObject _stunEffect;
+    [SerializeField] private GameObject _heavyEffect;
 
     // tmp
     [Space(10)]

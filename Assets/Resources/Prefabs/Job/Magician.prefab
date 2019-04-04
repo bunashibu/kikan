@@ -159,7 +159,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 354386915
-  m_SortingLayer: 10
+  m_SortingLayer: 11
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a475a04fe31837341a520d071696b893, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -427,7 +427,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1795282007
-  m_SortingLayer: 17
+  m_SortingLayer: 18
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 220d5fe29442aa340b0c60a27fd7fa72, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1696,6 +1696,8 @@ MonoBehaviour:
   _killExpTable: {fileID: 11400000, guid: 791597593be91a545b78b225c074d878, type: 2}
   _killGoldTable: {fileID: 11400000, guid: 08f3819bcd389ae498dddc20a49a3239, type: 2}
   _stunEffect: {fileID: 1315593712468704, guid: aa80d344b84021a47bb4c5b0d73b7fa2,
+    type: 3}
+  _heavyEffect: {fileID: 3230611741972420428, guid: 338b4b289c5cf35439055f225e11ac67,
     type: 3}
   _speedCoreInfo: {fileID: 11400000, guid: ee538c803e6b7d34fb16311e882cd98d, type: 2}
   _hpCoreInfo: {fileID: 11400000, guid: 22fc32fd35f8f3a43aac545cd5ffef2f, type: 2}
