@@ -52,7 +52,7 @@ namespace Bunashibu.Kikan {
     }
 
     void OnDestroy() {
-      if (photonView.isMine)
+      if (photonView.isMine && SkillReference.Instance != null)
         SkillReference.Instance.Remove(this);
     }
 
