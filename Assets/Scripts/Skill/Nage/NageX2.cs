@@ -10,7 +10,14 @@ namespace Bunashibu.Kikan {
       _synchronizer = GetComponent<SkillSynchronizer>();
       _hitRistrictor = new HitRistrictor(_hitInfo);
 
-      Destroy(gameObject, 0.37f);
+      MonoUtility.Instance.DelaySec(_existTime, () => {
+        gameObject.SetActive(false);
+
+        // NOTE: Wait 5.0f in order to ensure value synchronization when hit at max range distance. See DestroySkillSelf note.
+        MonoUtility.Instance.DelaySec(5.0f, () => {
+          Destroy(gameObject);
+        });
+      });
     }
 
     void Start() {
@@ -56,6 +63,7 @@ namespace Bunashibu.Kikan {
     private HitRistrictor _hitRistrictor;
     private Vector2 _direction;
     private float _spd = 12.0f;
+    private float _existTime = 0.37f;
   }
 }
 
