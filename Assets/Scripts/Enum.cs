@@ -36,7 +36,8 @@ namespace Bunashibu.Kikan {
   }
 
   public enum DebuffType {
-    Stun
+    Stun,
+    Heavy
   }
 
   public enum CoreType {

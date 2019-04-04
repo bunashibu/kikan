@@ -72,7 +72,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 950836439
-  m_SortingLayer: 13
+  m_SortingLayer: 14
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 525169ed99bfbb044b937ef73a266c25, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -230,8 +230,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 4781234677410108802}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 1
-  instantiationId: 1
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &4781234677410108802
