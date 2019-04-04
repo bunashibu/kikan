@@ -294,8 +294,8 @@ MonoBehaviour:
   - {fileID: 114311064836627604}
   - {fileID: 114562558113216186}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 2
-  instantiationId: 2
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114311064836627604
@@ -415,12 +415,12 @@ MonoBehaviour:
   _attackCoreEffect: {fileID: 0}
   _criticalCoreEffect: {fileID: 0}
   _healCoreEffect: {fileID: 0}
+  _weapon: {fileID: 0}
   _nameBackground: {fileID: 0}
   _popupRemark: {fileID: 114198838768080286}
   _worldHpBar: {fileID: 0}
   _damageSkin: {fileID: 0}
   _jobStatus: {fileID: 0}
-  _weapon: {fileID: 0}
 --- !u!114 &114979274991845116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -698,8 +698,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114031079343608982}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 1
-  instantiationId: 1
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114031079343608982
