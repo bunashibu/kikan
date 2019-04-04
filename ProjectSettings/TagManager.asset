@@ -60,7 +60,7 @@ TagManager:
   - name: Enemy
     uniqueID: 3957793139
     locked: 0
-  - name: SkillBuff
+  - name: SkillBackBuff
     uniqueID: 2919748849
     locked: 0
   - name: LevelUp
@@ -68,6 +68,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 4205633467
+    locked: 0
+  - name: SkillFrontBuff
+    uniqueID: 1178271305
     locked: 0
   - name: Weapon
     uniqueID: 354386915
