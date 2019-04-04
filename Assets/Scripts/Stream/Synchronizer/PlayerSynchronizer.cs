@@ -66,6 +66,17 @@ namespace Bunashibu.Kikan {
       photonView.RPC("SyncFixAtkRPC", PhotonTargets.AllViaServer, fixAtk);
     }
 
+    [PunRPC]
+    private void SyncFixCriticalRPC(int fixCritical) {
+      _stream.OnNextFixCritical(fixCritical);
+    }
+
+    public void SyncFixCritical(int fixCritical) {
+      Assert.IsTrue(photonView.isMine);
+
+      photonView.RPC("SyncFixCriticalRPC", PhotonTargets.AllViaServer, fixCritical);
+    }
+
     private PlayerStream _stream;
   }
 }

@@ -24,10 +24,10 @@ namespace Bunashibu.Kikan {
     private void EnhanceStatus() {
       var skillUser = _skillUserObj.GetComponent<Player>();
 
-      skillUser.Status.SetFixCritical(100);
+      skillUser.Synchronizer.SyncFixCritical(10);
 
       ResetStatus = () => {
-        skillUser.Status.SetFixCritical(0);
+        skillUser.Synchronizer.SyncFixCritical(0);
       };
 
       SkillReference.Instance.Register(this, _buffTime, () => { PhotonNetwork.Destroy(gameObject); });

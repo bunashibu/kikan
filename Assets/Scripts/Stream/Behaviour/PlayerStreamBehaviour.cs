@@ -102,7 +102,6 @@ namespace Bunashibu.Kikan {
           player.transform.position = pos;
           player.BodyCollider.enabled = true;
           player.Hp.FullRecover();
-          //player.BuffState.Reset();
 
           player.StateTransfer.TransitTo("Idle", player.Animator);
         })
@@ -110,6 +109,10 @@ namespace Bunashibu.Kikan {
 
       player.Stream.OnFixAtk
         .Subscribe(fixAtk => player.Status.SetFixAtk(fixAtk) )
+        .AddTo(player.gameObject);
+
+      player.Stream.OnFixCritical
+        .Subscribe(fixCritical => player.Status.SetFixCritical(fixCritical) )
         .AddTo(player.gameObject);
 
       InitNameBackground(player);
