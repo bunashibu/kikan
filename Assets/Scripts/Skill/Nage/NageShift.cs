@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
-  public class ManjiSpace : Skill {
+  public class NageShift : Skill {
     void Start() {
       transform.parent = _skillUserObj.transform;
 
@@ -24,24 +24,10 @@ namespace Bunashibu.Kikan {
     private void EnhanceStatus() {
       var skillUser = _skillUserObj.GetComponent<Player>();
 
-      float statusRatio = 1.3f;
-      float powerRatio = 1.5f;
-      if (skillUser.Level.Cur.Value >= 11)
-        statusRatio = 1.6f;
-        powerRatio = 2.0f;
-
-      skillUser.Movement.SetMoveForce(skillUser.Status.Spd * statusRatio);
-      skillUser.Movement.SetJumpForce(skillUser.Status.Jmp * statusRatio);
-      skillUser.Movement.SetLadderRatio(statusRatio);
-
-      skillUser.Status.SetFixAtk(powerRatio);
+      skillUser.Status.SetFixCritical(10);
 
       ResetStatus = () => {
-        skillUser.Movement.SetMoveForce(skillUser.Status.Spd);
-        skillUser.Movement.SetJumpForce(skillUser.Status.Jmp);
-        skillUser.Movement.SetLadderRatio(1.0f);
-
-        skillUser.Status.SetFixAtk(1.0f);
+        skillUser.Status.SetFixCritical(0);
       };
 
       SkillReference.Instance.Register(this, _buffTime, () => { PhotonNetwork.Destroy(gameObject); });
@@ -50,14 +36,14 @@ namespace Bunashibu.Kikan {
     private void InstantiateBuff() {
       var skillUser = _skillUserObj.GetComponent<Player>();
 
-      var buff = PhotonNetwork.Instantiate("Prefabs/Skill/Manji/SpaceBuff", Vector3.zero, Quaternion.identity, 0).GetComponent<SkillBuff>() as SkillBuff;
+      var buff = PhotonNetwork.Instantiate("Prefabs/Skill/Nage/ShiftBuff", Vector3.zero, Quaternion.identity, 0).GetComponent<SkillBuff>() as SkillBuff;
       buff.ParentSetter.SetParent(skillUser.PhotonView.viewID);
 
       SkillReference.Instance.Register(buff, _buffTime, () => { PhotonNetwork.Destroy(buff.gameObject); });
     }
 
     private Action ResetStatus;
-    private float _buffTime = 20.0f;
+    private float _buffTime = 5.0f;
   }
 }
 

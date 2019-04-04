@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
-  public class ManjiSpaceBuff : Skill {
+  public class SkillBuff : Skill {
     void OnDestroy() {
       if (photonView.isMine)
         SkillReference.Instance.Remove(this);

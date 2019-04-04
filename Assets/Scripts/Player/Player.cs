@@ -102,7 +102,7 @@ namespace Bunashibu.Kikan {
     public float HealInterval => 1.0f;
     public int KillExp        => _killExpTable.Data[Level.Cur.Value - 1];
     public int KillGold       => _killGoldTable.Data[Level.Cur.Value - 1];
-    public int Critical       => Core.GetValue(CoreType.Critical);
+    public int Critical       => Core.GetValue(CoreType.Critical) + Status.FixCritical;
 
     public int Power { get {
       double ratio = (double)((Core.GetValue(CoreType.Attack) + 100) / 100.0);

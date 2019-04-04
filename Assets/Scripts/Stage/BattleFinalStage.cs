@@ -110,8 +110,6 @@ namespace Bunashibu.Kikan {
         player.StateTransfer.TransitTo("Idle", player.Animator);
 
         player.Hp.FullRecover();
-
-        //_player.BuffState.Reset();
       }
 
       _player.Weapon.ResetAllCT();

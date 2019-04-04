@@ -10,6 +10,7 @@ namespace Bunashibu.Kikan {
       Spd = jobStatus.Spd;
       Jmp = jobStatus.Jmp;
       FixAtk = 1.0f;
+      FixCritical = 0;
     }
 
     public void IncreaseAtk(int level) {
@@ -23,11 +24,16 @@ namespace Bunashibu.Kikan {
       FixAtk = ratio;
     }
 
+    public void SetFixCritical(int quantity) {
+      FixCritical = quantity;
+    }
+
     public int Atk { get; private set; }
     public int Dfn { get; private set; }
     public int Spd { get; private set; }
     public int Jmp { get; private set; }
-    public float FixAtk { get; private set; }
+    public float FixAtk      { get; private set; }
+    public int   FixCritical { get; private set; }
   }
 }
 
