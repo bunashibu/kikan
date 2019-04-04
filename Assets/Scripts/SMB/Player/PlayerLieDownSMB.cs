@@ -29,7 +29,7 @@ namespace Bunashibu.Kikan {
     }
 
     private bool ShouldTransitToStepDownJump() {
-      return !_player.Location.IsCanNotDownGround && _player.Location.IsGround && Input.GetButton("Jump");
+      return !_player.Location.IsCanNotDownGround && _player.Location.IsGround && Input.GetButton("Jump") && !_player.State.Heavy;
     }
 
     private bool ShouldTransitToIdle() {

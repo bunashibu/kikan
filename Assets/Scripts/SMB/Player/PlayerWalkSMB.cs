@@ -76,11 +76,11 @@ namespace Bunashibu.Kikan {
     private bool ShouldTransitToStepDownJump() {
       bool OnlyDownKeyDown = Input.GetKey(KeyCode.DownArrow) && !Input.GetKey(KeyCode.UpArrow);
 
-      return !_player.Location.IsCanNotDownGround && _player.Location.IsGround && OnlyDownKeyDown && Input.GetButton("Jump");
+      return !_player.Location.IsCanNotDownGround && _player.Location.IsGround && OnlyDownKeyDown && Input.GetButton("Jump") && !_player.State.Heavy;
     }
 
     private bool ShouldTransitToGroundJump() {
-      return _player.Location.IsGround && Input.GetButton("Jump");
+      return _player.Location.IsGround && Input.GetButton("Jump") && !_player.State.Heavy;
     }
 
     private bool ShouldTransitToIdle() {
