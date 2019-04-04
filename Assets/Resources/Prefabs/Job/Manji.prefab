@@ -145,7 +145,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 354386915
-  m_SortingLayer: 10
+  m_SortingLayer: 11
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: c3fce68f677b1ce48adb1a28849855fb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -295,7 +295,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bccb8b5e185356d4a8e7ab60c9cefd77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanInstantiate: 1
   _player: {fileID: 114346652777482960}
   _jobName: Manji
   _keysList:
@@ -306,7 +305,7 @@ MonoBehaviour:
   - keys: 20000000
   - keys: 3401000033010000
   _skillNames: 000000000100000002000000030000000400000005000000
-  _requireLv: 010000000300000005000000070000000800000001000000
+  _requireLv: 010000000300000005000000070000000100000001000000
   _appearOffset:
   - {x: -0.4, y: -0.1, z: 0}
   - {x: -0.4, y: 0.1, z: 0}
@@ -1085,7 +1084,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1795282007
-  m_SortingLayer: 17
+  m_SortingLayer: 18
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 220d5fe29442aa340b0c60a27fd7fa72, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

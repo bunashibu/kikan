@@ -108,6 +108,10 @@ namespace Bunashibu.Kikan {
         })
         .AddTo(player.gameObject);
 
+      player.Stream.OnFixAtk
+        .Subscribe(fixAtk => player.Status.SetFixAtk(fixAtk) )
+        .AddTo(player.gameObject);
+
       InitNameBackground(player);
       InitSpriteFlip(player);
     }

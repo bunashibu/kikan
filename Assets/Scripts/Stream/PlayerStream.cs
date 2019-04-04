@@ -11,6 +11,7 @@ namespace Bunashibu.Kikan {
       _autoHealSubject = new Subject<int>();
       _respawnSubject = new Subject<int>();
       _chairSubject = new Subject<bool>();
+      _fixAtkSubject = new Subject<float>();
     }
 
     public void OnNextCore(CoreType type) {
@@ -29,15 +30,21 @@ namespace Bunashibu.Kikan {
       _chairSubject.OnNext(shouldSit);
     }
 
+    public void OnNextFixAtk(float fixAtk) {
+      _fixAtkSubject.OnNext(fixAtk);
+    }
+
     public IObservable<CoreType> OnCoreLevelUpped => _coreSubject;
     public IObservable<int> OnAutoHealed => _autoHealSubject;
     public IObservable<int> OnRespawned => _respawnSubject;
     public IObservable<bool> OnChair => _chairSubject;
+    public IObservable<float> OnFixAtk => _fixAtkSubject;
 
     private Subject<CoreType> _coreSubject;
     private Subject<int> _autoHealSubject;
     private Subject<int> _respawnSubject;
     private Subject<bool> _chairSubject;
+    private Subject<float> _fixAtkSubject;
   }
 }
 
