@@ -5,8 +5,8 @@ using UnityEngine;
 namespace Bunashibu.Kikan {
   public class EnemyMovement {
     public EnemyMovement () {
-      _groundMove   = new GroundMove();
-      _groundJump   = new GroundJump();
+      _groundMove = new GroundMove();
+      _groundJump = new GroundJump();
     }
 
     // INFO: Must be called in MonoBehaviour-FixedUpdate()

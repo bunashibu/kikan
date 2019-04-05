@@ -33,7 +33,6 @@ namespace Bunashibu.Kikan {
         .AddTo(gameObject);
     }
 
-    // THINK: coupling with global reference. to be a stream
     void Start() {
       if (StageReference.Instance.StageData.Name == "Lobby") {
         Movement = new PlayerMovement((ILobbyMovementPlayer)this);
@@ -49,9 +48,6 @@ namespace Bunashibu.Kikan {
         Assert.IsTrue(_killGoldTable.Data.Count == MaxLevel);
         Assert.IsTrue(_hpTable.Data.Count       == MaxLevel);
         Assert.IsTrue(_expTable.Data.Count      == MaxLevel);
-
-        Movement   = new PlayerMovement((IBattleMovementPlayer)this);
-        Movement.SetMaxFallVelocity(-11.0f);
 
         Teammates  = new List<Player>();
         Status     = new PlayerStatus(_jobStatus);
@@ -71,8 +67,16 @@ namespace Bunashibu.Kikan {
         Core.Register(CoreType.Critical, _criticalCoreInfo, _criticalCoreEffect);
         Core.Register(CoreType.Heal,     _healCoreInfo,     _healCoreEffect    );
 
+        // NOTE: Must be initialized **AFTER** Core
+        Movement   = new PlayerMovement((IBattleMovementPlayer)this, Core);
+        Movement.SetMaxFallVelocity(-11.0f);
+
         PlayerStreamBehaviour.Instance.Initialize(this);
       }
+    }
+
+    public void SetMoveForce(float force) {
+      Movement.SetMoveForce(force);
     }
 
     public PhotonView       PhotonView   => _photonView;

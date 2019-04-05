@@ -33,7 +33,7 @@ namespace Bunashibu.Kikan {
     public int Spd { get; private set; }
     public int Jmp { get; private set; }
     public float FixAtk      { get; private set; }
-    public int   FixCritical { get; private set; }
+    public int   FixCritical { get; private set; } // Unit(%)
   }
 }
 

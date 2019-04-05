@@ -7,7 +7,7 @@ namespace Bunashibu.Kikan {
   public class Enemy : MonoBehaviour, ICharacter, IOnDebuffed, IOnAttacked, IOnForced, IAttacker, IPhotonBehaviour, IKillRewardGiver {
     void Awake() {
       Movement      = new EnemyMovement();
-      Movement.SetMoveForce(1.0f);
+      Movement.SetMoveForce(1.2f);
       Movement.SetJumpForce(400.0f);
       State         = new CharacterState();
       StateTransfer = new StateTransfer(_initState, _animator);
@@ -28,6 +28,10 @@ namespace Bunashibu.Kikan {
 
     public void AttachPopulationObserver(EnemyPopulationObserver populationObserver) {
       PopulationObserver = populationObserver;
+    }
+
+    public void SetMoveForce(float force) {
+      Movement.SetMoveForce(force);
     }
 
     // Unity
@@ -58,11 +62,11 @@ namespace Bunashibu.Kikan {
     public Bar WorldHpBar => _worldHpBar;
     public EnemyData Data => _enemyData;
 
-    public int    KillExp      => _killExp;
-    public int    KillGold     => _killGold;
-    public int    DamageSkinId => 0;
-    public int    Power        => 0;
-    public int    Critical     => 0;
+    public int KillExp      => _killExp;
+    public int KillGold     => _killGold;
+    public int DamageSkinId => 0;
+    public int Power        => 0;
+    public int Critical     => 0;
 
     [Header("Unity/Photon Components")]
     [SerializeField] private PhotonView     _photonView;

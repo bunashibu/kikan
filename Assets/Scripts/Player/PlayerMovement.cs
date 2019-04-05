@@ -28,10 +28,10 @@ namespace Bunashibu.Kikan {
       _rigid = player.Rigid;
     }
 
-    public PlayerMovement(IBattleMovementPlayer player) : this(player.gameObject) {
+    public PlayerMovement(IBattleMovementPlayer player, Core core) : this(player.gameObject) {
       _trans = player.transform;
       _rigid = player.Rigid;
-      _core  = player.Core;
+      _core  = core;
     }
 
     private void FixedUpdate() {
