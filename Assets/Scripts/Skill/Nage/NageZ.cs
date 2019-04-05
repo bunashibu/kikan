@@ -8,6 +8,15 @@ namespace Bunashibu.Kikan {
     void Awake() {
       _synchronizer = GetComponent<SkillSynchronizer>();
       _hitRistrictor = new HitRistrictor(_hitInfo);
+
+      MonoUtility.Instance.StoppableDelaySec(_existTime, "NageZFalse" + GetInstanceID().ToString(), () => {
+        gameObject.SetActive(false);
+
+        // NOTE: See SMB-DestroySkillSelf
+        MonoUtility.Instance.StoppableDelaySec(5.0f, "NageZDestroy" + GetInstanceID().ToString(), () => {
+          Destroy(gameObject);
+        });
+      });
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
@@ -28,6 +37,11 @@ namespace Bunashibu.Kikan {
       }
     }
 
+    void OnDestroy() {
+      if (photonView.isMine && SkillReference.Instance != null)
+        SkillReference.Instance.Remove(this);
+    }
+
     [SerializeField] private AttackInfo _attackInfo;
     [SerializeField] private HitInfo _hitInfo;
     [Header("Debuff Duration(sec)")]
@@ -35,6 +49,7 @@ namespace Bunashibu.Kikan {
 
     private SkillSynchronizer _synchronizer;
     private HitRistrictor _hitRistrictor;
+    private float _existTime = 3.0f;
   }
 }
 

@@ -54,7 +54,7 @@ namespace Bunashibu.Kikan {
     public Hp             Hp            { get; private set; }
     public Debuff         Debuff        { get; private set; }
 
-    public float Spd => 1.2f;
+    public float Spd => 1.3f;
     public ReactiveCollection<FixSpd> FixSpd { get; private set; }
 
     public IEnemyLocation Location { get; private set;}

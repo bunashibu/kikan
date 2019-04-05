@@ -364,4 +364,4 @@ MonoBehaviour:
     _maxTargetCount: 3
     _maxHitCount: 1
     _interval: 0
-  _duration: 5
+  _duration: 2

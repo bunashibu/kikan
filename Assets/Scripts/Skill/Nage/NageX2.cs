@@ -13,7 +13,7 @@ namespace Bunashibu.Kikan {
       MonoUtility.Instance.StoppableDelaySec(_existTime, "NageX2False" + GetInstanceID().ToString(), () => {
         gameObject.SetActive(false);
 
-        // NOTE: Wait 5.0f in order to ensure value synchronization when hit at max range distance. See DestroySkillSelf note.
+        // NOTE: See NageX
         MonoUtility.Instance.StoppableDelaySec(5.0f, "NageX2Destroy" + GetInstanceID().ToString(), () => {
           Destroy(gameObject);
         });
