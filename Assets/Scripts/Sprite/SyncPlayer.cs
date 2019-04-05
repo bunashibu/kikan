@@ -14,6 +14,7 @@ namespace Bunashibu.Kikan {
         stream.SendNext(_player.Animator.GetBool("Fall"       ));
         stream.SendNext(_player.Animator.GetBool("Walk"       ));
         stream.SendNext(_player.Animator.GetBool("Ladder"     ));
+        stream.SendNext(_player.Animator.GetBool("LadderWarp" ));
         stream.SendNext(_player.Animator.GetBool("LieDown"    ));
         stream.SendNext(_player.Animator.GetBool("GroundJump" ));
         stream.SendNext(_player.Animator.GetBool("LadderJump" ));
@@ -35,6 +36,7 @@ namespace Bunashibu.Kikan {
         _player.Animator.SetBool("Fall"       , (bool)stream.ReceiveNext());
         _player.Animator.SetBool("Walk"       , (bool)stream.ReceiveNext());
         _player.Animator.SetBool("Ladder"     , (bool)stream.ReceiveNext());
+        _player.Animator.SetBool("LadderWarp" , (bool)stream.ReceiveNext());
         _player.Animator.SetBool("LieDown"    , (bool)stream.ReceiveNext());
         _player.Animator.SetBool("GroundJump" , (bool)stream.ReceiveNext());
         _player.Animator.SetBool("LadderJump" , (bool)stream.ReceiveNext());
