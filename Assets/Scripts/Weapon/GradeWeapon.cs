@@ -11,7 +11,8 @@ namespace Bunashibu.Kikan {
 
       this.UpdateAsObservable()
         .First(_ => _player.Level.Cur.Value >= _gradeInfo.RequireLv )
-        .Subscribe(_ => ReplaceGradeSkill() );
+        .Subscribe(_ => ReplaceGradeSkill() )
+        .AddTo(gameObject);
     }
 
     private void ReplaceGradeSkill() {

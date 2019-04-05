@@ -9,7 +9,8 @@ namespace Bunashibu.Kikan {
       base.Register(weapon);
 
       weapon.Stream.OnGradeUpdated
-        .Subscribe(index => Replace(index) );
+        .Subscribe(index => Replace(index) )
+        .AddTo(weapon.gameObject);
     }
 
     private void Replace(int index) {

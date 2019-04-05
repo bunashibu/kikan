@@ -94,6 +94,8 @@ namespace Bunashibu.Kikan {
       });
 
       MonoUtility.Instance.DelaySec(10.0f, () => {
+        SkillReference.Instance.DeleteAll();
+        MonoUtility.Instance.StopAll();
         SceneChanger.Instance.FadeOutAndLeaveRoom();
         _camera.DisableTracking();
       });
