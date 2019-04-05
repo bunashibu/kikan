@@ -17,7 +17,7 @@ namespace Bunashibu.Kikan {
       Debuff.Register(DebuffType.Stun, _stunEffect);
       Debuff.Register(DebuffType.Heavy, _heavyEffect);
 
-      FixSpd        = new ReactiveCollection<float>();
+      FixSpd        = new ReactiveCollection<FixSpd>();
 
       Location      = (IEnemyLocation)new Location(this);
       Location.InitializeFoot(_footCollider);
@@ -55,7 +55,7 @@ namespace Bunashibu.Kikan {
     public Debuff         Debuff        { get; private set; }
 
     public float Spd => 1.2f;
-    public ReactiveCollection<float> FixSpd { get; private set; }
+    public ReactiveCollection<FixSpd> FixSpd { get; private set; }
 
     public IEnemyLocation Location { get; private set;}
 

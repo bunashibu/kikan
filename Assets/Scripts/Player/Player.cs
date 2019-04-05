@@ -52,7 +52,7 @@ namespace Bunashibu.Kikan {
         Teammates  = new List<Player>();
         Status     = new PlayerStatus(_jobStatus);
         PlayerInfo = new PlayerInfo(this);
-        FixSpd     = new ReactiveCollection<float>();
+        FixSpd     = new ReactiveCollection<FixSpd>();
 
         Hp         = new Hp(HpTable[0]);
         Exp        = new Exp(ExpTable[0]);
@@ -98,7 +98,7 @@ namespace Bunashibu.Kikan {
     public Character2D    Character     { get; private set; }
     public CharacterState State         { get; private set; }
 
-    public ReactiveCollection<float> FixSpd { get; private set; }
+    public ReactiveCollection<FixSpd> FixSpd { get; private set; }
 
     public int MaxLevel       => 15;
     public int MaxGold        => 99999;

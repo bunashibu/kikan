@@ -9,15 +9,18 @@ namespace Bunashibu.Kikan {
     void Start() {
       _character = transform.parent.gameObject.GetComponent<ICharacter>();
       _character.State.Heavy = true;
-      _character.FixSpd.Add(_heavySpd);
+
+      _heavyFixSpd = new FixSpd(_heavySpd, FixSpdType.Debuff);
+      _character.FixSpd.Add(_heavyFixSpd);
     }
 
     void OnDestroy() {
       _character.State.Heavy = false;
-      _character.FixSpd.Remove(_heavySpd);
+      _character.FixSpd.Remove(_heavyFixSpd);
     }
 
     private ICharacter _character;
+    private FixSpd _heavyFixSpd;
     private float _heavySpd = 0.85f;
   }
 }

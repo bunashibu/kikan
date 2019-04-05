@@ -24,20 +24,21 @@ namespace Bunashibu.Kikan {
     private void EnhanceStatus() {
       var skillUser = _skillUserObj.GetComponent<Player>();
 
-      _statusRatio = 1.3f;
+      float statusRatio = 1.3f;
       float powerRatio = 1.5f;
       if (skillUser.Level.Cur.Value >= 11)
-        _statusRatio = 1.6f;
+        statusRatio = 1.6f;
         powerRatio = 2.0f;
 
-      skillUser.FixSpd.Add(skillUser.Status.Spd * _statusRatio);
-      skillUser.Movement.SetJumpForce(skillUser.Status.Jmp * _statusRatio);
-      skillUser.Movement.SetLadderRatio(_statusRatio);
+      _spaceFixSpd = new FixSpd(skillUser.Status.Spd * statusRatio, FixSpdType.Buff);
+      skillUser.FixSpd.Add(_spaceFixSpd);
+      skillUser.Movement.SetJumpForce(skillUser.Status.Jmp * statusRatio);
+      skillUser.Movement.SetLadderRatio(statusRatio);
 
       skillUser.Synchronizer.SyncFixAtk(powerRatio);
 
       ResetStatus = () => {
-        skillUser.FixSpd.Remove(skillUser.Status.Spd * _statusRatio);
+        skillUser.FixSpd.Remove(_spaceFixSpd);
         skillUser.Movement.SetJumpForce(skillUser.Status.Jmp);
         skillUser.Movement.SetLadderRatio(1.0f);
 
@@ -58,7 +59,7 @@ namespace Bunashibu.Kikan {
 
     private Action ResetStatus;
     private float _buffTime = 20.0f;
-    private float _statusRatio;
+    private FixSpd _spaceFixSpd;
   }
 }
 

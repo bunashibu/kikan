@@ -38,8 +38,20 @@ namespace Bunashibu.Kikan {
         .ObserveCountChanged(true)
         .Where(count => count > 0)
         .Subscribe(count => {
-          var fixSpd = enemy.FixSpd[count - 1]; // Most recent FixSpd
-          enemy.Movement.SetMoveForce(fixSpd);
+          bool isMostReacentBuff = true;
+
+          // INFO: Set most recent debuff. If there are no debuff, most recent buff will be set.
+          for (var j=count-1; j >= 0; --j) {
+            if (enemy.FixSpd[j].Type == FixSpdType.Debuff) {
+              enemy.Movement.SetMoveForce(enemy.FixSpd[j].Value);
+              return;
+            }
+
+            if (isMostReacentBuff && enemy.FixSpd[j].Type == FixSpdType.Buff) {
+              enemy.Movement.SetMoveForce(enemy.FixSpd[j].Value);
+              isMostReacentBuff = false;
+            }
+          }
         })
         .AddTo(enemy.gameObject);
     }

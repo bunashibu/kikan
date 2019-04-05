@@ -172,8 +172,20 @@ namespace Bunashibu.Kikan {
         .ObserveCountChanged(true)
         .Where(count => count > 0)
         .Subscribe(count => {
-          var fixSpd = player.FixSpd[count - 1]; // Most recent FixSpd
-          player.Movement.SetMoveForce(fixSpd);
+          bool isMostReacentBuff = true;
+
+          // INFO: Set most recent debuff. If there are no debuff, most recent buff will be set.
+          for (var j=count-1; j >= 0; --j) {
+            if (player.FixSpd[j].Type == FixSpdType.Debuff) {
+              player.Movement.SetMoveForce(player.FixSpd[j].Value);
+              return;
+            }
+
+            if (isMostReacentBuff && player.FixSpd[j].Type == FixSpdType.Buff) {
+              player.Movement.SetMoveForce(player.FixSpd[j].Value);
+              isMostReacentBuff = false;
+            }
+          }
         })
         .AddTo(player.gameObject);
 

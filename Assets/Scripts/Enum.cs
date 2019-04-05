@@ -49,8 +49,8 @@ namespace Bunashibu.Kikan {
   }
 
   public enum FixSpdType {
-    Replace,
-    Ratio
+    Buff,
+    Debuff
   }
 }
 
