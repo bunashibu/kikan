@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2325798673716707538}
   - component: {fileID: 2752953926399593639}
   - component: {fileID: 4627525496272483737}
+  - component: {fileID: 2269859268040535759}
   m_Layer: 18
   m_Name: Ctrl
   m_TagString: Untagged
@@ -32,7 +33,7 @@ Transform:
   m_GameObject: {fileID: 4250208007847371945}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -79,7 +80,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.5, y: 2}
+  m_Size: {x: 3, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -122,7 +123,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 3, y: 2}
-    newSize: {x: 2.5, y: 2}
+    newSize: {x: 3, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -343,3 +344,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35c675ff03893fd4089b099279ed1c0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2269859268040535759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4250208007847371945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5909429ff6020b45a25d18be7105cb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _attackInfo:
+    _damagePercent: 400
+    _maxDeviation: 10
+    _criticalPercent: 0
+  _hitInfo:
+    _maxTargetCount: 3
+    _maxHitCount: 1
+    _interval: 0
