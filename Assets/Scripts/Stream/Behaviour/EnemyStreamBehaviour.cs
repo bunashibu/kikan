@@ -27,6 +27,21 @@ namespace Bunashibu.Kikan {
         .Where(state => !state.NewValue)
         .Subscribe(state => enemy.Debuff.Destroy(state.Key))
         .AddTo(enemy.gameObject);
+
+      enemy.FixSpd
+        .ObserveCountChanged(true)
+        .Where(count => count == 0)
+        .Subscribe(_ => enemy.Movement.SetMoveForce(enemy.Spd) )
+        .AddTo(enemy.gameObject);
+
+      enemy.FixSpd
+        .ObserveCountChanged(true)
+        .Where(count => count > 0)
+        .Subscribe(count => {
+          var fixSpd = enemy.FixSpd[count - 1]; // Most recent FixSpd
+          enemy.Movement.SetMoveForce(fixSpd);
+        })
+        .AddTo(enemy.gameObject);
     }
   }
 }

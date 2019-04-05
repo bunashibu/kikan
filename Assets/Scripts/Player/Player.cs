@@ -52,6 +52,7 @@ namespace Bunashibu.Kikan {
         Teammates  = new List<Player>();
         Status     = new PlayerStatus(_jobStatus);
         PlayerInfo = new PlayerInfo(this);
+        FixSpd     = new ReactiveCollection<float>();
 
         Hp         = new Hp(HpTable[0]);
         Exp        = new Exp(ExpTable[0]);
@@ -75,10 +76,6 @@ namespace Bunashibu.Kikan {
       }
     }
 
-    public void SetMoveForce(float force) {
-      Movement.SetMoveForce(force);
-    }
-
     public PhotonView       PhotonView   => _photonView;
     public SpriteRenderer[] Renderers    => _renderers;
     public Rigidbody2D      Rigid        => _rigid;
@@ -100,6 +97,8 @@ namespace Bunashibu.Kikan {
     public PlayerInfo     PlayerInfo    { get; private set; }
     public Character2D    Character     { get; private set; }
     public CharacterState State         { get; private set; }
+
+    public ReactiveCollection<float> FixSpd { get; private set; }
 
     public int MaxLevel       => 15;
     public int MaxGold        => 99999;

@@ -47,5 +47,10 @@ namespace Bunashibu.Kikan {
     Critical,
     Heal
   }
+
+  public enum FixSpdType {
+    Replace,
+    Ratio
+  }
 }
 

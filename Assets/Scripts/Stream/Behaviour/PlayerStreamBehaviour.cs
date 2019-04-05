@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 using UniRx;
+using UniRx.Triggers;
 
 namespace Bunashibu.Kikan {
   public class PlayerStreamBehaviour : SingletonMonoBehaviour<PlayerStreamBehaviour> {
@@ -159,6 +160,21 @@ namespace Bunashibu.Kikan {
         .Where(_ => player.Hp.Cur.Value > 0)
         .Where(_ => player.Hp.Cur.Value < player.Hp.Max.Value)
         .Subscribe(_ => player.Synchronizer.SyncAutoHeal(player.AutoHealQuantity) )
+        .AddTo(player.gameObject);
+
+      player.FixSpd
+        .ObserveCountChanged(true)
+        .Where(count => count == 0)
+        .Subscribe(_ => player.Movement.SetMoveForce(player.Status.Spd) )
+        .AddTo(player.gameObject);
+
+      player.FixSpd
+        .ObserveCountChanged(true)
+        .Where(count => count > 0)
+        .Subscribe(count => {
+          var fixSpd = player.FixSpd[count - 1]; // Most recent FixSpd
+          player.Movement.SetMoveForce(fixSpd);
+        })
         .AddTo(player.gameObject);
 
       _playerPanel.Register(player);

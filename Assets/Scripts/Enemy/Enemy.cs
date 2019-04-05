@@ -2,12 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
 
 namespace Bunashibu.Kikan {
   public class Enemy : MonoBehaviour, ICharacter, IOnDebuffed, IOnAttacked, IOnForced, IAttacker, IPhotonBehaviour, IKillRewardGiver {
     void Awake() {
       Movement      = new EnemyMovement();
-      Movement.SetMoveForce(1.2f);
+      Movement.SetMoveForce(Spd);
       Movement.SetJumpForce(400.0f);
       State         = new CharacterState();
       StateTransfer = new StateTransfer(_initState, _animator);
@@ -15,6 +16,8 @@ namespace Bunashibu.Kikan {
       Debuff        = new Debuff(transform);
       Debuff.Register(DebuffType.Stun, _stunEffect);
       Debuff.Register(DebuffType.Heavy, _heavyEffect);
+
+      FixSpd        = new ReactiveCollection<float>();
 
       Location      = (IEnemyLocation)new Location(this);
       Location.InitializeFoot(_footCollider);
@@ -28,10 +31,6 @@ namespace Bunashibu.Kikan {
 
     public void AttachPopulationObserver(EnemyPopulationObserver populationObserver) {
       PopulationObserver = populationObserver;
-    }
-
-    public void SetMoveForce(float force) {
-      Movement.SetMoveForce(force);
     }
 
     // Unity
@@ -54,6 +53,9 @@ namespace Bunashibu.Kikan {
     public StateTransfer  StateTransfer { get; private set; }
     public Hp             Hp            { get; private set; }
     public Debuff         Debuff        { get; private set; }
+
+    public float Spd => 1.2f;
+    public ReactiveCollection<float> FixSpd { get; private set; }
 
     public IEnemyLocation Location { get; private set;}
 
