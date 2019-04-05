@@ -1,8 +1,8 @@
 # kikan - 2D Multiplayer Online PvP Game
 
-<img src="https://i.imgur.com/sW76rPM.png" width="300"> <img src="https://i.imgur.com/wxfBHpf.png" width="300">  
+<img src="https://i.imgur.com/sW76rPM.png" width="300"> <img src="https://i.imgur.com/wxfBHpf.png" width="300">
 
-[See gif here](https://imgur.com/CDTef55)  
+[See gif here](https://imgur.com/CDTef55)
 
 ### What is kikan?
 
@@ -16,11 +16,11 @@ Because we can't play *The Legends Return* anymore.
 
 ### What are the differences from *The Legends Return*?
 
-[Changed]
 * Doesn't take damage when a player enters a portal
 * Stage is symmetry in order to prevent area unfairness
 
-[Enhanced]
-* Add more jobs
-* Add rank system
+### Development Environment
+* Unity 2018.3.11f1
+  + Photon Unity Networking (Classic v1.95)
+  + UniRx
 
