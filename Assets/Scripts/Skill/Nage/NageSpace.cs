@@ -17,6 +17,25 @@ namespace Bunashibu.Kikan {
           Destroy(gameObject);
         });
       });
+
+      _collider = GetComponent<BoxCollider2D>();
+      _collider.enabled = false;
+      _animator = GetComponent<Animator>();
+      _animator.enabled = false;
+      _audioSource = GetComponent<AudioSource>();
+      _audioSource.enabled = false;
+
+      GetComponent<SpriteRenderer>().sprite = _prepareSprite;
+
+      _timestamp = Time.time;
+    }
+
+    void Update() {
+      if (Time.time - _timestamp >= _collisionOccurenceTime) {
+        _collider.enabled = true;
+        _animator.enabled = true;
+        _audioSource.enabled = true;
+      }
     }
 
     void OnTriggerStay2D(Collider2D collider) {
@@ -43,9 +62,16 @@ namespace Bunashibu.Kikan {
 
     [SerializeField] private AttackInfo _attackInfo;
     [SerializeField] private HitInfo _hitInfo;
+    [SerializeField] private Sprite _prepareSprite;
 
     private SkillSynchronizer _synchronizer;
     private HitRistrictor _hitRistrictor;
+
+    private BoxCollider2D _collider;
+    private Animator _animator;
+    private AudioSource _audioSource;
+    private float _timestamp;
+    private float _collisionOccurenceTime = 1.0f;
     private float _existTime = 10.0f;
   }
 }

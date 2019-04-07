@@ -364,3 +364,4 @@ MonoBehaviour:
     _maxTargetCount: 6
     _maxHitCount: 20
     _interval: 0.7
+  _prepareSprite: {fileID: 21300000, guid: 82b9d0f273c77c842bba0a409cb8c795, type: 3}

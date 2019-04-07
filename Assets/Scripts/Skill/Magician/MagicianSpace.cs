@@ -10,6 +10,7 @@ namespace Bunashibu.Kikan {
       _hitRistrictor = new HitRistrictor(_hitInfo);
 
       _collider = GetComponent<BoxCollider2D>();
+      _collider.enabled = false;
       _timestamp = Time.time;
     }
 
