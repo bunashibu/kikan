@@ -4166,7 +4166,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _board: {fileID: 1096165171}
   _mediator: {fileID: 1096165170}
-  _countDown: 1
+  _countDown: 5
   _CountDown: {fileID: 1172300855}
   _matchingClip: {fileID: 8300000, guid: 3789db15445498e4cbc8a86bde6f7f98, type: 3}
 --- !u!114 &1096165170
@@ -5816,7 +5816,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1657738463
-  m_SortingLayer: 16
+  m_SortingLayer: 17
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: fca9574832c1b3741b16b3d96bf129ad, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

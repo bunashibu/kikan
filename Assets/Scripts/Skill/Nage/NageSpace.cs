@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
+using UniRx.Triggers;
 
 namespace Bunashibu.Kikan {
   [RequireComponent(typeof(SkillSynchronizer))]
@@ -8,6 +10,7 @@ namespace Bunashibu.Kikan {
     void Awake() {
       _synchronizer = GetComponent<SkillSynchronizer>();
       _hitRistrictor = new HitRistrictor(_hitInfo);
+      _timestamp = Time.time;
 
       MonoUtility.Instance.StoppableDelaySec(_existTime, "NageSpaceFalse" + GetInstanceID().ToString(), () => {
         gameObject.SetActive(false);
@@ -27,15 +30,31 @@ namespace Bunashibu.Kikan {
 
       GetComponent<SpriteRenderer>().sprite = _prepareSprite;
 
-      _timestamp = Time.time;
-    }
+      this.UpdateAsObservable()
+        .Where(_ => _skillUserObj != null) // May be not good
+        .First(_ => Time.time - _timestamp >= _hideStartTime)
+        .Subscribe(_ => {
+          _player = _skillUserObj.GetComponent<Player>();
+          _player.BodyCollider.enabled = false;
+          _player.Renderers[0].enabled = false;
+          _player.Renderers[1].enabled = false;
 
-    void Update() {
-      if (Time.time - _timestamp >= _collisionOccurenceTime) {
-        _collider.enabled = true;
-        _animator.enabled = true;
-        _audioSource.enabled = true;
-      }
+          MonoUtility.Instance.StoppableDelaySec(_hideTime, "NageSpaceHide" + GetInstanceID().ToString(), () => {
+            _player.BodyCollider.enabled = true;
+            _player.Renderers[0].enabled = true;
+            _player.Renderers[1].enabled = true;
+          });
+        })
+        .AddTo(this);
+
+      this.UpdateAsObservable()
+        .First(_ => Time.time - _timestamp >= _collisionOccurenceTime)
+        .Subscribe(_ => {
+          _collider.enabled = true;
+          _animator.enabled = true;
+          _audioSource.enabled = true;
+        })
+        .AddTo(this);
     }
 
     void OnTriggerStay2D(Collider2D collider) {
@@ -58,6 +77,12 @@ namespace Bunashibu.Kikan {
     void OnDestroy() {
       if (photonView.isMine && SkillReference.Instance != null)
         SkillReference.Instance.Remove(this);
+
+      if (_player != null) {
+        _player.BodyCollider.enabled = true;
+        _player.Renderers[0].enabled = true;
+        _player.Renderers[1].enabled = true;
+      }
     }
 
     [SerializeField] private AttackInfo _attackInfo;
@@ -73,6 +98,10 @@ namespace Bunashibu.Kikan {
     private float _timestamp;
     private float _collisionOccurenceTime = 0.5f;
     private float _existTime = 10.0f;
+
+    private Player _player;
+    private float _hideStartTime = 0.2f;
+    private float _hideTime = 2.0f;
   }
 }
 
