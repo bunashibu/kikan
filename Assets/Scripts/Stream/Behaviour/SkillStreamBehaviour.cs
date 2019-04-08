@@ -12,6 +12,10 @@ namespace Bunashibu.Kikan {
     void Start() {
       SkillStream.OnAttacked
         .Subscribe(entity => {
+          bool isAlreadyDead = entity.Target.Hp.Cur.Value == entity.Target.Hp.Min.Value;
+          if (isAlreadyDead)
+            return;
+
           entity.Target.Hp.Subtract(entity.Damage);
 
           if (entity.Target is IPhotonBehaviour) {
@@ -47,6 +51,10 @@ namespace Bunashibu.Kikan {
 
       SkillStream.OnHealed
         .Subscribe(entity => {
+          bool isAlreadyDead = entity.Target.Hp.Cur.Value == entity.Target.Hp.Min.Value;
+          if (isAlreadyDead)
+            return;
+
           entity.Target.Hp.Add(entity.Quantity);
 
           if (entity.Target is IPhotonBehaviour) {

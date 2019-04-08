@@ -17,7 +17,7 @@ namespace Bunashibu.Kikan {
       }
 
       if (_isNotReady) {
-        if (Time.time - _timestamp < _prepareDuration)
+        if (Time.time - _startPrepareTime < _prepareDuration)
           GatherPlayer();
         else {
           SetTimeAndCamera();
@@ -38,7 +38,7 @@ namespace Bunashibu.Kikan {
 
     public void StartRotation() {
       _isRotating = true;
-      _timestamp = Time.time;
+      _startPrepareTime = Time.time;
     }
 
     public void Prepare() {
@@ -143,7 +143,7 @@ namespace Bunashibu.Kikan {
     private Quaternion _destRotation;
     private bool _isRotating;
     private bool _isNotReady = true;
-    private float _timestamp;
+    private float _startPrepareTime;
     private float _prepareDuration = 4.0f;
     private Player _player;
     private QuadraticEaseInOut _easing;
