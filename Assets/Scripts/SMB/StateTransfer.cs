@@ -10,8 +10,9 @@ namespace Bunashibu.Kikan {
     }
 
     public void TransitTo(string transitState, Animator animator) {
-      animator.SetBool(transitState, true);
+      // INFO: Must be this order
       animator.SetBool(_currentState, false);
+      animator.SetBool(transitState, true);
 
       _currentState = transitState;
     }
