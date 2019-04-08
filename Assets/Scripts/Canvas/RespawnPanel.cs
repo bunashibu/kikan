@@ -14,6 +14,9 @@ namespace Bunashibu.Kikan {
         _respawnPlayer.Synchronizer.SyncRespawn(_respawnPlayer.PhotonView.viewID);
         Destroy(gameObject);
       }
+
+      if (StageReference.Instance.StageData.Name == "FinalBattle")
+        Destroy(gameObject);
     }
 
     public void SetRespawnTime(int time) {
