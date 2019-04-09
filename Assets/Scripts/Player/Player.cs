@@ -40,6 +40,10 @@ namespace Bunashibu.Kikan {
         Movement.SetJumpForce(400.0f);
         Movement.SetMaxFallVelocity(-11.0f);
 
+        // NOTE: In Battle, PlayerStreamBehaviour called this
+        if (!PhotonView.isMine)
+          AudioEnvironment.DisableListener();
+
         Chair = new Chair(this);
       }
 
