@@ -109,6 +109,8 @@ namespace Bunashibu.Kikan {
         player.State.Rigor = false;
         player.StateTransfer.TransitTo("Idle", player.Animator);
 
+        player.Debuff.DisableAll();
+
         player.Hp.FullRecover();
       }
 

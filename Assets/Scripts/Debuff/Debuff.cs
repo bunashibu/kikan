@@ -33,6 +33,10 @@ namespace Bunashibu.Kikan {
       _effect.Destroy(type);
     }
 
+    public void DisableAll() {
+      _state.DisableAll();
+    }
+
     public IReadOnlyReactiveDictionary<DebuffType, bool> State => _state.State;
 
     private int _id;

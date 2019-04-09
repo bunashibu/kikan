@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
@@ -21,6 +22,13 @@ namespace Bunashibu.Kikan {
     public void Disable(T key) {
       if (_state.ContainsKey(key))
         _state[key] = false;
+    }
+
+    public void DisableAll() {
+      foreach (var key in _state.Keys.ToList()) {
+        if (_state[key])
+          _state[key] = false;
+      }
     }
 
     public IReadOnlyReactiveDictionary<T, bool> State => _state;
