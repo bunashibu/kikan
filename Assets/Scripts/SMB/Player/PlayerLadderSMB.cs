@@ -44,8 +44,9 @@ namespace Bunashibu.Kikan {
       bool OnlyLeftKeyDown  = Input.GetKey(KeyCode.LeftArrow)  && !Input.GetKey(KeyCode.RightArrow);
       bool OnlyRightKeyDown = Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow);
       bool isTouched = _player.BodyCollider.IsTouchingLayers(LayerMask.GetMask("LadderTopEdge"));
+      bool canWarp = _player.BodyCollider.IsTouchingLayers(LayerMask.GetMask("Ground", "CanNotDownGround"));
 
-      return (OnlyLeftKeyDown || OnlyRightKeyDown) && Input.GetButton("Jump") && isTouched && !_player.State.Heavy;
+      return (OnlyLeftKeyDown || OnlyRightKeyDown) && Input.GetButton("Jump") && isTouched && canWarp && !_player.State.Heavy;
     }
 
     private bool ShouldTransitToLadderJump() {
