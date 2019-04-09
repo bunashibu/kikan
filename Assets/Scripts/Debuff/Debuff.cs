@@ -6,6 +6,7 @@ using UniRx;
 namespace Bunashibu.Kikan {
   public class Debuff {
     public Debuff(Transform parent) {
+      _id = parent.gameObject.GetInstanceID();
       _state = new ReactiveState<DebuffType>();
       _effect = new DebuffEffect(parent);
     }
@@ -16,9 +17,10 @@ namespace Bunashibu.Kikan {
     }
 
     public void DurationEnable(DebuffType type, float duration) {
-      _state.Enable(type);
+      if (_state.State[type] == false)
+        _state.Enable(type);
 
-      MonoUtility.Instance.DelaySec(duration, () => {
+      MonoUtility.Instance.OverwritableDelaySec(duration, "Debuff" + type + _id.ToString(), () => {
         _state.Disable(type);
       });
     }
@@ -33,6 +35,7 @@ namespace Bunashibu.Kikan {
 
     public IReadOnlyReactiveDictionary<DebuffType, bool> State => _state.State;
 
+    private int _id;
     private ReactiveState<DebuffType> _state;
     private DebuffEffect _effect;
   }
