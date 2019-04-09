@@ -7,6 +7,12 @@ namespace Bunashibu.Kikan {
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
       if (_player == null)
         _player = animator.GetComponent<Player>();
+
+      _prevOffset = _player.BodyCollider.offset;
+      _prevSize = _player.BodyCollider.size;
+
+      _player.BodyCollider.offset = new Vector2(0, -0.3f);
+      _player.BodyCollider.size = new Vector2(0.5f, 0.4f);
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
@@ -18,6 +24,11 @@ namespace Bunashibu.Kikan {
         if ( ShouldTransitToIdle()         )         { _player.StateTransfer.TransitTo( "Idle"         , animator ); return; }
         if ( _player.Location.IsAir        )         { _player.StateTransfer.TransitTo( "Fall"         , animator ); return; }
       }
+    }
+
+    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
+      _player.BodyCollider.offset = _prevOffset;
+      _player.BodyCollider.size = _prevSize;
     }
 
     private bool ShouldTransitToWalk() {
@@ -40,6 +51,8 @@ namespace Bunashibu.Kikan {
     }
 
     private Player _player;
+    private Vector2 _prevOffset;
+    private Vector2 _prevSize;
   }
 }
 

@@ -79,7 +79,7 @@ namespace Bunashibu.Kikan {
     public PhotonView       PhotonView   => _photonView;
     public SpriteRenderer[] Renderers    => _renderers;
     public Rigidbody2D      Rigid        => _rigid;
-    public Collider2D       BodyCollider => _bodyCollider;
+    public BoxCollider2D    BodyCollider => _bodyCollider;
     public Collider2D       FootCollider => _footCollider;
     public Animator         Animator     => _animator;
 
@@ -145,7 +145,7 @@ namespace Bunashibu.Kikan {
     [SerializeField] private PhotonView       _photonView;
     [SerializeField] private SpriteRenderer[] _renderers;  // INFO: [PlayerSprite, WeaponSprite]
     [SerializeField] private Rigidbody2D      _rigid;
-    [SerializeField] private Collider2D       _bodyCollider;
+    [SerializeField] private BoxCollider2D    _bodyCollider;
     [SerializeField] private Collider2D       _centerCollider;
     [SerializeField] private Collider2D       _footCollider;
     [SerializeField] private Animator         _animator;
