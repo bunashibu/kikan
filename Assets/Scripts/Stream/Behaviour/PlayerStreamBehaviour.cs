@@ -102,6 +102,7 @@ namespace Bunashibu.Kikan {
 
           player.transform.position = pos;
           player.BodyCollider.enabled = true;
+          player.Debuff.DisableAll();
           player.Hp.FullRecover();
 
           player.StateTransfer.TransitTo("Idle", player.Animator);
