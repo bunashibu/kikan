@@ -6,14 +6,16 @@ using UnityEngine.UI;
 namespace Bunashibu.Kikan {
   public class JobDescription : MonoBehaviour {
     void Awake() {
-      _names = new string[3];
-      _features = new string[3];
+      _names = new string[4];
+      _features = new string[4];
       _names[0] = "卍";
       _names[1] = "魔法使い";
       _names[2] = "投";
-      _features[0] = "バランスが良い";
+      _names[3] = "パンダ";
+      _features[0] = "機動力が高い";
       _features[1] = "HPは低いが火力が高い";
       _features[2] = "遠距離から攻撃できる";
+      _features[3] = "接近戦に強い";
     }
 
     public void UpdateLabel(int n) {
