@@ -23,7 +23,7 @@ namespace Bunashibu.Kikan {
 
         DamageCalculator.Calculate(_skillUserObj, _attackInfo);
 
-        _synchronizer.SyncAttack(_skillUserViewID, target.PhotonView.viewID, DamageCalculator.Damage, DamageCalculator.IsCritical, HitEffectType.Manji);
+        _synchronizer.SyncAttack(_skillUserViewID, target.PhotonView.viewID, DamageCalculator.Damage, DamageCalculator.IsCritical, HitEffectType.Panda);
       }
     }
 
