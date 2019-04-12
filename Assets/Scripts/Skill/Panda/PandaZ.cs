@@ -21,10 +21,15 @@ namespace Bunashibu.Kikan {
       });
 
       this.UpdateAsObservable()
-        .Where(_ => photonView.isMine)
         .First(_ => _skillUserObj != null)
         .Subscribe(_ => {
           _player = _skillUserObj.GetComponent<Player>();
+          _player.Debuff.DestroyAll();
+          _player.Debuff.Disable();
+
+          MonoUtility.Instance.StoppableDelaySec(_existTime, "PandaDebuffEnable" + GetInstanceID().ToString(), () => {
+            _player.Debuff.Enable();
+          });
         })
         .AddTo(this);
 

@@ -17,6 +17,9 @@ namespace Bunashibu.Kikan {
     }
 
     public void DurationEnable(DebuffType type, float duration) {
+      if (_isDisabled)
+        return;
+
       if (_state.State[type] == false)
         _state.Enable(type);
 
@@ -33,8 +36,16 @@ namespace Bunashibu.Kikan {
       _effect.Destroy(type);
     }
 
-    public void DisableAll() {
+    public void DestroyAll() {
       _state.DisableAll();
+    }
+
+    public void Enable() {
+      _isDisabled = false;
+    }
+
+    public void Disable() {
+      _isDisabled = true;
     }
 
     public IReadOnlyReactiveDictionary<DebuffType, bool> State => _state.State;
@@ -42,6 +53,7 @@ namespace Bunashibu.Kikan {
     private int _id;
     private ReactiveState<DebuffType> _state;
     private DebuffEffect _effect;
+    private bool _isDisabled;
   }
 }
 
