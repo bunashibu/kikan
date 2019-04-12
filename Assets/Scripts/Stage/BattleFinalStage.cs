@@ -112,6 +112,8 @@ namespace Bunashibu.Kikan {
         player.Debuff.DestroyAll();
         player.Debuff.Enable();
 
+        player.Movement.SetMoveForce(player.Status.Spd);
+
         player.Hp.FullRecover();
       }
 

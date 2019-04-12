@@ -104,6 +104,7 @@ namespace Bunashibu.Kikan {
           player.BodyCollider.enabled = true;
           player.Debuff.DestroyAll();
           player.Debuff.Enable();
+          player.Movement.SetMoveForce(player.Status.Spd);
           player.Hp.FullRecover();
 
           player.StateTransfer.TransitTo("Idle", player.Animator);
