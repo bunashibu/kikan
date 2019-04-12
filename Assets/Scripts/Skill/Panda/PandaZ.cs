@@ -27,12 +27,15 @@ namespace Bunashibu.Kikan {
         .First(_ => _skillUserObj != null)
         .Subscribe(_ => {
           _player = _skillUserObj.GetComponent<Player>();
-          _player.Movement.SetMoveForce(player.Status.Spd * _spdRatio);
+          _player.Movement.SetMoveForce(_player.Status.Spd * _spdRatio);
           _player.Debuff.DestroyAll();
           _player.Debuff.Disable();
 
           MonoUtility.Instance.StoppableDelaySec(_existTime, "PandaDebuffEnable" + GetInstanceID().ToString(), () => {
-            _player.Movement.SetMoveForce(player.Status.Spd);
+            if (_player == null)
+              return;
+
+            _player.Movement.SetMoveForce(_player.Status.Spd);
             _player.Debuff.Enable();
           });
         })
