@@ -10,6 +10,7 @@ namespace Bunashibu.Kikan {
     void Awake() {
       _synchronizer = GetComponent<SkillSynchronizer>();
       _hitRistrictor = new HitRistrictor(_hitInfo);
+      _renderer = GetComponent<SpriteRenderer>();
 
       MonoUtility.Instance.StoppableDelaySec(_existTime, "PandaZFalse" + GetInstanceID().ToString(), () => {
         if (gameObject == null)
@@ -106,8 +107,10 @@ namespace Bunashibu.Kikan {
 
         _player.Movement.GroundMoveLeft(angle);
 
-        foreach (var sprite in _player.Renderers)
+        foreach (var sprite in _player.Renderers) {
           sprite.flipX = false;
+          _renderer.flipX = false;
+        }
       }
 
       if (OnlyRightKeyDown) {
@@ -124,8 +127,10 @@ namespace Bunashibu.Kikan {
 
         _player.Movement.GroundMoveRight(angle);
 
-        foreach (var sprite in _player.Renderers)
+        foreach (var sprite in _player.Renderers) {
           sprite.flipX = true;
+          _renderer.flipX = true;
+        }
       }
     }
 
@@ -141,6 +146,7 @@ namespace Bunashibu.Kikan {
     private HitRistrictor _hitRistrictor;
 
     private Player _player;
+    private SpriteRenderer _renderer;
     // NOTE:  _existTime must be the same value with Panda-Fist-Weapon-RigorCT because
     //        PandaZ manages input forcely. Otherwise, input duplication will occur.
     //        (By default, all input is managed in SMB)
