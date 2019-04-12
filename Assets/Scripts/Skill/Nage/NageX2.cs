@@ -11,6 +11,9 @@ namespace Bunashibu.Kikan {
       _hitRistrictor = new HitRistrictor(_hitInfo);
 
       MonoUtility.Instance.StoppableDelaySec(_existTime, "NageX2False" + GetInstanceID().ToString(), () => {
+        if (gameObject == null)
+          return;
+
         gameObject.SetActive(false);
 
         // NOTE: See NageX

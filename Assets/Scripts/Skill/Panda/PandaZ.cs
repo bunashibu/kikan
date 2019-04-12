@@ -12,6 +12,9 @@ namespace Bunashibu.Kikan {
       _hitRistrictor = new HitRistrictor(_hitInfo);
 
       MonoUtility.Instance.StoppableDelaySec(_existTime, "PandaZFalse" + GetInstanceID().ToString(), () => {
+        if (gameObject == null)
+          return;
+
         gameObject.SetActive(false);
 
         // NOTE: See SMB-DestroySkillSelf

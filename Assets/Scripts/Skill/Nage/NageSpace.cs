@@ -13,6 +13,9 @@ namespace Bunashibu.Kikan {
       _timestamp = Time.time;
 
       MonoUtility.Instance.StoppableDelaySec(_existTime, "NageSpaceFalse" + GetInstanceID().ToString(), () => {
+        if (gameObject == null)
+          return;
+
         gameObject.SetActive(false);
 
         // NOTE: See SMB-DestroySkillSelf

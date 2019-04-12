@@ -11,6 +11,9 @@ namespace Bunashibu.Kikan {
       _hitRistrictor = new HitRistrictor(_hitInfo);
 
       MonoUtility.Instance.StoppableDelaySec(_existTime, "NageXFalse" + GetInstanceID().ToString(), () => {
+        if (gameObject == null)
+          return;
+
         gameObject.SetActive(false);
 
         // NOTE: Wait 5.0f in order to ensure value synchronization when hit at max range distance.
