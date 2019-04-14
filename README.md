@@ -24,3 +24,12 @@ Because we can't play *The Legends Return* anymore.
   + Photon Unity Networking (Classic v1.95)
   + UniRx
 
+### LICENSE
+* [MIT License](https://github.com/bunashibu/kikan/blob/master/LICENSE)
+  + Source Code
+
+* [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+  + Assets/Resources/SE
+  + Assets/Resources/SVG
+  + Assets/Resources/Sprite
+
