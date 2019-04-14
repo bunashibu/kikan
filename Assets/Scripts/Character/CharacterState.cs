@@ -7,6 +7,7 @@ namespace Bunashibu.Kikan {
     public bool Rigor      { get; set; }
     public bool Invincible { get; set; }
     public bool Heavy      { get; set; }
+    public bool Slow       { get; set; }
   }
 }
 

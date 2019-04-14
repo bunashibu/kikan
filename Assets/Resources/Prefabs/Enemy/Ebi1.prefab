@@ -289,6 +289,8 @@ MonoBehaviour:
     type: 3}
   _heavyEffect: {fileID: 3230611741972420428, guid: 338b4b289c5cf35439055f225e11ac67,
     type: 3}
+  _slowEffect: {fileID: 6647887535221933396, guid: 0ef43ff63ef490e438b78b8f8f7be493,
+    type: 3}
   _ai: {fileID: 114050103650658040}
   _targetChaseSystem: {fileID: 114131986705500426}
   _worldHpBar: {fileID: 114910362398058522}

@@ -24,6 +24,7 @@ namespace Bunashibu.Kikan {
         DamageCalculator.Calculate(_skillUserObj, _attackInfo);
 
         _synchronizer.SyncAttack(_skillUserViewID, target.PhotonView.viewID, DamageCalculator.Damage, DamageCalculator.IsCritical, HitEffectType.Panda);
+        _synchronizer.SyncDebuff(target.PhotonView.viewID, DebuffType.Slow, _duration);
       }
     }
 
@@ -32,6 +33,7 @@ namespace Bunashibu.Kikan {
 
     private SkillSynchronizer _synchronizer;
     private HitRistrictor _hitRistrictor;
+    private float _duration = 2.0f;
   }
 }
 

@@ -16,6 +16,7 @@ namespace Bunashibu.Kikan {
       Debuff        = new Debuff(transform);
       Debuff.Register(DebuffType.Stun, _stunEffect);
       Debuff.Register(DebuffType.Heavy, _heavyEffect);
+      Debuff.Register(DebuffType.Slow, _slowEffect);
 
       FixSpd        = new ReactiveCollection<FixSpd>();
 
@@ -85,6 +86,7 @@ namespace Bunashibu.Kikan {
     [Header("Debuff")]
     [SerializeField] private GameObject _stunEffect;
     [SerializeField] private GameObject _heavyEffect;
+    [SerializeField] private GameObject _slowEffect;
 
     // tmp
     [Space(10)]
