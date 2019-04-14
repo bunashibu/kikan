@@ -6,19 +6,15 @@ using UnityEngine.Assertions;
 namespace Bunashibu.Kikan {
   public class Skill : Photon.MonoBehaviour {
     [PunRPC]
-    protected void SyncInitRPC(bool flipX, int viewID) {
-      var renderer = gameObject.GetComponent<SpriteRenderer>();
-      if (renderer != null)
-        renderer.flipX = flipX;
-
+    protected void SyncInitRPC(int viewID) {
       _skillUserObj = PhotonView.Find(viewID).gameObject;
       _skillUserViewID = viewID;
     }
 
-    public void SyncInit(bool flipX, int viewID) {
+    public void SyncInit(int viewID) {
       Assert.IsTrue(photonView.isMine);
 
-      photonView.RPC("SyncInitRPC", PhotonTargets.All, flipX, viewID);
+      photonView.RPC("SyncInitRPC", PhotonTargets.All, viewID);
     }
 
     protected GameObject _skillUserObj;

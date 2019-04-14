@@ -46,8 +46,9 @@ namespace Bunashibu.Kikan {
         offset.x *= -1;
       var pos = weapon.transform.position + offset;
 
-      var skill = PhotonNetwork.Instantiate(path, pos, Quaternion.identity, 0).GetComponent<Skill>();
-      skill.SyncInit(player.Renderers[0].flipX, player.PhotonView.viewID);
+      var quat = player.Renderers[0].flipX ? Quaternion.Euler(0, 180, 0) : Quaternion.identity;
+      var skill = PhotonNetwork.Instantiate(path, pos, quat, 0).GetComponent<Skill>();
+      skill.SyncInit(player.PhotonView.viewID);
 
       SetCoroutine(i, weapon, player);
       SkillReference.Instance.Register(skill);

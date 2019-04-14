@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Assertions;
 
 namespace Bunashibu.Kikan {
   [RequireComponent(typeof(SkillSynchronizer))]
@@ -24,17 +23,13 @@ namespace Bunashibu.Kikan {
     }
 
     void Start() {
-      if (photonView.isMine) {
-        var renderer = _skillUserObj.GetComponent<SpriteRenderer>();
-        Assert.IsNotNull(renderer);
-
-        _direction = renderer.flipX ? Vector2.right : Vector2.left;
-      }
+      if (photonView.isMine)
+        _moveDirection = transform.eulerAngles.y == 180 ? Vector2.right : Vector2.left;
     }
 
     void Update() {
       if (photonView.isMine)
-        transform.Translate(_direction * _spd * Time.deltaTime);
+        transform.Translate(_moveDirection * _spd * Time.deltaTime, Space.World);
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
@@ -64,7 +59,7 @@ namespace Bunashibu.Kikan {
 
     private SkillSynchronizer _synchronizer;
     private HitRistrictor _hitRistrictor;
-    private Vector2 _direction;
+    private Vector2 _moveDirection;
     private float _spd = 12.0f;
     private float _existTime = 0.37f;
   }

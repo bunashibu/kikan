@@ -11,13 +11,12 @@ namespace Bunashibu.Kikan {
     }
 
     void Start() {
-      var renderer = GetComponent<SpriteRenderer>();
-      _moveDirection = renderer.flipX ? Vector2.right : Vector2.left;
+      _moveDirection = transform.eulerAngles.y == 180 ? Vector2.right : Vector2.left;
     }
 
     void Update() {
       if (photonView.isMine)
-        transform.Translate(_moveDirection * _moveSpeed * Time.deltaTime);
+        transform.Translate(_moveDirection * _moveSpeed * Time.deltaTime, Space.World);
     }
 
     void OnTriggerStay2D(Collider2D collider) {
