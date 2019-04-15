@@ -10,6 +10,7 @@ namespace Bunashibu.Kikan {
       _curCT = new List<float>{ 0, 0, 0, 0, 0, 0 };
 
       weapon.Stream.OnInstantiated
+        .Where(_ => player.PhotonView.isMine )
         .Subscribe(i => _curCT[i] = weapon.SkillCT[i] )
         .AddTo(weapon.gameObject);
 

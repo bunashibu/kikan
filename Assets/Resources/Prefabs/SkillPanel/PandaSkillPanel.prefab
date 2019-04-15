@@ -532,7 +532,7 @@ GameObject:
   - component: {fileID: 4387936601228170115}
   - component: {fileID: 4390753937924595731}
   - component: {fileID: 4498902317996831961}
-  - component: {fileID: 4498692602212167955}
+  - component: {fileID: 9065889758333158047}
   m_Layer: 5
   m_Name: PandaSkillPanel
   m_TagString: Untagged
@@ -603,7 +603,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
---- !u!114 &4498692602212167955
+--- !u!114 &9065889758333158047
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -612,7 +612,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4610858907406011521}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7672da11e26692c4cac7556b8cfed941, type: 3}
+  m_Script: {fileID: 11500000, guid: 284c25a6d025a544381ebdcc9137a3d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _alphaRectTransform:

@@ -29,7 +29,7 @@ namespace Bunashibu.Kikan {
       CanInstantiate = false;
     }
 
-    public void ResetAllCT() {
+    public virtual void ResetAllCT() {
       _ctManager.ResetAllCT();
     }
 
@@ -44,16 +44,17 @@ namespace Bunashibu.Kikan {
     public float[]       SkillCT      => _skillCT;
     public float[]       RigorCT      => _rigorCT;
 
+    // MEMO: All parameters should be composed like a skill slot.
     [SerializeField] protected Player _player;
     [SerializeField] private string _jobName;
     [SerializeField] private List<KeyList> _keysList;
     [SerializeField] protected SkillName[] _skillNames;
     [SerializeField] private int[] _requireLv;
     [SerializeField] private Vector3[] _appearOffset;
-    [SerializeField] private float[] _skillCT;
+    [SerializeField] protected float[] _skillCT;
     [SerializeField] private float[] _rigorCT;
 
-    private SkillInstantiator _instantiator;
+    protected SkillInstantiator _instantiator;
     private SkillCTManager _ctManager;
   }
 

@@ -86,15 +86,17 @@ namespace Bunashibu.Kikan {
   }
 
   public class ForceFlowEntity {
-    public ForceFlowEntity(IOnForced target, float force, Vector2 direction) {
+    public ForceFlowEntity(IOnForced target, float force, Vector2 direction, bool isNewAdd) {
       Target    = target;
       Force     = force;
       Direction = direction;
+      IsNewAdd  = isNewAdd;
     }
 
     public IOnForced Target    { get; private set; }
     public float     Force     { get; private set; }
     public Vector2   Direction { get; private set; }
+    public bool      IsNewAdd  { get; private set; }
   }
 
   public class StatusFlowEntity {

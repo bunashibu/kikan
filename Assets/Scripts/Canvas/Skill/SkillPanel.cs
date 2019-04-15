@@ -19,6 +19,9 @@ namespace Bunashibu.Kikan {
     }
 
     private void UpdateAlphaMask(int i, float cur, float max) {
+      if (max == 0)
+        return;
+
       // NOTE: AlphaMask height == 55.0f
       var prevSizeDelta = _alphaRectTransform[i].sizeDelta;
       _alphaRectTransform[i].sizeDelta = new Vector2(prevSizeDelta.x, 55.0f * (cur / max));

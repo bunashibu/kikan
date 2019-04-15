@@ -48,16 +48,16 @@ namespace Bunashibu.Kikan {
     }
 
     [PunRPC]
-    private void SyncForceRPC(int targetViewID, float force, Vector2 direction) {
+    private void SyncForceRPC(int targetViewID, float force, Vector2 direction, bool isNewAdd) {
       var target = PhotonView.Find(targetViewID).gameObject.GetComponent<IOnForced>();
       Assert.IsNotNull(target);
 
-      var flowEntity = new ForceFlowEntity(target, force, direction);
+      var flowEntity = new ForceFlowEntity(target, force, direction, isNewAdd);
       SkillStream.OnNextForce(flowEntity);
     }
 
-    public void SyncForce(int targetViewID, float force, Vector2 direction) {
-      photonView.RPC("SyncForceRPC", PhotonTargets.AllViaServer, targetViewID, force, direction);
+    public void SyncForce(int targetViewID, float force, Vector2 direction, bool isNewAdd) {
+      photonView.RPC("SyncForceRPC", PhotonTargets.AllViaServer, targetViewID, force, direction, isNewAdd);
     }
 
     [PunRPC]

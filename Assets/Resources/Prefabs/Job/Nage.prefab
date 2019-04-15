@@ -1755,7 +1755,7 @@ MonoBehaviour:
   - 0.4
   - 2.3
   - 0.3
-  _gradeInfo:
+  _uniqueInfo:
     _requireLv: 2
     _index: 0
     _after: 6

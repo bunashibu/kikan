@@ -11,7 +11,7 @@ namespace Bunashibu.Kikan {
         .Where(_ => player.PhotonView.isMine              )
         .Where(_ => player.Hp.Cur.Value > 0               )
         .Where(_ => !player.State.Rigor                   )
-        .Where(_ => IsCorrectAnimationState(player)       )
+        .Where(_ => IsSkillUsableAnimationState(player)   )
         .Where(_ => !player.Debuff.State[DebuffType.Stun] )
         .Where(_ => weapon.CanInstantiate                 )
         .Subscribe(_ => {
@@ -38,7 +38,7 @@ namespace Bunashibu.Kikan {
       return -1;
     }
 
-    private void InstantiateSkill(int i, Weapon weapon, Player player) {
+    public void InstantiateSkill(int i, Weapon weapon, Player player) {
       string path = "Prefabs/Skill/" + weapon.JobName + "/" + weapon.SkillNames[i];
 
       var offset = weapon.AppearOffset[i];
@@ -63,7 +63,7 @@ namespace Bunashibu.Kikan {
       });
     }
 
-    private bool IsCorrectAnimationState(Player player) {
+    public bool IsSkillUsableAnimationState(Player player) {
       return !(player.Animator.GetCurrentAnimatorStateInfo(0).IsName("Die") ||
                player.Animator.GetCurrentAnimatorStateInfo(0).IsName("Ladder"));
     }

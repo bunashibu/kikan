@@ -668,9 +668,9 @@ MonoBehaviour:
   _animator: {fileID: 5073313991239331392}
   _synchronizer: {fileID: 5092094962571416664}
   _audioEnvironment: {fileID: 5091736883583711422}
-  _hpTable: {fileID: 11400000, guid: 1e81de872edf78241a359a3838a6f3b8, type: 2}
+  _hpTable: {fileID: 11400000, guid: 580b2145a6d45f047a0a5a6561d359d6, type: 2}
   _expTable: {fileID: 11400000, guid: 6de611e43d011d34daf512c9b3c8779b, type: 2}
-  _autoHealTable: {fileID: 11400000, guid: 2af9baa41fbfe914b983bc901c00fe8a, type: 2}
+  _autoHealTable: {fileID: 11400000, guid: 28a45bb1ef7ce1541842c04ca4174c00, type: 2}
   _killExpTable: {fileID: 11400000, guid: 791597593be91a545b78b225c074d878, type: 2}
   _killGoldTable: {fileID: 11400000, guid: 08f3819bcd389ae498dddc20a49a3239, type: 2}
   _stunEffect: {fileID: 1315593712468704, guid: aa80d344b84021a47bb4c5b0d73b7fa2,
@@ -694,7 +694,7 @@ MonoBehaviour:
     type: 3}
   _healCoreEffect: {fileID: 1927017765232452, guid: 010a4889b2622374694da33b7bcba8b7,
     type: 3}
-  _weapon: {fileID: 5091858456224063788}
+  _weapon: {fileID: 3161070661851167950}
   _nameBackground: {fileID: 5091850715520674164}
   _popupRemark: {fileID: 5092030485544556994}
   _worldHpBar: {fileID: 5092115312571681144}
@@ -1296,7 +1296,7 @@ GameObject:
   - component: {fileID: 5073538876791878810}
   - component: {fileID: 5092388893524633508}
   - component: {fileID: 5091784724683261696}
-  - component: {fileID: 5091858456224063788}
+  - component: {fileID: 3161070661851167950}
   - component: {fileID: 5092033658150883496}
   m_Layer: 0
   m_Name: Fist
@@ -1492,7 +1492,7 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
---- !u!114 &5091858456224063788
+--- !u!114 &3161070661851167950
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1501,7 +1501,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5133843254735791010}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bccb8b5e185356d4a8e7ab60c9cefd77, type: 3}
+  m_Script: {fileID: 11500000, guid: 57cbee4e03c69894db17dab90c159909, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 5092157749597303820}
@@ -1533,9 +1533,14 @@ MonoBehaviour:
   - 0.3
   - 0.5
   - 4
-  - 0.4
+  - 0.5
   - 0.3
   - 0.3
+  _uniqueInfo:
+    _index: 3
+    _skillCT: 7
+    _usableSec: 1
+    _after: 7
 --- !u!114 &5092033658150883496
 MonoBehaviour:
   m_ObjectHideFlags: 0

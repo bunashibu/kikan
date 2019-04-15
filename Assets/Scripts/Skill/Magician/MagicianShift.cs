@@ -27,7 +27,7 @@ namespace Bunashibu.Kikan {
         var direction = transform.eulerAngles.y == 180 ? Vector2.right : Vector2.left;
 
         _synchronizer.SyncAttack(_skillUserViewID, target.PhotonView.viewID, DamageCalculator.Damage, DamageCalculator.IsCritical, HitEffectType.Magician);
-        _synchronizer.SyncForce(target.PhotonView.viewID, _force, direction);
+        _synchronizer.SyncForce(target.PhotonView.viewID, _force, direction, false);
       }
     }
 

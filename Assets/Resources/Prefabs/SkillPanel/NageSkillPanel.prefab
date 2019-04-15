@@ -734,7 +734,7 @@ MonoBehaviour:
   - {fileID: 1806722375666071388}
   - {fileID: 1806166882973155620}
   - {fileID: 1807020206849274262}
-  _gradeAlphaRectTransform: {fileID: 3056799073078115675}
+  _uniqueAlphaRectTransform: {fileID: 3056799073078115675}
 --- !u!1 &1876568686163056002
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,7 +11,8 @@ namespace Bunashibu.Kikan {
     Space,
     Alt,
 
-    X2 // Nage
+    X2,   // Nage
+    Ctrl2 // Panda
   }
 
   public enum SkillState {

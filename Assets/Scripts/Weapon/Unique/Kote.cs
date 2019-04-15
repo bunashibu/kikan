@@ -5,26 +5,27 @@ using UniRx;
 using UniRx.Triggers;
 
 namespace Bunashibu.Kikan {
-  public class GradeWeapon : Weapon {
+  public class Kote : Weapon {
     void Awake() {
       base.Awake();
 
       this.UpdateAsObservable()
-        .First(_ => _player.Level.Cur.Value >= _gradeInfo.RequireLv )
-        .Subscribe(_ => ReplaceGradeSkill() )
-        .AddTo(gameObject);
+        .Where(_ => _player.PhotonView.isMine )
+        .First(_ => _player.Level.Cur.Value >= _uniqueInfo.RequireLv )
+        .Subscribe(_ => ReplaceUniqueSkill() )
+        .AddTo(_player);
     }
 
-    private void ReplaceGradeSkill() {
-      _skillNames[_gradeInfo.Index] = _gradeInfo.After;
-      Stream.OnNextGrade(_gradeInfo.Index);
+    private void ReplaceUniqueSkill() {
+      _skillNames[_uniqueInfo.Index] = _uniqueInfo.After;
+      Stream.OnNextUnique(_uniqueInfo.Index);
     }
 
-    [SerializeField] private GradeWeaponInfo _gradeInfo;
+    [SerializeField] private KoteUniqueInfo _uniqueInfo;
   }
 
   [System.Serializable]
-  public class GradeWeaponInfo {
+  public class KoteUniqueInfo {
     public int       RequireLv => _requireLv;
     public int       Index     => _index;
     public SkillName After     => _after;

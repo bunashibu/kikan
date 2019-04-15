@@ -67,6 +67,9 @@ namespace Bunashibu.Kikan {
 
       SkillStream.OnForced
         .Subscribe(entity => {
+          if (entity.IsNewAdd)
+            entity.Target.Rigid.velocity = new Vector2(0, 0);
+
           entity.Target.Rigid.AddForce(entity.Direction * entity.Force, ForceMode2D.Impulse);
         })
         .AddTo(gameObject);
