@@ -26,7 +26,15 @@ namespace Bunashibu.Kikan {
 
       skillPanel = Instantiate(skillPanel) as SkillPanel;
       skillPanel.transform.SetParent(canvas.transform, false);
-      skillPanel.Register(_player.Weapon);
+
+      if (_player.Weapon is Fist && skillPanel is PandaSkillPanel) {
+        var fist = (Fist)_player.Weapon;
+        var pandaSkillPanel = (PandaSkillPanel)skillPanel;
+
+        pandaSkillPanel.Register(fist);
+      }
+      else
+        skillPanel.Register(_player.Weapon);
     }
 
     public Bar        HpBar   => _hpBar;

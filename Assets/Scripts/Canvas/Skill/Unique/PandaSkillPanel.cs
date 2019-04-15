@@ -5,15 +5,31 @@ using UniRx;
 
 namespace Bunashibu.Kikan {
   public class PandaSkillPanel : SkillPanel {
-    public override void Register(Weapon weapon) {
-      base.Register(weapon);
+    public void Register(Fist fist) {
+      base.Register(fist);
 
-      weapon.Stream.OnUniqueUsed
-        .Subscribe(index => {
+      fist.Stream.OnUniqueUsed
+        .Where(_ => fist.IsSecondTime )
+        .Subscribe(index => ShowUniqueSlot(index) )
+        .AddTo(fist.gameObject);
 
-        })
-        .AddTo(weapon.gameObject);
+      fist.Stream.OnUniqueUsed
+        .Where(_ => !fist.IsSecondTime )
+        .Subscribe(index => HideUniqueSlot(index) )
+        .AddTo(fist.gameObject);
     }
+
+    private void ShowUniqueSlot(int index) {
+      _alphaRectTransform[index].parent.gameObject.SetActive(false);
+      _uniqueSlotObj.SetActive(true);
+    }
+
+    private void HideUniqueSlot(int index) {
+      _alphaRectTransform[index].parent.gameObject.SetActive(true);
+      _uniqueSlotObj.SetActive(false);
+    }
+
+    [SerializeField] private GameObject _uniqueSlotObj;
   }
 }
 

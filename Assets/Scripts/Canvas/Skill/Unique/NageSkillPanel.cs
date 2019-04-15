@@ -9,11 +9,11 @@ namespace Bunashibu.Kikan {
       base.Register(weapon);
 
       weapon.Stream.OnUniqueUsed
-        .Subscribe(index => Replace(index) )
+        .Subscribe(index => ReplaceSlot(index) )
         .AddTo(weapon.gameObject);
     }
 
-    private void Replace(int index) {
+    private void ReplaceSlot(int index) {
       _alphaRectTransform[index].parent.gameObject.SetActive(false);
       _uniqueAlphaRectTransform.parent.gameObject.SetActive(true);
 

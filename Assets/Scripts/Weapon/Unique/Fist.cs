@@ -80,6 +80,8 @@ namespace Bunashibu.Kikan {
       _skillCT[_uniqueInfo.Index] = _beforeCT;
       _shouldUseUnique = false;
       _isSecondTime = false;
+
+      Stream.OnNextUnique(_uniqueInfo.Index);
     }
 
     // NOTE: While ready to use unique skill, the input of ctrl is managed in this. not in SkillInstantiator.
@@ -101,6 +103,8 @@ namespace Bunashibu.Kikan {
       base.ResetAllCT();
       ResetUniqueSkill();
     }
+
+    public bool IsSecondTime => _isSecondTime;
 
     [SerializeField] private FistUniqueInfo _uniqueInfo;
 
