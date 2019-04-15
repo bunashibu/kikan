@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.UI;
 
 namespace Bunashibu.Kikan {
@@ -15,6 +16,8 @@ namespace Bunashibu.Kikan {
     public abstract void UpdateView(int cur, int max);
 
     protected virtual void Animate(int cur, int max) {
+      Assert.IsTrue(max > 0);
+
       if (cur == 0) {
         _slider.value = 0;
         return;
