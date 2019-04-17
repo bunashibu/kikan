@@ -4,10 +4,6 @@ using System.Collections;
 namespace Bunashibu.Kikan {
   [CreateAssetMenu]
   public class JobStatus : ScriptableObject {
-    public int Id {
-      get { return _id; }
-    }
-
     public int Atk {
       get { return _atk; }
     }
@@ -24,7 +20,6 @@ namespace Bunashibu.Kikan {
       get { return _jmp; }
     }
 
-    [SerializeField] private int _id;
     [SerializeField] private int _atk;
     [SerializeField] private int _dfn;
     [SerializeField] private int _spd;

@@ -11,6 +11,7 @@ namespace Bunashibu.Kikan {
       _buttons[1].onClick.AddListener( () => Pick(1) );
       _buttons[2].onClick.AddListener( () => Pick(2) );
       _buttons[3].onClick.AddListener( () => Pick(3) );
+      _buttons[4].onClick.AddListener( () => Pick(4) );
       _decideButton.onClick.AddListener( () => SyncDecide() );
       _selectTimePanel.SetTime(_selectTime);
       _selectTimePanel.SetView(TimeViewType.Sec);

@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdabc219a3518e644aa5c8ee1d0fa953, type: 3}
   m_Name: Nage
   m_EditorClassIdentifier: 
-  _id: 2
   _atk: 228
-  _dfn: 1
+  _dfn: 0
   _spd: 3
   _jmp: 400

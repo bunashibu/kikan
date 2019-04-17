@@ -9,10 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdabc219a3518e644aa5c8ee1d0fa953, type: 3}
-  m_Name: Panda
+  m_Script: {fileID: 11500000, guid: 8adbfcf8aa71b7c4b9f879d7ace3e2ea, type: 3}
+  m_Name: Warrior
   m_EditorClassIdentifier: 
-  _atk: 210
-  _dfn: 0
-  _spd: 3
-  _jmp: 400
+  _table: 12000000160000001a0000001e00000022000000260000002a0000002e00000032000000360000003a0000003e000000410000004400000047000000

@@ -27,7 +27,8 @@ namespace Bunashibu.Kikan {
     Manji,
     Magician,
     Nage,
-    Panda
+    Panda,
+    Warrior
   }
 
   public enum NumberPopupType {

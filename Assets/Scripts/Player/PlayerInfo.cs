@@ -24,12 +24,17 @@ namespace Bunashibu.Kikan {
       }
 
       if (Regex.IsMatch(name, "Nage")) {
-        Job = "投";
+        Job = "投げ賊";
         return;
       }
 
       if (Regex.IsMatch(name, "Panda")) {
         Job = "パンダ";
+        return;
+      }
+
+      if (Regex.IsMatch(name, "Warrior")) {
+        Job = "戦士";
         return;
       }
     }

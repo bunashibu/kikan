@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bdabc219a3518e644aa5c8ee1d0fa953, type: 3}
-  m_Name: Panda
+  m_Name: Warrior
   m_EditorClassIdentifier: 
-  _atk: 210
+  _atk: 133
   _dfn: 0
   _spd: 3
   _jmp: 400
