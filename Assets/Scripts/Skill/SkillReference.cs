@@ -33,8 +33,12 @@ namespace Bunashibu.Kikan {
     }
 
     public void DeleteAll() {
-      foreach (Skill skill in _existOwnSkillList)
+      foreach (Skill skill in _existOwnSkillList) {
+        if (skill == null)
+          continue;
+
         PhotonNetwork.Destroy(skill.gameObject);
+      }
 
       foreach (SkillCoroutine skillCoroutine in _dictionary.Values)
         StopCoroutine(skillCoroutine.Coroutine);
