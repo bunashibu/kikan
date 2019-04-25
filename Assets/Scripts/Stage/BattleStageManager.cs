@@ -13,8 +13,10 @@ namespace Bunashibu.Kikan {
     }
 
     void Update() {
-      if (PhotonNetwork.isMasterClient && StageData.Name == "Battle" && _timePanel.TimeSec <= 0)
+      if (PhotonNetwork.isMasterClient && StageData.Name == "Battle" && _timePanel.TimeSec <= 0 && _isNotMigrated) {
+        _isNotMigrated = false;
         SyncFinalMigration();
+      }
     }
 
     [PunRPC]
@@ -43,6 +45,7 @@ namespace Bunashibu.Kikan {
     [SerializeField] private BattleStage _stage;
     [SerializeField] private BattleFinalStage _finalStage;
     private PhotonView _photonView;
+    private bool _isNotMigrated = true;
   }
 }
 

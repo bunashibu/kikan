@@ -24,7 +24,8 @@ namespace Bunashibu.Kikan {
       });
 
       this.UpdateAsObservable()
-        .First(_ => _skillUserObj != null)
+        .Where(_ => _skillUserObj != null)
+        .Take(1)
         .Subscribe(_ => {
           _player = _skillUserObj.GetComponent<Player>();
           _player.Movement.SetMoveForce(_player.Status.Spd * _spdRatio);

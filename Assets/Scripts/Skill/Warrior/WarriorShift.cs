@@ -21,7 +21,8 @@ namespace Bunashibu.Kikan {
       _instantiatedTime = Time.time;
 
       this.UpdateAsObservable()
-        .First(_ => Time.time - _instantiatedTime > _collisionOccurenceTime)
+        .Where(_ => Time.time - _instantiatedTime > _collisionOccurenceTime)
+        .Take(1)
         .Subscribe(_ => {
           _renderer.enabled = true;
           _animator.enabled = true;
