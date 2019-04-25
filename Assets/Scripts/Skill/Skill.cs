@@ -17,6 +17,8 @@ namespace Bunashibu.Kikan {
       photonView.RPC("SyncInitRPC", PhotonTargets.All, viewID);
     }
 
+    public int viewID => photonView.viewID;
+
     protected GameObject _skillUserObj;
     protected int _skillUserViewID;
   }

@@ -8,50 +8,51 @@ namespace Bunashibu.Kikan {
   // That means that each clients manage own skills.
   public class SkillReference : SingletonMonoBehaviour<SkillReference> {
     void Awake() {
-      _existOwnSkillList = new List<Skill>();
-      _dictionary = new Dictionary<Skill, SkillCoroutine>();
+      _existOwnIdList = new List<int>();
+      _dictionary = new Dictionary<int, SkillCoroutine>();
     }
 
-    public void Register(Skill skill) {
-      if (!_existOwnSkillList.Contains(skill))
-        _existOwnSkillList.Add(skill);
+    public void Register(int viewID) {
+      if (!_existOwnIdList.Contains(viewID))
+        _existOwnIdList.Add(viewID);
     }
 
-    public void Register(Skill skill, float sec, Action action) {
-      Register(skill);
+    public void Register(int viewID, float sec, Action action) {
+      Register(viewID);
 
-      _dictionary[skill] = new SkillCoroutine(action, MonoUtility.Instance.ImplDelaySec(sec, action));
-      StartCoroutine(_dictionary[skill].Coroutine);
+      _dictionary[viewID] = new SkillCoroutine(action, MonoUtility.Instance.ImplDelaySec(sec, action));
+      StartCoroutine(_dictionary[viewID].Coroutine);
     }
 
-    public void Remove(Skill skill) {
-      if (_existOwnSkillList.Contains(skill))
-        _existOwnSkillList.Remove(skill);
+    public void Remove(int viewID) {
+      if (_existOwnIdList.Contains(viewID))
+        _existOwnIdList.Remove(viewID);
 
-      if (_dictionary.ContainsKey(skill))
-        _dictionary.Remove(skill);
+      if (_dictionary.ContainsKey(viewID))
+        _dictionary.Remove(viewID);
     }
 
     public void DeleteAll() {
-      foreach (Skill skill in _existOwnSkillList) {
-        if (skill == null)
+      foreach (int viewID in _existOwnIdList) {
+        var skillObj = PhotonView.Find(viewID);
+        if (skillObj == null)
           continue;
 
-        PhotonNetwork.Destroy(skill.gameObject);
+        PhotonNetwork.Destroy(skillObj);
       }
 
       foreach (SkillCoroutine skillCoroutine in _dictionary.Values)
         StopCoroutine(skillCoroutine.Coroutine);
 
-      _existOwnSkillList = new List<Skill>();
-      _dictionary = new Dictionary<Skill, SkillCoroutine>();
+      _existOwnIdList.Clear();
+      _dictionary.Clear();
     }
 
-    // 1. Client's all skill is observed by _existOwnSkillList.
+    // 1. Client's all skill is observed by _existOwnIdList.
     // 2. But when a skill uses some DelayFunction(like enhance status), the coroutine and action
     //    that the skill uses are also observed by _dictionary in addition.
-    private List<Skill> _existOwnSkillList;
-    private Dictionary<Skill, SkillCoroutine> _dictionary;
+    private List<int> _existOwnIdList;
+    private Dictionary<int, SkillCoroutine> _dictionary;
   }
 
   public class SkillCoroutine {

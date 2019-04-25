@@ -17,7 +17,7 @@ namespace Bunashibu.Kikan {
     void OnDestroy() {
       if (photonView.isMine) {
         ResetStatus();
-        SkillReference.Instance.Remove(this);
+        SkillReference.Instance.Remove(viewID);
       }
     }
 
@@ -45,7 +45,7 @@ namespace Bunashibu.Kikan {
         skillUser.Synchronizer.SyncFixAtk(1.0f);
       };
 
-      SkillReference.Instance.Register(this, _buffTime, () => { PhotonNetwork.Destroy(gameObject); });
+      SkillReference.Instance.Register(viewID, _buffTime, () => { PhotonNetwork.Destroy(gameObject); });
     }
 
     private void InstantiateBuff() {
@@ -54,7 +54,7 @@ namespace Bunashibu.Kikan {
       var buff = PhotonNetwork.Instantiate("Prefabs/Skill/Manji/SpaceBuff", Vector3.zero, Quaternion.identity, 0).GetComponent<SkillBuff>() as SkillBuff;
       buff.ParentSetter.SetParent(skillUser.PhotonView.viewID);
 
-      SkillReference.Instance.Register(buff, _buffTime, () => { PhotonNetwork.Destroy(buff.gameObject); });
+      SkillReference.Instance.Register(buff.viewID, _buffTime, () => { PhotonNetwork.Destroy(buff.gameObject); });
     }
 
     private Action ResetStatus;

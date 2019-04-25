@@ -79,7 +79,7 @@ namespace Bunashibu.Kikan {
 
     void OnDestroy() {
       if (photonView.isMine && SkillReference.Instance != null)
-        SkillReference.Instance.Remove(this);
+        SkillReference.Instance.Remove(viewID);
 
       if (_player != null) {
         _player.BodyCollider.enabled = true;

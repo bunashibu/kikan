@@ -51,7 +51,7 @@ namespace Bunashibu.Kikan {
       skill.SyncInit(player.PhotonView.viewID);
 
       SetCoroutine(i, weapon, player);
-      SkillReference.Instance.Register(skill);
+      SkillReference.Instance.Register(skill.viewID);
       weapon.Stream.OnNextInstantiate(i);
     }
 

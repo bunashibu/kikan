@@ -6,7 +6,7 @@ namespace Bunashibu.Kikan {
   public class SkillBuff : Skill {
     void OnDestroy() {
       if (photonView.isMine)
-        SkillReference.Instance.Remove(this);
+        SkillReference.Instance.Remove(viewID);
     }
 
     public ParentSetter ParentSetter => _parentSetter;

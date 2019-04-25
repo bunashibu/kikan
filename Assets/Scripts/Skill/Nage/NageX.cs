@@ -51,7 +51,7 @@ namespace Bunashibu.Kikan {
 
     void OnDestroy() {
       if (photonView.isMine && SkillReference.Instance != null)
-        SkillReference.Instance.Remove(this);
+        SkillReference.Instance.Remove(viewID);
     }
 
     [SerializeField] private AttackInfo _attackInfo;

@@ -17,7 +17,7 @@ namespace Bunashibu.Kikan {
     void OnDestroy() {
       if (photonView.isMine) {
         ResetStatus();
-        SkillReference.Instance.Remove(this);
+        SkillReference.Instance.Remove(viewID);
       }
     }
 
@@ -30,7 +30,7 @@ namespace Bunashibu.Kikan {
         skillUser.Synchronizer.SyncFixCritical(0);
       };
 
-      SkillReference.Instance.Register(this, _buffTime, () => { PhotonNetwork.Destroy(gameObject); });
+      SkillReference.Instance.Register(viewID, _buffTime, () => { PhotonNetwork.Destroy(gameObject); });
     }
 
     private void InstantiateBuff() {
@@ -40,7 +40,7 @@ namespace Bunashibu.Kikan {
       buff.ParentSetter.SetParent(skillUser.PhotonView.viewID);
       buff.transform.Translate(new Vector2(0, 1.1f));
 
-      SkillReference.Instance.Register(buff, _buffTime, () => { PhotonNetwork.Destroy(buff.gameObject); });
+      SkillReference.Instance.Register(buff.viewID, _buffTime, () => { PhotonNetwork.Destroy(buff.gameObject); });
     }
 
     private Action ResetStatus;

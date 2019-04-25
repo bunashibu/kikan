@@ -29,6 +29,17 @@ namespace Bunashibu.Kikan {
           _collider.enabled = true;
         })
         .AddTo(this);
+
+      this.UpdateAsObservable()
+        .Where(_ => Time.time - _instantiatedTime > _secondInstantiateTime)
+        .Take(1)
+        .Subscribe(_ => {
+          var secondSkill = PhotonNetwork.Instantiate(_secondPath, transform.position, transform.rotation, 0).GetComponent<Skill>();
+          secondSkill.SyncInit(_skillUserViewID);
+
+          SkillReference.Instance.Register(secondSkill.viewID);
+        })
+        .AddTo(this);
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
@@ -48,15 +59,6 @@ namespace Bunashibu.Kikan {
       }
     }
 
-    void OnDisable() {
-      if (photonView.isMine) {
-        var secondSkill = PhotonNetwork.Instantiate(_secondPath, transform.position, transform.rotation, 0).GetComponent<Skill>();
-        secondSkill.SyncInit(_skillUserViewID);
-
-        SkillReference.Instance.Register(secondSkill);
-      }
-    }
-
     [SerializeField] private AttackInfo _attackInfo;
     [SerializeField] private HitInfo _hitInfo;
 
@@ -68,6 +70,7 @@ namespace Bunashibu.Kikan {
     private Collider2D _collider;
     private float _instantiatedTime;
     private float _collisionOccurenceTime = 0.3f;
+    private float _secondInstantiateTime = 0.8f;
 
     private string _secondPath = "Prefabs/Skill/Warrior/Shift2";
   }
