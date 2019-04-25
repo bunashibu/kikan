@@ -2,33 +2,48 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UniRx;
+using UniRx.Triggers;
 
 namespace Bunashibu.Kikan {
   public class WinLoseJudger : SingletonMonoBehaviour<WinLoseJudger> {
     void Start() {
+      FindCanvas();
+
       if (PhotonNetwork.isMasterClient) {
         _photonView = GetComponent<PhotonView>();
 
         InitAlivePlayerCount();
 
-        MonoUtility.Instance.DelayUntil(() => _timePanel.TimeSec <= 0, () => {
-          if ( (_alivePlayerCount.Red > 0) && (_alivePlayerCount.Blue > 0) )
-            SyncDraw();
-        });
+        this.UpdateAsObservable()
+          .Where(_ => _alivePlayerCount.Red == 0)
+          .Take(1)
+          .Subscribe(_ => SyncWinProcess(1) );
+
+        this.UpdateAsObservable()
+          .Where(_ => _alivePlayerCount.Blue == 0)
+          .Take(1)
+          .Subscribe(_ => SyncWinProcess(0) );
+
+        this.UpdateAsObservable()
+          .Where(_ => _timePanel.TimeSec <= 0)
+          .Where(_ => _alivePlayerCount.Red > 0)
+          .Where(_ => _alivePlayerCount.Blue > 0)
+          .Take(1)
+          .Subscribe(_ => SyncDraw() );
       }
     }
 
-    void Update() {
-      if (PhotonNetwork.isMasterClient) {
-        if (_isFinished)
-          return;
+    private void FindCanvas() {
+      _canvas = GameObject.Find("Canvas");
+      if (_canvas == null)
+        Debug.Log("Can't find Canvas");
 
-        if (_alivePlayerCount.Red == 0)
-          SyncWinProcess(1);
-
-        if (_alivePlayerCount.Blue == 0)
-          SyncWinProcess(0);
-      }
+      var timePanelObj = GameObject.Find("Canvas/TimePanel");
+      if (timePanelObj == null)
+        Debug.Log("Can't find TimePanelObj");
+      else
+        _timePanel = timePanelObj.GetComponent<TimePanel>();
     }
 
     [PunRPC]
@@ -48,8 +63,6 @@ namespace Bunashibu.Kikan {
         ShowWin();
       else
         ShowLose();
-
-      _isFinished = true;
     }
 
     private void SyncWinProcess(int winTeam) {
@@ -97,20 +110,7 @@ namespace Bunashibu.Kikan {
         SkillReference.Instance.DeleteAll();
         MonoUtility.Instance.StopAll();
         SceneChanger.Instance.FadeOutAndLeaveRoom();
-        _camera.DisableTracking();
       });
-    }
-
-    public void SetTimePanel(TimePanel timePanel) {
-      _timePanel = timePanel;
-    }
-
-    public void SetCamera(TrackCamera camera) {
-      _camera = camera;
-    }
-
-    public void SetCanvas(Canvas canvas) {
-      _canvas = canvas;
     }
 
     private void ShowWin() {
@@ -133,12 +133,9 @@ namespace Bunashibu.Kikan {
     [SerializeField] private GameObject _drawObj;
     [SerializeField] private AfterFinalBatlleTransporter _transporter;
 
-    private bool _isFinished = false;
-
-    private PhotonView  _photonView;
-    private TimePanel   _timePanel;
-    private TrackCamera _camera;
-    private Canvas      _canvas;
+    private PhotonView _photonView;
+    private TimePanel  _timePanel;
+    private GameObject _canvas;
 
     private AlivePlayerCount _alivePlayerCount;
   }

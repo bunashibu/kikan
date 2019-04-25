@@ -1,31 +1,38 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
+using UniRx;
+using UniRx.Triggers;
 
 namespace Bunashibu.Kikan {
   public class BattleFinalStage : MonoBehaviour {
     void Awake() {
       _destRotation = Quaternion.Euler(0, 0, 0);
-    }
 
-    void Update() {
-      if (_isRotating) {
-        Rotate();
+      this.UpdateAsObservable()
+        .Where(_ => _isRotating)
+        .Subscribe(_ => Rotate() );
 
-        if (transform.rotation == _destRotation)
-          _isRotating = false;
-      }
+      this.UpdateAsObservable()
+        .Where(_ => transform.rotation == _destRotation)
+        .Take(1)
+        .Subscribe(_ => _isRotating = false );
 
-      if (_isNotReady) {
-        if (Time.time - _startPrepareTime < _prepareDuration)
-          GatherPlayer();
-        else {
+      this.UpdateAsObservable()
+        .Where(_ => Time.time - _startPrepareTime < _prepareDuration)
+        .Subscribe(_ => GatherPlayer() );
+
+      this.UpdateAsObservable()
+        .Where(_ => Time.time - _startPrepareTime >= _prepareDuration)
+        .Take(1)
+        .Subscribe(_ => {
           SetTimeAndCamera();
           ResetPlayerStatus();
-          InstantiateWinLoseJudger();
-          _isNotReady = false;
-        }
-      }
+
+          if (PhotonNetwork.isMasterClient)
+            InstantiateWinLoseJudger();
+        });
     }
 
     public void Emerge() {
@@ -100,7 +107,6 @@ namespace Bunashibu.Kikan {
         var player = PhotonView.Find(viewID).GetComponent<Player>() as Player;
 
         player.Rigid.simulated = true;
-
         player.BodyCollider.enabled = true;
 
         player.Character.Enable();
@@ -125,10 +131,10 @@ namespace Bunashibu.Kikan {
     }
 
     private void InstantiateWinLoseJudger() {
-      var judger = Instantiate(_judger).GetComponent<WinLoseJudger>() as WinLoseJudger;
-      judger.SetTimePanel(_timePanel);
-      judger.SetCamera(_camera);
-      judger.SetCanvas(_canvas);
+      Assert.IsTrue(PhotonNetwork.isMasterClient);
+
+      var path = "Prefabs/WinLoseJudger";
+      PhotonNetwork.Instantiate(path, Vector3.zero, Quaternion.identity, 0).GetComponent<WinLoseJudger>();
     }
 
     [SerializeField] private TimePanel _timePanel;
@@ -142,12 +148,9 @@ namespace Bunashibu.Kikan {
     [SerializeField] private WinLoseJudger _judger;
     [Space(10)]
     [SerializeField] private TrackCamera _camera;
-    [Space(10)]
-    [SerializeField] private Canvas _canvas;
 
     private Quaternion _destRotation;
     private bool _isRotating;
-    private bool _isNotReady = true;
     private float _startPrepareTime;
     private float _prepareDuration = 4.0f;
     private Player _player;

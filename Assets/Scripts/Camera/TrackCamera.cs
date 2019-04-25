@@ -1,17 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
+using UniRx.Triggers;
 
 namespace Bunashibu.Kikan {
   public class TrackCamera : MonoBehaviour {
     void Awake() {
       _shouldRestrict = true;
+
+      this.UpdateAsObservable()
+        .Where(_ => _isTracking)
+        .Where(_ => _trackObj != null)
+        .Subscribe(_ => Track() );
     }
 
-    void Update() {
-      if (!_isTracking)
-        return;
-
+    private void Track() {
       Vector3 trackPosition = _trackObj.transform.position + _positionOffset;
 
       if (transform.position != trackPosition) {

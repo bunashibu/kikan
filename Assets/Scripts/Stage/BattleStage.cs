@@ -1,24 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
+using UniRx.Triggers;
 
 namespace Bunashibu.Kikan {
   public class BattleStage : MonoBehaviour {
     void Awake() {
       _timePanel.SetTime(_time);
       _destRotation = Quaternion.Euler(90, 0, 0);
-    }
 
-    void Update() {
-      if (_isRotating) {
-        float step = _rotateSpeed * Time.deltaTime;
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, _destRotation, step);
+      this.UpdateAsObservable()
+        .Where(_ => _isRotating)
+        .Subscribe(_ => Rotate() );
 
-        if (transform.rotation == _destRotation) {
+      this.UpdateAsObservable()
+        .Where(_ => _isRotating)
+        .Where(_ => transform.rotation == _destRotation)
+        .Subscribe(_ => {
           _isRotating = false;
           Hide();
-        }
-      }
+        });
     }
 
     public void Emerge() {
@@ -31,6 +33,11 @@ namespace Bunashibu.Kikan {
 
     public void StartRotation() {
       _isRotating = true;
+    }
+
+    private void Rotate() {
+      float step = _rotateSpeed * Time.deltaTime;
+      transform.rotation = Quaternion.RotateTowards(transform.rotation, _destRotation, step);
     }
 
     [SerializeField] private TimePanel _timePanel;
