@@ -14,7 +14,7 @@ namespace Bunashibu.Kikan {
 
       Stream.OnInstantiated
         .Subscribe(i => {
-          if (i == _uniqueInfo.Index && !_isSecondTime)
+          if (i == _uniqueInfo.Index && !IsAcceptingUnique)
             ReadyUniqueSkill();
         })
         .AddTo(this);
@@ -36,20 +36,20 @@ namespace Bunashibu.Kikan {
     }
 
     private bool IsAllowedToGetUniqueInput() {
-      return ( _isSecondTime          ) &&
+      return ( IsAcceptingUnique      ) &&
              ( Time.time - _instantiatedTimestamp <= _uniqueInfo.UsableSec ) &&
              ( IsPlayerMineAndAlive() ) &&
              ( CanInstantiate         );
     }
 
     private bool IsTimeoutToUseUniqueSkill() {
-      return ( _isSecondTime             ) &&
+      return ( IsAcceptingUnique         ) &&
              ( Time.time - _instantiatedTimestamp > _uniqueInfo.UsableSec ) &&
              ( _player.PhotonView.isMine );
     }
 
     private bool ShouldInstantiateUniqueSkill() {
-      return ( _isSecondTime          ) &&
+      return ( IsAcceptingUnique      ) &&
              ( _shouldUseUnique       ) &&
              ( !_player.State.Rigor   ) &&
              ( IsPlayerMineAndAlive() ) &&
@@ -66,7 +66,7 @@ namespace Bunashibu.Kikan {
       _skillNames[_uniqueInfo.Index] = _uniqueInfo.After;
       _skillCT[_uniqueInfo.Index] = _uniqueInfo.SkillCT;
 
-      _isSecondTime = true;
+      IsAcceptingUnique = true;
       _instantiatedTimestamp = Time.time;
 
       Stream.OnNextUnique(_uniqueInfo.Index);
@@ -76,7 +76,7 @@ namespace Bunashibu.Kikan {
       _skillNames[_uniqueInfo.Index] = _beforeName;
       _skillCT[_uniqueInfo.Index] = _beforeCT;
       _shouldUseUnique = false;
-      _isSecondTime = false;
+      IsAcceptingUnique = false;
 
       Stream.OnNextUnique(_uniqueInfo.Index);
     }
@@ -101,12 +101,11 @@ namespace Bunashibu.Kikan {
       ResetUniqueSkill();
     }
 
-    public bool IsSecondTime => _isSecondTime;
+    public bool IsAcceptingUnique { get; private set; }
 
     [SerializeField] private FistUniqueInfo _uniqueInfo;
 
     private bool _shouldUseUnique;
-    private bool _isSecondTime;
     private float _instantiatedTimestamp;
 
     private SkillName _beforeName;

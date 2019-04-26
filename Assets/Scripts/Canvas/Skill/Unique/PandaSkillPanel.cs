@@ -9,12 +9,12 @@ namespace Bunashibu.Kikan {
       base.Register(fist);
 
       fist.Stream.OnUniqueUsed
-        .Where(_ => fist.IsSecondTime )
+        .Where(_ => fist.IsAcceptingUnique )
         .Subscribe(index => ShowUniqueSlot(index) )
         .AddTo(fist.gameObject);
 
       fist.Stream.OnUniqueUsed
-        .Where(_ => !fist.IsSecondTime )
+        .Where(_ => !fist.IsAcceptingUnique )
         .Subscribe(index => HideUniqueSlot(index) )
         .AddTo(fist.gameObject);
     }
