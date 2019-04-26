@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Bunashibu.Kikan {
+  [RequireComponent(typeof(SkillSynchronizer))]
   public class WarriorZ : Skill {
     void Awake() {
       _synchronizer = GetComponent<SkillSynchronizer>();

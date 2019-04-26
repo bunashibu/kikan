@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UniRx;
 using UniRx.Triggers;
 
@@ -17,23 +18,114 @@ namespace Bunashibu.Kikan {
         .Where(_ => !_player.Debuff.State[DebuffType.Stun]             )
         .Where(_ => CanInstantiate                                     )
         .Subscribe(_ => {
-          GetUniqueInput(_ctrlInfo.Index);
-          GetUniqueInput(_spaceInfo.Index);
+          GetInput(_ctrlInfo.Index);
+          GetInput(_spaceInfo.Index);
         });
+
+      this.UpdateAsObservable()
+        .Where(_ => CanGetCtrlBreakInput() )
+        .Subscribe(_ => GetUniqueInput(_ctrlInfo.Index) );
+      this.UpdateAsObservable()
+        .Where(_ => CanGetSpaceBreakInput() )
+        .Subscribe(_ => GetUniqueInput(_spaceInfo.Index) );
+
+      this.UpdateAsObservable()
+        .Where(_ => IsTimeoutCtrlBreak() )
+        .Subscribe(_ => UseUnique(_ctrlInfo.Index) );
+      this.UpdateAsObservable()
+        .Where(_ => IsTimeoutSpaceBreak() )
+        .Subscribe(_ => UseUnique(_spaceInfo.Index) );
     }
 
-    private void GetUniqueInput(int i) {
+    private bool CanGetCtrlBreakInput() {
+      return ( IsAcceptingCtrlBreak   ) &&
+             ( !_player.State.Rigor   ) &&
+             ( Time.time - _ctrlInstantiatedTimestamp <= _ctrlInfo.UsableSec ) &&
+             ( IsPlayerMineAndAlive() ) &&
+             ( CanInstantiate         );
+    }
+
+    private bool CanGetSpaceBreakInput() {
+      return ( IsAcceptingSpaceBreak  ) &&
+             ( !_player.State.Rigor   ) &&
+             ( Time.time - _spaceInstantiatedTimestamp <= _spaceInfo.UsableSec ) &&
+             ( IsPlayerMineAndAlive() ) &&
+             ( CanInstantiate         );
+    }
+
+    private bool IsTimeoutCtrlBreak() {
+      return ( IsAcceptingCtrlBreak      ) &&
+             ( Time.time - _ctrlInstantiatedTimestamp > _ctrlInfo.UsableSec ) &&
+             ( _player.PhotonView.isMine );
+    }
+
+    private bool IsTimeoutSpaceBreak() {
+      return ( IsAcceptingSpaceBreak     ) &&
+             ( Time.time - _spaceInstantiatedTimestamp > _spaceInfo.UsableSec ) &&
+             ( _player.PhotonView.isMine );
+    }
+
+    private bool IsPlayerMineAndAlive() {
+      return ( _player.PhotonView.isMine ) &&
+             ( _player.Hp.Cur.Value > 0  ) &&
+             ( _instantiator.IsSkillUsableAnimationState(_player) );
+    }
+
+    // Before unique skill is instantiated
+    private void GetInput(int i) {
       if (_player.Level.Cur.Value < RequireLv[i])
         return;
 
       for (int k=0; k < KeysList[i].keys.Count; ++k) {
-        if (base.IsUsable(i) && Input.GetKey(KeysList[i].keys[k]))
-          InstantiateUniqueSkill(i);
+        if (base.IsUsable(i) && Input.GetKey(KeysList[i].keys[k])) {
+          if (i == _ctrlInfo.Index)
+            _ctrl = (WarriorCtrl)InstantiateSkill(i);
+          if (i == _spaceInfo.Index)
+            _space = (WarriorSpace)InstantiateSkill(i);
+        }
       }
     }
 
-    private void InstantiateUniqueSkill(int i) {
-      _instantiator.InstantiateSkill(i, this, _player);
+    private Skill InstantiateSkill(int i) {
+      Assert.IsTrue(_player.PhotonView.isMine);
+
+      if (i == _ctrlInfo.Index) {
+        IsAcceptingCtrlBreak = true;
+        _ctrlInstantiatedTimestamp = Time.time;
+      }
+      if (i == _spaceInfo.Index) {
+        IsAcceptingSpaceBreak = true;
+        _spaceInstantiatedTimestamp = Time.time;
+      }
+
+      return _instantiator.InstantiateSkill(i, this, _player);
+    }
+
+    // During unique skill is instantiated
+    private void GetUniqueInput(int i) {
+      Assert.IsTrue(_player.Level.Cur.Value >= RequireLv[i]);
+
+      for (int k=0; k < KeysList[i].keys.Count; ++k) {
+        if (Input.GetKeyDown(KeysList[i].keys[k]))
+          UseUnique(i);
+      }
+    }
+
+    private void UseUnique(int i) {
+      Assert.IsTrue(_player.PhotonView.isMine);
+
+      if (i == _ctrlInfo.Index) {
+        Assert.IsNotNull(_ctrl);
+
+        IsAcceptingCtrlBreak = false;
+        _ctrl.SyncRedBreak();
+      }
+
+      if (i == _spaceInfo.Index) {
+        Assert.IsNotNull(_space);
+
+        IsAcceptingSpaceBreak = false;
+      }
     }
 
     public override bool IsUsable(int i) {
@@ -43,8 +135,19 @@ namespace Bunashibu.Kikan {
       return _ctManager.IsUsable(i);
     }
 
+    public bool IsAcceptingCtrlBreak  { get; private set; }
+    public bool IsAcceptingSpaceBreak { get; private set; }
+
     [SerializeField] private HammerUniqueInfo _ctrlInfo;
     [SerializeField] private HammerUniqueInfo _spaceInfo;
+
+    private WarriorCtrl _ctrl;
+    private bool _shouldUseCtrlBreak;
+    private float _ctrlInstantiatedTimestamp;
+
+    private WarriorSpace _space;
+    private bool _shouldUseSpaceBreak;
+    private float _spaceInstantiatedTimestamp;
   }
 
   [System.Serializable]

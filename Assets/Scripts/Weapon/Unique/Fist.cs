@@ -20,7 +20,7 @@ namespace Bunashibu.Kikan {
         .AddTo(this);
 
       this.UpdateAsObservable()
-        .Where(_ => IsAllowedToGetUniqueInput() )
+        .Where(_ => CanGetUniqueInput() )
         .Subscribe(_ => GetUniqueInput() );
 
       this.UpdateAsObservable()
@@ -35,7 +35,7 @@ namespace Bunashibu.Kikan {
         });
     }
 
-    private bool IsAllowedToGetUniqueInput() {
+    private bool CanGetUniqueInput() {
       return ( IsAcceptingUnique      ) &&
              ( Time.time - _instantiatedTimestamp <= _uniqueInfo.UsableSec ) &&
              ( IsPlayerMineAndAlive() ) &&

@@ -356,3 +356,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd105a42720f7f544a8142fa640c4528, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _attackInfo:
+    _damagePercent: 250
+    _maxDeviation: 10
+    _criticalPercent: 0
+  _hitInfo:
+    _maxTargetCount: 6
+    _maxHitCount: 1
+    _interval: 0
+  _stunSec: 2
