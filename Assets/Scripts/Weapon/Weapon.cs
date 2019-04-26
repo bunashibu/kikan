@@ -13,7 +13,7 @@ namespace Bunashibu.Kikan {
       _ctManager = new SkillCTManager(this, _player);
     }
 
-    public bool IsUsable(int i) {
+    public virtual bool IsUsable(int i) {
       return _ctManager.IsUsable(i);
     }
 
@@ -55,7 +55,7 @@ namespace Bunashibu.Kikan {
     [SerializeField] private float[] _rigorCT;
 
     protected SkillInstantiator _instantiator;
-    private SkillCTManager _ctManager;
+    protected SkillCTManager _ctManager;
   }
 
   [System.SerializableAttribute]

@@ -38,7 +38,7 @@ namespace Bunashibu.Kikan {
       return -1;
     }
 
-    public void InstantiateSkill(int i, Weapon weapon, Player player) {
+    public Skill InstantiateSkill(int i, Weapon weapon, Player player) {
       string path = "Prefabs/Skill/" + weapon.JobName + "/" + weapon.SkillNames[i];
 
       var offset = weapon.AppearOffset[i];
@@ -53,6 +53,8 @@ namespace Bunashibu.Kikan {
       SetCoroutine(i, weapon, player);
       SkillReference.Instance.Register(skill.viewID);
       weapon.Stream.OnNextInstantiate(i);
+
+      return skill;
     }
 
     private void SetCoroutine(int i, Weapon weapon, Player player) {

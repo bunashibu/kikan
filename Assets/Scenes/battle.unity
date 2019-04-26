@@ -27517,7 +27517,7 @@ MonoBehaviour:
   - {fileID: 114665016936095242, guid: a04de3d511f2e454a96bb44bf6f203c4, type: 3}
   - {fileID: 5349713524286048122, guid: 73f781d3ded721340a7f66a43813edb1, type: 3}
   - {fileID: 9065889758333158047, guid: b6ec67d1b48a258428f425a1b74259c1, type: 3}
-  - {fileID: 2712315288240031045, guid: c82455c20cb7ced4fbdbd25bccf835ed, type: 3}
+  - {fileID: 7662358241923698126, guid: c82455c20cb7ced4fbdbd25bccf835ed, type: 3}
   _selectTime: 10
 --- !u!224 &1857252215
 RectTransform:
@@ -30043,7 +30043,6 @@ MonoBehaviour:
   _rotateSpeed: 30
   _judger: {fileID: 114188553657627926, guid: 3c7daadc1b98cef4696201250e17cc3d, type: 3}
   _camera: {fileID: 1357867647}
-  _canvas: {fileID: 375732893}
 --- !u!1 &2013363063
 GameObject:
   m_ObjectHideFlags: 0

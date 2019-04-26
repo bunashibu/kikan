@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1530200310364827756}
   - component: {fileID: 1585061592087831378}
   - component: {fileID: 1584473855696372726}
-  - component: {fileID: 1584532460427896282}
+  - component: {fileID: 812177986316272392}
   - component: {fileID: 1584704167287854174}
   m_Layer: 0
   m_Name: Hammer
@@ -209,7 +209,7 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
---- !u!114 &1584532460427896282
+--- !u!114 &812177986316272392
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -218,7 +218,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1471439663916083028}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bccb8b5e185356d4a8e7ab60c9cefd77, type: 3}
+  m_Script: {fileID: 11500000, guid: b7fda56ac3dc3e0489e6a807bba79265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 1584831486334562554}
@@ -250,9 +250,15 @@ MonoBehaviour:
   - 0.3
   - 1.5
   - 0.3
-  - 0.4
+  - 0.5
   - 0.3
   - 0.3
+  _ctrlInfo:
+    _index: 3
+    _usableSec: 6
+  _spaceInfo:
+    _index: 4
+    _usableSec: 12
 --- !u!114 &1584704167287854174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -927,7 +933,7 @@ MonoBehaviour:
     type: 3}
   _healCoreEffect: {fileID: 1927017765232452, guid: 010a4889b2622374694da33b7bcba8b7,
     type: 3}
-  _weapon: {fileID: 1584532460427896282}
+  _weapon: {fileID: 812177986316272392}
   _nameBackground: {fileID: 1584539836864343426}
   _popupRemark: {fileID: 1584720706371542324}
   _worldHpBar: {fileID: 1584803404264574350}

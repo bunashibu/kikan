@@ -21,21 +21,18 @@ namespace Bunashibu.Kikan {
 
       this.UpdateAsObservable()
         .Where(_ => IsAllowedToGetUniqueInput() )
-        .Subscribe(_ => GetUniqueInput() )
-        .AddTo(this);
+        .Subscribe(_ => GetUniqueInput() );
 
       this.UpdateAsObservable()
         .Where(_ => IsTimeoutToUseUniqueSkill() )
-        .Subscribe(_ => ResetUniqueSkill() )
-        .AddTo(this);
+        .Subscribe(_ => ResetUniqueSkill() );
 
       this.UpdateAsObservable()
         .Where(_ => ShouldInstantiateUniqueSkill() )
         .Subscribe(_ => {
           _instantiator.InstantiateSkill(_uniqueInfo.Index, this, _player);
           ResetUniqueSkill();
-        })
-        .AddTo(this);
+        });
     }
 
     private bool IsAllowedToGetUniqueInput() {
