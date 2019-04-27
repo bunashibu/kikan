@@ -121,12 +121,10 @@ namespace Bunashibu.Kikan {
 
         player.Movement.SetMoveForce(player.Status.Spd);
 
+        player.PopupRemark.gameObject.SetActive(false);
+
         player.Hp.FullRecover();
       }
-
-      MonoUtility.Instance.DelaySec(2.0f, () => {
-        _player.PopupRemark.gameObject.SetActive(false);
-      });
     }
 
     private void InstantiateWinLoseJudger() {
