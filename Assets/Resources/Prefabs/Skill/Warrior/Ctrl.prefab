@@ -365,3 +365,4 @@ MonoBehaviour:
     _maxHitCount: 1
     _interval: 0
   _stunSec: 2
+  _durability: 3000

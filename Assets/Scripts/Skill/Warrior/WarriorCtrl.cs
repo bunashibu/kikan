@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
+using UniRx.Triggers;
 
 namespace Bunashibu.Kikan {
   [RequireComponent(typeof(SkillSynchronizer))]
@@ -12,10 +14,15 @@ namespace Bunashibu.Kikan {
       _animator = GetComponent<Animator>();
       _animator.SetBool("RedBreak", false);
       _photonView = GetComponent<PhotonView>();
+
+      Shield = new Shield(_durability);
     }
 
     void Start() {
       transform.parent = _skillUserObj.transform;
+
+      _skillUser = _skillUserObj.GetComponent<IOnAttacked>();
+      _skillUser.DamageReactor.SetSlot(Shield);
     }
 
     void OnTriggerStay2D(Collider2D collider) {
@@ -36,6 +43,11 @@ namespace Bunashibu.Kikan {
       }
     }
 
+    void OnDestroy() {
+      if (_skillUser != null)
+        _skillUser.DamageReactor.SetSlot(new Passing());
+    }
+
     [PunRPC]
     private void SyncRedBreakRPC() {
       _animator.SetBool("RedBreak", true);
@@ -45,14 +57,18 @@ namespace Bunashibu.Kikan {
       _photonView.RPC("SyncRedBreakRPC", PhotonTargets.AllViaServer);
     }
 
+    public Shield Shield { get; private set; }
+
     [SerializeField] private AttackInfo _attackInfo;
     [SerializeField] private HitInfo _hitInfo;
     [SerializeField] private float _stunSec;
+    [SerializeField] private int _durability;
 
     private SkillSynchronizer _synchronizer;
     private HitRistrictor _hitRistrictor;
     private PhotonView _photonView;
     private Animator _animator;
+    private IOnAttacked _skillUser;
   }
 }
 

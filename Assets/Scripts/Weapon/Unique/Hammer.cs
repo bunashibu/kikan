@@ -26,12 +26,16 @@ namespace Bunashibu.Kikan {
         .Where(_ => CanGetCtrlBreakInput() )
         .Subscribe(_ => GetUniqueInput(_ctrlInfo.Index) );
       this.UpdateAsObservable()
-        .Where(_ => CanGetSpaceBreakInput() )
-        .Subscribe(_ => GetUniqueInput(_spaceInfo.Index) );
-
-      this.UpdateAsObservable()
         .Where(_ => IsTimeoutCtrlBreak() )
         .Subscribe(_ => UseUnique(_ctrlInfo.Index) );
+      this.UpdateAsObservable()
+        .Where(_ => IsAcceptingCtrlBreak  )
+        .Where(_ => _ctrl.Shield.IsBroken )
+        .Subscribe(_ => UseUnique(_ctrlInfo.Index) );
+
+      this.UpdateAsObservable()
+        .Where(_ => CanGetSpaceBreakInput() )
+        .Subscribe(_ => GetUniqueInput(_spaceInfo.Index) );
       this.UpdateAsObservable()
         .Where(_ => IsTimeoutSpaceBreak() )
         .Subscribe(_ => UseUnique(_spaceInfo.Index) );
@@ -128,11 +132,21 @@ namespace Bunashibu.Kikan {
       }
     }
 
+    private void ResetUniqueSkill() {
+      IsAcceptingCtrlBreak = false;
+      IsAcceptingSpaceBreak = false;
+    }
+
     public override bool IsUsable(int i) {
       if (i == _ctrlInfo.Index || i == _spaceInfo.Index)
         return false;
 
       return _ctManager.IsUsable(i);
+    }
+
+    public override void ResetAllCT() {
+      base.ResetAllCT();
+      ResetUniqueSkill();
     }
 
     public bool IsAcceptingCtrlBreak  { get; private set; }

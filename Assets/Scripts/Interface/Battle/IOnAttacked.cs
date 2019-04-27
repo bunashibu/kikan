@@ -6,6 +6,7 @@ using UnityEngine;
 namespace Bunashibu.Kikan {
   public interface IOnAttacked {
     Hp Hp { get; }
+    DamageReactor DamageReactor { get; }
   }
 }
 

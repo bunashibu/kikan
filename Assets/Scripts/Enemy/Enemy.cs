@@ -23,6 +23,8 @@ namespace Bunashibu.Kikan {
       Location      = (IEnemyLocation)new Location(this);
       Location.InitializeFoot(_footCollider);
 
+      DamageReactor = new DamageReactor(this);
+
       Character = new Character2D(this);
     }
 
@@ -52,6 +54,7 @@ namespace Bunashibu.Kikan {
     public Character2D    Character     { get; private set; }
     public CharacterState State         { get; private set; }
     public StateTransfer  StateTransfer { get; private set; }
+    public DamageReactor  DamageReactor { get; private set; }
     public Hp             Hp            { get; private set; }
     public Debuff         Debuff        { get; private set; }
 

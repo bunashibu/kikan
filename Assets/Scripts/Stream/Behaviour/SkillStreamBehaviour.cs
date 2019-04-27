@@ -36,24 +36,18 @@ namespace Bunashibu.Kikan {
       if (isAlreadyDead)
         return;
 
-      ApplyDamage(entity.Target, entity.Damage);
+      int damage = entity.Target.DamageReactor.ReactTo(entity.Damage);
 
       if (entity.Target is IPhotonBehaviour) {
         HitEffectPopupEnvironment.Instance.PopupHitEffect(entity.HitEffectType, (IPhotonBehaviour)entity.Target);
-        PopupNumber(entity.Attacker, (IPhotonBehaviour)entity.Target, entity.Damage, entity.IsCritical);
+        PopupNumber(entity.Attacker, (IPhotonBehaviour)entity.Target, damage, entity.IsCritical);
 
-        // Only died player client does.
+        // NOTE: Only died player client does.
         SyncKillAndDeath(entity.Attacker, entity.Target);
       }
 
-      if (entity.Target is Enemy) {
-        var enemy = (Enemy)entity.Target;
-        enemy.TargetChaseSystem.SetChaseTarget(entity.Attacker.transform);
-      }
-    }
-
-    private void ApplyDamage(IOnAttacked target, int damage) {
-      target.Hp.Subtract(damage);
+      if (entity.Target is Enemy)
+        ((Enemy)entity.Target).TargetChaseSystem.SetChaseTarget(entity.Attacker.transform);
     }
 
     private void PopupNumber(IAttacker attacker, IPhotonBehaviour targetPhoton, int damage, bool isCritical) {

@@ -77,6 +77,8 @@ namespace Bunashibu.Kikan {
         Movement   = new PlayerMovement((IBattleMovementPlayer)this, Core);
         Movement.SetMaxFallVelocity(-11.0f);
 
+        DamageReactor = new DamageReactor(this);
+
         PlayerStreamBehaviour.Instance.Initialize(this);
       }
     }
@@ -102,6 +104,7 @@ namespace Bunashibu.Kikan {
     public PlayerInfo     PlayerInfo    { get; private set; }
     public Character2D    Character     { get; private set; }
     public CharacterState State         { get; private set; }
+    public DamageReactor  DamageReactor { get; private set; }
 
     public ReactiveCollection<FixSpd> FixSpd { get; private set; }
 
