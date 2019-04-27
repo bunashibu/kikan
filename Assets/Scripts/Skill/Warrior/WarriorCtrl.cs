@@ -43,7 +43,7 @@ namespace Bunashibu.Kikan {
       }
     }
 
-    void OnDestroy() {
+    void OnDisable() {
       if (_skillUser != null)
         _skillUser.DamageReactor.SetSlot(new Passing());
     }

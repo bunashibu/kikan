@@ -69,6 +69,7 @@ namespace Bunashibu.Kikan {
 
         player.Character.Disable();
         player.Weapon.DisableInstantiate();
+        player.Weapon.ResetAllCT();
       }
     }
 
@@ -122,8 +123,6 @@ namespace Bunashibu.Kikan {
 
         player.Hp.FullRecover();
       }
-
-      _player.Weapon.ResetAllCT();
 
       MonoUtility.Instance.DelaySec(2.0f, () => {
         _player.PopupRemark.gameObject.SetActive(false);

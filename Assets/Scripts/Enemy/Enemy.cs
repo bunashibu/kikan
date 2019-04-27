@@ -36,7 +36,6 @@ namespace Bunashibu.Kikan {
       PopulationObserver = populationObserver;
     }
 
-    // Unity
     public PhotonView     PhotonView   => _photonView;
     public Transform      Transform    => transform;
     public SpriteRenderer Renderer     => _spriteRenderer;

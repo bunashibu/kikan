@@ -33,6 +33,12 @@ namespace Bunashibu.Kikan {
 
         pandaSkillPanel.Register(fist);
       }
+      else if (_player.Weapon is Hammer && skillPanel is WarriorSkillPanel) {
+        var hammer = (Hammer)_player.Weapon;
+        var warriorSkillPanel = (WarriorSkillPanel)skillPanel;
+
+        warriorSkillPanel.Register(hammer);
+      }
       else
         skillPanel.Register(_player.Weapon);
     }

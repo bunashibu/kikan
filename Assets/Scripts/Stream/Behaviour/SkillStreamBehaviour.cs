@@ -42,7 +42,7 @@ namespace Bunashibu.Kikan {
         HitEffectPopupEnvironment.Instance.PopupHitEffect(entity.HitEffectType, (IPhotonBehaviour)entity.Target);
         PopupNumber(entity.Attacker, (IPhotonBehaviour)entity.Target, damage, entity.IsCritical);
 
-        // NOTE: Only died player client does.
+        // NOTE: Only died player client sends kill/death sync.
         SyncKillAndDeath(entity.Attacker, entity.Target);
       }
 

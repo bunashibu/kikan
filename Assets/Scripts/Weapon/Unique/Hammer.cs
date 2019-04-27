@@ -10,6 +10,9 @@ namespace Bunashibu.Kikan {
     void Awake() {
       base.Awake();
 
+      _isAcceptingCtrlBreak = new ReactiveProperty<bool>(false);
+      _isAcceptingSpaceBreak = new ReactiveProperty<bool>(false);
+
       this.UpdateAsObservable()
         .Where(_ => _player.PhotonView.isMine                          )
         .Where(_ => _player.Hp.Cur.Value > 0                           )
@@ -29,7 +32,7 @@ namespace Bunashibu.Kikan {
         .Where(_ => IsTimeoutCtrlBreak() )
         .Subscribe(_ => UseUnique(_ctrlInfo.Index) );
       this.UpdateAsObservable()
-        .Where(_ => IsAcceptingCtrlBreak  )
+        .Where(_ => _isAcceptingCtrlBreak.Value  )
         .Where(_ => _ctrl.Shield.IsBroken )
         .Subscribe(_ => UseUnique(_ctrlInfo.Index) );
 
@@ -42,31 +45,31 @@ namespace Bunashibu.Kikan {
     }
 
     private bool CanGetCtrlBreakInput() {
-      return ( IsAcceptingCtrlBreak   ) &&
-             ( !_player.State.Rigor   ) &&
+      return ( _isAcceptingCtrlBreak.Value ) &&
+             ( !_player.State.Rigor        ) &&
              ( Time.time - _ctrlInstantiatedTimestamp <= _ctrlInfo.UsableSec ) &&
-             ( IsPlayerMineAndAlive() ) &&
-             ( CanInstantiate         );
+             ( IsPlayerMineAndAlive()      ) &&
+             ( CanInstantiate              );
     }
 
     private bool CanGetSpaceBreakInput() {
-      return ( IsAcceptingSpaceBreak  ) &&
-             ( !_player.State.Rigor   ) &&
+      return ( _isAcceptingSpaceBreak.Value ) &&
+             ( !_player.State.Rigor         ) &&
              ( Time.time - _spaceInstantiatedTimestamp <= _spaceInfo.UsableSec ) &&
-             ( IsPlayerMineAndAlive() ) &&
-             ( CanInstantiate         );
+             ( IsPlayerMineAndAlive()       ) &&
+             ( CanInstantiate               );
     }
 
     private bool IsTimeoutCtrlBreak() {
-      return ( IsAcceptingCtrlBreak      ) &&
+      return ( _isAcceptingCtrlBreak.Value ) &&
              ( Time.time - _ctrlInstantiatedTimestamp > _ctrlInfo.UsableSec ) &&
-             ( _player.PhotonView.isMine );
+             ( _player.PhotonView.isMine   );
     }
 
     private bool IsTimeoutSpaceBreak() {
-      return ( IsAcceptingSpaceBreak     ) &&
+      return ( _isAcceptingSpaceBreak.Value ) &&
              ( Time.time - _spaceInstantiatedTimestamp > _spaceInfo.UsableSec ) &&
-             ( _player.PhotonView.isMine );
+             ( _player.PhotonView.isMine    );
     }
 
     private bool IsPlayerMineAndAlive() {
@@ -94,11 +97,11 @@ namespace Bunashibu.Kikan {
       Assert.IsTrue(_player.PhotonView.isMine);
 
       if (i == _ctrlInfo.Index) {
-        IsAcceptingCtrlBreak = true;
+        _isAcceptingCtrlBreak.Value = true;
         _ctrlInstantiatedTimestamp = Time.time;
       }
       if (i == _spaceInfo.Index) {
-        IsAcceptingSpaceBreak = true;
+        _isAcceptingSpaceBreak.Value = true;
         _spaceInstantiatedTimestamp = Time.time;
       }
 
@@ -121,20 +124,20 @@ namespace Bunashibu.Kikan {
       if (i == _ctrlInfo.Index) {
         Assert.IsNotNull(_ctrl);
 
-        IsAcceptingCtrlBreak = false;
+        _isAcceptingCtrlBreak.Value = false;
         _ctrl.SyncRedBreak();
       }
 
       if (i == _spaceInfo.Index) {
         Assert.IsNotNull(_space);
 
-        IsAcceptingSpaceBreak = false;
+        _isAcceptingSpaceBreak.Value = false;
       }
     }
 
     private void ResetUniqueSkill() {
-      IsAcceptingCtrlBreak = false;
-      IsAcceptingSpaceBreak = false;
+      _isAcceptingCtrlBreak.Value = false;
+      _isAcceptingSpaceBreak.Value = false;
     }
 
     public override bool IsUsable(int i) {
@@ -149,8 +152,8 @@ namespace Bunashibu.Kikan {
       ResetUniqueSkill();
     }
 
-    public bool IsAcceptingCtrlBreak  { get; private set; }
-    public bool IsAcceptingSpaceBreak { get; private set; }
+    public IReadOnlyReactiveProperty<bool> IsAcceptingCtrlBreak  => _isAcceptingCtrlBreak;
+    public IReadOnlyReactiveProperty<bool> IsAcceptingSpaceBreak => _isAcceptingSpaceBreak;
 
     [SerializeField] private HammerUniqueInfo _ctrlInfo;
     [SerializeField] private HammerUniqueInfo _spaceInfo;
@@ -158,10 +161,12 @@ namespace Bunashibu.Kikan {
     private WarriorCtrl _ctrl;
     private bool _shouldUseCtrlBreak;
     private float _ctrlInstantiatedTimestamp;
+    private ReactiveProperty<bool> _isAcceptingCtrlBreak;
 
     private WarriorSpace _space;
     private bool _shouldUseSpaceBreak;
     private float _spaceInstantiatedTimestamp;
+    private ReactiveProperty<bool> _isAcceptingSpaceBreak;
   }
 
   [System.Serializable]

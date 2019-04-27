@@ -8,14 +8,13 @@ namespace Bunashibu.Kikan {
     public void Register(Fist fist) {
       base.Register(fist);
 
-      fist.Stream.OnUniqueUsed
-        .Where(_ => fist.IsAcceptingUnique )
-        .Subscribe(index => ShowUniqueSlot(index) )
+      fist.IsAcceptingUnique
+        .Where(isAccepting => isAccepting)
+        .Subscribe(_ => ShowUniqueSlot(3) )
         .AddTo(fist.gameObject);
-
-      fist.Stream.OnUniqueUsed
-        .Where(_ => !fist.IsAcceptingUnique )
-        .Subscribe(index => HideUniqueSlot(index) )
+      fist.IsAcceptingUnique
+        .Where(isAccepting => !isAccepting)
+        .Subscribe(_ => HideUniqueSlot(3) )
         .AddTo(fist.gameObject);
     }
 

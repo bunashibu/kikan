@@ -9,12 +9,14 @@ namespace Bunashibu.Kikan {
     void Awake() {
       base.Awake();
 
+      _isAcceptingUnique = new ReactiveProperty<bool>(false);
+
       _beforeName = _skillNames[_uniqueInfo.Index];
       _beforeCT = _skillCT[_uniqueInfo.Index];
 
       Stream.OnInstantiated
         .Subscribe(i => {
-          if (i == _uniqueInfo.Index && !IsAcceptingUnique)
+          if (i == _uniqueInfo.Index && !_isAcceptingUnique.Value)
             ReadyUniqueSkill();
         })
         .AddTo(this);
@@ -36,24 +38,24 @@ namespace Bunashibu.Kikan {
     }
 
     private bool CanGetUniqueInput() {
-      return ( IsAcceptingUnique      ) &&
+      return ( _isAcceptingUnique.Value ) &&
              ( Time.time - _instantiatedTimestamp <= _uniqueInfo.UsableSec ) &&
-             ( IsPlayerMineAndAlive() ) &&
-             ( CanInstantiate         );
+             ( IsPlayerMineAndAlive()   ) &&
+             ( CanInstantiate           );
     }
 
     private bool IsTimeoutToUseUniqueSkill() {
-      return ( IsAcceptingUnique         ) &&
+      return ( _isAcceptingUnique.Value  ) &&
              ( Time.time - _instantiatedTimestamp > _uniqueInfo.UsableSec ) &&
              ( _player.PhotonView.isMine );
     }
 
     private bool ShouldInstantiateUniqueSkill() {
-      return ( IsAcceptingUnique      ) &&
-             ( _shouldUseUnique       ) &&
-             ( !_player.State.Rigor   ) &&
-             ( IsPlayerMineAndAlive() ) &&
-             ( CanInstantiate         );
+      return ( _isAcceptingUnique.Value ) &&
+             ( _shouldUseUnique         ) &&
+             ( !_player.State.Rigor     ) &&
+             ( IsPlayerMineAndAlive()   ) &&
+             ( CanInstantiate           );
     }
 
     private bool IsPlayerMineAndAlive() {
@@ -66,19 +68,15 @@ namespace Bunashibu.Kikan {
       _skillNames[_uniqueInfo.Index] = _uniqueInfo.After;
       _skillCT[_uniqueInfo.Index] = _uniqueInfo.SkillCT;
 
-      IsAcceptingUnique = true;
+      _isAcceptingUnique.Value = true;
       _instantiatedTimestamp = Time.time;
-
-      Stream.OnNextUnique(_uniqueInfo.Index);
     }
 
     private void ResetUniqueSkill() {
       _skillNames[_uniqueInfo.Index] = _beforeName;
       _skillCT[_uniqueInfo.Index] = _beforeCT;
       _shouldUseUnique = false;
-      IsAcceptingUnique = false;
-
-      Stream.OnNextUnique(_uniqueInfo.Index);
+      _isAcceptingUnique.Value = false;
     }
 
     // NOTE: While ready to use unique skill, the input of ctrl is managed in this. not in SkillInstantiator.
@@ -101,12 +99,13 @@ namespace Bunashibu.Kikan {
       ResetUniqueSkill();
     }
 
-    public bool IsAcceptingUnique { get; private set; }
+    public IReadOnlyReactiveProperty<bool> IsAcceptingUnique => _isAcceptingUnique;
 
     [SerializeField] private FistUniqueInfo _uniqueInfo;
 
     private bool _shouldUseUnique;
     private float _instantiatedTimestamp;
+    private ReactiveProperty<bool> _isAcceptingUnique;
 
     private SkillName _beforeName;
     private float _beforeCT;
