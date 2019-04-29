@@ -131,6 +131,7 @@ namespace Bunashibu.Kikan {
       if (i == _spaceInfo.Index) {
         Assert.IsNotNull(_space);
 
+        _space.SyncSpaceBreak();
         _isAcceptingSpaceBreak.Value = false;
       }
     }

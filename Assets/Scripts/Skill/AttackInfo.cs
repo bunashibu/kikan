@@ -5,6 +5,12 @@ using UnityEngine;
 namespace Bunashibu.Kikan {
   [System.Serializable]
   public class AttackInfo {
+    public AttackInfo(int damagePercent, int maxDeviation, int criticalPercent) {
+      _damagePercent = damagePercent;
+      _maxDeviation = maxDeviation;
+      _criticalPercent = criticalPercent;
+    }
+
     public int DamagePercent   => _damagePercent;
     public int MaxDeviation    => _maxDeviation;
     public int CriticalPercent => _criticalPercent;
