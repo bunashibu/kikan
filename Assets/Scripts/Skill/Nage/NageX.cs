@@ -17,6 +17,9 @@ namespace Bunashibu.Kikan {
 
         // NOTE: Wait 5.0f in order to ensure value synchronization when hit at max range distance.
         MonoUtility.Instance.StoppableDelaySec(5.0f, "NageXDestroy" + GetInstanceID().ToString(), () => {
+          if (gameObject == null)
+            return;
+
           Destroy(gameObject);
         });
       });

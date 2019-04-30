@@ -27,11 +27,15 @@ namespace Bunashibu.Kikan {
 
       Character = new Character2D(this);
 
-      Stream.OnChair
-        .Subscribe(shouldSit => {
-          Chair.UpdateShouldSit(shouldSit);
-        })
-        .AddTo(gameObject);
+      if (StageReference.Instance.StageData.Name == "Lobby") {
+        Chair = new Chair(this);
+
+        Stream.OnChair
+          .Subscribe(shouldSit => {
+            Chair.UpdateShouldSit(shouldSit);
+          })
+          .AddTo(gameObject);
+      }
     }
 
     void Start() {
@@ -44,8 +48,6 @@ namespace Bunashibu.Kikan {
         // NOTE: In Battle, PlayerStreamBehaviour called this
         if (!PhotonView.isMine)
           AudioEnvironment.DisableListener();
-
-        Chair = new Chair(this);
       }
 
       if (StageReference.Instance.StageData.Name == "Battle") {

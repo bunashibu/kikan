@@ -17,6 +17,9 @@ namespace Bunashibu.Kikan {
 
         // NOTE: See NageX
         MonoUtility.Instance.StoppableDelaySec(5.0f, "NageX2Destroy" + GetInstanceID().ToString(), () => {
+          if (gameObject == null)
+            return;
+
           Destroy(gameObject);
         });
       });

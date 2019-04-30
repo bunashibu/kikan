@@ -19,6 +19,9 @@ namespace Bunashibu.Kikan {
 
         // NOTE: See SMB-DestroySkillSelf
         MonoUtility.Instance.StoppableDelaySec(5.0f, "PandaZDestroy" + GetInstanceID().ToString(), () => {
+          if (gameObject == null)
+            return;
+
           Destroy(gameObject);
         });
       });
