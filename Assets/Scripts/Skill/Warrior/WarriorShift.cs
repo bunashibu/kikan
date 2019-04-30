@@ -17,7 +17,6 @@ namespace Bunashibu.Kikan {
       _animator.enabled = false;
       _collider = GetComponent<Collider2D>();
       _collider.enabled = false;
-      _photonView = GetComponent<PhotonView>();
 
       _instantiatedTime = Time.time;
 
@@ -28,11 +27,10 @@ namespace Bunashibu.Kikan {
           _renderer.enabled = true;
           _animator.enabled = true;
           _collider.enabled = true;
-        })
-        .AddTo(this);
+        });
 
       this.UpdateAsObservable()
-        .Where(_ => _photonView.isMine )
+        .Where(_ => photonView.isMine )
         .Where(_ => Time.time - _instantiatedTime > _secondInstantiateTime)
         .Take(1)
         .Subscribe(_ => {
@@ -40,8 +38,7 @@ namespace Bunashibu.Kikan {
           secondSkill.SyncInit(_skillUserViewID);
 
           SkillReference.Instance.Register(secondSkill.viewID);
-        })
-        .AddTo(this);
+        });
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
@@ -70,7 +67,6 @@ namespace Bunashibu.Kikan {
     private SpriteRenderer _renderer;
     private Animator _animator;
     private Collider2D _collider;
-    private PhotonView _photonView;
     private float _instantiatedTime;
     private float _collisionOccurenceTime = 0.3f;
     private float _secondInstantiateTime = 0.8f;

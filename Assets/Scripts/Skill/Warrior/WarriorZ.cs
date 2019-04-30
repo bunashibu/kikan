@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
+using UniRx.Triggers;
 
 namespace Bunashibu.Kikan {
   [RequireComponent(typeof(SkillSynchronizer))]
@@ -23,10 +25,11 @@ namespace Bunashibu.Kikan {
           Destroy(gameObject);
         });
       });
-    }
 
-    void Start() {
-      transform.parent = _skillUserObj.transform;
+      this.UpdateAsObservable()
+        .Where(_ => _skillUserObj != null)
+        .Take(1)
+        .Subscribe(_ => transform.parent = _skillUserObj.transform );
     }
 
     void OnTriggerStay2D(Collider2D collider) {

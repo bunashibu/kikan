@@ -13,16 +13,18 @@ namespace Bunashibu.Kikan {
 
       _animator = GetComponent<Animator>();
       _animator.SetBool("RedBreak", false);
-      _photonView = GetComponent<PhotonView>();
 
       Shield = new Shield(_durability);
-    }
 
-    void Start() {
-      transform.parent = _skillUserObj.transform;
+      this.UpdateAsObservable()
+        .Where(_ => _skillUserObj != null)
+        .Take(1)
+        .Subscribe(_ => {
+          transform.parent = _skillUserObj.transform;
 
-      _skillUser = _skillUserObj.GetComponent<IOnAttacked>();
-      _skillUser.DamageReactor.SetSlot(Shield);
+          _skillUser = _skillUserObj.GetComponent<IOnAttacked>();
+          _skillUser.DamageReactor.SetSlot(Shield);
+        });
     }
 
     void OnTriggerStay2D(Collider2D collider) {
@@ -56,7 +58,7 @@ namespace Bunashibu.Kikan {
     }
 
     public void SyncRedBreak() {
-      _photonView.RPC("SyncRedBreakRPC", PhotonTargets.AllViaServer);
+      photonView.RPC("SyncRedBreakRPC", PhotonTargets.AllViaServer);
     }
 
     public Shield Shield { get; private set; }
@@ -68,7 +70,6 @@ namespace Bunashibu.Kikan {
 
     private SkillSynchronizer _synchronizer;
     private HitRistrictor _hitRistrictor;
-    private PhotonView _photonView;
     private Animator _animator;
     private IOnAttacked _skillUser;
   }

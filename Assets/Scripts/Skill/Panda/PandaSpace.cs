@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
+using UniRx.Triggers;
 
 namespace Bunashibu.Kikan {
   [RequireComponent(typeof(SkillSynchronizer))]
@@ -23,10 +25,20 @@ namespace Bunashibu.Kikan {
           Destroy(gameObject);
         });
       });
-    }
 
-    void Start() {
-      transform.parent = _skillUserObj.transform;
+      this.UpdateAsObservable()
+        .Where(_ => _skillUserObj != null)
+        .Take(1)
+        .Subscribe(_ => {
+          transform.parent = _skillUserObj.transform;
+          _player = _skillUserObj.GetComponent<Player>();
+        });
+
+      this.UpdateAsObservable()
+        .Where(_ => _player != null)
+        .Where(_ => _player.Level.Cur.Value >= 11)
+        .Take(1)
+        .Subscribe(_ => _attackInfo = new AttackInfo(150, _attackInfo.MaxDeviation, _attackInfo.CriticalPercent));
     }
 
     void OnTriggerStay2D(Collider2D collider) {
@@ -57,6 +69,7 @@ namespace Bunashibu.Kikan {
     private SkillSynchronizer _synchronizer;
     private HitRistrictor _hitRistrictor;
     private float _existTime = 10.0f;
+    private Player _player;
   }
 }
 

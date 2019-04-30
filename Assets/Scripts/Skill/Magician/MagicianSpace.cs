@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
+using UniRx.Triggers;
 
 namespace Bunashibu.Kikan {
   [RequireComponent(typeof(SkillSynchronizer))]
@@ -12,11 +14,22 @@ namespace Bunashibu.Kikan {
       _collider = GetComponent<BoxCollider2D>();
       _collider.enabled = false;
       _timestamp = Time.time;
-    }
 
-    void Update() {
-      if (Time.time - _timestamp >= _collisionOccurenceTime)
-        _collider.enabled = true;
+      this.UpdateAsObservable()
+        .Where(_ => Time.time - _timestamp >= _collisionOccurenceTime)
+        .Take(1)
+        .Subscribe(_ => _collider.enabled = true );
+
+      this.UpdateAsObservable()
+        .Where(_ => _skillUserObj != null)
+        .Take(1)
+        .Subscribe(_ => _player = _skillUserObj.GetComponent<Player>() );
+
+      this.UpdateAsObservable()
+        .Where(_ => _player != null)
+        .Where(_ => _player.Level.Cur.Value >= 11)
+        .Take(1)
+        .Subscribe(_ => _attackInfo = new AttackInfo(850, _attackInfo.MaxDeviation, _attackInfo.CriticalPercent));
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
@@ -42,6 +55,7 @@ namespace Bunashibu.Kikan {
     private SkillSynchronizer _synchronizer;
     private HitRistrictor _hitRistrictor;
 
+    private Player _player;
     private BoxCollider2D _collider;
     private float _timestamp;
     private float _collisionOccurenceTime = 1.0f;

@@ -37,8 +37,9 @@ namespace Bunashibu.Kikan {
       GetComponent<SpriteRenderer>().sprite = _prepareSprite;
 
       this.UpdateAsObservable()
-        .Where(_ => _skillUserObj != null) // May be not good
-        .First(_ => Time.time - _timestamp >= _hideStartTime)
+        .Where(_ => _skillUserObj != null)
+        .Where(_ => Time.time - _timestamp >= _hideStartTime)
+        .Take(1)
         .Subscribe(_ => {
           _player = _skillUserObj.GetComponent<Player>();
           _player.BodyCollider.enabled = false;
@@ -50,17 +51,22 @@ namespace Bunashibu.Kikan {
             _player.Renderers[0].enabled = true;
             _player.Renderers[1].enabled = true;
           });
-        })
-        .AddTo(this);
+        });
 
       this.UpdateAsObservable()
-        .First(_ => Time.time - _timestamp >= _collisionOccurenceTime)
+        .Where(_ => Time.time - _timestamp >= _collisionOccurenceTime)
+        .Take(1)
         .Subscribe(_ => {
           _collider.enabled = true;
           _animator.enabled = true;
           _audioSource.enabled = true;
-        })
-        .AddTo(this);
+        });
+
+      this.UpdateAsObservable()
+        .Where(_ => _player != null)
+        .Where(_ => _player.Level.Cur.Value >= 11)
+        .Take(1)
+        .Subscribe(_ => _attackInfo = new AttackInfo(150, _attackInfo.MaxDeviation, _attackInfo.CriticalPercent));
     }
 
     void OnTriggerStay2D(Collider2D collider) {

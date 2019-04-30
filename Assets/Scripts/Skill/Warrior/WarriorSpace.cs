@@ -14,19 +14,21 @@ namespace Bunashibu.Kikan {
 
       _animator = GetComponent<Animator>();
       _animator.SetBool("SpaceBreak", false);
-      _photonView = GetComponent<PhotonView>();
-    }
 
-    void Start() {
-      transform.parent = _skillUserObj.transform;
-
-      _player = _skillUserObj.GetComponent<Player>();
+      this.UpdateAsObservable()
+        .Where(_ => _skillUserObj != null)
+        .Take(1)
+        .Subscribe(_ => {
+          transform.parent = _skillUserObj.transform;
+          _player = _skillUserObj.GetComponent<Player>();
+        });
 
       // NOTE: For skill user heal himself.
       //       Because of WarriorSpace is a child of skill user,
       //       WarriorSpace doesn't heal skill user in OnTriggerStay2D.
       this.UpdateAsObservable()
-        .Where(_ => _photonView.isMine )
+        .Where(_ => _player != null)
+        .Where(_ => photonView.isMine )
         .Where(_ => !_healRistrictor.ShouldRistrict(_player.gameObject) )
         .Subscribe(_ => _synchronizer.SyncHeal(_player.PhotonView.viewID, GetHealQuantity()) );
     }
@@ -75,7 +77,7 @@ namespace Bunashibu.Kikan {
     }
 
     public void SyncSpaceBreak() {
-      _photonView.RPC("SyncSpaceBreakRPC", PhotonTargets.AllViaServer);
+      photonView.RPC("SyncSpaceBreakRPC", PhotonTargets.AllViaServer);
     }
 
     [SerializeField] private AttackInfo _attackInfo;
@@ -85,7 +87,6 @@ namespace Bunashibu.Kikan {
     private SkillSynchronizer _synchronizer;
     private HitRistrictor _hitRistrictor;
     private HitRistrictor _healRistrictor;
-    private PhotonView _photonView;
     private Animator _animator;
     private Player _player;
   }

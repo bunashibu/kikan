@@ -2,12 +2,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
+using UniRx.Triggers;
 
 namespace Bunashibu.Kikan {
   public class ManjiSpace : Skill {
-    void Start() {
-      transform.parent = _skillUserObj.transform;
+    void Awake() {
+      this.UpdateAsObservable()
+        .Where(_ => _skillUserObj != null)
+        .Take(1)
+        .Subscribe(_ => transform.parent = _skillUserObj.transform );
+    }
 
+    void Start() {
       if (photonView.isMine) {
         EnhanceStatus();
         InstantiateBuff();

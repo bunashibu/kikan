@@ -42,8 +42,7 @@ namespace Bunashibu.Kikan {
             _player.Movement.SetMoveForce(_player.Status.Spd);
             _player.Debuff.Enable();
           });
-        })
-        .AddTo(this);
+        });
 
       this.UpdateAsObservable()
         .Where(_ => photonView.isMine)
@@ -51,12 +50,12 @@ namespace Bunashibu.Kikan {
         .Subscribe(_ => {
           UpdateMovement();
           UpdateRotation();
-        })
-        .AddTo(this);
-    }
+        });
 
-    void Start() {
-      transform.parent = _skillUserObj.transform;
+      this.UpdateAsObservable()
+        .Where(_ => _skillUserObj != null)
+        .Take(1)
+        .Subscribe(_ => transform.parent = _skillUserObj.transform );
     }
 
     void OnTriggerStay2D(Collider2D collider) {
