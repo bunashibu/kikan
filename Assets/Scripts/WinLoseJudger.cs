@@ -16,14 +16,22 @@ namespace Bunashibu.Kikan {
         InitAlivePlayerCount();
 
         this.UpdateAsObservable()
-          .Where(_ => _alivePlayerCount.Red == 0)
+          .Where(_ => _timePanel.TimeSec > 0)
+          .Where(_ => _alivePlayerCount.Red == 0 && _alivePlayerCount.Blue > 0)
           .Take(1)
           .Subscribe(_ => SyncWinProcess(1) );
 
         this.UpdateAsObservable()
-          .Where(_ => _alivePlayerCount.Blue == 0)
+          .Where(_ => _timePanel.TimeSec > 0)
+          .Where(_ => _alivePlayerCount.Blue == 0 && _alivePlayerCount.Red > 0)
           .Take(1)
           .Subscribe(_ => SyncWinProcess(0) );
+
+        this.UpdateAsObservable()
+          .Where(_ => _timePanel.TimeSec > 0)
+          .Where(_ => _alivePlayerCount.Blue == 0 && _alivePlayerCount.Red == 0)
+          .Take(1)
+          .Subscribe(_ => SyncDraw() );
 
         this.UpdateAsObservable()
           .Where(_ => _timePanel.TimeSec <= 0)
