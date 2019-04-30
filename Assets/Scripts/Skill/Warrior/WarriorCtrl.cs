@@ -43,7 +43,8 @@ namespace Bunashibu.Kikan {
       }
     }
 
-    void OnDisable() {
+    // NOTE: In case final battle forcely destroy WarriorCtrl.(e.g. final battle migration)
+    void OnDestroy() {
       if (_skillUser != null)
         _skillUser.DamageReactor.SetSlot(new Passing());
     }
@@ -51,6 +52,7 @@ namespace Bunashibu.Kikan {
     [PunRPC]
     private void SyncRedBreakRPC() {
       _animator.SetBool("RedBreak", true);
+      _skillUser.DamageReactor.SetSlot(new Passing());
     }
 
     public void SyncRedBreak() {
