@@ -37,6 +37,13 @@ namespace Bunashibu.Kikan {
       _uniqueSlotObj[slotIndex].SetActive(false);
     }
 
+    protected override void HideAll() {
+      base.HideAll();
+
+      foreach (var uniqueSlotObj in _uniqueSlotObj)
+        uniqueSlotObj.SetActive(false);
+    }
+
     // NOTE: CtrlBreakSlot is must be 0
     //       SpaceBreakSlot is must be 1
     [SerializeField] private List<GameObject> _uniqueSlotObj;

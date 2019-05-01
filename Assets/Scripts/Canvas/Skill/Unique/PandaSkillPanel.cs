@@ -28,6 +28,11 @@ namespace Bunashibu.Kikan {
       _uniqueSlotObj.SetActive(false);
     }
 
+    protected override void HideAll() {
+      base.HideAll();
+      _uniqueSlotObj.SetActive(false);
+    }
+
     [SerializeField] private GameObject _uniqueSlotObj;
   }
 }

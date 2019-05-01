@@ -19,7 +19,7 @@ namespace Bunashibu.Kikan {
         .Where(_ => !_player.State.Rigor                               )
         .Where(_ => _instantiator.IsSkillUsableAnimationState(_player) )
         .Where(_ => !_player.Debuff.State[DebuffType.Stun]             )
-        .Where(_ => CanInstantiate                                     )
+        .Where(_ => CanInstantiate.Value                               )
         .Subscribe(_ => {
           GetInput(_ctrlInfo.Index);
           GetInput(_spaceInfo.Index);
@@ -49,7 +49,7 @@ namespace Bunashibu.Kikan {
              ( !_player.State.Rigor        ) &&
              ( Time.time - _ctrlInstantiatedTimestamp <= _ctrlInfo.UsableSec ) &&
              ( IsPlayerMineAndAlive()      ) &&
-             ( CanInstantiate              );
+             ( CanInstantiate.Value        );
     }
 
     private bool CanGetSpaceBreakInput() {
@@ -57,7 +57,7 @@ namespace Bunashibu.Kikan {
              ( !_player.State.Rigor         ) &&
              ( Time.time - _spaceInstantiatedTimestamp <= _spaceInfo.UsableSec ) &&
              ( IsPlayerMineAndAlive()       ) &&
-             ( CanInstantiate               );
+             ( CanInstantiate.Value         );
     }
 
     private bool IsTimeoutCtrlBreak() {

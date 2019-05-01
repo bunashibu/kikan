@@ -41,7 +41,7 @@ namespace Bunashibu.Kikan {
       return ( _isAcceptingUnique.Value ) &&
              ( Time.time - _instantiatedTimestamp <= _uniqueInfo.UsableSec ) &&
              ( IsPlayerMineAndAlive()   ) &&
-             ( CanInstantiate           );
+             ( CanInstantiate.Value     );
     }
 
     private bool IsTimeoutToUseUniqueSkill() {
@@ -55,7 +55,7 @@ namespace Bunashibu.Kikan {
              ( _shouldUseUnique         ) &&
              ( !_player.State.Rigor     ) &&
              ( IsPlayerMineAndAlive()   ) &&
-             ( CanInstantiate           );
+             ( CanInstantiate.Value     );
     }
 
     private bool IsPlayerMineAndAlive() {

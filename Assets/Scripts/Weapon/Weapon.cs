@@ -2,12 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
 
 namespace Bunashibu.Kikan {
   public class Weapon : MonoBehaviour {
     protected void Awake() {
       Stream = new WeaponStream();
-      CanInstantiate = true;
+      _canInstantiate = new ReactiveProperty<bool>(true);
 
       _instantiator = new SkillInstantiator(this, _player);
       _ctManager = new SkillCTManager(this, _player);
@@ -22,11 +23,11 @@ namespace Bunashibu.Kikan {
     }
 
     public void EnableInstantiate() {
-      CanInstantiate = true;
+      _canInstantiate.Value = true;
     }
 
     public void DisableInstantiate() {
-      CanInstantiate = false;
+      _canInstantiate.Value = false;
     }
 
     public virtual void ResetAllCT() {
@@ -34,7 +35,9 @@ namespace Bunashibu.Kikan {
     }
 
     public WeaponStream Stream { get; private set; }
-    public bool CanInstantiate { get; private set; }
+
+    public IReadOnlyReactiveProperty<bool> CanInstantiate => _canInstantiate;
+    private ReactiveProperty<bool> _canInstantiate;
 
     public string        JobName      => _jobName;
     public List<KeyList> KeysList     => _keysList;
