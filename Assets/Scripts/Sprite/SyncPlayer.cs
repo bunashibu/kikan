@@ -10,17 +10,6 @@ namespace Bunashibu.Kikan {
         stream.SendNext((Vector2)_player.Rigid.velocity);
 
         stream.SendNext(_player.Renderers[0].flipX);
-        stream.SendNext(_player.Animator.GetBool("Idle"       ));
-        stream.SendNext(_player.Animator.GetBool("Fall"       ));
-        stream.SendNext(_player.Animator.GetBool("Walk"       ));
-        stream.SendNext(_player.Animator.GetBool("Ladder"     ));
-        stream.SendNext(_player.Animator.GetBool("LadderWarp" ));
-        stream.SendNext(_player.Animator.GetBool("LieDown"    ));
-        stream.SendNext(_player.Animator.GetBool("GroundJump" ));
-        stream.SendNext(_player.Animator.GetBool("LadderJump" ));
-        stream.SendNext(_player.Animator.GetBool("Skill"      ));
-        stream.SendNext(_player.Animator.GetBool("Die"        ));
-        stream.SendNext(_player.Animator.GetBool("Stun"       ));
       }
       else {
         _player.Rigid.position = (Vector2)stream.ReceiveNext();
@@ -32,17 +21,6 @@ namespace Bunashibu.Kikan {
         */
 
         _player.Renderers[0].flipX = (bool)stream.ReceiveNext();
-        _player.Animator.SetBool("Idle"       , (bool)stream.ReceiveNext());
-        _player.Animator.SetBool("Fall"       , (bool)stream.ReceiveNext());
-        _player.Animator.SetBool("Walk"       , (bool)stream.ReceiveNext());
-        _player.Animator.SetBool("Ladder"     , (bool)stream.ReceiveNext());
-        _player.Animator.SetBool("LadderWarp" , (bool)stream.ReceiveNext());
-        _player.Animator.SetBool("LieDown"    , (bool)stream.ReceiveNext());
-        _player.Animator.SetBool("GroundJump" , (bool)stream.ReceiveNext());
-        _player.Animator.SetBool("LadderJump" , (bool)stream.ReceiveNext());
-        _player.Animator.SetBool("Skill"      , (bool)stream.ReceiveNext());
-        _player.Animator.SetBool("Die"        , (bool)stream.ReceiveNext());
-        _player.Animator.SetBool("Stun"       , (bool)stream.ReceiveNext());
       }
     }
 

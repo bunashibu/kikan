@@ -13,14 +13,18 @@ namespace Bunashibu.Kikan {
       if (_player.PhotonView.isMine) {
         GroundMove();
 
-        if ( _player.Debuff.State[DebuffType.Stun] ) { _player.StateTransfer.TransitTo( "Stun"         , animator ); return; }
-        if ( _player.State.Rigor           )         { _player.StateTransfer.TransitTo( "Skill"        , animator ); return; }
-        if ( ShouldTransitToLadder()       )         { _player.StateTransfer.TransitTo( "Ladder"       , animator ); return; }
-        if ( ShouldTransitToStepDownJump() )         { _player.StateTransfer.TransitTo( "StepDownJump" , animator ); return; }
-        if ( ShouldTransitToGroundJump()   )         { _player.StateTransfer.TransitTo( "GroundJump"   , animator ); return; }
-        if ( ShouldTransitToIdle()         )         { _player.StateTransfer.TransitTo( "Idle"         , animator ); return; }
-        if ( ShouldTransitToFall()         )         { _player.StateTransfer.TransitTo( "Fall"         , animator ); return; }
+        if ( _player.Debuff.State[DebuffType.Stun] ) { SyncAnimation( "Stun"         ); return; }
+        if ( _player.State.Rigor           )         { SyncAnimation( "Skill"        ); return; }
+        if ( ShouldTransitToLadder()       )         { SyncAnimation( "Ladder"       ); return; }
+        if ( ShouldTransitToStepDownJump() )         { SyncAnimation( "StepDownJump" ); return; }
+        if ( ShouldTransitToGroundJump()   )         { SyncAnimation( "GroundJump"   ); return; }
+        if ( ShouldTransitToIdle()         )         { SyncAnimation( "Idle"         ); return; }
+        if ( ShouldTransitToFall()         )         { SyncAnimation( "Fall"         ); return; }
       }
+    }
+
+    private void SyncAnimation(string state) {
+      _player.Synchronizer.SyncAnimation(state);
     }
 
     private void GroundMove() {

@@ -17,13 +17,17 @@ namespace Bunashibu.Kikan {
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
       if (_player.PhotonView.isMine) {
-        if ( _player.Debuff.State[DebuffType.Stun] ) { _player.StateTransfer.TransitTo( "Stun"         , animator ); return; }
-        if ( _player.State.Rigor           )         { _player.StateTransfer.TransitTo( "Skill"        , animator ); return; }
-        if ( ShouldTransitToWalk()         )         { _player.StateTransfer.TransitTo( "Walk"         , animator ); return; }
-        if ( ShouldTransitToStepDownJump() )         { _player.StateTransfer.TransitTo( "StepDownJump" , animator ); return; }
-        if ( ShouldTransitToIdle()         )         { _player.StateTransfer.TransitTo( "Idle"         , animator ); return; }
-        if ( _player.Location.IsAir        )         { _player.StateTransfer.TransitTo( "Fall"         , animator ); return; }
+        if ( _player.Debuff.State[DebuffType.Stun] ) { SyncAnimation( "Stun"         ); return; }
+        if ( _player.State.Rigor           )         { SyncAnimation( "Skill"        ); return; }
+        if ( ShouldTransitToWalk()         )         { SyncAnimation( "Walk"         ); return; }
+        if ( ShouldTransitToStepDownJump() )         { SyncAnimation( "StepDownJump" ); return; }
+        if ( ShouldTransitToIdle()         )         { SyncAnimation( "Idle"         ); return; }
+        if ( _player.Location.IsAir        )         { SyncAnimation( "Fall"         ); return; }
       }
+    }
+
+    private void SyncAnimation(string state) {
+      _player.Synchronizer.SyncAnimation(state);
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {

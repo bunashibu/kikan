@@ -9,10 +9,11 @@ namespace Bunashibu.Kikan {
     public PlayerStream() {
       _coreSubject = new Subject<CoreType>();
       _autoHealSubject = new Subject<int>();
-      _respawnSubject = new Subject<int>();
+      _respawnSubject = new Subject<Unit>();
       _chairSubject = new Subject<bool>();
       _fixAtkSubject = new Subject<float>();
       _fixCriticalSubject = new Subject<int>();
+      _animationSubject = new Subject<string>();
     }
 
     public void OnNextCore(CoreType type) {
@@ -23,8 +24,8 @@ namespace Bunashibu.Kikan {
       _autoHealSubject.OnNext(quantity);
     }
 
-    public void OnNextRespawn(int viewID) {
-      _respawnSubject.OnNext(viewID);
+    public void OnNextRespawn() {
+      _respawnSubject.OnNext(Unit.Default);
     }
 
     public void OnNextChair(bool shouldSit) {
@@ -39,19 +40,25 @@ namespace Bunashibu.Kikan {
       _fixCriticalSubject.OnNext(fixCritical);
     }
 
+    public void OnNextAnimation(string state) {
+      _animationSubject.OnNext(state);
+    }
+
     public IObservable<CoreType> OnCoreLevelUpped => _coreSubject;
     public IObservable<int> OnAutoHealed => _autoHealSubject;
-    public IObservable<int> OnRespawned => _respawnSubject;
+    public IObservable<Unit> OnRespawned => _respawnSubject;
     public IObservable<bool> OnChair => _chairSubject;
     public IObservable<float> OnFixAtk => _fixAtkSubject;
     public IObservable<int> OnFixCritical => _fixCriticalSubject;
+    public IObservable<string> OnAnimationUpdated => _animationSubject;
 
     private Subject<CoreType> _coreSubject;
     private Subject<int> _autoHealSubject;
-    private Subject<int> _respawnSubject;
+    private Subject<Unit> _respawnSubject;
     private Subject<bool> _chairSubject;
     private Subject<float> _fixAtkSubject;
     private Subject<int> _fixCriticalSubject;
+    private Subject<string> _animationSubject;
   }
 }
 

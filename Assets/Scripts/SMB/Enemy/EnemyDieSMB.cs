@@ -11,7 +11,6 @@ namespace Bunashibu.Kikan {
       _enemy.BodyCollider.enabled = false;
       _enemy.AI.enabled = false;
 
-      // Probably this process should not be here...
       if (PhotonNetwork.player.IsMasterClient && StageReference.Instance.StageData.Name == "Battle")
         _enemy.PopulationObserver.IntervalReplenishPopulation(_enemy);
     }

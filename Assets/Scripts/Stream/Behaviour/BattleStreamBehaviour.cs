@@ -36,11 +36,6 @@ namespace Bunashibu.Kikan {
           // INFO: Force Kill in case desync occurs
           if (target.Hp.Cur.Value > 0)
             target.Hp.Subtract(target.Hp.Max.Value);
-
-          if (target is Player) {
-            var player = (Player)target;
-            player.StateTransfer.TransitTo("Die", player.Animator);
-          }
         })
         .AddTo(gameObject);
 
@@ -56,6 +51,16 @@ namespace Bunashibu.Kikan {
               respawnPanel.SetRespawnPlayer(player);
             }
           }
+        })
+        .AddTo(gameObject);
+
+      BattleStream.OnDied
+        .Where(_ => PhotonNetwork.player.IsMasterClient)
+        .Where(_ => StageReference.Instance.StageData.Name == "FinalBattle")
+        .Where(_ => WinLoseJudger.Instance != null)
+        .Subscribe(target => {
+          if (target is Player)
+            WinLoseJudger.Instance.UpdateAlivePlayerCount((Player)target);
         })
         .AddTo(gameObject);
     }

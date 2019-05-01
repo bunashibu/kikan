@@ -17,12 +17,16 @@ namespace Bunashibu.Kikan {
       if (_player.PhotonView.isMine) {
         LadderMove();
 
-        if ( _player.Debuff.State[DebuffType.Stun] ) { _player.StateTransfer.TransitTo( "Stun",       animator ); return; }
-        if ( ShouldTransitToLadderWarp() )           { _player.StateTransfer.TransitTo( "LadderWarp", animator ); return; }
-        if ( ShouldTransitToLadderJump() )           { _player.StateTransfer.TransitTo( "LadderJump", animator ); return; }
-        if ( ShouldTransitToIdle()       )           { _player.StateTransfer.TransitTo( "Idle",       animator ); return; }
-        if ( ShouldTransitToFall()       )           { _player.StateTransfer.TransitTo( "Fall",       animator ); return; }
+        if ( _player.Debuff.State[DebuffType.Stun] ) { SyncAnimation( "Stun"       ); return; }
+        if ( ShouldTransitToLadderWarp() )           { SyncAnimation( "LadderWarp" ); return; }
+        if ( ShouldTransitToLadderJump() )           { SyncAnimation( "LadderJump" ); return; }
+        if ( ShouldTransitToIdle()       )           { SyncAnimation( "Idle"       ); return; }
+        if ( ShouldTransitToFall()       )           { SyncAnimation( "Fall"       ); return; }
       }
+    }
+
+    private void SyncAnimation(string state) {
+      _player.Synchronizer.SyncAnimation(state);
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {

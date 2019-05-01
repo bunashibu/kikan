@@ -27,6 +27,7 @@ namespace Bunashibu.Kikan {
 
       Character = new Character2D(this);
 
+      // tmp
       if (StageReference.Instance.StageData.Name == "Lobby") {
         Chair = new Chair(this);
 
@@ -36,6 +37,11 @@ namespace Bunashibu.Kikan {
           })
           .AddTo(gameObject);
       }
+
+      // tmp
+      Stream.OnAnimationUpdated
+        .Subscribe(state => StateTransfer.TransitTo(state) )
+        .AddTo(gameObject);
     }
 
     void Start() {

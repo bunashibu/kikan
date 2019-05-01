@@ -11,7 +11,7 @@ namespace Bunashibu.Kikan {
       _restTime -= Time.deltaTime;
 
       if (_restTime < 0) {
-        _respawnPlayer.Synchronizer.SyncRespawn(_respawnPlayer.PhotonView.viewID);
+        _respawnPlayer.Synchronizer.SyncRespawn();
         Destroy(gameObject);
       }
 

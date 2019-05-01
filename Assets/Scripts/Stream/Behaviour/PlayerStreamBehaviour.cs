@@ -95,7 +95,7 @@ namespace Bunashibu.Kikan {
         .AddTo(player.gameObject);
 
       player.Stream.OnRespawned
-        .Subscribe(viewID => {
+        .Subscribe(_ => {
           var pos = StageReference.Instance.StageData.RespawnPosition;
           if (player.PlayerInfo.Team == 1)
             pos.x *= -1;
@@ -106,8 +106,6 @@ namespace Bunashibu.Kikan {
           player.Debuff.Enable();
           player.Movement.SetMoveForce(player.Status.Spd);
           player.Hp.FullRecover();
-
-          player.StateTransfer.TransitTo("Idle", player.Animator);
         })
         .AddTo(player.gameObject);
 
@@ -129,6 +127,11 @@ namespace Bunashibu.Kikan {
       Assert.IsNotNull(_instantiator.LvPanel);
 
       SetViewID(player);
+
+      player.Hp.Cur
+        .Where(cur => (cur <= 0))
+        .Subscribe(_ => player.Synchronizer.SyncAnimation("Die"))
+        .AddTo(player.gameObject);
 
       player.Hp.Cur
         .Subscribe(_ => _instantiator.HpBar.UpdateView(player.Hp.Cur.Value, player.Hp.Max.Value))
@@ -189,6 +192,12 @@ namespace Bunashibu.Kikan {
               isMostReacentBuff = false;
             }
           }
+        })
+        .AddTo(player.gameObject);
+
+      player.Stream.OnRespawned
+        .Subscribe(_ => {
+          player.Synchronizer.SyncAnimation("Idle");
         })
         .AddTo(player.gameObject);
 

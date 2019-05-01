@@ -12,10 +12,14 @@ namespace Bunashibu.Kikan {
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
       if (_player.PhotonView.isMine) {
         if (!_player.Debuff.State[DebuffType.Stun]) {
-          if ( _player.Location.IsGround ) { _player.StateTransfer.TransitTo( "Idle" , animator ); return; }
-          if ( _player.Location.IsAir    ) { _player.StateTransfer.TransitTo( "Fall" , animator ); return; }
+          if ( _player.Location.IsGround ) { SyncAnimation( "Idle" ); return; }
+          if ( _player.Location.IsAir    ) { SyncAnimation( "Fall" ); return; }
         }
       }
+    }
+
+    private void SyncAnimation(string state) {
+      _player.Synchronizer.SyncAnimation(state);
     }
 
     private Player _player;

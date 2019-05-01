@@ -34,14 +34,14 @@ namespace Bunashibu.Kikan {
     }
 
     [PunRPC]
-    private void SyncRespawnRPC(int viewID) {
-      _stream.OnNextRespawn(viewID);
+    private void SyncRespawnRPC() {
+      _stream.OnNextRespawn();
     }
 
-    public void SyncRespawn(int viewID) {
+    public void SyncRespawn() {
       Assert.IsTrue(photonView.isMine);
 
-      photonView.RPC("SyncRespawnRPC", PhotonTargets.AllViaServer, viewID);
+      photonView.RPC("SyncRespawnRPC", PhotonTargets.AllViaServer);
     }
 
     [PunRPC]
@@ -75,6 +75,17 @@ namespace Bunashibu.Kikan {
       Assert.IsTrue(photonView.isMine);
 
       photonView.RPC("SyncFixCriticalRPC", PhotonTargets.AllViaServer, fixCritical);
+    }
+
+    [PunRPC]
+    private void SyncAnimationRPC(string state) {
+      _stream.OnNextAnimation(state);
+    }
+
+    public void SyncAnimation(string state) {
+      Assert.IsTrue(photonView.isMine);
+
+      photonView.RPC("SyncAnimationRPC", PhotonTargets.All, state);
     }
 
     private PlayerStream _stream;

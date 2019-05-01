@@ -16,9 +16,6 @@ namespace Bunashibu.Kikan {
         _player.AudioEnvironment.PlayOneShot("Die", 0.5f);
         SkillReference.Instance.DeleteAll();
       }
-
-      if (PhotonNetwork.isMasterClient && StageReference.Instance.StageData.Name == "FinalBattle")
-        WinLoseJudger.Instance.UpdateAlivePlayerCount(_player);
     }
 
     private Player _player;

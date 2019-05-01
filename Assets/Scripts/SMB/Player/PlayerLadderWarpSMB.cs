@@ -23,12 +23,16 @@ namespace Bunashibu.Kikan {
         UpdateSprite();
 
         if (_isMoved) {
-          if ( _player.Debuff.State[DebuffType.Stun] ) { _player.StateTransfer.TransitTo( "Stun"  , animator ); return; }
-          if ( _player.State.Rigor                   ) { _player.StateTransfer.TransitTo( "Skill" , animator ); return; }
-          if ( _player.Location.IsAir    && !_player.Location.IsLadder ) { _player.StateTransfer.TransitTo( "Fall" , animator ); return; }
-          if ( _player.Location.IsGround && !_player.Location.IsLadder ) { _player.StateTransfer.TransitTo( "Idle" , animator ); return; }
+          if ( _player.Debuff.State[DebuffType.Stun] ) { SyncAnimation( "Stun"  ); return; }
+          if ( _player.State.Rigor                   ) { SyncAnimation( "Skill" ); return; }
+          if ( _player.Location.IsAir    && !_player.Location.IsLadder ) { SyncAnimation( "Fall" ); return; }
+          if ( _player.Location.IsGround && !_player.Location.IsLadder ) { SyncAnimation( "Idle" ); return; }
         }
       }
+    }
+
+    private void SyncAnimation(string state) {
+      _player.Synchronizer.SyncAnimation(state);
     }
 
     private Vector3 GetDestination() {

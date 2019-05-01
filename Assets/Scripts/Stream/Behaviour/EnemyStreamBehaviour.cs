@@ -8,7 +8,7 @@ namespace Bunashibu.Kikan {
     public void Initialize(Enemy enemy) {
       enemy.Hp.Cur
         .Where(cur => (cur <= 0))
-        .Subscribe(_ => enemy.StateTransfer.TransitTo("Die", enemy.Animator))
+        .Subscribe(_ => enemy.StateTransfer.TransitTo("Die"))
         .AddTo(enemy.gameObject);
 
       enemy.Hp.Cur
