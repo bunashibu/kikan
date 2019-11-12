@@ -8,7 +8,7 @@ using UnityEngine.Assertions;
 using UniRx;
 
 namespace Bunashibu.Kikan {
-  public class Player : MonoBehaviour, IPhotonBehaviour, ICharacter, ISpeaker, IBattleMovementPlayer, ILobbyMovementPlayer, ICorePlayer, IAttacker, IOnAttacked, IOnDebuffed, IOnForced, IStatus, IKillRewardTaker, IKillRewardGiver {
+  public class Player : MonoBehaviour, IPhotonBehaviour, ICharacter, ISpeaker, IAttacker, IOnAttacked, IOnDebuffed, IOnForced, IStatus, IKillRewardTaker, IKillRewardGiver {
     void Awake() {
       State         = new CharacterState();
       StateTransfer = new StateTransfer(_initState, _animator);
@@ -46,7 +46,7 @@ namespace Bunashibu.Kikan {
 
     void Start() {
       if (StageReference.Instance.StageData.Name == "Lobby") {
-        Movement = new PlayerMovement((ILobbyMovementPlayer)this);
+        Movement = new PlayerMovement(this);
         Movement.SetMoveForce(4.0f);
         Movement.SetJumpForce(400.0f);
         Movement.SetMaxFallVelocity(-11.0f);
@@ -74,7 +74,7 @@ namespace Bunashibu.Kikan {
         KillCount  = new ReactiveProperty<int>(0);
         DeathCount = new ReactiveProperty<int>(0);
 
-        Core       = new Core((ICorePlayer)this);
+        Core       = new Core(this);
         Core.Register(CoreType.Speed,    _speedCoreInfo,    _speedCoreEffect   );
         Core.Register(CoreType.Hp,       _hpCoreInfo,       _hpCoreEffect      );
         Core.Register(CoreType.Attack,   _attackCoreInfo,   _attackCoreEffect  );
@@ -82,7 +82,7 @@ namespace Bunashibu.Kikan {
         Core.Register(CoreType.Heal,     _healCoreInfo,     _healCoreEffect    );
 
         // NOTE: Must be initialized **AFTER** Core
-        Movement   = new PlayerMovement((IBattleMovementPlayer)this, Core);
+        Movement   = new PlayerMovement(this, Core);
         Movement.SetMaxFallVelocity(-11.0f);
 
         DamageReactor = new DamageReactor(this);

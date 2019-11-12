@@ -14,7 +14,7 @@ namespace Bunashibu.Kikan {
       _state = new CoreState();
     }
 
-    public Core(ICorePlayer player) : this() {
+    public Core(Player player) : this() {
       player.gameObject.UpdateAsObservable()
         .Where(_ => player.PhotonView.isMine)
         .Subscribe(_ => Update(player) );
@@ -26,7 +26,7 @@ namespace Bunashibu.Kikan {
       _effect[type] = effect;
     }
 
-    private void Update(ICorePlayer player) {
+    private void Update(Player player) {
       foreach (CoreType type in Enum.GetValues(typeof(CoreType))) {
         if (!Input.GetKeyDown(_info[type].Key))
           continue;

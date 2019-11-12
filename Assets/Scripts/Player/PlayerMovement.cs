@@ -23,12 +23,12 @@ namespace Bunashibu.Kikan {
         .Subscribe(_ => FixedUpdate() );
     }
 
-    public PlayerMovement(ILobbyMovementPlayer player) : this(player.gameObject) {
+    public PlayerMovement(Player player) : this(player.gameObject) {
       _trans = player.transform;
       _rigid = player.Rigid;
     }
 
-    public PlayerMovement(IBattleMovementPlayer player, Core core) : this(player.gameObject) {
+    public PlayerMovement(Player player, Core core) : this(player.gameObject) {
       _trans = player.transform;
       _rigid = player.Rigid;
       _core  = core;
