@@ -43,6 +43,9 @@ namespace Bunashibu.Kikan {
       Stream.OnAnimationUpdated
         .Subscribe(state => StateTransfer.TransitTo(state) )
         .AddTo(gameObject);
+
+      if (!PhotonView.isMine)
+        AudioEnvironment.DisableListener();
     }
 
     private void LobbyAwake() {
@@ -59,10 +62,6 @@ namespace Bunashibu.Kikan {
       Movement.SetMoveForce(4.0f);
       Movement.SetJumpForce(400.0f);
       Movement.SetMaxFallVelocity(-11.0f);
-
-      // NOTE: In Battle, PlayerStreamBehaviour called this
-      if (!PhotonView.isMine)
-        AudioEnvironment.DisableListener();
     }
 
     private void BattleAwake() {

@@ -219,8 +219,6 @@ namespace Bunashibu.Kikan {
 
       if (player.PlayerInfo.Team == ownerTeam)
         _teammateHpPanel.Register(player);
-
-      player.AudioEnvironment.DisableListener();
     }
 
     private void SetViewID(Player player) {
