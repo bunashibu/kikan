@@ -4,16 +4,6 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   public class StartUpInstantiator : MonoBehaviour {
-    public void InstantiatePlayer(string jobName) {
-      var pos = StageReference.Instance.StageData.RespawnPosition;
-
-      // NOTE: Team 0 is Red(Right), Team 1 is Blue(Left)
-      if ((int)PhotonNetwork.player.CustomProperties["Team"] == 1)
-        pos.x *= -1;
-
-      _player = PhotonNetwork.Instantiate("Prefabs/Job/" + jobName, pos, Quaternion.identity, 0).GetComponent<Player>();
-    }
-
     public void InstantiateHudObjects(Canvas canvas, SkillPanel skillPanel) {
       _hpBar = Instantiate(_hpBar) as Bar;
       _hpBar.transform.SetParent(canvas.transform, false);
@@ -26,21 +16,35 @@ namespace Bunashibu.Kikan {
 
       skillPanel = Instantiate(skillPanel) as SkillPanel;
       skillPanel.transform.SetParent(canvas.transform, false);
+    }
 
-      if (_player.Weapon is Fist && skillPanel is PandaSkillPanel) {
-        var fist = (Fist)_player.Weapon;
+    public Player InstantiatePlayer(string jobName) {
+      var pos = StageReference.Instance.StageData.RespawnPosition;
+
+      // NOTE: Team 0 is Red(Right), Team 1 is Blue(Left)
+      if ((int)PhotonNetwork.player.CustomProperties["Team"] == 1)
+        pos.x *= -1;
+
+      var player = PhotonNetwork.Instantiate("Prefabs/Job/" + jobName, pos, Quaternion.identity, 0).GetComponent<Player>();
+
+      return player;
+    }
+
+    public void InstantiateUniqueSkillPanel(Weapon weapon, SkillPanel skillPanel) {
+      if (weapon is Fist && skillPanel is PandaSkillPanel) {
+        var fist = (Fist)weapon;
         var pandaSkillPanel = (PandaSkillPanel)skillPanel;
 
         pandaSkillPanel.Register(fist);
       }
-      else if (_player.Weapon is Hammer && skillPanel is WarriorSkillPanel) {
-        var hammer = (Hammer)_player.Weapon;
+      else if (weapon is Hammer && skillPanel is WarriorSkillPanel) {
+        var hammer = (Hammer)weapon;
         var warriorSkillPanel = (WarriorSkillPanel)skillPanel;
 
         warriorSkillPanel.Register(hammer);
       }
       else
-        skillPanel.Register(_player.Weapon);
+        skillPanel.Register(weapon);
     }
 
     public Bar        HpBar   => _hpBar;
@@ -50,7 +54,6 @@ namespace Bunashibu.Kikan {
     [SerializeField] private Bar _hpBar;
     [SerializeField] private Bar _expBar;
     [SerializeField] private LevelPanel _lvPanel;
-    private Player _player;
   }
 }
 

@@ -66,8 +66,10 @@ namespace Bunashibu.Kikan {
       if (_decideButton.interactable)
         RandomPick();
 
-      _instantiator.InstantiatePlayer(_jobs[_curPick].name);
+      var player = _instantiator.InstantiatePlayer(_jobs[_curPick].name);
+
       _instantiator.InstantiateHudObjects(_canvas, _skillPanelList[_curPick]);
+      _instantiator.InstantiateUniqueSkillPanel(player.Weapon, _skillPanelList[_curPick]);
     }
 
     private void EnableAllButtons() {

@@ -10,6 +10,24 @@ using UniRx;
 namespace Bunashibu.Kikan {
   public class Player : MonoBehaviour, IPhotonBehaviour, ICharacter, ISpeaker, IAttacker, IOnAttacked, IOnDebuffed, IOnForced, IStatus, IKillRewardTaker, IKillRewardGiver {
     void Awake() {
+      AllAwake();
+
+      switch (StageReference.Instance.StageData.Name) {
+        case "Lobby":
+          LobbyAwake(); break;
+        case "Battle":
+          BattleAwake(); break;
+        default:
+          Debug.Log("Wrong StageData.Name"); break;
+      }
+    }
+
+    void Start() {
+      if (StageReference.Instance.StageData.Name == "Battle")
+        PlayerStreamBehaviour.Instance.Initialize(this);
+    }
+
+    private void AllAwake() {
       State         = new CharacterState();
       StateTransfer = new StateTransfer(_initState, _animator);
 
@@ -27,68 +45,60 @@ namespace Bunashibu.Kikan {
 
       Character = new Character2D(this);
 
-      // tmp
-      if (StageReference.Instance.StageData.Name == "Lobby") {
-        Chair = new Chair(this);
-
-        Stream.OnChair
-          .Subscribe(shouldSit => {
-            Chair.UpdateShouldSit(shouldSit);
-          })
-          .AddTo(gameObject);
-      }
-
-      // tmp
       Stream.OnAnimationUpdated
         .Subscribe(state => StateTransfer.TransitTo(state) )
         .AddTo(gameObject);
     }
 
-    void Start() {
-      if (StageReference.Instance.StageData.Name == "Lobby") {
-        Movement = new PlayerMovement(this);
-        Movement.SetMoveForce(4.0f);
-        Movement.SetJumpForce(400.0f);
-        Movement.SetMaxFallVelocity(-11.0f);
+    private void LobbyAwake() {
+      Chair = new Chair(this);
 
-        // NOTE: In Battle, PlayerStreamBehaviour called this
-        if (!PhotonView.isMine)
-          AudioEnvironment.DisableListener();
-      }
+      // tmp
+      Stream.OnChair
+        .Subscribe(shouldSit => {
+          Chair.UpdateShouldSit(shouldSit);
+        })
+        .AddTo(gameObject);
 
-      if (StageReference.Instance.StageData.Name == "Battle") {
-        Assert.IsTrue(_killExpTable.Data.Count  == MaxLevel);
-        Assert.IsTrue(_killGoldTable.Data.Count == MaxLevel);
-        Assert.IsTrue(_hpTable.Data.Count       == MaxLevel);
-        Assert.IsTrue(_expTable.Data.Count      == MaxLevel);
+      Movement = new PlayerMovement(this);
+      Movement.SetMoveForce(4.0f);
+      Movement.SetJumpForce(400.0f);
+      Movement.SetMaxFallVelocity(-11.0f);
 
-        Teammates  = new List<Player>();
-        Status     = new PlayerStatus(_jobStatus);
-        PlayerInfo = new PlayerInfo(this);
-        FixSpd     = new ReactiveCollection<FixSpd>();
+      // NOTE: In Battle, PlayerStreamBehaviour called this
+      if (!PhotonView.isMine)
+        AudioEnvironment.DisableListener();
+    }
 
-        Hp         = new Hp(HpTable[0]);
-        Exp        = new Exp(ExpTable[0]);
-        Level      = new Level(1, MaxLevel);
-        Gold       = new Gold(0, MaxGold);
-        KillCount  = new ReactiveProperty<int>(0);
-        DeathCount = new ReactiveProperty<int>(0);
+    private void BattleAwake() {
+      Assert.IsTrue(_killExpTable.Data.Count  == MaxLevel);
+      Assert.IsTrue(_killGoldTable.Data.Count == MaxLevel);
+      Assert.IsTrue(_hpTable.Data.Count       == MaxLevel);
+      Assert.IsTrue(_expTable.Data.Count      == MaxLevel);
 
-        Core       = new Core(this);
-        Core.Register(CoreType.Speed,    _speedCoreInfo,    _speedCoreEffect   );
-        Core.Register(CoreType.Hp,       _hpCoreInfo,       _hpCoreEffect      );
-        Core.Register(CoreType.Attack,   _attackCoreInfo,   _attackCoreEffect  );
-        Core.Register(CoreType.Critical, _criticalCoreInfo, _criticalCoreEffect);
-        Core.Register(CoreType.Heal,     _healCoreInfo,     _healCoreEffect    );
+      Teammates  = new List<Player>();
+      Status     = new PlayerStatus(_jobStatus);
+      PlayerInfo = new PlayerInfo(this);
+      FixSpd     = new ReactiveCollection<FixSpd>();
 
-        // NOTE: Must be initialized **AFTER** Core
-        Movement   = new PlayerMovement(this, Core);
-        Movement.SetMaxFallVelocity(-11.0f);
+      Hp         = new Hp(HpTable[0]);
+      Exp        = new Exp(ExpTable[0]);
+      Level      = new Level(1, MaxLevel);
+      Gold       = new Gold(0, MaxGold);
+      KillCount  = new ReactiveProperty<int>(0);
+      DeathCount = new ReactiveProperty<int>(0);
 
-        DamageReactor = new DamageReactor(this);
+      Core       = new Core(this);
+      Core.Register(CoreType.Speed,    _speedCoreInfo,    _speedCoreEffect   );
+      Core.Register(CoreType.Hp,       _hpCoreInfo,       _hpCoreEffect      );
+      Core.Register(CoreType.Attack,   _attackCoreInfo,   _attackCoreEffect  );
+      Core.Register(CoreType.Critical, _criticalCoreInfo, _criticalCoreEffect);
+      Core.Register(CoreType.Heal,     _healCoreInfo,     _healCoreEffect    );
 
-        PlayerStreamBehaviour.Instance.Initialize(this);
-      }
+      Movement   = new PlayerMovement(this, Core);
+      Movement.SetMaxFallVelocity(-11.0f);
+
+      DamageReactor = new DamageReactor(this);
     }
 
     public PhotonView       PhotonView   => _photonView;
