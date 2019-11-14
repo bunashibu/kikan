@@ -22,11 +22,6 @@ namespace Bunashibu.Kikan {
       }
     }
 
-    void Start() {
-      if (StageReference.Instance.StageData.Name == "Battle")
-        PlayerStreamBehaviour.Instance.Initialize(this);
-    }
-
     private void AllAwake() {
       State         = new CharacterState();
       StateTransfer = new StateTransfer(_initState, _animator);

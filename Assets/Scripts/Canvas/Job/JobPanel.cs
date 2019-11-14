@@ -70,6 +70,8 @@ namespace Bunashibu.Kikan {
 
       _instantiator.InstantiateHudObjects(_canvas, _skillPanelList[_curPick]);
       _instantiator.InstantiateUniqueSkillPanel(player.Weapon, _skillPanelList[_curPick]);
+
+      PlayerStreamBehaviour.Instance.Initialize(player);
     }
 
     private void EnableAllButtons() {
