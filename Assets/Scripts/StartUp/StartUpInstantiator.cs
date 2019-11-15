@@ -4,20 +4,6 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   public class StartUpInstantiator : MonoBehaviour {
-    public void InstantiateHudObjects(Canvas canvas, SkillPanel skillPanel) {
-      _hpBar = Instantiate(_hpBar) as Bar;
-      _hpBar.transform.SetParent(canvas.transform, false);
-
-      _expBar = Instantiate(_expBar) as Bar;
-      _expBar.transform.SetParent(canvas.transform, false);
-
-      _lvPanel = Instantiate(_lvPanel) as LevelPanel;
-      _lvPanel.transform.SetParent(canvas.transform, false);
-
-      skillPanel = Instantiate(skillPanel) as SkillPanel;
-      skillPanel.transform.SetParent(canvas.transform, false);
-    }
-
     public Player InstantiatePlayer(string jobName) {
       var pos = StageReference.Instance.StageData.RespawnPosition;
 
@@ -30,7 +16,23 @@ namespace Bunashibu.Kikan {
       return player;
     }
 
-    public void InstantiateUniqueSkillPanel(Weapon weapon, SkillPanel skillPanel) {
+    public void InstantiateHudObjects(Canvas canvas, Weapon weapon, SkillPanel skillPanel) {
+      _hpBar = Instantiate(_hpBar) as Bar;
+      _hpBar.transform.SetParent(canvas.transform, false);
+
+      _expBar = Instantiate(_expBar) as Bar;
+      _expBar.transform.SetParent(canvas.transform, false);
+
+      _lvPanel = Instantiate(_lvPanel) as LevelPanel;
+      _lvPanel.transform.SetParent(canvas.transform, false);
+
+      skillPanel = Instantiate(skillPanel) as SkillPanel;
+      skillPanel.transform.SetParent(canvas.transform, false);
+
+      InstantiateUniqueSkillPanel(weapon, skillPanel);
+    }
+
+    private void InstantiateUniqueSkillPanel(Weapon weapon, SkillPanel skillPanel) {
       if (weapon is Fist && skillPanel is PandaSkillPanel) {
         var fist = (Fist)weapon;
         var pandaSkillPanel = (PandaSkillPanel)skillPanel;

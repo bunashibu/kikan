@@ -5,10 +5,6 @@ using UniRx;
 
 namespace Bunashibu.Kikan {
   public class SkillStreamBehaviour : SingletonMonoBehaviour<SkillStreamBehaviour> {
-    void Awake() {
-      _battleSynchronizer = GetComponent<BattleSynchronizer>();
-    }
-
     void Start() {
       SkillStream.OnAttacked
         .Subscribe(entity => OnAttacked(entity) )
@@ -88,7 +84,7 @@ namespace Bunashibu.Kikan {
       entity.Target.Rigid.AddForce(entity.Direction * entity.Force, ForceMode2D.Impulse);
     }
 
-    private BattleSynchronizer _battleSynchronizer;
+    [SerializeField] private BattleSynchronizer _battleSynchronizer;
   }
 }
 

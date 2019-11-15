@@ -67,11 +67,9 @@ namespace Bunashibu.Kikan {
         RandomPick();
 
       var player = _instantiator.InstantiatePlayer(_jobs[_curPick].name);
+      _instantiator.InstantiateHudObjects(_canvas, player.Weapon, _skillPanelList[_curPick]);
 
-      _instantiator.InstantiateHudObjects(_canvas, _skillPanelList[_curPick]);
-      _instantiator.InstantiateUniqueSkillPanel(player.Weapon, _skillPanelList[_curPick]);
-
-      PlayerStreamBehaviour.Instance.Initialize(player);
+      _eventSynchronizer.SyncPlayerInitialize(player.PhotonView.viewID);
     }
 
     private void EnableAllButtons() {
@@ -99,6 +97,8 @@ namespace Bunashibu.Kikan {
     [SerializeField] private Button _decideButton;
     [SerializeField] private JobDescription _description;
     [SerializeField] private TimePanel _selectTimePanel;
+    [SerializeField] private EventSynchronizer _eventSynchronizer;
+
     [SerializeField] private GameObject[] _jobs;
     [SerializeField] private Button[] _buttons;
     [SerializeField] private JobDecideMark[] _decideMark;
