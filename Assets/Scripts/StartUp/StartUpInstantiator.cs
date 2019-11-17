@@ -29,10 +29,10 @@ namespace Bunashibu.Kikan {
       skillPanel = Instantiate(skillPanel) as SkillPanel;
       skillPanel.transform.SetParent(canvas.transform, false);
 
-      InstantiateUniqueSkillPanel(weapon, skillPanel);
+      RegisterWeapon(weapon, skillPanel);
     }
 
-    private void InstantiateUniqueSkillPanel(Weapon weapon, SkillPanel skillPanel) {
+    private void RegisterWeapon(Weapon weapon, SkillPanel skillPanel) {
       if (weapon is Fist && skillPanel is PandaSkillPanel) {
         var fist = (Fist)weapon;
         var pandaSkillPanel = (PandaSkillPanel)skillPanel;
