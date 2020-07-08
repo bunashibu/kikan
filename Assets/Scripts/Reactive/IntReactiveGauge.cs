@@ -29,9 +29,9 @@ namespace Bunashibu.Kikan {
     public IReadOnlyReactiveProperty<int> Min => _min;
     public IReadOnlyReactiveProperty<int> Max => _max;
 
-    public IntReactiveProperty _cur { get; protected set; }
-    public IntReactiveProperty _min { get; protected set; }
-    public IntReactiveProperty _max { get; protected set; }
+    protected IntReactiveProperty _cur;
+    protected IntReactiveProperty _min;
+    protected IntReactiveProperty _max;
   }
 }
 
