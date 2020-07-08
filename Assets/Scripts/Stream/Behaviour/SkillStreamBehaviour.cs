@@ -34,23 +34,24 @@ namespace Bunashibu.Kikan {
 
       int damage = entity.Target.DamageReactor.ReactTo(entity.Damage);
 
-      if (entity.Target is IPhotonBehaviour) {
-        HitEffectPopupEnvironment.Instance.PopupHitEffect(entity.HitEffectType, (IPhotonBehaviour)entity.Target);
-        PopupNumber(entity.Attacker, (IPhotonBehaviour)entity.Target, damage, entity.IsCritical);
+      if (entity.Target is IPhotonBehaviour photonTarget) {
+        HitEffectPopupEnvironment.Instance.PopupHitEffect(entity.HitEffectType, photonTarget);
+        PopupNumber(entity.Attacker, photonTarget, damage, entity.IsCritical);
 
         // NOTE: Only died player client sends kill/death sync.
         SyncKillAndDeath(entity.Attacker, entity.Target);
       }
 
-      if (entity.Target is Enemy)
-        ((Enemy)entity.Target).TargetChaseSystem.SetChaseTarget(entity.Attacker.transform);
+      if (entity.Target is Enemy enemy)
+        enemy.TargetChaseSystem.SetChaseTarget(entity.Attacker.transform);
     }
 
     private void PopupNumber(IAttacker attacker, IPhotonBehaviour targetPhoton, int damage, bool isCritical) {
       int damageSkin = 0;
 
-      if (attacker is IDamageSkin)
-        damageSkin = ((IDamageSkin)attacker).DamageSkinId;
+      // tmp: IDamageSkin is strange interface
+      if (attacker is IDamageSkin skin)
+        damageSkin = skin.DamageSkinId;
 
       NumberPopupEnvironment.Instance.PopupDamage(damage, isCritical, damageSkin, targetPhoton);
     }
@@ -58,9 +59,11 @@ namespace Bunashibu.Kikan {
     private void SyncKillAndDeath(IAttacker attacker, IOnAttacked target) {
       bool isDead = target.Hp.Cur.Value == target.Hp.Min.Value;
 
-      if ( ((IPhotonBehaviour)target).PhotonView.isMine && isDead ) {
-        _battleSynchronizer.SyncKill(attacker);
-        _battleSynchronizer.SyncDie(target);
+      if (target is IPhotonBehaviour photonTarget) {
+        if (photonTarget.PhotonView.isMine && isDead) {
+          _battleSynchronizer.SyncKill(attacker);
+          _battleSynchronizer.SyncDie(target);
+        }
       }
     }
 
@@ -71,9 +74,9 @@ namespace Bunashibu.Kikan {
 
       entity.Target.Hp.Add(entity.Quantity);
 
-      if (entity.Target is IPhotonBehaviour) {
-        HitEffectPopupEnvironment.Instance.PopupHitEffect(HitEffectType.Heal, (IPhotonBehaviour)entity.Target);
-        NumberPopupEnvironment.Instance.PopupHeal(entity.Quantity, (IPhotonBehaviour)entity.Target);
+      if (entity.Target is IPhotonBehaviour photonTarget) {
+        HitEffectPopupEnvironment.Instance.PopupHitEffect(HitEffectType.Heal, photonTarget);
+        NumberPopupEnvironment.Instance.PopupHeal(entity.Quantity, photonTarget);
       }
     }
 

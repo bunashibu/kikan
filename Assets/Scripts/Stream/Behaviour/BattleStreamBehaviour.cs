@@ -8,17 +8,10 @@ namespace Bunashibu.Kikan {
     void Start() {
       BattleStream.OnKilledAndDied
         .Subscribe(entity => {
-          if (entity.Attacker is IKillRewardTaker && entity.Target is IKillRewardGiver) {
-            var taker = (IKillRewardTaker)entity.Attacker;
-            var giver = (IKillRewardGiver)entity.Target;
-
+          if (entity.Attacker is IKillRewardTaker taker && entity.Target is IKillRewardGiver giver)
             KillRewardEnvironment.GiveRewardTo(taker, KillRewardEnvironment.GetRewardFrom(giver, taker.RewardTeammates.Count));
-          }
 
-          if (entity.Attacker is Player && entity.Target is Player) {
-            var killPlayer  = (Player)entity.Attacker;
-            var deathPlayer = (Player)entity.Target;
-
+          if (entity.Attacker is Player killPlayer && entity.Target is Player deathPlayer) {
             killPlayer.KillCount.Value += 1;
             deathPlayer.DeathCount.Value += 1;
 
@@ -42,14 +35,10 @@ namespace Bunashibu.Kikan {
       BattleStream.OnDied
         .Where(_ => StageReference.Instance.StageData.Name == "Battle")
         .Subscribe(target => {
-          if (target is Player) {
-            var player = (Player)target;
-
-            if (player.PhotonView.isMine) {
-              var respawnPanel = Instantiate(_respawnPanel, _canvas.transform).GetComponent<RespawnPanel>();
-              respawnPanel.SetRespawnTime(player.Level.Cur.Value);
-              respawnPanel.SetRespawnPlayer(player);
-            }
+          if (target is Player player && player.PhotonView.isMine) {
+            var respawnPanel = Instantiate(_respawnPanel, _canvas.transform).GetComponent<RespawnPanel>();
+            respawnPanel.SetRespawnTime(player.Level.Cur.Value);
+            respawnPanel.SetRespawnPlayer(player);
           }
         })
         .AddTo(gameObject);
@@ -59,8 +48,8 @@ namespace Bunashibu.Kikan {
         .Where(_ => StageReference.Instance.StageData.Name == "FinalBattle")
         .Where(_ => WinLoseJudger.Instance != null)
         .Subscribe(target => {
-          if (target is Player)
-            WinLoseJudger.Instance.UpdateAlivePlayerCount((Player)target);
+          if (target is Player player)
+            WinLoseJudger.Instance.UpdateAlivePlayerCount(player);
         })
         .AddTo(gameObject);
     }
