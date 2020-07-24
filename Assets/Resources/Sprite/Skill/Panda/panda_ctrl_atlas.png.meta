@@ -1,14 +1,24 @@
 fileFormatVersion: 2
 guid: b21f3c80953203243806674cfb276893
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: panda_ctrl_atlas_0
-    21300002: panda_ctrl_atlas_1
-    21300004: panda_ctrl_atlas_2
-    21300006: panda_ctrl_atlas_3
-    21300008: panda_ctrl_atlas_4
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: panda_ctrl_atlas_0
+  - first:
+      213: 21300002
+    second: panda_ctrl_atlas_1
+  - first:
+      213: 21300004
+    second: panda_ctrl_atlas_2
+  - first:
+      213: 21300006
+    second: panda_ctrl_atlas_3
+  - first:
+      213: 21300008
+    second: panda_ctrl_atlas_4
   externalObjects: {}
-  serializedVersion: 9
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -62,8 +72,9 @@ TextureImporter:
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  applyGammaDecoding: 1
   platformSettings:
-  - serializedVersion: 2
+  - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -74,7 +85,8 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -85,7 +97,8 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
     buildTarget: iPhone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -96,7 +109,8 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
     buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -107,6 +121,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -126,6 +141,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 7ae9cf996e6470544a00dc3c01d3307d
+      internalID: 21300000
       vertices: []
       indices: 
       edges: []
@@ -146,6 +162,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 8653b4af3527ceb43857ed6edffa80b5
+      internalID: 21300002
       vertices: []
       indices: 
       edges: []
@@ -166,6 +183,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 9064e8640f6a2c34dac7ea4a95dcdd9f
+      internalID: 21300004
       vertices: []
       indices: 
       edges: []
@@ -186,6 +204,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 6a120463ef67b844a9eb9644a78cf6df
+      internalID: 21300006
       vertices: []
       indices: 
       edges: []
@@ -206,6 +225,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 0e6741cbd9696e34e81c4f869032b9c4
+      internalID: 21300008
       vertices: []
       indices: 
       edges: []
@@ -214,10 +234,12 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 6108c76a4c3f0bb4b9b8bb5a22c0a759
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
+    secondaryTextures: []
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

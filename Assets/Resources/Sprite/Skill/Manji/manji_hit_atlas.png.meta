@@ -1,12 +1,18 @@
 fileFormatVersion: 2
 guid: eed7d9c45a0a8814da62e9bb4b6eb493
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: manji_hit_x_atlas_0
-    21300002: manji_hit_x_atlas_1
-    21300004: manji_hit_x_atlas_2
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: manji_hit_x_atlas_0
+  - first:
+      213: 21300002
+    second: manji_hit_x_atlas_1
+  - first:
+      213: 21300004
+    second: manji_hit_x_atlas_2
   externalObjects: {}
-  serializedVersion: 5
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -24,6 +30,8 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -34,7 +42,7 @@ TextureImporter:
     serializedVersion: 2
     filterMode: -1
     aniso: -1
-    mipBias: -1
+    mipBias: -100
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -58,8 +66,9 @@ TextureImporter:
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  applyGammaDecoding: 1
   platformSettings:
-  - serializedVersion: 2
+  - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -70,7 +79,8 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -81,7 +91,8 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
     buildTarget: iPhone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -92,7 +103,8 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
     buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -103,6 +115,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -122,6 +135,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 6be7cdb77f51c7d4ea0238d2386d19d8
+      internalID: 21300000
       vertices: []
       indices: 
       edges: []
@@ -142,6 +156,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 43fd51b8e6da401428b498e28e309f64
+      internalID: 21300002
       vertices: []
       indices: 
       edges: []
@@ -162,6 +177,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 6bca29018dd87244ca636d42f1baf376
+      internalID: 21300004
       vertices: []
       indices: 
       edges: []
@@ -170,11 +186,15 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: acc6e0c83f07df64a8768cd1c1edc35a
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
+    secondaryTextures: []
   spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
