@@ -69,4 +69,3 @@ namespace Bunashibu.Kikan {
     private FixSpd _spaceFixSpd;
   }
 }
-
