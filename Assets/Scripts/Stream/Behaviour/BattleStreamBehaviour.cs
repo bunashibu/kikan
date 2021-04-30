@@ -8,18 +8,28 @@ namespace Bunashibu.Kikan {
     void Start() {
       BattleStream.OnKilledAndDied
         .Subscribe(flow => {
-          if (flow.Attacker is IKillRewardTaker taker && flow.Target is IKillRewardGiver giver)
-            KillRewardEnvironment.GiveRewardTo(taker, KillRewardEnvironment.GetRewardFrom(giver, taker.RewardTeammates.Count));
-
-          if (flow.Attacker is Player killPlayer && flow.Target is Player deathPlayer) {
-            killPlayer.KillCount.Value += 1;
-            deathPlayer.DeathCount.Value += 1;
-
-            if (killPlayer.PhotonView.isMine)
-              killPlayer.AudioEnvironment.PlayOneShot("Kill1");
-
+          if (flow.Attacker is Player killPlayer) {
             bool isSameTeam = ((int)PhotonNetwork.player.CustomProperties["Team"] == killPlayer.PlayerInfo.Team) ? true : false;
-            _killMessagePanel.InstantiateMessage(killPlayer, deathPlayer, isSameTeam);
+            bool isClient = killPlayer == Client.Player;
+
+            if (flow.Target is IKillRewardGiver giver) {
+              var killReward = KillRewardEnvironment.GetRewardFrom(giver, Client.Teammates.Count);
+
+              if (isClient)
+                KillRewardEnvironment.GiveMainRewardTo(Client.Player, killReward);
+              else if (isSameTeam)
+                KillRewardEnvironment.GiveSubRewardTo(Client.Player, killReward);
+            }
+
+            if (flow.Target is Player deathPlayer) {
+              killPlayer.KillCount.Value += 1;
+              deathPlayer.DeathCount.Value += 1;
+
+              if (killPlayer.PhotonView.isMine)
+                killPlayer.AudioEnvironment.PlayOneShot("Kill1");
+
+              _killMessagePanel.InstantiateMessage(killPlayer, deathPlayer, isSameTeam);
+            }
           }
         })
         .AddTo(gameObject);

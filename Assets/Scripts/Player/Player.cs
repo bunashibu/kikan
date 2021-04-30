@@ -70,7 +70,6 @@ namespace Bunashibu.Kikan {
       Assert.IsTrue(_hpTable.Data.Count       == MaxLevel);
       Assert.IsTrue(_expTable.Data.Count      == MaxLevel);
 
-      Teammates  = new List<Player>();
       Status     = new PlayerStatus(_jobStatus);
       PlayerInfo = new PlayerInfo(this);
       FixSpd     = new ReactiveCollection<FixSpd>();
@@ -106,9 +105,6 @@ namespace Bunashibu.Kikan {
     public PlayerSynchronizer Synchronizer => _synchronizer;
 
     public AudioEnvironment AudioEnvironment => _audioEnvironment;
-
-    public List<Player>           Teammates       { get; private set; }
-    public List<IKillRewardTaker> RewardTeammates => Teammates.Select(player => (IKillRewardTaker)player).ToList();
 
     public PlayerMovement Movement      { get; private set; }
     public PlayerStatus   Status        { get; private set; }
@@ -221,4 +217,3 @@ namespace Bunashibu.Kikan {
     private static readonly string _initState = "Idle";
   }
 }
-

@@ -5,12 +5,12 @@ using UnityEngine;
 namespace Bunashibu.Kikan {
   public static class KillRewardEnvironment {
     public static KillReward GetRewardFrom(IKillRewardGiver giver, int teamSize) {
-      double rewardRatio = 1;
+      float rewardRatio = 1;
 
       if (teamSize == 1)
-        rewardRatio = 0.7;
+        rewardRatio = 0.7f;
       if (teamSize == 2)
-        rewardRatio = 0.6;
+        rewardRatio = 0.6f;
 
       var killReward = new KillReward();
 
@@ -18,21 +18,21 @@ namespace Bunashibu.Kikan {
       killReward.MainGold = (int)(giver.KillGold * rewardRatio);
 
       if (teamSize > 0) {
-        killReward.SubExp  = (int)(giver.KillExp  * ((1.0 - rewardRatio) / teamSize));
-        killReward.SubGold = (int)(giver.KillGold * ((1.0 - rewardRatio) / teamSize));
+        killReward.SubExp  = (int)(giver.KillExp  * ((1.0f - rewardRatio) / teamSize));
+        killReward.SubGold = (int)(giver.KillGold * ((1.0f - rewardRatio) / teamSize));
       }
 
       return killReward;
     }
 
-    public static void GiveRewardTo(IKillRewardTaker taker, KillReward killReward) {
+    public static void GiveMainRewardTo(IKillRewardTaker taker, KillReward killReward) {
       taker.Exp.Add(killReward.MainExp);
       taker.Gold.Add(killReward.MainGold);
+    }
 
-      foreach (var teammate in taker.RewardTeammates) {
-        teammate.Exp.Add(killReward.SubExp);
-        teammate.Gold.Add(killReward.SubGold);
-      }
+    public static void GiveSubRewardTo(IKillRewardTaker taker, KillReward killReward) {
+      taker.Exp.Add(killReward.SubExp);
+      taker.Gold.Add(killReward.SubGold);
     }
   }
 
@@ -43,4 +43,3 @@ namespace Bunashibu.Kikan {
     public int SubGold;
   }
 }
-

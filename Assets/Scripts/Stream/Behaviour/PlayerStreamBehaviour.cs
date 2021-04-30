@@ -128,6 +128,8 @@ namespace Bunashibu.Kikan {
 
       SetViewID(player);
 
+      Client.Player = player;
+
       player.Hp.Cur
         .Where(cur => (cur <= 0))
         .Subscribe(_ => player.Synchronizer.SyncAnimation("Die"))
@@ -217,8 +219,10 @@ namespace Bunashibu.Kikan {
 
       int ownerTeam = (int)PhotonNetwork.player.CustomProperties["Team"];
 
-      if (player.PlayerInfo.Team == ownerTeam)
+      if (player.PlayerInfo.Team == ownerTeam) {
         _teammateHpPanel.Register(player);
+        Client.Teammates.Add(player);
+      }
     }
 
     private void SetViewID(Player player) {
@@ -251,4 +255,3 @@ namespace Bunashibu.Kikan {
     [SerializeField] private GameObject _levelUpEffect;
   }
 }
-

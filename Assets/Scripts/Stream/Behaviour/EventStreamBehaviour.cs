@@ -7,9 +7,10 @@ namespace Bunashibu.Kikan {
   public class EventStreamBehaviour : SingletonMonoBehaviour<EventStreamBehaviour> {
     void Start() {
       EventStream.OnPlayerInitialized
-        .Subscribe(player => PlayerStreamBehaviour.Instance.Initialize(player) )
+        .Subscribe(player => {
+          PlayerStreamBehaviour.Instance.Initialize(player);
+        })
         .AddTo(gameObject);
     }
   }
 }
-
