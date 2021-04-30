@@ -91,7 +91,10 @@ namespace Bunashibu.Kikan {
         .AddTo(player.gameObject);
 
       player.Stream.OnAutoHealed
-        .Subscribe(quantity => player.Hp.Add(quantity))
+        .Subscribe(quantity => {
+          if (player.Hp.Cur.Value > 0)
+            player.Hp.Add(quantity);
+        })
         .AddTo(player.gameObject);
 
       player.Stream.OnRespawned
