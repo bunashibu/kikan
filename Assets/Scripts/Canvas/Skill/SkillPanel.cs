@@ -17,9 +17,22 @@ namespace Bunashibu.Kikan {
         .AddTo(weapon.gameObject);
 
       weapon.CanInstantiate
-        .Subscribe(canInstantiate => {
-          if (!canInstantiate)
-            HideAll();
+        .Where(canInstantiate => !canInstantiate)
+        .Subscribe(_ => {
+          HideAll();
+        })
+        .AddTo(weapon.gameObject);
+
+      weapon.CanInstantiate
+        .Where(canInstantiate => canInstantiate)
+        .Subscribe(_ => {
+          for (int i=0; i < _alphaRectTransform.Count; ++i) {
+            if (weapon.IsRequiredLv(i)) {
+              Show(i);
+              if (i > 0)
+                _availableImages[i-1].enabled = true;
+            }
+          }
         })
         .AddTo(weapon.gameObject);
 
