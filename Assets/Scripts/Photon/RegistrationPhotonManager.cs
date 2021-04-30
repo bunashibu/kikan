@@ -61,7 +61,7 @@ namespace Bunashibu.Kikan {
     public override void OnJoinedRoom() {
       Debug.Log("OnJoinedRoom() was called");
       _setPlayerName.SetName();
-      SceneChanger.Instance.ChangeSceneWithSE(_nextSceneName, _source, _clip);
+      SceneChanger.Instance.ChangeSceneWithSE(_nextSceneName, _source, _clip, 0.5f);
     }
 
     private void Disconnect() {
@@ -86,4 +86,3 @@ namespace Bunashibu.Kikan {
     private int _tryCount;
   }
 }
-

@@ -31,10 +31,10 @@ namespace Bunashibu.Kikan {
       });
     }
 
-    public void ChangeSceneWithSE(string nextSceneName, AudioSource source, AudioClip clip) {
+    public void ChangeSceneWithSE(string nextSceneName, AudioSource source, AudioClip clip, float volume = 1.0f) {
       PhotonNetwork.isMessageQueueRunning = false;
       _shouldFadeOut = true;
-      source.PlayOneShot(clip);
+      source.PlayOneShot(clip, volume);
 
       MonoUtility.Instance.DelayUntil(() => (_shouldFadeOut == false) && !source.isPlaying, () => {
         SceneManager.LoadScene(nextSceneName, LoadSceneMode.Single);
@@ -71,4 +71,3 @@ namespace Bunashibu.Kikan {
     private bool _shouldFadeOut;
   }
 }
-
