@@ -108,12 +108,11 @@ namespace Bunashibu.Kikan {
     private Animator _animator;
     private AudioSource _audioSource;
     private float _timestamp;
-    private float _collisionOccurenceTime = 0.5f;
-    private float _existTime = 10.0f;
+    private float _collisionOccurenceTime = 0.45f;
+    private float _existTime = 20.0f;
 
     private Player _player;
-    private float _hideStartTime = 0.2f;
+    private float _hideStartTime = 0.1f;
     private float _hideTime = 2.0f;
   }
 }
-
