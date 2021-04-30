@@ -15,10 +15,9 @@ namespace Bunashibu.Kikan {
             if (flow.Target is IKillRewardGiver giver) {
               var killReward = KillRewardEnvironment.GetRewardFrom(giver, Client.Teammates.Count);
 
-              if (isClient)
-                KillRewardEnvironment.GiveMainRewardTo(Client.Player, killReward);
-              else if (isSameTeam)
-                KillRewardEnvironment.GiveSubRewardTo(Client.Player, killReward);
+              KillRewardEnvironment.GiveMainRewardTo(killPlayer, killReward);
+              foreach (var teammate in Client.GetTeammates(killPlayer))
+                KillRewardEnvironment.GiveSubRewardTo(teammate, killReward);
             }
 
             if (flow.Target is Player deathPlayer) {

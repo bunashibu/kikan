@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 using UniRx;
-using UniRx.Triggers;
 
 namespace Bunashibu.Kikan {
   public class PlayerStreamBehaviour : SingletonMonoBehaviour<PlayerStreamBehaviour> {
@@ -229,6 +228,9 @@ namespace Bunashibu.Kikan {
       if (player.PlayerInfo.Team == ownerTeam) {
         _teammateHpPanel.Register(player);
         Client.Teammates.Add(player);
+      }
+      else {
+        Client.Opponents.Add(player);
       }
     }
 
