@@ -28,12 +28,11 @@ namespace Bunashibu.Kikan {
       FixCritical = quantity;
     }
 
-    public int Atk { get; private set; }
-    public int Dfn { get; private set; }
-    public int Spd { get; private set; }
-    public int Jmp { get; private set; }
+    public float Atk { get; private set; }
+    public float Dfn { get; private set; }
+    public float Spd { get; private set; }
+    public float Jmp { get; private set; }
     public float FixAtk      { get; private set; }
     public int   FixCritical { get; private set; } // Unit(%)
   }
 }
-

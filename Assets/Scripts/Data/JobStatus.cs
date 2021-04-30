@@ -4,26 +4,25 @@ using System.Collections;
 namespace Bunashibu.Kikan {
   [CreateAssetMenu]
   public class JobStatus : ScriptableObject {
-    public int Atk {
+    public float Atk {
       get { return _atk; }
     }
 
-    public int Dfn {
+    public float Dfn {
       get { return _dfn; }
     }
 
-    public int Spd{
+    public float Spd{
       get { return _spd; }
     }
 
-    public int Jmp {
+    public float Jmp {
       get { return _jmp; }
     }
 
-    [SerializeField] private int _atk;
-    [SerializeField] private int _dfn;
-    [SerializeField] private int _spd;
-    [SerializeField] private int _jmp;
+    [SerializeField] private float _atk;
+    [SerializeField] private float _dfn;
+    [SerializeField] private float _spd;
+    [SerializeField] private float _jmp;
   }
 }
-
