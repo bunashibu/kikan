@@ -157,7 +157,6 @@ namespace Bunashibu.Kikan {
     //        (By default, all input is managed in SMB)
     private float _existTime = 4.0f;
     private bool _isJumping;
-    private float _spdRatio = 1.2f;
+    private float _spdRatio = 1.3f;
   }
 }
-
