@@ -9,9 +9,9 @@ namespace Bunashibu.Kikan {
     public virtual void Register(Weapon weapon) {
       weapon.Stream.OnCurCT
         .Where(_ => weapon.CanInstantiate.Value)
-        .Subscribe(entity => {
-          if (weapon.IsReachedToRequireLv(entity.Index))
-            UpdateAlphaMask(entity.Index, entity.CurCT, weapon.SkillCT[entity.Index]);
+        .Subscribe(flow => {
+          if (weapon.IsReachedToRequireLv(flow.Index))
+            UpdateAlphaMask(flow.Index, flow.CurCT, weapon.SkillCT[flow.Index]);
         })
         .AddTo(weapon.gameObject);
 
@@ -43,4 +43,3 @@ namespace Bunashibu.Kikan {
     [SerializeField] protected List<RectTransform> _alphaRectTransform;
   }
 }
-

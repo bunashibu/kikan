@@ -7,43 +7,43 @@ namespace Bunashibu.Kikan {
   public class SkillStreamBehaviour : SingletonMonoBehaviour<SkillStreamBehaviour> {
     void Start() {
       SkillStream.OnAttacked
-        .Subscribe(entity => OnAttacked(entity) )
+        .Subscribe(flow => OnAttacked(flow) )
         .AddTo(gameObject);
 
       SkillStream.OnDebuffed
-        .Subscribe(entity => entity.Target.Debuff.DurationEnable(entity.DebuffType, entity.Duration) )
+        .Subscribe(flow => flow.Target.Debuff.DurationEnable(flow.DebuffType, flow.Duration) )
         .AddTo(gameObject);
 
       SkillStream.OnHealed
-        .Subscribe(entity => OnHealed(entity) )
+        .Subscribe(flow => OnHealed(flow) )
         .AddTo(gameObject);
 
       SkillStream.OnForced
-        .Subscribe(entity => OnForced(entity) )
+        .Subscribe(flow => OnForced(flow) )
         .AddTo(gameObject);
 
       SkillStream.OnStatusFixed
-        .Subscribe(entity => entity.Target.Status.SetFixAtk(entity.FixAtk) )
+        .Subscribe(flow => flow.Target.Status.SetFixAtk(flow.FixAtk) )
         .AddTo(gameObject);
     }
 
-    private void OnAttacked(AttackFlowEntity entity) {
-      bool isAlreadyDead = entity.Target.Hp.Cur.Value == entity.Target.Hp.Min.Value;
+    private void OnAttacked(AttackFlow flow) {
+      bool isAlreadyDead = flow.Target.Hp.Cur.Value == flow.Target.Hp.Min.Value;
       if (isAlreadyDead)
         return;
 
-      int damage = entity.Target.DamageReactor.ReactTo(entity.Damage);
+      int damage = flow.Target.DamageReactor.ReactTo(flow.Damage);
 
-      if (entity.Target is IPhotonBehaviour photonTarget) {
-        HitEffectPopupEnvironment.Instance.PopupHitEffect(entity.HitEffectType, photonTarget);
-        PopupNumber(entity.Attacker, photonTarget, damage, entity.IsCritical);
+      if (flow.Target is IPhotonBehaviour photonTarget) {
+        HitEffectPopupEnvironment.Instance.PopupHitEffect(flow.HitEffectType, photonTarget);
+        PopupNumber(flow.Attacker, photonTarget, damage, flow.IsCritical);
 
         // NOTE: Only died player client sends kill/death sync.
-        SyncKillAndDeath(entity.Attacker, entity.Target);
+        SyncKillAndDeath(flow.Attacker, flow.Target);
       }
 
-      if (entity.Target is Enemy enemy)
-        enemy.TargetChaseSystem.SetChaseTarget(entity.Attacker.transform);
+      if (flow.Target is Enemy enemy)
+        enemy.TargetChaseSystem.SetChaseTarget(flow.Attacker.transform);
     }
 
     private void PopupNumber(IAttacker attacker, IPhotonBehaviour targetPhoton, int damage, bool isCritical) {
@@ -67,27 +67,26 @@ namespace Bunashibu.Kikan {
       }
     }
 
-    private void OnHealed(HealFlowEntity entity) {
-      bool isAlreadyDead = entity.Target.Hp.Cur.Value == entity.Target.Hp.Min.Value;
+    private void OnHealed(HealFlow flow) {
+      bool isAlreadyDead = flow.Target.Hp.Cur.Value == flow.Target.Hp.Min.Value;
       if (isAlreadyDead)
         return;
 
-      entity.Target.Hp.Add(entity.Quantity);
+      flow.Target.Hp.Add(flow.Quantity);
 
-      if (entity.Target is IPhotonBehaviour photonTarget) {
+      if (flow.Target is IPhotonBehaviour photonTarget) {
         HitEffectPopupEnvironment.Instance.PopupHitEffect(HitEffectType.Heal, photonTarget);
-        NumberPopupEnvironment.Instance.PopupHeal(entity.Quantity, photonTarget);
+        NumberPopupEnvironment.Instance.PopupHeal(flow.Quantity, photonTarget);
       }
     }
 
-    private void OnForced(ForceFlowEntity entity) {
-      if (entity.IsNewAdd)
-        entity.Target.Rigid.velocity = new Vector2(0, 0);
+    private void OnForced(ForceFlow flow) {
+      if (flow.IsNewAdd)
+        flow.Target.Rigid.velocity = new Vector2(0, 0);
 
-      entity.Target.Rigid.AddForce(entity.Direction * entity.Force, ForceMode2D.Impulse);
+      flow.Target.Rigid.AddForce(flow.Direction * flow.Force, ForceMode2D.Impulse);
     }
 
     [SerializeField] private BattleSynchronizer _battleSynchronizer;
   }
 }
-

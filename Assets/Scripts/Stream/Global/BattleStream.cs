@@ -20,16 +20,16 @@ namespace Bunashibu.Kikan {
     }
 
     public static IObservable<IOnAttacked> OnDied => _dieSubject;
-    public static IObservable<KillDeathFlowEntity> OnKilledAndDied { get {
-      return Observable.Zip(_killSubject, _dieSubject, (attacker, target) => new KillDeathFlowEntity(attacker, target));
+    public static IObservable<KillDeathFlow> OnKilledAndDied { get {
+      return Observable.Zip(_killSubject, _dieSubject, (attacker, target) => new KillDeathFlow(attacker, target));
     } }
 
     private static Subject<IAttacker> _killSubject;
     private static Subject<IOnAttacked> _dieSubject;
   }
 
-  public class KillDeathFlowEntity {
-    public KillDeathFlowEntity(IAttacker attacker, IOnAttacked target) {
+  public class KillDeathFlow {
+    public KillDeathFlow(IAttacker attacker, IOnAttacked target) {
       Attacker = attacker;
       Target   = target;
     }
@@ -38,4 +38,3 @@ namespace Bunashibu.Kikan {
     public IOnAttacked Target   { get; private set; }
   }
 }
-

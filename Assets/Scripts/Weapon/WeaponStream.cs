@@ -8,7 +8,7 @@ namespace Bunashibu.Kikan {
   public class WeaponStream {
     public WeaponStream() {
       _instantiateSubject = new Subject<int>();
-      _curCTSubject = new Subject<CurCTFlowEntity>();
+      _curCTSubject = new Subject<CurCTFlow>();
       _uniqueSubject = new Subject<int>();
     }
 
@@ -16,8 +16,8 @@ namespace Bunashibu.Kikan {
       _instantiateSubject.OnNext(i);
     }
 
-    public void OnNextCurCT(CurCTFlowEntity entity) {
-      _curCTSubject.OnNext(entity);
+    public void OnNextCurCT(CurCTFlow flow) {
+      _curCTSubject.OnNext(flow);
     }
 
     public void OnNextUnique(int i) {
@@ -25,16 +25,16 @@ namespace Bunashibu.Kikan {
     }
 
     public IObservable<int> OnInstantiated => _instantiateSubject;
-    public IObservable<CurCTFlowEntity> OnCurCT => _curCTSubject;
+    public IObservable<CurCTFlow> OnCurCT => _curCTSubject;
     public IObservable<int> OnUniqueUsed => _uniqueSubject;
 
     private Subject<int> _instantiateSubject;
-    private Subject<CurCTFlowEntity> _curCTSubject;
+    private Subject<CurCTFlow> _curCTSubject;
     private Subject<int> _uniqueSubject;
   }
 
-  public class CurCTFlowEntity {
-    public CurCTFlowEntity(int index, float curCT) {
+  public class CurCTFlow {
+    public CurCTFlow(int index, float curCT) {
       Index = index;
       CurCT = curCT;
     }
@@ -43,4 +43,3 @@ namespace Bunashibu.Kikan {
     public float CurCT { get; private set; }
   }
 }
-

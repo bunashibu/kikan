@@ -7,11 +7,11 @@ namespace Bunashibu.Kikan {
   public class BattleStreamBehaviour : SingletonMonoBehaviour<BattleStreamBehaviour> {
     void Start() {
       BattleStream.OnKilledAndDied
-        .Subscribe(entity => {
-          if (entity.Attacker is IKillRewardTaker taker && entity.Target is IKillRewardGiver giver)
+        .Subscribe(flow => {
+          if (flow.Attacker is IKillRewardTaker taker && flow.Target is IKillRewardGiver giver)
             KillRewardEnvironment.GiveRewardTo(taker, KillRewardEnvironment.GetRewardFrom(giver, taker.RewardTeammates.Count));
 
-          if (entity.Attacker is Player killPlayer && entity.Target is Player deathPlayer) {
+          if (flow.Attacker is Player killPlayer && flow.Target is Player deathPlayer) {
             killPlayer.KillCount.Value += 1;
             deathPlayer.DeathCount.Value += 1;
 
@@ -59,4 +59,3 @@ namespace Bunashibu.Kikan {
     [SerializeField] private GameObject _respawnPanel;
   }
 }
-

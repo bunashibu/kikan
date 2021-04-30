@@ -26,8 +26,8 @@ namespace Bunashibu.Kikan {
         if (_curCT[i] < 0)
           _curCT[i] = 0;
 
-        var flowEntity = new CurCTFlowEntity(i, _curCT[i]);
-        weapon.Stream.OnNextCurCT(flowEntity);
+        var flow = new CurCTFlow(i, _curCT[i]);
+        weapon.Stream.OnNextCurCT(flow);
       }
     }
 
@@ -43,4 +43,3 @@ namespace Bunashibu.Kikan {
     private List<float> _curCT;
   }
 }
-

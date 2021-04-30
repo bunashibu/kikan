@@ -13,8 +13,8 @@ namespace Bunashibu.Kikan {
       Assert.IsNotNull(attacker);
       Assert.IsNotNull(target);
 
-      var flowEntity = new AttackFlowEntity(attacker, target, damage, isCritical, hitEffectType);
-      SkillStream.OnNextAttack(flowEntity);
+      var flow = new AttackFlow(attacker, target, damage, isCritical, hitEffectType);
+      SkillStream.OnNextAttack(flow);
     }
 
     public void SyncAttack(int attackerViewID, int targetViewID, int damage, bool isCritical, HitEffectType hitEffectType) {
@@ -26,8 +26,8 @@ namespace Bunashibu.Kikan {
       var target = PhotonView.Find(targetViewID).gameObject.GetComponent<IOnDebuffed>();
       Assert.IsNotNull(target);
 
-      var flowEntity = new DebuffFlowEntity(target, debuffType, duration);
-      SkillStream.OnNextDebuff(flowEntity);
+      var flow = new DebuffFlow(target, debuffType, duration);
+      SkillStream.OnNextDebuff(flow);
     }
 
     public void SyncDebuff(int targetViewID, DebuffType debuffType, float duration) {
@@ -39,8 +39,8 @@ namespace Bunashibu.Kikan {
       var target = PhotonView.Find(targetViewID).gameObject.GetComponent<IOnAttacked>();
       Assert.IsNotNull(target);
 
-      var flowEntity = new HealFlowEntity(target, quantity);
-      SkillStream.OnNextHeal(flowEntity);
+      var flow = new HealFlow(target, quantity);
+      SkillStream.OnNextHeal(flow);
     }
 
     public void SyncHeal(int targetViewID, int quantity) {
@@ -52,8 +52,8 @@ namespace Bunashibu.Kikan {
       var target = PhotonView.Find(targetViewID).gameObject.GetComponent<IOnForced>();
       Assert.IsNotNull(target);
 
-      var flowEntity = new ForceFlowEntity(target, force, direction, isNewAdd);
-      SkillStream.OnNextForce(flowEntity);
+      var flow = new ForceFlow(target, force, direction, isNewAdd);
+      SkillStream.OnNextForce(flow);
     }
 
     public void SyncForce(int targetViewID, float force, Vector2 direction, bool isNewAdd) {
@@ -65,8 +65,8 @@ namespace Bunashibu.Kikan {
       var target = PhotonView.Find(targetViewID).gameObject.GetComponent<IStatus>();
       Assert.IsNotNull(target);
 
-      var flowEntity = new StatusFlowEntity(target, fixAtk);
-      SkillStream.OnNextStatus(flowEntity);
+      var flow = new StatusFlow(target, fixAtk);
+      SkillStream.OnNextStatus(flow);
     }
 
     public void SyncStatus(int targetViewID, int fixAtk) {
@@ -74,4 +74,3 @@ namespace Bunashibu.Kikan {
     }
   }
 }
-
