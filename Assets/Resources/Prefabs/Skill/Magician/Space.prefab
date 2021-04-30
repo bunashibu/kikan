@@ -363,7 +363,7 @@ MonoBehaviour:
   _attackInfo:
     _damagePercent: 600
     _maxDeviation: 50
-    _criticalPercent: 0
+    _criticalPercent: 10
   _hitInfo:
     _maxTargetCount: 6
     _maxHitCount: 1
