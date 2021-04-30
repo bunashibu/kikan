@@ -173,7 +173,10 @@ namespace Bunashibu.Kikan {
       player.FixSpd
         .ObserveCountChanged(true)
         .Where(count => count == 0)
-        .Subscribe(_ => player.Movement.SetMoveForce(player.Status.Spd) )
+        .Subscribe(_ => {
+          player.Movement.SetMoveForce(player.Status.Spd);
+          player.Movement.SetLadderRatio(1.0f);
+        })
         .AddTo(player.gameObject);
 
       player.FixSpd
@@ -186,6 +189,7 @@ namespace Bunashibu.Kikan {
           for (var j=count-1; j >= 0; --j) {
             if (player.FixSpd[j].Type == FixSpdType.Debuff) {
               player.Movement.SetMoveForce(player.FixSpd[j].Value);
+              player.Movement.SetLadderRatio(player.FixSpd[j].Value * 0.1f);
               return;
             }
 
