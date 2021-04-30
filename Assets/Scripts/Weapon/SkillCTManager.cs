@@ -21,10 +21,15 @@ namespace Bunashibu.Kikan {
 
     private void UpdateCT(Weapon weapon) {
       for (var i=0; i < _curCT.Count; ++i) {
+        if (_curCT[i] == 0)
+          continue;
+
         _curCT[i] -= Time.deltaTime;
 
         if (_curCT[i] < 0)
           _curCT[i] = 0;
+        if (_curCT[i] == 0)
+          weapon.Stream.OnNextSkillIsReady(i);
 
         var flow = new CurCTFlow(i, _curCT[i]);
         weapon.Stream.OnNextCurCT(flow);

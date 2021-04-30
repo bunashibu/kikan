@@ -12,13 +12,25 @@ namespace Bunashibu.Kikan {
 
       _instantiator = new SkillInstantiator(this, _player);
       _ctManager = new SkillCTManager(this, _player);
+
+      _player.Level.Cur
+        .Subscribe(level => {
+          if (level == 3)
+            Stream.OnNextSkillAvailable(1);
+          else if (level == 5)
+            Stream.OnNextSkillAvailable(2);
+          else if (level == 7)
+            Stream.OnNextSkillAvailable(3);
+          else if (level == 8)
+            Stream.OnNextSkillAvailable(4);
+        });
     }
 
     public virtual bool IsUsable(int i) {
       return _ctManager.IsUsable(i);
     }
 
-    public bool IsReachedToRequireLv(int i) {
+    public bool IsRequiredLv(int i) {
       return _player.Level.Cur.Value >= _requireLv[i];
     }
 
@@ -66,4 +78,3 @@ namespace Bunashibu.Kikan {
     public List<KeyCode> keys;
   }
 }
-
