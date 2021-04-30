@@ -4911,6 +4911,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1728527394188518, guid: 248d3d80d001f1144b51b737c7b7340e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4733332064185284, guid: 248d3d80d001f1144b51b737c7b7340e, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -7617,7 +7621,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 478674089}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.55, y: 15.603, z: 0}
+  m_LocalPosition: {x: -3.55, y: 15.57, z: 0}
   m_LocalScale: {x: 0.9, y: 0.85, z: 1}
   m_Children:
   - {fileID: 1216330456}
@@ -12225,7 +12229,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 756302433}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.55, y: 15.603, z: 0}
+  m_LocalPosition: {x: 3.55, y: 15.57, z: 0}
   m_LocalScale: {x: 0.9, y: 0.84999996, z: 1}
   m_Children:
   - {fileID: 76472516}
@@ -28189,7 +28193,8 @@ MonoBehaviour:
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 2
   instantiationId: 2
@@ -28984,7 +28989,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 7.610001, y: 16.03}
+  m_AnchoredPosition: {x: 7.610001, y: 16}
   m_SizeDelta: {x: 13.84, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!251 &1900243019
@@ -29583,7 +29588,7 @@ MonoBehaviour:
   - {fileID: 479330848}
   - {fileID: 911763920}
   - {fileID: 769137888}
-  _population: 0200000002000000020000000200000002000000020000000200000003000000040000000300000004000000
+  _population: 0200000002000000010000000200000004000000010000000200000003000000040000000300000004000000
   _intervalSec: 5
   _initialSeedX:
   - -7.61
@@ -32439,7 +32444,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -7.61, y: 16.03}
+  m_AnchoredPosition: {x: -7.61, y: 16}
   m_SizeDelta: {x: 13.84, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!251 &2133664495
