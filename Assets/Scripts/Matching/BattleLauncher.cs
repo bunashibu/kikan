@@ -52,7 +52,7 @@ namespace Bunashibu.Kikan {
     [PunRPC]
     public void StartBattleRPC(string roomName, int[] team, ApplyType applyType) {
       if (applyType != ApplyType.Practice)
-        _audioSource.PlayOneShot(_matchingClip);
+        _audioSource.PlayOneShot(_matchingClip, 0.1f);
 
       var applyingTicket = PhotonNetwork.player.CustomProperties["ApplyingTicket"];
       if (applyingTicket == null) return;
@@ -139,4 +139,3 @@ namespace Bunashibu.Kikan {
     private AudioSource _audioSource;
   }
 }
-

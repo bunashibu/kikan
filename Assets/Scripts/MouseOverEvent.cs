@@ -10,7 +10,7 @@ namespace Bunashibu.Kikan {
     }
 
     public void PlayMouseOverSE(AudioClip clip) {
-      _source.PlayOneShot(clip, 0.1f);
+      _source.PlayOneShot(clip, 0.05f);
     }
 
     private AudioSource _source;

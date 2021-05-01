@@ -9,7 +9,7 @@ namespace Bunashibu.Kikan {
         _player = animator.GetComponent<Player>();
 
       if (_player.PhotonView.isMine)
-        _player.AudioEnvironment.PlayOneShot("Jump");
+        _player.AudioEnvironment.PlayOneShot("Jump", 0.4f);
 
       LadderJump();
       _player.Movement.LadderJump();
@@ -49,4 +49,3 @@ namespace Bunashibu.Kikan {
     private Player _player;
   }
 }
-

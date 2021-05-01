@@ -13,7 +13,7 @@ namespace Bunashibu.Kikan {
       _player.Movement.StepDownJump();
 
       if (_player.PhotonView.isMine)
-        _player.AudioEnvironment.PlayOneShot("Jump");
+        _player.AudioEnvironment.PlayOneShot("Jump", 0.4f);
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
@@ -57,4 +57,3 @@ namespace Bunashibu.Kikan {
     private bool _fallFlag;
   }
 }
-
