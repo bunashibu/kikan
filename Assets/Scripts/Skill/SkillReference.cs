@@ -7,7 +7,7 @@ namespace Bunashibu.Kikan {
   // SkillReference manages only own instantiated skill.
   // That means that each clients manage own skills.
   public class SkillReference : SingletonMonoBehaviour<SkillReference> {
-    void Awake() {
+    protected override void Awake() {
       _existOwnIdList = new List<int>();
       _dictionary = new Dictionary<int, SkillCoroutine>();
     }
@@ -65,4 +65,3 @@ namespace Bunashibu.Kikan {
     public IEnumerator Coroutine;
   }
 }
-

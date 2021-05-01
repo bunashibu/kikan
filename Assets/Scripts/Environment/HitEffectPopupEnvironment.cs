@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   public class HitEffectPopupEnvironment : SingletonMonoBehaviour<HitEffectPopupEnvironment> {
-    void Awake() {
+    protected override void Awake() {
       _index = new Dictionary<HitEffectType, int>();
 
       int i = -1;
@@ -26,4 +26,3 @@ namespace Bunashibu.Kikan {
     private Dictionary<HitEffectType, int> _index;
   }
 }
-

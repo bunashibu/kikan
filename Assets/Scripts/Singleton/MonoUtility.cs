@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Bunashibu.Kikan {
   public class MonoUtility : SingletonMonoBehaviour<MonoUtility> {
-    void Awake() {
+    protected override void Awake() {
       _coroutineDictionary = new Dictionary<string, IEnumerator>();
     }
 
@@ -79,4 +79,3 @@ namespace Bunashibu.Kikan {
     private Dictionary<string, IEnumerator> _coroutineDictionary;
   }
 }
-

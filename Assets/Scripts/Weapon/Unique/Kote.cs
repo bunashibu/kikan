@@ -6,7 +6,7 @@ using UniRx.Triggers;
 
 namespace Bunashibu.Kikan {
   public class Kote : Weapon {
-    void Awake() {
+    new void Awake() {
       base.Awake();
 
       this.UpdateAsObservable()
@@ -35,4 +35,3 @@ namespace Bunashibu.Kikan {
     [SerializeField] private SkillName _after;
   }
 }
-

@@ -6,7 +6,7 @@ using UniRx.Triggers;
 
 namespace Bunashibu.Kikan {
   public class BattleStageManager : SingletonMonoBehaviour<BattleStageManager>, IStageManager {
-    void Awake() {
+    protected override void Awake() {
       _photonView = GetComponent<PhotonView>();
       StageData = Resources.Load("Data/StageData/Battle") as StageData;
 
@@ -49,4 +49,3 @@ namespace Bunashibu.Kikan {
     private PhotonView _photonView;
   }
 }
-

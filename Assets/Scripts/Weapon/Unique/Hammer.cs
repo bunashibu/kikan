@@ -7,7 +7,7 @@ using UniRx.Triggers;
 
 namespace Bunashibu.Kikan {
   public class Hammer : Weapon {
-    void Awake() {
+    new void Awake() {
       base.Awake();
 
       _isAcceptingCtrlBreak = new ReactiveProperty<bool>(false);
@@ -179,4 +179,3 @@ namespace Bunashibu.Kikan {
     [SerializeField] private float _usableSec;
   }
 }
-

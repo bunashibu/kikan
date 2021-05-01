@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Bunashibu.Kikan {
   [RequireComponent(typeof(IStageManager))]
   public class StageReference : SingletonMonoBehaviour<StageReference> {
-    void Awake() {
+    protected override void Awake() {
       _stageManager = gameObject.GetComponent<IStageManager>();
     }
 
@@ -14,4 +14,3 @@ namespace Bunashibu.Kikan {
     [SerializeField] private IStageManager _stageManager;
   }
 }
-

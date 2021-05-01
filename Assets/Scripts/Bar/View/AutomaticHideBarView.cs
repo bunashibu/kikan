@@ -5,7 +5,7 @@ using UnityEditor;
 
 namespace Bunashibu.Kikan {
   public class AutomaticHideBarView : BarView {
-    void Awake() {
+    new void Awake() {
       base.Awake();
 
       gameObject.SetActive(false);
@@ -30,4 +30,3 @@ namespace Bunashibu.Kikan {
     private string _id;
   }
 }
-

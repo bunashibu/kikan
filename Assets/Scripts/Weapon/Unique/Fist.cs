@@ -6,7 +6,7 @@ using UniRx.Triggers;
 
 namespace Bunashibu.Kikan {
   public class Fist : Weapon {
-    void Awake() {
+    new void Awake() {
       base.Awake();
 
       _isAcceptingUnique = new ReactiveProperty<bool>(false);
@@ -124,4 +124,3 @@ namespace Bunashibu.Kikan {
     [SerializeField] private SkillName _after;
   }
 }
-

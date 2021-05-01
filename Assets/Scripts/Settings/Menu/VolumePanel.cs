@@ -12,7 +12,6 @@ namespace Bunashibu.Kikan {
     }
 
     private void UpdateVolume(float v) {
-      float db = 0;
       float min, max;
       float ratio = 1.0f;
 
@@ -51,4 +50,3 @@ namespace Bunashibu.Kikan {
     private static float _big = 0.3f;
   }
 }
-

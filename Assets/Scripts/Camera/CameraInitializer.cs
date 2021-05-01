@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   public class CameraInitializer : SingletonMonoBehaviour<CameraInitializer> {
-    void Awake() {
+    protected override void Awake() {
       SetCameraPosition();
     }
 
@@ -23,4 +23,3 @@ namespace Bunashibu.Kikan {
     [SerializeField] private Vector3 _initialCameraPosition;
   }
 }
-

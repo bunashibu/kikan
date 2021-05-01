@@ -141,7 +141,6 @@ namespace Bunashibu.Kikan {
     }
 
     private void GroundJump() {
-      _isJumping = true;
       _player.Movement.GroundJump();
     }
 
@@ -156,7 +155,6 @@ namespace Bunashibu.Kikan {
     //        PandaZ manages input forcely. Otherwise, input duplication will occur.
     //        (By default, all input is managed in SMB)
     private float _existTime = 4.0f;
-    private bool _isJumping;
     private float _spdRatio = 1.3f;
   }
 }
