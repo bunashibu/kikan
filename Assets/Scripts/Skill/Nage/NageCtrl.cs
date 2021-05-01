@@ -36,18 +36,23 @@ namespace Bunashibu.Kikan {
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
-      if (PhotonNetwork.isMasterClient) {
-        var target = collider.gameObject.GetComponent<IPhoton>();
+      var target = collider.gameObject.GetComponent<IPhoton>();
 
-        if (target == null)
-          return;
-        if (TeamChecker.IsSameTeam(collider.gameObject, _skillUserObj))
-          return;
-        if (_hitRistrictor.ShouldRistrict(collider.gameObject))
-          return;
+      if (target == null)
+        return;
+      if (TeamChecker.IsSameTeam(collider.gameObject, _skillUserObj))
+        return;
+      if (_hitRistrictor.ShouldRistrict(collider.gameObject))
+        return;
 
+      if (target is Player player) {
+        if (player == Client.Player) {
+          DamageCalculator.Calculate(_skillUserObj, _attackInfo);
+          _synchronizer.SyncAttack(_skillUserViewID, target.PhotonView.viewID, DamageCalculator.Damage, DamageCalculator.IsCritical, HitEffectType.Nage);
+        }
+      }
+      else if (PhotonNetwork.isMasterClient) {
         DamageCalculator.Calculate(_skillUserObj, _attackInfo);
-
         _synchronizer.SyncAttack(_skillUserViewID, target.PhotonView.viewID, DamageCalculator.Damage, DamageCalculator.IsCritical, HitEffectType.Nage);
       }
     }
@@ -67,4 +72,3 @@ namespace Bunashibu.Kikan {
     private float _existTime = 3.0f;
   }
 }
-
