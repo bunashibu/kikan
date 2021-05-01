@@ -31,10 +31,10 @@ namespace Bunashibu.Kikan {
     private void EnhanceStatus() {
       var skillUser = _skillUserObj.GetComponent<Player>();
 
-      float statusRatio = 1.3f;
+      float statusRatio = 1.2f;
       float powerRatio = 1.25f;
       if (skillUser.Level.Cur.Value >= 11)
-        statusRatio = 1.6f;
+        statusRatio = 1.4f;
         powerRatio = 1.5f;
 
       _spaceFixSpd = new FixSpd(skillUser.Status.Spd * statusRatio, FixSpdType.Buff);
