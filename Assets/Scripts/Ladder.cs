@@ -3,6 +3,7 @@ using System.Collections;
 
 namespace Bunashibu.Kikan {
   public class Ladder : MonoBehaviour {
+    /*
     void OnTriggerEnter2D(Collider2D collider) {
       _target = collider.gameObject;
 
@@ -25,6 +26,6 @@ namespace Bunashibu.Kikan {
 
     private GameObject _target;
     private Animator _anim;
+    */
   }
 }
-
