@@ -3,8 +3,9 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -12,11 +13,11 @@ MonoBehaviour:
   m_Name: FinalBattle
   m_EditorClassIdentifier: 
   _name: FinalBattle
-  _respawnPosition: {x: 10.6, y: 7, z: 0}
+  _respawnPosition: {x: 10.6, y: 6.3, z: 0}
   _resetPosition: {x: 0, y: 4.1, z: 0}
   _stageRect:
     serializedVersion: 2
-    x: -17.3
+    x: -22
     y: 1
-    width: 34.6
+    width: 44
     height: 16.5
