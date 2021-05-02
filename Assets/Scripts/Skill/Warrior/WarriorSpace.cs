@@ -61,9 +61,9 @@ namespace Bunashibu.Kikan {
     }
 
     private int GetHealQuantity() {
-      int healPercent = 300;
+      int healPercent = 220;
       if (_player.Level.Cur.Value >= 11)
-        healPercent = 450;
+        healPercent = 370;
       var healPower = new AttackInfo(healPercent, 0, 0);
 
       DamageCalculator.Calculate(_skillUserObj, healPower);
