@@ -61,10 +61,8 @@ namespace Bunashibu.Kikan {
         int viewID = (int)photonPlayer.CustomProperties["ViewID"];
         var player = PhotonView.Find(viewID).GetComponent<Player>() as Player;
 
-        if (photonPlayer == PhotonNetwork.player) {
+        if (photonPlayer == PhotonNetwork.player)
           _player = player;
-          _player.Synchronizer.SyncAnimation("Idle");
-        }
 
         player.Rigid.velocity = Vector3.zero;
         player.Rigid.simulated = false;
@@ -117,6 +115,8 @@ namespace Bunashibu.Kikan {
 
         player.State.Rigor = false;
 
+        player.StateTransfer.TransitTo("Idle");
+
         player.Debuff.DestroyAll();
         player.Debuff.Enable();
 
@@ -156,4 +156,3 @@ namespace Bunashibu.Kikan {
     private QuadraticEaseInOut _easingCamera;
   }
 }
-
