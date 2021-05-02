@@ -109,7 +109,7 @@ namespace Bunashibu.Kikan {
     private AudioSource _audioSource;
     private float _timestamp;
     private float _collisionOccurenceTime = 0.45f;
-    private float _existTime = 20.0f;
+    private float _existTime = 15.0f;
 
     private Player _player;
     private float _hideStartTime = 0.1f;
