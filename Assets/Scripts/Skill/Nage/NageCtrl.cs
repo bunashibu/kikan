@@ -2,12 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using UniRx;
+using UniRx.Triggers;
+
 namespace Bunashibu.Kikan {
   [RequireComponent(typeof(SkillSynchronizer))]
   public class NageCtrl : Skill {
     void Awake() {
       _synchronizer = GetComponent<SkillSynchronizer>();
       _hitRistrictor = new HitRistrictor(_hitInfo);
+
+      this.UpdateAsObservable()
+        .Where(_ => _skillUserObj != null)
+        .Take(1)
+        .Where(_ => {
+          var skillUser = _skillUserObj.GetComponent<Player>();
+          return Client.Opponents.Contains(skillUser);
+        })
+        .Subscribe(_ => _renderer.color = new Color(0, 1, 1, 1));
 
       MonoUtility.Instance.StoppableDelaySec(_existTime, "NageCtrlFalse" + GetInstanceID().ToString(), () => {
         if (gameObject == null)
@@ -64,6 +76,7 @@ namespace Bunashibu.Kikan {
 
     [SerializeField] private AttackInfo _attackInfo;
     [SerializeField] private HitInfo _hitInfo;
+    [SerializeField] private SpriteRenderer _renderer;
 
     private SkillSynchronizer _synchronizer;
     private HitRistrictor _hitRistrictor;

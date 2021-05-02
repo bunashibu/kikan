@@ -368,4 +368,5 @@ MonoBehaviour:
     _maxTargetCount: 3
     _maxHitCount: 1
     _interval: 0
+  _renderer: {fileID: 5413601123197928778}
   _duration: 2
