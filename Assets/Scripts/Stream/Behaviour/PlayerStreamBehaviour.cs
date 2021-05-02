@@ -134,7 +134,10 @@ namespace Bunashibu.Kikan {
 
       player.Hp.Cur
         .Where(cur => (cur <= 0))
-        .Subscribe(_ => player.Synchronizer.SyncAnimation("Die"))
+        .Subscribe(_ => {
+          player.Synchronizer.SyncAnimation("Die");
+          EventStream.OnNextClientPlayerDie();
+        })
         .AddTo(player.gameObject);
 
       player.Hp.Cur
