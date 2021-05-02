@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
-using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 namespace Bunashibu.Kikan {
   public class PlayerDieSMB : StateMachineBehaviour {
@@ -21,4 +20,3 @@ namespace Bunashibu.Kikan {
     private Player _player;
   }
 }
-

@@ -211,7 +211,7 @@ namespace Bunashibu.Kikan {
 
       _playerPanel.Register(player);
       player.WorldHpBar.gameObject.SetActive(false);
-      CameraInitializer.Instance.RegisterToTrackTarget(player.gameObject);
+      CameraManager.Instance.SetTrackTarget(player.gameObject);
     }
 
     private void NonPlayerOwnerInitialize(Player player) {

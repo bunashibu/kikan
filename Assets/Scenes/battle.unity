@@ -16507,7 +16507,7 @@ GameObject:
   - component: {fileID: 884361342}
   - component: {fileID: 884361341}
   m_Layer: 0
-  m_Name: Initializer
+  m_Name: CameraManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
