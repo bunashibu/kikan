@@ -14,6 +14,13 @@ namespace Bunashibu.Kikan {
         .First(_ => _player.Level.Cur.Value >= _uniqueInfo.RequireLv )
         .Subscribe(_ => ReplaceUniqueSkill() )
         .AddTo(_player);
+
+      this.UpdateAsObservable()
+        .Take(1)
+        .Where(_ => {
+          return Client.Opponents.Contains(_player);
+        })
+        .Subscribe(_ => _renderer.color = new Color(0, 1, 1, 1));
     }
 
     private void ReplaceUniqueSkill() {
@@ -22,6 +29,7 @@ namespace Bunashibu.Kikan {
     }
 
     [SerializeField] private KoteUniqueInfo _uniqueInfo;
+    [SerializeField] private SpriteRenderer _renderer;
   }
 
   [System.Serializable]
