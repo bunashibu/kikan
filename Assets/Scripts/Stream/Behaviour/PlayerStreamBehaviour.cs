@@ -228,6 +228,7 @@ namespace Bunashibu.Kikan {
       if (player.PlayerInfo.Team == ownerTeam) {
         _teammateHpPanel.Register(player);
         Client.Teammates.Add(player);
+        player.WorldHpBar.gameObject.SetActive(false);
       }
       else {
         Client.Opponents.Add(player);
