@@ -16,6 +16,15 @@ namespace Bunashibu.Kikan {
       _timestamp = Time.time;
 
       this.UpdateAsObservable()
+        .Where(_ => _skillUserObj != null)
+        .Take(1)
+        .Where(_ => {
+          var skillUser = _skillUserObj.GetComponent<Player>();
+          return Client.Opponents.Contains(skillUser);
+        })
+        .Subscribe(_ => _renderer.color = new Color(255.0f / 255.0f, 0, 190.0f / 255.0f, 1));
+
+      this.UpdateAsObservable()
         .Where(_ => Time.time - _timestamp >= _collisionOccurenceTime)
         .Take(1)
         .Subscribe(_ => _collider.enabled = true );
@@ -51,6 +60,7 @@ namespace Bunashibu.Kikan {
 
     [SerializeField] private AttackInfo _attackInfo;
     [SerializeField] private HitInfo _hitInfo;
+    [SerializeField] private SpriteRenderer _renderer;
 
     private SkillSynchronizer _synchronizer;
     private HitRistrictor _hitRistrictor;
@@ -61,4 +71,3 @@ namespace Bunashibu.Kikan {
     private float _collisionOccurenceTime = 1.0f;
   }
 }
-
