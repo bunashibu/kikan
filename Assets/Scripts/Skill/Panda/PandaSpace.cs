@@ -30,8 +30,13 @@ namespace Bunashibu.Kikan {
         .Where(_ => _skillUserObj != null)
         .Take(1)
         .Subscribe(_ => {
-          transform.parent = _skillUserObj.transform;
           _player = _skillUserObj.GetComponent<Player>();
+        });
+
+      this.UpdateAsObservable()
+        .Where(_ => _player != null)
+        .Subscribe(_ => {
+          transform.position = _player.transform.position + _player.Weapon.AppearOffset[4];
         });
 
       this.UpdateAsObservable()
@@ -72,4 +77,3 @@ namespace Bunashibu.Kikan {
     private Player _player;
   }
 }
-
