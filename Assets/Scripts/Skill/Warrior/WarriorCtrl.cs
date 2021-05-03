@@ -20,10 +20,15 @@ namespace Bunashibu.Kikan {
         .Where(_ => _skillUserObj != null)
         .Take(1)
         .Subscribe(_ => {
-          transform.parent = _skillUserObj.transform;
-
           _skillUser = _skillUserObj.GetComponent<IOnAttacked>();
           _skillUser.DamageReactor.SetSlot(Shield);
+        });
+
+      this.UpdateAsObservable()
+        .Where(_ => _skillUserObj != null)
+        .Subscribe(_ => {
+          var player = _skillUserObj.GetComponent<Player>();
+          transform.position = player.transform.position + player.Weapon.AppearOffset[3];
         });
     }
 
@@ -74,4 +79,3 @@ namespace Bunashibu.Kikan {
     private IOnAttacked _skillUser;
   }
 }
-

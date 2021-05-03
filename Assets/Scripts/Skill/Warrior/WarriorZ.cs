@@ -28,8 +28,10 @@ namespace Bunashibu.Kikan {
 
       this.UpdateAsObservable()
         .Where(_ => _skillUserObj != null)
-        .Take(1)
-        .Subscribe(_ => transform.parent = _skillUserObj.transform );
+        .Subscribe(_ => {
+          var player = _skillUserObj.GetComponent<Player>();
+          transform.position = player.transform.position + player.Weapon.AppearOffset[2];
+        });
     }
 
     void OnTriggerStay2D(Collider2D collider) {
@@ -57,4 +59,3 @@ namespace Bunashibu.Kikan {
     private float _existTime = 7.0f;
   }
 }
-
