@@ -10,8 +10,10 @@ namespace Bunashibu.Kikan {
     void Awake() {
       this.UpdateAsObservable()
         .Where(_ => _skillUserObj != null)
-        .Take(1)
-        .Subscribe(_ => transform.parent = _skillUserObj.transform );
+        .Subscribe(_ => {
+          var player = _skillUserObj.GetComponent<Player>();
+          transform.position = player.transform.position + player.Weapon.AppearOffset[4];
+        });
     }
 
     void Start() {
@@ -58,8 +60,9 @@ namespace Bunashibu.Kikan {
     private void InstantiateBuff() {
       var skillUser = _skillUserObj.GetComponent<Player>();
 
-      var buff = PhotonNetwork.Instantiate("Prefabs/Skill/Manji/SpaceBuff", Vector3.zero, Quaternion.identity, 0).GetComponent<SkillBuff>() as SkillBuff;
-      buff.ParentSetter.SetParent(skillUser.PhotonView.viewID);
+      var pos = skillUser.transform.position;
+      var buff = PhotonNetwork.Instantiate("Prefabs/Skill/Manji/SpaceBuff", pos, Quaternion.identity, 0).GetComponent<SkillBuff>() as SkillBuff;
+      buff.SyncInit(skillUser.PhotonView.viewID);
 
       SkillReference.Instance.Register(buff.viewID, _buffTime, () => { PhotonNetwork.Destroy(buff.gameObject); });
     }

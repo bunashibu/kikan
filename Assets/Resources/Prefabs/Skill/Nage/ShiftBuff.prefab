@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2630760772361238954}
   - component: {fileID: 2875717468754078896}
   - component: {fileID: 2875558893007876388}
-  - component: {fileID: 2875457704888797402}
   m_Layer: 18
   m_Name: ShiftBuff
   m_TagString: Untagged
@@ -125,16 +124,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51822a018f827de45a8fec757e015cd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _parentSetter: {fileID: 2875457704888797402}
---- !u!114 &2875457704888797402
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2770645234336631602}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04ad04637f1838e4c86e36376a9287ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  _offset: {x: 0, y: 1.1, z: 0}

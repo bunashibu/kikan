@@ -4,14 +4,15 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   public class SkillBuff : Skill {
+    void Update() {
+      transform.position = _skillUserObj.transform.position + _offset;
+    }
+
     void OnDestroy() {
       if (photonView.isMine)
         SkillReference.Instance.Remove(viewID);
     }
 
-    public ParentSetter ParentSetter => _parentSetter;
-
-    [SerializeField] private ParentSetter _parentSetter;
+    [SerializeField] private Vector3 _offset;
   }
 }
-

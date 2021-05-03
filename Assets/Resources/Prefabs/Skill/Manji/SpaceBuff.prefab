@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 82941143328661002}
   - component: {fileID: 114869149391462112}
   - component: {fileID: 114992145058415476}
-  - component: {fileID: 114609385268279946}
   m_Layer: 18
   m_Name: SpaceBuff
   m_TagString: Untagged
@@ -240,18 +239,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51822a018f827de45a8fec757e015cd2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _parentSetter: {fileID: 114609385268279946}
---- !u!114 &114609385268279946
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1070949912443234}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04ad04637f1838e4c86e36376a9287ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
