@@ -21,6 +21,7 @@ namespace Bunashibu.Kikan {
         if ( ShouldTransitToGroundJump() )           { SyncAnimation( "GroundJump" ); return; }
         if ( ShouldTransitToWalk()       )           { SyncAnimation( "Walk"       ); return; }
         if ( ShouldTransitToIdle()       )           { SyncAnimation( "Idle"       ); return; }
+        if ( Input.GetKeyDown(KeyCode.F) ) { SyncAnimation( "Idle"); return; }
       }
     }
 
@@ -81,4 +82,3 @@ namespace Bunashibu.Kikan {
     private Player _player;
   }
 }
-

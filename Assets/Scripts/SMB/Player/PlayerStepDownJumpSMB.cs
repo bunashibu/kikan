@@ -23,6 +23,7 @@ namespace Bunashibu.Kikan {
         if ( _player.Debuff.State[DebuffType.Stun] ) { SyncAnimation( "Stun" ); return; }
         if ( _fallFlag )                             { SyncAnimation( "Fall" ); return; }
         if ( !_player.FootCollider.isTrigger )       { SyncAnimation( "Idle" ); return; }
+        if ( Input.GetKeyDown(KeyCode.S) ) { SyncAnimation( "Idle"); return; }
       }
     }
 
