@@ -27,6 +27,7 @@ namespace Bunashibu.Kikan {
           if ( _player.State.Rigor                   ) { SyncAnimation( "Skill" ); return; }
           if ( _player.Location.IsAir    && !_player.Location.IsLadder ) { SyncAnimation( "Fall" ); return; }
           if ( _player.Location.IsGround && !_player.Location.IsLadder ) { SyncAnimation( "Idle" ); return; }
+          if ( Input.GetKeyDown(KeyCode.D) ) { SyncAnimation( "Idle"); return; }
         }
       }
     }
