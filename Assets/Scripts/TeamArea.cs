@@ -33,7 +33,7 @@ namespace Bunashibu.Kikan {
           return;
 
         target.State.Invincible = true;
-        MonoUtility.Instance.DelaySec(2.0f, () => { target.State.Invincible = false; } );
+        MonoUtility.Instance.DelaySec(1.0f, () => { target.State.Invincible = false; } );
 
         _synchronizer.SyncAttack(photonView.viewID, target.PhotonView.viewID, _quantity, false, HitEffectType.None);
       }
@@ -50,4 +50,3 @@ namespace Bunashibu.Kikan {
     private float _healTimestamp;
   }
 }
-
