@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using UniRx;
+
 namespace Bunashibu.Kikan {
   public class PlayerLadderJumpSMB : StateMachineBehaviour {
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
@@ -13,15 +15,17 @@ namespace Bunashibu.Kikan {
 
       _player.FootCollider.isTrigger = true;
 
+      _player.Stream.OnLadderJumped
+        .Where(_ => _player.Rigid.velocity.y <= 0)
+        .Take(1)
+        .Subscribe(_ => {
+          _player.FootCollider.isTrigger = false;
+        });
+
       LadderJump();
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-      if (_player.Rigid.velocity.y <= 0)
-        _player.FootCollider.isTrigger = false;
-
-      Debug.Log(_player.Rigid.velocity);
-
       if (_player.PhotonView.isMine) {
         if (!_player.State.Rigor)
           AirMove();

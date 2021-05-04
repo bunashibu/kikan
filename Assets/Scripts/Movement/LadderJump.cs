@@ -7,11 +7,16 @@ namespace Bunashibu.Kikan {
   public class LadderJump {
     // 4.0f is GroundMove force
 
+    public void SetPlayer(Player player) {
+      _player = player;
+    }
+
     public void FixedUpdate(Rigidbody2D rigid) {
       if (_actFlag) {
         ActuallyMove(rigid, () => {
           rigid.AddForce(_direction * 4.0f, ForceMode2D.Impulse);
           rigid.AddForce(Vector2.up * 280.0f);
+          _player.Stream.OnNextLadderJump();
         });
       }
     }
@@ -22,6 +27,7 @@ namespace Bunashibu.Kikan {
           float ratio = (float)((core.GetValue(CoreType.Speed) + 100) / 100.0);
           rigid.AddForce(_direction * 4.0f * ratio, ForceMode2D.Impulse);
           rigid.AddForce(Vector2.up * 280.0f * ratio);
+          _player.Stream.OnNextLadderJump();
         });
       }
     }
@@ -41,5 +47,7 @@ namespace Bunashibu.Kikan {
 
     protected bool _actFlag;
     private Vector2 _direction;
+
+    private Player _player;
   }
 }

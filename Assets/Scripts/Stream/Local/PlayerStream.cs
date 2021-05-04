@@ -14,6 +14,7 @@ namespace Bunashibu.Kikan {
       _fixAtkSubject = new Subject<float>();
       _fixCriticalSubject = new Subject<int>();
       _animationSubject = new Subject<string>();
+      _ladderJumpSubject = new Subject<Unit>();
     }
 
     public void OnNextCore(CoreType type) {
@@ -44,6 +45,10 @@ namespace Bunashibu.Kikan {
       _animationSubject.OnNext(state);
     }
 
+    public void OnNextLadderJump() {
+      _ladderJumpSubject.OnNext(Unit.Default);
+    }
+
     public IObservable<CoreType> OnCoreLevelUpped => _coreSubject;
     public IObservable<int> OnAutoHealed => _autoHealSubject;
     public IObservable<Unit> OnRespawned => _respawnSubject;
@@ -51,6 +56,7 @@ namespace Bunashibu.Kikan {
     public IObservable<float> OnFixAtk => _fixAtkSubject;
     public IObservable<int> OnFixCritical => _fixCriticalSubject;
     public IObservable<string> OnAnimationUpdated => _animationSubject;
+    public IObservable<Unit> OnLadderJumped => _ladderJumpSubject;
 
     private Subject<CoreType> _coreSubject;
     private Subject<int> _autoHealSubject;
@@ -59,6 +65,6 @@ namespace Bunashibu.Kikan {
     private Subject<float> _fixAtkSubject;
     private Subject<int> _fixCriticalSubject;
     private Subject<string> _animationSubject;
+    private Subject<Unit> _ladderJumpSubject;
   }
 }
-

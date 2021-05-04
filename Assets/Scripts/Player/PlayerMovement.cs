@@ -19,6 +19,9 @@ namespace Bunashibu.Kikan {
     }
 
     private PlayerMovement(GameObject playerObj) : this() {
+      _player = playerObj.GetComponent<Player>();
+      _ladderJump.SetPlayer(_player);
+
       playerObj.FixedUpdateAsObservable()
         .Subscribe(_ => FixedUpdate() );
     }
@@ -122,6 +125,7 @@ namespace Bunashibu.Kikan {
       _maxFallVelocity = maxFallVelocity;
     }
 
+    private Player _player;
     private Transform   _trans;
     private Rigidbody2D _rigid;
     private Core        _core;
