@@ -17,9 +17,9 @@ namespace Bunashibu.Kikan {
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-      if (_player.PhotonView.isMine) {
-        UpdateFlag();
+      UpdateFlag();
 
+      if (_player.PhotonView.isMine) {
         if ( _player.Debuff.State[DebuffType.Stun] ) { SyncAnimation( "Stun" ); return; }
         if ( _fallFlag )                             { SyncAnimation( "Fall" ); return; }
         if ( !_player.FootCollider.isTrigger )       { SyncAnimation( "Idle" ); return; }

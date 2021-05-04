@@ -18,9 +18,7 @@ namespace Bunashibu.Kikan {
         LadderMove();
 
         if ( _player.Debuff.State[DebuffType.Stun] ) { SyncAnimation( "Stun"       ); return; }
-        if ( ShouldTransitToLadderWarp() )           { SyncAnimation( "LadderWarp" ); return; }
         if ( ShouldTransitToLadderJump() )           { SyncAnimation( "LadderJump" ); return; }
-        if ( ShouldTransitToIdle()       )           { SyncAnimation( "Idle"       ); return; }
         if ( ShouldTransitToFall()       )           { SyncAnimation( "Fall"       ); return; }
       }
     }
@@ -44,32 +42,20 @@ namespace Bunashibu.Kikan {
         _player.Movement.LadderMoveDown();
     }
 
-    private bool ShouldTransitToLadderWarp() {
-      bool OnlyLeftKeyDown  = Input.GetKey(KeyCode.LeftArrow)  && !Input.GetKey(KeyCode.RightArrow);
-      bool OnlyRightKeyDown = Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow);
-      bool isTouched = _player.BodyCollider.IsTouchingLayers(LayerMask.GetMask("LadderTopEdge"));
-      bool canWarp = _player.BodyCollider.IsTouchingLayers(LayerMask.GetMask("Ground", "CanNotDownGround"));
-
-      return (OnlyLeftKeyDown || OnlyRightKeyDown) && Input.GetButton("Jump") && isTouched && canWarp && !_player.State.Heavy;
-    }
-
     private bool ShouldTransitToLadderJump() {
       bool OnlyLeftKeyDown  = Input.GetKey(KeyCode.LeftArrow)  && !Input.GetKey(KeyCode.RightArrow);
       bool OnlyRightKeyDown = Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow);
-      bool isNotTouched = !_player.BodyCollider.IsTouchingLayers(LayerMask.GetMask("LadderTopEdge"));
 
-      return (OnlyLeftKeyDown || OnlyRightKeyDown) && Input.GetButton("Jump") && isNotTouched && !_player.State.Heavy;
-    }
-
-    private bool ShouldTransitToIdle() {
-      return _player.Location.IsLadderBottomEdge && _player.Location.IsGround;
+      return Input.GetButton("Jump") && (OnlyLeftKeyDown || OnlyRightKeyDown) && !_player.State.Heavy;
     }
 
     private bool ShouldTransitToFall() {
-      return _player.Location.IsAir && !_player.Location.IsLadder;
+      bool IsAscending = _player.Location.IsLadderTopEdge && Input.GetKey(KeyCode.UpArrow);
+      bool IsDescending = _player.Location.IsLadderBottomEdge && Input.GetKey(KeyCode.DownArrow);
+
+      return IsAscending || IsDescending;
     }
 
     private Player _player;
   }
 }
-

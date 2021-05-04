@@ -90,8 +90,8 @@ namespace Bunashibu.Kikan {
       _groundJump.Jump();
     }
 
-    public void LadderJump() {
-      _ladderJump.JumpOff();
+    public void LadderJump(Vector2 direction) {
+      _ladderJump.JumpOff(direction);
     }
 
     public void StepDownJump() {
@@ -139,4 +139,3 @@ namespace Bunashibu.Kikan {
     private float _maxFallVelocity;
   }
 }
-

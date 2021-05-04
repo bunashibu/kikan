@@ -10,7 +10,6 @@ namespace Bunashibu.Kikan {
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-
       if (_player.PhotonView.isMine) {
         if ( _player.Debuff.State[DebuffType.Stun] ) { SyncAnimation( "Stun" ); return; }
 
@@ -37,4 +36,3 @@ namespace Bunashibu.Kikan {
     private Player _player;
   }
 }
-

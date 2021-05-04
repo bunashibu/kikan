@@ -48,10 +48,7 @@ namespace Bunashibu.Kikan {
     }
 
     private bool ShouldTransitToIdle() {
-      bool DownKeyUp = Input.GetKeyUp(KeyCode.DownArrow);
-      bool UpKeyDown = Input.GetKeyDown(KeyCode.UpArrow);
-
-      return _player.Location.IsGround && (DownKeyUp || UpKeyDown);
+      return _player.Location.IsGround && !Input.GetKey(KeyCode.DownArrow);
     }
 
     private Player _player;
@@ -59,4 +56,3 @@ namespace Bunashibu.Kikan {
     private Vector2 _prevSize;
   }
 }
-

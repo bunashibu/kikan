@@ -17,10 +17,10 @@ namespace Bunashibu.Kikan {
       _animator.SetBool(transitState, true);
 
       _currentState = transitState;
+      Debug.Log(_currentState);
     }
 
     private Animator _animator;
     private string _currentState;
   }
 }
-

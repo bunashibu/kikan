@@ -17,10 +17,10 @@ namespace Bunashibu.Kikan {
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-      if (_player.PhotonView.isMine) {
-        if (_player.Location.IsAir)
-          _isAlreadyJumped = true;
+      if (_player.Location.IsAir)
+        _isAlreadyJumped = true;
 
+      if (_player.PhotonView.isMine) {
         AirMove();
 
         if ( _player.Debuff.State[DebuffType.Stun] ) { SyncAnimation( "Stun"   ); return; }
@@ -63,12 +63,7 @@ namespace Bunashibu.Kikan {
     }
 
     private bool ShouldTransitToLadder() {
-      bool OnlyUpKeyDown   = Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow);
-      bool OnlyDownKeyDown = Input.GetKey(KeyCode.DownArrow) && !Input.GetKey(KeyCode.UpArrow);
-      bool LadderFlag      = ( OnlyUpKeyDown   && !_player.Location.IsLadderTopEdge) ||
-                             ( OnlyDownKeyDown && !_player.Location.IsLadderBottomEdge);
-
-      return _player.Location.IsLadder && LadderFlag;
+      return _player.Location.IsLadder && Input.GetKey(KeyCode.UpArrow);
     }
 
     private bool ShouldTransitToFall() {

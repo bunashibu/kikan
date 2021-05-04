@@ -56,4 +56,3 @@ namespace Bunashibu.Kikan {
     private Player _player;
   }
 }
-
