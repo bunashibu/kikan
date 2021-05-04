@@ -8,7 +8,6 @@ namespace Bunashibu.Kikan {
       if (_player == null)
         _player = animator.GetComponent<Player>();
 
-      _isAlreadyJumped = false;
       _player.Movement.GroundJump();
       ApplyInertia();
 
@@ -17,9 +16,6 @@ namespace Bunashibu.Kikan {
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-      if (_player.Location.IsAir)
-        _isAlreadyJumped = true;
-
       if (_player.PhotonView.isMine) {
         AirMove();
 
@@ -67,13 +63,9 @@ namespace Bunashibu.Kikan {
     }
 
     private bool ShouldTransitToFall() {
-      if (_isAlreadyJumped)
-        return _player.Rigid.velocity.y <= 0;
-
-      return false;
+      return _player.Rigid.velocity.y <= 0;
     }
 
     private Player _player;
-    private bool _isAlreadyJumped;
   }
 }
