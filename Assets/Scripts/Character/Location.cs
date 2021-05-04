@@ -74,6 +74,7 @@ namespace Bunashibu.Kikan {
     }
 
     public bool IsGround           => _footCollider.IsTouchingLayers(_groundLayer) || IsCanNotDownGround;
+    public bool IsGroundAbove      => _footCollider.IsTouchingLayers(_groundAboveLayer);
     public bool IsCanNotDownGround => _footCollider.IsTouchingLayers(_canNotDownGroundLayer);
     public bool IsAir              => !IsGround;
     public bool IsLadder           => _centerCollider.IsTouchingLayers(_ladderLayer);
@@ -88,6 +89,7 @@ namespace Bunashibu.Kikan {
     public float SlopeAngle   { get; private set; } // Horizontal raycast
 
     private static readonly LayerMask _groundLayer           = LayerMask.GetMask("Ground");
+    private static readonly LayerMask _groundAboveLayer      = LayerMask.GetMask("GroundAbove");
     private static readonly LayerMask _canNotDownGroundLayer = LayerMask.GetMask("CanNotDownGround");
     private static readonly LayerMask _ladderLayer           = LayerMask.GetMask("Ladder");
     private static readonly LayerMask _ladderTopEdgeLayer    = LayerMask.GetMask("LadderTopEdge");
@@ -98,4 +100,3 @@ namespace Bunashibu.Kikan {
     private Collider2D _centerCollider;
   }
 }
-

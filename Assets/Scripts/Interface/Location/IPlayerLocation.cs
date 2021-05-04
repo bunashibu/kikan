@@ -7,6 +7,7 @@ namespace Bunashibu.Kikan {
     void InitializeFoot(Collider2D footCollider);
     void InitializeCenter(Collider2D centerCollider);
     bool IsGround           { get; }
+    bool IsGroundAbove      { get; }
     bool IsCanNotDownGround { get; }
     bool IsAir              { get; }
     bool IsLadder           { get; }
@@ -21,4 +22,3 @@ namespace Bunashibu.Kikan {
     float SlopeAngle        { get; }
   }
 }
-

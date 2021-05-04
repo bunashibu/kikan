@@ -39,7 +39,7 @@ namespace Bunashibu.Kikan {
 
         if ( _player.Debuff.State[DebuffType.Stun] ) { SyncAnimation( "Stun"  ); return; }
         if ( _player.State.Rigor                   ) { SyncAnimation( "Skill" ); return; }
-        if ( _player.Location.IsGround && !_player.FootCollider.isTrigger ) { SyncAnimation( "Idle" ); return; }
+        if ( _player.Location.IsGroundAbove && !_player.FootCollider.isTrigger ) { SyncAnimation( "Idle" ); return; }
       }
     }
 
