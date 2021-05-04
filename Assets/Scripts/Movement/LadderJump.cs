@@ -14,8 +14,10 @@ namespace Bunashibu.Kikan {
     public void FixedUpdate(Rigidbody2D rigid) {
       if (_actFlag) {
         ActuallyMove(rigid, () => {
+          Debug.Log("A:" + rigid.velocity);
           rigid.AddForce(_direction * 4.0f, ForceMode2D.Impulse);
-          rigid.AddForce(Vector2.up * 280.0f);
+          rigid.AddForce(Vector2.up * 5.0f, ForceMode2D.Impulse);
+          Debug.Log("B:" + rigid.velocity);
           _player.Stream.OnNextLadderJump();
         });
       }
@@ -26,15 +28,13 @@ namespace Bunashibu.Kikan {
         ActuallyMove(rigid, () => {
           float ratio = (float)((core.GetValue(CoreType.Speed) + 100) / 100.0);
           rigid.AddForce(_direction * 4.0f * ratio, ForceMode2D.Impulse);
-          rigid.AddForce(Vector2.up * 280.0f * ratio);
+          rigid.AddForce(Vector2.up * 5.0f * ratio, ForceMode2D.Impulse);
           _player.Stream.OnNextLadderJump();
         });
       }
     }
 
     private void ActuallyMove(Rigidbody2D rigid, Action action) {
-      rigid.velocity = new Vector2(rigid.velocity.x, 0);
-
       action();
 
       _actFlag = false;

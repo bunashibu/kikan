@@ -15,17 +15,24 @@ namespace Bunashibu.Kikan {
 
       _player.FootCollider.isTrigger = true;
 
+      _alreadyJumped = false;
       _player.Stream.OnLadderJumped
-        .Where(_ => _player.Rigid.velocity.y <= 0)
         .Take(1)
         .Subscribe(_ => {
-          _player.FootCollider.isTrigger = false;
+          _alreadyJumped = true;
         });
 
       LadderJump();
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
+      Debug.Log(_player.Rigid.velocity);
+
+      if (_alreadyJumped && _player.Rigid.velocity.y <= 0) {
+        Debug.Log("COLLIDER ON");
+        _player.FootCollider.isTrigger = false;
+      }
+
       if (_player.PhotonView.isMine) {
         if (!_player.State.Rigor)
           AirMove();
@@ -79,5 +86,6 @@ namespace Bunashibu.Kikan {
     }
 
     private Player _player;
+    private bool _alreadyJumped;
   }
 }
