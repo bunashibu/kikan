@@ -65,6 +65,13 @@ namespace Bunashibu.Kikan {
 
         return;
       }
+
+      _player.Movement.LadderJump(Vector2.left);
+
+      foreach (var sprite in _player.Renderers)
+        sprite.flipX = false;
+
+      Debug.LogError("If come here, it's bug");
     }
 
     private void AirMove() {
