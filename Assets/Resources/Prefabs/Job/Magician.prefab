@@ -99,7 +99,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4488587248334202}
   - component: {fileID: 212508821171830732}
-  - component: {fileID: 95863565720761398}
   - component: {fileID: 114797927543078298}
   - component: {fileID: 114626993203521800}
   - component: {fileID: 114317704787535144}
@@ -171,31 +170,12 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.8, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &95863565720761398
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1090430321716052}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4aa87ffba1b84734caa59bbef06b4e7b, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114797927543078298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -346,6 +326,8 @@ MonoBehaviour:
   - 0.4
   - 0.55
   - 0.3
+  _renderer: {fileID: 212508821171830732}
+  _opponentSprite: {fileID: 21300000, guid: adf2ce104efdaa846b96acbcd673337c, type: 3}
 --- !u!114 &114183498227690234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -359,7 +341,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _renderer: {fileID: 212508821171830732}
-  _anim: {fileID: 95863565720761398}
+  _anim: {fileID: 0}
 --- !u!1 &1126506511417304
 GameObject:
   m_ObjectHideFlags: 0

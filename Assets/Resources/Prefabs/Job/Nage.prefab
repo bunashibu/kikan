@@ -1533,7 +1533,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8343349636585937381}
   - component: {fileID: 8157647751156495249}
-  - component: {fileID: 5386703716031515595}
   - component: {fileID: 8237544711751976919}
   - component: {fileID: 8238148905891555187}
   - component: {fileID: 3332793363424560549}
@@ -1611,25 +1610,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &5386703716031515595
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8342211117149193169}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &8237544711751976919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1780,11 +1760,12 @@ MonoBehaviour:
   - 0.4
   - 2.3
   - 0.3
+  _renderer: {fileID: 8157647751156495249}
+  _opponentSprite: {fileID: 21300000, guid: 067f87f6c2c5c524880c45226407c8a9, type: 3}
   _uniqueInfo:
     _requireLv: 2
     _index: 0
     _after: 6
-  _renderer: {fileID: 8157647751156495249}
 --- !u!114 &8237336952678609115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1798,4 +1779,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _renderer: {fileID: 8157647751156495249}
-  _anim: {fileID: 5386703716031515595}
+  _anim: {fileID: 0}

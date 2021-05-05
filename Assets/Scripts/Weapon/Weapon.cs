@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
+using UniRx.Triggers;
 
 namespace Bunashibu.Kikan {
   public class Weapon : MonoBehaviour {
@@ -24,6 +25,13 @@ namespace Bunashibu.Kikan {
           else if (level == 8)
             Stream.OnNextSkillAvailable(4);
         });
+
+      this.UpdateAsObservable()
+        .Take(1)
+        .Where(_ => {
+          return Client.Opponents.Contains(_player);
+        })
+        .Subscribe(_ => _renderer.sprite = _opponentSprite);
     }
 
     public virtual bool IsUsable(int i) {
@@ -68,6 +76,8 @@ namespace Bunashibu.Kikan {
     [SerializeField] private Vector3[] _appearOffset;
     [SerializeField] protected float[] _skillCT;
     [SerializeField] private float[] _rigorCT;
+    [SerializeField] private SpriteRenderer _renderer;
+    [SerializeField] private Sprite _opponentSprite;
 
     protected SkillInstantiator _instantiator;
     protected SkillCTManager _ctManager;

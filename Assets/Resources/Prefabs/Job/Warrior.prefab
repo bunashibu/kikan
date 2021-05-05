@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1470264826802191712}
   - component: {fileID: 1628947588204926740}
-  - component: {fileID: 1530200310364827756}
   - component: {fileID: 1585061592087831378}
   - component: {fileID: 1584473855696372726}
   - component: {fileID: 812177986316272392}
@@ -88,25 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &1530200310364827756
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1471439663916083028}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &1585061592087831378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,6 +237,8 @@ MonoBehaviour:
   - 0.5
   - 0.3
   - 0.3
+  _renderer: {fileID: 1628947588204926740}
+  _opponentSprite: {fileID: 21300000, guid: c08136f46cd890943838c8769b23c941, type: 3}
   _ctrlInfo:
     _index: 3
     _usableSec: 6
@@ -276,7 +258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _renderer: {fileID: 1628947588204926740}
-  _anim: {fileID: 1530200310364827756}
+  _anim: {fileID: 0}
 --- !u!1 &1471452509600103254
 GameObject:
   m_ObjectHideFlags: 0
