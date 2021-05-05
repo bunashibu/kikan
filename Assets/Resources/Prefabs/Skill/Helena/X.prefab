@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 2478593704380331916}
   - component: {fileID: 2349369139814652182}
   - component: {fileID: 2500405003140066172}
-  - component: {fileID: 2538354722116206056}
   - component: {fileID: 2544213113775162580}
   - component: {fileID: 2593483440914790864}
   - component: {fileID: 2593598844713159488}
   - component: {fileID: 2593100750158766124}
+  - component: {fileID: 2418715487524202406}
   m_Layer: 18
   m_Name: X
   m_TagString: Untagged
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 950836439
   m_SortingLayer: 14
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: fa7b0ffc14b28864aa0e5c3431aaf12c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c5ac2322f6f54d44096acfa764201142, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -102,38 +102,19 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.1, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.4, y: 1}
+    oldSize: {x: 0.75, y: 0.21}
     newSize: {x: 1.4, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.3, y: 1}
+  m_Size: {x: 1, y: 0.2}
   m_EdgeRadius: 0
---- !u!95 &2538354722116206056
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2479235629154356500}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b68428bbb20f1eb428337278b9a8661a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!82 &2544213113775162580
 AudioSource:
   m_ObjectHideFlags: 0
@@ -347,3 +328,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35c675ff03893fd4089b099279ed1c0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2418715487524202406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2479235629154356500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8fd83ab63feb1c45a0a89cb2f398a96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _attackInfo:
+    _damagePercent: 100
+    _maxDeviation: 10
+    _criticalPercent: 0
+  _hitInfo:
+    _maxTargetCount: 2
+    _maxHitCount: 1
+    _interval: 0
