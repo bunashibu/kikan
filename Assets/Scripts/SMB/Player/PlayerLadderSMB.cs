@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using System;
+
 namespace Bunashibu.Kikan {
   public class PlayerLadderSMB : StateMachineBehaviour {
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
@@ -11,6 +13,21 @@ namespace Bunashibu.Kikan {
       _player.Rigid.isKinematic = true;
       _player.Rigid.velocity = new Vector2(0.0f, 0.0f);
       _player.FootCollider.isTrigger = true;
+
+      Array.Clear(_buffers, 0, 1);
+
+      var filter = new ContactFilter2D {
+        layerMask = LayerMask.GetMask("LadderArea"),
+        useLayerMask = true,
+        useTriggers = true
+      };
+      _player.BodyCollider.OverlapCollider(filter, _buffers);
+
+      if (_buffers[0] != null) {
+        Debug.Log(_buffers[0]);
+        Debug.Log(_buffers[0].transform.position);
+        _player.transform.position = new Vector3(_buffers[0].transform.position.x, _player.transform.position.y, 0);
+      }
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
@@ -57,5 +74,6 @@ namespace Bunashibu.Kikan {
     }
 
     private Player _player;
+    private Collider2D[] _buffers = new Collider2D[1];
   }
 }
