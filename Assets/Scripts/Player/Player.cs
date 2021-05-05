@@ -34,6 +34,7 @@ namespace Bunashibu.Kikan {
       Debuff.Register(DebuffType.Stun, _stunEffect);
       Debuff.Register(DebuffType.Heavy, _heavyEffect);
       Debuff.Register(DebuffType.Slow, _slowEffect);
+      Debuff.Register(DebuffType.Slip, _slipEffect);
 
       Stream = new PlayerStream();
       Synchronizer.SetStream(Stream);
@@ -185,6 +186,7 @@ namespace Bunashibu.Kikan {
     [SerializeField] private GameObject _stunEffect;
     [SerializeField] private GameObject _heavyEffect;
     [SerializeField] private GameObject _slowEffect;
+    [SerializeField] private GameObject _slipEffect;
 
     [Header("CoreInfo")]
     [SerializeField] private CoreInfo _speedCoreInfo;

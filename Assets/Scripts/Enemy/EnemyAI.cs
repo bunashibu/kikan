@@ -6,11 +6,17 @@ namespace Bunashibu.Kikan {
   [RequireComponent(typeof(Enemy))]
   public class EnemyAI : MonoBehaviour {
     void Update() {
+      if ( _enemy.Debuff.State[DebuffType.Slip] )
+        return;
+
       if (_enemy.PhotonView.isMine && !_enemy.TargetChaseSystem.IsEnable)
         UpdateBehaviour();
     }
 
     void FixedUpdate() {
+      if ( _enemy.Debuff.State[DebuffType.Slip] )
+        return;
+
       _enemy.Movement.FixedUpdate(_enemy.Rigid);
     }
 
@@ -69,4 +75,3 @@ namespace Bunashibu.Kikan {
     public string _strategy = "Stay";
   }
 }
-

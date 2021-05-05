@@ -13,6 +13,8 @@ namespace Bunashibu.Kikan {
     void Update() {
       if ( _enemy.Debuff.State[DebuffType.Stun] )
         return;
+      if ( _enemy.Debuff.State[DebuffType.Slip] )
+        return;
 
       if (!IsEnable)
         return;
@@ -98,4 +100,3 @@ namespace Bunashibu.Kikan {
     private bool _leftFlag;
   }
 }
-

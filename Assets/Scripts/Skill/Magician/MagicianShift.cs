@@ -27,6 +27,7 @@ namespace Bunashibu.Kikan {
         var direction = transform.eulerAngles.y == 180 ? Vector2.right : Vector2.left;
 
         _synchronizer.SyncAttack(_skillUserViewID, target.PhotonView.viewID, DamageCalculator.Damage, DamageCalculator.IsCritical, HitEffectType.Magician);
+        _synchronizer.SyncDebuff(target.PhotonView.viewID, DebuffType.Slip, _duration);
         _synchronizer.SyncForce(target.PhotonView.viewID, _force, direction, false);
       }
     }
@@ -34,10 +35,10 @@ namespace Bunashibu.Kikan {
     [SerializeField] private AttackInfo _attackInfo;
     [SerializeField] private HitInfo _hitInfo;
     [SerializeField] private float _force;
+    [SerializeField] private float _duration;
 
     private SkillSynchronizer _synchronizer;
     private HitRistrictor _hitRistrictor;
     private SpriteRenderer _renderer;
   }
 }
-

@@ -369,3 +369,4 @@ MonoBehaviour:
     _maxHitCount: 1
     _interval: 0
   _force: 7
+  _duration: 0.4

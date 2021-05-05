@@ -9,7 +9,9 @@ namespace Bunashibu.Kikan {
         _player = animator.GetComponent<Player>();
 
       _player.Movement.GroundJump();
-      ApplyInertia();
+
+      if ( !_player.Debuff.State[DebuffType.Slip] )
+        ApplyInertia();
 
       if (_player.PhotonView.isMine)
         _player.AudioEnvironment.PlayOneShot("Jump", 0.4f);

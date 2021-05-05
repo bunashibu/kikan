@@ -776,6 +776,8 @@ MonoBehaviour:
     type: 3}
   _slowEffect: {fileID: 6647887535221933396, guid: 0ef43ff63ef490e438b78b8f8f7be493,
     type: 3}
+  _slipEffect: {fileID: 4721954282478795695, guid: 699e3af7b13501645899834efa28f780,
+    type: 3}
   _speedCoreInfo: {fileID: 11400000, guid: ee538c803e6b7d34fb16311e882cd98d, type: 2}
   _hpCoreInfo: {fileID: 11400000, guid: 22fc32fd35f8f3a43aac545cd5ffef2f, type: 2}
   _attackCoreInfo: {fileID: 11400000, guid: 3802f8fc58bfd1846927a44ea5acbc56, type: 2}

@@ -32,36 +32,40 @@ namespace Bunashibu.Kikan {
       bool OnlyRightKeyDown = Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow);
 
       if (OnlyLeftKeyDown)  {
-        float angle;
+        if ( !_player.Debuff.State[DebuffType.Slip] ) {
+          float angle;
 
-        if (_player.Location.IsLeftSlope)
-          angle = _player.Location.SlopeAngle;
-        else if (_player.Location.IsRightSlope)
-          angle = _player.Location.GroundAngle * -1;
-        else if (_player.Location.IsRightGround)
-          angle = _player.Location.GroundAngle * -1;
-        else
-          angle = _player.Location.GroundAngle;
+          if (_player.Location.IsLeftSlope)
+            angle = _player.Location.SlopeAngle;
+          else if (_player.Location.IsRightSlope)
+            angle = _player.Location.GroundAngle * -1;
+          else if (_player.Location.IsRightGround)
+            angle = _player.Location.GroundAngle * -1;
+          else
+            angle = _player.Location.GroundAngle;
 
-        _player.Movement.GroundMoveLeft(angle);
+          _player.Movement.GroundMoveLeft(angle);
+        }
 
         foreach (var sprite in _player.Renderers)
           sprite.flipX = false;
       }
 
       if (OnlyRightKeyDown) {
-        float angle;
+        if ( !_player.Debuff.State[DebuffType.Slip] ) {
+          float angle;
 
-        if (_player.Location.IsRightSlope)
-          angle = _player.Location.SlopeAngle;
-        else if (_player.Location.IsLeftSlope)
-          angle = _player.Location.GroundAngle * -1;
-        else if (_player.Location.IsLeftGround)
-          angle = _player.Location.GroundAngle * -1;
-        else
-          angle = _player.Location.GroundAngle;
+          if (_player.Location.IsRightSlope)
+            angle = _player.Location.SlopeAngle;
+          else if (_player.Location.IsLeftSlope)
+            angle = _player.Location.GroundAngle * -1;
+          else if (_player.Location.IsLeftGround)
+            angle = _player.Location.GroundAngle * -1;
+          else
+            angle = _player.Location.GroundAngle;
 
-        _player.Movement.GroundMoveRight(angle);
+          _player.Movement.GroundMoveRight(angle);
+        }
 
         foreach (var sprite in _player.Renderers)
           sprite.flipX = true;

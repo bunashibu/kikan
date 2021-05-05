@@ -634,6 +634,8 @@ MonoBehaviour:
     type: 3}
   _slowEffect: {fileID: 6647887535221933396, guid: 0ef43ff63ef490e438b78b8f8f7be493,
     type: 3}
+  _slipEffect: {fileID: 4721954282478795695, guid: 699e3af7b13501645899834efa28f780,
+    type: 3}
   _ai: {fileID: 114908752689618040}
   _targetChaseSystem: {fileID: 114277877701616302}
   _worldHpBar: {fileID: 114037160981840974}
