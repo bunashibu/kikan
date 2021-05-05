@@ -14,6 +14,14 @@ namespace Bunashibu.Kikan {
           var player = _skillUserObj.GetComponent<Player>();
           transform.position = player.transform.position + player.Weapon.AppearOffset[1];
         });
+
+      this.UpdateAsObservable()
+        .Where(_ => _skillUserObj != null)
+        .Take(1)
+        .Subscribe(_ => {
+          _skillUser = _skillUserObj.GetComponent<IOnAttacked>();
+          _skillUser.DamageReactor.SetSlot(new Reduce(_reduceRatio));
+        });
     }
 
     void Start() {
@@ -28,6 +36,9 @@ namespace Bunashibu.Kikan {
         ResetStatus();
         SkillReference.Instance.Remove(viewID);
       }
+
+      if (_skillUser != null)
+        _skillUser.DamageReactor.SetSlot(new Passing());
     }
 
     private void EnhanceStatus() {
@@ -58,6 +69,9 @@ namespace Bunashibu.Kikan {
     private Action ResetStatus;
     private FixSpd _shiftFixSpd;
     private float _spdRatio = 1.1f;
-    private float _buffTime = 6.0f;
+    private float _buffTime = 4.0f;
+    private float _reduceRatio = 0.3f;
+
+    private IOnAttacked _skillUser;
   }
 }
