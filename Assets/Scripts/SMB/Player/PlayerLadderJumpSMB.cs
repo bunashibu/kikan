@@ -29,7 +29,6 @@ namespace Bunashibu.Kikan {
         .Where(_ => _player.Rigid.velocity.y <= 0)
         .Take(1)
         .Subscribe(_ => {
-          Debug.Log("COLLIDER ON");
           _player.FootCollider.isTrigger = false;
         });
 
@@ -37,8 +36,6 @@ namespace Bunashibu.Kikan {
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-      Debug.Log(_player.Rigid.velocity);
-
       if (_player.PhotonView.isMine) {
         if (!_player.State.Rigor)
           AirMove();

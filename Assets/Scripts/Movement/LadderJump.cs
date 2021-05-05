@@ -14,10 +14,8 @@ namespace Bunashibu.Kikan {
     public void FixedUpdate(Rigidbody2D rigid) {
       if (_actFlag) {
         ActuallyMove(rigid, () => {
-          Debug.Log("A:" + rigid.velocity);
           rigid.AddForce(_direction * 4.0f, ForceMode2D.Impulse);
           rigid.AddForce(Vector2.up * 5.0f, ForceMode2D.Impulse);
-          Debug.Log("B:" + rigid.velocity);
           _player.Stream.OnNextLadderJump();
         });
       }

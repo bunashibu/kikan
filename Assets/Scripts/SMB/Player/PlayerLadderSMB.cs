@@ -23,11 +23,8 @@ namespace Bunashibu.Kikan {
       };
       _player.BodyCollider.OverlapCollider(filter, _buffers);
 
-      if (_buffers[0] != null) {
-        Debug.Log(_buffers[0]);
-        Debug.Log(_buffers[0].transform.position);
+      if (_buffers[0] != null)
         _player.transform.position = new Vector3(_buffers[0].transform.position.x, _player.transform.position.y, 0);
-      }
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
