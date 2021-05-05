@@ -55,7 +55,8 @@ namespace Bunashibu.Kikan {
              ( _shouldUseUnique         ) &&
              ( !_player.State.Rigor     ) &&
              ( IsPlayerMineAndAlive()   ) &&
-             ( CanInstantiate.Value     );
+             ( CanInstantiate.Value     ) &&
+             ( !_player.Debuff.State[DebuffType.Stun] );
     }
 
     private bool IsPlayerMineAndAlive() {
@@ -84,10 +85,10 @@ namespace Bunashibu.Kikan {
       if (Time.time == _instantiatedTimestamp)
         return;
 
-      int i = _uniqueInfo.Index;
+      int n = _uniqueInfo.Index;
 
-      for (int k=0; k < KeysList[i].keys.Count; ++k) {
-        if (Input.GetKeyDown(KeysList[i].keys[k])) {
+      for (int i=0; i < KeysList[n].keys.Count; ++i) {
+        if (Input.GetKeyDown(KeysList[n].keys[i])) {
           _shouldUseUnique = true;
           break;
         }
