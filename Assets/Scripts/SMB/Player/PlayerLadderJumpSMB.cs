@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using UniRx;
+using UniRx.Triggers;
+using System;
 
 namespace Bunashibu.Kikan {
   public class PlayerLadderJumpSMB : StateMachineBehaviour {
@@ -16,10 +18,19 @@ namespace Bunashibu.Kikan {
       _player.FootCollider.isTrigger = true;
 
       _alreadyJumped = false;
-      _player.Stream.OnLadderJumped
+      _disposable = _player.Stream.OnLadderJumped
         .Take(1)
         .Subscribe(_ => {
           _alreadyJumped = true;
+        });
+
+      _player.UpdateAsObservable()
+        .Where(_ => _alreadyJumped)
+        .Where(_ => _player.Rigid.velocity.y <= 0)
+        .Take(1)
+        .Subscribe(_ => {
+          Debug.Log("COLLIDER ON");
+          _player.FootCollider.isTrigger = false;
         });
 
       LadderJump();
@@ -27,11 +38,6 @@ namespace Bunashibu.Kikan {
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
       Debug.Log(_player.Rigid.velocity);
-
-      if (_alreadyJumped && _player.Rigid.velocity.y <= 0) {
-        Debug.Log("COLLIDER ON");
-        _player.FootCollider.isTrigger = false;
-      }
 
       if (_player.PhotonView.isMine) {
         if (!_player.State.Rigor)
@@ -41,6 +47,11 @@ namespace Bunashibu.Kikan {
         if ( _player.State.Rigor                   ) { SyncAnimation( "Skill" ); return; }
         if ( _player.Location.IsGroundAbove && !_player.FootCollider.isTrigger ) { SyncAnimation( "Idle" ); return; }
       }
+    }
+
+    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
+      _alreadyJumped = true;
+      _disposable.Dispose();
     }
 
     private void SyncAnimation(string state) {
@@ -94,5 +105,6 @@ namespace Bunashibu.Kikan {
 
     private Player _player;
     private bool _alreadyJumped;
+    private IDisposable _disposable;
   }
 }

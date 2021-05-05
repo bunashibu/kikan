@@ -81,6 +81,8 @@ namespace Bunashibu.Kikan {
     public bool IsLadderTopEdge    => _centerCollider.IsTouchingLayers(_ladderTopEdgeLayer);
     public bool IsLadderBottomEdge => _centerCollider.IsTouchingLayers(_ladderBottomEdgeLayer);
     public bool IsPortal           => _centerCollider.IsTouchingLayers(_portalLayer);
+    public bool GrabTopLadder      => _centerCollider.IsTouchingLayers(_grabTopLayer);
+    public bool GrabBottomLadder   => _centerCollider.IsTouchingLayers(_grabBottomLayer);
     public bool IsLeftSlope   { get; private set; }
     public bool IsRightSlope  { get; private set; }
     public bool IsLeftGround  { get; private set; } // Use on a top slope
@@ -95,6 +97,8 @@ namespace Bunashibu.Kikan {
     private static readonly LayerMask _ladderTopEdgeLayer    = LayerMask.GetMask("LadderTopEdge");
     private static readonly LayerMask _ladderBottomEdgeLayer = LayerMask.GetMask("LadderBottomEdge");
     private static readonly LayerMask _portalLayer           = LayerMask.GetMask("Portal");
+    private static readonly LayerMask _grabTopLayer          = LayerMask.GetMask("GrabTopLadder");
+    private static readonly LayerMask _grabBottomLayer       = LayerMask.GetMask("GrabBottomLadder");
 
     private Collider2D _footCollider;
     private Collider2D _centerCollider;

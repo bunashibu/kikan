@@ -29,8 +29,8 @@ TagManager:
   - Fade
   - GameManager
   - GroundAbove
-  - 
-  - 
+  - GrabTopLadder
+  - GrabBottomLadder
   - 
   - 
   - 

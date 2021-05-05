@@ -14,6 +14,8 @@ namespace Bunashibu.Kikan {
     bool IsLadderTopEdge    { get; }
     bool IsLadderBottomEdge { get; }
     bool IsPortal           { get; }
+    bool GrabTopLadder      { get; }
+    bool GrabBottomLadder   { get; }
     bool IsLeftSlope        { get; }
     bool IsRightSlope       { get; }
     bool IsLeftGround       { get; }

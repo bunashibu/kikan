@@ -28,10 +28,8 @@ namespace Bunashibu.Kikan {
     private bool ShouldTransitToLadder() {
       bool OnlyUpKeyDown   = Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow);
       bool OnlyDownKeyDown = Input.GetKey(KeyCode.DownArrow) && !Input.GetKey(KeyCode.UpArrow);
-      bool LadderFlag      = ( OnlyUpKeyDown   && !_player.Location.IsLadderTopEdge) ||
-                             ( OnlyDownKeyDown && !_player.Location.IsLadderBottomEdge);
 
-      return _player.Location.IsLadder && LadderFlag;
+      return (OnlyUpKeyDown && _player.Location.GrabBottomLadder) || (OnlyDownKeyDown && _player.Location.GrabTopLadder);
     }
 
     private bool ShouldTransitToWalk() {
