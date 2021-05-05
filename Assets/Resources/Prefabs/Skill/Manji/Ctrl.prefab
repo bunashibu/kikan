@@ -371,3 +371,4 @@ MonoBehaviour:
   _groundLayer:
     serializedVersion: 2
     m_Bits: 33024
+  _boxCollider: {fileID: 61199480253217024}

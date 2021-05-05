@@ -82,16 +82,22 @@ namespace Bunashibu.Kikan {
     private void TranslateVertically(Vector2 direction) {
       var skillUser = _skillUserObj.GetComponent<Player>();
 
-      if (skillUser.Location.IsCanNotDownGround && (direction.y == -1))
-        return;
-
       var halfCharaHeight = skillUser.BodyCollider.bounds.size.y / 2;
 
-      transform.Rotate(0.0f, 0.0f, 90f);
+      if (direction == Vector2.up)
+        transform.Rotate(0.0f, 0.0f, 270f);
+      else if (direction == Vector2.down)
+        transform.Rotate(0.0f, 0.0f, 90f);
+
+      _boxCollider.size = new Vector2(4f, 0.2f);
+      _boxCollider.offset = new Vector2(-0.5f, 0);
 
       // 1.4f is ManjiCtrl AppearOffset. See Weapon Inspector
       float faceDirection = (skillUser.Renderers[0].flipX) ? 1.4f : -1.4f;
       transform.Translate(-faceDirection, direction.y * 1.4f, 0.0f, Space.World);
+
+      if (skillUser.Location.IsCanNotDownGround && (direction.y == -1))
+        return;
 
       Vector2 moveVector = direction * _moveDistance;
       Vector2 footOrigin = new Vector2(skillUser.transform.position.x, skillUser.transform.position.y - halfCharaHeight);
@@ -138,6 +144,7 @@ namespace Bunashibu.Kikan {
     [SerializeField] private AttackInfo _attackInfo;
     [SerializeField] private HitInfo _hitInfo;
     [SerializeField] private LayerMask _groundLayer;
+    [SerializeField] private BoxCollider2D _boxCollider;
 
     private SkillSynchronizer _synchronizer;
     private HitRistrictor _hitRistrictor;
@@ -145,4 +152,3 @@ namespace Bunashibu.Kikan {
     private float _moveDistance = 3;
   }
 }
-
