@@ -14,6 +14,16 @@ namespace Bunashibu.Kikan {
           var player = _skillUserObj.GetComponent<Player>();
           transform.position = player.transform.position + player.Weapon.AppearOffset[4];
         });
+
+      _renderer = GetComponent<SpriteRenderer>();
+      this.UpdateAsObservable()
+        .Where(_ => _skillUserObj != null)
+        .Take(1)
+        .Where(_ => {
+          var skillUser = _skillUserObj.GetComponent<Player>();
+          return Client.Opponents.Contains(skillUser);
+        })
+        .Subscribe(_ => _renderer.color = new Color(1, 0, 0, 1));
     }
 
     void Start() {
@@ -66,6 +76,8 @@ namespace Bunashibu.Kikan {
 
       SkillReference.Instance.Register(buff.viewID, _buffTime, () => { PhotonNetwork.Destroy(buff.gameObject); });
     }
+
+    private SpriteRenderer _renderer;
 
     private Action ResetStatus;
     private float _buffTime = 20.0f;

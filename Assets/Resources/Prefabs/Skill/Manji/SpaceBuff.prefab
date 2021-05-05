@@ -241,3 +241,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51822a018f827de45a8fec757e015cd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _offset: {x: 0, y: 0, z: 0}
+  _opponentColor: {r: 1, g: 0, b: 0, a: 1}
