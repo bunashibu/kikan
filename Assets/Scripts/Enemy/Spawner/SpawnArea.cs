@@ -10,10 +10,11 @@ namespace Bunashibu.Kikan {
       _boxCollider = GetComponent<BoxCollider2D>();
 
       if (_xRange.Count == 0) {
+        var posX = transform.position.x;
         var margin = 1;
-        var half = _boxCollider.size.x / 2 - margin;
-        _xRange.Add(-half);
-        _xRange.Add(half);
+        var halfX = _boxCollider.size.x / 2 - margin;
+        _xRange.Add(posX - halfX);
+        _xRange.Add(posX + halfX);
       }
     }
 
@@ -23,6 +24,7 @@ namespace Bunashibu.Kikan {
           return _a[i] * x + _b[i] + offsetY;
       }
 
+      Debug.Log(gameObject);
       throw new ArgumentOutOfRangeException();
     }
 
