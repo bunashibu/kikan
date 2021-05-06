@@ -10,8 +10,10 @@ namespace Bunashibu.Kikan {
       _boxCollider = GetComponent<BoxCollider2D>();
 
       if (_xRange.Count == 0) {
-        _xRange.Add(-_boxCollider.size.x);
-        _xRange.Add(_boxCollider.size.x);
+        var margin = 1;
+        var half = _boxCollider.size.x / 2 - margin;
+        _xRange.Add(-half);
+        _xRange.Add(half);
       }
     }
 
