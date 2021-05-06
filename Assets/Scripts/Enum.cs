@@ -43,7 +43,8 @@ namespace Bunashibu.Kikan {
     Stun,
     Heavy,
     Slow,
-    Slip
+    Slip,
+    Ice
   }
 
   public enum CoreType {

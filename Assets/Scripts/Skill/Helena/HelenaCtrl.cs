@@ -44,7 +44,7 @@ namespace Bunashibu.Kikan {
         DamageCalculator.Calculate(_skillUserObj, _attackInfo);
 
         _synchronizer.SyncAttack(_skillUserViewID, target.PhotonView.viewID, DamageCalculator.Damage, DamageCalculator.IsCritical, HitEffectType.Helena);
-        _synchronizer.SyncDebuff(target.PhotonView.viewID, DebuffType.Slow, _duration);
+        _synchronizer.SyncDebuff(target.PhotonView.viewID, DebuffType.Ice, _duration);
       }
     }
 

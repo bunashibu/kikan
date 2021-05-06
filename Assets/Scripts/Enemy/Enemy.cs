@@ -18,6 +18,7 @@ namespace Bunashibu.Kikan {
       Debuff.Register(DebuffType.Heavy, _heavyEffect);
       Debuff.Register(DebuffType.Slow, _slowEffect);
       Debuff.Register(DebuffType.Slip, _slipEffect);
+      Debuff.Register(DebuffType.Ice, _iceEffect);
 
       FixSpd        = new ReactiveCollection<FixSpd>();
 
@@ -96,6 +97,7 @@ namespace Bunashibu.Kikan {
     [SerializeField] private GameObject _heavyEffect;
     [SerializeField] private GameObject _slowEffect;
     [SerializeField] private GameObject _slipEffect;
+    [SerializeField] private GameObject _iceEffect;
 
     // tmp
     [Space(10)]
