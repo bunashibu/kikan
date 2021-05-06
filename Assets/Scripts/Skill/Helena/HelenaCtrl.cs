@@ -54,7 +54,7 @@ namespace Bunashibu.Kikan {
     private SkillSynchronizer _synchronizer;
     private HitRistrictor _hitRistrictor;
     private float _duration = 2.0f;
-    private float _existTime = 0.5f;
+    private float _existTime = 0.6f;
     private float _moveSpeed = 8.0f;
   }
 }
