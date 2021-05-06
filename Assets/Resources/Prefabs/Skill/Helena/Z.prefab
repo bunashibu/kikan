@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8314693599580161198}
   - component: {fileID: 8313661250942285374}
   - component: {fileID: 8314442955463515474}
+  - component: {fileID: -4441644335305608689}
   m_Layer: 18
   m_Name: Z
   m_TagString: Untagged
@@ -32,7 +33,7 @@ Transform:
   m_GameObject: {fileID: 8283910952447455338}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.4, y: 1.4, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -78,7 +79,8 @@ SpriteRenderer:
   m_SortingLayerID: 950836439
   m_SortingLayer: 14
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: fa7b0ffc14b28864aa0e5c3431aaf12c, type: 3}
+  m_Sprite: {fileID: -2450345581980073669, guid: 20f0a724cdff8a543bb9487b2f21ce64,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -106,14 +108,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.4, y: 1}
+    oldSize: {x: 3.5, y: 1.5}
     newSize: {x: 1.4, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.3, y: 1}
+  m_Size: {x: 2.45, y: 0.88}
   m_EdgeRadius: 0
 --- !u!95 &8332876055745265814
 Animator:
@@ -125,7 +127,7 @@ Animator:
   m_GameObject: {fileID: 8283910952447455338}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b68428bbb20f1eb428337278b9a8661a, type: 2}
+  m_Controller: {fileID: 9100000, guid: 273e6acb327f3414f965bb5c5be716b0, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -347,3 +349,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35c675ff03893fd4089b099279ed1c0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-4441644335305608689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8283910952447455338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ad37771418bd0348a5b65fd328f9539, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _attackInfo:
+    _damagePercent: 0
+    _maxDeviation: 0
+    _criticalPercent: 0
+  _hitInfo:
+    _maxTargetCount: 0
+    _maxHitCount: 0
+    _interval: 0
