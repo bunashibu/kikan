@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 using UniRx.Triggers;
+using System;
 
 namespace Bunashibu.Kikan {
   [RequireComponent(typeof(SkillSynchronizer))]
@@ -34,6 +35,11 @@ namespace Bunashibu.Kikan {
           Vector2 direction = (skillUser.Renderers[0].flipX) ? Vector2.left : Vector2.right;
           _synchronizer.SyncForce(skillUser.PhotonView.viewID, _force, direction, false);
         });
+
+      Observable.Timer(TimeSpan.FromSeconds(_firstDamageTime))
+        .Subscribe(_ => {
+          _attackInfo = new AttackInfo(_continuousDamagePercent, _attackInfo.MaxDeviation, _attackInfo.CriticalPercent);
+        });
     }
 
     void OnTriggerStay2D(Collider2D collider) {
@@ -52,6 +58,7 @@ namespace Bunashibu.Kikan {
       }
     }
 
+
     [SerializeField] private AttackInfo _attackInfo;
     [SerializeField] private HitInfo _hitInfo;
 
@@ -59,5 +66,7 @@ namespace Bunashibu.Kikan {
     private HitRistrictor _hitRistrictor;
     private float _existTime = 5.0f;
     private float _force = 15.0f;
+    private int _continuousDamagePercent = 20;
+    private float _firstDamageTime = 0.3f;
   }
 }

@@ -367,5 +367,5 @@ MonoBehaviour:
     _criticalPercent: 0
   _hitInfo:
     _maxTargetCount: 3
-    _maxHitCount: 5
-    _interval: 0.4
+    _maxHitCount: 6
+    _interval: 0.6
