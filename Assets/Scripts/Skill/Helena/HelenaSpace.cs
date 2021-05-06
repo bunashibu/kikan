@@ -33,6 +33,12 @@ namespace Bunashibu.Kikan {
               CameraManager.Instance.SetTrackTarget(_player.gameObject);
             });
         });
+
+      this.UpdateAsObservable()
+        .Where(_ => _player != null)
+        .Where(_ => _player.Level.Cur.Value >= 11)
+        .Take(1)
+        .Subscribe(_ => _attackInfo = new AttackInfo(130, _attackInfo.MaxDeviation, _attackInfo.CriticalPercent));
     }
 
     void OnTriggerStay2D(Collider2D collider) {
