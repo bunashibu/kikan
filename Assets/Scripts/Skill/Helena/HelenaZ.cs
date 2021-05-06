@@ -27,6 +27,7 @@ namespace Bunashibu.Kikan {
 
       this.UpdateAsObservable()
         .Where(_ => _skillUserObj != null)
+        .Where(_ => photonView.isMine)
         .Take(1)
         .Subscribe(_ => {
           var skillUser = _skillUserObj.GetComponent<Player>();
