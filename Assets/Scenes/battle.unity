@@ -22224,7 +22224,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _team: 0
-  _quantity: 1000
 --- !u!61 &1446305615
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -23023,7 +23022,8 @@ MonoBehaviour:
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 8
   instantiationId: 8
@@ -30247,7 +30247,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _team: 1
-  _quantity: 1000
 --- !u!61 &2073973861
 BoxCollider2D:
   m_ObjectHideFlags: 0
