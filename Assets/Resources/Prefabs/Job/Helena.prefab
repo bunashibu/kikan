@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7059743108678608934}
   - component: {fileID: 7105929081289530464}
   - component: {fileID: 7106468370686344388}
-  - component: {fileID: 7106524252333054696}
+  - component: {fileID: 534745708603870927}
   - component: {fileID: 7105573880821312364}
   m_Layer: 0
   m_Name: Bow
@@ -193,7 +193,7 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
---- !u!114 &7106524252333054696
+--- !u!114 &534745708603870927
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -202,7 +202,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7136388275203250278}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bccb8b5e185356d4a8e7ab60c9cefd77, type: 3}
+  m_Script: {fileID: 11500000, guid: a2bede5da9efa7b4c9ed2306200b8e39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 7105662135043133384}
@@ -210,7 +210,7 @@ MonoBehaviour:
   _keysList:
   - keys: 78000000
   - keys: 300100002f010000
-  - keys: 7a000000
+  - keys: 
   - keys: 3201000031010000
   - keys: 20000000
   - keys: 3401000033010000
@@ -973,7 +973,7 @@ MonoBehaviour:
     type: 3}
   _healCoreEffect: {fileID: 1927017765232452, guid: 010a4889b2622374694da33b7bcba8b7,
     type: 3}
-  _weapon: {fileID: 7106524252333054696}
+  _weapon: {fileID: 534745708603870927}
   _nameBackground: {fileID: 7106534326617166512}
   _popupRemark: {fileID: 7105588196785299974}
   _worldHpBar: {fileID: 7105637376095351484}

@@ -71,4 +71,3 @@ namespace Bunashibu.Kikan {
     }
   }
 }
-
