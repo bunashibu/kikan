@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using System;
+using UniRx;
+
 namespace Bunashibu.Kikan {
   [RequireComponent(typeof(SkillSynchronizer))]
   public class HelenaX : Skill {
@@ -9,20 +12,17 @@ namespace Bunashibu.Kikan {
       _synchronizer = GetComponent<SkillSynchronizer>();
       _hitRistrictor = new HitRistrictor(_hitInfo);
 
-      MonoUtility.Instance.StoppableDelaySec(_existTime, "HelenaXFalse" + GetInstanceID().ToString(), () => {
-        if (gameObject == null)
-          return;
+      Observable.Timer(TimeSpan.FromSeconds(_existTime))
+        .Where(_ => this != null)
+        .Subscribe(_ => {
+          gameObject.SetActive(false);
 
-        gameObject.SetActive(false);
-
-        // NOTE: Wait 5.0f in order to ensure value synchronization when hit at max range distance.
-        MonoUtility.Instance.StoppableDelaySec(5.0f, "HelenaXDestroy" + GetInstanceID().ToString(), () => {
-          if (gameObject == null)
-            return;
-
-          Destroy(gameObject);
+          Observable.Timer(TimeSpan.FromSeconds(5.0f))
+            .Where(none => this != null)
+            .Subscribe(none => {
+              Destroy(gameObject);
+            });
         });
-      });
     }
 
     void Start() {

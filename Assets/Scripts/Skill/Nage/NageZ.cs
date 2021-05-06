@@ -28,8 +28,8 @@ namespace Bunashibu.Kikan {
           gameObject.SetActive(false);
 
           Observable.Timer(TimeSpan.FromSeconds(5.0f))
-            .Where(_ => this != null)
-            .Subscribe(_ => {
+            .Where(none => this != null)
+            .Subscribe(none => {
               Destroy(gameObject);
             });
         });

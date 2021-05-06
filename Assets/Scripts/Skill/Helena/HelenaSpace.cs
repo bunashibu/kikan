@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using System;
 using UniRx;
 using UniRx.Triggers;
-using System;
 
 namespace Bunashibu.Kikan {
   [RequireComponent(typeof(SkillSynchronizer))]
@@ -28,8 +28,8 @@ namespace Bunashibu.Kikan {
           CameraManager.Instance.SetTrackTarget(gameObject);
 
           Observable.Timer(TimeSpan.FromSeconds(_existTime))
-            .Where(_ => this != null)
-            .Subscribe(_ => {
+            .Where(none => this != null)
+            .Subscribe(none => {
               CameraManager.Instance.SetTrackTarget(_player.gameObject);
             });
         });

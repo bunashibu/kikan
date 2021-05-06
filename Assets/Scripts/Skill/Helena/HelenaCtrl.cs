@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using System;
+using UniRx;
+
 namespace Bunashibu.Kikan {
   [RequireComponent(typeof(SkillSynchronizer))]
   public class HelenaCtrl : Skill {
@@ -9,20 +12,17 @@ namespace Bunashibu.Kikan {
       _synchronizer = GetComponent<SkillSynchronizer>();
       _hitRistrictor = new HitRistrictor(_hitInfo);
 
-      MonoUtility.Instance.StoppableDelaySec(_existTime, "HelenaCtrlFalse" + GetInstanceID().ToString(), () => {
-        if (gameObject == null)
-          return;
+      Observable.Timer(TimeSpan.FromSeconds(_existTime))
+        .Where(_ => this != null)
+        .Subscribe(_ => {
+          gameObject.SetActive(false);
 
-        gameObject.SetActive(false);
-
-        // NOTE: See SMB-DestroySkillSelf
-        MonoUtility.Instance.StoppableDelaySec(5.0f, "HelenaCtrlDestroy" + GetInstanceID().ToString(), () => {
-          if (gameObject == null)
-            return;
-
-          Destroy(gameObject);
+          Observable.Timer(TimeSpan.FromSeconds(5.0f))
+            .Where(none => this != null)
+            .Subscribe(none => {
+              Destroy(gameObject);
+            });
         });
-      });
     }
 
     void Update() {
