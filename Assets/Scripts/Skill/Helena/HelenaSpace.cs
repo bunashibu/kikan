@@ -2,12 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using UniRx;
+using UniRx.Triggers;
+using System;
+
 namespace Bunashibu.Kikan {
   [RequireComponent(typeof(SkillSynchronizer))]
   public class HelenaSpace : Skill {
     void Awake() {
       _synchronizer = GetComponent<SkillSynchronizer>();
       _hitRistrictor = new HitRistrictor(_hitInfo);
+
+      this.UpdateAsObservable()
+        .Where(_ => _skillUserObj != null)
+        .Take(1)
+        .Subscribe(_ => {
+          _player = _skillUserObj.GetComponent<Player>();
+        });
+
+      this.UpdateAsObservable()
+        .Where(_ => _player != null)
+        .Where(_ => photonView.isMine )
+        .Take(1)
+        .Subscribe(_ => {
+          CameraManager.Instance.SetTrackTarget(gameObject);
+
+          Observable.Timer(TimeSpan.FromSeconds(_existTime))
+            .Where(_ => this != null)
+            .Subscribe(_ => {
+              CameraManager.Instance.SetTrackTarget(_player.gameObject);
+            });
+        });
     }
 
     void OnTriggerStay2D(Collider2D collider) {
@@ -33,5 +58,6 @@ namespace Bunashibu.Kikan {
     private SkillSynchronizer _synchronizer;
     private HitRistrictor _hitRistrictor;
     private float _existTime = 5.0f;
+    private Player _player;
   }
 }

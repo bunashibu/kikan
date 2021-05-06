@@ -100,6 +100,7 @@ namespace Bunashibu.Kikan {
     private void SetTimeAndCamera() {
       _timePanel.SetTime(_time);
       _camera.EnableTracking();
+      _camera.SetTrackTarget(Client.Player.gameObject);
     }
 
     private void ResetPlayerStatus() {
