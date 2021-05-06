@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+using System;
 using UniRx;
 using UniRx.Triggers;
 
@@ -21,20 +23,17 @@ namespace Bunashibu.Kikan {
         })
         .Subscribe(_ => _renderer.color = new Color(0, 1, 1, 1));
 
-      MonoUtility.Instance.StoppableDelaySec(_existTime, "NageSpaceFalse" + GetInstanceID().ToString(), () => {
-        if (gameObject == null)
-          return;
+      Observable.Timer(TimeSpan.FromSeconds(_existTime))
+        .Where(_ => this != null)
+        .Subscribe(_ => {
+          gameObject.SetActive(false);
 
-        gameObject.SetActive(false);
-
-        // NOTE: See SMB-DestroySkillSelf
-        MonoUtility.Instance.StoppableDelaySec(5.0f, "NageSpaceDestroy" + GetInstanceID().ToString(), () => {
-          if (gameObject == null)
-            return;
-
-          Destroy(gameObject);
+          Observable.Timer(TimeSpan.FromSeconds(5.0f))
+            .Where(none => this != null)
+            .Subscribe(none => {
+              Destroy(gameObject);
+            });
         });
-      });
 
       _collider = GetComponent<BoxCollider2D>();
       _collider.enabled = false;
@@ -118,7 +117,7 @@ namespace Bunashibu.Kikan {
     private Animator _animator;
     private AudioSource _audioSource;
     private float _timestamp;
-    private float _collisionOccurenceTime = 0.45f;
+    private float _collisionOccurenceTime = 0.5f;
     private float _existTime = 15.0f;
 
     private Player _player;

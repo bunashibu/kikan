@@ -24,6 +24,5 @@ namespace Bunashibu.Kikan {
     }
 
     [SerializeField] private SpriteRenderer _renderer;
-    [SerializeField] private Animator _anim;
   }
 }

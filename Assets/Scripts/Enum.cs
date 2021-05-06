@@ -28,7 +28,8 @@ namespace Bunashibu.Kikan {
     Magician,
     Nage,
     Panda,
-    Warrior
+    Warrior,
+    Helena
   }
 
   public enum NumberPopupType {
@@ -42,7 +43,8 @@ namespace Bunashibu.Kikan {
     Stun,
     Heavy,
     Slow,
-    Slip
+    Slip,
+    Ice
   }
 
   public enum CoreType {

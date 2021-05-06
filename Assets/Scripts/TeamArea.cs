@@ -24,7 +24,7 @@ namespace Bunashibu.Kikan {
           return;
 
         if (Time.time - _healTimestamp > _healInterval) {
-          _synchronizer.SyncHeal(target.PhotonView.viewID, _quantity);
+          _synchronizer.SyncHeal(target.PhotonView.viewID, (int)(target.Hp.Max.Value / 3.0f));
           _healTimestamp = Time.time;
         }
       }
@@ -35,16 +35,15 @@ namespace Bunashibu.Kikan {
         target.State.Invincible = true;
         MonoUtility.Instance.DelaySec(_damageInterval, () => { target.State.Invincible = false; } );
 
-        _synchronizer.SyncAttack(photonView.viewID, target.PhotonView.viewID, _quantity, false, HitEffectType.None);
+        _synchronizer.SyncAttack(photonView.viewID, target.PhotonView.viewID, (int)(target.Hp.Max.Value / 3.0f), false, HitEffectType.None);
       }
     }
 
     public PhotonView PhotonView => photonView;
-    public int Power => _quantity;
+    public int Power => 0;
     public int Critical => 0;
 
     [SerializeField] private int _team;
-    [SerializeField] private int _quantity;
     private SkillSynchronizer _synchronizer;
     private float _healInterval = 1.0f;
     private float _damageInterval = 1.0f;

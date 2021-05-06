@@ -639,6 +639,8 @@ MonoBehaviour:
     type: 3}
   _slipEffect: {fileID: 4721954282478795695, guid: 699e3af7b13501645899834efa28f780,
     type: 3}
+  _iceEffect: {fileID: 5852486560600651729, guid: cd7ba5969dd4add459ef7b78de608ec7,
+    type: 3}
   _ai: {fileID: 114902433932136736}
   _targetChaseSystem: {fileID: 114110106678928214}
   _worldHpBar: {fileID: 114913767221993678}

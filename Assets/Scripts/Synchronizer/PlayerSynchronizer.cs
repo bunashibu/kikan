@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
-using UniRx;
 
 namespace Bunashibu.Kikan {
   public class PlayerSynchronizer : Photon.MonoBehaviour {
@@ -18,7 +17,6 @@ namespace Bunashibu.Kikan {
 
     public void SyncCoreLevelUp(CoreType type) {
       Assert.IsTrue(photonView.isMine);
-
       photonView.RPC("SyncCoreLevelUpRPC", PhotonTargets.AllViaServer, type);
     }
 
@@ -29,7 +27,6 @@ namespace Bunashibu.Kikan {
 
     public void SyncAutoHeal(int quantity) {
       Assert.IsTrue(photonView.isMine);
-
       photonView.RPC("SyncAutoHealRPC", PhotonTargets.AllViaServer, quantity);
     }
 
@@ -40,7 +37,6 @@ namespace Bunashibu.Kikan {
 
     public void SyncRespawn() {
       Assert.IsTrue(photonView.isMine);
-
       photonView.RPC("SyncRespawnRPC", PhotonTargets.AllViaServer);
     }
 
@@ -51,7 +47,6 @@ namespace Bunashibu.Kikan {
 
     public void SyncChair(bool shouldSit) {
       Assert.IsTrue(photonView.isMine);
-
       photonView.RPC("SyncChairRPC", PhotonTargets.AllBuffered, shouldSit);
     }
 
@@ -62,7 +57,6 @@ namespace Bunashibu.Kikan {
 
     public void SyncFixAtk(float fixAtk) {
       Assert.IsTrue(photonView.isMine);
-
       photonView.RPC("SyncFixAtkRPC", PhotonTargets.AllViaServer, fixAtk);
     }
 
@@ -73,7 +67,6 @@ namespace Bunashibu.Kikan {
 
     public void SyncFixCritical(int fixCritical) {
       Assert.IsTrue(photonView.isMine);
-
       photonView.RPC("SyncFixCriticalRPC", PhotonTargets.AllViaServer, fixCritical);
     }
 
@@ -84,11 +77,9 @@ namespace Bunashibu.Kikan {
 
     public void SyncAnimation(string state) {
       Assert.IsTrue(photonView.isMine);
-
       photonView.RPC("SyncAnimationRPC", PhotonTargets.All, state);
     }
 
     private PlayerStream _stream;
   }
 }
-

@@ -7,11 +7,6 @@ using UnityEngine.EventSystems;
 namespace Bunashibu.Kikan {
   public class JobPanel : Photon.MonoBehaviour {
     void Awake() {
-      _buttons[0].onClick.AddListener( () => Pick(0) );
-      _buttons[1].onClick.AddListener( () => Pick(1) );
-      _buttons[2].onClick.AddListener( () => Pick(2) );
-      _buttons[3].onClick.AddListener( () => Pick(3) );
-      _buttons[4].onClick.AddListener( () => Pick(4) );
       _decideButton.onClick.AddListener( () => SyncDecide() );
       _selectTimePanel.SetTime(_selectTime);
       _selectTimePanel.SetView(TimeViewType.Sec);
@@ -114,4 +109,3 @@ namespace Bunashibu.Kikan {
     private int _curPick = -1;
   }
 }
-

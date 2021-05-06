@@ -38,19 +38,33 @@ namespace Bunashibu.Kikan {
       return -1;
     }
 
+    public Skill InstantiateSkillNoRigor(int i, Weapon weapon, Player player) {
+      var offset = weapon.AppearOffset[i];
+      var quat = player.Renderers[0].flipX ? Quaternion.Euler(0, 180, 0) : Quaternion.identity;
+
+      return InstantiateSkill(i, weapon, player, offset, quat, false);
+    }
+
     public Skill InstantiateSkill(int i, Weapon weapon, Player player) {
+      var offset = weapon.AppearOffset[i];
+      var quat = player.Renderers[0].flipX ? Quaternion.Euler(0, 180, 0) : Quaternion.identity;
+
+      return InstantiateSkill(i, weapon, player, offset, quat);
+    }
+
+    public Skill InstantiateSkill(int i, Weapon weapon, Player player, Vector3 offset, Quaternion quat, bool rigor = true) {
       string path = "Prefabs/Skill/" + weapon.JobName + "/" + weapon.SkillNames[i];
 
-      var offset = weapon.AppearOffset[i];
       if (player.Renderers[0].flipX)
         offset.x *= -1;
-      var pos = weapon.transform.position + offset;
 
-      var quat = player.Renderers[0].flipX ? Quaternion.Euler(0, 180, 0) : Quaternion.identity;
+      var pos = weapon.transform.position + offset;
       var skill = PhotonNetwork.Instantiate(path, pos, quat, 0).GetComponent<Skill>();
       skill.SyncInit(player.PhotonView.viewID);
 
-      SetCoroutine(i, weapon, player);
+      if (rigor)
+        SetCoroutine(i, weapon, player);
+
       SkillReference.Instance.Register(skill.viewID);
       weapon.Stream.OnNextInstantiate(i);
 
@@ -71,4 +85,3 @@ namespace Bunashibu.Kikan {
     }
   }
 }
-

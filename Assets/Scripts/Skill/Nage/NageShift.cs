@@ -23,13 +23,15 @@ namespace Bunashibu.Kikan {
           return Client.Opponents.Contains(skillUser);
         })
         .Subscribe(_ => _renderer.color = new Color(0, 1, 1, 1));
-    }
 
-    void Start() {
-      if (photonView.isMine) {
-        EnhanceStatus();
-        InstantiateBuff();
-      }
+      this.UpdateAsObservable()
+        .Where(_ => _skillUserObj != null)
+        .Where(_ => photonView.isMine)
+        .Take(1)
+        .Subscribe(_ => {
+          EnhanceStatus();
+          InstantiateBuff();
+        });
     }
 
     void OnDestroy() {

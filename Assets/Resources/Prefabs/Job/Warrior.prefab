@@ -258,7 +258,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _renderer: {fileID: 1628947588204926740}
-  _anim: {fileID: 0}
 --- !u!1 &1471452509600103254
 GameObject:
   m_ObjectHideFlags: 0
@@ -911,6 +910,8 @@ MonoBehaviour:
   _slowEffect: {fileID: 6647887535221933396, guid: 0ef43ff63ef490e438b78b8f8f7be493,
     type: 3}
   _slipEffect: {fileID: 4721954282478795695, guid: 699e3af7b13501645899834efa28f780,
+    type: 3}
+  _iceEffect: {fileID: 5852486560600651729, guid: cd7ba5969dd4add459ef7b78de608ec7,
     type: 3}
   _speedCoreInfo: {fileID: 11400000, guid: ee538c803e6b7d34fb16311e882cd98d, type: 2}
   _hpCoreInfo: {fileID: 11400000, guid: 22fc32fd35f8f3a43aac545cd5ffef2f, type: 2}

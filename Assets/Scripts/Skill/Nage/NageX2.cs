@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using System;
 using UniRx;
 using UniRx.Triggers;
 
@@ -21,20 +22,17 @@ namespace Bunashibu.Kikan {
         })
         .Subscribe(_ => _renderer.color = new Color(0, 1, 1, 1));
 
-      MonoUtility.Instance.StoppableDelaySec(_existTime, "NageX2False" + GetInstanceID().ToString(), () => {
-        if (gameObject == null)
-          return;
+      Observable.Timer(TimeSpan.FromSeconds(_existTime))
+        .Where(_ => this != null)
+        .Subscribe(_ => {
+          gameObject.SetActive(false);
 
-        gameObject.SetActive(false);
-
-        // NOTE: See NageX
-        MonoUtility.Instance.StoppableDelaySec(5.0f, "NageX2Destroy" + GetInstanceID().ToString(), () => {
-          if (gameObject == null)
-            return;
-
-          Destroy(gameObject);
+          Observable.Timer(TimeSpan.FromSeconds(5.0f))
+            .Where(none => this != null)
+            .Subscribe(none => {
+              Destroy(gameObject);
+            });
         });
-      });
     }
 
     void Start() {
@@ -60,7 +58,12 @@ namespace Bunashibu.Kikan {
 
         DamageCalculator.Calculate(_skillUserObj, _attackInfo);
 
-        _synchronizer.SyncAttack(_skillUserViewID, target.PhotonView.viewID, DamageCalculator.Damage, DamageCalculator.IsCritical, HitEffectType.Nage);
+        if (_isSecond)
+          _synchronizer.SyncAttack(_skillUserViewID, target.PhotonView.viewID, (int)(DamageCalculator.Damage * _secondRatio), DamageCalculator.IsCritical, HitEffectType.Nage);
+        else {
+          _synchronizer.SyncAttack(_skillUserViewID, target.PhotonView.viewID, DamageCalculator.Damage, DamageCalculator.IsCritical, HitEffectType.Nage);
+          _isSecond = true;
+        }
       }
     }
 
@@ -78,5 +81,7 @@ namespace Bunashibu.Kikan {
     private Vector2 _moveDirection;
     private float _spd = 12.0f;
     private float _existTime = 0.37f;
+    private bool _isSecond;
+    private float _secondRatio = 0.07f;
   }
 }
