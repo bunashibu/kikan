@@ -37,6 +37,10 @@ namespace Bunashibu.Kikan {
       PopulationObserver = populationObserver;
     }
 
+    public void AttachSpawner(EnemySpawner spawner) {
+      Spawner = spawner;
+    }
+
     public PhotonView     PhotonView   => _photonView;
     public Transform      Transform    => transform;
     public SpriteRenderer Renderer     => _spriteRenderer;
@@ -46,6 +50,7 @@ namespace Bunashibu.Kikan {
     public Animator       Animator     => _animator;
 
     public EnemyPopulationObserver PopulationObserver { get; private set; }
+    public EnemySpawner Spawner { get; private set; }
 
     // tmp
     public MonoBehaviour AI => _ai;

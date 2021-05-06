@@ -23,6 +23,7 @@ namespace Bunashibu.Kikan {
       var enemyObj = PhotonNetwork.Instantiate("Prefabs/Enemy/" + _spawnEnemyNames[index], pos, Quaternion.identity, 0);
       var enemy    = enemyObj.GetComponent<Enemy>();
       enemy.AttachPopulationObserver(populationObserver);
+      enemy.AttachSpawner(this);
     }
 
     private int GetRandomIndex() {
@@ -68,4 +69,3 @@ namespace Bunashibu.Kikan {
     [SerializeField] private float _dispersion;
   }
 }
-
