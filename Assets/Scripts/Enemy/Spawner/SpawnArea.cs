@@ -24,11 +24,19 @@ namespace Bunashibu.Kikan {
           return _a[i] * x + _b[i] + offsetY;
       }
 
-      throw new ArgumentOutOfRangeException();
+      Debug.LogError("CalculateY is out of range");
+      Debug.LogError(x);
+      Debug.LogError(offsetY);
+
+      return _a[0] * _xRange[0] + _b[0] + offsetY;
     }
 
     public bool IsInRange(float x) {
       return (_xRange.First() <= x && x <= _xRange.Last());
+    }
+
+    public float GetRandomX() {
+      return UnityEngine.Random.Range(_xRange.First(), _xRange.Last());
     }
 
     public float Adjust(float x) {

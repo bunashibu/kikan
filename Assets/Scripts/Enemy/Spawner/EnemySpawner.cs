@@ -16,6 +16,11 @@ namespace Bunashibu.Kikan {
     public void NetworkSpawn(EnemyPopulationObserver populationObserver, float seedX) {
       int index = GetRandomIndex();
 
+      if (!_spawnArea.IsInRange(seedX)) {
+        Debug.LogError("seedX is out of range");
+        seedX = _spawnArea.GetRandomX();
+      }
+
       float x = GetRandomPosX(seedX);
       float y = _spawnArea.CalculateY(x, _offsetY[index]);
       var pos = new Vector3(x, y, 0.0f);
