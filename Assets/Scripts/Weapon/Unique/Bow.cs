@@ -49,10 +49,35 @@ namespace Bunashibu.Kikan {
             quat = _player.Renderers[0].flipX ? Quaternion.Euler(0, 180, 40) : Quaternion.Euler(0, 0, 40);
             _instantiator.InstantiateSkill(index, this, _player, offset, quat);
           }
+
+          if (index == space) {
+            _usingSpace = true;
+            _player.State.Rigor = true;
+            _spaceSkill = _instantiator.InstantiateSkillNoRigor(index, this, _player);
+            _instantiatedTimestamp = Time.time;
+
+            this.UpdateAsObservable()
+              .Where(_ => _spaceSkill == null)
+              .Take(1)
+              .Subscribe(_ => {
+                _usingSpace = false;
+                _player.State.Rigor = false;
+              });
+          }
+        });
+
+      this.UpdateAsObservable()
+        .Where(_ => _player.PhotonView.isMine)
+        .Where(_ => Time.time != _instantiatedTimestamp)
+        .Where(_ => _usingSpace)
+        .Where(_ => _spaceSkill != null)
+        .Subscribe(_ => {
+          if (Input.GetKeyDown(KeyCode.Space))
+            PhotonNetwork.Destroy(PhotonView.Find(_spaceSkill.viewID));
         });
     }
 
-    // NOTE: Z and Ctrl are managed by this; Weapon KeysList Element2(Z) and Element3(Ctrl) are set as None
+    // NOTE: Z, Ctrl and Space are managed by this; Weapon KeysList Element2~4 are set as None
     private int GetUniqueInput() {
       if (_player.Level.Cur.Value >= RequireLv[z]) {
         if (IsUsable(z) && Input.GetKey(KeyCode.Z))
@@ -61,6 +86,10 @@ namespace Bunashibu.Kikan {
       if (_player.Level.Cur.Value >= RequireLv[ctrl]) {
         if (IsUsable(ctrl) && (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl)))
           return ctrl;
+      }
+      if (_player.Level.Cur.Value >= RequireLv[space]) {
+        if (IsUsable(space) && Input.GetKey(KeyCode.Space))
+          return space;
       }
 
       return none;
@@ -76,5 +105,10 @@ namespace Bunashibu.Kikan {
     private int none = -1;
     private int z = 2;
     private int ctrl = 3;
+    private int space = 4;
+
+    private bool _usingSpace = false;
+    private Skill _spaceSkill;
+    private float _instantiatedTimestamp;
   }
 }

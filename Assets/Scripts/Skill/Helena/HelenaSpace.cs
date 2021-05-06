@@ -29,8 +29,9 @@ namespace Bunashibu.Kikan {
 
           Observable.Timer(TimeSpan.FromSeconds(_existTime))
             .Where(none => this != null)
+            .Where(none => photonView.isMine )
             .Subscribe(none => {
-              CameraManager.Instance.SetTrackTarget(_player.gameObject);
+              PhotonNetwork.Destroy(gameObject);
             });
         });
 
@@ -39,6 +40,14 @@ namespace Bunashibu.Kikan {
         .Where(_ => _player.Level.Cur.Value >= 11)
         .Take(1)
         .Subscribe(_ => _attackInfo = new AttackInfo(130, _attackInfo.MaxDeviation, _attackInfo.CriticalPercent));
+    }
+
+    void OnDestroy() {
+      if (_player == null)
+        return;
+
+      if (photonView.isMine)
+        CameraManager.Instance.SetTrackTarget(_player.gameObject);
     }
 
     void OnTriggerStay2D(Collider2D collider) {
