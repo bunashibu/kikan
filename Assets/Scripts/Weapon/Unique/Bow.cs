@@ -74,6 +74,15 @@ namespace Bunashibu.Kikan {
         .Subscribe(_ => {
           if (Input.GetKeyDown(KeyCode.Space))
             PhotonNetwork.Destroy(PhotonView.Find(_spaceSkill.viewID));
+
+          if (Input.GetKey(KeyCode.LeftArrow))
+            _spaceSkill.transform.Translate(Vector2.left * _spaceSpd, Space.World);
+          if (Input.GetKey(KeyCode.RightArrow))
+            _spaceSkill.transform.Translate(Vector2.right * _spaceSpd, Space.World);
+          if (Input.GetKey(KeyCode.UpArrow))
+            _spaceSkill.transform.Translate(Vector2.up * _spaceSpd, Space.World);
+          if (Input.GetKey(KeyCode.DownArrow))
+            _spaceSkill.transform.Translate(Vector2.down * _spaceSpd, Space.World);
         });
     }
 
@@ -110,5 +119,6 @@ namespace Bunashibu.Kikan {
     private bool _usingSpace = false;
     private Skill _spaceSkill;
     private float _instantiatedTimestamp;
+    private float _spaceSpd = 0.05f;
   }
 }
