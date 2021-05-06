@@ -1,7 +1,8 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+using System;
 using UniRx;
 using UniRx.Triggers;
 
@@ -10,25 +11,20 @@ namespace Bunashibu.Kikan {
     void Awake() {
       this.UpdateAsObservable()
         .Where(_ => _skillUserObj != null)
-        .Subscribe(_ => {
-          var player = _skillUserObj.GetComponent<Player>();
-          transform.position = player.transform.position + player.Weapon.AppearOffset[1];
-        });
-
-      this.UpdateAsObservable()
-        .Where(_ => _skillUserObj != null)
         .Take(1)
         .Subscribe(_ => {
           _skillUser = _skillUserObj.GetComponent<IOnAttacked>();
           _skillUser.DamageReactor.SetSlot(new Reduce(_reduceRatio));
         });
-    }
 
-    void Start() {
-      if (photonView.isMine) {
-        EnhanceStatus();
-        InstantiateBuff();
-      }
+      this.UpdateAsObservable()
+        .Where(_ => _skillUserObj != null)
+        .Where(_ => photonView.isMine)
+        .Take(1)
+        .Subscribe(_ => {
+          EnhanceStatus();
+          InstantiateBuff();
+        });
     }
 
     void OnDestroy() {
