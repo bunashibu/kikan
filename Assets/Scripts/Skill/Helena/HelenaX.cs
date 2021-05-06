@@ -51,7 +51,7 @@ namespace Bunashibu.Kikan {
         if (_isSecond)
           _synchronizer.SyncAttack(_skillUserViewID, target.PhotonView.viewID, (int)(DamageCalculator.Damage * _secondRatio), DamageCalculator.IsCritical, HitEffectType.Nage);
         else {
-          _synchronizer.SyncAttack(_skillUserViewID, target.PhotonView.viewID, DamageCalculator.Damage, DamageCalculator.IsCritical, HitEffectType.Nage);
+          _synchronizer.SyncAttack(_skillUserViewID, target.PhotonView.viewID, DamageCalculator.Damage, DamageCalculator.IsCritical, HitEffectType.Helena);
           _isSecond = true;
         }
       }
