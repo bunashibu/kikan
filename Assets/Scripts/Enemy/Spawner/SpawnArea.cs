@@ -3,10 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 using UnityEngine;
-using UnityEngine.Assertions;
 
 namespace Bunashibu.Kikan {
   public class SpawnArea : MonoBehaviour {
+    void Awake() {
+      _boxCollider = GetComponent<BoxCollider2D>();
+
+      if (_xRange.Count == 0) {
+        _xRange.Add(-_boxCollider.size.x);
+        _xRange.Add(_boxCollider.size.x);
+      }
+    }
+
     public float CalculateY(float x, float offsetY = 0) {
       for (int i=0; i<_xRange.Count-1; ++i) {
         if (_xRange[i] <= x && x <= _xRange[i+1])
@@ -37,6 +45,7 @@ namespace Bunashibu.Kikan {
 
     [Space(10)]
     [SerializeField] private List<float> _xRange;
+
+    private BoxCollider2D _boxCollider;
   }
 }
-

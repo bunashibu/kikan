@@ -7069,7 +7069,7 @@ GameObject:
   - component: {fileID: 463110047}
   - component: {fileID: 463110046}
   m_Layer: 8
-  m_Name: Center
+  m_Name: MiddleCenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7158,9 +7158,7 @@ MonoBehaviour:
   - 0
   _b:
   - 14.132
-  _xRange:
-  - -8.808
-  - 8.808
+  _xRange: []
 --- !u!114 &463110047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8017,9 +8015,7 @@ MonoBehaviour:
   - 0
   _b:
   - 32.04
-  _xRange:
-  - 2.5085
-  - 29.1555
+  _xRange: []
 --- !u!114 &501870109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8867,7 +8863,7 @@ GameObject:
   - component: {fileID: 553200368}
   - component: {fileID: 553200369}
   m_Layer: 8
-  m_Name: Center
+  m_Name: BottomCenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9821,7 +9817,7 @@ GameObject:
   - component: {fileID: 606155513}
   - component: {fileID: 606155512}
   m_Layer: 8
-  m_Name: Right2
+  m_Name: TopRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9955,9 +9951,7 @@ MonoBehaviour:
   - 0
   _b:
   - 22.34
-  _xRange:
-  - 6.455
-  - 14.695
+  _xRange: []
 --- !u!114 &606155513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9972,12 +9966,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawnEnemyNames:
   - Ebi2
-  - Ebina2
   _spawnRatio:
-  - 0.666
-  - 0.333
+  - 1
   _offsetY:
-  - 0.45
   - 0.45
   _spawnArea: {fileID: 606155512}
   _dispersion: 1
@@ -10165,9 +10156,7 @@ MonoBehaviour:
   - 0
   _b:
   - 26.4
-  _xRange:
-  - -17.05
-  - 17.05
+  _xRange: []
 --- !u!114 &614388359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10750,7 +10739,7 @@ GameObject:
   - component: {fileID: 709766771}
   - component: {fileID: 709766770}
   m_Layer: 8
-  m_Name: Left1
+  m_Name: MiddleLeftEdge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10884,9 +10873,7 @@ MonoBehaviour:
   - 0
   _b:
   - 15.132
-  _xRange:
-  - -16.85
-  - -8.61
+  _xRange: []
 --- !u!114 &709766771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11809,7 +11796,7 @@ MonoBehaviour:
   - {fileID: 501870109}
   - {fileID: 614388359}
   _population: 0400000004000000
-  _intervalSec: 2
+  _intervalSec: 3
   _initialSeedX:
   - 0
   - 0
@@ -12719,7 +12706,7 @@ GameObject:
   - component: {fileID: 845133923}
   - component: {fileID: 845133922}
   m_Layer: 8
-  m_Name: Left2
+  m_Name: TopLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12853,9 +12840,7 @@ MonoBehaviour:
   - 0
   _b:
   - 22.34
-  _xRange:
-  - -14.695
-  - -6.455
+  _xRange: []
 --- !u!114 &845133923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12870,12 +12855,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawnEnemyNames:
   - Ebi2
-  - Ebina2
   _spawnRatio:
-  - 0.666
-  - 0.333
+  - 1
   _offsetY:
-  - 0.45
   - 0.45
   _spawnArea: {fileID: 845133922}
   _dispersion: 1
@@ -13944,7 +13926,7 @@ GameObject:
   - component: {fileID: 911763920}
   - component: {fileID: 911763919}
   m_Layer: 8
-  m_Name: Right1
+  m_Name: BottomRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14034,9 +14016,7 @@ MonoBehaviour:
   - 0
   _b:
   - 9.149
-  _xRange:
-  - 4.534
-  - 27.446
+  _xRange: []
 --- !u!114 &911763920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15149,9 +15129,7 @@ MonoBehaviour:
   - 0
   _b:
   - -2.028
-  _xRange:
-  - -15.36
-  - 15.36
+  _xRange: []
 --- !u!1 &996142128
 GameObject:
   m_ObjectHideFlags: 0
@@ -15882,9 +15860,7 @@ MonoBehaviour:
   - 0
   _b:
   - -1.125
-  _xRange:
-  - -12.8
-  - 12.8
+  _xRange: []
 --- !u!1001 &1053945441
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22322,7 +22298,7 @@ GameObject:
   - component: {fileID: 1547645103}
   - component: {fileID: 1547645102}
   m_Layer: 8
-  m_Name: Left1
+  m_Name: BottomLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22412,9 +22388,7 @@ MonoBehaviour:
   - 0
   _b:
   - 9.149
-  _xRange:
-  - -27.446
-  - -4.534
+  _xRange: []
 --- !u!114 &1547645103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26413,7 +26387,7 @@ GameObject:
   - component: {fileID: 1873332386}
   - component: {fileID: 1873332385}
   m_Layer: 8
-  m_Name: Right1
+  m_Name: MiddleRightEdge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26547,9 +26521,7 @@ MonoBehaviour:
   - 0
   _b:
   - 15.132
-  _xRange:
-  - 8.61
-  - 16.85
+  _xRange: []
 --- !u!114 &1873332386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26705,7 +26677,7 @@ GameObject:
   - component: {fileID: 1900243022}
   - component: {fileID: 1900243021}
   m_Layer: 8
-  m_Name: Right
+  m_Name: MiddleRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26794,9 +26766,7 @@ MonoBehaviour:
   - 0
   _b:
   - 16.53
-  _xRange:
-  - 1.69
-  - 13.53
+  _xRange: []
 --- !u!114 &1900243022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26946,9 +26916,7 @@ MonoBehaviour:
   - 0
   _b:
   - -0.175
-  _xRange:
-  - -10.24
-  - 10.24
+  _xRange: []
 --- !u!1 &1901496735
 GameObject:
   m_ObjectHideFlags: 0
@@ -27468,8 +27436,8 @@ MonoBehaviour:
   - {fileID: 606155513}
   - {fileID: 1547645103}
   - {fileID: 911763920}
-  _population: 020000000200000001000000020000000000000001000000020000000300000003000000
-  _intervalSec: 10
+  _population: 020000000200000001000000030000000500000001000000030000000300000003000000
+  _intervalSec: 5
   _initialSeedX:
   - -7.61
   - 7.61
@@ -27508,9 +27476,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 440364449}
-  - {fileID: 372880855}
   - {fileID: 962080347}
   - {fileID: 690329744}
+  - {fileID: 372880855}
   - {fileID: 846989503}
   m_Father: {fileID: 2008166471}
   m_RootOrder: 2
@@ -30193,7 +30161,7 @@ GameObject:
   - component: {fileID: 2133664497}
   - component: {fileID: 2133664498}
   m_Layer: 8
-  m_Name: Left
+  m_Name: MiddleLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30305,9 +30273,7 @@ MonoBehaviour:
   - 0
   _b:
   - 16.53
-  _xRange:
-  - -13.53
-  - -1.69
+  _xRange: []
 --- !u!1 &2138716012
 GameObject:
   m_ObjectHideFlags: 0
