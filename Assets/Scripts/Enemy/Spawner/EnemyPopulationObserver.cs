@@ -13,7 +13,7 @@ namespace Bunashibu.Kikan {
 
     public void IntervalReplenishPopulation(Enemy enemy) {
       float offsetY = enemy.Renderer.bounds.size.y / 2;
-      int index = GetNearestSpawnerIndex(enemy.transform.position, offsetY);
+      int index = GetSpawnerIndex(enemy);
       float seedX = enemy.transform.position.x;
 
       MonoUtility.Instance.DelaySec(_intervalSec, () => {
@@ -22,19 +22,13 @@ namespace Bunashibu.Kikan {
       });
     }
 
-    // Compare Enemy's foot with Ground
-    private int GetNearestSpawnerIndex(Vector3 pos, float offsetY) {
-      var list = _spawnerList.Where(spawner => spawner.SpawnArea.IsInRange(pos.x));
+    private int GetSpawnerIndex(Enemy enemy) {
+      for (int i=0; i<_spawnerList.Count; ++i) {
+        if (_spawnerList[i] == enemy.Spawner)
+          return i;
+      }
 
-      var distance = list.Min(spawner =>
-        System.Math.Abs(pos.y - offsetY - spawner.SpawnArea.CalculateY(pos.x))
-      );
-
-      var nearestSpawner = list.First(spawner =>
-        System.Math.Abs(pos.y - offsetY - spawner.SpawnArea.CalculateY(pos.x)) == distance
-      );
-
-      return _spawnerList.IndexOf(nearestSpawner);
+      throw new Exception();
     }
 
     private void InitialSetupPopulation() {
@@ -56,4 +50,3 @@ namespace Bunashibu.Kikan {
     [SerializeField] private float[] _initialSeedX;
   }
 }
-
