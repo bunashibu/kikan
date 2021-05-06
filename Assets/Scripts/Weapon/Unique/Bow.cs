@@ -16,35 +16,65 @@ namespace Bunashibu.Kikan {
         .Where(_ => _instantiator.IsSkillUsableAnimationState(_player) )
         .Where(_ => !_player.Debuff.State[DebuffType.Stun] )
         .Where(_ => CanInstantiate.Value                   )
-        .Where(_ => _player.Location.IsGroundAbove         )
-        .Where(_ => UsableAnimationState()                 )
         .Subscribe(_ => {
           int index = GetUniqueInput();
 
-          if (index == -1) // Not using Z
+          if (index == none) // Not using unique skill
             return;
 
-          _instantiator.InstantiateSkill(index, this, _player);
+          if (index == z) {
+            if (!_player.Location.IsGroundAbove) return;
+            if (!ZUsableAnimationState()) return;
+            _instantiator.InstantiateSkill(index, this, _player);
+          }
+
+          if (index == ctrl) {
+            var offset = AppearOffset[index];
+            var quat = _player.Renderers[0].flipX ? Quaternion.Euler(0, 180, 0) : Quaternion.identity;
+            _instantiator.InstantiateSkill(index, this, _player, offset, quat);
+
+            offset = AppearOffset[index] + new Vector3(0, 0.27f, 0);
+            quat = _player.Renderers[0].flipX ? Quaternion.Euler(0, 180, -20) : Quaternion.Euler(0, 0, -20);
+            _instantiator.InstantiateSkill(index, this, _player, offset, quat);
+
+            offset = AppearOffset[index] + new Vector3(0, -0.27f, 0);
+            quat = _player.Renderers[0].flipX ? Quaternion.Euler(0, 180, 20) : Quaternion.Euler(0, 0, 20);
+            _instantiator.InstantiateSkill(index, this, _player, offset, quat);
+
+            offset = AppearOffset[index] + new Vector3(0, 0.49f, 0);
+            quat = _player.Renderers[0].flipX ? Quaternion.Euler(0, 180, -40) : Quaternion.Euler(0, 0, -40);
+            _instantiator.InstantiateSkill(index, this, _player, offset, quat);
+
+            offset = AppearOffset[index] + new Vector3(0, -0.49f, 0);
+            quat = _player.Renderers[0].flipX ? Quaternion.Euler(0, 180, 40) : Quaternion.Euler(0, 0, 40);
+            _instantiator.InstantiateSkill(index, this, _player, offset, quat);
+          }
         });
     }
 
-    // NOTE: Only Z is managed by this; Weapon KeysList Element2(Z) is set as None
+    // NOTE: Z and Ctrl are managed by this; Weapon KeysList Element2(Z) and Element3(Ctrl) are set as None
     private int GetUniqueInput() {
-      int n = 2;
-
-      if (_player.Level.Cur.Value >= RequireLv[n]) {
-        if (IsUsable(n) && Input.GetKey(KeyCode.Z))
-          return n;
+      if (_player.Level.Cur.Value >= RequireLv[z]) {
+        if (IsUsable(z) && Input.GetKey(KeyCode.Z))
+          return z;
+      }
+      if (_player.Level.Cur.Value >= RequireLv[ctrl]) {
+        if (IsUsable(ctrl) && (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl)))
+          return ctrl;
       }
 
-      return -1;
+      return none;
     }
 
-    private bool UsableAnimationState() {
+    private bool ZUsableAnimationState() {
       return _player.Animator.GetCurrentAnimatorStateInfo(0).IsName("Idle") ||
         _player.Animator.GetCurrentAnimatorStateInfo(0).IsName("Walk") ||
         _player.Animator.GetCurrentAnimatorStateInfo(0).IsName("GroundJump") ||
         _player.Animator.GetCurrentAnimatorStateInfo(0).IsName("LieDown");
     }
+
+    private int none = -1;
+    private int z = 2;
+    private int ctrl = 3;
   }
 }

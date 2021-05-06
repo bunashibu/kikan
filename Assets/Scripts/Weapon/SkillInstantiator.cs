@@ -39,14 +39,19 @@ namespace Bunashibu.Kikan {
     }
 
     public Skill InstantiateSkill(int i, Weapon weapon, Player player) {
+      var offset = weapon.AppearOffset[i];
+      var quat = player.Renderers[0].flipX ? Quaternion.Euler(0, 180, 0) : Quaternion.identity;
+
+      return InstantiateSkill(i, weapon, player, offset, quat);
+    }
+
+    public Skill InstantiateSkill(int i, Weapon weapon, Player player, Vector3 offset, Quaternion quat) {
       string path = "Prefabs/Skill/" + weapon.JobName + "/" + weapon.SkillNames[i];
 
-      var offset = weapon.AppearOffset[i];
       if (player.Renderers[0].flipX)
         offset.x *= -1;
-      var pos = weapon.transform.position + offset;
 
-      var quat = player.Renderers[0].flipX ? Quaternion.Euler(0, 180, 0) : Quaternion.identity;
+      var pos = weapon.transform.position + offset;
       var skill = PhotonNetwork.Instantiate(path, pos, quat, 0).GetComponent<Skill>();
       skill.SyncInit(player.PhotonView.viewID);
 
