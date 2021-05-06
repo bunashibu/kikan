@@ -27073,7 +27073,7 @@ MonoBehaviour:
   - {fileID: 9065889758333158047, guid: b6ec67d1b48a258428f425a1b74259c1, type: 3}
   - {fileID: 7662358241923698126, guid: c82455c20cb7ced4fbdbd25bccf835ed, type: 3}
   - {fileID: 8045509082081708924, guid: 5760ede889d89c94fa142d7bf93d318e, type: 3}
-  _selectTime: 5
+  _selectTime: 10
 --- !u!224 &1857252215
 RectTransform:
   m_ObjectHideFlags: 0
