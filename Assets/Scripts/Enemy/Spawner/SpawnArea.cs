@@ -24,7 +24,6 @@ namespace Bunashibu.Kikan {
           return _a[i] * x + _b[i] + offsetY;
       }
 
-      Debug.Log(gameObject);
       throw new ArgumentOutOfRangeException();
     }
 
