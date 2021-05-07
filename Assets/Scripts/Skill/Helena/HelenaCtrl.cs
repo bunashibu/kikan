@@ -31,20 +31,28 @@ namespace Bunashibu.Kikan {
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
+      var target = collider.gameObject.GetComponent<IPhoton>();
+
+      if (target == null)
+        return;
+      if (TeamChecker.IsSameTeam(collider.gameObject, _skillUserObj))
+        return;
+      if (_hitRistrictor.ShouldRistrict(collider.gameObject))
+        return;
+
+      var marginTime = 0.1f;
+      Observable.Timer(TimeSpan.FromSeconds(marginTime))
+        .Where(_ => this != null)
+        .Subscribe(_ => {
+          gameObject.SetActive(false);
+        });
+
       if (PhotonNetwork.isMasterClient) {
-        var target = collider.gameObject.GetComponent<IPhoton>();
-
-        if (target == null)
-          return;
-        if (TeamChecker.IsSameTeam(collider.gameObject, _skillUserObj))
-          return;
-        if (_hitRistrictor.ShouldRistrict(collider.gameObject))
-          return;
-
         DamageCalculator.Calculate(_skillUserObj, _attackInfo);
 
         _synchronizer.SyncAttack(_skillUserViewID, target.PhotonView.viewID, DamageCalculator.Damage, DamageCalculator.IsCritical, HitEffectType.Helena);
         _synchronizer.SyncDebuff(target.PhotonView.viewID, DebuffType.Ice, _duration);
+
       }
     }
 
