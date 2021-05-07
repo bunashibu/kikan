@@ -94,6 +94,8 @@ namespace Bunashibu.Kikan {
       Movement.SetMaxFallVelocity(-11.0f);
 
       DamageReactor = new DamageReactor(this);
+      if (Weapon.JobName == "Magician")
+        DamageReactor.SetSlot(new ReduceCritical(1.5f));
     }
 
     public PhotonView       PhotonView   => _photonView;
