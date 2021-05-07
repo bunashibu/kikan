@@ -82,6 +82,6 @@ namespace Bunashibu.Kikan {
     private float _spd = 12.0f;
     private float _existTime = 0.37f;
     private bool _isSecond;
-    private float _secondRatio = 0.07f;
+    private float _secondRatio = 0.14f;
   }
 }
