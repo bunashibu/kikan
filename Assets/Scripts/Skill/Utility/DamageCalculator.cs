@@ -5,11 +5,15 @@ using UnityEngine.Assertions;
 
 namespace Bunashibu.Kikan {
   public static class DamageCalculator {
-    public static void Calculate(GameObject attackerObj, AttackInfo attackInfo) {
+    public static void Calculate(GameObject attackerObj, AttackInfo attackInfo, bool enabledCritical = true) {
       var attacker = attackerObj.GetComponent<IAttacker>();
       Assert.IsNotNull(attacker);
 
-      CalculateCritical(attacker.Critical + attackInfo.CriticalPercent);
+      if (enabledCritical)
+        CalculateCritical(attacker.Critical + attackInfo.CriticalPercent);
+      else
+        IsCritical = false;
+
       CalculateDamage(attacker.Power, attackInfo.DamagePercent, attackInfo.MaxDeviation);
     }
 
@@ -35,4 +39,3 @@ namespace Bunashibu.Kikan {
     public static bool IsCritical { get; private set; }
   }
 }
-

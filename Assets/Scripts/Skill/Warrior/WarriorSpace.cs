@@ -71,7 +71,7 @@ namespace Bunashibu.Kikan {
         healPercent = 300;
       var healPower = new AttackInfo(healPercent, 0, 0);
 
-      DamageCalculator.Calculate(_skillUserObj, healPower);
+      DamageCalculator.Calculate(_skillUserObj, healPower, false);
 
       return DamageCalculator.Damage;
     }
