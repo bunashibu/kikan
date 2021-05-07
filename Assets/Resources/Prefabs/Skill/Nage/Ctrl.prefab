@@ -361,7 +361,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackInfo:
-    _damagePercent: 400
+    _damagePercent: 380
     _maxDeviation: 10
     _criticalPercent: 0
   _hitInfo:
