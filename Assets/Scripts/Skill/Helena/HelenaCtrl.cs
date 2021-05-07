@@ -44,7 +44,8 @@ namespace Bunashibu.Kikan {
       Observable.Timer(TimeSpan.FromSeconds(marginTime))
         .Where(_ => this != null)
         .Subscribe(_ => {
-          gameObject.SetActive(false);
+          GetComponent<SpriteRenderer>().enabled = false;
+          GetComponent<BoxCollider2D>().enabled = false;
         });
 
       if (PhotonNetwork.isMasterClient) {
