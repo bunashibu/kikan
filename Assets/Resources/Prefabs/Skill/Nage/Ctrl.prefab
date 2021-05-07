@@ -361,11 +361,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackInfo:
-    _damagePercent: 380
+    _damagePercent: 350
     _maxDeviation: 10
     _criticalPercent: 0
   _hitInfo:
-    _maxTargetCount: 3
+    _maxTargetCount: 4
     _maxHitCount: 1
     _interval: 0
   _renderer: {fileID: 3034846065920384699}
