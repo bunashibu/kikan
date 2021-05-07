@@ -365,7 +365,7 @@ MonoBehaviour:
     _maxDeviation: 10
     _criticalPercent: 0
   _hitInfo:
-    _maxTargetCount: 4
+    _maxTargetCount: 5
     _maxHitCount: 1
     _interval: 0
   _renderer: {fileID: 3034846065920384699}
