@@ -8,7 +8,7 @@ namespace Bunashibu.Kikan {
       _level = level;
     }
 
-    public int ReactTo(IOnAttacked target, IAttacker attacker, int damage) {
+    public int ReactTo(IOnAttacked target, IAttacker attacker, int damage, bool isCritical) {
       float applyDamage = 1;
 
       if (_level <= attacker.CurLevel)

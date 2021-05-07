@@ -8,7 +8,7 @@ namespace Bunashibu.Kikan {
       _reduceRatio = reduceRatio;
     }
 
-    public int ReactTo(IOnAttacked target, IAttacker attacker, int damage) {
+    public int ReactTo(IOnAttacked target, IAttacker attacker, int damage, bool isCritical) {
       int reducedDamage = (int)(damage * (1.0f - _reduceRatio));
       target.Hp.Subtract(reducedDamage);
       return reducedDamage;
