@@ -26,6 +26,7 @@ namespace Bunashibu.Kikan {
       Location.InitializeFoot(_footCollider);
 
       DamageReactor = new DamageReactor(this);
+      DamageReactor.SetSlot(new LevelResistance(_level));
 
       Character = new Character2D(this);
     }
@@ -79,6 +80,7 @@ namespace Bunashibu.Kikan {
     public int DamageSkinId => 0;
     public int Power        => 0;
     public int Critical     => 0;
+    public int CurLevel     => _level;
 
     [Header("Unity/Photon Components")]
     [SerializeField] private PhotonView     _photonView;
@@ -91,6 +93,9 @@ namespace Bunashibu.Kikan {
     [Header("Kill Reward")]
     [SerializeField] private int _killExp;
     [SerializeField] private int _killGold;
+
+    [Header("Level")]
+    [SerializeField] private int _level;
 
     [Header("Debuff")]
     [SerializeField] private GameObject _stunEffect;

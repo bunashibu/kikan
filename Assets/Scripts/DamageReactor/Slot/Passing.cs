@@ -4,10 +4,9 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   public class Passing : IDamageReactorSlot {
-    public int ReactTo(IOnAttacked target, int damage) {
+    public int ReactTo(IOnAttacked target, IAttacker attacker, int damage) {
       target.Hp.Subtract(damage);
       return damage;
     }
   }
 }
-

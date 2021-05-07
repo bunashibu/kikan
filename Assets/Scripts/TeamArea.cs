@@ -42,6 +42,7 @@ namespace Bunashibu.Kikan {
     public PhotonView PhotonView => photonView;
     public int Power => 0;
     public int Critical => 0;
+    public int CurLevel => 1;
 
     [SerializeField] private int _team;
     private SkillSynchronizer _synchronizer;

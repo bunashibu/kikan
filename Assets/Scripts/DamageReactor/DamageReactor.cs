@@ -13,12 +13,11 @@ namespace Bunashibu.Kikan {
       _slot = slot;
     }
 
-    public int ReactTo(int damage) {
-      return _slot.ReactTo(_target, damage);
+    public int ReactTo(IAttacker attacker, int damage) {
+      return _slot.ReactTo(_target, attacker, damage);
     }
 
     private IOnAttacked _target;
     private IDamageReactorSlot _slot;
   }
 }
-

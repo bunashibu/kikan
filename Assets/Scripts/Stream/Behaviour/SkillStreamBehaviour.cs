@@ -32,7 +32,7 @@ namespace Bunashibu.Kikan {
       if (isAlreadyDead)
         return;
 
-      int damage = flow.Target.DamageReactor.ReactTo(flow.Damage);
+      int damage = flow.Target.DamageReactor.ReactTo(flow.Attacker, flow.Damage);
 
       if (flow.Target is IPhotonBehaviour photonTarget) {
         HitEffectPopupEnvironment.Instance.PopupHitEffect(flow.HitEffectType, photonTarget);

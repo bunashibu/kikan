@@ -6,6 +6,6 @@ namespace Bunashibu.Kikan {
   public interface IAttacker : IMonoBehaviour {
     int Power    { get; }
     int Critical { get; }
+    int CurLevel { get; }
   }
 }
-
