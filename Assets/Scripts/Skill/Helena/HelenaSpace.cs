@@ -12,6 +12,16 @@ namespace Bunashibu.Kikan {
     void Awake() {
       _synchronizer = GetComponent<SkillSynchronizer>();
       _hitRistrictor = new HitRistrictor(_hitInfo);
+      _renderer = GetComponent<SpriteRenderer>();
+
+      this.UpdateAsObservable()
+        .Where(_ => _skillUserObj != null)
+        .Take(1)
+        .Where(_ => {
+          var skillUser = _skillUserObj.GetComponent<Player>();
+          return Client.Opponents.Contains(skillUser);
+        })
+        .Subscribe(_ => _renderer.color = new Color(1, 0, 0.5f, 1));
 
       this.UpdateAsObservable()
         .Where(_ => _skillUserObj != null)
@@ -74,5 +84,6 @@ namespace Bunashibu.Kikan {
     private HitRistrictor _hitRistrictor;
     private float _existTime = 6.0f;
     private Player _player;
+    private SpriteRenderer _renderer;
   }
 }
