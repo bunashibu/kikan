@@ -66,7 +66,7 @@ namespace Bunashibu.Kikan {
     private FixSpd _shiftFixSpd;
     private float _spdRatio = 1.1f;
     private float _buffTime = 4.0f;
-    private float _reduceRatio = 0.3f;
+    private float _reduceRatio = 0.35f;
 
     private IOnAttacked _skillUser;
   }
