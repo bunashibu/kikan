@@ -119,6 +119,6 @@ namespace Bunashibu.Kikan {
     private bool _usingSpace = false;
     private Skill _spaceSkill;
     private float _instantiatedTimestamp;
-    private float _spaceSpd = 0.05f;
+    private float _spaceSpd = 0.08f;
   }
 }
