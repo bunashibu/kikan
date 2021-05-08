@@ -3,12 +3,13 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8adbfcf8aa71b7c4b9f879d7ace3e2ea, type: 3}
   m_Name: GoldTable
   m_EditorClassIdentifier: 
-  _table: 1c020000de0300005406000024090000e40c0000
+  _table: cc0100004803000050050000bc070000f00a0000
