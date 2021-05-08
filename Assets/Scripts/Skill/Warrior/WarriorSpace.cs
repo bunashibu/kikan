@@ -27,15 +27,6 @@ namespace Bunashibu.Kikan {
         .Subscribe(_ => {
           transform.position = _player.transform.position + _player.Weapon.AppearOffset[4];
         });
-
-      // NOTE: For skill user heal himself.
-      //       Because of WarriorSpace is a child of skill user,
-      //       WarriorSpace doesn't heal skill user in OnTriggerStay2D.
-      this.UpdateAsObservable()
-        .Where(_ => _player != null)
-        .Where(_ => photonView.isMine )
-        .Where(_ => !_healRistrictor.ShouldRistrict(_player.gameObject) )
-        .Subscribe(_ => _synchronizer.SyncHeal(_player.PhotonView.viewID, GetHealQuantity()) );
     }
 
     void OnTriggerStay2D(Collider2D collider) {
