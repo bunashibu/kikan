@@ -25,6 +25,10 @@ namespace Bunashibu.Kikan {
         .Where(isAccepting => !isAccepting)
         .Subscribe(_ => HideUniqueSlot(4, 1) )
         .AddTo(hammer.gameObject);
+
+      EventStream.OnClientPlayerDied
+        .Subscribe(_ => HideUniqueSlot(4, 1) )
+        .AddTo(hammer.gameObject);
     }
 
     private void ShowUniqueSlot(int index, int slotIndex) {
@@ -49,4 +53,3 @@ namespace Bunashibu.Kikan {
     [SerializeField] private List<GameObject> _uniqueSlotObj;
   }
 }
-
