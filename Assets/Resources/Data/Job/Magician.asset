@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _atk: 247
   _dfn: 0
-  _spd: 3
+  _spd: 3.15
   _jmp: 400
