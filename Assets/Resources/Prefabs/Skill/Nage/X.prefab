@@ -345,6 +345,6 @@ MonoBehaviour:
     _maxDeviation: 10
     _criticalPercent: 0
   _hitInfo:
-    _maxTargetCount: 2
+    _maxTargetCount: 1
     _maxHitCount: 1
     _interval: 0

@@ -23,8 +23,6 @@ namespace Bunashibu.Kikan {
               Destroy(gameObject);
             });
         });
-
-      _isSecond = false;
     }
 
     void Start() {
@@ -50,12 +48,7 @@ namespace Bunashibu.Kikan {
 
         DamageCalculator.Calculate(_skillUserObj, _attackInfo);
 
-        if (_isSecond)
-          _synchronizer.SyncAttack(_skillUserViewID, target.PhotonView.viewID, (int)(DamageCalculator.Damage * _secondRatio), DamageCalculator.IsCritical, HitEffectType.Nage);
-        else {
-          _synchronizer.SyncAttack(_skillUserViewID, target.PhotonView.viewID, DamageCalculator.Damage, DamageCalculator.IsCritical, HitEffectType.Nage);
-          _isSecond = true;
-        }
+        _synchronizer.SyncAttack(_skillUserViewID, target.PhotonView.viewID, DamageCalculator.Damage, DamageCalculator.IsCritical, HitEffectType.Nage);
       }
     }
 
@@ -72,7 +65,5 @@ namespace Bunashibu.Kikan {
     private Vector2 _moveDirection;
     private float _spd = 12.0f;
     private float _existTime = 0.37f;
-    private bool _isSecond;
-    private float _secondRatio = 0.14f;
   }
 }
