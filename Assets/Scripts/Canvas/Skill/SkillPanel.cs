@@ -65,11 +65,11 @@ namespace Bunashibu.Kikan {
 
     protected virtual void HideAll() {
       foreach (var alphaRect in _alphaRectTransform)
-        alphaRect.sizeDelta = new Vector2(55.0f, 55.0f);
+        alphaRect.sizeDelta = new Vector2(_length, _length);
     }
 
     private void Show(int i) {
-      _alphaRectTransform[i].sizeDelta = new Vector2(55.0f, 0);
+      _alphaRectTransform[i].sizeDelta = new Vector2(_length, 0);
     }
 
     private void UpdateAlphaMask(int i, float cur, float max) {
@@ -78,13 +78,25 @@ namespace Bunashibu.Kikan {
 
       if (i == 0)
         // NOTE: X is always visible
-        _alphaRectTransform[0].sizeDelta = new Vector2(55.0f, 0);
+        _alphaRectTransform[0].sizeDelta = new Vector2(_length, 0);
       else
-        // NOTE: AlphaMask width and height == 55.0f
-        _alphaRectTransform[i].sizeDelta = new Vector2(55.0f, 55.0f * (cur / max));
+        _alphaRectTransform[i].sizeDelta = new Vector2(_length, GetFixHeight(_length * (cur / max), _length / 4));
+    }
+
+    private float GetFixHeight(float height, float step) {
+      for (int i = 0; i < 5; ++i) {
+        var low = i * step;
+        var high = (i + 1) * step;
+        if (low < height && height <= high)
+          return high;
+      }
+
+      return 0;
     }
 
     [SerializeField] protected List<RectTransform> _alphaRectTransform;
     [SerializeField] protected List<Image> _availableImages;
+    // NOTE: AlphaMask width and height == 55.0f
+    private float _length = 55.0f;
   }
 }
