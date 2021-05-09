@@ -156,6 +156,6 @@ namespace Bunashibu.Kikan {
     //        PandaZ manages input forcely. Otherwise, input duplication will occur.
     //        (By default, all input is managed in SMB)
     private float _existTime = 4.0f;
-    private float _spdRatio = 1.3f;
+    private float _spdRatio = 1.4f;
   }
 }
