@@ -13,6 +13,7 @@ namespace Bunashibu.Kikan {
       _synchronizer = GetComponent<SkillSynchronizer>();
       _hitRistrictor = new HitRistrictor(_hitInfo);
       _timestamp = Time.time;
+      _reduce = new Reduce(_reduceRatio);
 
       this.UpdateAsObservable()
         .Where(_ => _skillUserObj != null)
@@ -78,19 +79,71 @@ namespace Bunashibu.Kikan {
     }
 
     void OnTriggerStay2D(Collider2D collider) {
-      if (PhotonNetwork.isMasterClient) {
-        var target = collider.gameObject.GetComponent<IPhoton>();
+      var target = collider.gameObject.GetComponent<IPhoton>();
 
-        if (target == null)
+      if (target == null)
+        return;
+
+      if (TeamChecker.IsSameTeam(collider.gameObject, _skillUserObj)) {
+        var teammate = (Player)target;
+        var damageReactor = teammate.DamageReactor;
+
+        if (damageReactor.Slot.GetType() == typeof(Shield))
           return;
-        if (TeamChecker.IsSameTeam(collider.gameObject, _skillUserObj))
+        if (damageReactor.Slot.GetType() == typeof(Passing)) {
+          damageReactor.SetSlot(_reduce);
           return;
+        }
+        if (damageReactor.Slot.GetType() == typeof(Reduce)) {
+          var reduce = (Reduce)(damageReactor.Slot);
+
+          if (reduce.ReduceRatio < _reduceRatio)
+            damageReactor.SetSlot(_reduce);
+
+          return;
+        }
+        if (damageReactor.Slot.GetType() == typeof(ReduceCritical)) {
+          damageReactor.SetSubSlot(_reduce);
+          return;
+        }
+      }
+
+      if (PhotonNetwork.isMasterClient) {
         if (_hitRistrictor.ShouldRistrict(collider.gameObject))
           return;
 
         DamageCalculator.Calculate(_skillUserObj, _attackInfo);
-
         _synchronizer.SyncAttack(_skillUserViewID, target.PhotonView.viewID, DamageCalculator.Damage, DamageCalculator.IsCritical, HitEffectType.Nage);
+      }
+    }
+
+    void OnTriggerExit2D(Collider2D collider) {
+      var target = collider.gameObject.GetComponent<IPhoton>();
+
+      if (target == null)
+        return;
+
+      if (TeamChecker.IsSameTeam(collider.gameObject, _skillUserObj)) {
+        var teammate = (Player)target;
+        var damageReactor = teammate.DamageReactor;
+
+        if (damageReactor.Slot.GetType() == typeof(Shield))
+          return;
+
+        if (damageReactor.Slot.GetType() == typeof(ReduceCritical)) {
+          damageReactor.SetSubSlot(new Passing());
+          return;
+        }
+        if (damageReactor.Slot.GetType() == typeof(Reduce)) {
+          if (damageReactor.Slot == _reduce) {
+            damageReactor.SetSlot(new Passing());
+            return;
+          }
+          else
+            return;
+        }
+
+        damageReactor.SetSlot(new Passing());
       }
     }
 
@@ -120,8 +173,11 @@ namespace Bunashibu.Kikan {
     private float _collisionOccurenceTime = 0.45f;
     private float _existTime = 15.0f;
 
-    private Player _player;
     private float _hideStartTime = 0.1f;
     private float _hideTime = 2.0f;
+
+    private float _reduceRatio = 0.25f;
+    private Player _player;
+    private Reduce _reduce;
   }
 }

@@ -5,15 +5,14 @@ using UnityEngine;
 namespace Bunashibu.Kikan {
   public class Reduce : IDamageReactorSlot {
     public Reduce(float reduceRatio) {
-      _reduceRatio = reduceRatio;
+      ReduceRatio = reduceRatio;
     }
 
-    public int ReactTo(IOnAttacked target, IAttacker attacker, int damage, bool isCritical) {
-      int reducedDamage = (int)(damage * (1.0f - _reduceRatio));
-      target.Hp.Subtract(reducedDamage);
+    public int Calculate(IOnAttacked target, IAttacker attacker, int damage, bool isCritical) {
+      int reducedDamage = (int)(damage * (1.0f - ReduceRatio));
       return reducedDamage;
     }
 
-    private float _reduceRatio = 0;
+    public float ReduceRatio = 0;
   }
 }

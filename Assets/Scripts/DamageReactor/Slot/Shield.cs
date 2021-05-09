@@ -8,22 +8,16 @@ namespace Bunashibu.Kikan {
       _durability = durability;
     }
 
-    public int ReactTo(IOnAttacked target, IAttacker attacker, int damage, bool isCritical) {
-      if (IsBroken) {
-        target.Hp.Subtract(damage);
+    public int Calculate(IOnAttacked target, IAttacker attacker, int damage, bool isCritical) {
+      if (IsBroken)
         return damage;
-      }
 
       _durability -= (damage - 1);
 
-      if (IsBroken) {
-        target.Hp.Subtract(-_durability);
+      if (IsBroken)
         return -_durability;
-      }
-      else {
-        target.Hp.Subtract(1);
+      else
         return 1;
-      }
     }
 
     public bool IsBroken => _durability <= 0;

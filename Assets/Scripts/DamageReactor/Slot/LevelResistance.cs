@@ -8,7 +8,7 @@ namespace Bunashibu.Kikan {
       _level = level;
     }
 
-    public int ReactTo(IOnAttacked target, IAttacker attacker, int damage, bool isCritical) {
+    public int Calculate(IOnAttacked target, IAttacker attacker, int damage, bool isCritical) {
       float applyDamage = 1;
 
       if (_level <= attacker.CurLevel)
@@ -20,7 +20,6 @@ namespace Bunashibu.Kikan {
       else if (_level - 3 == attacker.CurLevel)
         applyDamage = damage * 0.25f;
 
-      target.Hp.Subtract((int)applyDamage);
       return (int)applyDamage;
     }
 

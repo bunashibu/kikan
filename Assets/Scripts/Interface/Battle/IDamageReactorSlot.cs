@@ -4,6 +4,6 @@ using UnityEngine;
 
 namespace Bunashibu.Kikan {
   public interface IDamageReactorSlot {
-    int ReactTo(IOnAttacked target, IAttacker attacker, int damage, bool isCritical);
+    int Calculate(IOnAttacked target, IAttacker attacker, int damage, bool isCritical);
   }
 }
