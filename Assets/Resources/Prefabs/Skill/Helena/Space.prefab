@@ -344,9 +344,8 @@ MonoBehaviour:
   _attackInfo:
     _damagePercent: 90
     _maxDeviation: 10
-    _criticalPercent: 3
+    _criticalPercent: 0
   _hitInfo:
     _maxTargetCount: 20
     _maxHitCount: 30
     _interval: 0.28
-  _renderer: {fileID: 0}
