@@ -72,7 +72,7 @@ namespace Bunashibu.Kikan {
 
     private SkillSynchronizer _synchronizer;
     private HitRistrictor _hitRistrictor;
-    private float _existTime = 10.0f;
+    private float _existTime = 12.0f;
     private Player _player;
   }
 }
