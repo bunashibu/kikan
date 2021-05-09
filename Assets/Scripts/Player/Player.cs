@@ -95,7 +95,7 @@ namespace Bunashibu.Kikan {
 
       DamageReactor = new DamageReactor(this);
       if (Weapon.JobName == "Magician")
-        DamageReactor.SetSlot(new ReduceCritical(1.5f));
+        DamageReactor.SetSlot(new ReduceCritical(1.4f));
     }
 
     public PhotonView       PhotonView   => _photonView;
