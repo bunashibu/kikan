@@ -176,7 +176,7 @@ namespace Bunashibu.Kikan {
     private float _hideStartTime = 0.1f;
     private float _hideTime = 2.0f;
 
-    private float _reduceRatio = 0.25f;
+    private float _reduceRatio = 0.3f;
     private Player _player;
     private Reduce _reduce;
   }
