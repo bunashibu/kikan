@@ -27,8 +27,8 @@ namespace Bunashibu.Kikan {
         .Where(_ => Time.time - _startPrepareTime >= _prepareDuration)
         .Take(1)
         .Subscribe(_ => {
-          SetTimeAndCamera();
           ResetPlayerStatus();
+          SetTimeAndCamera();
 
           if (PhotonNetwork.isMasterClient)
             InstantiateWinLoseJudger();
@@ -101,6 +101,12 @@ namespace Bunashibu.Kikan {
       _timePanel.SetTime(_time);
       _camera.EnableTracking();
       _camera.SetTrackTarget(Client.Player.gameObject);
+
+      EventStream.OnClientPlayerDied
+        .Subscribe(_ => {
+          CameraManager.Instance.ActivateWatching();
+        })
+        .AddTo(gameObject);
     }
 
     private void ResetPlayerStatus() {

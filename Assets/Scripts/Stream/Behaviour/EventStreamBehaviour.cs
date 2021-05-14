@@ -11,13 +11,6 @@ namespace Bunashibu.Kikan {
           PlayerStreamBehaviour.Instance.Initialize(player);
         })
         .AddTo(gameObject);
-
-      EventStream.OnClientPlayerDied
-        .Where(_ => StageReference.Instance.StageData.Name == "FinalBattle")
-        .Subscribe(_ => {
-          CameraManager.Instance.ActivateWatching();
-        })
-        .AddTo(gameObject);
     }
   }
 }
