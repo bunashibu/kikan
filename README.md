@@ -20,9 +20,10 @@ Because we can't play *The Legends Return* anymore.
 * Stage is symmetry in order to prevent area unfairness
 
 ### Development Environment
-* Unity 2019.4.4f1
+* Unity 2021.1.9f1
   + Photon Unity Networking (Classic v1.95)
   + UniRx (7.1.0)
+    https://github.com/neuecc/UniRx/blob/master/LICENSE
 
 ### LICENSE
 * [MIT License](https://github.com/bunashibu/kikan/blob/master/LICENSE)
@@ -32,4 +33,3 @@ Because we can't play *The Legends Return* anymore.
   + Assets/Resources/SE
   + Assets/Resources/SVG
   + Assets/Resources/Sprite
-
