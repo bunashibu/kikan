@@ -9,7 +9,7 @@ namespace Bunashibu.Kikan {
   public class DamageSkin : ScriptableObject {
     public int Id { get { return _id; } }
 
-    public ReadOnlyCollection<Sprite> Hit {
+    public ReadOnlyCollection<Sprite> Hit { // TODO: Create ReadOnlyCollection all time when called
       get {
         return Array.AsReadOnly(_hit);
       }
@@ -40,4 +40,3 @@ namespace Bunashibu.Kikan {
     [SerializeField] private Sprite[] _heal;
   }
 }
-

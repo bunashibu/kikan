@@ -9,11 +9,10 @@ namespace Bunashibu.Kikan {
   public class DataTable : ScriptableObject {
     public ReadOnlyCollection<int> Data {
       get {
-        return Array.AsReadOnly(_table);
+        return Array.AsReadOnly(_table);// TODO: Create ReadOnlyCollection all time when called
       }
     }
 
     [SerializeField] private int[] _table;
   }
 }
-
