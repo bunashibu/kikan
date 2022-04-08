@@ -80,6 +80,8 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -88,9 +90,9 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
-    aniso: -1
-    mipBias: -100
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -111,9 +113,12 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
   applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
@@ -576,6 +581,26 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      magician_skill_space_atlas_0: 21300000
+      magician_skill_space_atlas_10: 21300020
+      magician_skill_space_atlas_3: 21300006
+      magician_skill_space_atlas_13: 21300026
+      magician_skill_space_atlas_18: 21300036
+      magician_skill_space_atlas_6: 21300012
+      magician_skill_space_atlas_14: 21300028
+      magician_skill_space_atlas_8: 21300016
+      magician_skill_space_atlas_12: 21300024
+      magician_skill_space_atlas_15: 21300030
+      magician_skill_space_atlas_7: 21300014
+      magician_skill_space_atlas_9: 21300018
+      magician_skill_space_atlas_5: 21300010
+      magician_skill_space_atlas_4: 21300008
+      magician_skill_space_atlas_1: 21300002
+      magician_skill_space_atlas_16: 21300032
+      magician_skill_space_atlas_17: 21300034
+      magician_skill_space_atlas_2: 21300004
+      magician_skill_space_atlas_11: 21300022
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
