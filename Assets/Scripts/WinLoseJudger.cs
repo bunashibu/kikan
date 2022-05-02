@@ -158,4 +158,3 @@ namespace Bunashibu.Kikan {
     public int Blue;
   }
 }
-

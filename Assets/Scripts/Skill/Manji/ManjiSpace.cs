@@ -81,7 +81,7 @@ namespace Bunashibu.Kikan {
     private SpriteRenderer _renderer;
 
     private Action ResetStatus;
-    private float _buffTime = 18.0f;
+    private float _buffTime = 15.0f;
     private FixSpd _spaceFixSpd;
   }
 }
