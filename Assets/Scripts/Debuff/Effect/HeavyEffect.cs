@@ -10,7 +10,7 @@ namespace Bunashibu.Kikan {
       _character = transform.parent.gameObject.GetComponent<ICharacter>();
       _character.State.Heavy = true;
 
-      _heavyFixSpd = new FixSpd(_heavySpd, FixSpdType.Debuff);
+      _heavyFixSpd = new FixSpd(_heavySpd, FixSpdType.Debuff, 0.1f, 0);
       _character.FixSpd.Add(_heavyFixSpd);
     }
 

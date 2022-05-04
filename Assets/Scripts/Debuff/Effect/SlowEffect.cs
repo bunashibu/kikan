@@ -8,7 +8,7 @@ namespace Bunashibu.Kikan {
       _character = transform.parent.gameObject.GetComponent<ICharacter>();
       _character.State.Slow = true;
 
-      _slowFixSpd = new FixSpd(_slowSpd, FixSpdType.Debuff);
+      _slowFixSpd = new FixSpd(_slowSpd, FixSpdType.Debuff, 0.1f);
       _character.FixSpd.Add(_slowFixSpd);
     }
 
@@ -22,4 +22,3 @@ namespace Bunashibu.Kikan {
     private float _slowSpd = 0.85f;
   }
 }
-

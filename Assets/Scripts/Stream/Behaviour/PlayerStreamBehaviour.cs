@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 using UniRx;
+using System.Linq;
 
 namespace Bunashibu.Kikan {
   public class PlayerStreamBehaviour : SingletonMonoBehaviour<PlayerStreamBehaviour> {
@@ -180,6 +181,7 @@ namespace Bunashibu.Kikan {
         .Where(count => count == 0)
         .Subscribe(_ => {
           player.Movement.SetMoveForce(player.Status.Spd);
+          player.Movement.SetJumpForce(player.Status.Jmp);
           player.Movement.SetLadderRatio(1.0f);
         })
         .AddTo(player.gameObject);
@@ -188,22 +190,32 @@ namespace Bunashibu.Kikan {
         .ObserveCountChanged(true)
         .Where(count => count > 0)
         .Subscribe(count => {
-          bool isMostReacentBuff = true;
+          var latest = count - 1;
 
-          // INFO: Set most recent debuff. If there are no debuff, most recent buff will be set.
-          for (var j=count-1; j >= 0; --j) {
-            if (player.FixSpd[j].Type == FixSpdType.Debuff) {
+          for (int j = latest; j >= 0; --j) {
+            if (player.FixSpd[j].Type == FixSpdType.Absolute) {
               player.Movement.SetMoveForce(player.FixSpd[j].Value);
-              player.Movement.SetLadderRatio(player.FixSpd[j].Value * 0.1f);
+              player.Movement.SetJumpForce(player.FixSpd[j].JumpValue);
+              player.Movement.SetLadderRatio(player.FixSpd[j].LadderRatio);
+              Debug.Log("Absolute");
               return;
             }
+          }
 
-            if (isMostReacentBuff && player.FixSpd[j].Type == FixSpdType.Buff) {
+          for (int j = latest; j >= 0; --j) {
+            if (player.FixSpd[j].Type == FixSpdType.Debuff) {
               player.Movement.SetMoveForce(player.FixSpd[j].Value);
-              player.Movement.SetLadderRatio(player.FixSpd[j].Value);
-              isMostReacentBuff = false;
+              player.Movement.SetJumpForce(player.FixSpd[j].JumpValue);
+              player.Movement.SetLadderRatio(player.FixSpd[j].LadderRatio);
+              Debug.Log("Debuff");
+              return;
             }
           }
+
+          Debug.Log("Buff");
+          player.Movement.SetMoveForce(player.FixSpd[latest].Value);
+          player.Movement.SetJumpForce(player.FixSpd[latest].JumpValue);
+          player.Movement.SetLadderRatio(player.FixSpd[latest].LadderRatio);
         })
         .AddTo(player.gameObject);
 

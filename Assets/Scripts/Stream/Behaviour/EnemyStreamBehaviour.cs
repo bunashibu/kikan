@@ -41,7 +41,7 @@ namespace Bunashibu.Kikan {
           bool isMostReacentBuff = true;
 
           // INFO: Set most recent debuff. If there are no debuff, most recent buff will be set.
-          for (var j=count-1; j >= 0; --j) {
+          for (var j = count - 1; j >= 0; --j) {
             if (enemy.FixSpd[j].Type == FixSpdType.Debuff) {
               enemy.Movement.SetMoveForce(enemy.FixSpd[j].Value);
               return;
@@ -57,4 +57,3 @@ namespace Bunashibu.Kikan {
     }
   }
 }
-
