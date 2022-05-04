@@ -197,7 +197,6 @@ namespace Bunashibu.Kikan {
               player.Movement.SetMoveForce(player.FixSpd[j].Value);
               player.Movement.SetJumpForce(player.FixSpd[j].JumpValue);
               player.Movement.SetLadderRatio(player.FixSpd[j].LadderRatio);
-              Debug.Log("Absolute");
               return;
             }
           }
@@ -207,12 +206,10 @@ namespace Bunashibu.Kikan {
               player.Movement.SetMoveForce(player.FixSpd[j].Value);
               player.Movement.SetJumpForce(player.FixSpd[j].JumpValue);
               player.Movement.SetLadderRatio(player.FixSpd[j].LadderRatio);
-              Debug.Log("Debuff");
               return;
             }
           }
 
-          Debug.Log("Buff");
           player.Movement.SetMoveForce(player.FixSpd[latest].Value);
           player.Movement.SetJumpForce(player.FixSpd[latest].JumpValue);
           player.Movement.SetLadderRatio(player.FixSpd[latest].LadderRatio);
