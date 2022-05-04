@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System.Linq;
 
 namespace Bunashibu.Kikan {
   public class JobPanel : Photon.MonoBehaviour {
@@ -13,6 +14,9 @@ namespace Bunashibu.Kikan {
     }
 
     void Start() {
+      if (PhotonNetwork.player.IsMasterClient)
+        PickFallback();
+
       EnableAllButtons();
 
       MonoUtility.Instance.DelayUntil(() => _selectTimePanel.TimeSec <= 0, () => {
@@ -20,6 +24,48 @@ namespace Bunashibu.Kikan {
 
         Destroy(gameObject);
       });
+    }
+
+    private void PickFallback() {
+      int redCount = 0;
+      int blueCount = 0;
+      List<PhotonPlayer> redPlayers = new();
+      List<PhotonPlayer> bluePlayers = new();
+
+      foreach (PhotonPlayer player in PhotonNetwork.playerList) {
+        int team = (int)player.CustomProperties["Team"];
+
+        if (team == 0) {
+          redCount += 1;
+          redPlayers.Add(player);
+        }
+        else if (team == 1) {
+          blueCount += 1;
+          bluePlayers.Add(player);
+        }
+      }
+
+      var pool = Enumerable.Range(0, _jobs.Length).ToList();
+
+      for (int i = 0; i < redCount; ++i) {
+        int index = Random.Range(0, pool.Count);
+        _redPicks.Add(index);
+        photonView.RPC("SyncFallbackRPC", PhotonTargets.All, index, redPlayers[i]);
+        pool.Remove(index);
+      }
+
+      for (int i = 0; i < blueCount; ++i) {
+        int index = Random.Range(0, pool.Count);
+        _bluePicks.Add(index);
+        photonView.RPC("SyncFallbackRPC", PhotonTargets.All, index, bluePlayers[i]);
+        pool.Remove(index);
+      }
+    }
+
+    [PunRPC]
+    private void SyncFallbackRPC(int fallbackPick, PhotonPlayer player) {
+      if (PhotonNetwork.player == player)
+        _fallbackPick = fallbackPick;
     }
 
     public void Pick(int n) {
@@ -59,7 +105,7 @@ namespace Bunashibu.Kikan {
 
     private void ActivatePlayer() {
       if (_decideButton.interactable)
-        RandomPick();
+        _curPick = _fallbackPick;
 
       var player = _instantiator.InstantiatePlayer(_jobs[_curPick].name);
       _instantiator.InstantiateHudObjects(_canvas, player.Weapon, _skillPanelList[_curPick]);
@@ -107,5 +153,10 @@ namespace Bunashibu.Kikan {
 
     private int _prePick = -1;
     private int _curPick = -1;
+    private int _fallbackPick;
+
+    // Only used by server
+    private List<int> _redPicks = new();
+    private List<int> _bluePicks = new();
   }
 }
