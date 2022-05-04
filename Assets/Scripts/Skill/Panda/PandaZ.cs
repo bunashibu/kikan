@@ -30,7 +30,11 @@ namespace Bunashibu.Kikan {
         .Take(1)
         .Subscribe(_ => {
           _player = _skillUserObj.GetComponent<Player>();
-          _player.Movement.SetMoveForce(_player.Status.Spd * _spdRatio);
+
+          var spd = _player.Status.Spd * _spdRatio;
+          var zFixSpd = new FixSpd(spd, FixSpdType.Absolute);
+
+          _player.FixSpd.Add(zFixSpd);
           _player.Debuff.DestroyAll();
           _player.Debuff.Disable();
 
@@ -38,7 +42,7 @@ namespace Bunashibu.Kikan {
             if (_player == null)
               return;
 
-            _player.Movement.SetMoveForce(_player.Status.Spd);
+            _player.FixSpd.Remove(zFixSpd);
             _player.Debuff.Enable();
           });
         });

@@ -57,6 +57,7 @@ namespace Bunashibu.Kikan {
 
   public enum FixSpdType {
     Buff,
-    Debuff
+    Debuff,
+    Absolute
   }
 }

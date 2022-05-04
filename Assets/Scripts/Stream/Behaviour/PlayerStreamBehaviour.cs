@@ -200,6 +200,7 @@ namespace Bunashibu.Kikan {
 
             if (isMostReacentBuff && player.FixSpd[j].Type == FixSpdType.Buff) {
               player.Movement.SetMoveForce(player.FixSpd[j].Value);
+              player.Movement.SetLadderRatio(player.FixSpd[j].Value);
               isMostReacentBuff = false;
             }
           }

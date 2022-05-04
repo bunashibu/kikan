@@ -24,4 +24,3 @@ namespace Bunashibu.Kikan {
     private float _heavySpd = 0.85f;
   }
 }
-

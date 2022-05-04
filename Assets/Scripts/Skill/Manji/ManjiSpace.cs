@@ -50,17 +50,16 @@ namespace Bunashibu.Kikan {
         statusRatio = 1.4f;
         powerRatio = 1.6f;
 
-      _spaceFixSpd = new FixSpd(skillUser.Status.Spd * statusRatio, FixSpdType.Buff);
+      var spd = skillUser.Status.Spd * statusRatio;
+      var jump = skillUser.Status.Jmp * statusRatio;
+
+      _spaceFixSpd = new FixSpd(spd, FixSpdType.Buff, statusRatio, jump);
       skillUser.FixSpd.Add(_spaceFixSpd);
-      skillUser.Movement.SetJumpForce(skillUser.Status.Jmp * statusRatio);
-      skillUser.Movement.SetLadderRatio(statusRatio);
 
       skillUser.Synchronizer.SyncFixAtk(powerRatio);
 
       ResetStatus = () => {
         skillUser.FixSpd.Remove(_spaceFixSpd);
-        skillUser.Movement.SetJumpForce(skillUser.Status.Jmp);
-        skillUser.Movement.SetLadderRatio(1.0f);
 
         skillUser.Synchronizer.SyncFixAtk(1.0f);
       };

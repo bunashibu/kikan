@@ -40,13 +40,11 @@ namespace Bunashibu.Kikan {
     private void EnhanceStatus() {
       var skillUser = _skillUserObj.GetComponent<Player>();
 
-      _shiftFixSpd = new FixSpd(skillUser.Status.Spd *_spdRatio, FixSpdType.Buff);
+      _shiftFixSpd = new FixSpd(skillUser.Status.Spd *_spdRatio, FixSpdType.Buff, _spdRatio, skillUser.Status.Jmp);
       skillUser.FixSpd.Add(_shiftFixSpd);
-      skillUser.Movement.SetLadderRatio(_spdRatio);
 
       ResetStatus = () => {
         skillUser.FixSpd.Remove(_shiftFixSpd);
-        skillUser.Movement.SetLadderRatio(1.0f);
       };
 
       SkillReference.Instance.Register(viewID, _buffTime, () => { PhotonNetwork.Destroy(gameObject); });
