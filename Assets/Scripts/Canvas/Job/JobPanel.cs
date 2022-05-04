@@ -14,44 +14,59 @@ namespace Bunashibu.Kikan {
     }
 
     void Start() {
-      if (PhotonNetwork.player.IsMasterClient)
-        SetupFallback();
-
       EnableAllButtons();
 
-      MonoUtility.Instance.DelayUntil(() => _selectTimePanel.TimeSec <= 0, () => {
-        ActivatePlayer();
-
-        Destroy(gameObject);
-      });
+      if (PhotonNetwork.player.IsMasterClient) {
+        MonoUtility.Instance.DelayUntil(() => _selectTimePanel.TimeSec <= 0, () => {
+          Setup();
+          photonView.RPC("StartGameRPC", PhotonTargets.All);
+        });
+      }
     }
 
-    private void SetupFallback() {
+    [PunRPC]
+    private void StartGameRPC() {
+      ActivatePlayer();
+      Destroy(gameObject);
+    }
+
+    private void Setup() {
+      List<PhotonPlayer> redPlayers = new();
+      List<PhotonPlayer> bluePlayers = new();
+
       foreach (PhotonPlayer player in PhotonNetwork.playerList) {
         int team = (int)player.CustomProperties["Team"];
 
-        if (team == 0) {
-          _redCount += 1;
-          _redPlayers.Add(player);
-        }
-        else if (team == 1) {
-          _blueCount += 1;
-          _bluePlayers.Add(player);
-        }
+        if (team == 0)
+          redPlayers.Add(player);
+        else if (team == 1)
+          bluePlayers.Add(player);
       }
 
-      for (int i = 0; i < _redCount; ++i) {
-        var pool = Enumerable.Range(0, _jobs.Length).ToList();
+      var restRedPlayers = redPlayers.Where(player => !_redPickedPlayers.Contains(player)).ToList();
+
+      var pool = Enumerable.Range(0, _jobs.Length).ToList();
+      pool.RemoveAll(x => _redPicks.Contains(x));
+
+      for (int i = 0; i < restRedPlayers.Count; ++i) {
         int index = Random.Range(0, pool.Count);
-        photonView.RPC("SyncSetupFallbackRPC", PhotonTargets.All, index, _redPlayers[i]);
-        pool.Remove(index);
+        int fallbackPick = pool[index];
+        photonView.RPC("SyncSetupFallbackRPC", PhotonTargets.All, fallbackPick, restRedPlayers[i]);
+
+        pool.Remove(fallbackPick);
       }
 
-      for (int i = 0; i < _blueCount; ++i) {
-        var pool = Enumerable.Range(0, _jobs.Length).ToList();
+      var restBluePlayers = bluePlayers.Where(player => !_bluePickedPlayers.Contains(player)).ToList();
+
+      pool = Enumerable.Range(0, _jobs.Length).ToList();
+      pool.RemoveAll(x => _bluePicks.Contains(x));
+
+      for (int i = 0; i < restBluePlayers.Count; ++i) {
         int index = Random.Range(0, pool.Count);
-        photonView.RPC("SyncSetupFallbackRPC", PhotonTargets.All, index, _bluePlayers[i]);
-        pool.Remove(index);
+        int fallbackPick = pool[index];
+        photonView.RPC("SyncSetupFallbackRPC", PhotonTargets.All, fallbackPick, restBluePlayers[i]);
+
+        pool.Remove(fallbackPick);
       }
     }
 
@@ -76,53 +91,13 @@ namespace Bunashibu.Kikan {
       _description.UpdateLabel(n);
     }
 
-    private void RandomPick() {
-      int n = Random.Range(0, _jobs.Length);
-      Pick(n);
-    }
-
-    [PunRPC]
-    private void ReselectFallbackRPC(int team) {
-      var pool = Enumerable.Range(0, _jobs.Length).ToList();
-
-      if (team == 0) {
-        pool.RemoveAll(x => _redPicks.Contains(x));
-        var restRedPlayers = _redPlayers.Select(player => !_redPickedPlayers.Contains(player)).ToList();
-
-        for (int i = 0; i < restRedPlayers.Count; ++i) {
-          int index = Random.Range(0, pool.Count);
-          photonView.RPC("SyncSetupFallbackRPC", PhotonTargets.All, index, restRedPlayers[i]);
-          pool.Remove(index);
-        }
-
-        return;
-      }
-
-      if (team == 1) {
-        pool.RemoveAll(x => _bluePicks.Contains(x));
-        var restBluePlayers = _bluePlayers.Select(player => !_bluePickedPlayers.Contains(player)).ToList();
-
-        for (int i = 0; i < restBluePlayers.Count; ++i) {
-          int index = Random.Range(0, pool.Count);
-          photonView.RPC("SyncSetupFallbackRPC", PhotonTargets.All, index, restBluePlayers[i]);
-          pool.Remove(index);
-        }
-
-        return;
-      }
-    }
-
     [PunRPC]
     private void SyncDecideRPC(int n, int team, PhotonPlayer selectPlayer) {
       if (PhotonNetwork.player == selectPlayer)
         DisableAllButtons();
 
-      if ((int)PhotonNetwork.player.CustomProperties["Team"] == team) {
+      if ((int)PhotonNetwork.player.CustomProperties["Team"] == team)
         _decideMark[n].Put();
-
-        if (_fallbackPick == n)
-          photonView.RPC("ReselectFallbackRPC", PhotonTargets.MasterClient, team);
-      }
     }
 
     [PunRPC]
@@ -208,10 +183,6 @@ namespace Bunashibu.Kikan {
     // Only used by server
     private List<int> _redPicks = new();
     private List<int> _bluePicks = new();
-    private int _redCount = 0;
-    private int _blueCount = 0;
-    private List<PhotonPlayer> _redPlayers = new();
-    private List<PhotonPlayer> _bluePlayers = new();
     private List<PhotonPlayer> _redPickedPlayers = new();
     private List<PhotonPlayer> _bluePickedPlayers = new();
   }
