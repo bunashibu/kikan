@@ -18,6 +18,10 @@ namespace Bunashibu.Kikan {
     public void Update(int maxHp) {
       _max.Value = maxHp;
     }
+
+    // TEMP: deal with simultaneous heal/attack bug temporarily
+    public void Set(int cur) {
+      _cur.Value = cur;
+    }
   }
 }
-
