@@ -23,6 +23,11 @@ namespace Bunashibu.Kikan {
       scrollPos.y = Mathf.Infinity;
     }
 
+    public void Update() {
+      if (Input.GetKeyDown(KeyCode.Alpha8))
+        IsVisible = !IsVisible;
+    }
+
     public void OnGUI() {
       if (!this.IsVisible || !PhotonNetwork.inRoom)
         return;
@@ -116,4 +121,3 @@ namespace Bunashibu.Kikan {
     }
   }
 }
-
