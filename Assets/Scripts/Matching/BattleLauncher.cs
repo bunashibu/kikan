@@ -43,7 +43,11 @@ namespace Bunashibu.Kikan {
       }
 
       for (int k=0; k<undecidedIndex.Count; ++k) {
-        if (Random.value < 0.5 && redIndex.Count < teamCount)
+        if (redIndex.Count == teamCount)
+          blueIndex.Add(undecidedIndex[k]);
+        else if (blueIndex.Count == teamCount)
+          redIndex.Add(undecidedIndex[k]);
+        else if (Random.value < 0.5)
           redIndex.Add(undecidedIndex[k]);
         else
           blueIndex.Add(undecidedIndex[k]);
@@ -65,7 +69,6 @@ namespace Bunashibu.Kikan {
 
       var applyingTicket = PhotonNetwork.player.CustomProperties["ApplyingTicket"];
       if (applyingTicket == null) return;
-      if (applyingTicket == "")   return;
 
       if ((ApplyType)applyingTicket == applyType) {
         UseApplyingTicket(applyType);
