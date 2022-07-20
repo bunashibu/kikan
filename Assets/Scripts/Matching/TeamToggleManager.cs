@@ -8,20 +8,29 @@ using Hashtable = ExitGames.Client.Photon.Hashtable;
 namespace Bunashibu.Kikan {
   public class TeamToggleManager : Photon.MonoBehaviour {
     void Start() {
+      SetHope(-1);
+
       _redToggle.onValueChanged.AddListener((state) => {
-        Restrict(state, _blueToggle);
-        SetHope(0);
+        Restrict(state, _blueToggle, 0);
+        Fallback();
       });
 
       _blueToggle.onValueChanged.AddListener((state) => {
-        Restrict(state, _redToggle);
-        SetHope(1);
+        Restrict(state, _redToggle, 1);
+        Fallback();
       });
     }
 
-    private void Restrict(bool state, Toggle target) {
-      if (state && target.isOn)
+    private void Restrict(bool state, Toggle target, int hopeTeam) {
+      if (state && target.isOn) {
         target.isOn = false;
+        SetHope(hopeTeam);
+      }
+    }
+
+    private void Fallback() {
+      if (!_redToggle.isOn && !_blueToggle.isOn)
+        SetHope(-1);
     }
 
     private void SetHope(int hopeTeam) {
