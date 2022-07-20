@@ -16,9 +16,9 @@ namespace Bunashibu.Kikan {
       Assert.IsTrue(PhotonNetwork.isMasterClient);
 
       var roomName = "Battle" + System.Guid.NewGuid();
-      int[] team = TeamMaker(_mediator.MatchCount[applyType]);
+      int[] teams = TeamMaker(_mediator.MatchCount[applyType]);
 
-      photonView.RPC("StartBattleRPC", PhotonTargets.AllViaServer, roomName, team, applyType);
+      photonView.RPC("StartBattleRPC", PhotonTargets.AllViaServer, roomName, teams, applyType);
     }
 
     private int[] TeamMaker(int matchCount) {
@@ -50,7 +50,7 @@ namespace Bunashibu.Kikan {
     }
 
     [PunRPC]
-    public void StartBattleRPC(string roomName, int[] team, ApplyType applyType) {
+    public void StartBattleRPC(string roomName, int[] teams, ApplyType applyType) {
       if (applyType != ApplyType.Practice)
         _audioSource.PlayOneShot(_matchingClip, 0.1f);
 
@@ -75,7 +75,7 @@ namespace Bunashibu.Kikan {
             if (i == 0)
               photonView.RPC("MatchingDoneRPC", PhotonTargets.MasterClient, applyType);
 
-            var props = new Hashtable() {{ "Team", team[i] }};
+            var props = new Hashtable() {{ "Team", teams[i] }};
             PhotonNetwork.player.SetCustomProperties(props);
             break;
           }

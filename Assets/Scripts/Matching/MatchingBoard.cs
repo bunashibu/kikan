@@ -12,6 +12,7 @@ namespace Bunashibu.Kikan {
 
     public void SetApplyMode() {
       _apply.SetActive(true);
+      _teamPanel.SetActive(true);
 
       _cancel.SetActive(false);
       _nameBoard.SetActive(false);
@@ -23,6 +24,7 @@ namespace Bunashibu.Kikan {
       _cancel.SetActive(true);
       _nameBoard.SetActive(true);
       _progressLabel.SetActive(true);
+      _teamPanel.SetActive(true);
 
       _apply.SetActive(false);
     }
@@ -33,6 +35,7 @@ namespace Bunashibu.Kikan {
       _cancel.SetActive(false);
       _nameBoard.SetActive(false);
       _progressLabel.SetActive(false);
+      _teamPanel.SetActive(false);
     }
 
     public void UpdateNameBoard() {
@@ -57,8 +60,8 @@ namespace Bunashibu.Kikan {
     [SerializeField] private GameObject _nameBoard;
     [SerializeField] private GameObject _progressLabel;
     [SerializeField] private GameObject _startPanel;
+    [SerializeField] private GameObject _teamPanel;
     [SerializeField] private List<Text> _boardNameList;
     [SerializeField] private MatchingMediator _mediator;
   }
 }
-
