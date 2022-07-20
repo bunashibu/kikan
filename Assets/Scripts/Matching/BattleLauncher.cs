@@ -16,37 +16,46 @@ namespace Bunashibu.Kikan {
       Assert.IsTrue(PhotonNetwork.isMasterClient);
 
       var roomName = "Battle" + System.Guid.NewGuid();
-      int[] teams = TeamMaker(_mediator.MatchCount[applyType]);
+      int[] teams = TeamMaker(_mediator.MatchCount[applyType], applyType);
 
       photonView.RPC("StartBattleRPC", PhotonTargets.AllViaServer, roomName, teams, applyType);
     }
 
-    private int[] TeamMaker(int matchCount) {
-      var list = new List<int>();
-      int half = 1;
+    private int[] TeamMaker(int matchCount, ApplyType applyType) {
+      int teamCount = matchCount == 1 ? 1 : matchCount / 2;
+      var playerList = _mediator.ApplicantList[applyType];
 
-      if (matchCount > 2) {
-        half = matchCount / 2;
+      var redIndex = new List<int>();
+      var blueIndex = new List<int>();
+      var undecidedIndex = new List<int>();
 
-        if (matchCount % 2 != 0)
-          half += 1;
-      }
+      for (int i=0; i<playerList.Count; ++i) {
+        int hopeTeam = (int)playerList[i].CustomProperties["HopeTeam"];
 
-      for (int i=0; i<matchCount; ++i) {
-        var num0 = list.Where(x => x == 0).Count();
-        var num1 = list.Where(x => x == 1).Count();
-
-        if (num0 < half) {
-          if (Random.value < 0.5 || num1 >= half)
-            list.Add(0);
-          else
-            list.Add(1);
-        }
+        if (hopeTeam == -1)
+          undecidedIndex.Add(i);
+        else if (hopeTeam == 0 && redIndex.Count < teamCount)
+          redIndex.Add(i);
+        else if (hopeTeam == 1 && blueIndex.Count < teamCount)
+          blueIndex.Add(i);
         else
-          list.Add(1);
+          undecidedIndex.Add(i);
       }
 
-      return list.ToArray();
+      for (int k=0; k<undecidedIndex.Count; ++k) {
+        if (Random.value < 0.5 && redIndex.Count < teamCount)
+          redIndex.Add(undecidedIndex[k]);
+        else
+          blueIndex.Add(undecidedIndex[k]);
+      }
+
+      var finalAry = new int[6];
+      foreach (var i in redIndex)
+        finalAry[i] = 0;
+      foreach (var i in blueIndex)
+        finalAry[i] = 1;
+
+      return finalAry;
     }
 
     [PunRPC]
