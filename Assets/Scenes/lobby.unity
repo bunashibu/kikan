@@ -6092,6 +6092,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1477744431}
+  - component: {fileID: 1477744432}
   m_Layer: 5
   m_Name: TeamPanel
   m_TagString: Untagged
@@ -6121,6 +6122,20 @@ RectTransform:
   m_AnchoredPosition: {x: 95, y: -178.38}
   m_SizeDelta: {x: 456, y: 26.75}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1477744432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1477744430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c286f65479cfc24ab3896b0428eca46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _redToggle: {fileID: 1655029053}
+  _blueToggle: {fileID: 2057984241}
 --- !u!1 &1491544143
 GameObject:
   m_ObjectHideFlags: 0
