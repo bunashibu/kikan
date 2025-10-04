@@ -41,4 +41,8 @@ Assets/Scripts/Test*
 Logs
 UML/*
 
+.vs/
+.vscode/
+.vsconfig
+
 Assets/bug.mkd
